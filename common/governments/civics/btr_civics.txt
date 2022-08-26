@@ -1,3 +1,5 @@
+#Civics File
+
 #civic_example = {
 #	playable = {}								# AND trigger, no scope; use this to prevent the civic from being selectable by the player (UI)
 #	potential = {}								# requirements list, see ../readme_requirements.txt
@@ -26,3 +28,72 @@
 #	}
 #	ai_playable = {}							# Similar to "playable", for AI
 #}
+
+####################
+# ASARI REP CIVICS #
+####################
+asari_rep_civic_thes_dip_corp ={
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/asari_rep_civic_thes_dip_corp.dds"
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		authority = {
+			NOT = {
+				value = auth_corporate
+			}
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		envoys_add = 3
+		diplo_weight_mult = 0.33
+		diplo_weight_naval_mult = -0.1
+	}
+}
+
+asari_rep_civic_democracy = {
+	modification = no
+	icon = "gfx/interface/icons/governments/civics/asari_rep_civic_democracy.dds"
+	potential = {
+		ethics = {
+			NOT = {
+				value = ethic_gestalt_consciousness
+			}
+		}
+		authority = {
+			NOT = {
+				value = auth_corporate
+			}
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		country_war_exhaustion_mult = 0.1
+		empire_size_colonies_mult = -0.5
+	}
+}
+
+asari_rep_civic_universities = {
+	icon = "gfx/interface/icons/governments/civics/asari_rep_civic_universities.dds"
+	potential = {
+		origin = {
+			value = btr_origin_asrep
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		diplo_weight_technology_mult = 0.1
+		all_technology_research_speed = 0.05
+		empire_size_colonies_mult = -0.5
+	}
+}
