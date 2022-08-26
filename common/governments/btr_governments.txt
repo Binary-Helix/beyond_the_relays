@@ -1,1 +1,36 @@
 #Governments File
+
+### Asari
+gov_asari_republic = {
+	ruler_title = MEC_RT_ASR_M
+	ruler_title_female = MEC_RT_ASR_F
+
+	leader_class = governor # Initial ruler will become this if elected out of office
+
+	election_candidates = {
+		modifier = {
+			add = 100
+			leader_class = ruler
+		}
+		modifier = {
+			add = 10
+			OR = {
+				leader_class = governor
+				leader_class = scientist
+			}
+		}
+		modifier = {
+			factor = 5
+			gender = female
+		}
+	}
+
+	possible = {
+		has_authority = auth_democratic
+		has_civic = mec_asari_civic_thessia
+	}
+
+	weight = {
+		base = 9999
+	}
+}
