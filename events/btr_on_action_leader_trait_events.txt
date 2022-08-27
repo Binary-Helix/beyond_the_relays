@@ -1,0 +1,42 @@
+#On Action file for leader trait events
+
+country_event = {
+	id = btr_asari_rep.01
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		always = yes
+	}
+
+	immediate = {
+		if = {
+			limit = { from = { species = { has_trait = asari_trait_core } } }
+			from = {
+				add_trait = asari_leader_trait
+				add_skill = 2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = btr_asari_rep.02
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+			from = {
+				species = { has_trait = asari_trait_core }
+			}
+	}
+
+	immediate = {
+		from = {
+			if = {
+				limit = { leader_class = general }
+				add_trait = asari_leader_trait_commando
+			}
+		}
+	}
+}
