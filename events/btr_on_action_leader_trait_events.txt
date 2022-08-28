@@ -40,3 +40,29 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = btr_turian_hier.01
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+			from = {
+				species = { has_trait = turian_trait_core }
+			}
+	}
+
+	immediate = {
+		from = {
+			if = {
+				limit = { 
+					OR={
+						leader_class = general
+						leader_class = admiral
+					} 
+				}
+				add_trait = turian_leader_trait_extensive_training
+			}
+		}
+	}
+}
