@@ -194,7 +194,25 @@ turian_trait_martial_nat = {
 # SALARIAN TRAITS #
 ###################
 
-salarian_trait_genius = {
+salarian_trait_core = {
+	cost = 0
+	leader_age_min = 8
+	leader_age_max = 40
+
+	initial = yes
+	randomized = no
+	species_potential_add = {
+        always = no
+    }
+	icon = "gfx/interface/icons/traits/trait_unknown.dds"
+	allowed_archetypes = { BIOLOGICAL }
+
+	modifier = {
+		leader_age = 15
+	}	
+}
+
+salarian_trait_impressive_minds = {
 	cost = 0
 	initial = yes
 	randomized = no
@@ -207,21 +225,12 @@ salarian_trait_genius = {
 		planet_jobs_engineering_research_produces_mult = 0.2
 		planet_jobs_physics_research_produces_mult = 0.2
 		planet_jobs_society_research_produces_mult = 0.2
-		intel_decryption_mult = 0.15
-		intel_encryption_mult = 0.15
+		army_damage_mult = -0.25
 	}
-
-	slave_cost = {
-		energy = 100
-	}
-
-	
 }
 
-salarian_trait_shortlived = {
+salarian_trait_bleed_edge = {
 	cost = 0
-	leader_age_min = 16
-	leader_age_max = 40
 
 	initial = yes
 	randomized = no
@@ -232,12 +241,27 @@ salarian_trait_shortlived = {
 	allowed_archetypes = { BIOLOGICAL }
 
 	modifier = {
-		leader_age = -30
-		species_leader_exp_gain = 0.10
+		planet_jobs_specialist_produces_mult = 0.15
+		planet_jobs_worker_produces_mult = 0.05
 
-	}
+	}	
+}
 
-	
+salarian_trait_societal_trade = {
+	cost = 0
+
+	initial = yes
+	randomized = no
+	species_potential_add = {
+        always = no
+    }
+	icon = "gfx/interface/icons/traits/trait_unknown.dds"
+	allowed_archetypes = { BIOLOGICAL }
+
+	modifier = {
+		empire_size_pops_mult = -0.15
+		leader_skill_levels = 1
+	}	
 }
 
 #################
