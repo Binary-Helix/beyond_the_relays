@@ -1,0 +1,79 @@
+
+portraits = {
+	# batarian
+	batarian 	= {	entity = "portrait_human_male_01_entity"	clothes_selector = "mammalian_human_male_clothes_01" hair_selector = "no_texture"	greeting_sound = "humanoid_portrait_g_male"	
+		character_textures = {
+			"gfx/models/portraits/batari/batarian_1_new.dds"
+			"gfx/models/portraits/batari/batarian_2_new.dds"
+			"gfx/models/portraits/batari/batarian_3_new.dds"
+			"gfx/models/portraits/batari/batarian_4_new.dds"
+			"gfx/models/portraits/batari/batarian_5_new.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	batarian = {
+		default = batarian
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = {
+					batarian
+				}
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = {
+					batarian
+				}
+			}
+		}		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					batarian
+				}
+			}
+		}		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					batarian
+				}
+			}
+		}
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					batarian
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					batarian
+				}
+			}
+		}
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					batarian
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					batarian
+				}
+			}
+		}
+	}	
+}
