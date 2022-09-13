@@ -851,3 +851,346 @@ sedriicae_trait_gender_castes = {
 		trade_value_mult = -0.1
 	}
 }
+
+################
+# HANAR TRAITS #
+################
+
+hanar_trait_core = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_yahg_core.dds"
+
+	#Opposites TBD
+	opposites = {
+		"trait_resilient"
+		"trait_strong"
+		"trait_very_strong"
+	}
+
+	initial = yes
+	randomized = no
+	modification = no
+
+	immortal_leaders = no
+	
+	leader_age_min = 30
+	leader_age_max = 140
+
+	allowed_archetypes = {
+		BIOLOGICAL
+	}
+
+	modifier = {
+		leader_age = 50
+	}
+}
+
+hanar_trait_toxic_secretions = {
+	cost = 0 
+	opposites = {
+		"trait_hive_mind"
+		"trait_unruly"
+	}
+
+	initial = yes
+	randomized = no
+	modification = no
+	allowed_archetypes = { BIOLOGICAL }
+
+	modifier = {
+		army_defense_damage_mult = 0.10
+		planet_crime = -0.4
+		
+	}
+	slave_cost = {
+		energy = 50
+	}
+}
+
+hanar_trait_non_bipedal = {
+	cost = 0 
+	opposites = {
+		"trait_hive_mind"
+		"trait_strong"
+	}
+
+	initial = yes
+	randomized = no
+	modification = no
+	allowed_archetypes = { BIOLOGICAL }
+
+	modifier = {
+		all_technology_research_speed =-0.1
+		planet_pops_consumer_goods_upkeep_mult = 0.10
+	}
+}
+
+#Custom Aquatic Trait
+hanar_trait_water_bound = {
+	cost = 0
+	host_has_dlc = "Aquatics Species Pack"
+
+	sorting_priority = 20
+
+	random_weight = {
+		AQUATIC = 100
+		MOL = 10
+		HUM = 2
+		MAM = 2
+		LITHOID = 0.5
+	 }
+
+	allowed_planet_classes = {
+		pc_ocean
+	}
+
+	species_possible_remove = {
+		if = {
+			limit = {
+				exists = from
+			}
+			if = {
+				limit = { NOT = { from = { has_ascension_perk = ap_hydrocentric } } }
+				custom_tooltip = {
+					fail_text = trait_aquatic_remove_evolutionary_mastery
+					from = { has_ascension_perk = ap_evolutionary_mastery }
+				}
+			}
+			else = {
+				custom_tooltip = {
+					fail_text = trait_aquatic_remove_hydrocentric
+					always = no
+				}
+			}
+		}
+	}
+	species_potential_add = {
+		exists = from
+		from = {
+			has_ascension_perk = ap_evolutionary_mastery
+		}
+	}
+	initial = yes
+
+	allowed_archetypes = { BIOLOGICAL LITHOID }
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			NOT = { has_trait = trait_pc_ocean_preference }
+		}
+	}
+
+	custom_tooltip_with_modifiers = trait_aquatic_tooltip
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				OR = {
+					is_planet_class = pc_ocean
+					has_modifier = flooded_habitat
+				}
+			}
+		}
+		pop_housing_usage_mult = -0.1
+		planet_jobs_food_produces_mult = 0.1
+		planet_jobs_minerals_produces_mult = 0.1
+		planet_jobs_energy_produces_mult = 0.1
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				OR = {
+					is_planet_class = pc_ocean
+					has_modifier = flooded_habitat
+				}
+				exists = owner
+				owner = { has_ascension_perk = ap_hydrocentric }
+			}
+		}
+		pop_housing_usage_mult = -0.05
+		planet_jobs_food_produces_mult = 0.05
+		planet_jobs_minerals_produces_mult = 0.05
+		planet_jobs_energy_produces_mult = 0.05
+		pop_happiness = 0.05
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				NOR = {
+					has_climate = wet
+					has_modifier = flooded_habitat
+				}
+				is_ideal = no
+			}
+		}
+		pop_housing_usage_mult = 0.3
+	}
+	triggered_pop_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				NOR = {
+					has_climate = wet
+					has_modifier = flooded_habitat
+				}
+				is_ideal = no
+				exists = owner
+				owner = { has_ascension_perk = ap_hydrocentric }
+			}
+		}
+		pop_housing_usage_mult = 0.15
+	}
+	# To make it be able to evaluate habitability of planet it has not settled yet. Only applies to this species
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			NOR = {
+				has_climate = wet
+				has_modifier = flooded_habitat
+			}
+			is_ideal = no
+		}
+		pop_environment_tolerance = -0.2
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			NOR = {
+				has_climate = wet
+				has_modifier = flooded_habitat
+			}
+			is_ideal = no
+			exists = owner
+			owner = { has_ascension_perk = ap_hydrocentric }
+		}
+		pop_environment_tolerance = -0.1
+	}
+	triggered_planet_growth_habitability_modifier = {
+		potential = {
+			has_modifier = flooded_habitat
+		}
+		pop_environment_tolerance = 0.2
+	}
+	modifier = {
+		pc_ocean_habitability = 0.2
+	}
+
+	icon = "gfx/interface/icons/traits/trait_aquatic.dds"
+}
+
+
+################
+# YAHG  TRAITS #
+################
+
+yahg_trait_core = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_yahg_core.dds"
+
+	#Opposites TBD
+	opposites = {
+		"trait_resilient"
+		"trait_strong"
+		"trait_very_strong"
+	}
+
+	initial = yes
+	randomized = no
+	modification = no
+
+	immortal_leaders = no
+	
+	leader_age_min = 30
+	leader_age_max = 100
+
+	allowed_archetypes = {
+		BIOLOGICAL
+	}
+
+	modifier = {
+		leader_age = 50
+	}
+}
+
+yahg_trait_apex_pred = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_yahg_apex.dds"
+
+	#Opposites TBD
+	opposites = {
+		"trait_intelligent"
+		"trait_natural_physicists"
+		"trait_natural_engineers"
+		"trait_natural_sociologists"
+	}
+
+	initial = yes
+	randomized = no
+	modification = no
+	allowed_archetypes = {
+		BIOLOGICAL
+	}
+
+	modifier = {
+		pop_growth_speed = -0.15
+		planet_pops_organics_food_upkeep_mult = 0.15
+		pop_housing_usage_mult = 0.25
+		army_damage_mult = 0.66
+		army_morale = 0.66
+	}
+}
+
+
+yahg_trait_truthsay = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_yahg_truth.dds"
+
+	#Opposites TBD
+	opposites = {
+		"trait_intelligent"
+		"trait_natural_physicists"
+		"trait_natural_engineers"
+		"trait_natural_sociologists"
+	}
+
+	initial = yes
+	randomized = no
+	modification = no
+	allowed_archetypes = {
+		BIOLOGICAL
+	}
+
+	modifier = {
+		planet_jobs_society_research_produces_mult = 0.15 
+		empire_size_pops_mult= -0.20 		
+	}
+}
+
+yahg_trait_cont_obsess = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/trait_yahg_control.dds"
+
+	#Opposites TBD
+	opposites = {
+		"trait_intelligent"
+		"trait_natural_physicists"
+		"trait_natural_engineers"
+		"trait_natural_sociologists"
+	}
+
+	initial = yes
+	randomized = no
+	modification = no
+	allowed_archetypes = {
+		BIOLOGICAL
+	}
+
+	modifier = {
+		pop_resettlement_cost_mult = -0.75
+		planet_jobs_unity_produces_mult = 0.10 
+		planet_researchers_produces_mult = 0.10
+		
+	}
+}
