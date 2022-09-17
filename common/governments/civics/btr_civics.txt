@@ -1076,7 +1076,7 @@ raloi_rep_civics_spreading_our_wings={
 		base = 0
 	}
 	modifier = {
-		country_influence_produces_add = 1
+		country_influence_produces_mult = 1
 		country_trust_growth = 0.25
 		science_ship_survey_speed = 0.33
 	}
@@ -1112,7 +1112,7 @@ raloi_rep_civics_lessons = {
 		base = 0
 	}
 	modifier = {
-		owner_ship_speed_mult = 0.1
+		ship_speed_mult = 0.1
 		all_technology_research_speed = 0.05
 	}
 }
@@ -1135,7 +1135,7 @@ rachni_swarm_del_capo_al_fine = {
 	modifier = {
 		starbase_defensive_war_ship_build_speed_mult = 0.2
 		ships_upkeep_mult = -0.2
-		ships_speed_mult = 0.1
+		ship_speed_mult = 0.1
 	}
 }
 
@@ -1172,3 +1172,68 @@ rachni_swarm_symphonic_structure = {
 		planet_building_build_speed_mult = 0.1
 	}
 }
+
+##################
+# THE COLLECTORS #
+##################
+
+civic_machine_assimilator = {
+	potential = { 
+		origin = {
+			value = collectors_origin
+		}
+	}
+	modification = no
+	random_weight = {
+		base = 5
+		modifier = {
+			factor = 0
+			NOT = { host_has_dlc = "Synthetic Dawn Story Pack" }
+		}
+		modifier = {
+			# civic has no effect after galaxy generation, disable for random generation
+			factor = 0
+			has_global_flag = game_started
+		}
+	}
+	description = civic_tooltip_machine_assimilator_effects
+	has_secondary_species = {	# see game_start.11
+		title = civic_machine_assimilator_secondary_species
+		traits = {
+			trait = trait_cybernetic
+		}
+	}
+}
+
+collector_voice_of_reapers = {
+	modification = no
+	potential = {
+		origin = {
+			value = collectors_origin
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		intel_decryption_add = 3
+		intel_encryption_add = 3
+	}
+}
+
+collector_assuming_control = {
+	modification = yes
+	potential = {
+		origin = {
+			value = collectors_origin
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		intel_decryption_add = 3
+		intel_encryption_add = 3
+	}
+}
+
