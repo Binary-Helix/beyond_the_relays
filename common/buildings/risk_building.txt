@@ -372,3 +372,119 @@ building_nazaras_claw = {
 		is_machine_empire = yes
 	}
 }
+building_enkindler_reliquary = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = unity
+
+	allow = {
+		has_upgraded_capital = yes 
+	}
+
+	potential = {
+		owner = {
+			has_origin = illuminated_primacy_origin
+		}
+		exists = owner
+		owner = { is_regular_empire = yes }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			has_modifier = slave_colony
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 10
+			consumer_goods = 5
+		}
+	}
+
+	planet_modifier = {
+		job_high_priest_add = 1
+		#job_caretaker_add = 3 TO BE ADDED LATER
+	}
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_jobs_produces_mult = 0.05
+		pop_ethic_fanatic_spiritualist_attraction_mult = 0.2
+	}
+	triggered_desc = {
+		text = job_high_priest_effect_desc
+	}
+	#triggered_desc = {
+		#text = job_caretaker_effect_desc
+	#}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+}
+building_drell_barracks = {
+	base_buildtime = @b1_time
+	base_cap_amount = 2
+	
+	exempt_from_ai_planet_specialization = no
+	category = army
+
+	allow = {
+		has_upgraded_capital = yes 
+	}
+
+	potential = {
+		owner = {
+			has_origin = illuminated_primacy_origin
+		}
+		exists = owner
+		owner = { is_regular_empire = yes }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			has_modifier = slave_colony
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 20
+			#light_alloy = 1 TO BE ADDED LATER
+		}
+	}
+
+	planet_modifier = {
+		job_soldier_add = 4
+	}
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_orbital_bombardment_damage = -0.2
+		army_defense_morale_mult = 0.5
+	}
+	triggered_desc = {
+		text = job_soldier_effect_desc
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+}
