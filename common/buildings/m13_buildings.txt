@@ -1,0 +1,122 @@
+#####################
+###ASARI REPUBLICS###
+#####################
+
+######Republican Communication Center######
+
+building_rep_comm_center = {
+    base_buildtime = 360
+    base_cap_amount = 1
+
+    exempt_from_ai_planet_specialization = no
+
+    category = goverment
+
+    potential = {
+        owner = {
+            has_origin = asari_rep_origin
+        }
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+        }
+    }
+
+    destroy_trigger = {
+        NOT = {
+            has_origin = asari_rep_origin
+        }
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 400
+            energy = 500
+        }
+        upkeep = {
+            energy = 6
+        }
+        produces = {
+            unity = 4
+        }
+    }
+
+    planet_modifier = {
+        job_culture_worker_add =1
+    }
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_amenities_mult = 0.05
+        pop_cat_specialist_political_power_mult = 0.1
+        pop_cat_worker_political_power_mult = 0.1
+    }
+    triggred_desc = {
+        text = job_culture_worker_effect_desc
+    }
+}
+
+#####Galactic Sports Center#####
+
+building_galactic_sports_center = {
+    base_buildtime = 600
+
+    exempt_from_ai_planet_specialization = no
+
+    empire_limit = {
+        base = 1
+    }
+
+    category = unity
+
+    potential = {
+        owner = {
+            has_origin = asari_rep_origin
+        }
+    }
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 2000
+            alloys = 200
+            energy = 1000
+        }
+        upkeep = {
+            energy = 5
+            food = 5
+            minerals = 1
+        }
+        produces = {
+            energy = 20
+            unity = 2
+        }
+    }
+
+    planet_modifier = {
+        job_entertainer_add = 1
+        job_duelist_add = 1
+        job_culture_worker_add =1
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_amenities_mult = 0.05
+        country_pop_happiness_mult = 0.05
+    }
+
+    triggered_desc = {
+        text = job_entertainer_effect_desc
+    }
+    triggered_desc = {
+        text = job_duelist_effect_desc
+    }
+    triggered_desc = {
+        text = job_culture_worker_effect_desc
+    }
+
+}
