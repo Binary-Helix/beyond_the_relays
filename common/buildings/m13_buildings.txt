@@ -22,11 +22,12 @@ building_rep_comm_center = {
         }
     }
 
-    destroy_trigger = {
-        NOT = {
-            has_origin = asari_rep_origin
-        }
-    }
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+		}
+	}
 
     resources = {
         category = planet_buildings
@@ -50,8 +51,6 @@ building_rep_comm_center = {
             always = yes
         }
         planet_amenities_mult = 0.05
-        pop_cat_specialist_political_power_mult = 0.1
-        pop_cat_worker_political_power_mult = 0.1
     }
     triggred_desc = {
         text = job_culture_worker_effect_desc
@@ -76,6 +75,13 @@ building_galactic_sports_center = {
             has_origin = asari_rep_origin
         }
     }
+
+    destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+		}
+	}
 
     resources = {
         category = planet_buildings
@@ -106,8 +112,15 @@ building_galactic_sports_center = {
             always = yes
         }
         planet_amenities_mult = 0.05
+    }
+
+    triggered_country_modifier ={
+        potential = {
+            aways = yes
+        }
         country_pop_happiness_mult = 0.05
     }
+
 
     triggered_desc = {
         text = job_entertainer_effect_desc
