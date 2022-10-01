@@ -8,6 +8,10 @@ tr_elegance_adopt = {
 		planet_pops__food_upkeep_mult = 0.1
 		planet_researchers_produces_mult = 0.2
 	}
+
+	ai_weight = {
+		factor = 100000
+	}
 }
 
 tr_elegance_finish = {
@@ -100,6 +104,10 @@ tr_bitterness_adopt = {
 	modifier = {
 		pop_government_ethic_attraction = 0.15
 	}
+
+	ai_weight = {
+		factor = 100000
+	}
 }
 
 tr_bitterness_finish = {
@@ -113,12 +121,20 @@ tr_bitterness_beaten_but_unbroken = {
 	modifier = {
 		country_unity_produces_mult = 0.25
 	}
+
+	ai_weight = {
+		factor = 5000
+	}
 }
 
 tr_bitterness_never_forget = {
 	modifier = {
 		ship_fire_rate_mult = 0.1
 		ship_hull_mult = 0.05
+	}
+
+	ai_weight = {
+		factor = 5000
 	}
 }
 
@@ -132,6 +148,10 @@ tr_bitterness_lessons_of_war = {
 		ship_speed_mult = 0.15
 		ship_damage_against_starbases_mult = 0.1
 	}
+
+	ai_weight = {
+		factor = 5000
+	}
 }
 
 tr_bitterness_rally_the_fleets = {
@@ -142,6 +162,10 @@ tr_bitterness_rally_the_fleets = {
 	modifier = {
 		country_naval_cap_mult = 0.25
 		ship_military_upkeep_mult = -0.25
+	}
+
+	ai_weight = {
+		factor = 5000
 	}
 }
 
@@ -154,6 +178,10 @@ tr_bitterness_rise_again = {
 		country_war_exhaustion_mult = -0.2
 		starbase_defensive_war_ship_build_speed_mult = 0.15
 	}
+
+	ai_weight = {
+		factor = 5000
+	}
 }
 
 #########
@@ -164,11 +192,16 @@ tr_isolation_adopt = {
 	modifier = {
 		intel_encryption_add = 2
 	}
+
+	ai_weight = {
+		factor = 100000
+	}
 }
 
 tr_isolation_finish = {
 	modifier = {
 		planet_crime_mult = -0.1
+		ascension_perks_add = 1
 	}
 }
 
@@ -176,11 +209,19 @@ tr_isolation_domestic_affairs = {
 	modifier = {
 		pop_government_ethic_attraction = 0.25
 	}
+
+	ai_weight = {
+		factor = 5000
+	}
 }
 
 tr_isolation_self_perfection = {
 	modifier = {
 		planet_stability_add = 25
+	}
+
+	ai_weight = {
+		factor = 5000
 	}
 }
 
@@ -192,6 +233,10 @@ tr_isolation_internal_trade_management = {
 	modifier = {
 		trade_value_mult = 0.15
 		country_trade_fee = -0.05
+	}
+
+	ai_weight = {
+		factor = 5000
 	}
 }
 
@@ -205,6 +250,10 @@ tr_isolation_austerity_and_autarky = {
 		pop_happiness = -0.05
 		planet_jobs_produces_mult = 0.1
 	}
+
+	ai_weight = {
+		factor = 5000
+	}
 }
 
 tr_isolation_limited_diplomacy = {
@@ -216,9 +265,217 @@ tr_isolation_limited_diplomacy = {
 		diplo_weight_mult = 0.15
 		envoys_add = 1
 	}
+
+	ai_weight = {
+		factor = 5000
+	}
 }
 
-####################
-# SYSTEMS ALLIANCE #
-####################
+########
+# GETH #
+########
+
+tr_ostracism_adopt = {
+	modifier = {
+		ship_friendly_territory_fire_rate_mult = 0.15
+	}
+
+	ai_weight = {
+		factor = 100000
+	}
+}
+
+tr_ostracism_finish = {
+	modifier = {
+		shipclass_military_build_speed_mult = 0.25
+		ship_military_alloys_cost_mult = -0.1
+		ship_military_upkeep_mult = -0.15
+		ascension_perks_add = 1
+	}
+}
+
+tr_ostracism_perpetual_tension = {
+	modifier = {
+		starbase_upgrade_cost_mult = -0.5
+		starbase_upgrade_speed_mult = 0.5
+		army_defense_damage_mult = 0.25
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_ostracism_consensus_of_completion = {
+	modifier = {
+		planet_jobs_produces_mult = 0.05
+		planet_building_build_speed_mult = 0.25
+		country_unity_produces_mult = 0.1
+		planet_amenities_add = 10
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_ostracism_unintentional_custodians = {
+	possible = {
+		has_tradition = tr_ostracism_perpetual_tension
+	}
+
+	modifier = {
+		planet_orbital_bombardment_damage = 0.3
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_ostracism_inherent_combat_protocols = {
+	possible = {
+		has_tradition = tr_ostracism_perpetual_tension
+	}
+
+	modifier = {
+		army_starting_experience_add = 100
+		armies_upkeep_mult = -0.5
+		planet_army_build_time_mult = -0.5
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_ostracism_deathless_life = {
+	possible = {
+		has_tradition = tr_ostracism_consensus_of_completion
+	}
+
+	modifier = {
+		leader_skill_levels = 2
+		species_leader_exp_gain = 0.3
+		leaders_upkeep_mult = 2.5
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+############
+# ALLIANCE #
+############
+
+tr_vigilance_adopt = {
+	modifier = {
+		army_attack_damage_mult = 0.25
+		army_defense_damage_mult = 0.25
+		admiral_skill_levels = 3
+	}
+
+	ai_weight = {
+		factor = 100000
+	}
+}
+
+tr_vigilance_finish = {
+	modifier = {
+		shipclass_military_build_cost_mult = -0.15
+		shipclass_military_build_speed_mult = 0.3
+		ascension_perks_add = 1
+	}
+}
+
+tr_vigilance_carrier_doctrine = {
+	modifier = {
+		weapon_type_strike_craft_speed_mult = 0.15
+		weapon_type_strike_craft_weapon_damage_mult = 0.2
+		weapon_type_strike_craft_weapon_fire_rate_mult = 0.25
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_vigilance_fleet_rotation = {
+	possible = {
+		has_tradition = tr_vigilance_carrier_doctrine
+	}
+	
+	modifier = {
+		ship_speed_mult = 0.15
+		ship_military_upkeep_mult = -0.25
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_vigilance_first_and_last_line = {
+	possible = {
+		has_tradition = tr_vigilance_carrier_doctrine
+	}
+
+	modifier = {
+		country_naval_cap_mult = 0.25
+		shipclass_starbase_hull_mult = 0.15
+		ship_hull_damage_mult = 0.15
+		ship_armor_damage_mult = 0.15
+		ship_shield_damage_mult = 0.15
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+
+}
+
+tr_vigilance_supernational_autonomy = {
+	modifier = {
+		country_influence_produces_mult = 1
+		diplo_weight_mult = 0.2
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+
+}
+
+tr_vigilance_electronic_warfare = {
+	possible = {
+		has_tradition = tr_vigilance_supernational_autonomy
+	}
+
+	modifier = {
+		force_disparity_fire_rate_mult = 0.1
+		ship_shield_penetration_mult = 0.15
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+
+}
+
+#########
+# HANAR #
+#########
+
+tr_illumination_adopt = {
+	modifier = {
+		pop_happiness = 0.1
+	}
+
+	ai_weight = {
+		factor = 10000
+	}
+}
+
+
 
