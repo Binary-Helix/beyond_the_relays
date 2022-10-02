@@ -1019,4 +1019,88 @@ tr_newcomers_seat = {
 # SALARIANS #
 #############
 
+tr_espionage_adopt = {
+	modifier = {
+		envoys_add = 1
+		intel_decryption_add = 2
+	}
 
+	ai_weight = {
+		factor = 10000
+	}
+}
+
+tr_espionage_finish = {
+	modifier = {
+		diplo_weight_mult = 0.15
+		intel_encryption_add = 2
+		ascension_perks_add = 1
+	}
+}
+
+tr_espionage_stg_infiltrators = {
+	modifier = {
+		spy_network_daily_value_mult = 0.2
+		spy_network_value_mult = 0.3
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_espionage_independent_agents = {
+	modifier = {
+		envoys_add = 1
+		operations__cost_mult = -0.75
+		operations_upkeep_mult = -0.25
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_espionage_restrictions = {
+	possible = {
+		has_tradition = tr_espionage_stg_infiltrators
+	}
+
+	modifier = {
+		intel_decryption_add = 4
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_espionage_counter_terror = {
+	possible = {
+		has_tradition = tr_espionage_stg_infiltrators
+	}
+
+	modifier = {
+		intel_encryption_add = 3
+		espionage_hostile_operation_difficulty_add = 2
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_espionage_doctrine = {
+	possible = {
+		has_tradition = tr_espionage_independent_agents
+	}
+
+	modifier = {
+		ship_friendly_territory_fire_rate_mult = -0.05
+		force_disparity_fire_rate_mult = 0.25
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
