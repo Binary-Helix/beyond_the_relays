@@ -1669,7 +1669,189 @@ tr_purity_pure_traditions = {
 # CERBERUS #
 ############
 
+tr_necessity_adopt = {
+	modifier = {
+		envoys_add = 2
+	}
 
+	ai_weight = {
+		factor = 10000
+	}
+}
 
+tr_necessity_finish = {
+	modifier = {
+		country_edict_fund_add = 50
+		planet_researchers_produces_mult = 0.5
+		leaders__energy_cost_mult = -0.5
+		leaders_unity_cost_mult = -0.5
+		leaders__energy_upkeep_mult = 1
+		leaders_unity_upkeep_mult = -1
+	}
+}
+
+tr_necessity_friends = {
+	modifier = {
+		intel_encryption_add = 5
+		intel_decryption_add = 3
+		country_influence_produces_mult = 1
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_necessity_cells = {
+	modifier = {
+		empire_size_colonies_mult = -0.4
+		empire_size_pops_mult = -0.2
+		pop_ethics_shift_speed_mult = 0.2
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_necessity_cause = {
+	possible = {
+		has_tradition = tr_necessity_friends
+	}
+
+	modifier = {
+		country_unity_produces_mult = 0.5
+		planet_stability_add = 5
+		pop_happiness = 0.05
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_necessity_pragmatism = {
+	possible = {
+		has_tradition = tr_necessity_friends
+	}
+
+	modifier = {
+		all_technology_research_speed = 0.1
+		planet_researchers_produces_mult = 0.05
+		envoy_improve_relations_mult = -0.5
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_necessity_hit_hard = {
+	possible = {
+		has_tradition = tr_necessity_cells
+	}
+
+	modifier = {
+		ship_disengage_chance_mult = 0.1
+		ship_fire_rate_mult = 0.05
+		ship_speed_mult = 0.05
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+##############
+# COLLECTORS #
+##############
+
+tr_service_adopt = {
+	modifier = {
+		pop_purge_speed = 0.5
+	}
+
+	ai_weight = {
+		factor = 10000
+	}
+}
+
+tr_service_finish = {
+	modifier = {
+		planet_orbital_bombardment_damage = 0.2
+		ascension_perks_add = 1
+	}
+}
+
+tr_service_contacts = {
+	modifier = {
+		spy_network_daily_value_mult = 0.3
+		country_energy_produces_mult = 0.2
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_service_purpose = {
+	modifier = {
+		country_society_tech_research_speed = 0.2
+		num_tech_alternatives_add = 1
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_service_fear = {
+	possible = {
+		has_tradition = tr_service_purpose
+	}
+
+	modifier = {
+		army_attack_damage_mult = 1
+		army_defense_damage_mult = 1
+		army_attack_morale_mult = 1
+		army_defense_morale_mult = 1
+		ship_disengage_chance_mult = -0.5
+		ship_fire_rate_mult = 0.25
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_service_command = {
+	possible = {
+		has_tradition = tr_service_purpose
+	}
+
+	modifier = {
+		leader_skill_levels = 5
+		species_leader_exp_gain = 0.1
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_service_labor = {
+	possible = {
+		has_tradition = tr_service_contacts
+	}
+
+	modifier = {
+		planet_jobs_produces_mult = 0.1
+		planet_building_build_speed_mult = 0.2
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
 
 
