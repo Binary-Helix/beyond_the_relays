@@ -1301,12 +1301,178 @@ tr_anarchy_adopt = {
 	modifier = {
 		planet_stability_add = 10
 	}
+
+	ai_weight = {
+		factor = 10000
+	}
 }
 
 tr_anarchy_finish = {
 	modifier = {
 		local_trade_protection_add = 10
 		ascension_perks_add = 1
+	}
+}
+
+tr_anarchy_palace = {
+	modifier = {
+		pop_happiness_positive = 5
+		planet_immigration_pull_mult = 0.05
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_anarchy_secrets = {
+	modifier = {
+		envoys_add = 1
+		intel_decryption_add = 2
+		spy_network_daily_value_mult = 0.5
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_anarchy_golden_rule = {
+	possible = {
+		has_tradition = tr_anarchy_palace
+	}
+
+	modifier = {
+		job_criminal_per_pop = 20
+		pop_cat_criminal_happiness = 50
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_anarchy_space = {
+	possible = {
+		has_tradition = tr_anarchy_palace
+	}
+
+	modifier = {
+		planet_housing_mult = -0.2
+		pop_cat_worker_happiness = -0.05
+		pop_cat_ruler_happiness = 0.05
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_anarchy_personal_justice = {
+	possible = {
+		has_tradition = tr_anarchy_secrets
+	}
+
+	modifier = {
+		army_defense_morale_mult = 0.5
+		job_soldier_per_pop = 20
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+#########
+# VOLUS #
+#########
+
+tr_acquisition_adopt = {
+	modifier = {
+		envoys_add = 2
+		country_border_friction_mult = -0.8
+	}
+
+	ai_weight = {
+		factor = 10000
+	}
+}
+
+tr_acquisition_finish = {
+	modifier = {
+		planet_managers__unity_produces_add = 0.25
+		planet_administrators_produces_mult = 0.5
+		ascension_perks_add = 1
+	}
+}
+
+tr_acquisition_flexible_society = {
+	modifier = {
+		pop_demotion_time_mult = -1
+		pop_amenities_usage_mult = -0.1
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_acquisition_efficient_processing = {
+	modifier = {
+		planet_jobs_upkeep_mult = -0.15
+		planet_building_build_speed_mult = 0.1
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_acquisition_negotiators = {
+	possible = {
+		has_tradition = tr_acquisition_flexible_society
+	}
+
+	modifier = {
+		diplo_weight_economy_mult = 0.2
+		country_trust_growth = 0.1
+		country_trust_cap_add = 50
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_acquisition_everything = {
+	possible = {
+		has_tradition = tr_acquisition_efficient_processing
+	}
+
+	modifier = {
+		job_clerk_add = 3
+		job_merchant_per_pop = 30
+		job_preacher_per_pop = 30
+	}
+
+	ai_weight = {
+		factor = 5000
+	}
+}
+
+tr_acquisition_trade_secrets = {
+	possible = {
+		has_tradition = tr_acquisition_efficient_processing
+	}
+
+	modifier = {
+		intel_encryption_add = 2
+		planet_researchers_produces_mult = 0.05
+		job_enforcer_per_pop = 3
+	}
+
+	ai_weight = {
+		factor = 5000
 	}
 }
 
