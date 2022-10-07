@@ -1,0 +1,125 @@
+
+early_crisis_plan = {
+	income = {
+		energy = 50
+		minerals = 200
+		alloys = 50
+
+
+		exotic_gases = 1
+		volatile_motes = 1
+		rare_crystals = 1
+	}
+
+	focus = {
+		energy = 50
+		minerals = 50
+		alloys = 20
+	}
+
+	subplan = {
+		set_name = "btr crisis always spice_melange"
+		potential = { always = yes }
+		income = { btr_spice_melange = 100 }
+		focus = { btr_spice_melange = 50 }
+	}
+
+	subplan = {
+		set_name = "btr crisis food/cgs"
+		potential = {
+			country_uses_consumer_goods = yes
+			country_uses_food = yes
+		}
+
+		income = {
+			food = 50
+			consumer_goods = 50
+		}
+
+		focus = {
+			food = 10
+			consumer_goods = 20
+		}
+	}
+
+	subplan = {
+		set_name = "btr crisis cgs"
+		potential = {
+			country_uses_consumer_goods = yes
+			country_uses_food = no
+		}
+
+		income = {
+			consumer_goods = 50
+		}
+
+		focus = {
+			consumer_goods = 20
+		}
+	}
+
+	subplan = {
+		set_name = "btr crisis food"
+		potential = {
+			country_uses_consumer_goods = no
+			country_uses_food = yes
+		}
+
+		income = {
+			food = 50
+		}
+
+		focus = {
+			food = 10
+		}
+	}
+
+	subplan = {
+		set_name = "btr crisis food_crisis_1"
+		potential = { btr_food_crisis_1 = yes }
+		income = { food = 1000 }
+		focus = { food = 850 }
+	}
+
+	subplan = {
+		set_name = "btr crisis mineral_crisis_1"
+		potential = { btr_minerals_crisis_1 = yes }
+		income = { minerals = 1000 }
+		focus = { minerals = 850 }
+	}
+
+	subplan = {
+		set_name = "btr crisis energy_crisis_1"
+		potential = { btr_energy_crisis_1 = yes }
+		income = { energy = 1000 }
+		focus = { energy = 850 }
+	}
+
+	subplan = {
+		set_name = "btr crisis cgs_crisis_1"
+		potential = { btr_consumer_goods_crisis_1 = yes }
+		income = { consumer_goods = 500 }
+		focus = { consumer_goods = 200 }
+	}
+
+	potential = {
+		or = {
+			btr_raw_ecocrisis_level_1 = yes
+			btr_consumer_goods_crisis_1 = yes
+		}
+	}
+
+	pops = 500
+	# empire_size = 1
+
+	ai_weight = {
+		weight = 100
+		modifier = {
+			factor = 100
+			or = {
+				btr_raw_ecocrisis_level_1 = yes
+				btr_consumer_goods_crisis_1 = yes
+			}
+		}
+	}
+}

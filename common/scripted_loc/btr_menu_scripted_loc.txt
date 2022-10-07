@@ -1,0 +1,1733 @@
+defined_text = {
+	name = GetName_btr_or_tech_fork_switch
+	text = {
+		trigger = {
+			# NOT = {
+			# 	has_global_flag = btr_tech_fork
+			# }
+			check_variable_arithmetic = {
+				which = @btr_or_tech_fork_switch
+				value = 1
+			}
+		}
+		localization_key = btr_menu_name
+	}
+	text = {
+		trigger = {
+			# has_global_flag = btr_tech_fork
+			check_variable_arithmetic = {
+				which = @btr_or_tech_fork_switch
+				value = 2
+			}
+		}
+		localization_key = btr_tech_fork_menu_name
+	}
+}
+
+defined_text = {
+	name = GetName_btr_truce_switch
+	text = {
+		trigger = {
+			has_global_flag = btr_global_disable_will_not_declare_war_until
+		}
+		localization_key = btr_trigger_no
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_global_flag = btr_global_disable_will_not_declare_war_until
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+}
+
+defined_text = {
+	name = GetName_btr_truce_switch_active
+	text = {
+		trigger = {
+			has_global_flag = btr_global_disable_will_not_declare_war_until
+		}
+		localization_key = NOT_ACTIVE
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_global_flag = btr_global_disable_will_not_declare_war_until
+			}
+		}
+		localization_key = ACTIVE
+	}
+}
+
+defined_text = {
+	name = GetName_btr_truce_players_switch
+	text = {
+		trigger = {
+			has_global_flag = btr_player_will_not_declare_war_until
+		}
+		localization_key = ALL
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_global_flag = btr_player_will_not_declare_war_until
+			}
+		}
+		localization_key = NUM_EMPIRES
+	}
+}
+
+# Requires root scope: attacker country
+defined_text = {
+	name = GetName_btr_country_banned_from_declare_war
+	text = {
+		trigger = {
+			root = {
+				has_country_flag = btr_country_banned_from_declare_war
+			}
+		}
+		localization_key = btr_truce_country_banned_from_declare_war
+	}
+	text = {
+		trigger = {
+			NOT = {
+				root = {
+					has_country_flag = btr_country_banned_from_declare_war
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+# Requires this scope: attacked country
+defined_text = {
+	name = GetName_btr_country_war_immunity
+	text = {
+		trigger = {
+			has_country_flag = btr_country_war_immunity
+		}
+		localization_key = btr_truce_country_war_immunity
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_country_flag = btr_country_war_immunity
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_doomstack_switch
+	text = {
+		trigger = {
+			has_global_flag = btr_doomstack_disabled
+		}
+		localization_key = btr_trigger_no
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_global_flag = btr_doomstack_disabled
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+}
+
+defined_text = {
+	name = GetName_btr_ai_should_build_habitats_switch
+	text = {
+		trigger = {
+			has_global_flag = btr_global_ai_should_not_build_habitats
+		}
+		localization_key = btr_trigger_no
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_global_flag = btr_global_ai_should_not_build_habitats
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+}
+
+defined_text = {
+	name = GetName_btr_ai_should_build_megastructures_switch
+	text = {
+		trigger = {
+			has_global_flag = btr_global_ai_should_not_build_megastructures
+		}
+		localization_key = btr_trigger_no
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_global_flag = btr_global_ai_should_not_build_megastructures
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+}
+
+defined_text = {
+	name = GetName_btr_ai_should_build_starbase_defenses_switch
+	text = {
+		trigger = {
+			has_global_flag = btr_global_ai_should_build_starbase_defenses
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_global_flag = btr_global_ai_should_build_starbase_defenses
+			}
+		}
+		localization_key = btr_trigger_no
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_1
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					has_leader_flag = dmm_display_exception_for_@prevprev
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						has_leader_flag = dmm_display_exception_for_@prevprev
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_2
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					has_leader_flag = dmm_display_exception_for_@prevprev
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_3
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_4
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_5
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_6
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_7
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_8
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_9
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_10
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_11
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_12
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_13
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_14
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_15
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_16
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_17
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_18
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_19
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_20
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_21
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_22
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_23
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_24
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_25
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_26
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_27
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_28
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_29
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_30
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_31
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_32
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_33
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_34
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_35
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_36
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_37
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_38
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_39
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_40
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_41
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_42
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_43
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_44
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_45
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_46
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_47
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_48
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_49
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_dmm_display_exception_for_50
+	text = {
+		trigger = {
+			event_target:dmm_global_country = {
+				any_owned_leader = {
+					has_leader_flag = btr_menu_name_flag
+					btr_dmm_display_exception_for_ = yes
+				}
+			}
+		}
+		localization_key = btr_trigger_yes
+	}
+	text = {
+		trigger = {
+			NOT = {
+				event_target:dmm_global_country = {
+					any_owned_leader = {
+						has_leader_flag = btr_menu_name_flag
+						btr_dmm_display_exception_for_ = yes
+					}
+				}
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_truce_settings_banned_from_declare_war
+	text = {
+		trigger = {
+			has_country_flag = btr_country_banned_from_declare_war
+		}
+		localization_key = btr_truce_prohibited
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_country_flag = btr_country_banned_from_declare_war
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_truce_settings_btr_country_war_immunity
+	text = {
+		trigger = {
+			has_country_flag = btr_country_war_immunity
+		}
+		localization_key = btr_truce_protected
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_country_flag = btr_country_war_immunity
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_truce_settings_btr_country_ignore_will_not_declare_war_until
+	text = {
+		trigger = {
+			has_country_flag = btr_country_ignore_will_not_declare_war_until
+		}
+		localization_key = btr_truce_ignore
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_country_flag = btr_country_ignore_will_not_declare_war_until
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_is_ship_size_export_target
+	text = {
+		trigger = {
+			has_country_flag = btr_register_ship_size_export_target
+		}
+		localization_key = btr_menu.4.ship_sizes_export_target
+	}
+	text = {
+		trigger = {
+			NOT = {
+				has_country_flag = btr_register_ship_size_export_target
+			}
+		}
+		localization_key = BLANK_STRING
+	}
+}
+
+defined_text = {
+	name = GetName_btr_register_ship_size_btr_var_ai_mode
+	text = {
+		trigger = {
+			event_target:global_event_country = {
+				is_variable_set = btr_register_ship_size_btr_var_ai_mode
+			}
+		}
+		localization_key = btr_register_ship_size_btr_var_ai_mode_multiply
+	}
+	text = {
+		trigger = {
+			event_target:global_event_country = {
+				NOT = {
+					is_variable_set = btr_register_ship_size_btr_var_ai_mode
+				}
+			}
+		}
+		localization_key = btr_register_ship_size_btr_var_ai_mode_clear
+	}
+}
+
+defined_text = {
+	name = GetName_btr_register_ship_size_btr_var_ai_value
+	text = {
+		trigger = {
+			event_target:global_event_country = {
+				NOR = {
+					is_variable_set = btr_register_ship_size_btr_var_ai_mode
+					is_variable_set = btr_register_ship_size_btr_var_ai_value
+				}
+			}
+		}
+		localization_key = BLANK_STRING		# This should never happen.
+	}
+	text = {
+		trigger = {
+			event_target:global_event_country = {
+				is_variable_set = btr_register_ship_size_btr_var_ai_value
+				is_variable_set = btr_register_ship_size_btr_var_ai_mode
+			}
+		}
+		localization_key = btr_register_ship_size_btr_var_ai_value_input
+	}
+	text = {
+		trigger = {
+			event_target:global_event_country = {
+				is_variable_set = btr_register_ship_size_btr_var_ai_value
+				NOT = {
+					is_variable_set = btr_register_ship_size_btr_var_ai_mode
+				}
+			}
+		}
+		localization_key = btr_register_ship_size_btr_var_ai_value_clear
+	}
+	text = {
+		trigger = {
+			event_target:global_event_country = {
+				is_variable_set = btr_register_ship_size_btr_var_ai_mode
+				NOT = {
+					is_variable_set = btr_register_ship_size_btr_var_ai_value
+				}
+			}
+		}
+		localization_key = BLANK_STRING		# This should never happen.
+	}
+}

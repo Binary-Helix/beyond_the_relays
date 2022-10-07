@@ -1,0 +1,108 @@
+#Root = country, attacker
+#This = country, target
+#This rule is a condition for declaring war
+can_declare_war = {
+	custom_tooltip = {
+		fail_text = "ACTION_DECLARE_WAR_OVERLORD_ON_SUBJECT"
+		NOT = {
+			has_overlord = ROOT
+		}
+	}
+	if = {
+		limit = {
+			exists = root
+			ROOT = {
+				has_policy_flag = no_wars
+				OR = {
+					is_subject = no
+					overlord = {
+						is_same_value = root
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			text = "CAN_DECLARE_WAR_POLICY"
+			always = no
+		}
+	}
+	if = {
+		limit = {
+			exists = root
+			ROOT = {
+				is_ai = yes
+			}
+		}
+		ROOT = {
+			is_at_war = no
+		}
+	}
+	if = {
+		limit = {
+			has_global_flag = btr_enabled_flag			# Checks if btr or StarTech was loaded.
+			exists = root
+			OR = {
+				root = {
+					has_country_flag = btr_country_banned_from_declare_war					# Stops country from declaring war, can be used as timed flag. Overrides btr truce and other can_declar_war subrules.
+				}
+				has_country_flag = btr_country_war_immunity				# Grants country immunity from having war declared on it, can be used as timed flag. Overrides btr truce and other can_declar_war subrules.
+				AND = {
+					root = {
+						OR = {
+							is_ai = yes							# On default btr truce affects AI only.
+							has_global_flag = btr_player_will_not_declare_war_until							# Makes players affected by btr truce.
+						}
+						NOT = {
+							has_country_flag = btr_country_ignore_will_not_declare_war_until							# Excludes given country from btr truce.
+						}
+					}
+					NOT = {
+						has_global_flag = btr_global_disable_will_not_declare_war_until						# Disables btr truce entirely.
+					}
+					event_target:global_event_country = {
+						OR = {
+							AND = {
+								is_variable_set = btr_var_ai_will_not_declare_war_until								# Checks if custom truce value was set in the menu. Mods can hook up to change btr truce by setting this variable.
+								NOT = {
+									years_passed >= btr_var_ai_will_not_declare_war_until									# Use value set in the menu.
+								}
+							}
+							NOR = {
+								is_variable_set = btr_var_ai_will_not_declare_war_until								# If truce has not been custom set in the menu then scripted variable will be used (value differs between btr and StarTech).
+								years_passed >= @btr_ai_will_not_declare_war_until								# Use default value as defined in common\scripted_variables. END NOTE: variable btr_var_truce_years_localisation will give real truce years value, variable btr_var_end_of_truce_year_localisation will give real year when truce ends (use btr_calculate_real_truce_years = yes to refresh those if you are not using btr menu to change btr_var_ai_will_not_declare_war_until).
+							}
+						}
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "btr_CAN_DECLARE_WAR"
+			always = no
+		}
+	}
+}
+
+#Root = country
+#This = planet
+can_colonize_planet = {
+	if = {
+		limit = {
+			has_global_flag = btr_enabled_flag
+			has_modifier = "holy_planet"
+			root = {
+				is_ai = yes
+				NOT = {
+					has_relic = r_severed_head
+				}
+			}
+			any_country = {
+				has_ai_personality_behaviour = holy_planets
+			}
+		}
+		custom_tooltip = {
+			fail_text = "btr_CANNOT_COLONIZE_HOLY_WORLD"
+			always = no
+		}
+	}
+}
