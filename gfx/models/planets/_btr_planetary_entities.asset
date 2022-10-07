@@ -16,30 +16,6 @@ entity = {
 	texture_specular = "mercury_specular.dds"
 	}
 
-	# ##pole texture override
-	# meshsettings = {
-	# name = "polesShape"
-	# texture_diffuse = "poles_1_diffuse.dds"
-	# texture_normal = "poles_1_normal.dds"
-	# texture_specular = "poles_1_specular.dds"
-	# }
-
-	# ##cloud texture override
-	# meshsettings = {
-	# name = "clouds_geosphereShape"
-	# texture_diffuse = "clouds_medium_diffuse.dds"
-	# #texture_normal = "clouds_medium_normal.dds"
-	# #texture_specular = "clouds_medium_specular.dds"
-	# }
-
-	# ##cloud shadow texture override
-	# meshsettings = {
-	# name = "clouds_shadow_geosphereShape"
-	# #texture_diffuse = "clouds_medium_shadow_diffuse.dds"
-	# texture_normal = "nonormal.dds"
-	# texture_specular = "nospec.dds"
-	# }
-
 	default_state = "idle"
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
@@ -59,18 +35,10 @@ entity = {
 	texture_specular = "venus_specular.dds"
 	}
 
-	# ##pole texture override
-	# meshsettings = {
-	# name = "polesShape"
-	# texture_diffuse = "poles_1_diffuse.dds"
-	# texture_normal = "poles_1_normal.dds"
-	# texture_specular = "poles_1_specular.dds"
-	# }
-
 	##cloud texture override
 	meshsettings = {
 	name = "clouds_geosphereShape"
-	texture_diffuse = "atmosphere_yellow_thin.dds"
+	texture_diffuse = "atmosphere_thin.dds"
 	texture_normal = "nonormal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -80,7 +48,7 @@ entity = {
 	name = "clouds_shadow_geosphereShape"
 	texture_diffuse = "venus_clouds_diffuse.dds"
 	texture_normal = "nonormal.dds"
-	texture_specular = "nospec.dds"
+	texture_specular = "atmosphere_specular.dds"
 	}
 
 	default_state = "idle"
@@ -123,7 +91,7 @@ entity = {
 	name = "clouds_shadow_geosphereShape"
 	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
-	texture_specular = "nospec.dds"
+	texture_specular = "atmosphere_specular.dds"
 	}
 
 	default_state = "idle"
@@ -136,21 +104,13 @@ entity = {
 # Luna
 entity = {
 	name = "cold_barren_planet_luna_entity"
-	pdxmesh = "planet_non_clouded_mesh"
+	pdxmesh = "planet_no_pole_no_clouds_mesh"
 
 	meshsettings = {
 	name = "planet_geosphereShape"
 	texture_diffuse = "luna_diffuse.dds"
 	texture_normal = "luna_normal.dds"
 	texture_specular = "luna_specular.dds"
-	}
-
-	##pole texture override
-	meshsettings = {
-	name = "polesShape"
-	texture_diffuse = "luna_poles_barren_2_diffuse.dds"
-	texture_normal = "luna_poles_barren_2_normal.dds"
-	texture_specular = "cold_barren_04_specular.dds"
 	}
 
 	default_state = "idle"
@@ -164,21 +124,13 @@ entity = {
 # Mars
 entity = {
 	name = "barren_planet_mars_entity"
-	pdxmesh = "planet_no_pole_no_clouds_mesh"
+	pdxmesh = "clouded_planet_mesh"
 
    meshsettings = {
    name = "planet_geosphereShape"
    texture_diffuse = "mars_diffuse.dds"
    texture_normal = "mars_normal.dds"
    texture_specular = "mars_specular.dds"
-   }
-
-   ##pole texture override
-   meshsettings = {
-   name = "polesShape"
-   texture_diffuse = "poles_barren_1_diffuse.dds"
-   texture_normal = "poles_barren_1_normal.dds"
-   texture_specular = "poles_barren_1_specular.dds"
    }
 
    	##cloud texture override
@@ -194,7 +146,7 @@ entity = {
 		name = "clouds_shadow_geosphereShape"
 		texture_diffuse = "clouds_thin_yellow_diffuse.dds"
 		texture_normal = "clouds_thin_normal.dds"
-		texture_specular = "nospec.dds"
+		texture_specular = "atmosphere_specular.dds"
 	}
 
    default_state = "idle"
@@ -217,14 +169,6 @@ entity = {
 	texture_specular = "jupiter_specular.dds"
 	}
 
-	##pole texture override
-	meshsettings = {
-		name = "polesShape"
-		texture_diffuse = "nodiffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
-
 	default_state = "idle"
 	#playback_rate = -1.0 # Rotation is reversed
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
@@ -245,13 +189,7 @@ entity = {
 		texture_specular = "saturn_specular.dds"
 	}
 
-	##pole texture override
-	meshsettings = {
-		name = "polesShape"
-		texture_diffuse = "nodiffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
+	attach = { part1 = "saturn_rings_01_large_attach" }
 	
 	default_state = "idle"
 	#playback_rate = -1.0 # Rotation is reversed
@@ -273,14 +211,6 @@ entity = {
 	texture_specular = "uranus_specular.dds"
 	}
 
-	##pole texture override
-	meshsettings = {
-		name = "polesShape"
-		texture_diffuse = "nodiffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
-	}
-	
 	default_state = "idle"
 	#playback_rate = -1.0 # Rotation is reversed
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
@@ -299,14 +229,6 @@ entity = {
 	texture_diffuse = "neptune_diffuse.dds"
 	texture_normal = "gas_giant_01_normal.dds"
 	texture_specular = "neptune_specular.dds"
-	}
-
-	##pole texture override
-	meshsettings = {
-		name = "polesShape"
-		texture_diffuse = "nodiffuse.dds"
-		texture_normal = "nonormal.dds"
-		texture_specular = "nospec.dds"
 	}
 	
 	default_state = "idle"
@@ -327,14 +249,6 @@ entity = {
    texture_diffuse = "pluto_diffuse.dds"
    texture_normal = "pluto_normal.dds"
    texture_specular = "pluto_specular.dds"
-   }
-
-   ##pole texture override
-   meshsettings = {
-	name = "polesShape"
-	texture_diffuse = "poles_barren_1_diffuse.dds"
-	texture_normal = "poles_barren_1_normal.dds"
-	texture_specular = "poles_barren_1_specular.dds"
    }
 
    default_state = "idle"
@@ -8000,7 +7914,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8042,7 +7956,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8084,7 +7998,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8126,7 +8040,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8169,7 +8083,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8211,7 +8125,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8253,7 +8167,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8295,7 +8209,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8338,7 +8252,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8380,7 +8294,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8422,7 +8336,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8464,7 +8378,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8508,7 +8422,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8550,7 +8464,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8592,7 +8506,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8634,7 +8548,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8677,7 +8591,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8719,7 +8633,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8761,7 +8675,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8803,7 +8717,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8846,7 +8760,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8888,7 +8802,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8930,7 +8844,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -8972,7 +8886,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9016,7 +8930,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9058,7 +8972,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9100,7 +9014,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9142,7 +9056,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9185,7 +9099,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9227,7 +9141,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9269,7 +9183,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9311,7 +9225,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9354,7 +9268,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9396,7 +9310,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9438,7 +9352,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9480,7 +9394,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9524,7 +9438,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9566,7 +9480,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9608,7 +9522,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9650,7 +9564,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9693,7 +9607,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9735,7 +9649,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9777,7 +9691,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9819,7 +9733,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9862,7 +9776,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9904,7 +9818,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9946,7 +9860,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -9988,7 +9902,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10032,7 +9946,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10074,7 +9988,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10116,7 +10030,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10158,7 +10072,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10201,7 +10115,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10243,7 +10157,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10285,7 +10199,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10327,7 +10241,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10370,7 +10284,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10412,7 +10326,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10454,7 +10368,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10496,7 +10410,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10540,7 +10454,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10582,7 +10496,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10624,7 +10538,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10666,7 +10580,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10709,7 +10623,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10751,7 +10665,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10793,7 +10707,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10835,7 +10749,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10878,7 +10792,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10920,7 +10834,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -10962,7 +10876,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11004,7 +10918,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11048,7 +10962,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11090,7 +11004,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11132,7 +11046,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11174,7 +11088,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11217,7 +11131,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11259,7 +11173,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11301,7 +11215,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11343,7 +11257,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11386,7 +11300,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11428,7 +11342,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11470,7 +11384,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11512,7 +11426,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11556,7 +11470,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11598,7 +11512,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11640,7 +11554,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11682,7 +11596,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11725,7 +11639,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11767,7 +11681,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11809,7 +11723,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11851,7 +11765,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11894,7 +11808,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11936,7 +11850,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -11978,7 +11892,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12020,7 +11934,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12064,7 +11978,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12106,7 +12020,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12148,7 +12062,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12190,7 +12104,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12233,7 +12147,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12275,7 +12189,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12317,7 +12231,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12359,7 +12273,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12402,7 +12316,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12444,7 +12358,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12486,7 +12400,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12528,7 +12442,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12572,7 +12486,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12614,7 +12528,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12656,7 +12570,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12698,7 +12612,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12741,7 +12655,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12783,7 +12697,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12825,7 +12739,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12867,7 +12781,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12910,7 +12824,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12952,7 +12866,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -12994,7 +12908,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -13036,7 +12950,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16128,7 +16042,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16170,7 +16084,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16212,7 +16126,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16254,7 +16168,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16297,7 +16211,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16339,7 +16253,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16381,7 +16295,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16423,7 +16337,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16466,7 +16380,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_blue_diffuse.dds"
+	texture_diffuse = "clouds_medium_blue_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16508,7 +16422,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_green_diffuse.dds"
+	texture_diffuse = "clouds_medium_green_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16550,7 +16464,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_pink_diffuse.dds"
+	texture_diffuse = "clouds_medium_pink_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
@@ -16592,7 +16506,7 @@ entity = {
 	##cloud shadow texture override
 	meshsettings = {
 	name = "clouds_shadow_geosphereShape"
-	texture_diffuse = "clouds_heavy_yellow_diffuse.dds"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
 	texture_normal = "clouds_medium_normal.dds"
 	texture_specular = "atmosphere_specular.dds"
 	}
