@@ -1,0 +1,2669 @@
+namespace = btr_menu
+country_event = {
+	id = btr_menu.1
+	title = btr_menu.1.name
+	desc = btr_menu.1.desc
+	# picture = GFX_evt_fallen_empire_awakes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = root.owner_main_species
+		room = enclave_curator_room
+	}
+	custom_gui = btr_menu_window
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					has_global_flag = btr_menu_truce_1
+					has_global_flag = btr_menu_truce_2
+					has_global_flag = btr_menu_truce_3
+				}
+			}
+			set_global_flag = btr_menu_truce_1			# Flags only for menu switches, they do not affect the AI.
+		}
+		btr_calculate_real_truce_years = yes
+	}
+	option = {
+		name = btr_menu.1.truce
+		custom_tooltip = btr_menu.1.truce.tooltip
+		switch = {
+			trigger = has_global_flag
+			btr_menu_truce_1 = {
+				set_global_flag = btr_player_will_not_declare_war_until
+				remove_global_flag = btr_menu_truce_1
+				set_global_flag = btr_menu_truce_2
+			}
+			btr_menu_truce_2 = {
+				set_global_flag = btr_global_disable_will_not_declare_war_until
+				remove_global_flag = btr_menu_truce_2
+				set_global_flag = btr_menu_truce_3
+			}
+			btr_menu_truce_3 = {
+				remove_global_flag = btr_player_will_not_declare_war_until
+				remove_global_flag = btr_global_disable_will_not_declare_war_until
+				remove_global_flag = btr_menu_truce_3
+				set_global_flag = btr_menu_truce_1
+			}
+			default = {
+				remove_global_flag = btr_player_will_not_declare_war_until
+				remove_global_flag = btr_global_disable_will_not_declare_war_until
+				set_global_flag = btr_menu_truce_1
+				remove_global_flag = btr_menu_truce_2
+				remove_global_flag = btr_menu_truce_3
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.1
+			}
+		}
+	}
+	option = {
+		name = btr_menu.1.truce.settings
+		custom_tooltip = btr_menu.1.truce.settings.tooltip
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.2
+			}
+		}
+	}
+	option = {
+		name = btr_menu.1.ship_sizes.settings
+		custom_tooltip = btr_menu.1.ship_sizes.settings.tooltip
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.4
+			}
+		}
+	}
+	option = {
+		name = btr_menu.1.doomstack
+		custom_tooltip = btr_menu.1.doomstack.tooltip
+		switch = {
+			trigger = has_global_flag
+			btr_doomstack_disabled = {
+				remove_global_flag = btr_doomstack_disabled
+			}
+			default = {
+				set_global_flag = btr_doomstack_disabled
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.1
+			}
+		}
+	}
+	option = {
+		name = btr_menu.1.habitats
+		custom_tooltip = btr_menu.1.habitats.tooltip
+		switch = {
+			trigger = has_global_flag
+			btr_global_ai_should_not_build_habitats = {
+				remove_global_flag = btr_global_ai_should_not_build_habitats
+			}
+			default = {
+				set_global_flag = btr_global_ai_should_not_build_habitats
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.1
+			}
+		}
+	}
+	option = {
+		name = btr_menu.1.megastructures
+		custom_tooltip = btr_menu.1.megastructures.tooltip
+		switch = {
+			trigger = has_global_flag
+			btr_global_ai_should_not_build_megastructures = {
+				remove_global_flag = btr_global_ai_should_not_build_megastructures
+			}
+			default = {
+				set_global_flag = btr_global_ai_should_not_build_megastructures
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.1
+			}
+		}
+	}
+	option = {
+		name = btr_menu.1.starbase_defenses
+		custom_tooltip = btr_menu.1.starbase_defenses.tooltip
+		switch = {
+			trigger = has_global_flag
+			btr_global_ai_should_build_starbase_defenses = {
+				remove_global_flag = btr_global_ai_should_build_starbase_defenses
+			}
+			default = {
+				set_global_flag = btr_global_ai_should_build_starbase_defenses
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.1
+			}
+		}
+	}
+	option = {
+		allow = {
+			custom_tooltip = {
+				fail_text = btr_menu.1_dmm_installed
+				has_global_flag = dmm_installed
+			}
+		}
+		name = btr_menu.1.dmm
+		custom_tooltip = btr_menu.1.dmm.tooltip
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.3				# Closes main menu window and redirects to DMM options.
+			}
+		}
+	}
+	option = {
+		name = btr_menu.1.exit
+	}
+}
+
+country_event = {
+	id = btr_menu.2
+	title = btr_menu.2.name
+	desc = btr_menu.2.desc
+	# picture = GFX_evt_fallen_empire_awakes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = root.owner_main_species
+		room = enclave_curator_room
+	}
+	custom_gui = btr_menu_window_truce_settings
+	is_triggered_only = yes
+	immediate = {
+		btr_truce_settings_register_countries = yes
+	}
+	option = {
+		name = btr_menu.2.option_1
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_1
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_1 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_2
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_2
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_2 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_3
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_3
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_3 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_4
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_4
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_4 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_5
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_5
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_5 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_6
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_6
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_6 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_7
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_7
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_7 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_8
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_8
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_8 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_9
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_9
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_9 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_10
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_10
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_10 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_11
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_11
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_11 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_12
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_12
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_12 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_13
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_13
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_13 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_14
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_14
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_14 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_15
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_15
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_15 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_16
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_16
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_16 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_17
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_17
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_17 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_18
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_18
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_18 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_19
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_19
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_19 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_20
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_20
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_20 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_21
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_21
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_21 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_22
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_22
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_22 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_23
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_23
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_23 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_24
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_24
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_24 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_25
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_25
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_25 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_26
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_26
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_26 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_27
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_27
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_27 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_28
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_28
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_28 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_29
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_29
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_29 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_30
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_30
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_30 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_31
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_31
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_31 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_32
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_32
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_32 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_33
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_33
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_33 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_34
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_34
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_34 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_35
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_35
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_35 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_36
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_36
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_36 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_37
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_37
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_37 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_38
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_38
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_38 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_39
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_39
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_39 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_40
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_40
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_40 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_41
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_41
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_41 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_42
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_42
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_42 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_43
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_43
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_43 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_44
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_44
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_44 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_45
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_45
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_45 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_46
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_46
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_46 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_47
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_47
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_47 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_48
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_48
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_48 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_49
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_49
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_49 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_50
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_50
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_50 = {
+				btr_truce_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.reset
+		custom_tooltip = btr_menu.2.reset.tooltip
+		hidden_effect = {
+			every_country = {
+				btr_truce_settings_switch_reset_flags = yes
+			}
+			country_event = {
+				id = btr_menu.2
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.exit
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = btr_menu.3
+	title = btr_menu.3.name
+	desc = btr_menu.3.desc
+	# picture = GFX_evt_spymaster
+	diplomatic = yes
+	picture_event_data = {
+		portrait = root.owner_main_species
+		room = enclave_curator_room
+	}
+	custom_gui = btr_menu_window
+	is_triggered_only = yes
+	immediate = {
+		clear_global_event_target = btr_btr_event_target_human_player_live_1
+		clear_global_event_target = btr_btr_event_target_human_player_live_2
+		clear_global_event_target = btr_btr_event_target_human_player_live_3
+		clear_global_event_target = btr_btr_event_target_human_player_live_4
+		clear_global_event_target = btr_btr_event_target_human_player_live_5
+		clear_global_event_target = btr_btr_event_target_human_player_live_6
+		clear_global_event_target = btr_btr_event_target_human_player_live_7
+		clear_global_event_target = btr_btr_event_target_human_player_live_8
+		clear_global_event_target = btr_btr_event_target_human_player_live_9
+		clear_global_event_target = btr_btr_event_target_human_player_live_10
+		clear_global_event_target = btr_btr_event_target_human_player_live_11
+		clear_global_event_target = btr_btr_event_target_human_player_live_12
+		clear_global_event_target = btr_btr_event_target_human_player_live_13
+		clear_global_event_target = btr_btr_event_target_human_player_live_14
+		clear_global_event_target = btr_btr_event_target_human_player_live_15
+		clear_global_event_target = btr_btr_event_target_human_player_live_16
+		clear_global_event_target = btr_btr_event_target_human_player_live_17
+		clear_global_event_target = btr_btr_event_target_human_player_live_18
+		clear_global_event_target = btr_btr_event_target_human_player_live_19
+		clear_global_event_target = btr_btr_event_target_human_player_live_20
+		clear_global_event_target = btr_btr_event_target_human_player_live_21
+		clear_global_event_target = btr_btr_event_target_human_player_live_22
+		clear_global_event_target = btr_btr_event_target_human_player_live_23
+		clear_global_event_target = btr_btr_event_target_human_player_live_24
+		clear_global_event_target = btr_btr_event_target_human_player_live_25
+		clear_global_event_target = btr_btr_event_target_human_player_live_26
+		clear_global_event_target = btr_btr_event_target_human_player_live_27
+		clear_global_event_target = btr_btr_event_target_human_player_live_28
+		clear_global_event_target = btr_btr_event_target_human_player_live_29
+		clear_global_event_target = btr_btr_event_target_human_player_live_30
+		clear_global_event_target = btr_btr_event_target_human_player_live_31
+		clear_global_event_target = btr_btr_event_target_human_player_live_32
+		clear_global_event_target = btr_btr_event_target_human_player_live_33
+		clear_global_event_target = btr_btr_event_target_human_player_live_34
+		clear_global_event_target = btr_btr_event_target_human_player_live_35
+		clear_global_event_target = btr_btr_event_target_human_player_live_36
+		clear_global_event_target = btr_btr_event_target_human_player_live_37
+		clear_global_event_target = btr_btr_event_target_human_player_live_38
+		clear_global_event_target = btr_btr_event_target_human_player_live_39
+		clear_global_event_target = btr_btr_event_target_human_player_live_40
+		clear_global_event_target = btr_btr_event_target_human_player_live_41
+		clear_global_event_target = btr_btr_event_target_human_player_live_42
+		clear_global_event_target = btr_btr_event_target_human_player_live_43
+		clear_global_event_target = btr_btr_event_target_human_player_live_44
+		clear_global_event_target = btr_btr_event_target_human_player_live_45
+		clear_global_event_target = btr_btr_event_target_human_player_live_46
+		clear_global_event_target = btr_btr_event_target_human_player_live_47
+		clear_global_event_target = btr_btr_event_target_human_player_live_48
+		clear_global_event_target = btr_btr_event_target_human_player_live_49
+		clear_global_event_target = btr_btr_event_target_human_player_live_50
+		every_country = {
+			limit = {
+				OR = {
+					AND = {
+						is_multiplayer = yes
+						is_ai = no
+					}
+					is_multiplayer = no
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_1
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_1
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_2
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_2
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_3
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_3
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_4
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_4
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_5
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_5
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_6
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_6
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_7
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_7
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_8
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_8
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_9
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_9
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_10
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_10
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_11
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_11
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_12
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_12
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_13
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_13
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_14
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_14
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_15
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_15
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_16
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_16
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_17
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_17
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_18
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_18
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_19
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_19
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_20
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_20
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_21
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_21
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_22
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_22
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_23
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_23
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_24
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_24
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_25
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_25
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_26
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_26
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_27
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_27
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_28
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_28
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_29
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_29
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_30
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_30
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_31
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_31
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_32
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_32
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_33
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_33
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_34
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_34
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_35
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_35
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_36
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_36
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_37
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_37
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_38
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_38
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_39
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_39
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_40
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_40
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_41
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_41
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_42
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_42
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_43
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_43
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_44
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_44
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_45
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_45
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_46
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_46
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_47
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_47
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_48
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_48
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_49
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_49
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						exists = event_target:btr_btr_event_target_human_player_live_50
+					}
+				}
+				save_global_event_target_as = btr_btr_event_target_human_player_live_50
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_1
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_1
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_1 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_2
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_2
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_2 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_3
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_3
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_3 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_4
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_4
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_4 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_5
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_5
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_5 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_6
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_6
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_6 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_7
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_7
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_7 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_8
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_8
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_8 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_9
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_9
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_9 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_10
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_10
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_10 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_11
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_11
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_11 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_12
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_12
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_12 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_13
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_13
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_13 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_14
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_14
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_14 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_15
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_15
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_15 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_16
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_16
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_16 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_17
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_17
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_17 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_18
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_18
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_18 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_19
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_19
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_19 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_20
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_20
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_20 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_21
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_21
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_21 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_22
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_22
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_22 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_23
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_23
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_23 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_24
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_24
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_24 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_25
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_25
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_25 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_26
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_26
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_26 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_27
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_27
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_27 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_28
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_28
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_28 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_29
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_29
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_29 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_30
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_30
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_30 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_31
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_31
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_31 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_32
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_32
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_32 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_33
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_33
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_33 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_34
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_34
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_34 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_35
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_35
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_35 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_36
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_36
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_36 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_37
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_37
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_37 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_38
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_38
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_38 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_39
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_39
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_39 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_40
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_40
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_40 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_41
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_41
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_41 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_42
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_42
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_42 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_43
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_43
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_43 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_44
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_44
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_44 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_45
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_45
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_45 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_46
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_46
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_46 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_47
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_47
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_47 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_48
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_48
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_48 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_49
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_49
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_49 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.player_live_50
+		custom_tooltip = btr_menu.3.z.tooltip
+		trigger = {
+			exists = event_target:btr_btr_event_target_human_player_live_50
+		}
+		hidden_effect = {
+			event_target:btr_btr_event_target_human_player_live_50 = {
+				btr_dmm_add_button_exception = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.3.z
+		custom_tooltip = btr_menu.3.z.tooltip
+		hidden_effect = {
+			country_event = {
+				id = btr_menu.1				# Closes Advanced Options window and redirects to main menu.
+				days = 0
+				random = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = btr_menu.4
+	title = btr_menu.4.name
+	desc = btr_menu.4.desc
+	# picture = GFX_evt_fallen_empire_awakes
+	diplomatic = yes
+	picture_event_data = {
+		portrait = root.owner_main_species
+		room = enclave_curator_room
+	}
+	custom_gui = btr_menu_window_ship_sizes_settings
+	is_triggered_only = yes
+	immediate = {
+		btr_truce_settings_register_countries = yes
+		event_target:global_event_country = {
+			if = {
+				limit = {
+					NOT = {
+						is_variable_set = btr_register_ship_size_btr_var_ai_mode
+					}
+				}
+				set_variable = {
+					which = btr_register_ship_size_btr_var_ai_mode
+					value = 1
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						is_variable_set = btr_register_ship_size_btr_var_ai_value
+					}
+				}
+				set_variable = {
+					which = btr_register_ship_size_btr_var_ai_value
+					value = 5
+				}
+			}
+			set_country_flag = btr_register_ship_size_btr_var_ai_mode_option_1
+			if = {
+				limit = {
+					NOT = {
+						is_variable_set = btr_register_ship_size_btr_var_ai_value_input
+					}
+				}
+				set_variable = {
+					which = btr_register_ship_size_btr_var_ai_value_input
+					value = btr_register_ship_size_btr_var_ai_value
+				}
+				if = {
+					limit = {
+						is_variable_set = btr_register_ship_size_btr_var_ai_mode
+					}
+					multiply_variable = {
+						which = btr_register_ship_size_btr_var_ai_value_input
+						value = btr_register_ship_size_btr_var_ai_mode
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = btr_menu.4.export_ship_data
+		hidden_effect = {
+			every_country = {
+				limit = {
+					has_country_flag = btr_register_ship_size_export_target
+				}
+				event_target:global_event_country = {
+					set_timed_country_flag = {
+						flag = btr_register_ship_size_export_target_ignore_ship_limits
+						days = 1
+					}
+					country_event = {
+						id = btr.201
+					}
+					remove_country_flag = btr_register_ship_size_export_target_ignore_ship_limits
+				}
+			}
+			country_event = {
+				id = btr_menu.4
+			}
+		}
+	}
+	option = {
+		name = btr_menu.4.export_ship_limits
+		hidden_effect = {
+			every_country = {
+				limit = {
+					has_country_flag = btr_register_ship_size_export_target
+				}
+				event_target:global_event_country = {
+					set_timed_country_flag = {
+						flag = btr_register_ship_size_export_target_ignore_ship_data
+						days = 1
+					}
+					country_event = {
+						id = btr.201
+					}
+					remove_country_flag = btr_register_ship_size_export_target_ignore_ship_data
+				}
+			}
+			country_event = {
+				id = btr_menu.4
+			}
+		}
+	}
+	option = {
+		name = btr_menu.4.export_clear
+		hidden_effect = {
+			every_country = {
+				event_target:global_event_country = {
+					set_timed_country_flag = {
+						flag = btr_register_ship_size_export_target_ignore_ship_data
+						days = 1
+					}
+					set_timed_country_flag = {
+						flag = btr_register_ship_size_export_target_ignore_ship_limits
+						days = 1
+					}
+					set_timed_country_flag = {
+						flag = btr_register_ship_size_export_target_clear_export
+						days = 1
+					}
+					country_event = {
+						id = btr.201
+					}
+					remove_country_flag = btr_register_ship_size_export_target_ignore_ship_data
+					remove_country_flag = btr_register_ship_size_export_target_ignore_ship_limits
+					remove_country_flag = btr_register_ship_size_export_target_clear_export
+				}
+			}
+			country_event = {
+				id = btr_menu.4
+			}
+		}
+	}
+	option = {
+		name = btr_menu.4.standard_designs
+		hidden_effect = {
+			every_country = {
+				limit = {
+					uses_standard_ship_sizes = yes
+				}
+				set_country_flag = btr_register_ship_size_export_target
+			}
+			country_event = {
+				id = btr_menu.4
+			}
+		}
+	}
+	option = {
+		name = btr_menu.4.reload
+		hidden_effect = {
+			every_country = {
+				remove_country_flag = btr_register_ship_size_export_target
+			}
+			country_event = {
+				id = btr_menu.4
+			}
+		}
+	}
+	option = {
+		name = btr_menu.4.exit
+		hidden_effect = {
+			every_country = {
+				remove_country_flag = btr_register_ship_size_export_target
+			}
+			country_event = {
+				id = btr_menu.1
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_1
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_1
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_1 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_2
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_2
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_2 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_3
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_3
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_3 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_4
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_4
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_4 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_5
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_5
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_5 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_6
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_6
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_6 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_7
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_7
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_7 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_8
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_8
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_8 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_9
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_9
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_9 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_10
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_10
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_10 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_11
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_11
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_11 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_12
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_12
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_12 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_13
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_13
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_13 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_14
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_14
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_14 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_15
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_15
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_15 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_16
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_16
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_16 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_17
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_17
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_17 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_18
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_18
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_18 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_19
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_19
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_19 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_20
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_20
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_20 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_21
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_21
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_21 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_22
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_22
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_22 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_23
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_23
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_23 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_24
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_24
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_24 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_25
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_25
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_25 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_26
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_26
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_26 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_27
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_27
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_27 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_28
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_28
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_28 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_29
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_29
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_29 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_30
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_30
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_30 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_31
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_31
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_31 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_32
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_32
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_32 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_33
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_33
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_33 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_34
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_34
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_34 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_35
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_35
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_35 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_36
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_36
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_36 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_37
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_37
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_37 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_38
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_38
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_38 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_39
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_39
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_39 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_40
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_40
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_40 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_41
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_41
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_41 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_42
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_42
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_42 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_43
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_43
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_43 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_44
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_44
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_44 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_45
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_45
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_45 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_46
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_46
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_46 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_47
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_47
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_47 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_48
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_48
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_48 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_49
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_49
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_49 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+	option = {
+		name = btr_menu.2.option_50
+		custom_tooltip = btr_menu.2.option.tooltip
+		trigger = {
+			exists = event_target:btr_menu_countries_register_50
+		}
+		hidden_effect = {
+			event_target:btr_menu_countries_register_50 = {
+				btr_ship_sizes_settings_switch = yes
+			}
+		}
+	}
+}

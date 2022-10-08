@@ -1,0 +1,538 @@
+
+namespace = btr
+
+event = {
+	#Determine what countries are ahead. 5 year pulse
+	id = btr.1
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = no
+	immediate = {
+		if = {
+			limit = {
+				years_passed > 30
+			}
+			every_country = {
+				limit = {
+					or = { has_country_flag = btr_normal_empire is_ai = no }
+				}
+				country_event = {
+					id = btr.2 days = 1 random = 180
+				}
+				if = {
+					limit = {
+						is_ai = no
+					}
+					country_event = {
+						id = btr.3 days = 1 random = 200	# Determine small changes in fleet composition.
+					}
+				}
+				if = {
+					limit = {
+						is_ai = yes
+					}
+					country_event = {
+						id = btr.6 days = 5 random = 60		# Scripts attempting to unstuck economy.
+					}
+				}
+				if = {
+					limit = {
+						has_technology = tech_ecological_adaptation
+						years_passed > 20
+						not = {
+							has_authority = auth_machine_intelligence
+						}
+						#If empire can take world shaper soon they should wait with terraforming
+						nand = {
+							has_technology = tech_climate_restoration
+							NOT = { has_authority = auth_hive_mind }
+							OR = {
+								NOT = { has_authority = auth_machine_intelligence }
+								has_valid_civic = civic_machine_servitor
+								has_valid_civic = civic_machine_assimilator
+							}
+						}
+					}
+					country_event = {
+						id = btr_economy_plan.3 days = 1 random = 500
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = btr.2
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = no
+	immediate = {
+		remove_country_flag = btr_has_bad_fleet_score
+		remove_country_flag = btr_has_bad_tech_score
+		remove_country_flag = btr_has_bad_economy_score
+		remove_country_flag = btr_has_terrible_fleet_score
+		remove_country_flag = btr_has_terrible_tech_score
+		remove_country_flag = btr_has_terrible_economy_score
+		every_relation = {
+			limit = {
+				is_country_type = default
+			}
+			if = {
+				limit = {
+					relative_power = {
+						who = prev
+						category = fleet
+						value > equivalent
+					}
+				}
+				prev = { set_country_flag = btr_has_bad_fleet_score }
+			}
+			if = {
+				limit = {
+					relative_power = {
+						who = prev
+						category = technology
+						value > equivalent
+					}
+				}
+				prev = { set_country_flag = btr_has_bad_tech_score }
+			}
+			if = {
+				limit = {
+					relative_power = {
+						who = prev
+						category = economy
+						value > equivalent
+					}
+				}
+				prev = { set_country_flag = btr_has_bad_economy_score }
+			}
+			if = {
+				limit = {
+					relative_power = {
+						who = prev
+						category = fleet
+						value > superior
+					}
+				}
+				prev = { set_country_flag = btr_has_terrible_fleet_score }
+			}
+			if = {
+				limit = {
+					relative_power = {
+						who = prev
+						category = technology
+						value > superior
+					}
+				}
+				prev = { set_country_flag = btr_has_terrible_tech_score }
+			}
+			if = {
+				limit = {
+					relative_power = {
+						who = prev
+						category = economy
+						value > superior
+					}
+				}
+				prev = { set_country_flag = btr_has_terrible_economy_score }
+			}
+		}
+	}
+}
+
+country_event = {
+	# Determine small changes in fleet composition. AI uses similar compositions, but will vary two things
+	# First it will sometimes add carrier cruisers (AI is restricted to one design per shipclass so it can't add carrier battleships)
+	# Second it can switch policies, hit&run is much better against corvettes but useless in battleship vs battleship fight
+	# So if it's fighting corvettes it should add cruisers and use hit and run and if it doesn't then use RD/no retreat and use purely battleship
+	# Since opponent AIs will be battleship-heavy no matter what I am running this event exclusively on human empires to save the CPU
+	# Against other AIs, the AI will do what's correct.
+	# The exact value of 200 is irrelevant, it doesn't matter, the question is only if there is a sufficient number of enemy corvettes.
+
+	id = btr.3
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = no
+
+	immediate = {
+		remove_country_flag = btr_corvette_user
+		if = {	
+			limit = {
+				used_naval_capacity_integer < 400
+			}
+			if = {
+				limit = {
+					count_owned_ship = {
+						count > 200
+						limit = {
+							is_ship_size = corvette
+						}
+					}
+				}
+				set_country_flag = btr_corvette_user
+			}
+		}
+		else_if = {
+			
+			limit = {
+				used_naval_capacity_integer < 800
+			}
+			if = {
+				limit = {
+					count_owned_ship = {
+						count > 400
+						limit = {
+							is_ship_size = corvette
+						}
+					}
+				}
+				set_country_flag = btr_corvette_user
+			}
+		}
+		else_if = {
+			limit = {
+				count_owned_ship = {
+					count > 600
+					limit = {
+						is_ship_size = corvette
+					}
+				}
+			}
+			set_country_flag = btr_corvette_user
+		}
+
+		if = { 
+			limit = {
+				has_country_flag = btr_corvette_user
+			}
+			every_relation = {
+				limit = {
+					is_ai = yes
+					or = {
+						is_rival = prev
+						is_hostile = prev
+						is_hostile_to = prev
+						is_at_war_with = prev  
+					}
+				}
+				set_timed_country_flag = {
+					flag = btr_need_to_counter_corvettes
+					days = 2000
+				}
+			}
+		}
+
+	}
+
+}
+
+event = {
+	#Two year pulse
+	id = btr.5
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = no
+
+	immediate = {
+		every_country = {
+			limit = {
+				is_ai = yes
+				or = {
+					is_country_type = default
+					has_country_flag = btr_normal_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+			country_event = { id = btr_doomstack.1 days = 1 random = 180 }
+		}
+		
+		every_country = {
+			limit = {
+				or = { is_ai = no
+					is_gestalt = no	
+				}
+		}
+			every_owned_planet = {
+				remove_modifier = ai_mdrone_neg1
+				remove_modifier = ai_mdrone_neg2
+				remove_modifier = ai_mdrone_neg4
+				remove_modifier = ai_mdrone_neg8
+				remove_modifier = ai_mdrone_neg16
+			}
+		}
+	}
+}
+
+# Scripts attempting to unstuck economy.
+country_event = {
+	id = btr.6
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = no
+	immediate = {
+		add_resource = { btr_redsand = -100000 }
+		every_owned_planet = {
+			check_planet_employment = yes
+			calculate_modifier = yes
+		}
+	}
+}
+
+# This fixes deprioritisation of amenity jobs by the game engine in saves made prior to the adjustments in btr. btr uses its own way to disable jobs. Can be removed in Stellaris 3.5.
+event = {
+	id = btr.100
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_global_flag = btr_ai_upper_amenities_limit_fixer_event_fired
+		}
+	}
+	immediate = {
+		set_global_flag = btr_ai_upper_amenities_limit_fixer_event_fired
+	}
+}
+
+event = {
+	id = btr.101
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_global_flag = btr_ai_upper_amenities_limit_fixer_event_fired
+		}
+	}
+	immediate = {
+		set_global_flag = btr_ai_upper_amenities_limit_fixer_event_fired
+		every_country = {
+			limit = {
+				is_ai = yes
+				OR = {
+					is_country_type = default
+					merg_is_standard_empire = yes
+
+				}
+			}
+			every_owned_planet = {
+				set_planet_flag = btr_industrial_district_allow_fixer
+				add_modifier = {
+					modifier = ai_disable_popular_amenity_jobs_save_fix_1
+					days = 1
+				}
+				add_modifier = {
+					modifier = ai_disable_popular_amenity_jobs_save_fix_2
+					days = 7
+				}
+				calculate_modifier = yes
+				if = {
+					limit = {
+						owner = {
+							is_gestalt = yes
+						}
+					}
+					planet_event = {
+						id = btr.102
+						days = 7
+					}
+				}
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = btr.102
+	hide_window = yes
+	is_triggered_only = yes
+	pre_triggers = {
+		has_owner = yes
+		is_ai = yes
+	}
+	immediate = {
+		if = {
+			limit = {
+				or = { free_amenities > 7 free_amenities < -1 }
+			}
+			planet_event = {
+				id = btr_planet_audit.1
+			}
+		}
+		if = {
+			limit = {
+				free_amenities > 13
+			}
+			planet_event = {
+				id = btr_planet_audit.1
+			}
+			planet_event = {
+				id = btr_planet_audit.1
+			}
+		}
+		if = {
+			limit = {
+				free_amenities > 20
+			}
+			planet_event = {
+				id = btr_planet_audit.1
+				days = 1
+			}
+			planet_event = {
+				id = btr_planet_audit.1
+				days = 1
+			}
+		}
+		if = {
+			limit = {
+				free_amenities > 30
+			}
+			planet_event = {
+				id = btr_planet_audit.1
+				days = 2
+			}
+			planet_event = {
+				id = btr_planet_audit.1
+				days = 2
+			}
+		}
+	}
+}
+
+event = {
+	id = btr.200
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		btr_on_game_start_register_vanilla_ship_sizes = yes
+	}
+}
+
+country_event = {
+	id = btr.201
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		event_target:global_event_country = {
+			set_timed_country_flag = { 
+				flag = btr_register_ship_size_export
+				days = 1
+			}
+		}
+		no_scope = {
+			fire_on_action = {
+				on_action = btr_on_ship_size_register_export
+			}
+		}
+		event_target:global_event_country = {
+			remove_country_flag = btr_register_ship_size_export
+		}
+	}
+}
+
+# Staffs science ships if other mods break scientist hiring.
+country_event = {
+	id = btr.300
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			is_country_type = default
+			merg_is_default_empire = yes
+		}
+		is_ai = yes
+		count_owned_fleet = {
+			count > 0
+			limit = {
+				is_ship_class = shipclass_science_ship
+				NOT = {
+					exists = leader
+				}
+			}
+		}
+	}
+	immediate = {
+		every_owned_fleet = {
+			limit = {
+				is_ship_class = shipclass_science_ship
+				NOT = {
+					exists = leader
+				}
+			}
+			fleet_event = {
+				id = btr.301
+			}
+			fleet_event = {
+				id = btr.301
+				days = 1				# Leader pool reroll.
+			}
+			fleet_event = {
+				id = btr.301
+				days = 2				# Leader pool reroll.
+			}
+			fleet_event = {
+				id = btr.301
+				days = 3				# Leader pool reroll.
+			}
+		}
+		# clear_variable = btr_var_count_owned_fleet_num_shipclass_science_ship_no_leader
+	}
+}
+
+fleet_event = {
+	id = btr.301
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			exists = leader
+		}
+	}
+	immediate = {
+		owner = {
+			if = {
+				limit = {
+					resource_stockpile_compare = {
+						resource = unity
+						value >= 1
+						mult = value:leader_cost
+					}
+				}
+				random_pool_leader = {
+					limit = {
+						leader_class = scientist
+						NOT = {
+							has_leader_flag = btr_leader_hired
+						}
+					}
+					set_owner = prev
+					set_leader_flag = btr_leader_hired
+					prevprev = {
+						assign_leader = prev
+					}
+					prevprev = {
+						if = {
+							limit = {
+								exists = leader
+								leader = {
+									has_leader_flag = btr_leader_hired
+								}
+							}
+							owner = {
+								add_resource = {
+									unity = -1
+									mult = value:leader_cost
+								}
+							}
+							leader = {
+								fire_on_action = {
+									on_action = on_leader_assigned
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
