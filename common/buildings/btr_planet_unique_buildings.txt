@@ -1,0 +1,44 @@
+### DUNE ###
+building_aegis = {
+    base_buildtime = 360
+
+    is_capped_by_modifier = yes
+
+    category = resource
+    
+    potential = {
+        has_modifier = dune_world
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+            district_mining_max = 1
+			habitability_floor_mult = 0.1
+        }
+    }
+    
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+            district_mining_max = 1
+			habitability_floor_mult = 0.1
+        }
+    }
+    
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 400
+        }
+        upkeep = {
+            energy = 1
+        }
+    }     
+}
