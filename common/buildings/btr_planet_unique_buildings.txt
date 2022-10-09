@@ -1,6 +1,7 @@
 ### DUNE ###
 building_aegis = {
     base_buildtime = 360
+	base_cap_amount = 1
 
     is_capped_by_modifier = yes
 
@@ -8,6 +9,7 @@ building_aegis = {
     
     potential = {
         has_modifier = dune_world
+		has_building = building_capital
     }
 
     triggered_planet_modifier = {
@@ -35,10 +37,418 @@ building_aegis = {
     resources = {
         category = planet_buildings
         cost = {
-            minerals = 400
+            minerals = 1200
         }
         upkeep = {
-            energy = 1
+            minerals = 10
+			energy = 13
+        }
+    }     
+}
+
+### DUST ###
+building_hydrator = {
+    base_buildtime = 360
+	base_cap_amount = 1
+
+    is_capped_by_modifier = yes
+
+    category = resource
+    
+    potential = {
+        has_modifier = dust_world
+		has_building = building_capital
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+			planet_jobs_food_produces_mult = 0.2
+            planet_amenities_add = 5
+			habitability_floor_mult = 0.15
+        }
+    }
+    
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+			planet_jobs_food_produces_mult = 0.2
+			planet_amenities_add = 5
+			habitability_floor_mult = 0.15
+        }
+    }
+    
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 1000
+        }
+        upkeep = {
+            minerals = 5
+			energy = 20
+        }
+    }     
+}
+
+### BADLANDS ###
+building_barracks = {
+    base_buildtime = 360	
+	base_cap_amount = 1
+
+    is_capped_by_modifier = yes
+
+    category = resource
+    
+    potential = {
+        has_modifier = badlands_world
+		has_building = building_capital
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+			job_soldier_add = 3
+            job_enforcer_add = 1
+			planet_orbital_bombardment_damage = -0.1
+			pop_government_ethic_attraction = 0.05
+        }
+    }
+    
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+			job_soldier_add = 3
+			job_enforcer_add = 1
+			planet_orbital_bombardment_damage = -0.1
+			pop_government_ethic_attraction = 0.05
+        }
+    }
+    
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 600
+			alloys = 50
+        }
+        upkeep = {
+			energy = 10
+        }
+    }     
+}
+
+### AQUIFER ###
+building_complex = {
+    base_buildtime = 360
+	base_cap_amount = 1
+
+    is_capped_by_modifier = yes
+
+    category = resource
+    
+    potential = {
+        has_modifier = aquifer_world
+		has_building = building_capital
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+			planet_jobs_food_produces_mult = 0.1
+            job_technician_add = 2
+			habitability_floor_mult = 0.05
+			planet_amenities_add = 10
+        }
+    }
+    
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+			planet_jobs_food_produces_mult = 0.1
+			job_technician_add = 2
+			habitability_floor_mult = 0.05
+			planet_amenities_add = 10
+        }
+    }
+    
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 800
+        }
+        upkeep = {
+			energy = 15
+        }
+    }     
+}
+
+### MESA ###
+building_canyon = {
+    base_buildtime = 360
+	base_cap_amount = 1
+
+    is_capped_by_modifier = yes
+
+    category = resource
+    
+    potential = {
+        has_modifier = mesa_world
+		has_building = building_capital
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+			planet_housing_add = 15
+			job_clerk_add = 5
+			habitability_floor_mult = 0.1
+			planet_amenities_add = 15
+        }
+    }
+    
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+			planet_housing_add = 15
+			job_clerk_add = 5
+			habitability_floor_mult = 0.1
+			planet_amenities_add = 15
+        }
+    }
+    
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 800
+        }
+        upkeep = {
+			energy = 15
+        }
+    }     
+}
+
+### CENOTE ###
+building_sinkhole = {
+    base_buildtime = 360
+	base_cap_amount = 1
+
+    is_capped_by_modifier = yes
+
+    category = resource
+    
+    potential = {
+        has_modifier = cenote_world
+		has_building = building_capital
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+			planet_jobs_minerals_produces_mult = 0.15
+			job_miner_add = 3
+        }
+    }
+    
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+			planet_jobs_minerals_produces_mult = 0.15
+			job_miner_add = 3
+        }
+    }
+    
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 900
+        }
+        upkeep = {
+			energy = 10
+        }
+    }     
+}
+
+### OUTBACK ###
+building_hydro = {
+    base_buildtime = 360
+	base_cap_amount = 1
+
+    is_capped_by_modifier = yes
+
+    category = resource
+    
+    potential = {
+        has_modifier = outback_world
+		has_building = building_capital
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+			planet_jobs_food_produces_mult = 0.1
+            habitability_floor_mult = 0.1
+			pop_happiness = 0.05
+            planet_max_districts_add = 2
+        }
+    }
+    
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+			planet_jobs_food_produces_mult = 0.1
+            habitability_floor_mult = 0.1
+			pop_happiness = 0.05
+            planet_max_districts_add = 2
+        }
+    }
+    
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 700
+        }
+        upkeep = {
+			energy = 10
+        }
+    }     
+}
+
+### OASIS ###
+building_canal = {
+    base_buildtime = 360
+	base_cap_amount = 1
+
+    is_capped_by_modifier = yes
+
+    category = resource
+    
+    potential = {
+        has_modifier = oasis_world
+		has_building = building_capital
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+			planet_amenities_add = 10
+            planet_max_districts_add = 2
+            district_farming_max = 2
+			planet_jobs_energy_produces_mult = 0.1
+        }
+    }
+    
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+			planet_amenities_add = 10
+            planet_max_districts_add = 2
+            district_farming_max = 2
+			planet_jobs_energy_produces_mult = 0.1
+        }
+    }
+    
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 1000
+        }
+        upkeep = {
+			energy = 10
+            minerals = 5
+        }
+    }     
+}
+
+### STEPPE ###
+building_retreat = {
+    base_buildtime = 360
+	base_cap_amount = 1
+
+    is_capped_by_modifier = yes
+
+    category = resource
+    
+    potential = {
+        has_modifier = steppe_world
+		has_building = building_capital
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_regular_empire = yes }
+        }
+        modifier = {
+			planet_immigration_pull_mult = 1.5
+            pop_happiness = 0.2
+            planet_stability_add = 5
+            planet_amenities_add = 30
+			job_entertainer_add = 3
+        }
+    }
+    
+    triggered_planet_modifier = {
+        potential = {
+            exists = owner
+            owner = { is_hive_empire = yes }
+        }
+        modifier = {
+			planet_immigration_pull_mult = 1.5
+            pop_happiness = 0.2
+            planet_stability_add = 5
+            planet_amenities_add = 30
+			job_entertainer_add = 3
+        }
+    }
+    
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 800
+        }
+        upkeep = {
+			energy = 15
         }
     }     
 }
