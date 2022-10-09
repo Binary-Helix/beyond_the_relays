@@ -658,6 +658,9 @@ building_elkoss_office = {
 
 	triggered_planet_modifier = {
 		potential = {
+			owner = {
+				has_origin = vol_protectorate_origin
+			}
 			exists = owner
 			owner = {
 				OR = {
@@ -676,6 +679,9 @@ building_elkoss_office = {
 
 	triggered_planet_modifier = {
 		potential = {
+			owner = {
+				has_origin = vol_protectorate_origin
+			}
 			exists = owner
 			owner = {
 				OR = {
@@ -727,6 +733,9 @@ building_elkoss_office = {
 
 	triggered_planet_modifier = {
 		potential = {
+			owner = {
+				has_origin = vol_protectorate_origin
+			}
 			exists = owner
 			owner = {
 				OR = {
@@ -745,6 +754,9 @@ building_elkoss_office = {
 
 	triggered_planet_modifier = {
 		potential = {
+			owner = {
+				has_origin = vol_protectorate_origin
+			}
 			exists = owner
 			owner = {
 				OR = {
@@ -786,6 +798,9 @@ building_kon_franchise = {
 	owner_type = corporate
 
 	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
 		has_upgraded_capital = yes
 		has_branch_office = yes
 		branch_office_owner = {
@@ -855,6 +870,9 @@ building_delmucore_systems = {
 	owner_type = corporate
 
 	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
 		has_upgraded_capital = yes
 		has_branch_office = yes
 		branch_office_owner = {
@@ -883,6 +901,9 @@ building_delmucore_systems = {
 
 	triggered_planet_modifier = {
 		potential = {
+			owner = {
+				has_origin = vol_protectorate_origin
+			}
 			exists = owner
 			owner = {
 				OR = {
@@ -926,6 +947,9 @@ building_vol_banking = {
 	owner_type = corporate
 
 	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
 		has_upgraded_capital = yes
 		has_branch_office = yes
 		branch_office_owner = {
@@ -1038,6 +1062,9 @@ building_hcc = {
 	owner_type = corporate
 
 	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
 		has_upgraded_capital = yes
 		has_branch_office = yes
 		branch_office_owner = {
@@ -1111,6 +1138,9 @@ building_sirenum = {
 	owner_type = corporate
 
 	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
 		has_upgraded_capital = yes
 		has_branch_office = yes
 		branch_office_owner = {
@@ -1190,6 +1220,9 @@ building_narhu = {
 	owner_type = corporate
 
 	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
 		has_upgraded_capital = yes
 		has_branch_office = yes
 		branch_office_owner = {
@@ -1266,6 +1299,9 @@ building_armex = {
 	owner_type = corporate
 
 	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
 		has_upgraded_capital = yes
 		has_branch_office = yes
 		branch_office_owner = {
@@ -1375,6 +1411,9 @@ building_halit = {
 	owner_type = corporate
 
 	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
 		has_upgraded_capital = yes
 		has_branch_office = yes
 		branch_office_owner = {
@@ -1438,7 +1477,7 @@ building_halit = {
 	}
 
 	country_modifier = {
-		army_starting_experience_add = 100
+		armies_upkeep_mult = -0.3
 }
 
 		country_modifier = {
@@ -1470,6 +1509,9 @@ building_rodam = {
 	owner_type = corporate
 
 	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
 		has_upgraded_capital = yes
 		has_branch_office = yes
 		branch_office_owner = {
@@ -1575,6 +1617,9 @@ building_rodam = {
 		owner_type = corporate
 	
 		potential = {
+			owner = {
+				has_origin = vol_protectorate_origin
+			}
 			has_upgraded_capital = yes
 			has_branch_office = yes
 			branch_office_owner = {
@@ -1639,9 +1684,13 @@ building_rodam = {
 
 	building_jenan = {
 		base_buildtime = @b1_time
+		base_cap_amount = 1
 		owner_type = corporate
 	
 		potential = {
+			owner = {
+				has_origin = vol_protectorate_origin
+			}
 			has_upgraded_capital = yes
 			has_branch_office = yes
 			branch_office_owner = {
@@ -1705,9 +1754,13 @@ building_rodam = {
 	
 	building_cision = {
 		base_buildtime = @b1_time
+		base_cap_amount = 1
 		owner_type = corporate
 	
 		potential = {
+			owner = {
+				has_origin = vol_protectorate_origin
+			}
 			has_upgraded_capital = yes
 			has_branch_office = yes
 			branch_office_owner = {
@@ -1798,6 +1851,9 @@ country_modifier = {
 		owner_type = corporate
 	
 		potential = {
+			owner = {
+				has_origin = vol_protectorate_origin
+			}
 			has_upgraded_capital = yes
 			has_branch_office = yes
 			branch_office_owner = {
@@ -1885,3 +1941,1152 @@ country_modifier = {
 	##### OMEGA BRANCH OFFICE #####
 	###############################
 	
+	
+	building_omega_transport = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				planet_immigration_pull_mult = 0.1
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_clerk_add = 2
+			}
+		}
+country_modifier = {
+	pop_growth_speed = 0.05
+}
+
+country_modifier = {
+	planet_pops_consumer_goods_upkeep_mult = -0.05
+}
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			upkeep = {
+				energy = 20
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}
+
+	building_butler = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_artisan_add = 2
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_culture_worker_add = 1
+			}
+		}
+
+country_modifier = {
+	country_consumer_goods_produces_mult = 0.05
+}
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 300
+			}
+			produces = {
+				consumer_goods = 10
+			}
+			upkeep = {
+				energy = 30
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}
+
+	building_marsh = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_upgraded_capital = yes 
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_manager_add = 1
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_clerk_add = 2
+			}
+		}
+
+country_modifier = {
+	pop_happiness = 0.05
+}
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			produces = {
+				energy = 20
+			}
+			upkeep = {
+				minerals = 20
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}
+
+	building_tuhi = {
+		base_buildtime = @b1_time
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_manager_add = 1
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_clerk_add = 2
+			}
+		}
+
+		triggered_country_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				country_resource_max_add = 1000
+			}
+		}
+country_modifier = {
+	country_energy_produces_mult = 0.05
+}
+
+country_modifier = {
+	country_resource_max_add = 1000
+}
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			upkeep = {
+				energy = 10
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}
+
+	building_harrot = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_manager_add = 1
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_clerk_add = 1
+			}
+		}
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_healthcare_add = 1
+			}
+		}
+
+	triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				pop_growth_speed = 0.03
+			}
+		}
+country_modifier = {
+	planet_crime_mult = 0.05
+}
+
+country_modifier = {
+	country__consumer_goods_produces_mult = 0.05
+}
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			upkeep = {
+				energy = 25
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
+
+	building_kenn = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_scrap_miner_add = 2
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_artificer_add = 1
+			}
+		}
+
+country_modifier = {
+	country_minerals_produces_mult = 0.1
+}
+
+country_modifier = {
+	country_alloys_produces_mult = 0.05
+}
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			upkeep = {
+				energy = 20
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
+
+	building_terminus = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_major_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_clerk_add = 2
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_manager_add = 1
+			}
+		}
+
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_merchant_add = 1
+			}
+		}
+
+country_modifier = {
+	pop_happiness = 0.02
+}
+
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			produces = {
+				energy = 30
+			}
+			upkeep = {
+				consumer_goods = 10
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
+
+	building_omega_security = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_soldier_add = 2
+			}
+		}
+
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_enforcer_add = 1
+			}
+		}
+
+
+country_modifier = {
+	armies_upkeep_mult = -0.3
+}
+
+country_modifier = {
+	armies_cost_mult = -0.2
+}
+
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 100
+			}
+			produces = {
+				energy = 20
+			}
+			upkeep = {
+				alloys = 2
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
+
+	building_aeternal = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_major_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_entertainer_add = 2
+			}
+		}
+
+country_modifier = {
+	country_unity_produces_mult = 0.05
+}
+
+country_modifier = {
+	planet_immigration_pull_mult = 0.25
+}
+
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			upkeep = {
+				energy = 25
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
+
+	building_sahrabarik = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_major_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_researcher_add = 2
+			}
+		}
+
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_culture_worker_add = 1
+			}
+		}
+country_modifier = {
+	diplo_weight_pops_mult = 0.05
+}
+
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 300
+			}
+			produces = {
+				unity = 10
+				society_research = 10
+			}
+			upkeep = {
+				energy = 40
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
+
+	building_fumi = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+			#	job_development_director_add = 2 TODO WITH CUSTOM JOB
+			}
+		}
+
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				planet_housing_add = 5
+			}
+		}
+country_modifier = {
+	planet_buildings_cost_mult = -0.1
+}
+
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 150
+			}
+			produces = {
+				engineering_research = 10
+				energy = 30
+			}
+			upkeep = {
+				minerals = 20
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
+
+	building_general = {
+		base_buildtime = @b1_time
+		base_cap_amount = 2
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+			job_artisan_add = 1
+			}
+		}
+
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_clerk_add = 1
+			}
+		}
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				pop_happiness = 0.5
+			}
+		}
+	
+country_modifier = {
+	planet_crime_add = 5
+}
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			produces = {
+				engineering_research = 10
+				society_research = 10
+			}
+			upkeep = {
+				energy = 30
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
+
+	building_cinema = {
+		base_buildtime = @b1_time
+		base_cap_amount = 1
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_major_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+			job_manager_add = 1
+			}
+		}
+
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_clerk_add = 1
+			}
+		}
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_entertainer_add = 1
+			}
+		}
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			produces = {
+				consumer_goods = 5
+				unity =  10
+			}
+			upkeep = {
+				energy = 25
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
+
+	building_brewers = {
+		base_buildtime = @b1_time
+		base_cap_amount = 2
+		owner_type = corporate
+	
+		potential = {
+			owner = {
+				has_origin = omega_origin
+			}
+			has_upgraded_capital = yes
+			has_branch_office = yes
+			branch_office_owner = {
+				is_ai = no
+				is_criminal_syndicate = no
+			}
+		}
+	
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+			job_artisan_add = 1
+			}
+		}
+
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_culture_worker_add = 1
+			}
+		}
+		triggered_planet_modifier = {
+			potential = {
+				exists = owner
+				owner = {
+					OR = {
+						is_anglers_empire = no
+						AND = {
+							is_anglers_empire = yes
+							PREV = { planet = { is_wet = no } }
+						}
+					}
+				}
+			}
+			modifier = {
+				job_entertainer_add = 1
+			}
+		}
+
+	country_modifier = {
+		pop_happiness = 5
+	}
+		resources = {
+			category = planet_branch_office_buildings
+			cost = {
+				minerals = 200
+			}
+			produces = {
+				consumer_goods = 5
+				society_research = 10
+			}
+			upkeep = {
+				energy = 15
+			}
+		}
+	
+		ai_weight = {
+			factor = 1
+		}#AI has many other sources for this resource
+	}	
