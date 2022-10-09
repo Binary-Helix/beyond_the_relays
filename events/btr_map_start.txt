@@ -102,7 +102,16 @@ event = {
 			}
 			switch = {
 			trigger = is_planet_class
-
+				pc_toxic = {
+					random_list = {
+						15 = { change_pc = pc_ammonia reroll_planet = yes }
+						15 = { change_pc = pc_chlorine reroll_planet = yes }	
+						15 = { change_pc = pc_methane reroll_planet = yes }					
+						15 = { change_pc = pc_mephitic reroll_planet = yes }
+						25 = { change_pc = pc_hothouse reroll_planet = yes }
+						10 = { }	
+					}					
+				}
 				pc_arid = {
 					random_list = {
 						#Dune
@@ -2895,16 +2904,1384 @@ event = {
 						}
 					}					
 				}
-				pc_toxic = {
+				pc_ammonia = {
 					random_list = {
-						25 = { change_pc = pc_ammonia reroll_planet = yes }
-						25 = { change_pc = pc_chlorine reroll_planet = yes }	
-						25 = { change_pc = pc_methane reroll_planet = yes }					
-						25 = { change_pc = pc_mephitic reroll_planet = yes }	
-					}					
+						#Ammonia Desert
+						4 = {
+							set_planet_entity = {
+								picture = pc_dust
+								entity = ammonia_desert_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "dust_world"
+								days = -1
+							}
+							set_planet_flag = dust_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_dune
+								entity = ammonia_desert_02_entity
+							}
+							add_modifier = {
+								modifier = "dune_world"
+								days = -1
+							}
+							set_planet_flag = dune_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_badlands
+								entity = ammonia_desert_03_entity
+							}
+							add_modifier = {
+								modifier = "badlands_world"
+								days = -1
+							}
+							set_planet_flag = badlands_world
+						}
+						#Arid
+						4 = {
+							set_planet_entity = {
+								picture = pc_mesa
+								entity = ammonia_arid_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "mesa_world"
+								days = -1
+							}
+							set_planet_flag = mesa_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_cenote
+								entity = ammonia_arid_02_entity
+							}
+							add_modifier = {
+								modifier = "cenote_world"
+								days = -1
+							}
+							set_planet_flag = cenote_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_outback
+								entity = ammonia_arid_03_entity
+							}
+							add_modifier = {
+								modifier = "outback_world"
+								days = -1
+							}
+							set_planet_flag = outback_world
+						}
+						#Savanna
+						4 = {
+							set_planet_entity = {
+								picture = pc_steppe
+								entity = ammonia_savanna_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "steppe_world"
+								days = -1
+							}
+							set_planet_flag = steppe_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_veld
+								entity = ammonia_savanna_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "veld_world"
+								days = -1
+							}
+							set_planet_flag = veld_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_medit
+								entity = ammonia_savanna_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "medit_world"
+								days = -1
+							}
+							set_planet_flag = medit_world
+						}
+						#Tropical
+						4 = {
+							set_planet_entity = {
+								picture = pc_coastal
+								entity = ammonia_tropical_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "coastal_world"
+								days = -1
+							}
+							set_planet_flag = coastal_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_jungle
+								entity = ammonia_tropical_02_entity
+							}
+							add_modifier = {
+								modifier = "jungle_world"
+								days = -1
+							}
+							set_planet_flag = jungle_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_biolum
+								entity = ammonia_tropical_03_entity
+							}
+							add_modifier = {
+								modifier = "biolum_world"
+								days = -1
+							}
+							set_planet_flag = biolum_world
+						}					
+						#Ammonia - Swamp
+						4 = {
+							set_planet_entity = {
+								picture = pc_marsh
+								entity = ammonia_swamp_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "marsh_world"
+								days = -1
+							}
+							set_planet_flag = marsh_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_mangrove
+								entity = ammonia_swamp_02_entity
+							}
+							add_modifier = {
+								modifier = "mangrove_world"
+								days = -1
+							}
+							set_planet_flag = mangrove_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_bog
+								entity = ammonia_swamp_03_entity
+							}
+							add_modifier = {
+								modifier = "bog_world"
+								days = -1
+							}
+							set_planet_flag = bog_world
+						}
+						#Continental
+						4 = {
+							set_planet_entity = {
+								picture = pc_prairie
+								entity = ammonia_arid_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "prairie_world"
+								days = -1
+							}
+							set_planet_flag = prairie_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_forest
+								entity = ammonia_arid_02_entity
+							}
+							add_modifier = {
+								modifier = "forest_world"
+								days = -1
+							}
+							set_planet_flag = forest_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_temperate
+								entity = ammonia_arid_03_entity
+							}
+							add_modifier = {
+								modifier = "temperate_world"
+								days = -1
+							}
+							set_planet_flag = temperate_world
+						}
+						#Ocean
+						4 = {
+							set_planet_entity = {
+								picture = pc_ocean
+								entity = ammonia_ocean_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "ocean_world"
+								days = -1
+							}
+							set_planet_flag = ocean_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_hotocean
+								entity = ammonia_ocean_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "hotocean_world"
+								days = -1
+							}
+							set_planet_flag = hotocean_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_coldocean
+								entity = ammonia_ocean_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "coldocean_world"
+								days = -1
+							}
+							set_planet_flag = coldocean_world
+						}
+						#Alpine
+						4 = {
+							set_planet_entity = {
+								picture = pc_boreal
+								entity = ammonia_alpine_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "boreal_world"
+								days = -1
+							}
+							set_planet_flag = boreal_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_highland
+								entity = ammonia_alpine_02_entity
+							}
+							add_modifier = {
+								modifier = "highland_world"
+								days = -1
+							}
+							set_planet_flag = highland_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_crag
+								entity = ammonia_alpine_03_entity
+							}
+							add_modifier = {
+								modifier = "crag_world"
+								days = -1
+							}
+							set_planet_flag = crag_world
+						}
+						#Tundra
+						4 = {
+							set_planet_entity = {
+								picture = pc_basalt
+								entity = ammonia_tundra_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "basalt_world"
+								days = -1
+							}
+							set_planet_flag = basalt_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_lichen
+								entity = ammonia_tundra_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "lichen_world"
+								days = -1
+							}
+							set_planet_flag = lichen_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_mire
+								entity = ammonia_tundra_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "mire_world"
+								days = -1
+							}
+							set_planet_flag = mire_world
+						}
+						#Arctic
+						4 = {
+							set_planet_entity = {
+								picture = pc_glacial
+								entity = ammonia_arctic_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "glacial_world"
+								days = -1
+							}
+							set_planet_flag = glacial_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_antarctic
+								entity = ammonia_arctic_02_entity
+							}
+							add_modifier = {
+								modifier = "antar_world"
+								days = -1
+							}
+							set_planet_flag = antarctic_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_glacio
+								entity = ammonia_arctic_03_entity
+							}
+							add_modifier = {
+								modifier = "glacio_world"
+								days = -1
+							}
+							set_planet_flag = glacio_world
+						}
+					}
+				}
+				pc_chlorine = {
+					random_list = {
+						#chlorine Desert
+						4 = {
+							set_planet_entity = {
+								picture = pc_dust
+								entity = chlorine_desert_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "dust_world"
+								days = -1
+							}
+							set_planet_flag = dust_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_dune
+								entity = chlorine_desert_02_entity
+							}
+							add_modifier = {
+								modifier = "dune_world"
+								days = -1
+							}
+							set_planet_flag = dune_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_badlands
+								entity = chlorine_desert_03_entity
+							}
+							add_modifier = {
+								modifier = "badlands_world"
+								days = -1
+							}
+							set_planet_flag = badlands_world
+						}
+						#Arid
+						4 = {
+							set_planet_entity = {
+								picture = pc_mesa
+								entity = chlorine_arid_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "mesa_world"
+								days = -1
+							}
+							set_planet_flag = mesa_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_cenote
+								entity = chlorine_arid_02_entity
+							}
+							add_modifier = {
+								modifier = "cenote_world"
+								days = -1
+							}
+							set_planet_flag = cenote_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_outback
+								entity = chlorine_arid_03_entity
+							}
+							add_modifier = {
+								modifier = "outback_world"
+								days = -1
+							}
+							set_planet_flag = outback_world
+						}
+						#Savanna
+						4 = {
+							set_planet_entity = {
+								picture = pc_steppe
+								entity = chlorine_savanna_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "steppe_world"
+								days = -1
+							}
+							set_planet_flag = steppe_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_veld
+								entity = chlorine_savanna_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "veld_world"
+								days = -1
+							}
+							set_planet_flag = veld_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_medit
+								entity = chlorine_savanna_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "medit_world"
+								days = -1
+							}
+							set_planet_flag = medit_world
+						}
+						#Tropical
+						4 = {
+							set_planet_entity = {
+								picture = pc_coastal
+								entity = chlorine_tropical_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "coastal_world"
+								days = -1
+							}
+							set_planet_flag = coastal_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_jungle
+								entity = chlorine_tropical_02_entity
+							}
+							add_modifier = {
+								modifier = "jungle_world"
+								days = -1
+							}
+							set_planet_flag = jungle_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_biolum
+								entity = chlorine_tropical_03_entity
+							}
+							add_modifier = {
+								modifier = "biolum_world"
+								days = -1
+							}
+							set_planet_flag = biolum_world
+						}					
+						#chlorine - Swamp
+						4 = {
+							set_planet_entity = {
+								picture = pc_marsh
+								entity = chlorine_swamp_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "marsh_world"
+								days = -1
+							}
+							set_planet_flag = marsh_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_mangrove
+								entity = chlorine_swamp_02_entity
+							}
+							add_modifier = {
+								modifier = "mangrove_world"
+								days = -1
+							}
+							set_planet_flag = mangrove_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_bog
+								entity = chlorine_swamp_03_entity
+							}
+							add_modifier = {
+								modifier = "bog_world"
+								days = -1
+							}
+							set_planet_flag = bog_world
+						}
+						#Continental
+						4 = {
+							set_planet_entity = {
+								picture = pc_prairie
+								entity = chlorine_arid_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "prairie_world"
+								days = -1
+							}
+							set_planet_flag = prairie_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_forest
+								entity = chlorine_arid_02_entity
+							}
+							add_modifier = {
+								modifier = "forest_world"
+								days = -1
+							}
+							set_planet_flag = forest_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_temperate
+								entity = chlorine_arid_03_entity
+							}
+							add_modifier = {
+								modifier = "temperate_world"
+								days = -1
+							}
+							set_planet_flag = temperate_world
+						}
+						#Ocean
+						4 = {
+							set_planet_entity = {
+								picture = pc_ocean
+								entity = chlorine_ocean_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "ocean_world"
+								days = -1
+							}
+							set_planet_flag = ocean_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_hotocean
+								entity = chlorine_ocean_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "hotocean_world"
+								days = -1
+							}
+							set_planet_flag = hotocean_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_coldocean
+								entity = chlorine_ocean_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "coldocean_world"
+								days = -1
+							}
+							set_planet_flag = coldocean_world
+						}
+						#Alpine
+						4 = {
+							set_planet_entity = {
+								picture = pc_boreal
+								entity = chlorine_alpine_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "boreal_world"
+								days = -1
+							}
+							set_planet_flag = boreal_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_highland
+								entity = chlorine_alpine_02_entity
+							}
+							add_modifier = {
+								modifier = "highland_world"
+								days = -1
+							}
+							set_planet_flag = highland_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_crag
+								entity = chlorine_alpine_03_entity
+							}
+							add_modifier = {
+								modifier = "crag_world"
+								days = -1
+							}
+							set_planet_flag = crag_world
+						}
+						#Tundra
+						4 = {
+							set_planet_entity = {
+								picture = pc_basalt
+								entity = chlorine_tundra_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "basalt_world"
+								days = -1
+							}
+							set_planet_flag = basalt_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_lichen
+								entity = chlorine_tundra_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "lichen_world"
+								days = -1
+							}
+							set_planet_flag = lichen_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_mire
+								entity = chlorine_tundra_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "mire_world"
+								days = -1
+							}
+							set_planet_flag = mire_world
+						}
+						#Arctic
+						4 = {
+							set_planet_entity = {
+								picture = pc_glacial
+								entity = chlorine_arctic_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "glacial_world"
+								days = -1
+							}
+							set_planet_flag = glacial_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_antarctic
+								entity = chlorine_arctic_02_entity
+							}
+							add_modifier = {
+								modifier = "antar_world"
+								days = -1
+							}
+							set_planet_flag = antarctic_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_glacio
+								entity = chlorine_arctic_03_entity
+							}
+							add_modifier = {
+								modifier = "glacio_world"
+								days = -1
+							}
+							set_planet_flag = glacio_world
+						}
+					}
+				}
+				pc_methane = {
+					random_list = {
+						#methane Desert
+						4 = {
+							set_planet_entity = {
+								picture = pc_dust
+								entity = methane_desert_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "dust_world"
+								days = -1
+							}
+							set_planet_flag = dust_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_dune
+								entity = methane_desert_02_entity
+							}
+							add_modifier = {
+								modifier = "dune_world"
+								days = -1
+							}
+							set_planet_flag = dune_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_badlands
+								entity = methane_desert_03_entity
+							}
+							add_modifier = {
+								modifier = "badlands_world"
+								days = -1
+							}
+							set_planet_flag = badlands_world
+						}
+						#Arid
+						4 = {
+							set_planet_entity = {
+								picture = pc_mesa
+								entity = methane_arid_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "mesa_world"
+								days = -1
+							}
+							set_planet_flag = mesa_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_cenote
+								entity = methane_arid_02_entity
+							}
+							add_modifier = {
+								modifier = "cenote_world"
+								days = -1
+							}
+							set_planet_flag = cenote_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_outback
+								entity = methane_arid_03_entity
+							}
+							add_modifier = {
+								modifier = "outback_world"
+								days = -1
+							}
+							set_planet_flag = outback_world
+						}
+						#Savanna
+						4 = {
+							set_planet_entity = {
+								picture = pc_steppe
+								entity = methane_savanna_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "steppe_world"
+								days = -1
+							}
+							set_planet_flag = steppe_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_veld
+								entity = methane_savanna_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "veld_world"
+								days = -1
+							}
+							set_planet_flag = veld_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_medit
+								entity = methane_savanna_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "medit_world"
+								days = -1
+							}
+							set_planet_flag = medit_world
+						}
+						#Tropical
+						4 = {
+							set_planet_entity = {
+								picture = pc_coastal
+								entity = methane_tropical_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "coastal_world"
+								days = -1
+							}
+							set_planet_flag = coastal_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_jungle
+								entity = methane_tropical_02_entity
+							}
+							add_modifier = {
+								modifier = "jungle_world"
+								days = -1
+							}
+							set_planet_flag = jungle_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_biolum
+								entity = methane_tropical_03_entity
+							}
+							add_modifier = {
+								modifier = "biolum_world"
+								days = -1
+							}
+							set_planet_flag = biolum_world
+						}					
+						#methane - Swamp
+						4 = {
+							set_planet_entity = {
+								picture = pc_marsh
+								entity = methane_swamp_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "marsh_world"
+								days = -1
+							}
+							set_planet_flag = marsh_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_mangrove
+								entity = methane_swamp_02_entity
+							}
+							add_modifier = {
+								modifier = "mangrove_world"
+								days = -1
+							}
+							set_planet_flag = mangrove_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_bog
+								entity = methane_swamp_03_entity
+							}
+							add_modifier = {
+								modifier = "bog_world"
+								days = -1
+							}
+							set_planet_flag = bog_world
+						}
+						#Continental
+						4 = {
+							set_planet_entity = {
+								picture = pc_prairie
+								entity = methane_arid_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "prairie_world"
+								days = -1
+							}
+							set_planet_flag = prairie_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_forest
+								entity = methane_arid_02_entity
+							}
+							add_modifier = {
+								modifier = "forest_world"
+								days = -1
+							}
+							set_planet_flag = forest_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_temperate
+								entity = methane_arid_03_entity
+							}
+							add_modifier = {
+								modifier = "temperate_world"
+								days = -1
+							}
+							set_planet_flag = temperate_world
+						}
+						#Ocean
+						4 = {
+							set_planet_entity = {
+								picture = pc_ocean
+								entity = methane_ocean_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "ocean_world"
+								days = -1
+							}
+							set_planet_flag = ocean_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_hotocean
+								entity = methane_ocean_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "hotocean_world"
+								days = -1
+							}
+							set_planet_flag = hotocean_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_coldocean
+								entity = methane_ocean_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "coldocean_world"
+								days = -1
+							}
+							set_planet_flag = coldocean_world
+						}
+						#Alpine
+						4 = {
+							set_planet_entity = {
+								picture = pc_boreal
+								entity = methane_alpine_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "boreal_world"
+								days = -1
+							}
+							set_planet_flag = boreal_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_highland
+								entity = methane_alpine_02_entity
+							}
+							add_modifier = {
+								modifier = "highland_world"
+								days = -1
+							}
+							set_planet_flag = highland_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_crag
+								entity = methane_alpine_03_entity
+							}
+							add_modifier = {
+								modifier = "crag_world"
+								days = -1
+							}
+							set_planet_flag = crag_world
+						}
+						#Tundra
+						4 = {
+							set_planet_entity = {
+								picture = pc_basalt
+								entity = methane_tundra_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "basalt_world"
+								days = -1
+							}
+							set_planet_flag = basalt_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_lichen
+								entity = methane_tundra_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "lichen_world"
+								days = -1
+							}
+							set_planet_flag = lichen_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_mire
+								entity = methane_tundra_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "mire_world"
+								days = -1
+							}
+							set_planet_flag = mire_world
+						}
+						#Arctic
+						4 = {
+							set_planet_entity = {
+								picture = pc_glacial
+								entity = methane_arctic_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "glacial_world"
+								days = -1
+							}
+							set_planet_flag = glacial_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_antarctic
+								entity = methane_arctic_02_entity
+							}
+							add_modifier = {
+								modifier = "antar_world"
+								days = -1
+							}
+							set_planet_flag = antarctic_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_glacio
+								entity = methane_arctic_03_entity
+							}
+							add_modifier = {
+								modifier = "glacio_world"
+								days = -1
+							}
+							set_planet_flag = glacio_world
+						}
+					}
+				}
+				pc_mephitic = {
+					random_list = {
+						#mephitic Desert
+						4 = {
+							set_planet_entity = {
+								picture = pc_dust
+								entity = mephitic_desert_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "dust_world"
+								days = -1
+							}
+							set_planet_flag = dust_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_dune
+								entity = mephitic_desert_02_entity
+							}
+							add_modifier = {
+								modifier = "dune_world"
+								days = -1
+							}
+							set_planet_flag = dune_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_badlands
+								entity = mephitic_desert_03_entity
+							}
+							add_modifier = {
+								modifier = "badlands_world"
+								days = -1
+							}
+							set_planet_flag = badlands_world
+						}
+						#Arid
+						4 = {
+							set_planet_entity = {
+								picture = pc_mesa
+								entity = mephitic_arid_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "mesa_world"
+								days = -1
+							}
+							set_planet_flag = mesa_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_cenote
+								entity = mephitic_arid_02_entity
+							}
+							add_modifier = {
+								modifier = "cenote_world"
+								days = -1
+							}
+							set_planet_flag = cenote_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_outback
+								entity = mephitic_arid_03_entity
+							}
+							add_modifier = {
+								modifier = "outback_world"
+								days = -1
+							}
+							set_planet_flag = outback_world
+						}
+						#Savanna
+						4 = {
+							set_planet_entity = {
+								picture = pc_steppe
+								entity = mephitic_savanna_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "steppe_world"
+								days = -1
+							}
+							set_planet_flag = steppe_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_veld
+								entity = mephitic_savanna_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "veld_world"
+								days = -1
+							}
+							set_planet_flag = veld_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_medit
+								entity = mephitic_savanna_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "medit_world"
+								days = -1
+							}
+							set_planet_flag = medit_world
+						}
+						#Tropical
+						4 = {
+							set_planet_entity = {
+								picture = pc_coastal
+								entity = mephitic_tropical_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "coastal_world"
+								days = -1
+							}
+							set_planet_flag = coastal_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_jungle
+								entity = mephitic_tropical_02_entity
+							}
+							add_modifier = {
+								modifier = "jungle_world"
+								days = -1
+							}
+							set_planet_flag = jungle_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_biolum
+								entity = mephitic_tropical_03_entity
+							}
+							add_modifier = {
+								modifier = "biolum_world"
+								days = -1
+							}
+							set_planet_flag = biolum_world
+						}					
+						#mephitic - Swamp
+						4 = {
+							set_planet_entity = {
+								picture = pc_marsh
+								entity = mephitic_swamp_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "marsh_world"
+								days = -1
+							}
+							set_planet_flag = marsh_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_mangrove
+								entity = mephitic_swamp_02_entity
+							}
+							add_modifier = {
+								modifier = "mangrove_world"
+								days = -1
+							}
+							set_planet_flag = mangrove_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_bog
+								entity = mephitic_swamp_03_entity
+							}
+							add_modifier = {
+								modifier = "bog_world"
+								days = -1
+							}
+							set_planet_flag = bog_world
+						}
+						#Continental
+						4 = {
+							set_planet_entity = {
+								picture = pc_prairie
+								entity = mephitic_arid_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "prairie_world"
+								days = -1
+							}
+							set_planet_flag = prairie_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_forest
+								entity = mephitic_arid_02_entity
+							}
+							add_modifier = {
+								modifier = "forest_world"
+								days = -1
+							}
+							set_planet_flag = forest_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_temperate
+								entity = mephitic_arid_03_entity
+							}
+							add_modifier = {
+								modifier = "temperate_world"
+								days = -1
+							}
+							set_planet_flag = temperate_world
+						}
+						#Ocean
+						4 = {
+							set_planet_entity = {
+								picture = pc_ocean
+								entity = mephitic_ocean_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "ocean_world"
+								days = -1
+							}
+							set_planet_flag = ocean_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_hotocean
+								entity = mephitic_ocean_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "hotocean_world"
+								days = -1
+							}
+							set_planet_flag = hotocean_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_coldocean
+								entity = mephitic_ocean_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "coldocean_world"
+								days = -1
+							}
+							set_planet_flag = coldocean_world
+						}
+						#Alpine
+						4 = {
+							set_planet_entity = {
+								picture = pc_boreal
+								entity = mephitic_alpine_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "boreal_world"
+								days = -1
+							}
+							set_planet_flag = boreal_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_highland
+								entity = mephitic_alpine_02_entity
+							}
+							add_modifier = {
+								modifier = "highland_world"
+								days = -1
+							}
+							set_planet_flag = highland_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_crag
+								entity = mephitic_alpine_03_entity
+							}
+							add_modifier = {
+								modifier = "crag_world"
+								days = -1
+							}
+							set_planet_flag = crag_world
+						}
+						#Tundra
+						4 = {
+							set_planet_entity = {
+								picture = pc_basalt
+								entity = mephitic_tundra_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "basalt_world"
+								days = -1
+							}
+							set_planet_flag = basalt_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_lichen
+								entity = mephitic_tundra_planet_02_entity
+							}
+							add_modifier = {
+								modifier = "lichen_world"
+								days = -1
+							}
+							set_planet_flag = lichen_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_mire
+								entity = mephitic_tundra_planet_03_entity
+							}
+							add_modifier = {
+								modifier = "mire_world"
+								days = -1
+							}
+							set_planet_flag = mire_world
+						}
+						#Arctic
+						4 = {
+							set_planet_entity = {
+								picture = pc_glacial
+								entity = mephitic_arctic_planet_01_entity
+							}
+							add_modifier = {
+								modifier = "glacial_world"
+								days = -1
+							}
+							set_planet_flag = glacial_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_antarctic
+								entity = mephitic_arctic_02_entity
+							}
+							add_modifier = {
+								modifier = "antar_world"
+								days = -1
+							}
+							set_planet_flag = antarctic_world
+						}
+						4 = {
+							set_planet_entity = {
+								picture = pc_glacio
+								entity = mephitic_arctic_03_entity
+							}
+							add_modifier = {
+								modifier = "glacio_world"
+								days = -1
+							}
+							set_planet_flag = glacio_world
+						}
+					}
 				}
 			}
-		}
+		}			
 	}
 }
 
@@ -2949,7 +4326,7 @@ event = {
 						is_planet_class = pc_mephitic
 						is_planet_class = pc_primal
 					}
-					planet_size > 19
+					planet_size > 21
 					planet_size < 27
 				}
 				if = {
