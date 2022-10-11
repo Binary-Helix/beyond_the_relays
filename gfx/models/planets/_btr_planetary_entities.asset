@@ -101,6 +101,48 @@ entity = {
 	}
 }
 
+entity = {
+	name = "continental_planet_earth_toxic_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	meshsettings = {
+	name = "planet_geosphereShape"
+	texture_diffuse = "earth_toxic_diffuse.dds"
+	texture_normal = "earth_normal.dds"
+	texture_specular = "earth_specular.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_1_diffuse.dds"
+	texture_normal = "poles_1_normal.dds"
+	texture_specular = "poles_1_specular.dds"
+	}
+
+	##cloud texture override
+	meshsettings = {
+		name = "clouds_geosphereShape"
+		texture_diffuse = "atmosphere_medium.dds"
+		texture_normal = "nonormal.dds"
+		texture_specular = "atmosphere_specular.dds"
+	}
+	
+	##cloud shadow texture override
+	meshsettings = {
+	name = "clouds_shadow_geosphereShape"
+	texture_diffuse = "clouds_medium_yellow_diffuse.dds"
+	texture_normal = "clouds_medium_normal.dds"
+	texture_specular = "atmosphere_specular.dds"
+	}
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+}
+
 # Luna
 entity = {
 	name = "cold_barren_planet_luna_entity"
@@ -220,8 +262,6 @@ entity = {
 		texture_normal = "saturn_normal.dds"
 		texture_specular = "atmosphere_specular.dds"
 	}
-
-	attach = { part1 = "saturn_rings_01_large_attach" }
 	
 	default_state = "idle"
 	#playback_rate = -1.0 # Rotation is reversed
@@ -239,14 +279,14 @@ entity = {
 	meshsettings = {
 	name = "planet_geosphereShape"
 	texture_diffuse = "uranus_diffuse.dds"
-	texture_normal = "uranus_normal.dds"
+	texture_normal = "nonormal.dds"
 	texture_specular = "uranus_specular.dds"
 	}
 
 	##cloud texture override
 	meshsettings = {
 		name = "clouds_geosphereShape"
-		texture_diffuse = "atmosphere_jovian_blue.dds"
+		texture_diffuse = "atmosphere_jovian_green.dds"
 		texture_normal = "nonormal.dds"
 		texture_specular = "atmosphere_specular.dds"
 	}
@@ -257,7 +297,7 @@ entity = {
 		texture_diffuse = "atmosphere_medium.dds"
 		texture_normal = "nonormal.dds"
 		texture_specular = "atmosphere_specular.dds"
-	}	
+	}
 
 	default_state = "idle"
 	#playback_rate = -1.0 # Rotation is reversed
@@ -275,7 +315,7 @@ entity = {
 	meshsettings = {
 	name = "planet_geosphereShape"
 	texture_diffuse = "neptune_diffuse.dds"
-	texture_normal = "neptune_normal.dds"
+	texture_normal = "nonormal.dds"
 	texture_specular = "neptune_specular.dds"
 	}
 
