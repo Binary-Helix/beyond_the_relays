@@ -1,0 +1,8705 @@
+#	Example:
+#
+#	example_effect = {
+#		add_energy = -100
+#	}
+#
+#
+#	In a script file:
+#
+#	effect = {
+#		example_effect = yes
+#	}
+#
+
+create_globula_clouds = {
+
+	random_list = {
+		10 = {
+			modifier = {
+				factor = 3
+				is_inside_nebula = yes
+			}
+			if = {
+				limit = {
+					OR = {
+						is_star_class = sc_b
+						is_star_class = sc_t
+						is_star_class = sc_y
+						is_b_system = yes
+					}
+				}
+				create_ambient_object = {
+					type = "purple_globule_object_medium"
+					entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					save_event_target_as = dust_clouds
+				}
+				while = {
+					count = 2
+					create_ambient_object = {
+						type = "purple_globule_object_small"
+						entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+					}
+					last_created_ambient_object = { 
+						set_location = {
+							target = event_target:dust_clouds
+							distance = @object_distance_90
+							angle = random
+						}
+					}
+				}
+				random_list = {
+					20 = {
+						create_ambient_object = {
+							type = "purple_globule_object_medium"
+							entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+						}
+						last_created_ambient_object = { 
+							set_location = {
+								target = event_target:dust_clouds
+								distance = @object_distance_150
+								angle = random
+							}
+						}
+					}
+					30 = {
+						while = {
+							count = 2
+							create_ambient_object = {
+								type = "purple_globule_object_medium"
+								entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+							}
+							last_created_ambient_object = { 
+								set_location = {
+									target = event_target:dust_clouds
+									distance = @object_distance_150
+									angle = random
+								}
+							}
+						}
+					}
+					50 = { #Null
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_g
+						is_star_class = sc_k
+						is_star_class = sc_s_giant
+						is_g_system = yes
+						is_k_system = yes
+					}
+				}
+				create_ambient_object = {
+					type = "orange_globule_object_medium"
+					entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					save_event_target_as = dust_clouds
+				}
+				while = {
+					count = 2
+					create_ambient_object = {
+						type = "orange_globule_object_small"
+						entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+					}
+					last_created_ambient_object = { 
+						set_location = {
+							target = event_target:dust_clouds
+							distance = @object_distance_90
+							angle = random
+						}
+					}
+				}
+				random_list = {
+					20 = {
+						create_ambient_object = {
+							type = "orange_globule_object_medium"
+							entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+						}
+						last_created_ambient_object = { 
+							set_location = {
+								target = event_target:dust_clouds
+								distance = @object_distance_150
+								angle = random
+							}
+						}
+					}
+					30 = {
+						while = {
+							count = 2
+							create_ambient_object = {
+								type = "orange_globule_object_medium"
+								entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+							}
+							last_created_ambient_object = { 
+								set_location = {
+									target = event_target:dust_clouds
+									distance = @object_distance_150
+									angle = random
+								}
+							}
+						}
+					}
+					50 = { #Null
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_m
+						is_star_class = sc_m_giant
+						is_star_class = sc_c_giant
+						is_star_class = sc_l
+						is_m_system = yes
+					}
+				}
+				create_ambient_object = {
+					type = "red_globule_object_medium"
+					entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					save_event_target_as = dust_clouds
+				}
+				while = {
+					count = 2
+					create_ambient_object = {
+						type = "red_globule_object_small"
+						entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+					}
+					last_created_ambient_object = { 
+						set_location = {
+							target = event_target:dust_clouds
+							distance = @object_distance_90
+							angle = random
+						}
+					}
+				}
+				random_list = {
+					20 = {
+						create_ambient_object = {
+							type = "red_globule_object_medium"
+							entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+						}
+						last_created_ambient_object = { 
+							set_location = {
+								target = event_target:dust_clouds
+								distance = @object_distance_150
+								angle = random
+							}
+						}
+					}
+					30 = {
+						while = {
+							count = 2
+							create_ambient_object = {
+								type = "red_globule_object_medium"
+								entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+							}
+							last_created_ambient_object = { 
+								set_location = {
+									target = event_target:dust_clouds
+									distance = @object_distance_150
+									angle = random
+								}
+							}
+						}
+					}
+					50 = { #Null
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_a
+						is_star_class = sc_f
+						is_star_class = sc_d
+						is_star_class = sc_pulsar
+						is_star_class = sc_neutron_star
+						is_star_class = sc_magnetar
+						is_a_system = yes
+						is_f_system = yes
+					}
+				}
+				create_ambient_object = {
+					type = "blue_globule_object_medium"
+					entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+					location = solar_system
+				}
+				last_created_ambient_object = {
+					save_event_target_as = dust_clouds
+				}
+				while = {
+					count = 2
+					create_ambient_object = {
+						type = "blue_globule_object_small"
+						entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+					}
+					last_created_ambient_object = { 
+						set_location = {
+							target = event_target:dust_clouds
+							distance = @object_distance_90
+							angle = random
+						}
+					}
+				}
+				random_list = {
+					20 = {
+						create_ambient_object = {
+							type = "blue_globule_object_medium"
+							entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+						}
+						last_created_ambient_object = { 
+							set_location = {
+								target = event_target:dust_clouds
+								distance = @object_distance_150
+								angle = random
+							}
+						}
+					}
+					30 = {
+						while = {
+							count = 2
+							create_ambient_object = {
+								type = "blue_globule_object_medium"
+								entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+							}
+							last_created_ambient_object = { 
+								set_location = {
+									target = event_target:dust_clouds
+									distance = @object_distance_150
+									angle = random
+								}
+							}
+						}
+					}
+					50 = { #Null
+					}
+				}
+			}
+		}
+		80 = { #Null 
+		}
+	}
+}
+
+create_random_civilization = {
+	random_list = {
+		# Space Civilization
+		15 = {
+			solar_system = { set_star_flag = empire_home_system }
+			generate_empire_home_planet = yes
+			
+			create_species = {
+				name = random
+				class = random
+				portrait = random
+				homeworld = THIS
+				traits = {
+					trait = random_traits
+				}
+			}
+			create_country = {
+				name = random
+				authority = random
+				civics = random
+				species = last_created
+				#name_list = random
+				ethos = random
+				flag = random
+				origin = "origin_enlightened" # Should only be visible if they become spacefaring
+				type = default
+				effect = {
+					add_resource = {
+						minerals = 200
+						energy = 200
+						food = 200
+						alloys = 100
+						consumer_goods = 100
+						influence = 100
+					}
+				}
+			}
+			while = {
+				count = 26
+				create_pop = {
+					species = last_created
+				}
+	    	}
+			set_owner = last_created_country
+			set_capital = yes
+			add_district = district_city
+			add_district = district_city
+			add_district = district_city
+			add_district = district_city
+			add_district = district_farming
+			add_district = district_farming
+			add_district = district_farming
+			add_district = district_mining
+			add_district = district_mining
+			add_district = district_generator
+			add_district = district_generator
+			add_building = building_capital
+			add_building = building_research_lab_1
+			add_building = building_foundry_1
+			add_building = building_factory_1
+		}
+		# Primitives Civilization
+		35 = {
+			generate_primitives_on_planet = yes
+		}		
+		50 = { 
+			#Null 
+		}
+	}
+}
+
+create_w_azure_space = {
+	create_ambient_object = {
+		type = "w_azure_core_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	#========================================================
+	
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "blue_globule_object_medium"
+			entity_offset_height = { min = @min_height_m10 max = @max_height_5 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_85
+				angle = random
+			}
+		}
+	}
+
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "blue_globule_object_small"
+			entity_offset_height = { min = @min_height_0 max = @max_height_10 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = random
+			}
+		}
+	}
+}
+
+create_w_red_space = {
+	create_ambient_object = {
+		type = "w_red_core_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	#========================================================
+	
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "orange_globule_object_medium"
+			entity_offset_height = { min = @min_height_m10 max = @max_height_5 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_85
+				angle = random
+			}
+		}
+	}
+	
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "orange_globule_object_small"
+			entity_offset_height = { min = @min_height_0 max = @max_height_10 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = random
+			}
+		}
+	}
+}
+
+create_w_green_space = {
+	create_ambient_object = {
+		type = "w_green_core_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	#================================================
+	
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "blue_globule_object_medium"
+			entity_offset_height = { min = @min_height_m10 max = @max_height_5 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_85
+				angle = random
+			}
+		}
+	}
+	
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "blue_globule_object_small"
+			entity_offset_height = { min = @min_height_0 max = @max_height_10 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = random
+			}
+		}
+	}
+}
+
+create_w_purple_space = {
+	create_ambient_object = {
+		type = "w_purple_core_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	#========================================================
+	
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "red_globule_object_medium"
+			entity_offset_height = { min = @min_height_m10 max = @max_height_5 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_85
+				angle = random
+			}
+		}
+	}
+	
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "red_globule_object_small"
+			entity_offset_height = { min = @min_height_0 max = @max_height_10 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = random
+			}
+		}
+	}	
+}
+
+create_nova_1_space = {
+	create_ambient_object = {
+		type = "nova_1_core_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	#================================================
+}
+
+create_nova_2_space = {
+	create_ambient_object = {
+		type = "nova_2_core_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	#================================================
+}
+
+create_collapsar_space = {
+	create_ambient_object = {
+		type = "collapsar_disk_object"
+		#entity_offset_height = @height_m10
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	create_ambient_object = {
+		type = "collapsar_vortex_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+		
+	#=====================================================
+	
+	create_ambient_object = {
+		type = "collapsar_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_1
+		set_location = {
+			target = prev
+			distance = @object_distance_120
+			angle = random
+		}
+	}
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "collapsar_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_1
+				distance = @object_distance_30
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "collapsar_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_2
+		set_location = {
+			target = prev
+			distance = @object_distance_130
+			angle = random
+		}
+	}
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "collapsar_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_2
+				distance = @object_distance_30
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "collapsar_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_3
+		set_location = {
+			target = prev
+			distance = @object_distance_140
+			angle = random
+		}
+	}
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "collapsar_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_3
+				distance = @object_distance_30
+				angle = random
+			}
+		}
+	}
+}
+
+create_protostar_space = {
+	#=======================================================
+	create_ambient_object = {
+		type = "protostar_core_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	create_ambient_object = {
+		type = "protostar_ring_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	#===================================================
+	
+	create_ambient_object = {
+		type = "orange_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_1
+		set_location = {
+			target = prev
+			distance = @object_distance_120
+			angle = random
+		}
+	}
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "orange_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_1
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "orange_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_2
+		set_location = {
+			target = prev
+			distance = @object_distance_140
+			angle = random
+		}
+	}
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "orange_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_2
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "orange_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_3
+		set_location = {
+			target = prev
+			distance = @object_distance_140
+			angle = random
+		}
+	}
+	while = {
+		count = 3
+		create_ambient_object = {
+			type = "orange_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_3
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+}
+
+create_lbv_blue_space = {
+
+		create_ambient_object = {
+			type = "lbv_blue_core_object"
+			entity_offset_height = @height_m5
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		
+		#========================================================
+	
+		create_ambient_object = {
+			type = "inner_green_nebula_2_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_3_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_2_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_160
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_3_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_190
+				angle = 180
+			}
+		}
+	
+	#================================================
+	
+	create_ambient_object = {
+		type = "purple_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_1
+		set_location = {
+			target = prev
+			distance = @object_distance_200
+			angle = random
+		}
+	}
+	while = {
+		count = 2
+		create_ambient_object = {
+			type = "purple_globule_object_medium"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_1
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+	}
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "purple_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_1
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "purple_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_2
+		set_location = {
+			target = prev
+			distance = @object_distance_250
+			angle = random
+		}
+	}
+	while = {
+		count = 2
+		create_ambient_object = {
+			type = "purple_globule_object_medium"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_2
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+	}
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "purple_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_2
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "purple_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_3
+		set_location = {
+			target = prev
+			distance = @object_distance_300
+			angle = random
+		}
+	}
+	while = {
+		count = 2
+		create_ambient_object = {
+			type = "purple_globule_object_medium"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_3
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+	}
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "purple_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_3
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}	
+}
+
+create_lbv_green_space = {
+	
+		create_ambient_object = {
+			type = "lbv_green_core_object"
+			entity_offset_height = @height_m5
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_1_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_5_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_2_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_160
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_3_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_190
+				angle = 180
+			}
+		}
+	
+	
+	#========================================================
+	
+	create_ambient_object = {
+		type = "blue_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_1
+		set_location = {
+			target = prev
+			distance = @object_distance_200
+			angle = random
+		}
+	}
+	while = {
+		count = 2
+		create_ambient_object = {
+			type = "blue_globule_object_medium"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_1
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+	}
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "blue_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_1
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "blue_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_2
+		set_location = {
+			target = prev
+			distance = @object_distance_250
+			angle = random
+		}
+	}
+	while = {
+		count = 2
+		create_ambient_object = {
+			type = "blue_globule_object_medium"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_2
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+	}
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "blue_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_2
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "blue_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_3
+		set_location = {
+			target = prev
+			distance = @object_distance_300
+			angle = random
+		}
+	}
+	while = {
+		count = 2
+		create_ambient_object = {
+			type = "blue_globule_object_medium"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_3
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+	}
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "blue_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_3
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}	
+}
+
+create_lbv_red_space = {
+
+		create_ambient_object = {
+			type = "lbv_red_core_object"
+			entity_offset_height = @height_m5
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_2_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_3_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_2_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_160
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_3_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_190
+				angle = 180
+			}
+		}
+	
+	
+	#========================================================
+	
+	create_ambient_object = {
+		type = "orange_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_1
+		set_location = {
+			target = prev
+			distance = @object_distance_200
+			angle = random
+		}
+	}
+	while = {
+		count = 2
+		create_ambient_object = {
+			type = "orange_globule_object_medium"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_1
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+	}
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "orange_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_1
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "orange_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_2
+		set_location = {
+			target = prev
+			distance = @object_distance_250
+			angle = random
+		}
+	}
+	while = {
+		count = 2
+		create_ambient_object = {
+			type = "orange_globule_object_medium"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_2
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+	}
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "orange_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_2
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+	
+	create_ambient_object = {
+		type = "orange_globule_object_medium"
+		entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		location = this
+	}
+	last_created_ambient_object = {
+		save_event_target_as = dust_clouds_3
+		set_location = {
+			target = prev
+			distance = @object_distance_300
+			angle = random
+		}
+	}
+	while = {
+		count = 2
+		create_ambient_object = {
+			type = "orange_globule_object_medium"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_3
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+	}
+	while = {
+		count = 5
+		create_ambient_object = {
+			type = "orange_globule_object_small"
+			entity_offset_height = { min = @min_height_m3 max = @max_height_2 }
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = event_target:dust_clouds_3
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+	}
+}
+
+create_tt_red_space = {
+	if = {
+		limit = { solar_system = { NOT = { has_star_flag = double_star } } }
+		create_ambient_object = {
+			type = "tt_red_inner_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "tt_red_mid_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "tt_red_outer_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		create_ambient_object = {
+			type = "tt_red_dust_ring_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+	}
+	else = {
+		create_ambient_object = {
+			type = "tt_red_outer_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = 20
+				angle = 180
+			}
+		}
+		create_ambient_object = {
+			type = "tt_red_dust_ring_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = 20
+				angle = 180
+			}
+		}
+	}
+}
+
+create_tt_orange_space = {
+	if = {
+		limit = { solar_system = { NOT = { has_star_flag = double_star } } }
+		create_ambient_object = {
+			type = "tt_orange_inner_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "tt_orange_mid_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "tt_orange_outer_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		create_ambient_object = {
+			type = "tt_orange_dust_ring_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+	}
+	else = {
+		create_ambient_object = {
+			type = "tt_orange_outer_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = 20
+				angle = 180
+			}
+		}
+		create_ambient_object = {
+			type = "tt_orange_dust_ring_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = 20
+				angle = 180
+			}
+		}
+	}
+}
+
+create_tt_white_space = {
+	if = {
+		limit = { solar_system = { NOT = { has_star_flag = double_star } } }
+		create_ambient_object = {
+			type = "tt_white_inner_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "tt_white_mid_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "tt_white_outer_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		create_ambient_object = {
+			type = "tt_white_dust_ring_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+	}
+	else = {
+		create_ambient_object = {
+			type = "tt_white_outer_rim_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = 20
+				angle = 180
+			}
+		}
+		create_ambient_object = {
+			type = "tt_white_dust_ring_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = 20
+				angle = 180
+			}
+		}
+	}
+}
+
+create_ae_space = {
+	create_ambient_object = {
+		type = "ae_star_disk_object"
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	create_ambient_object = {
+		type = "ae_dust_ring_object"
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+}
+
+create_p_purple_space = {
+		create_ambient_object = {
+			type = "purple_core_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_purple_nebula_1_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_1_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_1_object_small"
+			#entity_offset_height = @height_m50
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_2_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_2_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_100
+				angle = 210
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_2_object_small"
+			#entity_offset_height = @height_m50
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_3_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_3_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_70
+				angle = random
+			}
+		}
+		
+		#=========================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_60
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_130
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_5_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m30 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_60
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_5_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m30 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_80
+				angle = random
+			}
+		}
+}
+
+create_p_green_space = {
+
+		create_ambient_object = {
+			type = "blue_core_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		#=======================================================
+	
+		create_ambient_object = {
+			type = "inner_green_nebula_1_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_1_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_1_object_small"
+			#entity_offset_height = @height_m50
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_2_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_2_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_100
+				angle = 210
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_2_object_small"
+			#entity_offset_height = @height_m50
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_3_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_3_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_70
+				angle = random
+			}
+		}
+		
+		#=========================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_60
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_130
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_5_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m30 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_60
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_5_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m30 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_80
+				angle = random
+			}
+		}
+}
+
+create_p_red_space = {
+		create_ambient_object = {
+			type = "red_core_object"
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_0
+				angle = 1
+			}
+		}
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_red_nebula_1_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_1_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_1_object_small"
+			#entity_offset_height = @height_m50
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_2_object_large"
+			#entity_offset_height = @height_m100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_2_object_medium"
+			#entity_offset_height = @height_m70
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_100
+				angle = 210
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_2_object_small"
+			#entity_offset_height = @height_m50
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_3_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_90
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_3_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_70
+				angle = random
+			}
+		}
+		
+		#=========================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_50
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_100
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_60
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_4_object_small"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m20 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_130
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_5_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m30 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_60
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_5_object_medium"
+			#entity_offset_height = { min = @min_height_m60 max = @max_height_m30 }
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_80
+				angle = random
+			}
+		}
+}
+
+create_magnetar_space = {
+	create_ambient_object = {
+	
+	#=======================================================
+		type = "inner_blue_nebula_1_object_medium"
+		#entity_offset_height = @height_m50
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_90
+			angle = random
+		}
+	}
+}
+
+create_microquasar_1_space = {
+	
+	create_ambient_object = {
+		type = "microquasar_1_disk_1_object"
+		#entity_offset_height = @height_m10
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	create_ambient_object = {
+		type = "microquasar_1_disk_2_object"
+		#entity_offset_height = @height_m10
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	create_ambient_object = {
+		type = "microquasar_1_core_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+}
+
+create_microquasar_1_accreation = {
+
+	
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m14
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_100
+			angle = 199
+		}
+	}
+
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_105
+			angle = 196
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_110
+			angle = 193
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_116
+			angle = 191
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_119
+			angle = 190
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_122
+			angle = 189
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_125
+			angle = 187
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_128
+			angle = 188
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_131
+			angle = 187
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_134 #medium
+			angle = 186
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_137
+			angle = 186
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_140
+			angle = 185
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_medium"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_143
+			angle = 185
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_medium"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_146
+			angle = 184
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_medium"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_149
+			angle = 184
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_medium"
+		entity_offset_height = @height_m16
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_152
+			angle = 183
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_medium"
+		entity_offset_height = @height_m17
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_155
+			angle = 183
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_medium"
+		entity_offset_height = @height_m18
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_160
+			angle = 182
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_medium"
+		entity_offset_height = @height_m19
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_165
+			angle = 181
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_large"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_170
+			angle = 180
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_large"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_175
+			angle = 180
+		}
+	}
+	
+	create_ambient_object = {
+		type = "orange_accretion_object_large"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_175
+			angle = 179
+		}
+	}
+	
+	create_ambient_object = {
+		type = "orange_accretion_object_large"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_175
+			angle = 181
+		}
+	}
+	
+	create_ambient_object = {
+		type = "orange_accretion_object_medium"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_185
+			angle = 179
+		}
+	}
+	create_ambient_object = {
+		type = "orange_accretion_object_medium"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_185
+			angle = 181
+		}
+	}
+}
+
+create_microquasar_2_space = {
+	
+	create_ambient_object = {
+		type = "microquasar_2_disk_1_object"
+		#entity_offset_height = @height_m10
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	create_ambient_object = {
+		type = "microquasar_2_disk_2_object"
+		#entity_offset_height = @height_m10
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	create_ambient_object = {
+		type = "microquasar_2_core_object"
+		entity_offset_height = @height_m5
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+}
+
+create_microquasar_2_accreation = {
+
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m14
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_100
+			angle = 199
+		}
+	}
+
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_105
+			angle = 196
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_110
+			angle = 193
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_116
+			angle = 191
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_119
+			angle = 190
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_122
+			angle = 189
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_125
+			angle = 187
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_128
+			angle = 188
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_131
+			angle = 187
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_134 #medium
+			angle = 186
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_137
+			angle = 186
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_small"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_140
+			angle = 185
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_medium"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_143
+			angle = 185
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_medium"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_146
+			angle = 184
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_medium"
+		entity_offset_height = @height_m15
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_149
+			angle = 184
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_medium"
+		entity_offset_height = @height_m16
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_152
+			angle = 183
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_medium"
+		entity_offset_height = @height_m17
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_155
+			angle = 183
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_medium"
+		entity_offset_height = @height_m18
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_160
+			angle = 182
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_medium"
+		entity_offset_height = @height_m19
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_165
+			angle = 181
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_large"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_170
+			angle = 180
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_large"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_175
+			angle = 180
+		}
+	}
+	
+	create_ambient_object = {
+		type = "blue_accretion_object_large"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_175
+			angle = 179
+		}
+	}
+	
+	create_ambient_object = {
+		type = "blue_accretion_object_large"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_175
+			angle = 181
+		}
+	}
+	
+	create_ambient_object = {
+		type = "blue_accretion_object_medium"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_185
+			angle = 179
+		}
+	}
+	create_ambient_object = {
+		type = "blue_accretion_object_medium"
+		entity_offset_height = @height_m20
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_185
+			angle = 181
+		}
+	}
+}
+
+create_fu_space = {
+	create_ambient_object = {
+		type = "fu_star_disk_1_object"
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	create_ambient_object = {
+		type = "fu_star_disk_2_object"
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+	
+	create_ambient_object = {
+		type = "fu_dust_ring_object"
+		location = this
+	}
+	last_created_ambient_object = { 
+		set_location = {
+			target = prev
+			distance = @object_distance_0
+			angle = 1
+		}
+	}
+}
+
+set_gas_giant_big_rings = {
+	save_event_target_as = planet_location_rings
+	random_list = {
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_01_large
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_large_rings
+			}
+			set_planet_flag = has_rings_01_large
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_02_large
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_large_rings
+			}
+			set_planet_flag = has_rings_02_large
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_03_large
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_03_large_rings
+			}
+			set_planet_flag = has_rings_03_large
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_04_large
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_04_large_rings
+			}
+			set_planet_flag = has_rings_04_large
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_01_sparse
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_sparse_rings
+			}
+			set_planet_flag = has_rings_01_sparse
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_02_sparse
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_sparse_rings
+			}
+			set_planet_flag = has_rings_02_sparse
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_03_sparse
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_03_sparse_rings
+			}
+			set_planet_flag = has_rings_03_sparse
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_04_sparse
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_04_sparse_rings
+			}
+			set_planet_flag = has_rings_04_sparse
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_01_rare
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_rare_rings
+			}
+			set_planet_flag = has_rings_01_rare
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_02_rare
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_rare_rings
+			}
+			set_planet_flag = has_rings_02_rare
+		}
+	}
+}
+
+set_gas_giant_small_rings = {
+	save_event_target_as = planet_location_rings
+	random_list = {
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_01_small
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_small_rings
+			}
+			set_planet_flag = has_rings_01_small
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_02_small
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_small_rings
+			}
+			set_planet_flag = has_rings_02_small
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_03_small
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_03_small_rings
+			}
+			set_planet_flag = has_rings_03_small
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_04_small
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_04_small_rings
+			}
+			set_planet_flag = has_rings_04_small
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_01_thin
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_thin_rings
+			}
+			set_planet_flag = has_rings_01_thin
+		}
+		15 = {
+			create_ambient_object = {
+				type = gas_giant_rings_02_thin
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_thin_rings
+			}
+			set_planet_flag = has_rings_02_thin
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_03_thin
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_03_thin_rings
+			}
+			set_planet_flag = has_rings_03_thin
+		}
+		10 = {
+			create_ambient_object = {
+				type = gas_giant_rings_01_low
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_low_rings
+			}
+			set_planet_flag = has_rings_01_low
+		}
+		15 = {
+			create_ambient_object = {
+				type = gas_giant_rings_02_low
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_low_rings
+			}
+			set_planet_flag = has_rings_02_low
+		}
+	}
+}
+
+set_small_planet_big_rings = {
+	save_event_target_as = planet_location_rings
+	random_list = {
+		35 = {
+			create_ambient_object = {
+				type = planetary_rings_01_big
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_rare_rings
+			}
+			set_planet_flag = has_rings_01_rare
+		}
+		35 = {
+			create_ambient_object = {
+				type = planetary_rings_02_big
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_rare_rings
+			}
+			set_planet_flag = has_rings_02_rare
+		}
+		15 = {
+			create_ambient_object = {
+				type = gas_giant_rings_01_low
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_low_rings
+			}
+			set_planet_flag = has_rings_01_low
+		}
+		15 = {
+			create_ambient_object = {
+				type = gas_giant_rings_02_low
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_low_rings
+			}
+			set_planet_flag = has_rings_02_low
+		}
+	}
+}
+
+set_small_planet_thin_rings = {
+	save_event_target_as = planet_location_rings
+	random_list = {
+		15 = {
+			create_ambient_object = {
+				type = planetary_rings_01_rare
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_rare_rings
+			}
+			set_planet_flag = has_rings_01_rare
+		}
+		15 = {
+			create_ambient_object = {
+				type = planetary_rings_02_rare
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_rare_rings
+			}
+			set_planet_flag = has_rings_02_rare
+		}
+		5 = {
+			create_ambient_object = {
+				type = planetary_rings_01_small
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_small_rings
+			}
+			set_planet_flag = has_rings_01_small
+		}
+		5 = {
+			create_ambient_object = {
+				type = planetary_rings_02_small
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_small_rings
+			}
+			set_planet_flag = has_rings_02_small
+		}
+		10 = {
+			create_ambient_object = {
+				type = planetary_rings_03_small
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_03_small_rings
+			}
+			set_planet_flag = has_rings_03_small
+		}
+		10 = {
+			create_ambient_object = {
+				type = planetary_rings_04_small
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_04_small_rings
+			}
+			set_planet_flag = has_rings_04_small
+		}
+		5 = {
+			create_ambient_object = {
+				type = planetary_rings_01_thin
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_thin_rings
+			}
+			set_planet_flag = has_rings_01_thin
+		}
+		5 = {
+			create_ambient_object = {
+				type = planetary_rings_02_thin
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_thin_rings
+			}
+			set_planet_flag = has_rings_02_thin
+		}
+		10 = {
+			create_ambient_object = {
+				type = planetary_rings_03_thin
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_03_thin_rings
+			}
+			set_planet_flag = has_rings_03_thin
+		}
+		10 = {
+			create_ambient_object = {
+				type = planetary_rings_01_low
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_01_low_rings
+			}
+			set_planet_flag = has_rings_01_low
+		}
+		10 = {
+			create_ambient_object = {
+				type = planetary_rings_02_low
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+				set_ambient_object_flag = rs_02_low_rings
+			}
+			set_planet_flag = has_rings_02_low
+		}
+	}
+}
+
+remove_all_rs_rings = {
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_01_large_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_01_large_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_02_large_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_02_large_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_03_large_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_03_large_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_04_large_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_04_large_rings
+		}
+		
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_01_sparse_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_01_sparse_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_02_sparse_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_02_sparse_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_03_sparse_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_03_sparse_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_04_sparse_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_04_sparse_rings
+		}
+		
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_01_thin_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_01_thin_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_02_thin_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_02_thin_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_03_thin_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_03_thin_rings
+		}
+		
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_01_small_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_01_small_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_02_small_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_02_small_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_03_small_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_03_small_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_04_small_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_04_small_rings
+		}
+		
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_01_rare_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_01_low_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_02_rare_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_02_low_rings
+		}
+		
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_01_low_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_01_low_rings
+		}
+		every_ambient_object = {
+			limit = { has_ambient_object_flag = rs_02_low_rings }
+			destroy_ambient_object = this
+			remove_ambient_object_flag = rs_02_low_rings
+		}
+}
+
+remove_world_reduced_setting = {
+	if = {
+		limit = { has_global_flag = 10_percent_world_reduced }
+		remove_global_flag = 10_percent_world_reduced
+	}
+	if = {
+		limit = { has_global_flag = 20_percent_world_reduced }
+		remove_global_flag = 20_percent_world_reduced
+	}
+	if = {
+		limit = { has_global_flag = 30_percent_world_reduced }
+		remove_global_flag = 30_percent_world_reduced
+	}
+	if = {
+		limit = { has_global_flag = 40_percent_world_reduced }
+		remove_global_flag = 40_percent_world_reduced
+	}
+	if = {
+		limit = { has_global_flag = 50_percent_world_reduced }
+		remove_global_flag = 50_percent_world_reduced
+	}
+	if = {
+		limit = { has_global_flag = 60_percent_world_reduced }
+		remove_global_flag = 60_percent_world_reduced
+	}
+	if = {
+		limit = { has_global_flag = 80_percent_world_reduced }
+		remove_global_flag = 80_percent_world_reduced
+	}
+	if = {
+		limit = { has_global_flag = 90_percent_world_reduced }
+		remove_global_flag = 90_percent_world_reduced
+	}
+}
+
+#Orange Nebulae
+create_thick_orange_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_orange_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "orange_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_orange_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_orange_nebula_4_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_orange_nebula_5_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_orange_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_orange_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "orange_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_yellow_nebula_1_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_yellow_nebula_2_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_orange_nebula_3 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_orange_nebula_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "orange_space_dust_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_green_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_yellow_nebula_1_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_green_nebula_7_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_orange_nebula_4 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_orange_nebula_4"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "orange_space_dust_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_blue_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_4_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_5_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_bright_orange_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_orange_nebula_5"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_orange_nebula_8_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_9_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_8_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_9_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+	}
+}
+
+create_bright_orange_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_orange_nebula_6"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_yellow_nebula_3_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_3_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = 210
+			}
+		}
+	}
+}
+
+create_faint_orange_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_orange_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_orange_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_orange_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_orange_nebula_3 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_orange_nebula_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_orange_nebula_4 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_orange_nebula_4"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_turbulent_orange_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "turbulent_orange_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "orange_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	add_modifier = { modifier = turbulent_nebula }
+}
+
+create_turbulent_orange_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "turbulent_orange_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "orange_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	add_modifier = { modifier = turbulent_nebula }
+}
+
+#Red Nebulae
+
+create_thick_red_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_red_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "red_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_red_nebula_6_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_red_nebula_7_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_red_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_red_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "red_space_dust_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_yellow_nebula_1_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_yellow_nebula_2_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_1_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_yellow_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_red_nebula_3 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_red_nebula_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "red_space_dust_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_2_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_3_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_red_nebula_4 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_red_nebula_4"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "red_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_purple_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_purple_nebula_6_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_purple_nebula_7_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_bright_red_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_red_nebula_5"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_red_nebula_11_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_12_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_11_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_12_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+	}
+}
+
+create_bright_red_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_red_nebula_6"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_orange_nebula_8_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_9_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_8_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_9_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+	}
+}
+
+create_faint_red_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_red_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_red_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_red_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_red_nebula_3 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_red_nebula_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_red_nebula_4 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_red_nebula_4"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_turbulent_red_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "turbulent_red_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "red_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	add_modifier = { modifier = turbulent_nebula }
+}
+
+create_turbulent_red_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "turbulent_red_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "red_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	add_modifier = { modifier = turbulent_nebula }
+}
+
+#Blue Nebulae
+
+create_thick_blue_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_blue_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "blue_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_2_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_3_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_blue_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_blue_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "blue_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_blue_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_4_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_5_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_blue_nebula_3 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_blue_nebula_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "blue_space_dust_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_orange_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_4_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_orange_nebula_4_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_orange_nebula_5_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_4_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_orange_nebula_5_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_blue_nebula_4 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_blue_nebula_4"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "blue_space_dust_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_green_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_green_nebula_6_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_green_nebula_7_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_bright_blue_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_blue_nebula_5"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_blue_nebula_9_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_10_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_9_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_10_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+	}
+}
+
+create_bright_blue_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_blue_nebula_6"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_green_nebula_8_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_9_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_8_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_green_nebula_9_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+	}
+}
+
+create_faint_blue_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_blue_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_blue_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_blue_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_blue_nebula_3 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_blue_nebula_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_blue_nebula_4 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_blue_nebula_4"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_turbulent_blue_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "turbulent_blue_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "blue_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	add_modifier = { modifier = turbulent_nebula }
+}
+
+create_turbulent_blue_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "turbulent_blue_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "blue_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	add_modifier = { modifier = turbulent_nebula }
+}
+
+#Purple Nebulae
+
+create_thick_purple_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_purple_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "purple_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_purple_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_purple_nebula_6_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_purple_nebula_7_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_purple_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_purple_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "purple_space_dust_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_2_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_blue_nebula_3_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_2_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_blue_nebula_3_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_purple_nebula_3 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_purple_nebula_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "purple_space_dust_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_red_nebula_6_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_red_nebula_7_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_thick_purple_nebula_4 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_purple_nebula_4"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "purple_space_dust_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}				
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_red_nebula_6_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_300
+				angle = random
+			}
+		}
+
+		while = {
+			count = 2
+			create_ambient_object = {
+				type = "inner_red_nebula_7_object_medium"
+				entity_offset_height = @height_100
+				location = this
+			}
+			last_created_ambient_object = { 
+				set_location = {
+					target = prev
+					distance = @object_distance_350
+					angle = random
+				}
+			}				
+		}
+		
+		#====================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_150
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_6_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_185
+				angle = random
+			}
+		}
+		
+		#========================================================
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_120
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_red_nebula_7_object_medium"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = random
+			}
+		}
+		
+		#======================================================
+	}
+}
+
+create_bright_purple_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_purple_nebula_5"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_purple_nebula_11_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_12_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_11_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_12_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+	}
+}
+
+create_bright_purple_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "outer_purple_nebula_6"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		#=======================================================
+		create_ambient_object = {
+			type = "inner_purple_nebula_13_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_14_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_200
+				angle = 1
+			}
+		}
+		
+		#============================================================
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_13_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 180
+			}
+		}
+		
+		create_ambient_object = {
+			type = "inner_purple_nebula_14_object_large"
+			entity_offset_height = @height_100
+			location = this
+		}
+		last_created_ambient_object = { 
+			set_location = {
+				target = prev
+				distance = @object_distance_250
+				angle = 210
+			}
+		}
+	}
+}
+
+create_faint_purple_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_purple_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_purple_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_purple_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_purple_nebula_3 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_purple_nebula_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_faint_purple_nebula_4 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "mid_purple_nebula_4"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+}
+
+create_turbulent_purple_nebula_1 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "turbulent_purple_nebula_1"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "purple_space_dust_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	add_modifier = { modifier = turbulent_nebula }
+}
+
+create_turbulent_purple_nebula_2 = {
+	star = {
+	
+		create_ambient_object = {
+			type = "turbulent_purple_nebula_2"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+		
+		create_ambient_object = {
+			type = "purple_space_dust_3"
+			location = this
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	add_modifier = { modifier = turbulent_nebula }
+}
+
+spawn_extragalactic_system_1 = {
+	#galaxy border system
+	random_list = {
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_02
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_03
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_04
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_05
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_06
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = asteroid_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = dark_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = binary_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = binary_init_02
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = trinary_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = trinary_init_02
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = trinary_init_03
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = trinary_init_04
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = paired_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_1
+				}
+			}
+		}
+	}
+	#extragalactic system
+	random_list = {
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_01
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_02
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_03
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_04
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_05
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = basic_init_06
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = asteroid_init_01
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = dark_init_01
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = binary_init_01
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = binary_init_02
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = trinary_init_01
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = trinary_init_02
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = trinary_init_03
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = trinary_init_04
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 500
+				max_distance <= 560
+				min_orientation_angle = 290
+				max_orientation_angle = 335
+				initializer = paired_init_01
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_1
+				}
+			}
+		}
+	}
+}
+
+#rare
+spawn_extragalactic_system_2 = {
+	#galaxy border system
+	random_list = {
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = basic_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = basic_init_02
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = basic_init_03
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = basic_init_04
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = basic_init_05
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = basic_init_06
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = asteroid_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = dark_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = binary_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		7 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = binary_init_02
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = trinary_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = trinary_init_02
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = trinary_init_03
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = trinary_init_04
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+		6 = {
+			spawn_system = {
+				min_distance >= 450
+				max_distance <= 470
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = paired_init_01
+				effect = {
+					save_global_event_target_as = galaxy_border_system_2
+				}
+			}
+		}
+	}
+	#extragalactic system
+	random_list = {
+		20 = {
+			spawn_system = {
+				min_distance >= 550
+				max_distance <= 570
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = special_init_01
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_2
+				}
+			}
+		}
+		20 = {
+			spawn_system = {
+				min_distance >= 550
+				max_distance <= 570
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = special_init_08
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_2
+				}
+			}
+		}
+		20 = {
+			spawn_system = {
+				min_distance >= 550
+				max_distance <= 570
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = special_init_09
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_2
+				}
+			}
+		}
+		10 = {
+			spawn_system = {
+				min_distance >= 550
+				max_distance <= 570
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = rs_special_init_1
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_2
+				}
+			}
+		}
+		10 = {
+			spawn_system = {
+				min_distance >= 550
+				max_distance <= 570
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = rs_special_init_2
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_2
+				}
+			}
+		}
+		10 = {
+			spawn_system = {
+				min_distance >= 550
+				max_distance <= 570
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = rs_special_init_11
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_2
+				}
+			}
+		}
+		10 = {
+			spawn_system = {
+				min_distance >= 550
+				max_distance <= 570
+				min_orientation_angle = 140
+				max_orientation_angle = 160
+				initializer = rs_special_init_26
+				hyperlane = no
+				effect = {
+					save_global_event_target_as = extragalactic_system_2
+				}
+			}
+		}
+	}
+}
+
+

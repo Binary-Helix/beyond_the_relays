@@ -1,0 +1,629 @@
+@distance = 50
+@jumps = 3
+@planet_min_size = 10
+@planet_max_size = 25
+@moon_min_size = 6
+@moon_max_size = 10
+@homeworld_min_size = 18
+@homeworld_max_size = 21
+
+###############################################################################
+################## Real Space Star Systems ####################################
+
+
+### Gamma Velorum System
+regor_system = {
+	name = "NAME_Regor"
+	class = "sc_w_azure"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 140
+	}
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+	
+	flags = { empire_home_system regor_system w_azure }
+	
+	usage = custom_empire
+	
+	planet = {
+		name = "NAME_Regor_Aa"
+		class = star
+		orbit_distance = 25
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+		
+		init_effect = {
+			create_w_azure_space = yes
+		}
+	}
+	
+	planet = {
+		name = "NAME_Regor_Ab"
+		class = "pc_o_super_star"
+		orbit_distance = 35
+		orbit_angle = 180
+		size = 14
+		has_ring = no
+	}
+	
+	change_orbit = 55
+	
+	planet = {
+		name = "NAME_Krito"
+		class = "pc_molten"
+		orbit_distance = 0
+		orbit_angle = 145
+		size = 20
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Dakkan"
+		class = "pc_broken"
+		orbit_distance = 15
+		orbit_angle = 170
+		size = 12
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_ST-1214"
+		class = "pc_asteroid"
+		orbit_distance = 10
+		orbit_angle = 320
+		size = 5
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_RT-2017"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 140
+		size = 5
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_GR-1047"
+		class = "pc_asteroid"
+		orbit_distance = 0
+		orbit_angle = 250
+		size = 5
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Morfos"
+		class = "pc_gas_giant"
+		orbit_distance = 40
+		orbit_angle = 260
+		size = 55
+		has_ring = no
+		entity = "t_dwarf_01_entity"
+		
+		change_orbit = 15
+		
+		moon = {
+			name = "NAME_Cellan"
+			class = "pc_molten"
+			size = 5
+			orbit_distance = 5
+			orbit_angle = 30
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Woulck"
+			class = "pc_toxic"
+			size = 10
+			orbit_distance = 5
+			orbit_angle = 110
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Velorum_Prime"
+			class = ideal_planet_class
+			orbit_distance = 5
+			orbit_angle = 216
+			size = { min = @homeworld_min_size max = @homeworld_max_size }
+			starting_planet = yes
+			has_ring = no
+			entity = "continental_planet_02_entity"	
+			modifiers = none
+		
+			init_effect = {
+				prevent_anomaly = yes
+				generate_empire_home_planet = yes		
+			}
+			
+		}
+
+		moon = {
+			name = "NAME_New_Joor"
+			class = "pc_barren_cold"
+			size = 8
+			orbit_distance = 5
+			orbit_angle = 323
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Vizakh"
+		class = "pc_gas_giant"
+		orbit_distance = 50
+		orbit_angle = 115
+		size = 35
+		has_ring = no
+		entity = "gas_giant_16_entity"
+		
+		moon = {
+			name = "NAME_Ort"
+			class = "pc_frozen"
+			size = 5
+			orbit_distance = 10
+			orbit_angle = 18
+			has_ring = no
+		}
+		
+		moon = {
+			name = "NAME_Saakan"
+			class = "pc_barren_cold"
+			size = 9
+			orbit_distance = 5
+			orbit_angle = 57
+			has_ring = no
+		}
+		
+		moon = {
+			name = "NAME_Merkot"
+			class = "pc_frozen"
+			size = 7
+			orbit_distance = 5
+			orbit_angle = 140
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Ulm"
+		class = "pc_gas_giant"
+		orbit_distance = 60
+		orbit_angle = 165
+		size = 30
+		has_ring = no
+		entity = "gas_giant_08_entity"
+		
+		moon = {
+			name = "NAME_Chor"
+			class = "pc_frozen"
+			size = 10
+			orbit_distance = 14
+			orbit_angle = 55
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Belly"
+		class = "pc_frozen"
+		orbit_distance = 70
+		orbit_angle = 180
+		size = 11
+		has_ring = no
+	}
+	
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }	
+		initializer = "neighbor_t1_first_colony"
+	}
+}
+
+### GK Persei System
+gk_persei_system = {
+	name = "NAME_GK_Persei"
+	class = "sc_nova_1"
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+	
+	flags = { empire_home_system gk_persei_system nova_1 }
+	
+	usage = custom_empire
+	
+	planet = {
+		name = "NAME_GK_Persei_A"
+		class = star
+		orbit_distance = 6
+		orbit_angle = 180
+		size = { min = 10 max = 12 }
+	}
+	
+	planet = {
+		name = "NAME_GK_Persei_B"
+		class = "pc_k_giant_star"
+		orbit_distance = 8
+		orbit_angle = 180
+		size = { min = @standard_min max = @standard_max }
+		
+		init_effect = {
+			create_nova_1_space = yes
+		}
+	}
+	
+	change_orbit = 45
+	
+	planet = {
+		name = "NAME_Teos"
+		class = "pc_barren"
+		orbit_distance = 10
+		orbit_angle = 245
+		size = 9
+		has_ring = no
+		
+		moon = {
+			name = "NAME_Rum"
+			class = "pc_molten"
+			size = 5
+			orbit_distance = 5
+			orbit_angle = 150
+			has_ring = no
+		}
+		
+	}
+	
+	planet = {
+		name = "NAME_Atol"
+		class = ideal_planet_class
+		orbit_distance = 15
+		orbit_angle = 140
+		size = { min = @homeworld_min_size max = @homeworld_max_size }
+		starting_planet = yes
+		has_ring = no
+		entity = "continental_planet_01_entity"	
+		modifiers = none
+		
+			init_effect = {
+				generate_empire_home_planet = yes
+				prevent_anomaly = yes
+			}
+		
+		moon = {
+			name = "NAME_Pier"
+			class = "pc_barren"
+			size = 5
+			orbit_distance = 8
+			orbit_angle = 45
+			has_ring = no
+		}
+		
+		moon = {
+			name = "NAME_Devils_Reef"
+			class = "pc_barren_cold"
+			size = 5
+			orbit_distance = 5
+			orbit_angle = 170
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Fools_Anchor"
+		class = "pc_barren"
+		orbit_distance = 20
+		orbit_angle = 95
+		size = 13
+		has_ring = yes
+	}
+	
+	planet = {
+		name = "NAME_Kraken"
+		class = "pc_gas_giant"
+		orbit_distance = 30
+		orbit_angle = 340
+		size = 30
+		has_ring = no
+		entity = "gas_giant_09_entity"
+		
+		moon = {
+			name = "NAME_Gray_Flynn"
+			class = "pc_frozen"
+			size = 5
+			orbit_distance = 18
+			orbit_angle = 35
+			has_ring = no
+		}
+		moon = {
+			name = "NAME_Black_Noise"
+			class = "pc_frozen"
+			size = 6
+			orbit_distance = 5
+			orbit_angle = 250
+			has_ring = no
+		}		
+	}
+	
+	planet = {
+		name = "NAME_Leviathan"
+		class = "pc_gas_giant"
+		orbit_distance = 40
+		orbit_angle = 110
+		size = 41
+		has_ring = yes
+		entity = "gas_giant_17_entity"
+		
+		moon = {
+			name = "NAME_Seth_Well"
+			class = "pc_barren_cold"
+			size = 5
+			orbit_distance = 14
+			orbit_angle = 30
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Sea_Kite"
+		class = "pc_gas_giant"
+		orbit_distance = 50
+		orbit_angle = 60
+		size = 34
+		has_ring = no
+		entity = "gas_giant_15_entity"
+		
+		moon = {
+			name = "NAME_Tool"
+			class = "pc_frozen"
+			size = 5
+			orbit_distance = 10
+			orbit_angle = 170
+			has_ring = no
+		}
+	}
+	
+	planet = {
+		name = "NAME_Verdict"
+		class = "pc_frozen"
+		orbit_distance = 60
+		orbit_angle = 35
+		size = 16
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Refuge_Chuck"
+		class = "pc_barren_cold"
+		orbit_distance = 70
+		orbit_angle = 35
+		size = 11
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Tinat"
+		class = "pc_frozen"
+		orbit_distance = 80
+		orbit_angle = 150
+		size = 25
+		has_ring = no
+	}
+	
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }	
+		initializer = "neighbor_t1_first_colony"
+	}
+}
+
+### Eta Carinae
+eta_carinae_system = {
+	name = "NAME_Eta_Carinae"
+	class = "sc_lbv_blue"
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+	
+	flags = { empire_home_system eta_carinae_system lbv_blue }
+	
+	usage = custom_empire
+	
+	planet = {
+		name = "NAME_Eta_Carinae"
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 20
+		has_ring = no
+		
+		init_effect = {
+			create_lbv_blue_space = yes
+		}
+	}
+	
+	change_orbit = 100
+	
+	planet = {
+		name = "NAME_First_Doom"
+		class = "pc_molten"
+		orbit_distance = 0
+		orbit_angle = 60
+		size = 10
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Second_Doom"
+		class = "pc_molten"
+		orbit_distance = 15
+		orbit_angle = 280
+		size = 15
+		has_ring = no
+		
+		moon = {
+			name = "NAME_Incinerate_Wasteland"
+			class = "pc_barren"
+			size = 5
+			orbit_distance = 8
+			orbit_angle = 130
+			has_ring = no
+		}	
+	}
+	
+	planet = {
+		name = "NAME_Fall_of_Tellon"
+		class = "pc_broken"
+		orbit_distance = 20
+		orbit_angle = 20
+		size = 18
+		has_ring = yes
+	}
+	
+	planet = {
+		name = "NAME_Custodian"
+		class = "pc_molten"
+		orbit_distance = 25
+		orbit_angle = 130
+		size = 30
+		has_ring = yes
+		
+		moon = {
+			name = "NAME_New_Tellon"
+			class = ideal_planet_class
+			orbit_distance = 15
+			orbit_angle = 340
+			size = { min = @homeworld_min_size max = @homeworld_max_size }
+			starting_planet = yes
+			has_ring = no
+			entity = "continental_planet_03_entity"	
+			modifiers = none
+		
+			init_effect = {
+				generate_empire_home_planet = yes
+				prevent_anomaly = yes
+			}
+		}		
+	}
+	
+	planet = {
+		name = "NAME_Lekor"
+		class = "pc_barren_cold"
+		orbit_distance = 30
+		orbit_angle = 345
+		size = 12
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Niton"
+		class = "pc_gas_giant"
+		orbit_distance = 35
+		orbit_angle = 85
+		size = 35
+		has_ring = yes
+		entity = "gas_giant_19_entity"
+		
+		moon = {
+			name = "NAME_Aylac"
+			class = "pc_frozen"
+			size = 5
+			orbit_distance = 18
+			orbit_angle = 45
+			has_ring = no
+		}	
+	}
+	
+	planet = {
+		name = "NAME_Oshan"
+		class = "pc_barren_cold"
+		orbit_distance = 40
+		orbit_angle = 160
+		size = 10
+		has_ring = no
+	}
+	
+	planet = {
+		name = "NAME_Veloth"
+		class = "pc_barren_cold"
+		orbit_distance = 60
+		orbit_angle = 190
+		size = 17
+		has_ring = yes
+	}
+	
+	planet = {
+		name = "NAME_Bloody_Ulak"
+		class = "pc_y_star"
+		orbit_distance = 100
+		orbit_angle = 285
+		size = 43
+		has_ring = no
+		entity = "y_dwarf_01_entity"
+		
+		moon = {
+			name = "NAME_Krill"
+			class = "pc_frozen"
+			size = 5
+			orbit_distance = 25
+			orbit_angle = 20
+			has_ring = no
+		}
+		
+		moon = {
+			name = "NAME_Shankai"
+			class = "pc_frozen"
+			size = 5
+			orbit_distance = 35
+			orbit_angle = 130
+			has_ring = no
+		}
+	}
+	
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }	
+		initializer = "neighbor_t1_first_colony"
+	}
+}

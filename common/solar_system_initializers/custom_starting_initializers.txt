@@ -1,0 +1,1469 @@
+#############################
+#										
+#  Custom Starting Systems  #
+#										
+#############################
+
+@distance = 50
+@jumps = 3
+@planet_min_size = 10
+@planet_max_size = 25
+@base_moon_distance = 10
+@moon_min_size = 6
+@moon_max_size = 10
+@homeworld_min_size = 18
+@homeworld_max_size = 21
+
+@standard_min = 20 #26
+@standard_max = 35 #30
+@standard_sat_min = 15 #22
+@standard_sat_max = 30 #27
+
+# Trinary System I
+custom_starting_init_01 = {
+	class = "rl_trinary_stars"
+	
+	usage = custom_empire
+	
+	flags = { empire_home_system }
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+		
+	planet = {
+        count = 1
+        class = star
+        orbit_distance = 0
+        orbit_angle = 0
+        size = { min = @standard_min max = @standard_max }
+        has_ring = no
+    }
+
+    change_orbit = { min = 30 max = 60 }
+    
+    planet = {
+        count = 1
+        orbit_distance = { min = 15 max = 20 }
+		class = random_non_colonizable
+        orbit_angle = { min = 90 max = 270 }
+		flags = { hot_zone }
+        
+        change_orbit = @base_moon_distance
+        
+        moon = {
+            count = { min = 0 max = 1 }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = 5
+			flags = { hot_zone }
+        }
+    }
+	
+	planet = {
+        count = 1
+        orbit_distance = { min = 20 max = 25 }
+		class = random_non_colonizable
+        orbit_angle = { min = 90 max = 270 }
+		flags = { warm_zone }
+        
+        change_orbit = @base_moon_distance
+        
+        moon = {
+            count = { min = 0 max = 1 }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = 5
+			flags = { warm_zone }
+        }
+    }
+	
+	planet = {
+        count = 1
+        orbit_distance = { min = 25 max = 30 }
+		home_planet = yes
+		class = ideal_planet_class
+        orbit_angle = { min = 90 max = 270 }
+		size = { min = @homeworld_min_size max = @homeworld_max_size }
+		deposit_blockers = none
+		modifiers = none
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+		
+		init_effect = {
+			generate_empire_home_planet = yes			
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+    }
+	
+	planet = {
+        count = 1
+        orbit_distance = { min = 30 max = 35 }
+		class = pc_gas_giant
+        orbit_angle = { min = 90 max = 270 }
+        
+        change_orbit = @base_moon_distance
+        
+        moon = {
+            count = { min = 1 max = 2 }
+            orbit_angle = { min = 90 max = 270 }
+			class = random_non_colonizable
+            orbit_distance = 5
+        }
+    }
+	
+	planet = {
+        count = { min = 0 max = 1 }
+        orbit_distance = { min = 35 max = 40 }
+		class = pc_gas_giant
+        orbit_angle = { min = 90 max = 270 }
+        
+        change_orbit = @base_moon_distance
+        
+        moon = {
+            count = { min = 1 max = 2 }
+            orbit_angle = { min = 90 max = 270 }
+			class = random_non_colonizable
+            orbit_distance = 5
+        }
+    }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = { min = 160 max = 260 }
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = @standard_sat_min max = @standard_sat_max }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+
+		change_orbit = 30
+
+		planet = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 15 max = 20 }
+			class = random_non_colonizable
+			satellite_naming_policy = lower_case_latin_letters
+			flags = { hot_zone }
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				class = random_non_colonizable
+				orbit_distance = 5
+				flags = { hot_zone }
+			}
+		}
+		
+		planet = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 20 max = 25 }
+			class = random_non_colonizable
+			satellite_naming_policy = lower_case_latin_letters
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = 5
+			}
+		}
+		
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 25 max = 30 }
+			class = random_non_colonizable
+			satellite_naming_policy = lower_case_latin_letters
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				class = random_non_colonizable
+				orbit_distance = 5
+			}
+		}
+		
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 30 max = 35 }
+			class = random_non_colonizable
+			satellite_naming_policy = lower_case_latin_letters
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				class = random_non_colonizable
+				orbit_distance = 5
+			}
+		}
+	}
+
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = @standard_sat_min max = @standard_sat_max }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+
+		change_orbit = 30
+
+		planet = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 15 max = 20 }
+			satellite_naming_policy = lower_case_latin_letters
+			class = random_non_colonizable
+			flags = { hot_zone }
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				class = random_non_colonizable
+				orbit_distance = 5
+				flags = { hot_zone }
+			}
+		}
+		
+		planet = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 20 max = 25 }
+			satellite_naming_policy = lower_case_latin_letters
+			class = random_non_colonizable
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				class = random_non_colonizable
+				orbit_distance = 5
+			}
+		}
+		
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 25 max = 30 }
+			satellite_naming_policy = lower_case_latin_letters
+			class = random_non_colonizable
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				class = random_non_colonizable
+				orbit_distance = 5
+			}
+		}
+    }
+
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony"
+	}
+}
+
+# Trinary System II
+custom_starting_init_02 = {
+	class = "rl_trinary_stars"
+	
+	usage = custom_empire
+	
+	flags = { empire_home_system }
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+        count = 1
+        class = star
+        orbit_distance = 25
+        orbit_angle = 0
+        size = { min = @standard_min max = @standard_max }
+        has_ring = no
+    }
+
+    planet = {
+        count = 1
+        class = star
+        orbit_distance = { min = 0 max = 20 }
+        orbit_angle = { min = 100 max = 140 }
+        size = { min = @standard_sat_min max = @standard_sat_max }
+        has_ring = no
+    }
+
+    planet = {
+        count = 1
+        class = star
+        orbit_distance = { min = 0 max = 20 }
+        orbit_angle = { min = 100 max = 140 }
+        size = { min = @standard_sat_min max = @standard_sat_max }
+        has_ring = no
+    }
+
+    change_orbit = { min = 40 max = 60 }
+	
+	planet = {
+		count = 1
+		orbit_angle = { min = 90 max = 270 }
+		class = random_non_colonizable
+		flags = { hot_zone }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 15 max = 20 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		flags = { warm_zone }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 20 max = 25 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		flags = { temperate_zone }
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 25 max = 30 }
+		home_planet = yes
+		class = ideal_planet_class
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = @homeworld_min_size max = @homeworld_max_size }
+		deposit_blockers = none
+		modifiers = none
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+		
+		init_effect = {
+			generate_empire_home_planet = yes			
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 30 max = 35 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 35 max = 40 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 40 max = 50 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 50 max = 60 }
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 60 max = 70 }
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 3 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 70 max = 80 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony"
+	}
+
+}
+
+# Trinary System III
+custom_starting_init_03 = {
+    class = "rl_trinary_stars"
+    
+    usage = custom_empire
+	
+	flags = { empire_home_system }
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+        count = 1
+        class = star
+        orbit_distance = { min = 20 max = 30 }
+        orbit_angle = 0
+        size = { min = @standard_min max = @standard_max }
+        has_ring = no
+    }
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = { min = 0 max = 60 }
+		orbit_angle = 180
+		size = { min = @standard_sat_min max = @standard_sat_max }
+		has_ring = no
+    }
+
+    change_orbit = { min = 40 max = 60 }
+	
+	planet = {
+		count = 1
+		orbit_angle = { min = 90 max = 270 }
+		class = random_non_colonizable
+		flags = { hot_zone }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 20 max = 25 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		flags = { warm_zone }
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 25 max = 30 }
+		home_planet = yes
+		class = ideal_planet_class
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = @homeworld_min_size max = @homeworld_max_size }
+		deposit_blockers = none
+		modifiers = none
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+		
+		init_effect = {
+			generate_empire_home_planet = yes			
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 30 max = 35 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 35 max = 40 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 40 max = 50 }
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 50 max = 60 }
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = { min = 1 max = 2 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 70 max = 80 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = { min = 160 max = 260 }
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = @standard_sat_min max = @standard_sat_max }
+		has_ring = no
+		satellite_naming_policy = upper_case_roman_numerals
+
+		change_orbit = 30
+
+		planet = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 15 max = 20 }
+			class = random_non_colonizable
+			satellite_naming_policy = lower_case_latin_letters
+			flags = { hot_zone }
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				class = random_non_colonizable
+				orbit_distance = 5
+				flags = { hot_zone }
+			}
+		}
+		
+		planet = {
+			count = 1
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 20 max = 25 }
+			class = random_non_colonizable
+			satellite_naming_policy = lower_case_latin_letters
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				class = random_non_colonizable
+				orbit_angle = { min = 90 max = 270 }
+				orbit_distance = 5
+			}
+		}
+		
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 25 max = 30 }
+			class = random_non_colonizable
+			satellite_naming_policy = lower_case_latin_letters
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				class = random_non_colonizable
+				orbit_distance = 5
+			}
+		}
+		
+		planet = {
+			count = { min = 0 max = 1 }
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = { min = 30 max = 35 }
+			class = random_non_colonizable
+			satellite_naming_policy = lower_case_latin_letters
+
+			change_orbit = @base_moon_distance
+
+			moon = {
+				count = { min = 0 max = 1 }
+				orbit_angle = { min = 90 max = 270 }
+				class = random_non_colonizable
+				orbit_distance = 5
+			}
+		}
+	}
+	
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony"
+	}
+
+}
+
+# Binary System I
+custom_starting_init_04 = {
+    class = "rl_binary_starting_stars"
+    
+   usage = custom_empire
+
+   flags = { empire_home_system }
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+        count = 1
+        class = star
+        orbit_distance = 0
+        orbit_angle = 0
+        size = { min = @standard_min max = @standard_max }
+        has_ring = no
+    }
+
+    change_orbit = { min = 30 max = 60 }
+    
+    planet = {
+        count = 1
+        orbit_distance = { min = 20 max = 25 }
+		class = random_non_colonizable
+        orbit_angle = { min = 90 max = 270 }
+		flags = { hot_zone }
+    }
+	
+	planet = {
+        count = { min = 0 max = 1 }
+        orbit_distance = { min = 25 max = 30 }
+		class = random_non_colonizable
+        orbit_angle = { min = 90 max = 270 }
+		flags = { warm_zone }
+    }
+	
+	planet = {
+        count = 1
+        orbit_distance = { min = 30 max = 35 }
+        home_planet = yes
+		class = ideal_planet_class
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = @homeworld_min_size max = @homeworld_max_size }
+		deposit_blockers = none
+		modifiers = none
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+		
+		init_effect = {
+			generate_empire_home_planet = yes			
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+    }
+	
+	planet = {
+        count = 1
+        orbit_distance = { min = 35 max = 40 }
+		class = pc_gas_giant
+        orbit_angle = { min = 90 max = 270 }
+        
+        change_orbit = @base_moon_distance
+        
+        moon = {
+            count = { min = 1 max = 2 }
+			class = random_non_colonizable
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = 5
+        }
+    }
+	
+	planet = {
+        count = 1
+        orbit_distance = { min = 40 max = 50 }
+		class = pc_gas_giant
+        orbit_angle = { min = 90 max = 270 }
+        
+        change_orbit = @base_moon_distance
+        
+        moon = {
+            count = { min = 1 max = 2 }
+			class = random_non_colonizable
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = 5
+        }
+    }
+	
+	planet = {
+        count = { min = 0 max = 1 }
+        orbit_distance = { min = 50 max = 60 }
+		class = pc_gas_giant
+        orbit_angle = { min = 90 max = 270 }
+        
+        change_orbit = @base_moon_distance
+        
+        moon = {
+            count = { min = 1 max = 2 }
+			class = random_non_colonizable
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = 5
+        }
+    }
+	
+	planet = {
+        count = 1
+        class = star
+        orbit_distance = { min = 160 max = 260 }
+        orbit_angle = { min = 0 max = 360 }
+        size = { min = @standard_sat_min max = @standard_sat_max }
+        has_ring = no
+        satellite_naming_policy = upper_case_roman_numerals
+
+        change_orbit = 25
+
+        planet = {
+            count = 1
+            size = { min = 14 max = 24 }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 15 max = 20 }
+			class = rl_unhabitable_planets
+            satellite_naming_policy = lower_case_latin_letters
+			flags = { hot_zone }
+
+            change_orbit = @base_moon_distance
+
+            moon = {
+        	    count = { min = 0 max = 1 }
+        	    orbit_angle = { min = 90 max = 270 }
+        	    orbit_distance = 5
+				flags = { hot_zone }
+        	}
+        }
+		
+		planet = {
+            count = 1
+            size = { min = 14 max = 24 }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 20 max = 25 }
+			class = rl_unhabitable_planets
+            satellite_naming_policy = lower_case_latin_letters
+
+            change_orbit = @base_moon_distance
+
+            moon = {
+        	    count = { min = 0 max = 1 }
+        	    orbit_angle = { min = 90 max = 270 }
+        	    orbit_distance = 5
+        	}
+        }
+		
+		planet = {
+            count = { min = 0 max = 1 }
+            size = { min = 14 max = 24 }
+            orbit_angle = { min = 90 max = 270 }
+            orbit_distance = { min = 20 max = 25 }
+			class = rl_unhabitable_planets
+            satellite_naming_policy = lower_case_latin_letters
+
+            change_orbit = @base_moon_distance
+
+            moon = {
+        	    count = { min = 0 max = 1 }
+        	    orbit_angle = { min = 90 max = 270 }
+        	    orbit_distance = 5
+        	}
+        }
+    }
+	
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony"
+	}
+
+}
+
+# Binary System II
+custom_starting_init_05 = {
+	class = "rl_binary_starting_stars"
+	
+	usage = custom_empire
+	
+	flags = { empire_home_system }
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+		
+	planet = {
+        count = 1
+        class = star
+        orbit_distance = 25
+        orbit_angle = 0
+        size = { min = @standard_min max = @standard_max }
+        has_ring = no
+    }
+
+    planet = {
+        count = 1
+        class = star
+        orbit_distance = 25
+		orbit_angle = 180
+        size = { min = @standard_sat_min max = @standard_sat_max }
+        has_ring = no
+    }
+	
+	change_orbit = 35
+	
+	planet = {
+		count = 1
+		orbit_distance = 15
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		flags = { hot_zone }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		flags = { warm_zone }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 25
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		flags = { temperate_zone }
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = 30
+		home_planet = yes
+		class = ideal_planet_class
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = @homeworld_min_size max = @homeworld_max_size }
+		deposit_blockers = none
+		modifiers = none
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+		
+		init_effect = {
+			generate_empire_home_planet = yes			
+		}
+
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = 35
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 40
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 45
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = 50
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 3 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 60
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 1 max = 3 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = 70
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony"
+	}
+
+}
+
+# Unary System I
+custom_starting_init_06 = {
+	class = "rl_starting_stars"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 165
+	}
+	
+	usage = custom_empire
+	
+	flags = { empire_home_system }
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+		
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 45
+	
+	planet = {
+		count = 1
+		home_planet = yes
+		class = ideal_planet_class
+		orbit_distance = 20
+		orbit_angle = { min = 90 max = 270 }
+		size = { min = @homeworld_min_size max = @homeworld_max_size }
+		deposit_blockers = none
+		modifiers = none
+
+		init_effect = {
+			prevent_anomaly = yes
+		}
+		
+		init_effect = {
+			generate_empire_home_planet = yes		
+		}
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = 25
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = 30
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	change_orbit = 45
+	
+	planet = {
+		count = { min = 2 max = 3 }
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 40 max = 110 }
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 45 max = 50 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 50 max = 55 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 55 max = 60 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 60 max = 65 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 65 max = 70 }
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 3 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 70 max = 80 }
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 3 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 80 max = 90 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 90 max = 100 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony"
+	}
+}
+
+# Unary System II
+custom_starting_init_07 = {
+	class = "rl_starting_stars"
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 85
+	}
+	
+	usage = custom_empire
+	
+	flags = { empire_home_system }
+
+	init_effect = {
+		every_neighbor_system = {
+			set_star_flag = empire_cluster
+			every_neighbor_system = {
+				set_star_flag = empire_cluster
+			}
+		}
+		
+		generate_home_system_resources = yes
+	}
+		
+	planet = {
+		count = 1
+		class = star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = { min = 20 max = 30 }
+		has_ring = no
+	}
+	
+	change_orbit = 40
+	
+	planet = {
+		count = 1
+		orbit_distance = 20
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	change_orbit = 25
+	
+	planet = {
+		count = { min = 1 max = 2 }
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 120 max = 300 }
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 25 max = 30 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 1 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 30 max = 35 }
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		size = 25
+		
+		change_orbit = @base_moon_distance
+		
+		moon = {
+			count = 1
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 4
+		}
+		
+		moon = {
+			count = 1
+			home_planet = yes
+			class = ideal_planet_class
+			orbit_distance = 10
+			orbit_angle = { min = 90 max = 270 }
+			size = { min = @homeworld_min_size max = @homeworld_max_size }
+			deposit_blockers = none
+			modifiers = none
+
+			init_effect = {
+				prevent_anomaly = yes
+			}
+		
+			init_effect = {
+				generate_empire_home_planet = yes		
+			}
+		}
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 35 max = 40 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 40 max = 45 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 45 max = 50 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	planet = {
+		count = 1
+		orbit_distance = { min = 50 max = 60 }
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 3 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 60 max = 70 }
+		class = pc_gas_giant
+		orbit_angle = { min = 90 max = 270 }
+		
+		change_orbit = @base_moon_distance
+
+		moon = {
+			count = { min = 0 max = 3 }
+			class = random_non_colonizable
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+		}
+	}
+	
+	planet = {
+		count = { min = 0 max = 1 }
+		orbit_distance = { min = 70 max = 80 }
+		class = random_non_colonizable
+		orbit_angle = { min = 90 max = 270 }
+	}
+	
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 2 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1"
+	}
+	neighbor_system = {
+		trigger = { num_guaranteed_colonies >= 1 }
+		hyperlane_jumps = { min = 1 max = @jumps }
+		initializer = "neighbor_t1_first_colony"
+	}
+}

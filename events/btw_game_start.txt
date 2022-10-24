@@ -1,0 +1,3858 @@
+namespace = realspace
+
+### sets global flag “has_real_space_mod”
+event = {
+	id = realspace.1
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		set_global_flag = "has_beyond_the_worlds_mod"
+		set_global_flag = "has_real_space_mod"
+		set_global_flag = only_realspace_nebula_setting
+	}
+}
+
+#Create Vanilla Nebula
+event = {
+	id = realspace.101
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_global_flag = only_vanilla_nebula_setting
+	}
+
+	immediate = {
+		every_system = {
+			limit = { is_inside_nebula = yes }
+			# Class B
+			if = {
+				limit = { is_b_system = yes }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+				}
+			}
+			# Class A
+			else_if = {
+				limit = { is_a_system = yes }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class F
+			else_if = {
+				limit = { is_f_system = yes }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+				}
+			}
+			# Class G
+			else_if = {
+				limit = { is_g_system = yes }
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class K
+			else_if = {
+				limit = { is_k_system = yes }
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class M
+			else_if = {
+				limit = { is_m_system = yes }
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class T
+			else_if = {
+				limit = { is_other_system = yes }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+				}
+			}
+			# Black Hole
+			else_if = {
+				limit = { is_star_class = sc_black_hole }
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Neutron Star
+			else_if = {
+				limit = { is_star_class = sc_neutron_star }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Pulsar
+			else_if = {
+				limit = { is_star_class = sc_pulsar }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Carbon Star
+			else_if = {
+				limit = { is_star_class = sc_c_giant }
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Zirconium Star
+			else_if = {
+				limit = { is_star_class = sc_s_giant }
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Magnetar
+			else_if = {
+				limit = { is_star_class = sc_magnetar }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+#Create Real Space Nebula
+event = {
+	id = realspace.102
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_global_flag = only_vanilla_nebula_setting }
+	}
+	
+	immediate = {
+		every_system = {
+			limit = { is_inside_nebula = yes }
+			# Blue Nebula
+			if = {
+				limit = { 
+					OR = {
+						is_star_class = sc_a
+						is_star_class = sc_f
+						is_star_class = sc_d
+						is_star_class = sc_pulsar
+						is_star_class = sc_neutron_star
+						is_star_class = sc_magnetar
+						is_star_class = sc_ae
+						is_star_class = sc_tt_white
+						is_star_class = sc_microquasar_2
+						#is_star_class = sc_w_azure
+						#is_star_class = sc_w_green
+						is_a_system = yes
+						is_f_system = yes
+					}
+				}
+				random_list = {
+					30 = { 
+						random_list = {
+							25 = { create_thick_blue_nebula_1 = yes }
+							25 = { create_thick_blue_nebula_2 = yes }
+							25 = { create_thick_blue_nebula_3 = yes }
+							25 = { create_thick_blue_nebula_4 = yes }
+						}
+					}
+					30 = {
+						modifier = {
+							factor = 2
+							OR = {
+								has_star_flag = inside_bright_blue_nebula
+								has_star_flag = inside_bright_purple_nebula
+								has_star_flag = inside_bright_red_nebula
+								has_star_flag = inside_bright_yellow_nebula
+							}
+						}
+						random_list = {
+							50 = { create_bright_blue_nebula_1 = yes }
+							50 = { create_bright_blue_nebula_2 = yes }
+						}
+					}
+					30 = {
+						modifier = {
+							factor = 2
+							OR = {
+								has_star_flag = inside_turbulent_blue_nebula
+								has_star_flag = inside_turbulent_green_nebula
+								has_star_flag = inside_turbulent_orange_nebula
+								has_star_flag = inside_turbulent_purple_nebula
+							}
+						}
+						random_list = {
+							25 = { create_faint_blue_nebula_1 = yes }
+							25 = { create_faint_blue_nebula_2 = yes }
+							25 = { create_faint_blue_nebula_3 = yes }
+							25 = { create_faint_blue_nebula_4 = yes }
+						}
+					}
+					10 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						random_list = {
+							50 = { create_turbulent_blue_nebula_1 = yes }
+							50 = { create_turbulent_blue_nebula_2 = yes }
+						}
+					}
+				}
+			}
+			# Orange Nebula
+			else_if = { 
+				limit = { 
+					OR = {
+						is_star_class = sc_g
+						is_star_class = sc_k
+						is_star_class = sc_s_giant
+						is_star_class = sc_tt_orange
+						#is_star_class = sc_protostar
+						is_g_system = yes
+						is_k_system = yes
+					}
+				}
+				random_list = {
+					30 = { 
+						random_list = {
+							25 = { create_thick_orange_nebula_1 = yes }
+							25 = { create_thick_orange_nebula_2 = yes }
+							25 = { create_thick_orange_nebula_3 = yes }
+							25 = { create_thick_orange_nebula_4 = yes }
+						}
+					}
+					30 = {
+						modifier = {
+							factor = 2
+							OR = {
+								has_star_flag = inside_bright_blue_nebula
+								has_star_flag = inside_bright_purple_nebula
+								has_star_flag = inside_bright_red_nebula
+								has_star_flag = inside_bright_yellow_nebula
+							}
+						}
+						random_list = {
+							50 = { create_bright_orange_nebula_1 = yes }
+							50 = { create_bright_orange_nebula_2 = yes }
+						}
+					}
+					30 = {
+						modifier = {
+							factor = 2
+							OR = {
+								has_star_flag = inside_turbulent_blue_nebula
+								has_star_flag = inside_turbulent_green_nebula
+								has_star_flag = inside_turbulent_orange_nebula
+								has_star_flag = inside_turbulent_purple_nebula
+							}
+						}
+						random_list = {
+							25 = { create_faint_orange_nebula_1 = yes }
+							25 = { create_faint_orange_nebula_2 = yes }
+							25 = { create_faint_orange_nebula_3 = yes }
+							25 = { create_faint_orange_nebula_4 = yes }
+						}
+					}
+					10 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						random_list = {
+							50 = { create_turbulent_orange_nebula_1 = yes }
+							50 = { create_turbulent_orange_nebula_2 = yes }
+						}
+					}
+				}
+			}
+			# Red Nebula
+			else_if = { 
+				limit = { 
+					OR = {
+						is_star_class = sc_m
+						is_star_class = sc_m_giant
+						is_star_class = sc_c_giant
+						is_star_class = sc_l
+						is_star_class = sc_tt_red
+						is_star_class = sc_microquasar_1
+						#is_star_class = sc_w_red
+						is_m_system = yes
+					}
+				}
+				random_list = {
+					30 = { 
+						random_list = {
+							25 = { create_thick_red_nebula_1 = yes }
+							25 = { create_thick_red_nebula_2 = yes }
+							25 = { create_thick_red_nebula_3 = yes }
+							25 = { create_thick_red_nebula_4 = yes }
+						}
+					}
+					30 = {
+						modifier = {
+							factor = 2
+							OR = {
+								has_star_flag = inside_bright_blue_nebula
+								has_star_flag = inside_bright_purple_nebula
+								has_star_flag = inside_bright_red_nebula
+								has_star_flag = inside_bright_yellow_nebula
+							}
+						}
+						random_list = {
+							50 = { create_bright_red_nebula_1 = yes }
+							50 = { create_bright_red_nebula_2 = yes }
+						}
+					}
+					30 = {
+						modifier = {
+							factor = 2
+							OR = {
+								has_star_flag = inside_turbulent_blue_nebula
+								has_star_flag = inside_turbulent_green_nebula
+								has_star_flag = inside_turbulent_orange_nebula
+								has_star_flag = inside_turbulent_purple_nebula
+							}
+						}
+						random_list = {
+							25 = { create_faint_red_nebula_1 = yes }
+							25 = { create_faint_red_nebula_2 = yes }
+							25 = { create_faint_red_nebula_3 = yes }
+							25 = { create_faint_red_nebula_4 = yes }
+						}
+					}
+					10 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						random_list = {
+							50 = { create_turbulent_red_nebula_1 = yes }
+							50 = { create_turbulent_red_nebula_2 = yes }
+						}
+					}
+				}
+			}
+			# Purple Nebula
+			else_if = { 
+				limit = { 
+					OR = {
+						is_star_class = sc_b
+						is_star_class = sc_t
+						is_star_class = sc_y
+						#is_star_class = sc_w_purple
+						is_b_system = yes
+					}
+				}
+				random_list = {
+					30 = { 
+						random_list = {
+							25 = { create_thick_purple_nebula_1 = yes }
+							25 = { create_thick_purple_nebula_2 = yes }
+							25 = { create_thick_purple_nebula_3 = yes }
+							25 = { create_thick_purple_nebula_4 = yes }
+						}
+					}
+					30 = {
+						modifier = {
+							factor = 2
+							OR = {
+								has_star_flag = inside_bright_blue_nebula
+								has_star_flag = inside_bright_purple_nebula
+								has_star_flag = inside_bright_red_nebula
+								has_star_flag = inside_bright_yellow_nebula
+							}
+						}
+						random_list = {
+							50 = { create_bright_purple_nebula_1 = yes }
+							50 = { create_bright_purple_nebula_2 = yes }
+						}
+					}
+					30 = {
+						modifier = {
+							factor = 2
+							OR = {
+								has_star_flag = inside_turbulent_blue_nebula
+								has_star_flag = inside_turbulent_green_nebula
+								has_star_flag = inside_turbulent_orange_nebula
+								has_star_flag = inside_turbulent_purple_nebula
+							}
+						}
+						random_list = {
+							25 = { create_faint_purple_nebula_1 = yes }
+							25 = { create_faint_purple_nebula_2 = yes }
+							25 = { create_faint_purple_nebula_3 = yes }
+							25 = { create_faint_purple_nebula_4 = yes }
+						}
+					}
+					10 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						random_list = {
+							50 = { create_turbulent_purple_nebula_1 = yes }
+							50 = { create_turbulent_purple_nebula_2 = yes }
+						}
+					}
+				}
+			}
+			else_if = { 
+				limit = { 
+					OR = {
+						is_star_class = sc_black_hole
+						#is_star_class = sc_collapsar
+						#is_star_class = sc_lbv_orange
+						#is_star_class = sc_lbv_green
+						#is_star_class = sc_lbv_red
+					}
+				}
+				random_list = {
+					60 = { 
+						random_list = {
+							13 = { create_bright_orange_nebula_1 = yes }
+							12 = { create_bright_orange_nebula_2 = yes }
+							13 = { create_bright_red_nebula_1 = yes }
+							12 = { create_bright_red_nebula_2 = yes }
+							13 = { create_bright_blue_nebula_1 = yes }
+							12 = { create_bright_blue_nebula_2 = yes }
+							13 = { create_bright_purple_nebula_1 = yes }
+							12 = { create_bright_purple_nebula_2 = yes }
+						}
+					}
+					40 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						random_list = {
+							13 = { create_turbulent_orange_nebula_1 = yes }
+							12 = { create_turbulent_orange_nebula_2 = yes }
+							13 = { create_turbulent_red_nebula_1 = yes }
+							12 = { create_turbulent_red_nebula_2 = yes }
+							13 = { create_turbulent_blue_nebula_1 = yes }
+							12 = { create_turbulent_blue_nebula_2 = yes }
+							13 = { create_turbulent_purple_nebula_1 = yes }
+							12 = { create_turbulent_purple_nebula_2 = yes }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+#Create New Star Space
+event = {
+	id = realspace.103
+	title = OK
+	desc = OK
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_w_azure_star
+				solar_system = { NOT = { has_star_flag = w_azure } }
+			}
+			create_w_azure_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_w_red_star
+				solar_system = { NOT = { has_star_flag = w_red } }
+			}
+			create_w_red_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_w_green_star
+				solar_system = { NOT = { has_star_flag = w_green } }
+			}
+			create_w_green_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_w_purple_star
+				solar_system = { NOT = { has_star_flag = w_purple } }
+			}
+			create_w_purple_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_nova_1
+				solar_system = { NOT = { has_star_flag = nova_1 } }
+			}
+			create_nova_1_space = yes
+			#create_nova_1_accreation = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_nova_2
+				solar_system = { NOT = { has_star_flag = nova_2 } }
+			}
+			create_nova_2_space = yes
+			#create_nova_2_accreation = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_collapsar
+				solar_system = { NOT = { has_star_flag = collapsar } }
+			}
+			create_collapsar_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_protostar
+				solar_system = { NOT = { has_star_flag = protostar } }
+			}
+			create_protostar_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_lbv_green_star
+				solar_system = { NOT = { has_star_flag = lbv_orange } }
+			}
+			create_lbv_green_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_lbv_green_star
+				solar_system = { NOT = { has_star_flag = lbv_green } }
+			}
+			create_lbv_green_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_lbv_red_star
+				solar_system = { NOT = { has_star_flag = lbv_red } }
+			}
+			create_lbv_red_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_tt_red_star
+				solar_system = { NOT = { has_star_flag = tt_red } }
+			}
+			create_tt_red_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_tt_orange_star
+				solar_system = { NOT = { has_star_flag = tt_orange } }
+			}
+			create_tt_orange_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_tt_white_star
+				solar_system = { NOT = { has_star_flag = tt_white } }
+			}
+			create_tt_white_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_ae_star
+				solar_system = { NOT = { has_star_flag = herbig_star } }
+			}
+			create_ae_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_d_star
+				solar_system = { 
+					NOT = { has_star_flag = p_purple }
+					is_star_class = sc_p_purple
+				}
+			}
+			create_p_purple_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_d_star
+				solar_system = { 
+					NOT = { has_star_flag = p_green }
+					is_star_class = sc_p_green
+				}
+			}
+			create_p_green_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_d_star
+				solar_system = { 
+					NOT = { has_star_flag = p_red }
+					is_star_class = sc_p_red
+				}
+			}
+			create_p_red_space = yes
+		}
+		every_galaxy_planet = {
+			limit = {
+				is_planet_class = pc_magnetar
+				solar_system = { NOT = { has_star_flag = magnetar } }
+			}
+			create_magnetar_space = yes
+		}
+	}
+}
+
+#Decrease in the number of inhabitable worlds
+event = {
+	id = realspace.104
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		inhabitable_world_are_reduced = yes
+	}
+	
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				is_colonizable = yes
+				is_capital = no
+				is_colony = no
+				is_homeworld = no
+				solar_system = {
+					OR = {
+						has_star_flag = misc_system
+						has_star_flag = empire_cluster
+						has_star_flag = sol_sector
+					}
+				}
+				NOR = {
+					is_ringworld = yes
+					is_planet_class = pc_habitat
+					is_planet_class = pc_relic
+					has_planet_flag = unique_planet #Use this flag for planets that should not be removed.
+					has_planet_flag = colony_event
+					has_planet_flag = ratling_planet
+					has_modifier = "living_sea"
+				}
+			}
+			if = {
+				limit = { has_global_flag = 10_percent_world_reduced}
+				random_list = {
+					10 = {
+						change_pc = rl_unhabitable_planets
+						reset_planet = yes
+					}
+					90 = { 
+						#Null
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = 20_percent_world_reduced}
+				random_list = {
+					20 = {
+						change_pc = rl_unhabitable_planets
+						reset_planet = yes
+					}
+					80 = { 
+						#Null
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = 30_percent_world_reduced}
+				random_list = {
+					30 = {
+						change_pc = rl_unhabitable_planets
+						reset_planet = yes
+					}
+					70 = { 
+						#Null
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = 40_percent_world_reduced}
+				random_list = {
+					40 = {
+						change_pc = rl_unhabitable_planets
+						reset_planet = yes
+					}
+					60 = { 
+						#Null
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = 50_percent_world_reduced}
+				random_list = {
+					50 = {
+						change_pc = rl_unhabitable_planets
+						reset_planet = yes
+					}
+					50 = { 
+						#Null
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = 60_percent_world_reduced}
+				random_list = {
+					60 = {
+						change_pc = rl_unhabitable_planets
+						reset_planet = yes
+					}
+					40 = { 
+						#Null
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = 70_percent_world_reduced}
+				random_list = {
+					70 = {
+						change_pc = rl_unhabitable_planets
+						reset_planet = yes
+					}
+					30 = { 
+						#Null
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = 80_percent_world_reduced}
+				random_list = {
+					80 = {
+						change_pc = rl_unhabitable_planets
+						reset_planet = yes
+					}
+					20 = { 
+						#Null
+					}
+				}
+			}
+			if = {
+				limit = { has_global_flag = 90_percent_world_reduced}
+				random_list = {
+					90 = {
+						change_pc = rl_unhabitable_planets
+						reset_planet = yes
+					}
+					10 = { 
+						#Null
+					}
+				}
+			}
+		}
+	}
+}
+
+#Rings 
+event = {
+	id = realspace.105
+	title = OK
+	desc = OK
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		# Sol System 
+		every_galaxy_planet = {
+			limit = { has_planet_flag = jupiter }
+			save_event_target_as = planet_location_rings
+			create_ambient_object = {
+				type = jupiter_rings
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+			}
+			set_planet_flag = has_rings_02_low
+		}
+		every_galaxy_planet = {
+			limit = { has_planet_flag = saturn }
+			save_event_target_as = planet_location_rings
+			create_ambient_object = {
+				type = saturn_rings_01_large
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+			}
+			set_planet_flag = has_rings_01_large
+		}
+		every_galaxy_planet = {
+			limit = { has_planet_flag = uranus }
+			save_event_target_as = planet_location_rings
+			create_ambient_object = {
+				type = uranus_rings
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+			}
+			set_planet_flag = has_rings_02_low
+		}
+		every_galaxy_planet = {
+			limit = { has_planet_flag = neptune }
+			save_event_target_as = planet_location_rings
+			create_ambient_object = {
+				type = neptune_rings
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+			}
+			set_planet_flag = has_rings_02_low
+		}
+		# Gas Giant
+		every_galaxy_planet = {
+			limit = {
+				AND = {
+					is_planet_class = "pc_gas_giant"
+					has_ring = yes
+					solar_system = { NOT = { has_star_flag = sol } }
+					planet_size >= 25
+				}
+			}
+			if = {
+				limit = {
+					is_hot_zone = no
+				}
+				set_gas_giant_big_rings = yes
+			}
+			else = {
+				set_ring = no
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				AND = {
+					is_planet_class = "pc_gas_giant"
+					has_ring = yes
+					solar_system = { NOT = { has_star_flag = sol } }
+					planet_size < 25
+				}
+			}
+			if = {
+				limit = {
+					is_hot_zone = no
+				}
+				set_gas_giant_small_rings = yes
+			}
+			else = {
+				set_ring = no
+			}
+		}
+		# Small Planet
+		every_galaxy_planet = {
+			limit = {
+				AND = {
+					NOT = { is_planet_class = "pc_gas_giant" }
+					has_ring = yes
+					planet_size >= 20
+				}
+			}
+			if = {
+				limit = {
+					is_hot_zone = no
+				}
+				set_small_planet_big_rings = yes
+			}
+			else = {
+				set_ring = no
+			}
+		}
+		every_galaxy_planet = {
+			limit = {
+				AND = {
+					NOT = { is_planet_class = "pc_gas_giant" }
+					has_ring = yes
+					planet_size < 20
+				}
+			}
+			if = {
+				limit = {
+					is_hot_zone = no
+				}
+				set_small_planet_thin_rings = yes
+			}
+			else = {
+				set_ring = no
+			}
+		}
+	}
+}
+
+#Create civilizations in Sol Cluster
+event = {
+	id = realspace.106
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_global_flag = on_civ_in_solsector_setting
+	}
+	
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				AND = {
+					is_colonizable = yes
+					solar_system = { has_star_flag = sol_sector }
+				}
+			}
+			create_random_civilization = yes
+		}
+	}
+}
+
+#Remove Vanilla Nebula
+event = {
+	id = realspace.107
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_global_flag = only_vanilla_nebula_setting }
+	}
+	
+	immediate = {
+		every_system = {
+			limit = { is_inside_nebula = yes }
+			random_system_ambient_object = { 
+				limit = { is_vanilla_nebula = yes } 
+				destroy_ambient_object = this
+			}
+		}
+	}
+}
+
+#Remove planet ring for megastructure build
+event = {
+	id = realspace.108
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		FROM = { is_megastructure_type = ring_world_2_intermediate }
+	}
+	
+	immediate = {
+		FROMFROM = {
+			every_system_ambient_object = { 
+				limit = { is_rs_rings_ambient_object = yes } 
+				destroy_ambient_object = this
+			}
+		}
+	}
+}
+
+#Create globula
+event = {
+	id = realspace.109
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_global_flag = disabled_globula_setting }
+	}
+	
+	immediate = {
+		every_system = {
+			limit = {
+				NOR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+				}
+			}
+			create_globula_clouds = yes
+		}
+	}
+}
+
+#Spawn All Ruined Megastructures
+event = {
+	id = realspace.110
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_global_flag = all_ruined_megastructures
+	}
+	
+	immediate = {
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = ruined_dyson_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = dyson_sphere_init_01
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = ruined_nexus_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = science_nexus_init_01
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = ruined_sentry_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = sentry_array_init_01
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = ruined_ring_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = ring_world_init_01
+				}
+			}
+		}
+	}
+}
+
+#Spawn All Leviathans
+event = {
+	id = realspace.111
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_global_flag = spawn_all_leviathans
+	}
+	
+	immediate = {
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = guardians_stellarite_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = guardians_init_stellarites
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = guardians_dragon_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = guardians_init_dragon
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = guardians_horror_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = guardians_init_horror
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = guardians_dreadnought_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = guardians_init_dreadnought
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = guardians_hive_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = guardians_init_hive
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = guardians_technosphere_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = guardians_init_technosphere
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = guardians_fortress_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = guardians_init_fortress
+				}
+			}
+		}
+		if = {
+			limit = { any_system = { NOT = { has_star_flag = guardians_wraith_system }}}
+			no_scope = {
+				spawn_system = {
+					min_distance >= 50
+					max_distance <= 500
+					initializer = guardians_init_wraith
+				}
+			}
+		}
+	}
+}
+
+#Start All Endgame Crisis
+event = {
+	id = realspace.112
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		is_crises_allowed = yes
+		end_game_years_passed >= 60
+		has_global_flag = galactic_crisis_happened
+		OR = {
+			has_global_flag = prethoryn_invasion_happened
+			has_global_flag = extradimensional_invasion_happened
+			has_global_flag = ai_invasion_happened
+		}
+		has_global_flag = all_endgame_crisis
+	}
+	
+	immediate = {
+		random_country = {
+			limit = { is_country_type = global_event } # global_event country is always around
+			if = {
+				limit = { NOT = { has_global_flag = prethoryn_invasion_happened }}
+				country_event = { id = crisis.10 days = 200 random = 800 }
+			}
+			if = {
+				limit = { NOT = { has_global_flag = extradimensional_invasion_happened }}
+				country_event = { id = crisis.1000 days = 200 random = 800 }
+			}
+			if = {
+				limit = { NOT = { has_global_flag = ai_invasion_happened }}
+				country_event = { id = crisis.2005 days = 200 random = 800 }
+			}
+			remove_global_flag = all_endgame_crisis
+		}
+	}
+}
+
+#Start Menu
+event = {
+	id = realspace.204
+	title = OK
+	desc = OK
+	hide_window = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		every_country = {
+			limit = { is_ai = no }
+			country_event = { id = realspace.206 }
+		}
+	}
+}
+
+#Real Space Menu
+country_event = {
+	id = realspace.206
+	title = "realspace.206.name"
+	desc = "realspace.206.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				AND = {
+					has_global_flag = planetary_diversity_active
+					has_global_flag = has_new_frontiers_mod
+				}
+			}
+			set_global_flag = has_compatibility_issue
+		}
+	}
+
+	option = {
+		name = "realspace.206.news"
+		custom_tooltip = realspace.206.news.tooltip
+		hidden_effect = {
+			country_event = { id = realspace.209 }
+		}
+	}
+	option = {
+		name = "realspace.206.addons"
+		trigger = {
+			NOR = {
+				AND = {
+					has_global_flag = has_shipsinscaling_hard
+					has_global_flag = has_shipsinscaling_lite
+				}
+				AND = {
+					has_global_flag = has_star_cluster_mod
+					has_global_flag = has_colouroutofdeep_mod
+				}
+			}
+		}
+		custom_tooltip = realspace.206.addons.tooltip
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = has_system_scale_mod }
+				custom_tooltip = realspace.206.system_scale.tooltip
+			}
+			if = {
+				limit = { has_global_flag = has_new_frontiers_mod }
+				custom_tooltip = realspace.206.new_frontiers.tooltip
+			}
+			if = {
+				limit = { has_global_flag = has_star_cluster_mod }
+				custom_tooltip = realspace.206.star_cluster.tooltip
+			}
+			if = {
+				limit = { has_global_flag = has_solarstorm_mod }
+				custom_tooltip = realspace.206.solar_storm.tooltip
+			}
+			if = {
+				limit = { has_global_flag = has_colouroutofdeep_mod }
+				custom_tooltip = realspace.206.colouroutofdeep.tooltip
+			}
+			if = {
+				limit = { has_global_flag = has_shipsinscaling_hard }
+				custom_tooltip = realspace.206.shipsinscaling_hard.tooltip
+			}
+			if = {
+				limit = { has_global_flag = has_shipsinscaling_lite }
+				custom_tooltip = realspace.206.shipsinscaling_lite.tooltip
+			}
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.206.addons_conflict"
+		trigger = {
+			OR = {
+				AND = {
+					has_global_flag = has_shipsinscaling_hard
+					has_global_flag = has_shipsinscaling_lite
+				}
+				AND = {
+					has_global_flag = has_star_cluster_mod
+					has_global_flag = has_colouroutofdeep_mod
+				}
+			}
+		}
+		custom_tooltip = realspace.206.addons_conflict.tooltip
+		hidden_effect = {
+			if = {
+				limit = { 
+					has_global_flag = has_star_cluster_mod
+					has_global_flag = has_colouroutofdeep_mod
+				}
+				custom_tooltip = realspace.206.star_cluster_conflict.tooltip
+			}
+			if = {
+				limit = { 
+					has_global_flag = has_colouroutofdeep_mod
+					has_global_flag = has_star_cluster_mod
+				}
+				custom_tooltip = realspace.206.colouroutofdeep_conflict.tooltip
+			}
+			if = {
+				limit = { 
+					has_global_flag = has_shipsinscaling_hard
+					has_global_flag = has_shipsinscaling_lite
+				}
+				custom_tooltip = realspace.206.shipsinscaling_hard_conflict.tooltip
+			}
+			if = {
+				limit = { 
+					has_global_flag = has_shipsinscaling_lite
+					has_global_flag = has_shipsinscaling_hard
+				}
+				custom_tooltip = realspace.206.shipsinscaling_lite_conflict.tooltip
+			}
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.206.settings"
+		custom_tooltip = realspace.206.settings.tooltip
+		hidden_effect = {
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.206.faq"
+		custom_tooltip = realspace.206.faq.tooltip
+		hidden_effect = {
+			country_event = { id = realspace.223 }
+		}
+	}
+	option = {
+		name = "realspace.206.compatibility_no_problem"
+		trigger = { NOT = { has_global_flag = has_compatibility_issue } }
+		custom_tooltip = realspace.206.compatibility.tooltip
+		hidden_effect = {
+			country_event = { id = realspace.224 }
+		}
+	}
+	option = {
+		name = "realspace.206.compatibility_attention"
+		trigger = { has_global_flag = has_compatibility_issue }
+		custom_tooltip = realspace.206.compatibility.tooltip
+		hidden_effect = {
+			country_event = { id = realspace.224 }
+		}
+	}
+	option = {
+		name = "realspace.206.contacts"
+		custom_tooltip = realspace.206.contacts.tooltip
+		hidden_effect = {
+			country_event = { id = realspace.220 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#inhabitable worlds Settings
+country_event = {
+	id = realspace.208
+	title = "realspace.208.name"
+	desc = "realspace.208.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "realspace.208.no_changes"
+		trigger = { inhabitable_world_are_reduced = yes }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.208.10_percent_reduction"
+		trigger = { NOT = { has_global_flag = 10_percent_world_reduced } }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			set_global_flag = 10_percent_world_reduced
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.208.20_percent_reduction"
+		trigger = { NOT = { has_global_flag = 20_percent_world_reduced } }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			set_global_flag = 20_percent_world_reduced
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.208.30_percent_reduction"
+		trigger = { NOT = { has_global_flag = 30_percent_world_reduced } }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			set_global_flag = 30_percent_world_reduced
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.208.40_percent_reduction"
+		trigger = { NOT = { has_global_flag = 40_percent_world_reduced } }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			set_global_flag = 40_percent_world_reduced
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.208.50_percent_reduction"
+		trigger = { NOT = { has_global_flag = 50_percent_world_reduced } }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			set_global_flag = 50_percent_world_reduced
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.208.60_percent_reduction"
+		trigger = { NOT = { has_global_flag = 60_percent_world_reduced } }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			set_global_flag = 60_percent_world_reduced
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.208.70_percent_reduction"
+		trigger = { NOT = { has_global_flag = 70_percent_world_reduced } }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			set_global_flag = 60_percent_world_reduced
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.208.80_percent_reduction"
+		trigger = { NOT = { has_global_flag = 80_percent_world_reduced } }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			set_global_flag = 80_percent_world_reduced
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.208.90_percent_reduction"
+		trigger = { NOT = { has_global_flag = 90_percent_world_reduced } }
+		hidden_effect = {
+			remove_world_reduced_setting = yes
+			set_global_flag = 90_percent_world_reduced
+			country_event = { id = realspace.219 }
+		}
+	}
+	
+	option = {
+		name = "realspace.realspace_settings"
+		hidden_effect = {
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#News
+country_event = {
+	id = realspace.209
+	title = "realspace.209.name"
+	desc = "realspace.209.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Addons
+country_event = {
+	id = realspace.210
+	title = "realspace.210.name"
+	desc = "realspace.210.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.210.systemscale_on"
+		trigger = { has_global_flag = has_system_scale_mod }
+		hidden_effect = {
+			country_event = { id = realspace.211 }
+		}
+	}
+	option = {
+		name = "realspace.210.systemscale_off"
+		trigger = { NOT = { has_global_flag = has_system_scale_mod } }
+		hidden_effect = {
+			country_event = { id = realspace.211 }
+		}
+	}
+	option = {
+		name = "realspace.210.newfrontiers_on"
+		trigger = { has_global_flag = has_new_frontiers_mod }
+		hidden_effect = {
+			country_event = { id = realspace.212 }
+		}
+	}
+	option = {
+		name = "realspace.210.newfrontiers_off"
+		trigger = { NOT = { has_global_flag = has_new_frontiers_mod } }
+		hidden_effect = {
+			country_event = { id = realspace.212 }
+		}
+	}
+	option = {
+		name = "realspace.210.starcluster_on"
+		trigger = { 
+			has_global_flag = has_star_cluster_mod
+			NOT = { has_global_flag = has_colouroutofdeep_mod }
+		}
+		hidden_effect = {
+			country_event = { id = realspace.213 }
+		}
+	}
+	option = {
+		name = "realspace.210.starcluster_conflict"
+		custom_tooltip = realspace.210.starcluster_conflict.tooltip
+		trigger = { 
+			has_global_flag = has_star_cluster_mod
+			has_global_flag = has_colouroutofdeep_mod
+		}
+		hidden_effect = {
+			country_event = { id = realspace.213 }
+		}
+	}
+	option = {
+		name = "realspace.210.starcluster_off"
+		trigger = { NOT = { has_global_flag = has_star_cluster_mod } }
+		hidden_effect = {
+			country_event = { id = realspace.213 }
+		}
+	}
+	option = {
+		name = "realspace.210.solarstorm_on"
+		trigger = { has_global_flag = has_solarstorm_mod }
+		hidden_effect = {
+			country_event = { id = realspace.214 }
+		}
+	}
+	option = {
+		name = "realspace.210.solarstorm_off"
+		trigger = { NOT = { has_global_flag = has_solarstorm_mod } }
+		hidden_effect = {
+			country_event = { id = realspace.214 }
+		}
+	}
+	option = {
+		name = "realspace.210.colouroutofdeep_on"
+		trigger = { 
+			has_global_flag = has_colouroutofdeep_mod
+			NOT = { has_global_flag = has_star_cluster_mod }
+		}
+		hidden_effect = {
+			country_event = { id = realspace.215 }
+		}
+	}
+	option = {
+		name = "realspace.210.colouroutofdeep_conflict"
+		custom_tooltip = realspace.210.colouroutofdeep_conflict.tooltip
+		trigger = {
+			has_global_flag = has_colouroutofdeep_mod
+			has_global_flag = has_star_cluster_mod
+		}
+		hidden_effect = {
+			country_event = { id = realspace.215 }
+		}
+	}
+	option = {
+		name = "realspace.210.colouroutofdeep_off"
+		trigger = { NOT = { has_global_flag = has_colouroutofdeep_mod } }
+		hidden_effect = {
+			country_event = { id = realspace.215 }
+		}
+	}
+	option = {
+		name = "realspace.210.planetarystations_on"
+		trigger = { has_global_flag = has_planetary_stations_mod }
+		hidden_effect = {
+			country_event = { id = realspace.232 }
+		}
+	}
+	option = {
+		name = "realspace.210.planetarystations_off"
+		trigger = { NOT = { has_global_flag = has_planetary_stations_mod } }
+		hidden_effect = {
+			country_event = { id = realspace.232 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#System Scale Addon
+country_event = {
+	id = realspace.211
+	title = "realspace.211.name"
+	desc = "realspace.211.desc"
+	picture = GFX_evt_system_scale_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.211.shipsinscalinghard_on"
+		trigger = { 
+			has_global_flag = has_shipsinscaling_hard
+			NOT = { has_global_flag = has_shipsinscaling_lite }
+		}
+		hidden_effect = {
+			country_event = { id = realspace.216 }
+		}
+	}
+	option = {
+		name = "realspace.211.shipsinscalinghard_conflict"
+		custom_tooltip = realspace.211.shipsinscalinghard_conflict.tooltip
+		trigger = { 
+			has_global_flag = has_shipsinscaling_hard
+			has_global_flag = has_shipsinscaling_lite
+		}
+		hidden_effect = {
+			country_event = { id = realspace.216 }
+		}
+	}
+	option = {
+		name = "realspace.211.shipsinscalinghard_off"
+		trigger = { NOT = { has_global_flag = has_shipsinscaling_hard } }
+		hidden_effect = {
+			country_event = { id = realspace.216 }
+		}
+	}
+	option = {
+		name = "realspace.211.shipsinscalinglite_on"
+		trigger = { 
+			has_global_flag = has_shipsinscaling_lite
+			NOT = { has_global_flag = has_shipsinscaling_hard }
+		}
+		hidden_effect = {
+			country_event = { id = realspace.217 }
+		}
+	}
+	option = {
+		name = "realspace.211.shipsinscalinglite_conflict"
+		custom_tooltip = realspace.211.shipsinscalinglite_conflict.tooltip
+		trigger = { 
+			has_global_flag = has_shipsinscaling_lite
+			has_global_flag = has_shipsinscaling_hard
+		}
+		hidden_effect = {
+			country_event = { id = realspace.217 }
+		}
+	}
+	option = {
+		name = "realspace.211.shipsinscalinglite_off"
+		trigger = { NOT = { has_global_flag = has_shipsinscaling_lite } }
+		hidden_effect = {
+			country_event = { id = realspace.217 }
+		}
+	}
+	option = {
+		name = "realspace.addons"
+		hidden_effect = {
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#New Frontiers Addon
+country_event = {
+	id = realspace.212
+	title = "realspace.212.name"
+	desc = "realspace.212.desc"
+	picture = GFX_evt_new_frontiers_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	#New Frontiers Settings
+	option = {
+		name = "realspace.212.newfrontiers_settings"
+		hidden_effect = {
+			country_event = { id = realspace.221 }
+		}
+	}
+	
+	option = {
+		name = "realspace.addons"
+		hidden_effect = {
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Star Cluster Addon
+country_event = {
+	id = realspace.213
+	title = "realspace.213.name"
+	desc = "realspace.213.desc"
+	picture = GFX_evt_star_cluster_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	#option = {
+	#	name = "realspace.213.darkcluster_on"
+	#	trigger = {
+	#		has_global_flag = has_dark_cluster_mod
+	#	}
+	#	hidden_effect = {
+	#		country_event = { id = realspace.218 }
+	#	}
+	#}
+	#option = {
+	#	name = "realspace.213.darkcluster_off"
+	#	trigger = {
+	#		NOT = { has_global_flag = has_dark_cluster_mod }
+	#	}
+	#	hidden_effect = {
+	#		country_event = { id = realspace.218 }
+	#	}
+	#}
+	option = {
+		name = "realspace.addons"
+		hidden_effect = {
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Solar Storm Addon
+country_event = {
+	id = realspace.214
+	title = "realspace.214.name"
+	desc = "realspace.214.desc"
+	picture = GFX_evt_solar_storm_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	#Solar Storm Settings
+	option = {
+		name = "realspace.214.solarstorm_settings"
+		hidden_effect = {
+			country_event = { id = realspace.239 }
+		}
+	}
+
+	option = {
+		name = "realspace.addons"
+		hidden_effect = {
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Colour Out of Deep Addon
+country_event = {
+	id = realspace.215
+	title = "realspace.215.name"
+	desc = "realspace.215.desc"
+	picture = GFX_evt_colouroutofdeep_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.addons"
+		hidden_effect = {
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Ships in Scalling Hard Addon
+country_event = {
+	id = realspace.216
+	title = "realspace.216.name"
+	desc = "realspace.216.desc"
+	picture = GFX_evt_shipsinscalinghard_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.addons"
+		hidden_effect = {
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Ships in Scalling Lite Addon
+country_event = {
+	id = realspace.217
+	title = "realspace.217.name"
+	desc = "realspace.217.desc"
+	picture = GFX_evt_shipsinscalinglite_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.addons"
+		hidden_effect = {
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Dark Cluster Addon
+country_event = {
+	id = realspace.218
+	title = "realspace.218.name"
+	desc = "realspace.218.desc"
+	picture = GFX_evt_dark_cluster_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.addons"
+		hidden_effect = {
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Real Space Settings
+country_event = {
+	id = realspace.219
+	title = "realspace.219.name"
+	desc = "realspace.219.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	#New Frontiers Settings
+	option = {
+		name = "realspace.219.newfrontiers_settings"
+		trigger = { has_global_flag = has_new_frontiers_mod }
+		hidden_effect = {
+			country_event = { id = realspace.221 }
+		}
+	}
+	
+	#Solar Storm Settings
+	option = {
+		name = "realspace.219.solarstorm_settings"
+		trigger = { has_global_flag = has_solarstorm_mod }
+		hidden_effect = {
+			country_event = { id = realspace.239 }
+		}
+	}
+	
+	#Planetary Stations Settings
+	option = {
+		name = "realspace.219.planetarystations_settings"
+		trigger = { has_global_flag = has_planetary_stations_mod }
+		hidden_effect = {
+			country_event = { id = realspace.242 }
+		}
+	}
+	
+	#inhabitable worlds Settings
+	option = {
+		name = "realspace.219.inhabitable_worlds_no_reduced"
+		trigger = { inhabitable_world_are_reduced = no }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+	option = {
+		name = "realspace.219.10_percent_world_reduced"
+		trigger = { has_global_flag = 10_percent_world_reduced }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+	option = {
+		name = "realspace.219.20_percent_world_reduced"
+		trigger = { has_global_flag = 20_percent_world_reduced }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+	option = {
+		name = "realspace.219.30_percent_world_reduced"
+		trigger = { has_global_flag = 30_percent_world_reduced }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+	option = {
+		name = "realspace.219.40_percent_world_reduced"
+		trigger = { has_global_flag = 40_percent_world_reduced }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+	option = {
+		name = "realspace.219.50_percent_world_reduced"
+		trigger = { has_global_flag = 50_percent_world_reduced }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+	option = {
+		name = "realspace.219.60_percent_world_reduced"
+		trigger = { has_global_flag = 60_percent_world_reduced }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+	option = {
+		name = "realspace.219.70_percent_world_reduced"
+		trigger = { has_global_flag = 70_percent_world_reduced }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+	option = {
+		name = "realspace.219.80_percent_world_reduced"
+		trigger = { has_global_flag = 80_percent_world_reduced }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+	option = {
+		name = "realspace.219.90_percent_world_reduced"
+		trigger = { has_global_flag = 90_percent_world_reduced }
+		hidden_effect = {
+			country_event = { id = realspace.208 }
+		}
+	}
+
+	#Nebula Settings
+	option = {
+		name = "realspace.219.only_vanilla_nebula"
+		trigger = { has_global_flag = only_vanilla_nebula_setting }
+		hidden_effect = {
+			country_event = { id = realspace.225 }
+		}
+	}
+	option = {
+		name = "realspace.219.only_realspace_nebula"
+		trigger = { NOT = { has_global_flag = only_vanilla_nebula_setting } }
+		hidden_effect = {
+			country_event = { id = realspace.225 }
+		}
+	}
+	#Globula Settings
+	option = {
+		name = "realspace.219.enabled_globula"
+		trigger = { NOT = { has_global_flag = disabled_globula_setting } }
+		hidden_effect = {
+			country_event = { id = realspace.226 }
+		}
+	}
+	option = {
+		name = "realspace.219.disabled_globula"
+		trigger = { has_global_flag = disabled_globula_setting }
+		hidden_effect = {
+			country_event = { id = realspace.226 }
+		}
+	}
+	
+	#Сivilizations in Sol Cluster Settings
+	option = {
+		name = "realspace.219.off_civ_in_solsector"
+		trigger = { NOT = { has_global_flag = on_civ_in_solsector_setting } }
+		hidden_effect = {
+			country_event = { id = realspace.227 }
+		}
+	}
+	option = {
+		name = "realspace.219.on_civ_in_solsector"
+		trigger = { has_global_flag = on_civ_in_solsector_setting }
+		hidden_effect = {
+			country_event = { id = realspace.227 }
+		}
+	}
+	
+	#Ruined Megastructures Settings
+	option = {
+		name = "realspace.219.random_ruined_megastructures"
+		trigger = { 
+			NOT = { has_global_flag = all_ruined_megastructures }
+			host_has_dlc = "Utopia"
+		}
+		hidden_effect = {
+			country_event = { id = realspace.229 }
+		}
+	}
+	option = {
+		name = "realspace.219.all_ruined_megastructures"
+		trigger = { 
+			has_global_flag = all_ruined_megastructures
+			host_has_dlc = "Utopia"
+		}
+		hidden_effect = {
+			country_event = { id = realspace.229 }
+		}
+	}
+	
+	#Leviathans Settings
+	option = {
+		name = "realspace.219.spawn_random_leviathans"
+		trigger = { 
+			NOT = { has_global_flag = spawn_all_leviathans }
+			has_leviathans = yes
+		}
+		hidden_effect = {
+			country_event = { id = realspace.230 }
+		}
+	}
+	option = {
+		name = "realspace.219.spawn_all_leviathans"
+		trigger = { 
+			has_global_flag = spawn_all_leviathans
+			has_leviathans = yes
+		}
+		hidden_effect = {
+			country_event = { id = realspace.230 }
+		}
+	}
+	
+	#Endgame Crisis Settings
+	option = {
+		name = "realspace.219.random_endgame_crisis"
+		trigger = { 
+			NOT = { has_global_flag = all_endgame_crisis }
+			is_crises_allowed = yes
+		}
+		hidden_effect = {
+			country_event = { id = realspace.231 }
+		}
+	}
+	option = {
+		name = "realspace.219.all_endgame_crisis"
+		trigger = { 
+			has_global_flag = all_endgame_crisis
+			is_crises_allowed = yes
+		}
+		hidden_effect = {
+			country_event = { id = realspace.231 }
+		}
+	}
+	
+	#Menu
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Real Space Contacts
+country_event = {
+	id = realspace.220
+	title = "realspace.220.name"
+	desc = "realspace.220.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#New Frontiers Settings
+country_event = {
+	id = realspace.221
+	title = "realspace.221.name"
+	desc = "realspace.221.desc"
+	picture = GFX_evt_new_frontiers_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	#Subclasses
+	option = {
+		name = "realspace.221.subclasses_x1"
+		trigger = { 
+			NOR = { 
+				has_global_flag = subclasses_x1_5_setting
+				has_global_flag = subclasses_x2_setting
+				has_global_flag = subclasses_x0_5_setting
+				has_global_flag = subclasses_x0_25_setting
+			}
+		}
+		hidden_effect = {
+			country_event = { id = realspace.228 }
+		}
+	}
+	option = {
+		name = "realspace.221.subclasses_x1_5"
+		trigger = { 
+			has_global_flag = subclasses_x1_5_setting
+		}
+		hidden_effect = {
+			country_event = { id = realspace.228 }
+		}
+	}
+	option = {
+		name = "realspace.221.subclasses_x2"
+		trigger = { 
+			has_global_flag = subclasses_x2_setting
+		}
+		hidden_effect = {
+			country_event = { id = realspace.228 }
+		}
+	}
+	option = {
+		name = "realspace.221.subclasses_x0_5"
+		trigger = { 
+			has_global_flag = subclasses_x0_5_setting
+		}
+		hidden_effect = {
+			country_event = { id = realspace.228 }
+		}
+	}
+	option = {
+		name = "realspace.221.subclasses_x0_25"
+		trigger = { 
+			has_global_flag = subclasses_x0_25_setting
+		}
+		hidden_effect = {
+			country_event = { id = realspace.228 }
+		}
+	}
+	
+	# Exotic Subclasses
+	option = {
+		name = "realspace.221.exotic_subclasses_on"
+		trigger = { 
+			NOT = { has_global_flag = no_exotic_subclasses } 
+		}
+		hidden_effect = {
+			country_event = { id = realspace.237 }
+		}
+	}
+	option = {
+		name = "realspace.221.exotic_subclasses_off"
+		trigger = { has_global_flag = no_exotic_subclasses }
+		hidden_effect = {
+			country_event = { id = realspace.237 }
+		}
+	}
+	
+	# Legendary Subclasses
+	option = {
+		name = "realspace.221.legendary_subclasses_on"
+		trigger = { 
+			NOT = { has_global_flag = no_legendary_subclasses } 
+		}
+		hidden_effect = {
+			country_event = { id = realspace.238 }
+		}
+	}
+	option = {
+		name = "realspace.221.legendary_subclasses_off"
+		trigger = { has_global_flag = no_legendary_subclasses }
+		hidden_effect = {
+			country_event = { id = realspace.238 }
+		}
+	}
+	
+	#Disasters
+	option = {
+		name = "realspace.221.disasters_on"
+		trigger = { 
+			NOT = { has_global_flag = no_disaster_events } 
+			NOT = { has_global_flag = anger_galaxy }
+		}
+		hidden_effect = {
+			country_event = { id = realspace.222 }
+		}
+	}
+	option = {
+		name = "realspace.221.disasters_off"
+		trigger = { has_global_flag = no_disaster_events }
+		hidden_effect = {
+			country_event = { id = realspace.222 }
+		}
+	}
+	option = {
+		name = "realspace.221.anger_galaxy"
+		trigger = { has_global_flag = anger_galaxy }
+		hidden_effect = {
+			country_event = { id = realspace.222 }
+		}
+	}
+	
+	#Periodic Events
+	option = {
+		name = "realspace.221.periodic_events_on"
+		trigger = { 
+			NOT = { has_global_flag = no_periodic_events } 
+		}
+		hidden_effect = {
+			country_event = { id = realspace.234 }
+		}
+	}
+	option = {
+		name = "realspace.221.periodic_events_off"
+		trigger = { has_global_flag = no_periodic_events }
+		hidden_effect = {
+			country_event = { id = realspace.234 }
+		}
+	}
+	
+	#Expanse Events
+	option = {
+		name = "realspace.221.expanse_events_on"
+		trigger = { 
+			NOR = { 
+				has_global_flag = no_first_colonization_modifiers
+				has_global_flag = disable_expance_events
+			} 
+		}
+		hidden_effect = {
+			country_event = { id = realspace.235 }
+		}
+	}
+	option = {
+		name = "realspace.221.expanse_events_off"
+		trigger = {
+			OR = {
+				has_global_flag = no_first_colonization_modifiers
+				has_global_flag = disable_expance_events
+			}
+		}
+		hidden_effect = {
+			country_event = { id = realspace.235 }
+		}
+	}
+	
+	#Resource depletion
+	option = {
+		name = "realspace.221.resource_depletion_on"
+		trigger = { 
+			NOT = { has_global_flag = no_resource_depletion } 
+		}
+		hidden_effect = {
+			country_event = { id = realspace.236 }
+		}
+	}
+	option = {
+		name = "realspace.221.resource_depletion_off"
+		trigger = { has_global_flag = no_resource_depletion }
+		hidden_effect = {
+			country_event = { id = realspace.236 }
+		}
+	}
+	
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#New Frontiers disaster option
+country_event = {
+	id = realspace.222
+	title = "realspace.222.name"
+	desc = "realspace.222.desc"
+	picture = GFX_evt_new_frontiers_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.222.disasters_on"
+		trigger = { has_global_flag = no_disaster_events }
+		hidden_effect = {
+			remove_global_flag = no_disaster_events
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.222.disasters_off"
+		trigger = { NOT = { has_global_flag = no_disaster_events } }
+		hidden_effect = {
+			set_global_flag = no_disaster_events
+			if = {
+				limit = { has_global_flag = anger_galaxy }
+				remove_global_flag = anger_galaxy
+			}
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.222.anger_galaxy_on"
+		trigger = { NOT = { has_global_flag = anger_galaxy } }
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = no_disaster_events }
+				remove_global_flag = no_disaster_events
+			}
+			set_global_flag = anger_galaxy
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.222.anger_galaxy_off"
+		trigger = { has_global_flag = anger_galaxy }
+		hidden_effect = {
+			remove_global_flag = anger_galaxy
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.newfrontiers_settings"
+		hidden_effect = {
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#FAQ Real Space
+country_event = {
+	id = realspace.223
+	title = "realspace.223.name"
+	desc = "realspace.223.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Compatibility Real Space
+country_event = {
+	id = realspace.224
+	title = "realspace.224.name"
+	desc = "realspace.224.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "realspace.224.pd_conflict"
+		trigger = { 
+			has_global_flag = planetary_diversity_active
+			has_global_flag = has_new_frontiers_mod
+		}
+		hidden_effect = {
+			country_event = { id = realspace.233 }
+		}
+	}
+
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Nebula Settings
+country_event = {
+	id = realspace.225
+	title = "realspace.225.name"
+	desc = "realspace.225.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "realspace.225.only_vanilla_nebula"
+		trigger = { NOT = { has_global_flag = only_vanilla_nebula_setting } }
+		hidden_effect = {
+			set_global_flag = only_vanilla_nebula_setting
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.225.only_realspace_nebula"
+		trigger = { NOT = { has_global_flag = only_realspace_nebula_setting } }
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = only_vanilla_nebula_setting }
+				remove_global_flag = only_vanilla_nebula_setting
+			}
+			country_event = { id = realspace.219 }
+		}
+	}
+
+	option = {
+		name = "realspace.realspace_settings"
+		hidden_effect = {
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Globula Settings
+country_event = {
+	id = realspace.226
+	title = "realspace.226.name"
+	desc = "realspace.226.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "realspace.226.disable_globula"
+		trigger = { NOT = { has_global_flag = disabled_globula_setting } }
+		hidden_effect = {
+			set_global_flag = disabled_globula_setting
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.226.enable_globula"
+		trigger = { has_global_flag = disabled_globula_setting }
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = disabled_globula_setting }
+				remove_global_flag = disabled_globula_setting
+			}
+			country_event = { id = realspace.219 }
+		}
+	}
+
+	option = {
+		name = "realspace.realspace_settings"
+		hidden_effect = {
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Сivilizations in Sol Cluster Settings
+country_event = {
+	id = realspace.227
+	title = "realspace.227.name"
+	desc = "realspace.227.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = "realspace.227.on_civ_in_solsector"
+		trigger = { NOT = { has_global_flag = on_civ_in_solsector_setting } }
+		hidden_effect = {
+			set_global_flag = on_civ_in_solsector_setting
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.227.off_civ_in_solsector"
+		trigger = { has_global_flag = on_civ_in_solsector_setting }
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = on_civ_in_solsector_setting }
+				remove_global_flag = on_civ_in_solsector_setting
+			}
+			country_event = { id = realspace.219 }
+		}
+	}
+
+	option = {
+		name = "realspace.realspace_settings"
+		hidden_effect = {
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Subclass setting
+country_event = {
+	id = realspace.228
+	title = "realspace.228.name"
+	desc = "realspace.228.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = "realspace.228.subclasses_x0_5"
+		trigger = { NOT = { has_global_flag = subclasses_x0_5_setting } }
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = subclasses_x1_5_setting }
+				remove_global_flag = subclasses_x1_5_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x2_setting }
+				remove_global_flag = subclasses_x2_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x0_25_setting }
+				remove_global_flag = subclasses_x0_25_setting
+			}
+			set_global_flag = subclasses_x0_5_setting
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.228.subclasses_x0_25"
+		trigger = { NOT = { has_global_flag = subclasses_x0_25_setting } }
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = subclasses_x1_5_setting }
+				remove_global_flag = subclasses_x1_5_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x2_setting }
+				remove_global_flag = subclasses_x2_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x0_5_setting }
+				remove_global_flag = subclasses_x0_5_setting
+			}
+			set_global_flag = subclasses_x0_25_setting
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.228.subclasses_x1"
+		trigger = { 
+			OR = { 
+				has_global_flag = subclasses_x1_5_setting
+				has_global_flag = subclasses_x2_setting
+				has_global_flag = subclasses_x0_5_setting
+				has_global_flag = subclasses_x0_25_setting
+			} 
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = subclasses_x1_5_setting }
+				remove_global_flag = subclasses_x1_5_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x2_setting }
+				remove_global_flag = subclasses_x2_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x0_5_setting }
+				remove_global_flag = subclasses_x0_5_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x0_25_setting }
+				remove_global_flag = subclasses_x0_25_setting
+			}
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.228.subclasses_x1_5"
+		trigger = { NOT = { has_global_flag = subclasses_x1_5_setting } }
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = subclasses_x2_setting }
+				remove_global_flag = subclasses_x2_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x0_5_setting }
+				remove_global_flag = subclasses_x0_5_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x0_25_setting }
+				remove_global_flag = subclasses_x0_25_setting
+			}
+			set_global_flag = subclasses_x1_5_setting
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.228.subclasses_x2"
+		trigger = { NOT = { has_global_flag = subclasses_x2_setting } }
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = subclasses_x1_5_setting }
+				remove_global_flag = subclasses_x1_5_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x0_5_setting }
+				remove_global_flag = subclasses_x0_5_setting
+			}
+			if = {
+				limit = { has_global_flag = subclasses_x0_25_setting }
+				remove_global_flag = subclasses_x0_25_setting
+			}
+			set_global_flag = subclasses_x2_setting
+			country_event = { id = realspace.221 }
+		}
+	}
+
+	option = {
+		name = "realspace.realspace_settings"
+		hidden_effect = {
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Ruined Megastructures Settings
+country_event = {
+	id = realspace.229
+	title = "realspace.229.name"
+	desc = "realspace.229.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = "realspace.229.all_ruined_megastructures"
+		trigger = { NOT = { has_global_flag = all_ruined_megastructures } }
+		hidden_effect = {
+			set_global_flag = all_ruined_megastructures
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.229.random_ruined_megastructures"
+		trigger = { has_global_flag = all_ruined_megastructures }
+		hidden_effect = {
+			remove_global_flag = all_ruined_megastructures
+			country_event = { id = realspace.219 }
+		}
+	}
+
+	option = {
+		name = "realspace.realspace_settings"
+		hidden_effect = {
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Leviathans Settings
+country_event = {
+	id = realspace.230
+	title = "realspace.230.name"
+	desc = "realspace.230.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = "realspace.230.spawn_all_leviathans"
+		trigger = { NOT = { has_global_flag = spawn_all_leviathans } }
+		hidden_effect = {
+			set_global_flag = spawn_all_leviathans
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.230.spawn_random_leviathans"
+		trigger = { has_global_flag = spawn_all_leviathans }
+		hidden_effect = {
+			remove_global_flag = spawn_all_leviathans
+			country_event = { id = realspace.219 }
+		}
+	}
+
+	option = {
+		name = "realspace.realspace_settings"
+		hidden_effect = {
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Endgame Crisis Settings
+country_event = {
+	id = realspace.231
+	title = "realspace.231.name"
+	desc = "realspace.231.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = "realspace.231.all_endgame_crisis"
+		trigger = { NOT = { has_global_flag = all_endgame_crisis } }
+		hidden_effect = {
+			set_global_flag = all_endgame_crisis
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.231.random_endgame_crisis"
+		trigger = { has_global_flag = all_endgame_crisis }
+		hidden_effect = {
+			remove_global_flag = all_endgame_crisis
+			country_event = { id = realspace.219 }
+		}
+	}
+
+	option = {
+		name = "realspace.realspace_settings"
+		hidden_effect = {
+			country_event = { id = realspace.219 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Planetary Stations Addon
+country_event = {
+	id = realspace.232
+	title = "realspace.232.name"
+	desc = "realspace.232.desc"
+	picture = GFX_evt_planetarystations_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	#Planetary Stations Settings
+	option = {
+		name = "realspace.232.planetarystations_settings"
+		hidden_effect = {
+			country_event = { id = realspace.242 }
+		}
+	}
+
+	option = {
+		name = "realspace.addons"
+		hidden_effect = {
+			country_event = { id = realspace.210 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#PD Conflict
+country_event = {
+	id = realspace.233
+	title = "realspace.233.name"
+	desc = "realspace.233.desc"
+	picture = GFX_evt_real_space_news
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#New Frontiers Periodic Events
+country_event = {
+	id = realspace.234
+	title = "realspace.234.name"
+	desc = "realspace.234.desc"
+	picture = GFX_evt_new_frontiers_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.234.periodic_events_on"
+		trigger = { has_global_flag = no_periodic_events }
+		hidden_effect = {
+			remove_global_flag = no_periodic_events
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.234.periodic_events_off"
+		trigger = { NOT = { has_global_flag = no_periodic_events } }
+		hidden_effect = {
+			set_global_flag = no_periodic_events
+			country_event = { id = realspace.221 }
+		}
+	}
+	
+	option = {
+		name = "realspace.newfrontiers_settings"
+		hidden_effect = {
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#New Frontiers Expanse Events
+country_event = {
+	id = realspace.235
+	title = "realspace.235.name"
+	desc = "realspace.235.desc"
+	picture = GFX_evt_new_frontiers_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.235.expanse_events_on"
+		trigger = {
+			OR = {
+				has_global_flag = no_first_colonization_modifiers
+				has_global_flag = disable_expance_events
+			}
+		}
+		hidden_effect = {
+			remove_global_flag = no_first_colonization_modifiers
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.235.expanse_events_off"
+		trigger = { 
+			NOR = { 
+				has_global_flag = no_first_colonization_modifiers
+				has_global_flag = disable_expance_events				
+			} 
+		}
+		hidden_effect = {
+			set_global_flag = no_first_colonization_modifiers
+			country_event = { id = realspace.221 }
+		}
+	}
+	
+	option = {
+		name = "realspace.newfrontiers_settings"
+		hidden_effect = {
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#New Frontiers Resource depletion
+country_event = {
+	id = realspace.236
+	title = "realspace.236.name"
+	desc = "realspace.236.desc"
+	picture = GFX_evt_new_frontiers_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.236.resource_depletion_on"
+		trigger = { has_global_flag = no_resource_depletion }
+		hidden_effect = {
+			remove_global_flag = no_resource_depletion
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.236.resource_depletion_off"
+		trigger = { NOT = { has_global_flag = no_resource_depletion } }
+		hidden_effect = {
+			set_global_flag = no_resource_depletion
+			country_event = { id = realspace.221 }
+		}
+	}
+	
+	option = {
+		name = "realspace.newfrontiers_settings"
+		hidden_effect = {
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#New Frontiers Exotic Subclasses
+country_event = {
+	id = realspace.237
+	title = "realspace.237.name"
+	desc = "realspace.237.desc"
+	picture = GFX_evt_new_frontiers_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.237.exotic_subclasses_on"
+		trigger = { has_global_flag = no_exotic_subclasses }
+		hidden_effect = {
+			remove_global_flag = no_exotic_subclasses
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.237.exotic_subclasses_off"
+		trigger = { NOT = { has_global_flag = no_exotic_subclasses } }
+		hidden_effect = {
+			set_global_flag = no_exotic_subclasses
+			country_event = { id = realspace.221 }
+		}
+	}
+	
+	option = {
+		name = "realspace.newfrontiers_settings"
+		hidden_effect = {
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#New Frontiers Legendary Subclasses
+country_event = {
+	id = realspace.238
+	title = "realspace.238.name"
+	desc = "realspace.238.desc"
+	picture = GFX_evt_new_frontiers_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.238.legendary_subclasses_on"
+		trigger = { has_global_flag = no_legendary_subclasses }
+		hidden_effect = {
+			remove_global_flag = no_legendary_subclasses
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.238.legendary_subclasses_off"
+		trigger = { NOT = { has_global_flag = no_legendary_subclasses } }
+		hidden_effect = {
+			set_global_flag = no_legendary_subclasses
+			country_event = { id = realspace.221 }
+		}
+	}
+	
+	option = {
+		name = "realspace.newfrontiers_settings"
+		hidden_effect = {
+			country_event = { id = realspace.221 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Solar Storm Settings
+country_event = {
+	id = realspace.239
+	title = "realspace.239.name"
+	desc = "realspace.239.desc"
+	picture = GFX_evt_solar_storm_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	#Hyperspace Storm
+	option = {
+		name = "realspace.239.hyperspace_storm_on"
+		trigger = { 
+			NOT = { has_global_flag = hyperspace_storm_disabled }
+		}
+		hidden_effect = {
+			country_event = { id = realspace.240 }
+		}
+	}
+	option = {
+		name = "realspace.239.hyperspace_storm_off"
+		trigger = { 
+			has_global_flag = hyperspace_storm_disabled
+		}
+		hidden_effect = {
+			country_event = { id = realspace.240 }
+		}
+	}
+	
+	#Solar Storm
+	option = {
+		name = "realspace.239.solar_storm_on"
+		trigger = { 
+			NOR = { 
+				has_global_flag = solar_storm_disabled
+				has_global_flag = solarstorm_hard_mod
+				has_global_flag = solarstorm_easy_mod
+			}
+		}
+		hidden_effect = {
+			country_event = { id = realspace.241 }
+		}
+	}
+	option = {
+		name = "realspace.239.solar_storm_hard"
+		trigger = { 
+			has_global_flag = solarstorm_hard_mod
+		}
+		hidden_effect = {
+			country_event = { id = realspace.241 }
+		}
+	}
+	option = {
+		name = "realspace.239.solar_storm_easy"
+		trigger = { 
+			has_global_flag = solarstorm_easy_mod
+		}
+		hidden_effect = {
+			country_event = { id = realspace.241 }
+		}
+	}
+	option = {
+		name = "realspace.239.solar_storm_off"
+		trigger = { 
+			has_global_flag = solar_storm_disabled
+		}
+		hidden_effect = {
+			country_event = { id = realspace.241 }
+		}
+	}
+	
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Solar Storm - Hyperspace Storm Settings
+country_event = {
+	id = realspace.240
+	title = "realspace.240.name"
+	desc = "realspace.240.desc"
+	picture = GFX_evt_solar_storm_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.240.hyperspace_storm_on"
+		trigger = { 
+			has_global_flag = hyperspace_storm_disabled
+		}
+		hidden_effect = {
+			remove_global_flag = hyperspace_storm_disabled
+			country_event = { id = realspace.239 }
+		}
+	}
+	option = {
+		name = "realspace.240.hyperspace_storm_off"
+		trigger = { 
+			NOT = { has_global_flag = hyperspace_storm_disabled }
+		}
+		hidden_effect = {
+			set_global_flag = hyperspace_storm_disabled
+			country_event = { id = realspace.239 }
+		}
+	}
+	
+	option = {
+		name = "realspace.solarstorm_settings"
+		hidden_effect = {
+			country_event = { id = realspace.239 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Solar Storm - Solar Storm Settings
+country_event = {
+	id = realspace.241
+	title = "realspace.241.name"
+	desc = "realspace.241.desc"
+	picture = GFX_evt_solar_storm_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	option = {
+		name = "realspace.241.solar_storm_hard"
+		trigger = { 
+			NOT = { has_global_flag = solarstorm_hard_mod }
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = solar_storm_disabled }
+				remove_global_flag = solar_storm_disabled
+			}
+			if = {
+				limit = { has_global_flag = solarstorm_easy_mod }
+				remove_global_flag = solarstorm_easy_mod
+			}
+			set_global_flag = solarstorm_hard_mod
+			country_event = { id = realspace.239 }
+		}
+	}
+	option = {
+		name = "realspace.241.solar_storm_normal"
+		trigger = {
+			OR = {
+				has_global_flag = solar_storm_disabled
+				has_global_flag = solarstorm_hard_mod
+				has_global_flag = solarstorm_easy_mod
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = solar_storm_disabled }
+				remove_global_flag = solar_storm_disabled
+			}
+			if = {
+				limit = { has_global_flag = solarstorm_hard_mod }
+				remove_global_flag = solarstorm_hard_mod
+			}
+			if = {
+				limit = { has_global_flag = solarstorm_easy_mod }
+				remove_global_flag = solarstorm_easy_mod
+			}
+			country_event = { id = realspace.239 }
+		}
+	}
+	option = {
+		name = "realspace.241.solar_storm_easy"
+		trigger = { 
+			NOT = { has_global_flag = solarstorm_easy_mod }
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = solar_storm_disabled }
+				remove_global_flag = solar_storm_disabled
+			}
+			if = {
+				limit = { has_global_flag = solarstorm_hard_mod }
+				remove_global_flag = solarstorm_hard_mod
+			}
+			set_global_flag = solarstorm_easy_mod
+			country_event = { id = realspace.239 }
+		}
+	}
+	option = {
+		name = "realspace.241.solar_storm_off"
+		trigger = { 
+			NOT = { has_global_flag = solar_storm_disabled }
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_global_flag = solarstorm_hard_mod }
+				remove_global_flag = solarstorm_hard_mod
+			}
+			if = {
+				limit = { has_global_flag = solarstorm_easy_mod }
+				remove_global_flag = solarstorm_easy_mod
+			}
+			set_global_flag = solar_storm_disabled
+			country_event = { id = realspace.239 }
+		}
+	}
+	
+	option = {
+		name = "realspace.solarstorm_settings"
+		hidden_effect = {
+			country_event = { id = realspace.239 }
+		}
+	}
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Planetary Stations Settings
+country_event = {
+	id = realspace.242
+	title = "realspace.242.name"
+	desc = "realspace.242.desc"
+	picture = GFX_evt_planetarystations_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	#Stations Build
+	option = {
+		name = "realspace.242.stations_build_on"
+		trigger = { 
+			NOT = { has_global_flag = no_stations_build }
+		}
+		hidden_effect = {
+			country_event = { id = realspace.243 }
+		}
+	}
+	option = {
+		name = "realspace.242.stations_build_off"
+		trigger = { 
+			has_global_flag = no_stations_build
+		}
+		hidden_effect = {
+			country_event = { id = realspace.243 }
+		}
+	}
+	
+	option = {
+		name = "realspace.realspace_menu"
+		hidden_effect = {
+			country_event = { id = realspace.206 }
+		}
+	}
+	option = {
+		name = "realspace.close"
+		hidden_effect = {
+			country_event = { id = realspace.1000 }
+		}
+	}
+}
+
+#Planetary Stations - Stations Build
+country_event = {
+	id = realspace.243
+	title = "realspace.243.name"
+	desc = "realspace.243.desc"
+	picture = GFX_evt_planetarystations_menu
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+
+	#Stations Build
+	option = {
+		name = "realspace.243.stations_build_off"
+		trigger = { 
+			NOT = { has_global_flag = no_stations_build }
+		}
+		hidden_effect = {
+			set_global_flag = hyperspace_storm_disabled
+			country_event = { id = realspace.242 }
+		}
+	}
+	option = {
+		name = "realspace.243.stations_build_on"
+		trigger = { 
+			has_global_flag = no_stations_build
+		}
+		hidden_effect = {
+			remove_global_flag = hyperspace_storm_disabled
+			country_event = { id = realspace.242 }
+		}
+	}
+}
+
+
+#Apply Settings
+country_event = {
+	id = realspace.1000
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_global_flag = apply_real_space_settings }
+	}
+	
+	immediate = {
+		
+		#Set Subclass (Old Version)
+		if = {
+			limit = { has_global_flag = has_new_frontiers_mod }
+			fire_on_action = { on_action = on_set_subclass }
+		}
+		
+		set_global_flag = apply_real_space_settings
+		fire_on_action = { on_action = on_applying_rs_settings }
+	}
+}
