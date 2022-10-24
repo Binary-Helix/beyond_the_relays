@@ -3,8 +3,101 @@
 @rings_scale = 1.3
 @rings_height = -115
 
-# Large
 
+
+#Jupiter
+entity = {
+	name = "jupiter_rings_02_low_attach"
+	pdxmesh = "planetary_rings_01_mesh"
+	
+	meshsettings = {
+	name = "patternShape"
+	texture_diffuse = "jupiter_rings_diffuse.dds"
+	texture_normal = "jupiter_rings_normal.dds"
+	texture_specular = "ring_tiling_specular.dds"
+	shader="PdxMeshPlanetRingsRS"
+	}
+	scale = 10.0
+}
+
+entity = {
+	name = "jupiter_rings_entity"
+	cull_radius = 500
+	locator = { name = "planet" position = { 0 @rings_height 0 } rotation = { 0 0 3 }}
+	attach = { "planet" = "jupiter_rings_02_low_attach"}
+	scale = @rings_scale
+}
+
+#Saturn
+entity = {
+	name = "saturn_rings_01_large_entity"
+	cull_radius = 500
+	locator = { name = "planet" position = { 0 @rings_height 0 } rotation = { 0 0 3 }}
+	attach = { "planet" = "gas_giant_rings_01_large_attach"}
+	scale = @rings_scale
+}
+
+entity = {
+	name = "saturn_rings_01_large_attach"
+	pdxmesh = "planetary_rings_02_mesh"
+	
+	meshsettings = {
+	name = "patternShape"
+	texture_diffuse = "saturn_ring_diffuse.dds"
+	texture_normal = "saturn_ring_normal.dds"
+	texture_specular = "ring_tiling_specular.dds"
+	shader="PdxMeshPlanetRingsRS"
+	}
+	scale = 10.0
+}
+
+#Uranus
+entity = {
+	name = "uranus_rings_02_low_attach"
+	pdxmesh = "planetary_rings_01_mesh"
+	
+	meshsettings = {
+	name = "patternShape"
+	texture_diffuse = "uranus_rings_diffuse.dds"
+	texture_normal = "uranus_rings_normal.dds"
+	texture_specular = "ring_tiling_specular.dds"
+	shader="PdxMeshPlanetRingsRS"
+	}
+	scale = 7.0
+}
+
+entity = {
+	name = "uranus_rings_entity"
+	cull_radius = 500
+	locator = { name = "planet" position = { 0 @rings_height 0 } rotation = { 0 0 70 }}
+	attach = { "planet" = "uranus_rings_02_low_attach"}
+	scale = @rings_scale
+}
+
+#Neptune
+entity = {
+	name = "neptune_rings_02_low_attach"
+	pdxmesh = "planetary_rings_01_mesh"
+	
+	meshsettings = {
+	name = "patternShape"
+	texture_diffuse = "neptune_rings_diffuse.dds"
+	texture_normal = "neptune_rings_normal.dds"
+	texture_specular = "ring_tiling_specular.dds"
+	shader="PdxMeshPlanetRingsRS"
+	}
+	scale = 7.0
+}
+
+entity = {
+	name = "neptune_rings_entity"
+	cull_radius = 500
+	locator = { name = "planet" position = { 0 @rings_height 0 } rotation = { 0 0 3 }}
+	attach = { "planet" = "neptune_rings_02_low_attach"}
+	scale = @rings_scale
+}
+
+# Large
 entity = {
 	name = "gas_giant_rings_01_large_entity"
 	cull_radius = 500
@@ -431,14 +524,6 @@ entity = {
 	shader="PdxMeshPlanetRingsRS"
 	}
 	scale = 7.0
-}
-
-entity = {
-	name = "uranus_rings_entity"
-	cull_radius = 500
-	locator = { name = "planet" position = { 0 @rings_height 0 } rotation = { 0 0 70 }}
-	attach = { "planet" = "gas_giant_rings_02_low_attach"}
-	scale = @rings_scale
 }
 
 # Small Planet Rings

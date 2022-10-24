@@ -922,10 +922,24 @@ event = {
 	immediate = {
 		# Sol System 
 		every_galaxy_planet = {
+			limit = { has_planet_flag = jupiter }
+			save_event_target_as = planet_location_rings
+			create_ambient_object = {
+				type = jupiter_rings
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+			}
+			set_planet_flag = has_rings_02_low
+		}
+		every_galaxy_planet = {
 			limit = { has_planet_flag = saturn }
 			save_event_target_as = planet_location_rings
 			create_ambient_object = {
-				type = gas_giant_rings_01_large
+				type = saturn_rings_01_large
 				location = this
 			}
 			last_created_ambient_object = {
@@ -940,6 +954,20 @@ event = {
 			save_event_target_as = planet_location_rings
 			create_ambient_object = {
 				type = uranus_rings
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = event_target:planet_location_rings
+				}
+			}
+			set_planet_flag = has_rings_02_low
+		}
+		every_galaxy_planet = {
+			limit = { has_planet_flag = neptune }
+			save_event_target_as = planet_location_rings
+			create_ambient_object = {
+				type = neptune_rings
 				location = this
 			}
 			last_created_ambient_object = {
