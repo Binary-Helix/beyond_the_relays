@@ -1,0 +1,75 @@
+@defense_platform_scale = 1.0
+@defense_platform_gamescale = 20
+
+@defense_weapons_scale = 1.0
+
+######################
+## DEFENSE PLATFORM ##
+######################
+
+entity = {
+	name = "mec_asari_01_military_station_small_entity"
+	pdxmesh = "mec_asari_01_defense_platform_mesh"
+		default_state = "idle"
+		state = { name = "idle" state_time = 5
+			event = { time = 0.0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0.0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0.0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0.0 node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0.0 node = "light_locator_05" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0.0 node = "light_locator_06" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			event = { time = 0.0 node = "light_locator_07" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+			
+			event = { trigger_once = yes sound = { soundeffect = "defense_station_idle_hum" } }
+		}
+		state = { name = "death" state_time = 2 looping = no
+			event = { time = 0.0 node = "explosion_1" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+			event = { time = 0.5 node = "explosion_2" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+			event = { time = 1.5 node = "explosion_3" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+			
+			event = { time = 1.9 particle = "medium_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+		}		
+		
+	scale = @defense_platform_scale
+	
+	game_data = {
+		size = @defense_platform_gamescale
+	}
+}
+
+## CONSTRUCTION ##
+
+entity = {
+	name = "mec_asari_01_military_station_small_construction_entity"
+	pdxmesh = "mec_asari_01_defense_platform_mesh"	
+		default_state = "idle"
+		state = { name = "idle" state_time = 5
+			event = { trigger_once = yes sound = { soundeffect = "place_construction" } }
+		}
+	
+	scale = @defense_platform_scale
+}
+
+######################
+## DEFENSE SECTIONS ##
+######################
+
+## NOTE: strike craft point to the large_gun_01 locator!!
+
+entity = {
+	name = "mec_asari_01_military_station_section_heavy_entity"
+	pdxmesh = "mec_asari_01_defense_platform_weapons_mesh"	
+	scale = @defense_weapons_scale
+}
+
+entity = {
+	name = "mec_asari_01_military_station_section_medium_entity"
+	pdxmesh = "mec_asari_01_defense_platform_weapons_mesh"	
+	scale = @defense_weapons_scale
+}
+
+entity = {
+	name = "mec_asari_01_military_station_section_light_entity"
+	pdxmesh = "mec_asari_01_defense_platform_weapons_mesh"	
+	scale = @defense_weapons_scale
+}

@@ -1,0 +1,117 @@
+# viola survey per Asari
+
+entity = {
+	name = "mec_asari_01_survey_base_effect_entity"
+	locator = { name = "root" 	position = { 0 0 0 } }
+	cull_radius = 10
+	
+	default_state = mec_asari_working
+	state = { name = "mec_asari_working"	state_time = 5
+		event = { time = 0 particle = "mec_asari_survey_effect"	keep_particle = yes trigger_once = yes sound = { soundeffect = survey_progress } }
+	}
+	
+	scale = 1
+
+	
+	attach = { root = mec_asari_scan_detail_entity }
+	attach = { root = mec_asari_scan_detail_inverse_entity }
+	attach = { root = mec_asari_survey_light_entity }
+	attach = { root = mec_asari_survey_base_inverse_effect_entity }
+	attach = { root = mec_asari_survey_base_forward_effect_entity }
+}
+
+entity = {
+	name = "mec_asari_survey_base_forward_effect_entity"
+	pdxmesh = "survey_base_effect_mesh"
+	
+	default_state = mec_asari_working
+	state = { name = "mec_asari_working"	animation = "survey" animation_blend_time = 0.0 }
+	
+	scale = 1
+	
+	meshsettings = {
+		name = "polySurface8Shape"
+		texture_diffuse = "mec_asari_scan_cone_diffuse.dds"
+	}
+
+	game_data = {
+		uv_animation_speed 		= 0.25
+		uv_animation_direction 	= { 0.0 -1.0 }
+	}
+}
+
+entity = {
+	name = "mec_asari_survey_base_inverse_effect_entity"
+	pdxmesh = "survey_base_inverse_effect_mesh"
+	
+	default_state = mec_asari_working
+	state = { name = "mec_asari_working"	animation = "survey" animation_blend_time = 0.0 }
+	
+	scale = 1
+	
+	meshsettings = {
+		name = "polySurface8Shape"
+		texture_diffuse = "mec_asari_scan_cone_diffuse.dds"
+	}
+	
+	game_data = {
+		uv_animation_speed 		= 0.25
+		uv_animation_direction 	= { 0.0 1.0 }
+	}
+}
+
+entity = {
+	name = "mec_asari_survey_light_entity"
+	pdxmesh = "survey_light_mesh"
+	
+	default_state = mec_asari_working
+	state = { name = "mec_asari_working"	animation = "scan" animation_blend_time = 0.0 }
+	
+	meshsettings = {
+		name = "polySurface1Shape"
+		texture_diffuse = "mec_asari_scan_cone_light_diffuse.dds"
+	}
+	
+	scale = 1.0
+}
+
+entity = {
+	name = "mec_asari_scan_detail_entity"
+	pdxmesh = "scan_detail_mesh"
+	
+	default_state = mec_asari_working
+	state = { name = "mec_asari_working"	animation = "scan" animation_blend_time = 0.0 }
+	
+	meshsettings = {
+		name = "pPlane3Shape"
+		texture_diffuse = "mec_asari_scan_detail_diffuse.dds"
+	}
+	
+	scale = 1.0
+}
+
+entity = {
+	name = "mec_asari_scan_detail_inverse_entity"
+	pdxmesh = "scan_detail_mesh"
+	
+	default_state = mec_asari_working
+	state = { name = "mec_asari_working"	animation = "scan" animation_blend_time = 0.0 animation_speed = -1 }
+	
+	meshsettings = {
+		name = "pPlane3Shape"
+		texture_diffuse = "mec_asari_scan_detail_diffuse.dds"
+	}
+	
+	scale = 1.0
+}
+
+entity = {
+	name = "mec_asari_ship_orbit_entity"
+	
+	default_state = "mec_asari_idle"
+	state = { name = "mec_asari_idle"
+		start_event = { particle = "mec_asari_ship_orbit_effect" }
+	}
+	
+	scale = 1
+}
