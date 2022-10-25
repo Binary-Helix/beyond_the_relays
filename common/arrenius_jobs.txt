@@ -1,0 +1,369 @@
+#Custodian Drone
+custodian_drone = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_maintenance_depot
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	resources = {
+		category = planet_jobs
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { is_machine_empire = yes }
+			}
+			unity = 5
+		}
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_amenities_no_happiness_add = 4
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+		planet_stability_add = 1
+		planet_crime_add = -5
+	}
+
+
+	weight = {
+		weight = @maintenance_drone_job
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		modifier = {
+			mult = value:job_weights_modifier|JOB|maintenance_drone|RESOURCE|unity|FACTOR|0.25|
+		}
+		modifier = {
+			factor = 1.1
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+
+		modifier = {
+			factor = 1000 # <- hive mind amenities jobs are non specialist so they have base weight 1 instead of 1000 but we still want them
+			NOT = { has_job = maintenance_drone }
+			planet = {
+				free_amenities < 3
+			}
+		}
+
+		modifier = {
+			factor = 1000 # <- hive mind amenities jobs are non specialist so they have base weight 1 instead of 1000 but we still want them
+			has_job = maintenance_drone
+			planet = {
+				free_amenities < 8
+			}
+		}
+	}
+}
+
+#Chronicler Drone
+death_chronicler = {
+	category = complex_drone
+	condition_string = DRONE_JOB_TRIGGER
+	building_icon = building_maintenance_depot
+
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_drone_job
+
+	resources = {
+		category = planet_culture_workers
+		produces = {
+			unity = 4
+		}
+		upkeep = {
+			consumer_goods = 3
+		}
+	}
+
+	planet_modifier = {
+		planet_stability_add = 2.5
+	}
+
+	weight = {
+		weight = @maintenance_drone_job
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		modifier = {
+			mult = value:job_weights_modifier|JOB|maintenance_drone|RESOURCE|unity|FACTOR|0.25|
+		}
+		modifier = {
+			factor = 1.1
+			exists = owner
+			years_passed < 1
+			owner = { has_valid_civic = civic_machine_assimilator }
+			has_trait = trait_cybernetic
+		}
+
+		modifier = {
+			factor = 1000 # <- hive mind amenities jobs are non specialist so they have base weight 1 instead of 1000 but we still want them
+			NOT = { has_job = maintenance_drone }
+			planet = {
+				free_amenities < 3
+			}
+		}
+
+		modifier = {
+			factor = 1000 # <- hive mind amenities jobs are non specialist so they have base weight 1 instead of 1000 but we still want them
+			has_job = maintenance_drone
+			planet = {
+				free_amenities < 8
+			}
+		}
+	}
+}
+
+#Gang Enforcer
+
+gang_enforcer = {
+	category = specialist
+	condition_string = BATTLE_THRALL_JOB_TRIGGER
+	building_icon = building_precinct_house
+	clothes_texture_index = 5
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible = {
+		battle_thrall_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_enforcers
+		produces = {
+			}
+			unity = 3
+			energy = 6
+		}
+		upkeep = {
+			trigger = {
+				exists = planet
+				planet = { has_modifier = anticrime_campaign }
+			}
+			energy = 2
+		}
+	}
+
+	pop_modifier = {
+		pop_defense_armies_add = 2
+	}
+
+	planet_modifier = {
+		planet_crime_add = -10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = { has_modifier = anticrime_campaign }
+		}
+		modifier = {
+			planet_crime_add = -10
+		}
+	}
+
+	weight = {
+		weight = @specialist_job_weight
+
+		modifier = {
+			mult = value:job_weights_modifier|JOB|enforcer|RESOURCE|unity|FACTOR|0.25|
+			owner = { has_active_tradition = tr_domination_judgment_corps }
+		}
+
+		modifier = {
+			factor = 10
+			has_job = enforcer
+		}
+		modifier = {
+			factor = 10
+			planet = { planet_crime > 15}
+			NOT = { has_job = enforcer }
+		}
+		modifier = {
+			factor = 0.01
+			planet = { planet_crime <= 15}
+			NOT = { has_job = enforcer }
+		}
+
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOT = { has_trait = trait_mechanical }
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_resilient
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_very_strong
+		}
+		modifier = {
+			factor = 1.5
+			has_trait = trait_strong
+		}
+		modifier = {
+			factor = 10
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_military }
+		}
+		modifier = {
+			factor = 0.50
+			has_trait = trait_weak
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_cybernetic
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_presapient_earthbound
+		}
+		modifier = {
+			factor = 1.1
+			has_trait = trait_limited_regeneration
+		}
+		modifier = {
+			factor = 0.8
+			is_enslaved = yes
+			has_slavery_type = { type = slavery_indentured }
+		}
+		modifier = {
+			factor = 2
+			has_trait = trait_lithoid
+		}
+	}
+
+	militia = {
+		category = worker
+		condition_string = SOLDIER_JOB_TRIGGER
+		building_icon = building_stronghold
+		clothes_texture_index = 4
+	
+		country_modifier = {
+			country_naval_cap_add = 2
+		}
+		resources = {
+			category = planet_soldiers
+		}
+	
+		triggered_country_modifier = {
+			potential = {
+				exists = planet
+				planet = {
+					exists = owner
+					owner = { has_technology = "tech_ground_defense_planning" }
+				}
+			}
+			modifier = {
+				country_naval_cap_add = 2
+			}
+		}
+	
+		pop_modifier = {
+			pop_defense_armies_add = 2
+		}
+	
+		triggered_planet_modifier = {
+			modifier = {
+				planet_stability_add = 1
+			}
+			mult = planet.modifier:job_soldier_stability_add
+		}
+	
+		possible_pre_triggers = {
+			has_owner = yes
+			is_being_purged = no
+			is_being_assimilated = no
+			is_sapient = yes
+		}
+	
+		possible = {
+			soldier_job_check_trigger = yes
+			owner = { is_gestalt = no }
+		}
+	
+		weight = {
+			weight = @soldier_job_weight
+			modifier = {
+				factor = 10
+				exists = planet
+				planet = { has_modifier = martial_law }
+			}
+			modifier = {
+				factor = 2
+				has_trait = trait_resilient
+			}
+			modifier = {
+				factor = 2
+				has_trait = trait_very_strong
+			}
+			modifier = {
+				factor = 1.5
+				has_trait = trait_strong
+			}
+			modifier = {
+				factor = 0.5
+				has_trait = trait_weak
+			}
+			modifier = {
+				factor = 0.1
+				is_enslaved = yes
+				NOT = { has_slavery_type = { type = slavery_military } }
+			}
+			modifier = {
+				factor = 10
+				is_enslaved = yes
+				has_slavery_type = { type = slavery_military }
+			}
+			modifier = {
+				factor = 0.1
+				can_take_servant_job = yes
+			}
+			modifier = {
+				factor = 1.1
+				has_trait = trait_cybernetic
+			}
+			modifier = {
+				factor = 2
+				has_trait = trait_presapient_earthbound
+			}
+			modifier = {
+				factor = 1.1
+				has_trait = trait_limited_regeneration
+			}
+			modifier = {
+				factor = 0
+				species = { can_be_soldier = no }
+			}
+			modifier = {
+				factor = 2
+				has_trait = trait_lithoid
+			}
+		}
+	}
