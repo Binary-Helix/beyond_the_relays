@@ -1,0 +1,92 @@
+######################
+### Rare Resources ###
+######################
+
+# Element Zero Mining
+tech_mine_eezo_extraction = {
+	icon = tech_eezo_extraction
+	cost = @tier2cost1
+	area = physics
+	tier = 2
+	category = { particles }	
+	prerequisites = { "tech_space_construction" }
+	weight = @tier2weight1
+	
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_particles"
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {				
+				any_planet_within_border = {
+					OR = {
+						has_deposit = d_element_zero_1
+						has_deposit = d_element_zero_2
+						has_deposit = d_element_zero_3
+					}
+				}	
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 5 #important resource
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_particles"
+			}
+		}
+	}
+}
+
+# Exotic Gas Extraction
+tech_mine_helium_3 = {
+	cost = @tier2cost1
+	area = engineering
+	tier = 2
+	category = { materials }
+	prerequisites = { "tech_space_construction" }
+	weight = @tier2weight1
+	
+	weight_modifier = {
+		factor = 2
+		modifier = {
+			factor = 2
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {				
+				any_planet_within_border = {
+					OR = {
+						has_deposit = d_helium_3_1
+						has_deposit = d_helium_3_2
+						has_deposit = d_helium_3_3
+					}
+				}	
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 4 #strategic resource
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_materials"
+			}
+		}
+	}	
+}
