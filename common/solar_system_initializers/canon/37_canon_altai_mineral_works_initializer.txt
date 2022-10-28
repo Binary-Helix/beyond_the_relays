@@ -1,0 +1,116 @@
+###############################
+##### ALTAI MINERAL WORKS #####
+###############################
+
+##### HADES NEXUS #####
+
+sys_pamyat_init = {
+    name = "Pamyat"
+    class = "sc_g"
+	max_instances = 1
+
+    flags = { attican_traverse_system hades_nexus_system pamyat_system btr_system custom_system }
+	
+    planet = {
+		name = "Pamyat"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 30
+		flags = { pamyat_star }
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 500
+	}
+
+    planet = {
+        name = "Komarov"
+        class = pc_iron
+        orbit_distance = 120
+        orbit_angle = 128
+        has_ring = no
+		size = 17
+		flags = { komarov_planet btr_custom }
+		init_effect = {
+			add_deposit = d_iridium_4
+		}
+    }
+
+    planet = {
+        name = "Dobrovolski"
+        class = pc_barren_cold
+        orbit_distance = 120
+        orbit_angle = 187
+        has_ring = no
+		size = 17
+		flags = { dobrovolski_planet btr_custom }
+		init_effect = {
+			add_deposit = d_element_zero_3
+			add_deposit = d_minerals_3
+			add_deposit = d_trade_value_2
+		}
+    }
+
+    planet = {
+        name = "Patsayev"
+        class = pc_arctic
+        orbit_distance = 120
+        orbit_angle = 260
+        has_ring = no
+		size = 15
+		flags = { patsayev_planet btr_custom }
+		entity = "cryovolcanic_planet_01_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = cryovolcanic_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Volkov"
+        class = pc_mephitic
+        orbit_distance = 120
+        orbit_angle = 195
+        has_ring = no
+		size = 4
+		flags = { volkov_planet btr_custom } 
+		init_effect = {
+			add_deposit = d_rich_iridium_deposits
+			add_deposit = d_trade_value_3
+			add_modifier = {
+				modifier = lichen_world
+				days = -1
+			}
+		}
+		moon = {
+			name = "Zenevieva"
+			class = pc_asteroid
+			size = 2
+			orbit_angle = 36
+			orbit_distance = 20
+			flags = { zenevieva_planet btr_custom }
+		}
+		
+		moon = {
+			name = "Alena"
+			class = pc_asteroid
+			size = 3
+			orbit_angle = 36
+			orbit_distance = 5
+			flags = { alena_planet btr_custom }
+		}		
+    }
+
+    planet = {
+        name = "Quiet Eddy"
+        class = pc_asteroid
+        orbit_distance = 20
+        orbit_angle = 276
+        has_ring = no
+		size = 4
+		flags = { quiet_eddy_planet btr_custom }
+    }
+}

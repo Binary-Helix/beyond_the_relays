@@ -1,0 +1,286 @@
+#####################################
+##### UNITED ANHUR CORPORATIONS #####
+#####################################
+
+#####EAGLE NEBULA#####
+
+sys_amun_init = {
+    name = "Amun"
+    class = sc_g
+    flags = { attican_traverse_system eagle_nebula_system amun_system btr_system custom_system empire_home_system }
+	init_effect = { 
+		random_country = { 
+			limit = { has_country_flag = united_anhur_corporations } 
+			save_global_event_target_as = united_anhur_corporations
+		}	
+	generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+    planet = {
+		name = "Amun"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 28
+		flags = { amun_star }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+
+			create_ambient_object = {
+				type = "nebula_4"
+				entity_offset_height = -5
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+    }
+
+    planet = {
+        name = "Sekhmet"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 198
+        has_ring = yes
+		size = 30
+		flags = { sekhmet_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_element_zero_2
+			add_deposit = d_helium_3_2
+		}
+    }
+
+    planet = {
+        name = "Sobek"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 192
+        has_ring = no
+		size = 35
+		flags = { sobek_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_helium_3_2
+			add_deposit = d_palladium_1
+			add_modifier = {
+				modifier = extensive_moon_system
+				days = -1
+			}
+		}	
+		moon = {
+			name = "Sobek a"
+			count = 1
+			class = pc_frozen
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 4
+
+		}
+		moon = {
+			name = "Sobek b"
+			count = 1
+			class = pc_barren
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 6
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_minerals_2
+	
+			}
+		}
+        moon = {
+			name = "Heqet"
+			class = pc_continental
+			orbit_distance = 5
+			orbit_angle = 250
+			has_ring = no
+			size = 6
+			entity = "forest_planet_01_entity"
+			flags = { heqet_planet btr_custom }
+			init_effect = {
+				add_modifier = {
+					modifier = forest_world
+					days = -1
+				}
+			}
+        }
+		moon = {
+			name = "Xarla"
+			count = 1
+			class = pc_mephitic
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 4
+			entity = "mephitic_lichen_planet_01_entity"
+			flags = { xarla_planet btr_custom }
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_minerals_2
+				add_modifier = {
+					modifier = lichen_world
+					days = -1
+				}
+			}
+		}
+		moon = {
+			name = "Turrga"
+			count = 1
+			class = pc_barren_cold
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			flags = { turrga_planet btr_custom }
+			size = 8
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_minerals_4
+			}			
+		}
+    }
+
+    planet = {
+        name = "Anhur"
+        class = pc_alpine
+        orbit_distance = 100
+        orbit_angle = 294
+		size = 17
+        has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { anhur_planet btr_custom }
+
+		entity = "boreal_planet_01_entity"
+
+		init_effect = {
+			add_modifier = {
+				modifier = boreal_world
+				days = -1
+			}
+			random_country = {
+				limit = { has_country_flag = united_anhur_corporations }
+				save_global_event_target_as = united_anhur_corporations
+			}
+			prevent_anomaly = yes
+			set_global_flag = uac_homeworld_spawned			
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = united_anhur_corporations } } }
+				create_country = {
+					name = "United Anhur Corporations"
+					ship_prefix = "PRESCRIPTED_ship_prefix_united_anhur_corporations"
+					type = independent_colony
+					origin = "origin_united_anhur_corporations"
+					ignore_initial_colony_error = yes
+					civics = { civic = "civic_indentured_assets" civic = "civic_ruthless_competition" }
+					authority = auth_corporate
+					name_list = "btr_systems_alliance"
+					ethos = { ethic = "ethic_militarist" ethic = "ethic_materialist" ethic = "ethic_authoritarian" }
+					species = event_target:humanSpecies
+					flag = {
+						icon={
+							category="domination"
+							file="domination_9.dds"
+						}
+						background={
+							category="backgrounds"
+							file="circle.dds"
+						}
+						colors={
+							"brown"
+							"light_orange"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = industrial_01
+						set_country_flag = independent_colony
+						set_country_flag = united_anhur_corporations
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						save_global_event_target_as = united_anhur_corporations
+					}
+				}
+			}			
+			set_capital = yes
+			random_country = {
+				limit = { has_country_flag = united_anhur_corporations }
+				save_global_event_target_as = united_anhur_corporations
+				species = { save_global_event_target_as = humanSpecies }
+			}
+			set_owner = event_target:united_anhur_corporations
+			generate_btr_start_deposits_and_blockers = yes
+			generate_btr_anhur_start_buildings = yes
+			generate_anhur_pops = yes
+			add_deposit = d_rich_eezo_deposits
+			add_deposit = d_rich_platinum_deposits
+			add_deposit = d_rich_mineral_deposits
+
+			set_name = "Anhur"
+		}
+	}	
+
+    planet = {
+        name = "Neith"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 61
+        has_ring = no
+		size = 17
+		flags = { neith_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_iridium_5
+			add_deposit = d_trade_value_1
+		}
+		moon = {
+			name = "Neith a"
+			count = 1
+			class = pc_frozen
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 3
+		}		
+    }
+
+    planet = {
+        name = "Bast"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 175
+        has_ring = no
+		size = 26
+		flags = { bast_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_helium_3_1
+		}
+		moon = {
+			name = "Bast a"
+			count = 1
+			class = pc_iron
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 6
+
+		}
+		moon = {
+			name = "Bast b"
+			count = 1
+			class = pc_frozen
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 8
+		}	
+    }	
+}

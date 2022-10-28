@@ -1,0 +1,522 @@
+
+
+#####MEADE CLUSTER#####
+
+sys_elunia_init = {
+    name = "Elunia"
+    class = sc_k
+	max_instances = 1
+
+	flags = { inner_council_system meade_cluster_system elunia_system btr_system custom_system }
+
+    asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 75
+	}
+
+    planet = {
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		init_effect = {
+			create_country = {
+				name_list = btr_merc
+				species = event_target:humanSpecies
+				type = mercenary
+				civics = { civic = civic_anarcho_tribalism }
+				origin = origin_cat6
+				flag = {
+					icon={
+						category="masseffect"
+						file="cat6.dds"
+					}
+					background={
+						category="backgrounds"
+						file="00_solid.dds"
+					}
+					colors={
+						"dark_grey"
+						"dark_blue"
+						"null"
+						"null"
+					}
+				}
+				ethos = {
+					ethic = ethic_fanatic_militarist
+					ethic = ethic_xenophobe
+				}
+				ignore_initial_colony_error = yes
+			}
+			last_created_country = {
+				set_graphical_culture = pirate_01
+				save_global_event_target_as = cat6
+				set_country_flag = cat6
+				set_name = "Cat6"
+				create_ship_design = { design = "NAME_Marauder_Starbase" }
+				add_ship_design = last_created_design
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Warrior_Freehold"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 230
+						angle = 40
+					}				
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Warrior_Freehold"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 230
+						angle = 90
+					}				
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Warrior_Freehold"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 230
+						angle = 140
+					}				
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Warrior_Freehold"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 230
+						angle = 200
+					}				
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Warrior_Freehold"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 230
+						angle = 250
+					}				
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Warrior_Freehold"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 230
+						angle = 280
+					}				
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Warrior_Freehold"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 230
+						angle = 330
+					}				
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Warrior_Freehold"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 230
+						angle = 0
+					}				
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Ancestral_Glory"
+						graphical_culture = "pirate_01"
+					}
+					set_formation_scale = 2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 250
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 120
+					}
+				}
+				settings = {
+					garrison = yes
+				}
+			}
+
+			create_ambient_object = {
+				type = "abandoned_starbase_01_object"
+				location = this
+			}
+		}		
+    }
+	
+	planet = {
+		name = "Eluveitie"
+		class = pc_hot_giant
+        orbit_distance = 50
+        size = 32
+
+		flags = { eluveitie_planet btr_custom }
+	}	
+	
+	planet = {
+		name = "L-115"
+		class = pc_carb_asteroid
+        orbit_distance = 25
+		orbit_angle = { min = 1 max = 360 }
+
+		flags = { l-115_planet btr_custom }
+
+		init_effect = {
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Void_Dwelling"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 10
+						angle = 0
+					}				
+				}
+			}
+		}
+		size = 2
+		has_ring = no
+	}
+	
+	planet = {
+		name = "L-812"
+		class = pc_met_asteroid
+        orbit_distance = 0
+		orbit_angle = { min = 1 max = 360 }
+		size = 1
+		has_ring = no
+
+		flags = { l812_planet btr_custom }
+	}
+
+	planet = {
+		name = "Slania"
+		class = pc_barren
+        orbit_distance = 50
+        size = 12
+
+		flags = { slania_planet btr_custom }
+	}
+
+	planet = {
+		name = "Nubia"
+		class = pc_arid
+        orbit_distance = 50
+		orbit_angle = { min = 1 max = 360 }
+		size = 12
+		has_ring = no
+		entity = "aquifer_planet_05_entity"
+
+		flags = { nubia_planet btr_custom }
+
+		init_effect = {
+			add_modifier = {
+				modifier = aquifer_world
+				days = -1
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					while = {
+						count = 22
+						create_ship = {
+							name = random
+							design = "NAME_Outrider"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 14
+						create_ship = {
+							name = random
+							design = "NAME_Lancer"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 8
+						create_ship = {
+							name = random
+							design = "NAME_Void_Champion"
+							graphical_culture = "pirate_01"
+						}
+					}
+					set_formation_scale = 2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 250
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 120
+					}
+				}
+				settings = {
+					garrison = yes
+				}
+			}
+		}
+	}
+
+	planet = {
+		name = "Helvetios"
+		class = pc_ammonia
+        orbit_distance = 50
+        size = 18
+		entity = "ammonia_savannah_planet_01_entity"
+
+		flags = { helvetios_planet btr_custom }
+
+		init_effect = {
+			add_modifier = {
+				modifier = medit_world
+				days = -1
+			}
+		}
+		moon = {
+			name = "Luxtos"
+			class = pc_iron
+			orbit_distance = 8
+            size = 6
+		}
+	}	
+	
+	planet = {
+		name = "Omnos"
+		class = pc_dextro_tundra
+        orbit_distance = 50
+        size = 14
+		has_ring = no
+		entity = "mire_planet_03_entity"
+
+		flags = { omnos_planet btr_custom }
+
+		init_effect = {
+			add_modifier = {
+				modifier = mire_world
+				days = -1
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					while = {
+						count = 22
+						create_ship = {
+							name = random
+							design = "NAME_Outrider"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 14
+						create_ship = {
+							name = random
+							design = "NAME_Lancer"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 8
+						create_ship = {
+							name = random
+							design = "NAME_Void_Champion"
+							graphical_culture = "pirate_01"
+						}
+					}
+					set_formation_scale = 2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 250
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 120
+					}
+				}
+				settings = {
+					garrison = yes
+				}
+			}
+		}
+		moon = {
+			name = "Ri"
+			class = pc_iron
+			orbit_distance = 20
+			orbit_angle = { min = 1 max = 360 }
+			size = 3
+		}
+		moon = {
+			name = "Pi"
+			class = pc_frozen
+			orbit_distance = 5
+			orbit_angle = { min = 1 max = 360 }
+			size = 2
+			init_effect = {
+				create_fleet = {
+					effect = {
+						set_owner = event_target:cat6
+						create_ship = {
+							name = random
+							design = "NAME_Void_Dwelling"
+							graphical_culture = "pirate_01"
+						}
+						set_location = {
+							target = prev
+							distance = 10
+							angle = 0
+						}				
+					}
+				}
+			}
+		}
+	}		
+	planet = {
+		name = "Jak"
+		class = pc_frozen
+        orbit_distance = 50
+		orbit_angle = { min = 1 max = 360 }
+		size = 15
+		has_ring = no
+
+		flags = { jak_planet btr_custom }
+
+		init_effect = {
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					while = {
+						count = 22
+						create_ship = {
+							name = random
+							design = "NAME_Outrider"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 14
+						create_ship = {
+							name = random
+							design = "NAME_Lancer"
+							graphical_culture = "pirate_01"
+						}
+					}
+					while = {
+						count = 8
+						create_ship = {
+							name = random
+							design = "NAME_Void_Champion"
+							graphical_culture = "pirate_01"
+						}
+					}
+					set_formation_scale = 2
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 250
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 120
+					}
+				}
+				settings = {
+					garrison = yes
+				}
+			}
+		}
+	}
+	planet = {
+		name = "Valaxion"
+		class = pc_ice_giant
+        orbit_distance = 50
+		orbit_angle = { min = 1 max = 360 }
+		size = 25
+		has_ring = yes
+		change_orbit = 5
+
+		flags = { valaxion_planet btr_custom }
+
+		init_effect = {
+			create_fleet = {
+				effect = {
+					set_owner = event_target:cat6
+					create_ship = {
+						name = random
+						design = "NAME_Void_Dwelling"
+						graphical_culture = "pirate_01"
+					}
+					set_location = {
+						target = prev
+						distance = 10
+						angle = 0
+					}				
+				}
+			}
+		}
+	}	
+}

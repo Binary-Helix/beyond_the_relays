@@ -6,7 +6,7 @@
 
 sys_chabtan_init = {
     name = "Chabtan"
-    class = "sc_m_super"
+    class = sc_m_super
     flags = { attican_traverse_system buluc_nebula_system chabtan_system btr_system custom_system empire_home_system }
 	init_effect = { 
 		random_country = { 
@@ -21,7 +21,7 @@ sys_chabtan_init = {
 	
     planet = {
 		name = "Chabtan"	
-        class = "pc_m_super_star"
+        class = pc_m_super_star
         orbit_distance = 0
         size = 45
 		has_ring = no
@@ -30,26 +30,26 @@ sys_chabtan_init = {
 	
 	planet = {
 		name = "Moscon"
-		class = "pc_iron"
+		class = pc_iron
 		orbit_distance = 125
 		orbit_angle = { min = 1 max = 360 }
 		size = 7
 		has_ring = no
-		flags = { moscon_planet pd_ignore }
+		flags = { moscon_planet btr_custom }
 
 		moon = {
 			name = "Twuiq"
-			class = "pc_frozen"
+			class = pc_frozen
 			orbit_distance = 20
 			orbit_angle = { min = 90 max = 270 }
 			size = 1
-			flags = { twuiq_planet pd_ignore }
+			flags = { twuiq_planet btr_custom }
 		}
 	}
 
     planet = {
         name = "Parnack"
-        class = "pc_desert"
+        class = pc_desert
         orbit_distance = 125
 		orbit_angle = { min = 40 max = 180 }
 		size = 16
@@ -58,9 +58,13 @@ sys_chabtan_init = {
 		deposit_blockers = none
 		modifiers = none
 		entity = "badlands_planet_07_entity"
-		flags = { parnack_planet pd_ignore }
+		flags = { parnack_planet btr_custom }
 
 		init_effect = {
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
 			prevent_anomaly = yes
 			set_global_flag = yahg_homeworld_spawned
 			if = {
@@ -137,25 +141,24 @@ sys_chabtan_init = {
 	
 	planet = {
 		name = "Libel"
-		class = "pc_carbon"
+		class = pc_carbon
 		orbit_distance = 125
 		orbit_angle = { min = 1 max = 360 }
 		size = 5
 		has_ring = no
-		flags = { libel_planet pd_ignore }
+		flags = { libel_planet btr_custom }
 		init_effect = {
 			add_deposit = d_minerals_2
-
 		}
 	}
 
     planet = {
         name = "Noviz"
-        class = "pc_ice_giant"
+        class = pc_ice_giant
         orbit_distance = 125
         orbit_angle = 126
         has_ring = no
-		flags = { noviz_planet pd_ignore }
+		flags = { noviz_planet btr_custom }
 		init_effect = {
 			add_deposit = d_helium_3_3	
 		}		
