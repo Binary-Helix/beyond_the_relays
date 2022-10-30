@@ -576,7 +576,12 @@ sys_keelulon_init = {
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
-		radius = 115
+		radius = 200
+	}
+
+    asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 500
 	}
 
     planet = {
@@ -598,7 +603,7 @@ sys_keelulon_init = {
     planet = {
         name = "Jaela"
         class = pc_molten
-        orbit_distance = 60
+        orbit_distance = 250
         orbit_angle = 239
         has_ring = no
 		size = 12
@@ -606,23 +611,14 @@ sys_keelulon_init = {
     }
 
     planet = {
-        name = "Tadeor"
+        name = "Taedor"
         class = pc_ice_giant
-        orbit_distance = 85
+        orbit_distance = 475
         orbit_angle = 214
         has_ring = no
 		size = 34
-		flags = { tadeor_planet btr_custom }
+		flags = { taedor_planet btr_custom }
     }
-
-    init_effect = { 
-		spawn_megastructure = { 
-			type = "cassiopeiacluster_xosarverge_massrelay" 
-			name = "Cassiopeia 1 Relay"
-			orbit_angle = 2 
-			orbit_distance = 200
-		} 
-	}
 }
 
 sys_raadarum_init = {
@@ -645,7 +641,7 @@ sys_raadarum_init = {
     planet = {
         name = "Xonar"
         class = pc_hothouse
-        orbit_distance = 60
+        orbit_distance = 125
         orbit_angle = 239
         has_ring = no
 		size = 14
@@ -655,7 +651,7 @@ sys_raadarum_init = {
     planet = {
         name = "Rafeed"
         class = pc_carbon
-        orbit_distance = 35
+        orbit_distance = 125
         orbit_angle = 214
         has_ring = no
 		size = 10
@@ -665,7 +661,7 @@ sys_raadarum_init = {
     planet = {
         name = "Rayna"
         class = pc_iron
-        orbit_distance = 40
+        orbit_distance = 125
         orbit_angle = 90
         has_ring = no
 		size = 5
@@ -675,29 +671,20 @@ sys_raadarum_init = {
 	planet = {
         name = "Xulan"
         class = pc_gas_giant
-        orbit_distance = 50
+        orbit_distance = 125
         orbit_angle = 90
         has_ring = yes
 		size = 35
 		flags = { xulan_planet btr_custom }
 		moon = {
 			name = "Xulan a"
-			class = pc_iron
-			orbit_distance = 15
+			class = pc_barren_cold
+			orbit_distance = 20
 			orbit_angle = 90
 			has_ring = no
 			size = 3
 		}
     }
-
-    init_effect = { 
-		spawn_megastructure = { 
-			type = "cassiopeiacluster_farrim_massrelay" 
-			name = "Cassiopeia 2 Relay"
-			orbit_angle = 36 
-			orbit_distance = 360
-		} 
-	}
 }	
 
 sys_jaavo_init = {
@@ -720,7 +707,7 @@ sys_jaavo_init = {
     planet = {
         name = "Herris"
         class = pc_iron
-        orbit_distance = 45
+        orbit_distance = 125
         orbit_angle = 146
         has_ring = no
 		size = 12
@@ -729,13 +716,18 @@ sys_jaavo_init = {
 
 	planet = {
         name = "Gaezal'Jenal"
-        class = pc_dextro_highland
-        orbit_distance = 40
+        class = pc_dextro_alpine
+        orbit_distance = 125
         orbit_angle = 146
         has_ring = no
 		size = 22
         flags = { gaezaljenal_planet btr_custom }
+        entity = "highland_planet_02_entity"
 		init_effect = {
+            add_modifier = {
+                modifier = highland_world
+                days = -1
+            }
 			set_owner = event_target:disciples_of_nazara
 			create_colony = {
 				owner = event_target:disciples_of_nazara
@@ -752,7 +744,7 @@ sys_jaavo_init = {
 	planet = {
         name = "Gernal"
         class = pc_barren_cold
-        orbit_distance = 20
+        orbit_distance = 125
         orbit_angle = 146
         has_ring = no
 		size = 18
@@ -762,7 +754,7 @@ sys_jaavo_init = {
 	planet = {
         name = "Lofirn"
         class = pc_frozen
-        orbit_distance = 20
+        orbit_distance = 125
         orbit_angle = 146
         has_ring = no
 		size = 18
@@ -780,6 +772,11 @@ sys_ruvum_init = {
 		generate_home_system_resources = yes
 	}
 
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 325
+    }
+
     planet = {
 		name = "Ruvum"
         class = pc_d_star
@@ -789,8 +786,8 @@ sys_ruvum_init = {
 
     planet = {
         name = "Refaes"
-        class = pc_volcanic
-        orbit_distance = 30
+        class = pc_molten
+        orbit_distance = 125
         orbit_angle = 146
         has_ring = no
 		size = 8
@@ -800,7 +797,7 @@ sys_ruvum_init = {
 	planet = {
         name = "Yulla'Saar"
         class = pc_barren
-        orbit_distance = 30
+        orbit_distance = 125
         orbit_angle = 146
         has_ring = no
 		size = 5
@@ -809,18 +806,25 @@ sys_ruvum_init = {
 
 	planet = {
         name = "Jessu"
-        class = pc_arid #pc_mephitic
-        orbit_distance = 20
+        class = pc_mephitic
+        orbit_distance = 125
         orbit_angle = 146
         has_ring = no
 		size = 20
+        entity = "mephitic_alpine_planet_11_entity"
+        init_effect = {
+            add_modifier = {
+                modifier = crag_world
+                days = -1
+            }
+        }
         flags = { jessu_planet btr_custom }
     }
 
 	planet = {
         name = "Zeezorm Leemm"
         class = pc_frozen
-        orbit_distance = 20
+        orbit_distance = 125
         orbit_angle = 146
         has_ring = no
 		size = 18
@@ -858,7 +862,7 @@ sys_gaalozozh_init = {
 	planet = {
         name = "Maeni"
         class = pc_barren
-        orbit_distance = 30
+        orbit_distance = 60
         orbit_angle = 146
         has_ring = no
 		size = 15
@@ -868,7 +872,7 @@ sys_gaalozozh_init = {
 	planet = {
         name = "Yena"
         class = pc_hothouse
-        orbit_distance = 30
+        orbit_distance = 80
         orbit_angle = 146
         has_ring = no
 		size = 10
@@ -878,7 +882,7 @@ sys_gaalozozh_init = {
 	planet = {
         name = "Sochol"
         class = pc_barren_cold
-        orbit_distance = 20
+        orbit_distance = 80
         orbit_angle = 146
         has_ring = no
 		size = 18
@@ -888,7 +892,7 @@ sys_gaalozozh_init = {
 	planet = {
         name = "Naara'Das"
         class = pc_gas_giant
-        orbit_distance = 55
+        orbit_distance = 80
         orbit_angle = 146
         has_ring = yes
 		size = 34
@@ -898,28 +902,42 @@ sys_gaalozozh_init = {
 	planet = {
         name = "Tonbarr"
         class = pc_chlorine
-        orbit_distance = 30
+        orbit_distance = 80
         orbit_angle = 146
         has_ring = no
 		size = 16
+        entity = "chlorine_desert_planet_11_entity"
+        init_effect = {
+            add_modifier = {
+                modifier = oasis_world
+                days = -1
+            }
+        }
         flags = { tonbarr_planet btr_custom }
     }
 
 	planet = {
         name = "Vael"
         class = pc_gas_giant
-        orbit_distance = 40
+        orbit_distance = 80
         orbit_angle = 146
         has_ring = no
 		size = 32
         flags = { vael_planet btr_custom }
 		moon = {
 			name = "Yedu"
-			class = pc_hydrocarbon
-			orbit_distance = 10
+			class = pc_methane
+			orbit_distance = 20
 			orbit_angle = 146
 			has_ring = no
 			size = 8
+            entity = "methane_arid_planet_04_entity"
+            init_effect = {
+                add_modifier = {
+                    modifier = aquifer_world
+                    days = -1
+                }
+            }
             flags = { yedu_planet btr_custom }
 		}
     }
