@@ -1,0 +1,305 @@
+##########################
+##### RALOI REPUBLIC #####
+##########################
+
+#####HADES NEXUS#####
+
+sys_azedes_init = {
+    name = "Azedes"
+    class = sc_g
+	flags = { attican_traverse_system hades_nexus_system azedes_system btr_system custom_system empire_home_system }	
+	init_effect = { 
+		random_country = { 
+			limit = { has_country_flag = raloi_republic } 
+			save_global_event_target_as = raloi_republic
+		}	
+	generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	planet = {
+		name = "Azedes"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 33
+		flags = { azedes_star }
+    }	
+	
+	planet = {
+		name = "Vess'kur"
+		class = pc_hothouse
+		orbit_distance = 80
+        orbit_angle = 208
+        has_ring = no		
+		size = 12
+		flags = { vesskur_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_minerals_2
+		}
+		moon = {
+			name = "Mass'kur"
+			class = pc_barren
+			orbit_distance = 20
+			size = 4
+			flags = { masskur_planet btr_custom }
+		}
+	}
+
+	planet = {
+		name = "Turvess"
+		class = pc_dextro_alpine
+		orbit_distance = 80
+        orbit_angle = 140
+		size = 15		
+        has_ring = no		
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { turvess_planet special_start_planet } 
+		entity = "highland_planet_10_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = highland_world
+				days = -1
+			}
+			prevent_anomaly = yes
+			set_global_flag = raloi_homeworld_spawned
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = raloi_republic } } }
+				create_species = { 
+					name = "Raloi"
+					class = AVI
+					portrait = AVI4
+					#homeworld = THIS 
+					traits = { 
+				  trait="trait_talented"
+				  trait="trait_conservational"
+					  # ideal_planet_class = "pc_dextro_continental"
+					}
+				  }
+				  last_created_species = { save_global_event_target_as = raloiSpecies }
+				create_country = {
+					name = "Raloi Republic"
+					ship_prefix = "PRESCRIPTED_ship_prefix_raloi_republic"
+					type = primitive
+					origin = "origin_raloi_republic"
+					ignore_initial_colony_error = yes
+					civics = { civic = "civic_btr_raloi_birds_of_a_feather" civic = "civic_btr_raloi_spreading_our_wings" }
+					authority = auth_democratic
+					name_list = "AVI4"
+					ethos = { ethic = "ethic_fanatic_xenophobe" ethic = "ethic_militarist" }
+					species = event_target:raloiSpecies
+					flag = {
+						icon={
+							category="ornate"
+							file="flag_ornate_24.dds"
+						}
+						background={
+							category="backgrounds"
+							file="rounded_middle.dds"
+						}
+						colors={
+							"dark_teal"
+							"grey"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = avian_01
+						set_country_flag = raloi_republic
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						save_global_event_target_as = raloi_republic
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { has_country_flag = raloi_republic }
+				save_global_event_target_as = raloi_republic
+				species = { save_global_event_target_as = raloiSpecies }
+			}
+			set_owner = event_target:raloi_republic
+			generate_btr_start_deposits_and_blockers = yes
+			generate_btr_ral_turvess_capitol_buildings = yes
+			generate_ral_turvess_pops = yes
+			set_name = "Turvess"
+		}
+		
+		moon = {
+			name = "Ino"
+			class = pc_barren_cold
+			orbit_distance = 20
+			size = 4
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				clear_planet_modifiers = yes 
+				add_deposit = d_minerals_3
+			}
+		}
+		moon = {
+			name = "Opi"
+			class = pc_iron
+			orbit_distance = 5
+			size = 5
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				clear_planet_modifiers = yes 
+				add_deposit = d_iridium_3
+				add_deposit = d_palladium_3
+			}
+		}		
+	}
+
+	planet = {
+		name = "Iku'ra"
+		class = pc_iron
+		orbit_distance = 80
+        orbit_angle = 84
+        has_ring = no		
+		size = 14
+		flags = { ikura_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_minerals_2
+		}
+		moon = {
+			name = "Iku'ra a"
+			class = pc_frozen
+			orbit_distance = 20
+			size = 4
+		}
+		moon = {
+			name = "Iku'ra b"
+			class = pc_iron
+			orbit_distance = 5
+			size = 3
+		}
+		moon = {
+			name = "Iku'ra c"
+			class = pc_asteroid
+			orbit_distance = 5
+			size = 1
+		}		
+	}
+
+	planet = {
+		name = "Vaal"
+		class = pc_gas_giant
+		orbit_distance = 80
+        orbit_angle = 280
+        has_ring = yes		
+		size = 36
+		flags = { vaal_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_helium_3_2
+		}
+		moon = {
+			name = "Lolp"
+			class = pc_frozen
+			orbit_distance = 20
+			size = 3
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				clear_planet_modifiers = yes 
+				add_deposit = d_platinum_3
+			}
+		}
+
+		moon = {
+			name = "Rarkas"
+			class = pc_iron
+			orbit_distance = 5
+			size = 3
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				clear_planet_modifiers = yes 
+				add_deposit = d_minerals_3
+			}
+		}		
+
+		moon = {
+			name = "Vaal c"
+			class = pc_frozen
+			orbit_distance = 5
+			size = 3
+		}		
+	}	
+
+	planet = {
+		name = "Sakur"
+		class = pc_gas_giant
+		orbit_distance = 80
+        orbit_angle = 230
+        has_ring = no		
+		size = 35
+		flags = { sakur_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_helium_3_4
+		}
+		moon = {
+			name = "Sakur a"
+			class = pc_frozen
+			orbit_distance = 20
+			size = 3
+		}
+		moon = {
+			name = "Sakur b"
+			class = pc_iron
+			orbit_distance = 5
+			size = 5
+		}
+	}
+
+	planet = {
+		name = "Kuroi"
+		class = pc_methane
+		orbit_distance = 80
+        orbit_angle = 120
+        has_ring = no		
+		size = 5
+		flags = { kuroi_planet btr_custom }
+		entity = "methane_ocean_planet_08_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = coldocean_world
+				days = -1
+			}
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_minerals_1
+		}
+		moon = {
+			name = "Kuroi a"
+			class = pc_iron
+			orbit_distance = 20
+			size = 2
+		}
+		moon = {
+			name = "Kuroi b"
+			class = pc_arctic
+			orbit_distance = 5
+			size = 2
+		}		
+    }     
+}
+	

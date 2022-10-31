@@ -1,0 +1,152 @@
+###########################
+##### GOTHONES REMNANT#####
+###########################
+
+sys_ultio_init = {
+    name = "Ultio"
+    class = sc_o_super
+	max_instances = 1
+
+	flags = { alliance_space_system gemini_sigma_system ultio_system empire_home_system btr_system custom_system }	
+	init_effect = { 
+		random_country = { 
+			limit = { has_country_flag = gothones_remnant } 
+			save_global_event_target_as = gothones_remnant
+		}	
+	generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+
+    planet = {
+		name = "Ultio"
+        class = pc_o_super_star
+        orbit_distance = 0
+        size = 25
+		flags = { ultio_star }
+    }
+
+    planet = {
+        name = "Vis"
+        class = pc_molten
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = no
+		size = 10
+		flags = { vis_planet btr_custom }
+    }
+
+	
+    planet = {
+        name = "Mollitiam"
+        class = pc_molten
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = no
+		size = 17
+		flags = { mollitiam_planet btr_custom }
+    }
+
+	planet = {
+        name = "Vindicta"
+        class = pc_nuked
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = no
+		size = 22
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { vindicta_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = gothones_homeworld_spawned
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = gothones_remnant } } }
+				create_species = { 
+					name = "Gothones"
+					class = GOT
+					portrait = gothones
+					#homeworld = THIS 
+					traits = { 
+					  trait="btr_gothones_physical_enhancements"
+					  trait="btr_gothones_genetic_engineering"
+					  # ideal_planet_class = "pc_nuked"
+					}
+				  }
+				  last_created_species = { save_global_event_target_as = gothonesSpecies }
+				create_country = {
+					name = "Gothones Remnant"
+					ship_prefix = "GRV"
+					type = default
+					origin = "origin_gothones_remnant"
+					ignore_initial_colony_error = yes
+					civics = { civic = "civic_shared_burden" civic = "civic_diplomatic_corps" }
+					authority = auth_democratic
+					name_list = "btr_turian"
+					ethos = { ethic = "ethic_xenophile" ethic = "ethic_fanatic_egalitarian" }
+					species = event_target:gothonesSpecies
+					flag = {
+						icon = {
+							category = "beyondtherelays"
+							file="gothones_remnant.dds"
+						}
+						background = {
+							category = "backgrounds"
+							file = "00_solid.dds"
+						}
+						colors = {
+							"orange"
+							"orange"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = tur_01
+						set_country_flag = gothones_remnant
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						save_global_event_target_as = gothones_remnant
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { has_country_flag = gothones_remnant }
+				save_global_event_target_as = gothones_remnant
+			}
+			set_owner = event_target:gothones_remnant
+			generate_btr_start_deposits_and_blockers = yes
+			generate_got_major_colony_buildings = yes
+			generate_gothones_vindicta_pops = yes
+			set_name = "Vindicta"
+		}
+    }
+
+	planet = {
+        name = "Evol"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = yes
+		size = 38
+		flags = { evol_planet btr_custom }
+    }
+	
+	planet = {
+        name = "Absolutus"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = no
+		size = 30
+		flags = { absolutus_planet btr_custom }
+    }
+}

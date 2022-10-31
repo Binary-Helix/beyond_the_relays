@@ -1,0 +1,44 @@
+
+#Shifty Looking Cow Blocker
+d_shifty_cow = {
+	is_for_colonizable = yes
+
+	category = deposit_cat_rare_blocker
+
+	can_be_cleared = {
+	}
+
+	on_cleared = {
+		hidden_effect = {
+			add_deposit = d_shifty_cow_2
+		}
+	}
+
+	resources = {
+		category = deposit_blockers 
+		cost = {
+			energy = 500
+		}
+	}
+
+	potential = {
+		is_homeworld = no
+		NOT = {
+			has_deposit = d_shifty_cow
+		}
+	}
+
+	country_modifier = {
+		monthly_trades_energy_produces_add = -3
+	}
+
+	time = 360
+
+	drop_weight = {
+		weight = 3
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
