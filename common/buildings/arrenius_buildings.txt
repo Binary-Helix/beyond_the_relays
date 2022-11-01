@@ -131,6 +131,7 @@ building_kasr = {
 	base_buildtime = @b1_time
 	can_build = no
 	planetary_ftl_inhibitor = yes
+	base_cap_amount = 1
 	position_priority = 100
 
 	category = army
@@ -196,6 +197,7 @@ building_kasr = {
 
 building_longhouse = {
 	base_buildtime = @b1_time
+	base_cap_amount = 1
 
 	category = amenity
 
@@ -204,11 +206,9 @@ building_longhouse = {
 			NOT = { is_planet_class = pc_habitat }
 			has_planet_flag = advanced_habitat
 		}
-		NOT = { has_modifier = slave_colony }
 		exists = owner
 		owner = {
 			is_regular_empire = yes
-			NOT = { has_valid_civic = civic_shared_burden }
 		}
 	}
 
@@ -232,6 +232,9 @@ building_longhouse = {
 		planet_amenities_add = 8
 		
 	}
+	army_modifier = {
+		army_starting_experience_add = 100
+	}
 
 	triggered_planet_modifier = {
 		potential = {
@@ -248,12 +251,240 @@ building_longhouse = {
 	resources = {
 		category = planet_buildings
 		produces = {
-			unity = 2
+			unity = 5
 		cost = {
 			minerals = @b1_minerals
 		}
 		upkeep = {
 			energy = 2
 		}
+	}
+}
+
+#Beastmaster's Quarters
+
+building_beastmasters_quarters = {
+	base_buildtime = @b2_time
+	base_cap_amount = 1
+
+	exempt_from_ai_planet_specialization = no
+
+	category = research
+
+	potential = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	destroy_trigger = {
+		OR = {
+			has_modifier = slave_colony
+			has_modifier = resort_colony
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_beastmaster_add = @b1_jobs
+		}
+	}
+
+#colonial affairs office
+building_bureaucratic_1 = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+
+	category = unity
+
+	potential = {
+		exists = owner
+
+		owner = { is_regular_empire = yes }
+		owner = { is_spiritualist = no }
+		NOT = { has_modifier = slave_colony }
+
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+		}
+	}
+
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_megacorp = no }
+		}
+		modifier = {
+			job_bureaucrat_add = @b1_jobs
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_megacorp = no }
+		}
+		text = job_bureaucrat_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_megacorp = yes }
+		}
+		modifier = {
+			job_manager_add = @b1_jobs
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_megacorp = yes }
+		}
+		text = job_manager_effect_desc
+	}
+
+	prerequisites = {
+		"tech_planetary_government"
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+		is_spiritualist = no
+	}
+	planet_modifier = {
+		pop_growth_speed = 0.05
+		planet_pop_assembly_organic_mult = 0.05
+		pop_environment_tolerance = 0.025
+	}	
+}
+
+# interplanetary combatives academy annex
+building_interplanetary_combatives_academy_annex = {
+	base_buildtime = @b2_time
+	base_cap_amount = 1
+
+	category = army
+
+	potential = {
+		exists = owner
+		owner = { NOT = { has_valid_civic = civic_reanimated_armies } }
+	}
+
+	allow = {
+		if = {
+			limit = {
+				exists = owner
+				owner = { is_ai = yes }
+			}
+			OR = {
+				has_building = building_stronghold
+				has_building = building_fortress
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_reanimated_armies
+				AND = {
+					is_ai = yes
+					prev = {
+						NOR = {
+							has_building = building_stronghold
+							has_building = building_fortress
+						}
+					}
+				}
+			}
+		}
+	}
+
+	convert_to = {
+		building_dread_encampment
+	}
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	army_modifier = {
+		army_starting_experience_add = 200
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_soldier_add = @b1_jobs
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_warrior_drone_add = @b1_jobs
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			unity = 5
+		cost = {
+			minerals = @b1_minerals
+		}
+		upkeep = {
+			energy = @b1_upkeep
+		}
+		
+	}
+
+	prerequisites = {
+		"tech_centralized_command"
+	}
+
+	show_tech_unlock_if = {
+		NOT = { has_valid_civic = civic_reanimated_armies }
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_warrior_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_soldier_effect_desc
 	}
 }
