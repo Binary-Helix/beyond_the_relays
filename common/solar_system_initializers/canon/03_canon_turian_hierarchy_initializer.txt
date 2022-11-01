@@ -1,0 +1,1580 @@
+############################
+##### TURIAN HIERARCHY #####
+############################
+
+##### APIEN CREST #####
+
+sys_trebia_init = {
+    name = "Trebia"
+    class = sc_g
+	flags = { outer_council_system apien_crest_system trebia_system btr_system custom_system empire_home_system }
+	
+	init_effect = { 
+		random_country = { 
+			limit = { has_country_flag = turian_hierarchy } 
+			save_global_event_target_as = turian_hierarchy
+		}	
+	generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+		name = "Trebia"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 25
+		flags = { trebia_star}
+    }
+
+    planet = {
+        name = "Aventen"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 11
+        has_ring = no
+        size = 13
+		flags = { aventen_planet btr_custom }
+    }
+
+    planet = {
+        name = "Caelax"
+        class = pc_barren
+        orbit_distance = 80
+        orbit_angle = 350
+        has_ring = no
+        size = 15
+		flags = { aventen_planet btr_custom }
+    }
+
+    planet = {
+        name = "Palaven"
+        class = pc_dextro_savannah
+        orbit_distance = 80
+        orbit_angle = 156
+        size = 22
+		has_ring = no		
+		starting_planet = yes
+		flags = { palaven_planet btr_custom special_start_planet }
+		deposit_blockers = none		
+		modifiers = none
+		entity = "veld_planet_04_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = veld_world
+				days = -1
+			}
+			prevent_anomaly = yes
+			set_global_flag = turian_homeworld_spawned
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = turian_hierarchy } } }
+				create_species = { 
+					name = "Turian"
+					class = TUR
+					portrait = turian
+					#homeworld = THIS 
+					traits = { 
+						trait = btr_turian_trait_core
+						trait = btr_turian_trait_team_player
+						trait = btr_turian_trait_martial_nat
+						trait = btr_turian_trait_op_discipline
+						trait = trait_turian_habitability_preference
+					 	# ideal_planet_class = "pc_dextro_arid"
+					}
+				  }
+				  last_created_species = { save_global_event_target_as = turianSpecies }
+				create_country = {
+					name = "Turian Hierarchy"
+					ship_prefix = "PRESCRIPTED_ship_prefix_turian_hierarchy"
+					type = default
+					origin = btr_origin_turhie
+					ignore_initial_colony_error = yes
+					civics = { civic = "btr_civic_turhie_service" civic = "btr_civic_turhie_honor" }
+					authority = auth_oligarchic
+					name_list = "btr_turian"
+					ethos = { ethic = "ethic_egalitarian" ethic = "ethic_militarist" ethic = "ethic_xenophile" }
+					species = event_target:turianSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="turian_hierarchy.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"dark_blue"
+							"grey"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = tur_01
+						set_country_flag = turian_hierarchy
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						save_global_event_target_as = turian_hierarchy
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { has_country_flag = turian_hierarchy }
+				save_global_event_target_as = turian_hierarchy
+				species = { save_global_event_target_as = turianSpecies }
+			}
+			set_owner = event_target:turian_hierarchy
+			generate_btr_start_deposits_and_blockers = yes			
+			generate_tur_palaven_capitol_buildings = yes
+			generate_tur_palaven_pops = yes
+			add_deposit = btr_d_turhie_temple_palaven
+			add_deposit = btr_d_turhie_cipritine
+			add_deposit = btr_d_turhie_urcaveix
+			add_deposit = btr_d_turhie_bountiful_oceans
+			add_deposit = btr_d_turhie_hot_spots
+			set_name = "Palaven"
+		}		     
+        moon = {
+            name = "Menae"
+            class = pc_barren_cold
+            orbit_distance = 20
+            orbit_angle = 336
+            has_ring = no
+            size = 8
+            init_effect = {
+				set_owner = event_target:turian_hierarchy
+				create_colony = {
+					owner = event_target:turian_hierarchy
+					species = event_target:turianSpecies
+					ethos = owner
+				}
+				generate_tur_menae_pops = yes
+				generate_tur_menae_colony_buildings = yes	
+				set_name = "Menae"
+			}	
+        }
+        moon = {
+            name = "Nanus"
+            class = pc_barren
+            orbit_distance = 5
+            orbit_angle = 336
+            has_ring = no
+            size = 5
+            init_effect = {
+				set_owner = event_target:turian_hierarchy
+				create_colony = {
+					owner = event_target:turian_hierarchy
+					species = event_target:turianSpecies
+					ethos = owner
+				}
+				generate_tur_nanus_pops = yes
+				generate_tur_nanus_colony_buildings = yes	
+				set_name = "Nanus"
+            }
+        }		
+    }
+
+    planet = {
+        name = "Impera"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 208
+        has_ring = no
+        size = 4
+    }
+
+    planet = {
+        name = "Essenus"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 272
+        has_ring = no
+        size = 37
+    }
+
+    planet = {
+        name = "Datriux"
+        class = pc_frozen
+        orbit_distance = 80
+        orbit_angle = 209
+        has_ring = no
+        size = 18
+    }   	
+}
+
+sys_orachorum_init = {
+	name = "Orachorum"
+	class = sc_f
+	max_instances = 1
+
+	flags = { inner_council_system apien_crest_system orachorum_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+	    name = "Orachorum"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 31
+		flags = { orachorum_star }
+    }
+
+	planet = {
+        name = "Esterum"
+        class = pc_molten
+        orbit_distance = 150
+        orbit_angle = 132
+		size = 15
+        has_ring = no
+		flags = { esterum_planet btr_custom }
+		init_effect = {
+			add_deposit = d_iridium_1
+		}
+    }
+
+	planet = {
+        name = "Namur"
+        class = pc_methane
+        orbit_distance = 150
+        orbit_angle = 132
+		size = 14
+        has_ring = no
+		flags = { namur_planet btr_custom }
+		init_effect = {
+			add_deposit = d_element_zero_1
+			create_archaeological_site = btr_site_prothean_beacon_turian
+		}
+    }
+
+    planet = {
+        name = "Chatti"
+        class = pc_dextro_ocean
+        orbit_distance = 150
+        orbit_angle = 132
+		size = 22
+        has_ring = no
+		flags = { chatti_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_deposit = d_teeming_reef
+			add_deposit = d_submerged_ore_veins
+			add_deposit = d_ore_rich_caverns
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_chatti_pops = yes
+			generate_tur_chatti_colony_buildings = yes	
+			set_name = "Chatti"
+		}
+    }
+}
+
+sys_navale_init = {
+	name = "Navale"
+	class = sc_f
+	max_instances = 1
+
+	flags = { inner_council_system apien_crest_system navale_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+
+	}
+
+	planet = {
+	    name = "Navale"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 25
+		flags = { navale_star }
+    }
+
+	planet = {
+        name = "Solvit"
+        class = pc_hot_giant
+        orbit_distance = 100
+        orbit_angle = 337
+		size = 37
+		has_ring = no
+		flags = { solvit_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_4
+		}
+    }
+
+	planet = {
+        name = "Formilun"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 132
+		size = 12
+        has_ring = no
+		flags = { formilun_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_4
+		}
+    }
+
+    planet = {
+        name = "Aephus"
+        class = pc_dextro_savannah
+        orbit_distance = 100
+        orbit_angle = 132
+		size = 19
+        has_ring = no
+		entity = "medit_planet_04_entity"
+		flags = { osudebal_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_deposit = d_veiny_cliffs
+			add_deposit = d_lichen_fields
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_aephus_pops = yes
+			generate_tur_aephus_colony_buildings = yes	
+			set_name = "Aephus"
+		}
+    }
+
+    planet = {
+        name = "Gerens"
+        class = pc_barren_cold
+        orbit_distance = 100
+        orbit_angle = 155
+		size = 7
+        has_ring = no
+		flags = { gerrens_planet btr_custom }
+    }
+
+    planet = {
+        name = "Ratis"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 282
+		size = 9
+        has_ring = no
+		flags = { ratis_planet btr_custom }
+		init_effect = {
+			add_deposit = d_platinum_2
+			add_deposit = d_palladium_5
+
+		}
+    }
+}
+
+sys_castellus_init = {
+    name = "Castellus"
+    class = sc_g
+	max_instances = 1
+
+	flags = { inner_council_system apien_crest_system castellus_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+		
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 450
+	}
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 495
+	}
+
+    planet = {
+	    name = "Castellus"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 25
+		flags = { castellus_star }
+    }
+
+    planet = {
+        name = "Carborix"
+        class = pc_barren
+        orbit_distance = 75
+        orbit_angle = 277
+        has_ring = no
+        size = 6
+		flags = { carborix_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_1
+		}
+    }
+
+    planet = {
+        name = "Nios"
+        class = pc_hothouse
+        orbit_distance = 100
+        orbit_angle = 249
+        has_ring = no
+        size = 7
+		flags = { nios_planet btr_custom }
+		init_effect = {
+			add_deposit = d_platinum_1
+
+		}
+    }
+
+    planet = {
+        name = "Digeris"
+        class = pc_dextro_continental
+        orbit_distance = 100
+        orbit_angle = 231
+        has_ring = no
+        size = 12
+		flags = { digeris_planet pdprairie }
+		entity = "prairie_planet_02_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = prairie_world
+				days = -1
+			}
+			add_deposit = d_rich_mountain
+			add_deposit = d_black_soil
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_digeris_pops = yes
+			generate_tur_digeris_colony_buildings = yes	
+			set_name = "Digeris"
+		}
+    }
+
+    planet = {
+        name = "Fiax"
+        class = pc_frozen
+        orbit_distance = 100
+        orbit_angle = 154
+        has_ring = no
+        size = 24
+		flags = { flax_planet btr_custom }
+		init_effect = {
+			add_deposit = d_iridium_4
+			add_deposit = d_platinum_2
+			add_deposit = d_palladium_2
+			add_deposit = d_minerals_4
+
+		}
+    }
+
+    planet = {
+        name = "Iritum"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 133
+        has_ring = yes
+        size = 33
+		flags = { iritum_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+
+		}
+		moon = {
+			name = "Iritum a"
+			class = pc_barren
+			orbit_distance = 20
+			orbit_angle = 133
+			size = 7
+		}
+		moon = {
+			name = "Iritum b"
+			class = pc_frozen
+			orbit_distance = 5
+			orbit_angle = 133
+			size = 3
+		}
+    }
+}
+
+sys_centrixaurum_init = {
+	name = "Centrix Aurum"
+	class = sc_m_giant
+	max_instances = 1
+
+	flags = { inner_council_system apien_crest_system centrixaurum_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+
+	}
+
+	planet = {
+	    name = "Centrix Aurum"
+        class = pc_m_giant_star
+        orbit_distance = 0
+        size = 25
+		flags = { centrixaurum_star }
+    }
+
+	planet = {
+        name = "Alcapus"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 132
+		size = 6
+        has_ring = no
+		flags = { alcapus_planet btr_custom }
+    }
+
+    planet = {
+        name = "Epyrus"
+        class = pc_dextro_continental
+        orbit_distance = 125
+        orbit_angle = 132
+		size = 15
+        has_ring = no
+		flags = { epyrus_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_deposit = d_fungal_forest
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_epyrus_pops = yes
+			generate_tur_epyrus_colony_buildings = yes	
+			set_name = "Epyrus"
+		}
+    }
+
+    planet = {
+        name = "Norel"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 155
+		size = 12
+        has_ring = no
+		flags = { norel_planet btr_custom }
+    }
+
+    planet = {
+        name = "Leliehielaron"
+        class = pc_barren_cold
+        orbit_distance = 125
+        orbit_angle = 282
+		size = 9
+        has_ring = no
+		flags = { leliehielaron_planet btr_custom }
+		init_effect = {
+			add_deposit = d_iridium_1
+			add_deposit = d_element_zero_1
+			add_deposit = d_minerals_2
+		}
+    }
+}
+
+sys_gemmae_init = {
+    name = "Gemmae"
+    class = sc_b_super
+	max_instances = 1
+
+	flags = { inner_council_system apien_crest_system gemmae_system btr_system custom_system }
+
+    planet = {
+        class = pc_b_super_star
+        orbit_distance = 0
+        size = 50
+    }
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 400
+	}
+
+    planet = {
+        name = "Pheiros"
+        class = pc_asteroid
+        orbit_distance = 400
+        orbit_angle = 337
+        has_ring = no
+        size = 3
+		flags = { pheiros_planet pd_mining_hab }
+		init_effect = {
+			add_deposit = d_energy_7
+			add_modifier = {
+				modifier = tidal_locked
+				days = -1
+			}
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_pheiros_pops = yes
+			generate_tur_pheiros_colony_buildings = yes	
+			set_name = "Pheiros"
+		}
+    }	
+}
+
+#####MINOS WASTELAND#####
+
+sys_caestus_init = {
+    name = "Caestus"
+    class = sc_g
+	max_instances = 1
+
+	flags = { outer_council_system minos_wasteland_system caestus_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+
+	}
+
+    planet = {
+	    name = "Caestus"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 25
+		flags = { caestus_star }
+    }
+
+    planet = {
+        name = "Invictus"
+        class = pc_dextro_desert
+        orbit_distance = 250
+        orbit_angle = 239
+        size = 18
+        has_ring = no
+		flags = { invictus_planet btr_custom }
+		entity = "badlands_planet_03_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
+			add_deposit = d_element_zero_2
+			add_deposit = d_veiny_cliffs
+			add_deposit = d_lichen_fields
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_invictus_pops = yes
+			generate_tur_invictus_colony_buildings = yes	
+			set_name = "Invictus"
+		}
+    }
+
+    planet = {
+        name = "Temerarus"
+        class = pc_hothouse
+        orbit_distance = 250
+        orbit_angle = 342
+        size = 8
+        has_ring = no
+		flags = { temerarus_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = btr_scorching_surface
+				days = -1
+			}
+		}
+    }	
+}
+
+sys_arrae_init = {
+    name = "Arrae"
+    class = sc_a
+	max_instances = 1
+
+	flags = { outer_council_system minos_wasteland_system arrae_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+
+	}
+
+    planet = {
+	    name = "Arrae"
+        class = pc_a_star
+        orbit_distance = 0
+        size = 25
+		flags = { arrae_star }
+    }
+
+    planet = {
+        name = "Erros"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 177
+        size = 17
+        has_ring = no
+		flags = { erros_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_2
+		}	
+    }
+
+    planet = {
+        name = "Gellix"
+        class = pc_alpine
+        orbit_distance = 125
+        orbit_angle = 212
+        size = 9
+        has_ring = no
+		flags = { gellix_planet btr_custom }
+		init_effect = {
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_gellix_pops = yes
+			generate_tur_gellix_colony_buildings = yes	
+			set_name = "Gellix"
+		}
+    }
+
+    planet = {
+        name = "Antinax"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 121
+        size = 24
+        has_ring = no
+		flags = { antinax_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_1
+		}	
+    }
+
+    planet = {
+        name = "Nirrus"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 171
+        size = 35
+        has_ring = yes
+		flags = { nirrus_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_2
+		}	
+    }	
+}
+
+#####AETHON CLUSTER#####
+sys_nura_init = {
+    name = "Nura"
+    class = sc_f
+	max_instances = 1
+
+	flags = { inner_council_system aethon_cluster_system nura_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+
+	}
+
+    planet = {
+	    name = "Nura"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 20
+		flags = { nura_star }
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 226
+	}
+
+    planet = {
+        name = "Lahu"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 61
+        has_ring = no
+        size = 21
+		flags = { lahu_planet btr_custom }
+    }
+
+    planet = {
+        name = "Oma Ker"
+        class = pc_dextro_continental
+        orbit_distance = 125
+        orbit_angle = 247
+        has_ring = no
+        size = 19
+		flags = { omaker_planet btr_custom }
+		entity = "forest_planet_03_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = forest_world
+				days = -1
+			}
+			add_deposit = d_rich_mountain
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_omaker_pops = yes
+			generate_tur_omaker_colony_buildings = yes	
+			set_name = "Oma Ker"
+		}
+    }
+
+    planet = {
+        name = "Welm Urun"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 245
+        has_ring = yes
+        size = 35
+		flags = { welmurun_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_2
+		}
+    }
+
+    planet = {
+        name = "Gorgun"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 143
+        has_ring = no
+        size = 36
+		flags = { solupaolis_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_1
+		}
+    }
+}
+
+
+##### CALESTON RIFT ######
+sys_talava_init = {
+    name = "Talava"
+    class = sc_f
+	max_instances = 1
+
+	flags = { attican_traverse_system caleston_rift_system talava_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+
+	}
+
+
+    planet = {
+	    name = "Talava"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 20
+		flags = { talava_star }
+		init_effect = {
+			add_deposit = d_energy_3
+
+		}
+    }
+
+    planet = {
+        name = "Aitarus"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 304
+        has_ring = no
+		size = 22
+		flags = { aitarus_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_2
+
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_modifier = {
+				modifier = unstable_tectonics
+				days = -1
+			}
+			add_modifier = {
+				modifier = btr_scorching_surface
+				days = -1
+			}
+		}
+	}	
+
+    planet = {
+        name = "Kaushus"
+        class = pc_molten
+        orbit_distance = 125
+        orbit_angle = 177
+        has_ring = no
+		size = 15
+		flags = { kaushus_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = btr_unwise_mining_venture
+				days = -1
+			}
+			add_deposit = d_minerals_2
+
+			add_modifier = {
+				modifier = unstable_tectonics
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Maitrum"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 293
+        has_ring = no
+		size = 14
+		flags = { maitrum_planet pd_mining_hab }
+		init_effect = {
+			add_deposit = d_poor_mineral_deposits
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_maitrum_pops = yes
+			generate_tur_maitrum_colony_buildings = yes	
+			
+			set_name = "Maitrum"
+		}
+    }
+
+    planet = {
+        name = "Taitus"
+        class = pc_mephitic
+        orbit_distance = 125
+        orbit_angle = 142
+        has_ring = no
+		size = 11
+		flags = { taitus_planet btr_custom }
+		entity = "mephitic_arid_planet_03_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dune_world
+				days = -1
+			}
+			add_deposit = d_average_iridium_deposits
+			add_deposit = d_average_platinum_deposits
+			add_deposit = d_rich_platinum_deposits
+		}
+    }	
+}
+
+#####MEADE CLUSTER#####
+
+sys_mactare_init = {
+    name = "Mactare"
+    class = sc_k
+	max_instances = 1
+
+	flags = { inner_council_system meade_cluster_system mactare_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+	    name = "Mactare"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		flags = { mactare_star }
+    }
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 240
+	}	
+	
+	planet = {
+		name = "Sanhei"
+		class = pc_hothouse
+        orbit_distance = 80
+        size = 8
+		flags = { sanhei_planet btr_custom }
+	}
+
+	planet = {
+		name = "Taetrus"
+		class = pc_dextro_tropical
+        orbit_distance = 80
+        size = 17
+		flags = { taetrus_planet btr_custom }
+		entity = "biolum_planet_06_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = biolum_world
+				days = -1
+			}
+			add_deposit = d_black_soil
+			add_deposit = d_lush_jungle
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_taetrus_pops = yes
+			generate_tur_taetrus_colony_buildings = yes	
+			set_name = "Taetrus"
+		}
+        moon = {
+			name = "Taetrus a"
+			class = pc_frozen
+            orbit_distance = 20
+            orbit_angle = { min = 90 max = 270 }
+			size = 6
+        }	
+    }
+    
+    planet = {
+		name = "Regeris"
+		class = pc_asteroid
+        orbit_distance = 80
+        size = 8
+		flags = { regeris_planet btr_custom }
+		init_effect = {
+			add_deposit = d_element_zero_3
+		}
+	}
+	
+	planet = {
+		name = "Palex"
+		class = pc_gas_giant
+        orbit_distance = 80
+        size = 35
+		has_ring = no
+		flags = { doroga_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_2
+			add_modifier = {
+				modifier = extensive_moon_system
+				days = -1
+			}
+		}	
+	}
+	
+	planet = {
+		name = "Xemna"
+		class = pc_gas_giant
+        orbit_distance = 80
+        size = 37
+		has_ring = yes
+		flags = { xemna_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_1
+
+		}	
+	}
+	
+	planet = {
+		name = "Telae"
+		class = pc_barren_cold
+        orbit_distance = 80
+        size = 7
+		flags = { telae_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_3
+
+		}	
+		moon = {
+			name = "Telae a"
+			class = pc_iron
+			orbit_distance = 20
+			size = 5
+		}	
+	}	
+}
+
+sys_narbo_init = {
+    name = "Narbo"
+    class = sc_k_giant
+	max_instances = 1
+
+	flags = { inner_council_system meade_cluster_system narbo_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+
+	}
+
+    planet = {
+	    name = "Narbo"
+        class = pc_k_giant_star
+        orbit_distance = 0
+        size = 25
+		flags = { narbo_star }
+    }
+
+	planet = {
+		name = "Eutica"
+		class = pc_ocean
+        orbit_distance = 150
+        size = 25 
+		flags = { eutica_planet btr_custom }
+		entity = "ocean_planet_09_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = hotocean_world
+				days = -1
+			}
+		}
+	}
+	
+	planet = {
+		name = "Nimines"
+		class = pc_barren
+        orbit_distance = 150
+        size = 15
+		flags = { nimines_planet }
+		init_effect = {
+			add_deposit = d_iridium_1
+			add_deposit = d_platinum_1
+			add_deposit = d_palladium_1
+			add_deposit = d_minerals_2
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_nimines_pops = yes
+			generate_tur_nimines_colony_buildings = yes	
+			
+			set_name = "Nimines"
+		}	
+	}
+
+	planet = {
+		name = "Lokar"
+		class = pc_frozen
+        orbit_distance = 150
+        size = 19
+		flags = { lokar_planet btr_custom }
+    }
+}
+
+
+sys_nedlus_init = {
+    name = "Nedlus"
+    class = sc_f
+	max_instances = 1
+
+	flags = { inner_council_system meade_cluster_system nedlus_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+
+	}
+
+    planet = {
+		name = "Nedlus"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 30
+		flags = { nedlus_star }
+    }
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 120
+	}
+	
+	planet = {
+		name = "Arsacid"
+		class = pc_hot_giant
+        orbit_distance = 100
+		size = 36
+		flags = { arsacid_planet btr_custom }
+	}	
+
+	planet = {
+		name = "Parthia"
+		class = pc_dextro_ocean
+        orbit_distance = 100
+		size = 20
+		has_ring = no
+		flags = { parthia_planet btr_custom }
+		entity = "ocean_planet_02_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = coldocean_world
+				days = -1
+			}
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_parthia_pops = yes
+			generate_tur_parthia_colony_buildings = yes	
+			set_name = "Parthia"
+		}
+	}
+	
+	planet = {
+		name = "Ctesiphon"
+		class = pc_ammonia
+        orbit_distance = 100
+		size = 21
+		has_ring = no
+		flags = { ctesiphon_planet btr_custom }
+		entity = "ammonia_planet_09_entity"
+		moon = {
+			name = "Ctesiphon a"
+			class = pc_iron
+			orbit_distance = 20
+			size = 4
+		}	
+		moon = {
+			name = "Ecbatana"
+			class = pc_carbon
+			orbit_distance = 5
+			size = 7
+		}
+	}
+	
+	planet = {
+		name = "Hesterax"
+		class = pc_ice_giant
+        orbit_distance = 100
+		has_ring = yes
+		size = 39
+		flags = { hesterax_planet btr_custom }
+	}
+
+	planet = {
+		name = "Susa"
+		class = pc_iron
+        orbit_distance = 100
+		size = 4
+	}	
+}	
+
+#####PRODICATORE'S SCAR#####
+
+sys_laudate_init = {
+	name = "Laudate"
+	class = sc_f
+	max_instances = 1
+
+	flags = { inner_council_system proditors_scar_system laudate_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 390
+	}
+
+	planet = {
+	    name = "Laudate"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 20
+		flags = { laudate_star }
+    }
+
+	planet = {
+		name = "Arabor"
+		class = pc_molten
+        orbit_distance = 60
+        size = 13
+		flags = { arabor_planet btr_custom }
+	}
+
+	planet = {
+		name = "Lutum"
+		class = pc_hothouse
+        orbit_distance = 60
+        size = 18
+		has_ring = no
+		flags = { lutum_planet btr_custom }
+	}
+	
+	planet = {
+		name = "Magna"
+		class = pc_dextro_tundra
+        orbit_distance = 60
+        size = 18
+		has_ring = no
+		flags = { magna_planet }
+		entity = "lichen_planet_08_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = lichen_world
+				days = -1
+			}
+			add_deposit = d_veiny_cliffs
+			add_deposit = d_lichen_fields
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_magna_pops = yes
+			generate_tur_magna_colony_buildings = yes	
+			set_name = "Magna"
+		}
+	}
+
+	planet = {
+		name = "Petram"
+		class = pc_iron
+        orbit_distance = 60
+        size = 12
+		has_ring = no
+		flags = { petram_planet btr_custom }
+	}
+
+	planet = {
+		name = "Iuto"
+		class = pc_barren_cold
+        orbit_distance = 60
+        size = 14
+		has_ring = no
+		flags = { iuto_planet btr_custom }
+	}
+
+	planet = {
+		name = "Lapellam"
+		class = pc_gas_giant
+        orbit_distance = 60
+        size = 34
+		has_ring = no
+		flags = { lapellum_planet btr_custom }
+	}
+
+	planet = {
+		class = pc_ice_asteroid
+        orbit_distance = 30
+        size = 1
+		init_effect = {
+			add_deposit = d_palladium_4
+		}
+	}
+
+	planet = {
+		name = "Caerulus"
+		class = pc_iron
+        orbit_distance = 30
+        size = 17
+		has_ring = yes
+		flags = { caerulus_planet btr_custom }
+	}
+
+	planet = {
+		name = "Dilatelux"
+		class = pc_ice_giant
+        orbit_distance = 60
+        size = 29
+		has_ring = yes
+		flags = { dilatelux_planet btr_custom }
+	}
+}
+
+sys_sabulum_init = {
+	name = "Sabulum"
+	class = sc_m
+	max_instances = 1
+
+	flags = { inner_council_system proditors_scar_system sabulum_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+	    name = "Sabulum"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { sabulum_star }
+    }
+
+	planet = {
+		name = "Edessan"
+		class = pc_dextro_highgrav_desert
+        orbit_distance = 125
+        size = 24
+		flags = { edessan_planet btr_custom }
+		entity = "dust_planet_08_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = dust_world
+				days = -1
+			}
+			add_deposit = d_veiny_cliffs
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_edessan_pops = yes
+			generate_tur_edessan_colony_buildings = yes	
+			set_name = "Edessan"
+		}
+	}
+
+	planet = {
+		name = "Caustes"
+		class = pc_methane
+        orbit_distance = 125
+        size = 13
+		entity = "methane_ocean_planet_03_entity"
+		flags = { caustes_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = storm_world
+				days = -1
+			}
+		}
+	}
+	
+	planet = {
+		name = "Jactatum"
+		class = pc_gas_giant
+        orbit_distance = 125
+        size = 33
+		flags = { jactatum_planet btr_custom }
+	}
+
+	planet = {
+		name = "Vastus"
+		class = pc_frozen
+        orbit_distance = 125
+        size = 10
+		flags = { vastus_planet btr_custom }
+	}
+}
+
+#####SERPENT NEBULA######
+
+sys_terevan_init = {
+    name = "Terevan"
+    class = sc_a
+	max_instances = 1
+
+	flags = { outer_council_system serpent_nebula_system terevan_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+	    name = "Terevan"
+        class = pc_a_star
+        size = 30
+        orbit_distance = 0
+        orbit_angle = 180
+		flags = { terevan_star }
+    }
+
+	planet = {
+		name = "Tracmus Duxes"
+		class = pc_dextro_savannah
+        orbit_distance = 250
+		size = 18
+		flags = { tracmusduxes_planet pdveld }
+		entity = "veld_planet_10_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = veld_world
+				days = -1
+			}
+			add_deposit = d_veiny_cliffs
+			add_deposit = d_lichen_fields
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+			generate_tur_tracmusduxes_pops = yes
+			generate_tur_tracmus_colony_buildings = yes	
+			set_name = "Tracmus Duxes"
+		}
+	}	
+	
+	planet = {
+		name = "Lodantus"
+		class = pc_gas_giant
+        orbit_distance = 250
+		size = 34
+		flags = { lodantus_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+
+		}
+		moon = {
+			name = "Lodantus a"
+			class = pc_shattered
+			orbit_distance = 20
+			size = 8
+		}
+	}	
+}

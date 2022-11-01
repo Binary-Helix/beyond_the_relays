@@ -1,0 +1,1222 @@
+##########################
+##### SALARIAN UNION #####
+##########################
+
+##### ANNOS BASIN #####
+
+sys_pranas_init = {
+    name = "Pranas"
+    class = sc_g
+	flags = { inner_council_system annos_basin_system pranas_system empire_home_system btr_system custom_system }
+	init_effect = { 
+		random_country = { 
+			limit = { has_country_flag = salarian_union } 
+			save_global_event_target_as = salarian_union
+		}	
+	generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1
+    
+    asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 450
+	}	
+
+    planet = {
+		name = "Pranas"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { pranas_star }
+		init_effect = {
+			add_deposit = d_energy_3
+			set_planet_flag = starting_mining_target
+		}
+	}
+
+    planet = {
+        name = "Saradril"
+        class = pc_hothouse
+        orbit_distance = 100
+        orbit_angle = 148
+        size = 13
+        has_ring = no
+		flags = { saradril_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_2
+		}
+    }
+
+    planet = {
+        name = "Sur'Kesh"
+        class = pc_tropical
+        orbit_distance = 100
+        orbit_angle = 179
+        size = 16
+		has_ring = no		
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "jungle_planet_06_entity"
+		flags = { surkesh_planet btr_custom salarian_homeworld special_start_planet }
+		init_effect = {
+			add_modifier = {
+				modifier = jungle_world
+				days = -1
+			}
+			prevent_anomaly = yes
+			set_global_flag = salarian_homeworld_spawned
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = salarian_union } } }
+				create_species = { 
+					name = "Salarian"
+					class = SAL
+					portrait = salarian
+					#homeworld = THIS 
+					traits = { 
+				  trait = "btr_salarian_shortlived"
+				  trait = "btr_salarian_genius"
+				  trait = "trait_rapid_breeders"
+				  trait = "trait_weak"
+					  # ideal_planet_class = "pc_tropical"
+					}
+				  }
+				  last_created_species = { save_global_event_target_as = salarianSpecies }
+				create_country = {
+					name = "Salarian Union"
+					ship_prefix = "PRESCRIPTED_ship_prefix_salarian_union"
+					type = default
+					origin = "origin_salarian_union"
+					ignore_initial_colony_error = yes
+					civics = { civic = "civic_btr_salarian_special_task_group" civic = "civic_btr_salarian_matriarchy" }
+					authority = auth_oligarchic
+					name_list = "btr_salarian"
+					ethos = { ethic = "ethic_egalitarian" ethic = "ethic_fanatic_materialist" }
+					species = event_target:salarianSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="salarian_union.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"teal"
+							"teal"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = humanoid_01
+						set_country_flag = salarian_union
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						save_global_event_target_as = salarian_union
+					}
+				}
+			}		
+			set_capital = yes
+			random_country = {
+				limit = { has_country_flag = salarian_union }
+				save_global_event_target_as = salarian_union
+				species = { save_global_event_target_as = salarianSpecies }
+			}
+			set_owner = event_target:salarian_union
+			generate_btr_start_deposits_and_blockers = yes			
+			generate_sal_surkesh_capitol_buildings = yes
+			generate_sal_surkesh_pops = yes
+			add_deposit = d_surkesh_parkan_research_institute
+			add_deposit = d_surkesh_wesbii_forest
+			set_name = "Sur'Kesh"
+		}
+    } 
+
+    planet = {
+        name = "Dragel"
+        class = pc_barren
+        orbit_distance = 100
+        orbit_angle = 221
+        size = 3
+        has_ring = no
+		flags = { dragel_planet btr_custom }
+		init_effect = {
+			add_deposit = d_platinum_2
+			add_deposit = d_palladium_2
+			add_deposit = d_iridium_2
+		}
+    }
+
+    planet = {
+        name = "Halegeuse"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 202
+        size = 33
+        has_ring = no
+		flags = { halegeuse_planet pd_farming_hab }
+		satellite_naming_policy = lower_case_latin_letters
+		init_effect = {
+			add_deposit = d_helium_3_4
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_halegeuse_pops = yes
+			generate_sal_halegeuse_colony_buildings = yes	
+			set_name = "Halegeuse"
+		}	
+    }
+
+    planet = {
+        name = "Paeto"
+        class = pc_asteroid
+        orbit_distance = 50
+        orbit_angle = 52
+        size = 4
+        has_ring = no
+		flags = { paeto_planet btr_custom }
+	}
+}
+
+sys_ruoshca_init = {
+	name = "Ruoshca"
+	class = sc_g
+	max_instances = 1
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	flags = { inner_council_system aethon_cluster_system ruoshca_system btr_system custom_system }
+
+	planet = {
+	    name = "Ruoshca"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 25
+		flags = { ruoshca_star }
+    }
+
+	planet = {
+        name = "Bek'Non"
+        class = pc_molten
+        orbit_distance = 125
+        orbit_angle = 277
+        has_ring = no
+        size = 9
+		flags = { beknon_planet btr_custom }
+		init_effect = {
+			add_deposit = d_element_zero_3
+		}
+    }
+
+    planet = {
+        name = "Aschendal"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 249
+        has_ring = no
+        size = 12
+		flags = { aschendal_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_7
+		}
+    }
+
+	planet = {
+        name = "Osu'Debal"
+        class = pc_carbon
+        orbit_distance = 125
+        orbit_angle = 231
+        has_ring = no
+        size = 10
+		flags = { osudebal_planet btr_custom }
+		init_effect = {
+			add_deposit = d_element_zero_1
+		}
+    }
+
+    planet = {
+        name = "Mannovai"
+        class = pc_swamp
+        orbit_distance = 125
+        orbit_angle = 154
+        has_ring = no
+        size = 24
+		flags = { mannovai_planet btr_custom }
+		entity = "mangrove_planet_02_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = mangrove_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_mannovai_pops = yes
+			generate_sal_mannovai_colony_buildings = yes	
+			set_name = "Mannovai"
+		}
+    }
+}
+
+sys_vothi_init = {
+	name = "Vothi"
+	class = "sc_k"
+	max_instances = 1
+
+	flags = { inner_council_system aethon_cluster_system vothi_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+	    name = "Vothi"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		flags = { vothi_star }
+    }
+	
+	planet = {
+		name = "Nasurn"
+		class = pc_tropical
+		orbit_distance = 225
+		size = 23
+		flags = { nasurn_planet btr_custom }
+		entity = "jungle_planet_01_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = jungle_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_nasurn_pops = yes
+			generate_sal_nasurn_colony_buildings = yes	
+			set_name = "Nasurn"
+		}
+	}
+}
+
+sys_rothila_init = {
+    name = "Rothila"
+    class = sc_f
+	max_instances = 1
+
+	flags = { inner_council_system aethon_cluster_system rothila_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 450
+	}
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 500
+	}
+
+    planet = {
+		name = "Rothila"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 20
+		flags = { rothila_star }
+	}	
+	
+	planet = {
+		name = "Friga"
+		class = pc_frozen
+        orbit_distance = 100
+        size = 4
+		flags = { friga_planet btr_custom }
+		init_effect = {
+			add_deposit = d_iridium_2
+			add_deposit = d_platinum_2
+			add_deposit = d_palladium_1
+		}
+	}
+
+	planet = {
+		name = "Dagnes"
+		class = pc_alpine
+        orbit_distance = 100
+        size = 14 
+		flags = { dagnes_planet btr_custom }
+		entity = "boreal_planet_11_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = boreal_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_dagnes_pops = yes
+			generate_sal_dagnes_colony_buildings = yes	
+			set_name = "Dagnes"
+		}
+		moon = {
+			name = "Warrik"
+			class = pc_barren
+			orbit_distance = 20
+            size = 6
+		}
+		moon = {
+			name = "Yomala"
+			class = pc_iron
+			orbit_distance = 5
+            size = 4
+		}		
+		moon = {
+			name = "Ferwen"
+			class = pc_chlorine
+			orbit_distance = 5
+            size = 11
+			entity = "chlorine_ocean_planet_03_entity"
+			init_effect = {
+				add_modifier = {
+					modifier = storm_world
+					days = -1
+				}
+			}
+		}			
+		moon = {
+			name = "Cuzene"
+			class = pc_frozen
+			orbit_distance = 5
+            size = 8
+		}	
+	}
+
+	planet = {
+		name = "Tinoth"
+		class = pc_gas_giant
+        orbit_distance = 100
+        size = 33
+		has_ring = yes
+		flags = { tinoth_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}
+		moon = {
+			name = "Baleia"
+			class = pc_frozen
+			orbit_distance = 20
+			size = 12
+		}	
+	}
+
+	planet = {
+		name = "Jikkart"
+		class = pc_methane
+        orbit_distance = 100
+        size = 14
+		flags = { jikkart_planet btr_custom }
+		entity = "methane_continental_planet_07_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = prairie_world
+				days = -1
+			}
+			add_deposit = d_element_zero_3
+		}
+	}	
+
+	planet = {
+		name = "1896 Valta"
+		class = pc_asteroid
+        orbit_distance = 50
+        size = 1
+		init_effect = {
+			add_deposit = d_element_zero_3
+		}
+	}
+
+	planet = {
+		name = "1897 Niti"
+		class = pc_ice_asteroid
+        orbit_distance = 50
+        size = 2
+		init_effect = {
+			add_deposit = d_element_zero_3
+		}
+	}
+}	
+
+
+#####ANDURA SECTOR#####
+
+sys_maceddei_init = {
+	name = "Maced'Dei"
+	class = sc_g
+	max_instances = 1
+
+	flags = { inner_council_system vasdiri_gap_system maceddei_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 375
+	}
+
+	planet = {
+	    name = "Maced'Dei"
+        class = pc_g_giant_star
+        orbit_distance = 0
+        size = 20
+		flags = { maceddei_star }
+    }
+
+    planet = {
+        name = "Jaëto"
+        class = pc_continental
+        orbit_distance = 250
+        orbit_angle = 61
+        has_ring = no
+        size = 19
+		flags = { jaeto_planet btr_custom }
+		entity = "supercon_planet_07_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = supercon_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_jaeto_pops = yes
+			generate_sal_jaeto_colony_buildings = yes				
+			set_name = "Jaëto"
+		}
+    }
+
+    planet = {
+        name = "Gareta"
+        class = pc_continental
+        orbit_distance = 250
+        orbit_angle = 247
+        has_ring = no
+        size = 14
+		entity = "forest_planet_01_entity"
+		flags = { gareta_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = forest_world
+				days = -1
+			}
+		}
+    }
+}
+
+sys_gorot_init = {
+	name = "Gorot"
+	class = sc_w_red
+	max_instances = 1
+
+	flags = { inner_council_system vasdiri_gap_system gorot_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	
+	}
+
+	planet = {
+	    name = "Gorot"
+        class = pc_w_red_star
+        orbit_distance = 0
+        size = 20
+		flags = { bowani_star }
+    }
+
+    planet = {
+        name = "Gorot I"
+        class = pc_carbon
+        orbit_distance = 125
+        orbit_angle = 61
+        has_ring = no
+        size = 12
+		flags = { goroti_planet btr_custom }
+    }
+
+    planet = {
+        name = "Gorot II"
+        class = pc_alpine
+        orbit_distance = 125
+        orbit_angle = 247
+        has_ring = no
+        size = 19
+		flags = { gorotii_planet btr_custom }
+		entity = "boreal_planet_01_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = boreal_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_gorot_pops = yes
+			generate_sal_gorot_colony_buildings = yes	
+			set_name = "Gorot II"
+		}
+    }
+
+    planet = {
+        name = "Gorot III"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 245
+        has_ring = yes
+        size = 34
+		flags = { gorotiii_planet btr_custom }
+    }
+
+	planet = {
+        name = "Gorot IV"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 245
+        has_ring = no
+        size = 11
+		flags = { gorotiv_planet btr_custom }
+    }
+}
+
+#####SERPENT NEBULA######
+
+sys_sovak_init = {
+    name = "Sovak"
+    class = sc_g
+	max_instances = 1
+
+	flags = { outer_council_system nimbus_cluster_system sovak_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Sovak"
+        class = pc_g_star
+        size = 30
+        orbit_distance = 0
+        orbit_angle = 180
+		flags = { sovak_star }
+    }
+
+	planet = {
+		name = "Farek"
+		class = pc_molten
+        orbit_distance = 150
+		size = 8
+		flags = { farek_planet btr_custom }
+		init_effect = {
+			add_deposit = d_iridium_4
+			add_deposit = d_palladium_3
+		}
+	}
+
+	planet = {
+		name = "Gataly"
+		class = pc_continental
+        orbit_distance = 150
+		size = 7
+		flags = { gataly_planet btr_custom }
+		entity = "atoll_planet_06_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = atoll_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_gataly_pops = yes
+			generate_sal_gataly_colony_buildings = yes	
+			set_name = "Gataly"
+		}
+	}
+
+	planet = {
+		name = "Ishka"
+		class = pc_gas_giant
+        orbit_distance = 150
+		size = 36
+		flags = { ishka_planet btr_custom }
+	}
+}
+
+#####ANDURA SECTOR#####
+
+sys_limron_init = {
+	name = "Limron"
+	class = sc_k_giant
+	max_instances = 1
+
+	flags = { inner_council_system andura_sector_system limron_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	
+	}
+
+	planet = {
+		name = "Limron"
+        class = pc_k_giant_star
+        orbit_distance = 0
+        size = 20
+		flags = { reslom_star }
+	}
+
+	planet = {
+		name = "Darinle"
+		class = pc_molten
+        orbit_distance = 100
+        size = 10
+		flags = { darinle_planet btr_custom }
+	}
+
+	planet = {
+		name = "Narota"
+		class = pc_mephitic
+        orbit_distance = 100
+        size = 8
+		has_ring = no
+		flags = { narota_planet btr_custom }
+		entity = "mephitic_alpine_planet_06_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = cascadian_world
+				days = -1
+			}
+			add_deposit = d_platinum_2
+		}
+	}
+
+	planet = {
+		name = "Senoquol"
+		class = pc_swamp
+        orbit_distance = 100
+        size = 17
+		has_ring = no
+		flags = { senoquol_planet btr_custom }
+		entity = "lake_planet_09_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = lake_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_senoquol_pops = yes
+			generate_sal_senoquoi_colony_buildings = yes	
+			set_name = "Senoquol"
+		}
+	}
+
+	planet = {
+		name = "Busdegu"
+		class = pc_iron
+        orbit_distance = 100
+        size = 10
+		flags = { busdegu_planet btr_custom }
+	}
+
+	planet = {
+		name = "Lidarause"
+		class = pc_barren
+        orbit_distance = 100
+        size = 14
+		has_ring = no
+		flags = { lidarause_planet btr_custom }
+	}
+}
+
+sys_antillin_init = {
+	name = "Antillin"
+	class = sc_g
+	max_instances = 1
+
+	flags = { inner_council_system andura_sector_system antillin_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Antillin"
+        class = pc_k_giant_star
+        orbit_distance = 0
+        size = 20
+		flags = { antillin_star }
+	}
+
+	planet = {
+		name = "Londa'Mon"
+		class = pc_barren
+        orbit_distance = 70
+        size = 10
+		flags = { londamon_planet btr_custom }
+	}
+
+	planet = {
+		name = "Indei'Tush"
+		class = pc_gas_giant
+        orbit_distance = 70
+        size = 32
+		has_ring = yes
+		flags = { indeitush_planet btr_custom }
+	}
+
+	planet = {
+		name = "Saetabelo"
+		class = pc_swamp
+        orbit_distance = 70
+        size = 16
+		flags = { saetabelo_planet btr_custom }
+		entity = "marsh_planet_02_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = marsh_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_saetabelo_pops = yes
+			generate_sal_saetabelo_colony_buildings = yes	
+			set_name = "Saetabelo"
+		}
+	}
+
+	planet = {
+		name = "Baldanoa"
+		class = pc_iron
+        orbit_distance = 70
+        size = 12
+		has_ring = no
+		flags = { baldanoa_planet btr_custom }
+	}
+
+	planet = {
+		name = "Manayoi"
+		class = pc_ammonia
+        orbit_distance = 70
+        size = 10
+		has_ring = no
+		entity = "ammonia_desert_planet_03_entity"
+		flags = { manayoi_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = aquifer_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Zislum"
+		class = pc_frozen
+        orbit_distance = 70
+        size = 16
+		flags = { zislum_planet btr_custom }
+	}
+
+	planet = {
+		name = "Dendari"
+		class = pc_frozen
+        orbit_distance = 70
+        size = 12
+		has_ring = no
+		flags = { dendari_planet btr_custom }
+	}
+}
+
+sys_vildisa_init = {
+	name = "Vildisa"
+	class = sc_m_giant
+	max_instances = 1
+
+	flags = { inner_council_system andura_sector_system vildisa_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes	
+	}
+
+	planet = {
+		name = "Vildisa"
+        class = pc_m_giant_star
+        orbit_distance = 0
+        size = 20
+		flags = { reslom_star }
+	}
+
+	planet = {
+		name = "Anduse"
+		class = pc_molten
+        orbit_distance = 250
+        size = 12
+		flags = { anduse_planet btr_custom }
+		moon = {
+			name = "Voya"
+			class = pc_tropical
+			orbit_distance = 20
+			size = 8
+			entity = "atoll_planet_12_entity"		
+			init_effect = {
+				add_modifier = {
+					modifier = atoll_world
+					days = -1
+				}
+				set_owner = event_target:salarian_union
+				create_colony = {
+					owner = event_target:salarian_union
+					species = event_target:salarianSpecies
+					ethos = owner
+				}
+				generate_sal_voya_pops = yes
+				generate_sal_voya_colony_buildings = yes	
+				set_name = "Voya"
+			}	
+		}
+	}
+
+	planet = {
+		name = "Tumeya"
+		class = pc_ice_giant
+        orbit_distance = 250
+        size = 32
+		has_ring = no
+		flags = { tumeya_planet btr_custom }
+	}
+}
+
+
+##### VAS'DIRI GAP ######
+sys_anunulibse_init = {
+	name = "Anuni'Lib'Se"
+	class = sc_binary_mg_g
+	max_instances = 1
+
+	flags = { inner_council_system vasdiri_gap_system anunilibse_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+	    name = "Anuni'Lib'Se A"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { anunilibse_star }
+    }
+
+	planet = {
+	    name = "Anuni'Lib'Se B"
+        class = pc_m_giant_star
+        orbit_distance = 40
+        size = 30
+		flags = { anunilibse_star }
+    }
+
+    planet = {
+        name = "Osolaneb"
+        class = pc_molten
+        orbit_distance = 100
+        orbit_angle = 61
+        has_ring = no
+        size = 17
+		flags = { osolaneb_planet btr_custom }
+    }
+
+    planet = {
+        name = "Rannandril"
+        class = pc_savannah
+        orbit_distance = 100
+        orbit_angle = 247
+        has_ring = no
+        size = 17
+		entity = "veld_planet_10_entity"
+		flags = { rannandril_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = veld_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_rannandril_pops = yes
+			generate_sal_rannandril_colony_buildings = yes	
+			set_name = "Rannandril"
+		}
+    }
+
+    planet = {
+        name = "Jensalas"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 245
+        has_ring = yes
+        size = 28
+		flags = { jensalas_planet btr_custom }
+    }
+
+    planet = {
+        name = "Owoukeen"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 143
+        has_ring = no
+        size = 28
+		flags = { owoukeen_planet btr_custom }
+    }
+
+	planet = {
+        name = "Besk'Dit"
+        class = pc_frozen
+        orbit_distance = 100
+        orbit_angle = 143
+        has_ring = no
+        size = 16
+		flags = { beskdit_planet btr_custom }
+    }
+}
+
+####OLYN PROTECTORATE
+sys_bedi_init = {
+	name = "Bedi"
+	class = sc_m
+	max_instances = 1
+
+	flags = { inner_council_system olynprotectorate_system bedi_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	
+	}
+
+	planet = {
+		name = "Bedi"
+		class = pc_m_star
+		size = 30
+		flags = { bedi_star }
+	}
+
+	planet = {
+		name = "Olor"
+		class = pc_savannah
+        orbit_distance = 250
+        size = 18
+		flags = { olor_planet btr_custom }
+		entity = "steppe_planet_06_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = steppe_world
+				days = -1
+			}
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+			generate_sal_olor_pops = yes
+			generate_sal_olor_colony_buildings = yes				
+			set_name = "Olor"
+		}
+	}
+}
+
+##### EAGLE NEBULA ######
+
+sys_strabo_init = {
+    name = "Strabo"
+    class = sc_g
+	max_instances = 1
+
+    flags = { attican_traverse_system eagle_nebula_system strabo_system btr_system custom_system }
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 50
+	}	
+
+    planet = {
+		name = "Strabo"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 30
+		flags = { strabo_star }
+		init_effect = {
+			add_deposit = d_energy_4
+			create_ambient_object = {
+				type = "nebula_2"
+				entity_offset_height = -5
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+    }
+
+    planet = {
+        name = "Antigar"
+        class = pc_gas_giant
+        orbit_distance = 250
+        orbit_angle = 174
+        has_ring = yes
+		size = 27
+		flags = { antigar_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_2
+			add_modifier = {
+				modifier = extensive_moon_system
+				days = -1
+			}
+		}
+		moon = {
+			name = "Antigar a"
+			class = pc_frozen
+			size = 2
+			orbit_distance = 20
+			orbit_angle = 23
+		}
+		moon = {
+			name = "Antigar b"
+			class = pc_asteroid
+			size = 1
+			orbit_distance = 5
+			orbit_angle = 230
+			init_effect = {
+				add_deposit = d_minerals_1
+			}
+		}
+		moon = {
+			name = "Antigar c"
+			class = pc_frozen
+			size = 3
+			orbit_distance = 5
+			orbit_angle = 97
+		}
+		moon = {
+			name = "Antigar d"
+			class = pc_frozen
+			size = 2
+			orbit_distance = 5
+			orbit_angle = 110
+		}
+		moon = {
+			name = "Antigar e"
+			class = pc_asteroid
+			size = 2
+			orbit_distance = 5
+			orbit_angle = 46
+		}	
+		moon = {
+			name = "Antigar f"
+			class = pc_frozen
+			size = 2
+			orbit_distance = 5
+			orbit_angle = 13
+		}
+		moon = {
+			name = "Antigar g"
+			class = pc_frozen
+			size = 2
+			orbit_distance = 5
+			orbit_angle = 185
+		}	
+		moon = {
+			name = "Antigar h"
+			class = pc_frozen
+			size = 1
+			orbit_distance = 5
+			orbit_angle = 214
+		}
+		moon = {
+			name = "Antigar i"
+			class = pc_asteroid
+			size = 1
+			orbit_distance = 5
+			orbit_angle = 73
+		}
+		moon = {
+			name = "Antigar j"
+			class = pc_asteroid
+			size = 2
+			orbit_distance = 5
+			orbit_angle = 126
+		}
+		moon = {
+			name = "Antigar k"
+			class = pc_barren_cold
+			size = 3
+			orbit_distance = 5
+			orbit_angle = 99
+		}
+		moon = {
+			name = "Jarrahe Station"
+			class = pc_habitat
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 10
+			size = 4
+			flags = { jarrahe_station pd_science_hab }
+			init_effect = {
+				add_deposit = rs_d_engineering_2
+				add_deposit = d_physics_2
+				set_owner = event_target:salarian_union
+				create_colony = {
+					owner = event_target:salarian_union
+					species = event_target:salarianSpecies
+					ethos = owner
+				}
+				generate_sal_jarrahe_pops = yes
+				generate_sal_jarrahe_colony_buildings = yes									
+				add_deposit = d_jarrahe_vi
+				add_deposit = d_jarrahe_research	
+			}
+		}		
+    }	
+}

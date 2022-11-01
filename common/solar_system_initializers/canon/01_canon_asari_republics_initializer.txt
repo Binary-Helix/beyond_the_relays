@@ -1,0 +1,1446 @@
+###########################
+##### ASARI REPUBLICS #####
+###########################
+
+#####ATHENA NEBULA#####
+
+sys_parnitha_init = {
+	name = "Parnitha"	
+    class = sc_g
+	flags = { outer_council_system athena_nebula_system parnitha_system empire_home_system custom_system }
+	init_effect = { 
+		random_country = { 
+			limit = { has_country_flag = asari_republics } 
+			save_global_event_target_as = asari_republics
+		}	
+	generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 280
+	}
+	
+	planet = {
+		name = "Parnitha"
+		class = pc_g_star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 26
+		has_ring = no
+		init_effect = {
+			add_deposit = d_energy_5
+			set_planet_flag = starting_mining_target
+		}		
+	}
+	
+	planet = {
+		name = "Kurinth"
+		class = pc_hothouse
+		orbit_distance = 80
+		orbit_angle = 15
+		size = 10
+		has_ring = no
+		init_effect = {
+			add_deposit = d_physics_3
+			set_planet_flag = starting_research_target
+		}		
+	}
+	
+	planet = {
+		name = "Thessia"
+		class = pc_continental
+		orbit_distance = 80
+		orbit_angle = 80
+		size = 25
+		has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		entity = "temperate_planet_01_entity"
+		flags = { thessia_planet btr_custom special_start_planet }		
+		init_effect = {
+			add_modifier = {
+				modifier = temperate_world
+				days = -1
+			}
+			prevent_anomaly = yes
+			set_global_flag = asari_homeworld_spawned
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = asari_republics } } }
+				create_species = { 
+					name = "Asari"
+					class = MECASA
+					portrait = mec_asari
+					#homeworld = THIS 
+					traits = { 
+				  		trait = mec_asari_trait_core
+				  		trait = mec_asari_trait_biotic
+				  		trait = btr_asari_trait_smooth_talk
+				  		trait = mec_asari_trait_sophisticated
+					  	trait = trait_asari_habitability_preference
+						trait = trait_psionic
+						  #ideal_planet_class = "pc_continental"
+					}
+				  }
+				last_created_species = { save_global_event_target_as = asariSpecies }
+				create_country = {
+					name = "Asari Republics"
+					ship_prefix = "PRESCRIPTED_ship_prefix_mec_asarirepublics_civ"
+					type = default
+					origin = btr_origin_asrep
+					ignore_initial_colony_error = yes
+					civics = { civic = btr_civic_asrep_democracy civic = btr_civic_asrep_thes_dip_corp }
+					authority = auth_democratic
+					name_list = "btr_asari"
+					ethos = { ethic = "ethic_fanatic_xenophile" ethic = "ethic_egalitarian" }
+					species = event_target:asariSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="asari_republics.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"pink"
+							"light_blue"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = mec_asari_01
+						set_country_flag = asari_republics
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						save_global_event_target_as = asari_republics
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = { exists = event_target:asari_homeworld_planet_thessia }
+				}
+				save_global_event_target_as = asari_homeworld_planet_thessia
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { has_country_flag = asari_republics }
+				save_global_event_target_as = asari_republics
+				species = { save_global_event_target_as = asariSpecies }
+			}
+			set_owner = event_target:asari_republics
+			generate_start_deposits_and_blockers = yes
+			generate_asr_thessia_capitol_buildings = yes
+			generate_asr_thessia_pops = yes
+			generate_asr_thessia_deposits = yes
+			create_archaeological_site = btr_site_prothean_beacon_asari
+			set_name = "Thessia"
+		}
+	}
+
+	planet = {
+		name = "Piares"
+		class = pc_mephitic
+		orbit_distance = 80
+		orbit_angle = 70
+		size = 15
+		has_ring = no
+		entity = "mephitic_arid_planet_12_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dust_world
+				days = -1
+			}
+			add_deposit = d_minerals_5
+			set_planet_flag = starting_mining_target
+		}		
+	}
+
+	planet = {
+		name = "Lucen"
+		class = pc_asteroid
+		orbit_distance = 40
+		orbit_angle = { min = 40 max = 100 }
+		size = 1
+		init_effect = {
+			add_deposit = d_minerals_5
+			set_planet_flag = starting_mining_target
+		}		
+	}
+	
+	planet = {
+		name = "Janiri"
+		class = pc_gas_giant
+		orbit_distance = 40
+		orbit_angle = -60
+		size = 33
+		has_ring = yes
+		init_effect = {
+			add_deposit = d_engineering_2
+		}		
+	}
+	
+	planet = {
+		name = "Athame"
+		class = pc_gas_giant
+		orbit_distance = 80
+		orbit_angle = -100
+		size = 35
+		has_ring = yes
+		init_effect = {
+			add_deposit = d_energy_5
+			set_planet_flag = starting_mining_target
+		}		
+	}
+	
+	planet = {
+		name = "Tevura"
+		class = pc_ice_giant
+		orbit_distance = 80
+		orbit_angle = -170
+		size = 25
+		has_ring = no
+		init_effect = {
+			clear_deposits = yes
+			prevent_anomaly = yes
+		}		
+		moon = {
+			name = "Tevura I"
+			class = pc_iron
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 2
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}	
+		moon = {
+			name = "Tevura II"
+			class = pc_frozen
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 3
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+			}
+		}	
+		moon = {
+			name = "Tevura III"
+			class = pc_iron
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 4
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				add_deposit = d_minerals_3
+			}
+		}
+    }
+}
+
+sys_tomaros_init = {
+	name = "Tomaros"
+	class = sc_g
+	max_instances = 1
+
+	flags = { outer_council_system athena_nebula_system tomaros_system empire_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Tomaros"
+		class = pc_g_star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 16
+		has_ring = no
+		flags = { tomaros_star }
+		init_effect = {
+			add_deposit = d_energy_4
+		}		
+	}
+	
+	planet = {
+		name = "Lusia"
+		class = pc_tropical
+        orbit_distance = 125
+		orbit_angle = 110
+		size = 21
+		has_ring = no
+		flags = { lusia_planet btr_custom }
+		entity = "coastal_planet_06_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = coastal_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_lusia_pops = yes
+			generate_asr_lusia_colony_buildings = yes	
+			set_name = "Lusia"
+		}
+	}
+	
+	planet = {
+		name = "Niagolon"
+		class = pc_gas_giant
+        orbit_distance = 125
+		orbit_angle = -160
+		size = 34
+		has_ring = yes
+		flags = { niagolon_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}		
+	}
+	
+	planet = {
+		name = "Pronoia"
+		class = pc_ice_giant
+        orbit_distance = 125
+		orbit_angle = 100
+		size = 24
+		has_ring = no
+		flags = { egalic_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}			
+	}
+	
+	planet = {
+		name = "Beness"
+		class = pc_ice_giant
+        orbit_distance = 125
+		orbit_angle = 100
+		size = 26
+		has_ring = no
+		flags = { beness_planet btr_custom }
+	}	
+}
+
+sys_ialessa_init = {
+	name = "Ialessa"
+	class = sc_g
+	max_instances = 1
+
+	flags = { outer_council_system athena_nebula_system ialessa_system empire_system btr_system custom_system }
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 225
+	}
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Ialessa"
+		class = pc_g_star
+		size = 30
+		flags = { ialessa_star }
+		init_effect = {
+			add_deposit = d_energy_3					
+		}		
+	}
+	
+	planet = {
+		name = "Ilmnos"
+		class = pc_iron
+        orbit_distance = 100
+		orbit_angle = 65
+		size = 16
+		has_ring = no
+		flags = { ilmnos_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_5
+		}		
+	}
+
+	planet = {
+		name = "Sanves"
+		class = pc_savannah
+        orbit_distance = 100
+		orbit_angle = 170
+		size = 18
+		has_ring = no
+		flags = { sanves_planet btr_custom }
+		entity = "retinal_planet_09_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = retinal_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_sanves_pops = yes
+			generate_asr_sanves_colony_buildings = yes			
+			set_name = "Sanves"
+		}
+	}
+	
+	planet = {
+		name = "Zylium"
+		class = pc_gas_giant
+        orbit_distance = 100
+		orbit_angle = 35
+		size = 35
+		flags = { zylium_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}		
+	}
+	
+	planet = {
+		name = "Trikalon"
+		class = pc_barren
+        orbit_distance = 100
+		orbit_angle = 150
+		size = 4
+		has_ring = no
+		flags = { trikalon_planet btr_custom }
+	}
+	
+	planet = {
+		name = "Nossia"
+		class = pc_barren_cold
+        orbit_distance = 100
+		orbit_angle = 20
+		size = 25
+		has_ring = no
+		flags = { nossia_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_2
+		}		
+	}
+}
+
+sys_orisoni_init = {	
+	name = "Orisoni"
+	class = sc_g
+	max_instances = 1
+
+	flags = { outer_council_system athena_nebula_system orisoni_system empire_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Orisoni"
+		class = pc_g_star
+		size = 20
+		flags = { orisoni_star }
+		init_effect = {
+			add_deposit = d_energy_2
+		}		
+	}
+	
+	planet = {
+		name = "Thissioni"
+		class = pc_barren
+        orbit_distance = 125
+		orbit_angle = 75
+		size = 15
+		has_ring = no
+		flags = { thissioni_planet btr_custom }
+	}
+	
+	planet = {
+		name = "Niacal"
+		class = pc_highgrav_mephitic
+        orbit_distance = 125
+		orbit_angle = 90
+		size = 25
+		has_ring = no
+		flags = { niacal_planet btr_custom }
+		entity = "jungle_planet_06_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = jungle_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_niacal_pops = yes
+			generate_asr_niacal_colony_buildings = yes			
+			set_name = "Niacal"
+		}
+	}
+	
+	planet = {
+		name = "Kralla"
+		class = pc_carbon
+        orbit_distance = 125
+		orbit_angle = 130
+		size = 14
+		has_ring = no
+		flags = { kralla_planet btr_custom }
+	}
+	
+	planet = {
+		name = "Egalic"
+		class = pc_gas_giant
+        orbit_distance = 125
+		orbit_angle = -90
+		size = 36
+		has_ring = yes
+		flags = { egalic_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}		
+	}	
+}
+
+sys_vernio_init = {
+	name = "Vernio"
+	class = sc_f
+	max_instances = 1
+
+	flags = { outer_council_system athena_nebula_system vernio_system empire_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 283
+	}
+
+	planet = {
+		name = "Vernio"
+		class = pc_f_star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 20
+		has_ring = no
+		init_effect = {
+			add_deposit = d_energy_3
+		}		
+	}
+	
+	planet = {
+		name = "Nauti"
+		class = pc_hothouse
+        orbit_distance = 125
+		orbit_angle = -90
+		size = 25
+		has_ring = no
+		flags = { nauti_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}	
+	}
+	
+	planet = {
+		name = "Promavess"
+		class = pc_methane
+        orbit_distance = 125
+		orbit_angle = 70
+		size = 16
+		has_ring = no
+		flags = { promavess_planet btr_custom }
+	}
+	
+	planet = {
+		name = "Sotera"
+		class = pc_barren
+        orbit_distance = 0
+		orbit_angle = 50
+		size = 12
+		has_ring = no
+		flags = { sotera_planet btr_custom }
+	}
+
+	planet = {
+		name = "Tritogenith"
+		class = pc_gas_giant
+        orbit_distance = 125
+		orbit_angle = 130
+		size = 33
+		has_ring = no
+		flags = { tritogenith_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+			add_deposit = d_mec_asari_tritogenith_collision
+		}		
+		moon = {
+			name = "Tritogenith I"
+			class = pc_molten
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 8
+		}		
+		moon = {
+			name = "Tritogenith II"
+			class = pc_barren_cold
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 6
+		}
+		moon = {
+			name = "Mavote"
+			class = pc_frozen
+			orbit_distance = 5
+			size = 10
+			flags = { mavote_planet btr_custom }
+		}	
+	}
+	
+	planet = {
+		name = "Polissa"
+		class = pc_gas_giant
+        orbit_distance = 125
+		orbit_angle = -135
+		size = 25
+		has_ring = yes
+		flags = { polissa_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_5
+
+		}		
+		moon = {
+			name = "Polissa I"
+			class = random_non_colonizable
+			orbit_angle = { min = 45 max = 270 }
+			orbit_distance = 20
+			size = 2
+		}	
+		moon = {
+			name = "Polissa VI"
+			class = random_non_colonizable
+			orbit_angle = { min = 45 max = 270 }
+			orbit_distance = 5
+			size = 1
+		}	
+		moon = {
+			name = "Polissa XI"
+			class = pc_barren_cold
+			orbit_angle = { min = 45 max = 270 }
+			orbit_distance = 5
+			size = 2
+		}	
+		moon = {
+			name = "Polissa XV"
+			class = pc_iron
+			orbit_angle = { min = 45 max = 270 }
+			orbit_distance = 5
+			size = 3
+		}	
+		moon = {
+			name = "Polissa XX"
+			class = pc_frozen
+			orbit_angle = { min = 45 max = 270 }
+			orbit_distance = 5
+			size = 2
+		}	
+	}
+}
+
+#####SILEAN NEBULA#####
+
+sys_loropi_init = {
+    name = "Loropi"
+    class = sc_a
+	max_instances = 1
+
+	flags = { outer_council_system silean_nebula_system loropi_system btr_system custom_system }
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 490
+	}
+
+    planet = {
+	    name = "Loropi"
+        class = pc_a_star
+        orbit_distance = 0
+        size = 27
+		flags = { loropi_star }
+    }
+
+    planet = {
+        name = "Paphos"
+        class = pc_gas_giant
+        orbit_distance = 250
+        orbit_angle = 21
+        size = 37
+        has_ring = yes
+		flags = { paphos_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_2
+		}
+    }
+
+	planet = {
+        name = "Espota Station"
+        class = pc_habitat
+        orbit_distance = 125
+        orbit_angle = 117
+        size = 3
+        has_ring = no
+		flags = { espota_station pd_science_hab }
+		init_effect = {
+			add_deposit = d_energy_8
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_espota_pops = yes
+			generate_asr_espota_station_buildings = yes				
+			set_name = "Espota Station"
+		}
+	}
+
+    planet = {
+        name = "Yasilium"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 117
+        size = 6
+        has_ring = no
+	}	
+}
+
+sys_teyolia_init = {
+    name = "Teyolia"
+    class = sc_m
+	max_instances = 1
+
+	flags = { outer_council_system silean_nebula_system teyolia_system empire_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Teyolia"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { teyolia_star }
+    }
+
+    planet = {
+        name = "Loxia"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 150
+        size = 7
+        has_ring = no
+		flags = { loxia_planet btr_custom }
+    }
+
+    planet = {
+        name = "Nevos"
+        class = pc_continental
+        orbit_distance = 125
+        orbit_angle = 222
+        size = 17
+        has_ring = no
+		flags = { nevos_planet btr_custom }
+		entity = "forest_planet_08_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = forest_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_nevos_pops = yes
+			generate_asr_nevos_colony_buildings = yes				
+			set_name = "Nevos"
+		}
+		moon = {
+			name = "Fara"
+			class = pc_iron
+			orbit_distance = 20
+			size = 6
+		}
+		moon = {
+			name = "Revulla"
+			class = pc_carbon
+			orbit_distance = 5
+			size = 5
+		}	
+    }
+
+    planet = {
+        name = "Quirezia"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 310
+        size = 36
+        has_ring = yes
+		flags = { quirezia_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}	
+    }
+
+    planet = {
+        name = "Atebolos"
+        class = pc_barren_cold
+        orbit_distance = 125
+        orbit_angle = 43
+        size = 20
+        has_ring = no
+		flags = { atebolos_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_2
+		}	
+    }		
+}
+
+sys_kypladon_init = {
+    name = "Kypladon"
+    class = sc_k
+	max_instances = 1
+
+	flags = { outer_council_system silean_nebula_system kypladon_system empire_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+	    name = "Kypladon"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 23
+		flags = { kypladon_star }
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 375
+	}
+
+    planet = {
+        name = "Hanalei"
+        class = pc_hothouse
+        orbit_distance = 150
+        orbit_angle = 198
+        size = 25
+        has_ring = no
+		flags = { hanalei_planet btr_custom }
+    }
+
+    planet = {
+        name = "Cyone"
+        class = pc_tropical
+        orbit_distance = 150
+        orbit_angle = 137
+        size = 15
+        has_ring = no
+		flags = { cyone_planet btr_custom }
+		entity = "coastal_planet_09_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = coastal_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_cyone_pops = yes
+			generate_asr_cyone_colony_buildings = yes			
+			set_name = "Cyone"
+		}
+    }
+
+    planet = {
+        name = "Tropai"
+        class = pc_asteroid
+        orbit_distance = 75
+        orbit_angle = 120
+        size = 2
+        has_ring = no
+		flags = { tropai_planet btr_custom }
+    }
+
+    planet = {
+        name = "Lochia"
+        class = pc_asteroid
+        orbit_distance = 0
+        orbit_angle = 240
+        size = 2
+        has_ring = no
+		flags = { lochia_planet btr_custom }
+		init_effect = {
+			add_deposit = d_platinum_5
+			add_deposit = d_palladium_3
+		}
+    }
+	
+    planet = {
+        name = "Nili"
+        class = pc_asteroid
+        orbit_distance = 0
+        orbit_angle = 0
+        size = 2
+        has_ring = no
+		flags = { nili_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_1
+		}
+    }	
+
+    planet = {
+        name = "Katebolo"
+        class = pc_ice_giant
+        orbit_distance = 75
+        orbit_angle = 68
+        size = 32
+        has_ring = no
+		flags = { katebolo_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}
+    }	
+}
+
+sys_nahuala_init = {
+    name = "Nahuala"
+    class = sc_k
+	max_instances = 1
+
+	flags = { outer_council_system silean_nebula_system nahuala_system empire_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 425
+	}
+
+    planet = {
+		name = "Nahuala"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		flags = { nahuala_star }
+    }
+
+    planet = {
+        name = "Agessia"
+        class = pc_molten
+        orbit_distance = 75
+        orbit_angle = 49
+        size = 15
+        has_ring = no
+		flags = { agessia_planet pd_mining_hab }
+		init_effect = {
+			add_deposit = d_palladium_5
+			add_deposit = d_minerals_5
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_agessia_pops = yes
+			generate_asr_agessia_colony_buildings = yes				
+			set_name = "Agessia"
+		}
+    }
+
+    planet = {
+        name = "Hyetiana"
+        class = pc_tundra
+        orbit_distance = 200
+        orbit_angle = 239
+        size = 25
+        has_ring = no
+		flags = { hyetiana_planet btr_custom }
+		entity = "tundra_planet_05_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = basalt_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_hyetania_pops = yes
+			generate_asr_hyetania_colony_buildings = yes				
+			set_name = "Hyetania"
+		}		
+    }
+
+    planet = {
+        name = "Phoros"
+        class = pc_gas_giant
+        orbit_distance = 200
+        orbit_angle = 297
+        size = 34
+        has_ring = yes
+		flags = { phoros_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}	
+    }
+}
+
+#####ANDANIAN SEA#####
+
+sys_fotia_init = {
+	name = "Fotia"
+	class = sc_binary_a_d
+	max_instances = 1
+
+	flags = { outer_council_system andanian_sea_system fotia_system empire_system btr_system custom_system }
+	
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Fotia A"	
+        class = pc_a_star
+        orbit_distance = 10
+        size = 35
+    }
+
+	planet = {
+		name = "Fotia B"	
+        class = pc_d_star
+        orbit_distance = 20
+        size = 30
+    }
+
+	planet = {
+		name = "Oramona"
+		class = pc_gas_giant
+        orbit_distance = 150
+        size = 33
+		has_ring = yes
+		flags = { lamampisis_planet btr_custom }
+	}
+	
+	planet = {
+		name = "Gallikimos"
+		class = pc_gas_giant
+        orbit_distance = 150
+        size = 11
+		flags = { gallikimos_planet btr_custom }
+		moon = {
+			name = "Malkos"
+			class = pc_swamp
+			orbit_distance = 20
+			size = 11
+			entity = "bog_planet_08_entity"
+			init_effect = {
+				add_modifier = {
+					modifier = bog_world
+					days = -1
+				}
+				set_owner = event_target:asari_republics
+				create_colony = {
+					owner = event_target:asari_republics
+					species = event_target:asariSpecies
+					ethos = owner
+				}
+				generate_asr_malkos_pops = yes
+				generate_asr_malkos_colony_buildings = yes					
+				set_name = "Malkos"
+			}
+		}
+	}
+
+	planet = {
+		name = "Kispois"
+		class = pc_methane
+        orbit_distance = 150
+        size = 18
+		flags = { macrosia_planet btr_custom }
+		entity = "methane_desert_planet_05_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = outback_world
+				days = -1
+			}
+		}
+	}
+}
+
+sys_mitrios_init = {
+	name = "Mitrios"
+	class = sc_f
+	max_instances = 1
+
+	flags = { outer_council_system andanian_sea_system mitrios_system empire_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Mitrios"	
+        class = pc_f_star
+        orbit_distance = 0
+        size = 20
+    }
+
+	planet = {
+		name = "Echthronos"
+		class = pc_hothouse
+        orbit_distance = 150
+        size = 12
+		has_ring = no
+		flags = { echthronos_planet btr_custom }
+	}
+	
+	planet = {
+		name = "Charias"
+		class = pc_savannah
+        orbit_distance = 150
+        size = 21
+		has_ring = yes
+		flags = { charias_planet btr_custom }
+		entity = "medit_planet_08_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = medit_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_charias_pops = yes
+			generate_asr_charias_colony_buildings = yes				
+			set_name = "Charias"
+		}
+	}
+
+	planet = {
+		name = "Trintayllo"
+		class = pc_gas_giant
+        orbit_distance = 150
+        size = 36
+		flags = { trintayllo_planet btr_custom }
+	}
+}
+
+
+#####SERPENT NEBULA#####
+
+sys_elensia_init = {
+	name = "Elensia"
+	class = sc_g
+	max_instances = 1
+
+	flags = { outer_council_system nimbus_cluster_system elensia_system empire_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Elensia"
+        class = pc_g_star
+        size = 30
+        orbit_distance = 0
+        orbit_angle = 180
+		flags = { elensia_star }
+    }
+
+	planet = {
+		name = "Alatania"
+		class = pc_iron
+        orbit_distance = 80
+		size = 6
+		flags = { alatania_planet btr_custom }
+	}	
+
+	planet = {
+		name = "Diras"
+		class = pc_ocean
+        orbit_distance = 80
+		size = 18
+		flags = { diras_planet btr_custom }
+		entity = "hotocean_planet_07_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = hotocean_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_diras_pops = yes
+			generate_asr_diras_colony_buildings = yes				
+			set_name = "Diras"
+		}
+	}	
+	
+	planet = {
+		name = "Kosquia"
+		class = pc_ammonia
+        orbit_distance = 80
+		size = 16
+		flags = { kosquia_planet btr_custom }
+		entity = "ammonia_alpine_planet_05_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = highland_world
+				days = -1
+			}
+		}
+	}		
+
+	planet = {
+		name = "Restu"
+		class = pc_barren
+        orbit_distance = 80
+		size = 9
+		flags = { restu_planet btr_custom }
+	}	
+
+	planet = {
+		name = "Tracla"
+		class = pc_frozen
+        orbit_distance = 80
+		size = 10
+		flags = { tracla_planet btr_custom }
+	}	
+
+	planet = {
+		name = "Gula"
+		class = pc_gas_giant
+        orbit_distance = 80
+		size = 36
+		flags = { tracla_planet btr_custom }
+	}
+}
+
+#####NIMBUS CLUSTER#####
+
+sys_pelion_init = {
+    name = "Pelion"
+    class = sc_b_super
+	max_instances = 1
+
+	flags = { outer_council_system nimbus_cluster_system pelion_system empire_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+	
+    planet = {
+	    name = "Pelion"
+        class = pc_b_super_star
+        orbit_distance = 0
+        size = 20
+		flags = { pelion_star }
+    }
+
+    planet = {
+        name = "Zosteros"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 185
+        size = 25
+        has_ring = no
+		flags = { zosteros_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_1
+		}
+    }
+
+    planet = {
+        name = "Sthenia"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 170
+        size = 19
+        has_ring = no
+		flags = { sthenia_planet btr_custom }
+		init_effect = {
+			add_deposit = d_iridium_4
+		}
+    }
+
+    planet = {
+        name = "Trategos"
+        class = pc_dextro_arctic
+        orbit_distance = 125
+        orbit_angle = 229
+        size = 17
+        has_ring = no
+		flags = { trategos_planet btr_custom }
+		entity = "snow_planet_07_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = snow_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_trategos_pops = yes
+			generate_asr_trategos_colony_buildings = yes			
+			set_name = "Trategos"
+		}
+    }
+
+    planet = {
+        name = "Aitis"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 302
+        size = 20
+        has_ring = no
+		flags = { aitis_planet btr_custom }
+    }
+}
+
+sys_mesana_init = {
+    name = "Mesana"
+    class = sc_m
+	max_instances = 1
+
+	flags = { outer_council_system nimbus_cluster_system mesana_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+	    name = "Mesana"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { mesana_star }
+    }
+
+    planet = {
+        name = "Lesuss"
+        class = pc_savannah
+        orbit_distance = 75
+        orbit_angle = 35
+        size = 15
+        has_ring = no
+		flags = { lesuss_planet btr_custom }
+		entity = "steppe_planet_06_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = steppe_world
+				days = -1
+			}
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+			generate_asr_lesuss_pops = yes
+			generate_asr_lesuss_colony_buildings = yes				
+			set_name = "Lesuss"
+		}
+    }
+
+    planet = {
+        name = "Lymetis"
+        class = pc_mephitic
+        orbit_distance = 100
+        orbit_angle = 107
+        size = 10
+        has_ring = no
+		entity = "mephitic_arid_planet_11_entity"
+		flags = { lymetis_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = dust_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Medokos"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 129
+        size = 35
+        has_ring = no
+		flags = { medokos_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}		
+    }
+
+    planet = {
+        name = "Shastessia"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 68
+        size = 34
+        has_ring = no
+		flags = { shastessia_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_2
+		}
+    }
+
+    planet = {
+        name = "Vylius"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 200
+        size = 27
+        has_ring = yes
+		flags = { vylius_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_3
+		}
+    }	
+}

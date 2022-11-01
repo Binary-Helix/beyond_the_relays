@@ -1,0 +1,403 @@
+###############################
+##### ILLUMINATED PRIMACY #####
+###############################
+
+##### OLYN PROTECTORATE #####
+
+sys_kanala_init = {
+    name = "Kanala"
+    class = sc_a
+	flags = { outer_council_system olyn_protectorate_system kanala_system btr_system custom_system empire_home_system }
+
+	init_effect = { 
+		random_country = { 
+			limit = { has_country_flag = illuminated_primacy } 
+			save_global_event_target_as = illuminated_primacy
+		}	
+	generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 325
+	}	
+
+    planet = {
+	    name = "Kanala"
+        class = pc_a_star
+        orbit_distance = 0
+        size = 20
+		flags = { kanala_star }
+    }
+
+    planet = {
+        name = "Jenakala"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 334
+        has_ring = no
+        size = 12
+    }
+
+    planet = {
+        name = "Kahje"
+        class = pc_ocean
+        orbit_distance = 125
+        orbit_angle = 169
+        has_ring = no
+        size = 20
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { kahje_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = hanar_homeworld_spawned
+			if = {
+				limit = { NOT = { any_country = { has_country_flag = illuminated_primacy } } }
+                create_species = { 
+                    name = "Hanar"
+                    class = HAN
+                    portrait = hanar
+                    #homeworld = THIS 
+                    traits = { 
+                  trait="trait_weak"
+                  trait="trait_traditional"
+                  trait="trait_communal"
+                  trait="btr_hanar_bureaucratic"
+                  trait="btr_hanar_spiritual"
+                      # ideal_planet_class = "pc_cascadian"
+                    }
+                  }
+                  last_created_species = { save_global_event_target_as = hanarSpecies }
+				create_country = {
+					name = "Illuminated Primacy"
+					ship_prefix = "PRESCRIPTED_ship_prefix_illuminated_primacy"
+					type = default
+					origin = "origin_illuminated_primacy"
+					ignore_initial_colony_error = yes
+					civics = { civic = "civic_btr_hanar_blessing_of_the_enkindlers" civic = "civic_btr_hanar_part_of_the_family" }
+					authority = auth_oligarchic
+					name_list = "btr_hanar"
+					ethos = { ethic = "ethic_pacifist" ethic = "ethic_fanatic_spiritualist" }
+					species = event_target:hanarSpecies
+					flag = {
+						icon={
+							category="masseffect"
+							file="Hanar.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"pink"
+							"turquoise"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = avian_01
+						set_country_flag = illuminated_primacy
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						save_global_event_target_as = illuminated_primacy
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { has_country_flag = illuminated_primacy }
+				save_global_event_target_as = illuminated_primacy
+				species = { save_global_event_target_as = hanarSpecies }
+			}
+			set_owner = event_target:illuminated_primacy
+			generate_btr_start_deposits_and_blockers = yes			
+			generate_han_kahje_capitol_buildings = yes
+			generate_han_kahje_pops = yes
+            generate_han_kahje_drell_pops = yes
+			add_deposit = d_kahje_rasiil_life_dome
+			add_deposit = d_kahje_mount_vassla
+			set_name = "Kahje"
+		}			
+
+        moon = {
+            name = "Libin"
+            class = pc_barren
+            orbit_distance = 20
+            orbit_angle = 134
+            has_ring = no
+            size = 5
+            init_effect = {
+                set_planet_flag = libin_codex
+            }
+        }
+        moon = {
+            name = "Nalynder"
+            class = pc_iron
+            orbit_distance = 5
+            orbit_angle = 81
+            has_ring = no
+            size = 7
+            init_effect = {
+                set_planet_flag = nalynder_codex
+                }
+        }
+        moon = {
+            name = "Iyuhum"
+            class = pc_iron
+            orbit_distance = 5
+            orbit_angle = 200
+            has_ring = no
+            size = 4
+            init_effect = {
+                set_planet_flag = iyuhum_codex
+                create_archaeological_site = btr_site_prothean_beacon_hanar
+            }
+        }
+    }
+
+    planet = {
+        name = "Hohnle"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 80
+        has_ring = no
+        size = 8
+        init_effect = {
+            set_planet_flag = hohnle_codex
+        }
+    }
+
+    planet = {
+        name = "Pohdenar"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 257
+        has_ring = no
+        size = 27
+        init_effect = {
+            set_planet_flag = pohdenar_codex
+        }
+    }
+}
+
+sys_obek_init = {
+    name = "Obek"
+    class = sc_m
+	max_instances = 1
+
+	flags = { inner_council_system olynprotectorate_system obek_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Obek"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { obek_star }
+    }
+
+    planet = {
+        name = "Acodu"
+        class = pc_dextro_tropical
+        orbit_distance = 125
+        orbit_angle = 333
+        has_ring = no
+        size = 10
+		flags = { acodu_planet btr_custom }
+        entity = "atoll_planet_02_entity"
+        init_effect = {
+            add_modifier = {
+                modifier = dextro_world
+                days = -1
+            }
+            add_modifier = {
+                modifier = atoll_world
+                days = -1
+            }
+            set_owner = event_target:illuminated_primacy
+            create_colony = {
+                owner = event_target:illuminated_primacy
+                species = event_target:hanarSpecies
+                ethos = owner
+            }
+            generate_han_acodu_pops = yes
+            generate_han_acodu_colony_buildings = yes	
+            set_name = "Acodu"
+        }
+        moon = {
+			name = "Uwanba"
+			class = pc_iron
+			orbit_distance = 20
+			orbit_angle = { min = 90 max = 270 }
+			size = 6
+        }		
+    }
+
+    planet = {
+        name = "Volar"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 67
+        size = 30
+        has_ring = no
+		flags = { volar_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_2
+
+		}
+        moon = {
+			name = "Bedil"
+			class = pc_barren
+			orbit_distance = 20
+			orbit_angle = { min = 90 max = 270 }
+			size = 6
+        }	
+    }
+
+    planet = {
+        name = "Mdu"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 182
+        has_ring = no
+        size = 35
+		flags = { mdu_planet btr_custom }
+		init_effect = {
+			add_deposit = d_helium_3_2
+			add_modifier = {
+				modifier = extensive_moon_system
+				days = -1
+			}
+		}
+    }
+    
+    planet = {
+        name = "Zahni"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 67
+        size = 17
+        has_ring = no
+		flags = { volar_planet }
+		init_effect = {
+            set_owner = event_target:illuminated_primacy
+            create_colony = {
+                owner = event_target:illuminated_primacy
+                species = event_target:hanarSpecies
+                ethos = owner
+            }
+            generate_han_zahni_pops = yes
+            generate_han_zahni_colony_buildings = yes	
+            set_name = "Zahni"
+		}
+        moon = {
+			name = "Lirian"
+			class = pc_frozen
+			orbit_distance = 20
+			orbit_angle = { min = 90 max = 270 }
+			size = 6
+        }	
+    }
+}
+
+######VESUVIUS NEBULA#####
+
+sys_stabiae_init = {
+    name = "Stabiae"
+    class = sc_g
+	max_instances = 1
+
+	flags = { outer_council_system vesuvius_nebula_system stabiae_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+	    name = "Stabiae"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { stabiae_star }
+    }
+
+    planet = {
+        name = "Delos"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 80
+        has_ring = no
+        size = 6
+    }
+
+    planet = {
+        name = "Belan"
+        class = pc_tropical
+        orbit_distance = 100
+        orbit_angle = 329
+        has_ring = no
+		size = 20
+		flags = { belan_planet btr_custom  }
+        entity = "coastal_planet_01_entity"
+        init_effect = {
+            add_modifier = {
+                modifier = coastal_world
+                days = -1
+            }
+            set_owner = event_target:illuminated_primacy
+            create_colony = {
+                owner = event_target:illuminated_primacy
+                species = event_target:hanarSpecies
+                ethos = owner
+            }
+            generate_han_belan_pops = yes
+            generate_han_belan_colony_buildings = yes	
+            set_name = "Belan"
+        }
+		moon = {
+			name = "Sepontu"
+			class = pc_carbon
+			orbit_distance = 20
+			size = 12
+			flags = { sepontu_planet btr_custom  }
+		}	
+    }
+
+    planet = {
+        name = "Uaeton"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 155
+        has_ring = no
+		size = 38
+		flags = { uaeton_planet btr_custom  }
+    }
+
+    planet = {
+        name = "Brimyell"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 155
+        has_ring = yes
+		size = 36
+		flags = { brimyell_planet btr_custom  }
+    }
+
+    planet = {
+        name = "Olohir"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 155
+        has_ring = no
+		size = 29
+		flags = { olohir_planet btr_custom  }
+    }
+}
