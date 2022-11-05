@@ -1,0 +1,153 @@
+#################
+## ASARI NEXUS ##
+#################
+
+@nexus_scale = 2.3
+
+#######################
+#### STATION PARTS ####
+#######################
+
+#############
+## PHASE 1 ##
+#############
+
+## STATIC CORE ##
+entity = {
+	name = "mec_asari_01_nexus_phase1_core_entity"
+	pdxmesh = "mec_asari_01_nexus_phase1_core_mesh"
+	scale = @nexus_scale
+	
+	default_state = "idle"
+	state = { name = "idle"
+		start_event = { trigger_once = yes sound = { soundeffect = "think_tank_core_amb" } }
+		event = { time = 0 node = "central_static" particle = "think_tank_core_effect" keep_particle = yes trigger_once = yes }
+	}
+	
+}
+
+## DOME ##
+entity = {
+	name = "mec_asari_01_nexus_phase1_dome_entity"
+	pdxmesh = "mec_asari_01_nexus_phase1_dome_mesh"
+	scale = @nexus_scale
+}
+
+## OUTER RING ##
+entity = {
+	name = "mec_asari_01_nexus_phase1_outer_ring_entity"
+	pdxmesh = "mec_asari_01_nexus_phase1_outer_ring_mesh"
+	scale = @nexus_scale
+}
+
+## INNER RING ##
+entity = {
+	name = "mec_asari_01_nexus_phase1_inner_ring_entity"
+	pdxmesh = "mec_asari_01_nexus_phase1_inner_ring_mesh"
+	scale = @nexus_scale
+}
+
+#############
+## PHASE 2 ##
+#############
+
+entity = {
+	name = "mec_asari_01_nexus_phase2_entity"
+	pdxmesh = "mec_asari_01_nexus_phase2_mesh"
+	scale = @nexus_scale
+	
+	default_state = "idle"
+	state = { name = "idle"
+		start_event = { trigger_once = yes sound = { soundeffect = "think_tank_structure_amb_01" stop_on_state_change = yes } }
+	}
+}
+
+#############
+## PHASE 3 ##
+#############
+
+entity = {
+	name = "mec_asari_01_nexus_phase3_entity"
+	pdxmesh = "mec_asari_01_nexus_phase3_mesh"
+	scale = @nexus_scale
+	
+	default_state = "idle"
+	state = { name = "idle"
+		start_event = { trigger_once = yes sound = { soundeffect = "think_tank_structure_amb_01" stop_on_state_change = yes } }
+	}
+}
+
+######################
+## PRIMARY ENTITIES ##
+######################
+
+## PHASE 1 ##
+
+entity = {
+	name = "mec_asari_01_thinktank_phase_01_entity"
+	pdxmesh = "mec_asari_01_nexus_frame_mesh"
+	
+	scale = 1.0
+	
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 5 animation_speed = 0.1
+	}
+	
+	state = { name = "construction" animation = "construction" animation_speed = 1.0
+		start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+	}
+
+	attach = { "central_static" = "mec_asari_01_nexus_phase1_core_entity" }
+	attach = { "core_rotate" = "mec_asari_01_nexus_phase1_dome_entity" }
+	attach = { "outer_ring" = "mec_asari_01_nexus_phase1_outer_ring_entity" }
+	attach = { "inner_ring" = "mec_asari_01_nexus_phase1_inner_ring_entity" }
+}
+
+## PHASE 2 ##
+
+entity = {
+	name = "mec_asari_01_thinktank_phase_02_entity"
+	pdxmesh = "mec_asari_01_nexus_frame_mesh"
+	
+	scale = 1.0
+	
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 5 animation_speed = 0.1
+	}
+	
+	state = { name = "construction" animation = "construction" animation_speed = 1.0
+		start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+	 }
+
+	attach = { "central_static" = "mec_asari_01_nexus_phase1_core_entity" }
+	attach = { "core_rotate" = "mec_asari_01_nexus_phase1_dome_entity" }
+	attach = { "outer_ring" = "mec_asari_01_nexus_phase1_outer_ring_entity" }
+	attach = { "inner_ring" = "mec_asari_01_nexus_phase1_inner_ring_entity" }
+	attach = { "central_static" = "mec_asari_01_nexus_phase2_entity" }
+}
+
+## PHASE 3 ##
+
+# NOTE: The phase3 mesh already has phase2 attached. So only attach phase3 here!  
+
+entity = {
+	name = "mec_asari_01_thinktank_phase_03_entity"
+	pdxmesh = "mec_asari_01_nexus_frame_mesh"
+	
+	scale = 1.0
+	
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 5 animation_speed = 0.1
+	}
+	
+	state = { name = "construction" animation = "construction" animation_speed = 1.0
+		start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+	}
+	
+	attach = { "central_static" = "mec_asari_01_nexus_phase1_core_entity" }
+	attach = { "core_rotate" = "mec_asari_01_nexus_phase1_dome_entity" }
+	attach = { "outer_ring" = "mec_asari_01_nexus_phase1_outer_ring_entity" }
+	attach = { "inner_ring" = "mec_asari_01_nexus_phase1_inner_ring_entity" }
+	attach = { "central_static" = "mec_asari_01_nexus_phase3_entity" }
+}
+

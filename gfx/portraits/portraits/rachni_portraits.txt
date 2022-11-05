@@ -1,0 +1,122 @@
+portraits = {
+	rachni = {	entity = "portrait_reptilian_14_dontmove_entity"	clothes_selector = "no_texture" hair_selector = "no_texture"	greeting_sound = "arthropoid_01_greetings"	
+		character_textures = {
+			"gfx/models/portraits/rachni/rachni_reptilian_massive_14_new.dds"
+			"gfx/models/portraits/rachni/rachni_reptilian_massive_14_new_2.dds"
+			"gfx/models/portraits/rachni/rachni_reptilian_massive_14_new_3.dds"
+		}
+	}
+	
+	art17_fix = {	entity = "portrait_arthropoid_17_entity" clothes_selector = "no_texture" hair_selector = "no_texture"	greeting_sound = "arthropoid_01_greetings" 
+			character_textures = {
+					"gfx/models/portraits/arthropoid/arthropoid_massive_17_blue.dds"
+					"gfx/models/portraits/arthropoid/arthropoid_massive_17_teal.dds"
+					"gfx/models/portraits/arthropoid/arthropoid_massive_17_green.dds"
+					"gfx/models/portraits/arthropoid/arthropoid_massive_17_olive.dds"
+					"gfx/models/portraits/arthropoid/arthropoid_massive_17_yellow.dds"
+					"gfx/models/portraits/arthropoid/arthropoid_massive_17_orange.dds"
+					"gfx/models/portraits/arthropoid/arthropoid_massive_17_red.dds"
+			}
+	}
+}
+
+portrait_groups = {
+	rachni {
+		default = rachni
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				portraits = {
+					rachni
+				}
+			}
+		}		
+		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				trigger = {
+					is_species = "Rachni"
+				}
+				portraits = {
+					rachni
+				}
+			}
+			add = {
+				trigger = { 
+					NOT = { 
+						is_species = "Rachni"
+					}
+				}
+				portraits = {
+					rachni
+				}
+			}
+		}		
+		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				trigger = {
+					is_species = "Rachni"
+				}
+				portraits = {
+					rachni
+				}
+			}
+			add = {
+				trigger = { 
+					NOT = { 
+						is_species = "Rachni"
+					}
+				}
+				portraits = {
+					rachni
+				}
+			}
+		}
+		
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = {
+					is_species = "Rachni"
+				}
+				portraits = {
+					rachni
+				}
+			}
+			add = {
+				trigger = {
+					NOT = { 
+						is_species = "Rachni"
+					}
+				}
+				portraits = {
+					rachni
+				}
+			}
+		}
+			
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = {
+					is_species = "Rachni"
+				}
+				portraits = {
+					rachni
+				}
+			}
+			add = {
+				trigger = {
+					NOT = { 
+						is_species = "Rachni"
+					}
+				}
+				portraits = {
+					rachni
+				}
+			}
+		}
+	}
+}

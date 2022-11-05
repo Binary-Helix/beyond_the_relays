@@ -1,0 +1,163 @@
+
+portraits = {
+	# gothones
+	gothones_1 = { entity = "portrait_gothones_01_entity"   clothes_selector = "gothones_clothes_01"    hair_selector = "gothones_no_hair"   greeting_sound = "humanoid_male_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/gothones/gothones_body_1.dds"
+			 "gfx/models/portraits/gothones/gothones_body_1a.dds"
+			 "gfx/models/portraits/gothones/gothones_body_1b.dds"
+			 "gfx/models/portraits/gothones/gothones_body_1c.dds"
+		}
+   }
+
+	gothones_2 = { entity = "portrait_gothones_01_entity"   clothes_selector = "gothones_clothes_01"    hair_selector = "gothones_no_hair"   greeting_sound = "humanoid_male_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/gothones/gothones_body_2.dds"
+			 "gfx/models/portraits/gothones/gothones_body_2a.dds"
+			 "gfx/models/portraits/gothones/gothones_body_2b.dds"
+			 "gfx/models/portraits/gothones/gothones_body_2c.dds"
+		}
+   } 
+   
+	gothones_3 = { entity = "portrait_gothones_01_entity"   clothes_selector = "gothones_clothes_01"    hair_selector = "gothones_no_hair"   greeting_sound = "humanoid_male_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/gothones/gothones_body_3.dds"
+			 "gfx/models/portraits/gothones/gothones_body_3a.dds"
+			 "gfx/models/portraits/gothones/gothones_body_3b.dds"
+			 "gfx/models/portraits/gothones/gothones_body_3c.dds"
+			 "gfx/models/portraits/gothones/gothones_body_3d.dds"
+		}
+   }
+
+	gothones_female_1 = { entity = "portrait_gothones_01_entity"   clothes_selector = "gothones_female_clothes_01"    hair_selector = "gothones_no_hair"   greeting_sound = "humanoid_female_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/gothones/gothones_female_body_1.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_1a.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_1b.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_1c.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_1d.dds"
+		}
+   }
+
+	gothones_female_2 = { entity = "portrait_gothones_01_entity"   clothes_selector = "gothones_female_clothes_01"    hair_selector = "gothones_no_hair"   greeting_sound = "humanoid_female_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/gothones/gothones_female_body_2.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_2a.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_2b.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_2c.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_2d.dds"
+		}
+   }
+
+	gothones_female_3 = { entity = "portrait_gothones_01_entity"   clothes_selector = "gothones_female_clothes_01"    hair_selector = "gothones_no_hair"   greeting_sound = "humanoid_female_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/gothones/gothones_female_body_3.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_3a.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_3b.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_3c.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_3d.dds"
+		}
+   }  
+
+	gothones_female_4 = { entity = "portrait_gothones_01_entity"   clothes_selector = "gothones_female_clothes_01"    hair_selector = "gothones_no_hair"   greeting_sound = "humanoid_female_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/gothones/gothones_female_body_4.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_4a.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_4b.dds"
+			 "gfx/models/portraits/gothones/gothones_female_body_4c.dds"
+		}
+   }
+}
+
+portrait_groups = {
+	gothones = {
+		default = gothones_1
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = {
+					gothones_1
+					gothones_2
+					gothones_3
+				}
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = {
+					gothones_female_1
+					gothones_female_2
+					gothones_female_3
+					gothones_female_4
+				}
+			}
+		}		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					gothones_1
+					gothones_2
+					gothones_3
+					gothones_female_1
+					gothones_female_2
+					gothones_female_3
+					gothones_female_4
+				}
+			}
+		}		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					gothones_1
+					gothones_2
+					gothones_3
+					gothones_female_1
+					gothones_female_2
+					gothones_female_3
+					gothones_female_4
+				}
+			}
+		}
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					gothones_female_1
+					gothones_female_2
+					gothones_female_3
+					gothones_female_4
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					gothones_1
+					gothones_2
+					gothones_3
+				}
+			}
+		}
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					gothones_female_1
+					gothones_female_2
+					gothones_female_3
+					gothones_female_4
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					gothones_1
+					gothones_2
+					gothones_3
+				}
+			}
+		}
+	}	
+}

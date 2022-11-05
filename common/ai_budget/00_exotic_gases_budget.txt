@@ -1,0 +1,167 @@
+## Categories used in this file must have use_for_ai_budget = yes defined in economic_categories ##
+## It is possible to have multiple entries with the same category and resource ##
+
+#################
+## Expenditure ##
+#################
+helium_3_expenditure_ships = {
+	resource = helium_3
+	type = expenditure
+	category = ships
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 1
+	}
+	desired_min = {
+		base = 50
+	}
+}
+
+helium_3_expenditure_trade = {
+	resource = helium_3
+	type = expenditure
+	category = trade
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.2
+	}
+}
+
+helium_3_expenditure_planets = {
+	resource = helium_3
+	type = expenditure
+	category = planets
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.5
+	}
+	desired_min = {
+		base = 500
+	}
+}
+
+helium_3_upkeep_planets = {
+	resource = helium_3
+	type = upkeep
+	category = planets
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 1
+	}
+}
+
+helium_3_upgrade_ships = {
+	resource = helium_3
+	type = expenditure
+	category = ship_upgrades
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 1
+	}
+}
+
+helium_3_expenditure_edicts = {
+	resource = helium_3
+	type = expenditure
+	category = edicts
+
+	potential = {
+		resource_stockpile_compare = {
+			resource = helium_3
+			value > 100
+		}
+	}
+
+	weight = {
+		weight = 1
+	}
+}
+helium_3_expenditure_shipedicts = {
+	resource = helium_3
+	type = expenditure
+	category = ship_edicts
+
+	potential = {
+		resource_stockpile_compare = {
+			resource = helium_3
+			value > 100
+		}
+	}
+
+	weight = {
+		weight = 1
+	}
+	desired_min = {
+		base = 0
+		modifier = {
+			add = 1000
+			is_at_war = yes
+		}
+	}
+}
+
+helium_3_expenditure_rareedicts = {
+	resource = helium_3
+	type = expenditure
+	category = rare_edicts
+
+	potential = {
+		resource_stockpile_compare = {
+			resource = helium_3
+			value > 100
+		}
+	}
+
+	weight = {
+		weight = 1
+	}
+}
+
+helium_3_upkeep_edicts = {
+	resource = helium_3
+	type = upkeep
+	category = edicts
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		base = 0.25
+	}
+}
+
+helium_3_upkeep_hyper_relays = {
+	resource = helium_3
+	type = upkeep
+	category = megastructures_hyper_relay
+
+	potential = {
+		has_technology = tech_hyper_relays
+		btr_ai_should_build_megastructures = yes
+	}
+
+	weight = {
+		weight = 0.1
+	}
+}

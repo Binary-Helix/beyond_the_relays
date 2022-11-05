@@ -1,0 +1,174 @@
+# Debug effect:
+# effect set_variable = { which = btr_var_ai_ship_data_factor_corvette value = 0 } set_variable = { which = btr_var_ai_ship_data_factor_destroyer value = 0 } set_variable = { which = btr_var_ai_ship_data_factor_cruiser value = 0 } set_variable = { which = btr_var_ai_ship_data_factor_battleship value = 0 }
+btr_value_ai_ship_data_corvette = {
+	base = 100
+	modifier = {
+		add = -90
+		has_technology = tech_cruisers
+	}
+	modifier = {
+		add = -90
+		has_technology = tech_destroyers
+	}
+	# Override with Mixed Fleet if present.
+	modifier = {
+		set = value:btr_mixed_fleet_value_ai_ship_data_corvette
+		btr_is_mixed_fleet_loaded = yes
+	}
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = 0
+		uses_standard_ship_sizes = no
+	}
+	modifier = {
+		set = btr_var_ai_ship_data_factor_corvette
+		is_variable_set = btr_var_ai_ship_data_factor_corvette
+	}
+}
+
+btr_value_ai_ship_data_destroyer = {
+	base = 0
+	modifier = {
+		add = 90
+		has_technology = tech_destroyers
+	}
+	modifier = {
+		add = -90
+		has_technology = tech_cruisers
+	}
+	# Override with Mixed Fleet if present.
+	modifier = {
+		set = value:btr_mixed_fleet_value_ai_ship_data_destroyer
+		btr_is_mixed_fleet_loaded = yes
+	}
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = 0
+		uses_standard_ship_sizes = no
+	}
+	modifier = {
+		set = btr_var_ai_ship_data_factor_destroyer
+		is_variable_set = btr_var_ai_ship_data_factor_destroyer
+	}
+}
+
+btr_value_ai_ship_data_cruiser = {
+	base = 0
+	modifier = {
+		add = 90
+		has_technology = tech_cruisers
+	}
+	modifier = {
+		add = -90
+		has_technology = tech_battleships
+	}
+	modifier = {
+		add = 30
+		has_technology = tech_battleships
+		has_country_flag = btr_need_to_counter_corvettes
+	}
+	# Override with Mixed Fleet if present.
+	modifier = {
+		set = value:btr_mixed_fleet_value_ai_ship_data_cruiser
+		btr_is_mixed_fleet_loaded = yes
+	}
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = 0
+		uses_standard_ship_sizes = no
+	}
+	modifier = {
+		set = btr_var_ai_ship_data_factor_cruiser
+		is_variable_set = btr_var_ai_ship_data_factor_cruiser
+	}
+}
+
+btr_value_ai_ship_data_battleship = {
+	base = 0
+	modifier = {
+		add = 90
+		has_technology = tech_battleships
+	}
+	modifier = {
+		add = -30
+		has_technology = tech_battleships
+		has_country_flag = btr_need_to_counter_corvettes
+	}
+	# Override with Mixed Fleet if present.
+	modifier = {
+		set = value:btr_mixed_fleet_value_ai_ship_data_battleship
+		btr_is_mixed_fleet_loaded = yes
+	}
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = 0
+		uses_standard_ship_sizes = no
+	}
+	modifier = {
+		set = btr_var_ai_ship_data_factor_battleship
+		is_variable_set = btr_var_ai_ship_data_factor_battleship
+	}
+}
+
+btr_value_ai_ship_data_min_titan = {
+	base = 1
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = btr_var_ai_ship_data_min_titan
+		is_variable_set = btr_var_ai_ship_data_min_titan
+	}
+}
+
+btr_value_ai_ship_data_max_titan = {
+	base = 10
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = btr_var_ai_ship_data_max_titan
+		is_variable_set = btr_var_ai_ship_data_max_titan
+	}
+}
+
+btr_value_ai_ship_data_planet_mult_titan = {
+	base = 0.1
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = btr_var_ai_ship_data_planet_mult_titan
+		is_variable_set = btr_var_ai_ship_data_planet_mult_titan
+	}
+}
+
+btr_value_ai_ship_data_min_colossus = {
+	base = 1
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = btr_var_ai_ship_data_min_colossus
+		is_variable_set = btr_var_ai_ship_data_min_colossus
+	}
+}
+
+btr_value_ai_ship_data_max_colossus = {
+	base = 1
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = btr_var_ai_ship_data_max_colossus
+		is_variable_set = btr_var_ai_ship_data_max_colossus
+	}
+}
+
+btr_value_ai_ship_data_min_juggernaut = {
+	base = 1
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = btr_var_ai_ship_data_min_juggernaut
+		is_variable_set = btr_var_ai_ship_data_min_juggernaut
+	}
+}
+
+btr_value_ai_ship_data_max_juggernaut = {
+	base = 1
+	# Below modifiers always have to be at the bottom.
+	modifier = {
+		set = btr_var_ai_ship_data_max_juggernaut
+		is_variable_set = btr_var_ai_ship_data_max_juggernaut
+	}
+}

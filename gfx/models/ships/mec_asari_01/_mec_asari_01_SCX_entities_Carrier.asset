@@ -1,0 +1,236 @@
+@frame_scale = 0.9
+@frame_size = 24.0
+
+##################         	 CARRIER           ########################
+
+#############
+### FRAME ###
+#############
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_entity"
+	pdxmesh = "mec_asari_01_battleship_frame_mesh"
+	
+	locator = { name = "part4"	position = { 0 0 0 } }
+	
+	default_state = "idle"
+	state = { name = "idle"	animation = "idle" animation_blend_time = 4.0 
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_fallen_empire_warship_01" } }
+	}
+	state = { name = "moving"	animation = "idle" animation_blend_time = 4.0 
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 0.5 looping = no
+		event = { time = 16.0 node = "ship_main" particle = "small_player_ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+		
+	scale = @frame_scale
+		
+	game_data = {
+		size = @frame_size
+	}
+}
+
+###########
+### BOW ###
+###########
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_bow_M2S4_entity"
+	pdxmesh = "mec_asari_01_empty_mesh"
+	
+	locator = { name = "medium_gun_01"	position = { 0 1.25 -4 } }
+	locator = { name = "medium_gun_02"	position = { 0 1.25 -4 } }
+	locator = { name = "small_gun_01"	position = { 0 1.25 -4 } }
+	locator = { name = "small_gun_02"	position = { 0 1.25 -4 } }
+	locator = { name = "small_gun_03"	position = { 0 1.25 -4 } }
+	locator = { name = "small_gun_04"	position = { 0 1.25 -4 } }
+}
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_bow_M3S2_entity"
+	pdxmesh = "mec_asari_01_empty_mesh"
+	
+	locator = { name = "medium_gun_01"	position = { 0 1.25 -4 } }
+	locator = { name = "medium_gun_02"	position = { 0 1.25 -4 } }
+	locator = { name = "medium_gun_03"	position = { 0 1.25 -4 } }
+	locator = { name = "small_gun_01"	position = { 0 1.25 -4 } }
+	locator = { name = "small_gun_02"	position = { 0 1.25 -4 } }
+}
+entity = {
+	name = "mec_asari_01_SCX_Carrier_bow_M1S2SHB_entity"
+	pdxmesh = "mec_asari_01_carrier_weapons_bow_mesh"
+	
+	#locator = { name = "medium_gun_01"	position = { 0 1.25 -4 } }
+	#locator = { name = "small_gun_01"	position = { 0 1.25 -4 } }
+	#locator = { name = "small_gun_02"	position = { 0 1.25 -4 } }
+	#locator = { name = "strike_craft_locator_01"	position = { 0 1.25 -4 } }
+}
+
+############
+### MID1 ###
+############
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_mid1_L2S4_entity"
+	pdxmesh = "mec_asari_01_lightcarrier_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" 	state_time = 5	
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "moving" 	state_time = 5	
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "death" state_time = 8 looping = no
+		event = { time = 0.00 particle = "large_ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		event = { time = 1.00 node = "explosion_locator1" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 1.00 node = "explosion_locator1" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 1.70 node = "explosion_locator2" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 1.70 node = "explosion_locator2" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 3.70 node = "explosion_locator3" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 3.70 node = "explosion_locator3" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 6.00 node = "explosion_locator4" particle = "ship_burn_particle" }
+		event = { time = 6.00 node = "explosion_locator4" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 7.30 node = "explosion_locator5" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 7.30 node = "explosion_locator5" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+	}
+}
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_mid1_S4LHB_entity"
+	pdxmesh = "mec_asari_01_lightcarrier_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" 	state_time = 5	
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "moving" 	state_time = 5	
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "death" state_time = 8 looping = no
+		event = { time = 0.00 particle = "large_ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		event = { time = 1.00 node = "explosion_locator1" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 1.00 node = "explosion_locator1" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 1.70 node = "explosion_locator2" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 1.70 node = "explosion_locator2" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 3.70 node = "explosion_locator3" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 3.70 node = "explosion_locator3" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 6.00 node = "explosion_locator4" particle = "ship_burn_particle" }
+		event = { time = 6.00 node = "explosion_locator4" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 7.30 node = "explosion_locator5" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 7.30 node = "explosion_locator5" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+	}
+}
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_mid1_M4SHB_entity"
+	pdxmesh = "mec_asari_01_lightcarrier_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" 	state_time = 5	
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "moving" 	state_time = 5	
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "death" state_time = 8 looping = no
+		event = { time = 0.00 particle = "large_ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		event = { time = 1.00 node = "explosion_locator1" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 1.00 node = "explosion_locator1" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 1.70 node = "explosion_locator2" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 1.70 node = "explosion_locator2" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 3.70 node = "explosion_locator3" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 3.70 node = "explosion_locator3" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 6.00 node = "explosion_locator4" particle = "ship_burn_particle" }
+		event = { time = 6.00 node = "explosion_locator4" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 7.30 node = "explosion_locator5" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 7.30 node = "explosion_locator5" particle = "ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+	}
+}
+
+############
+### MID2 ###
+############
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_mid2_L2S4_entity"
+	pdxmesh = "mec_asari_01_carrier_weapons_mid2_mesh"
+	
+	#locator = { name = "large_gun_01"	position = { 0 1.25 -14 } }
+	#locator = { name = "large_gun_02"	position = { 0 1.25 -14 } }
+	#locator = { name = "small_gun_01"	position = { 0 1.25 -14 } }
+	#locator = { name = "small_gun_02"	position = { 0 1.25 -14 } }
+	#locator = { name = "small_gun_03"	position = { 0 1.25 -14 } }
+	#locator = { name = "small_gun_04"	position = { 0 1.25 -14 } }
+	#locator = { name = "strike_craft_locator_01"	position = { 0 1.25 -14 } }
+	#locator = { name = "strike_craft_locator_02"	position = { 0 1.25 -14 } }
+}
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_mid2_S4LHB_entity"
+	pdxmesh = "mec_asari_01_carrier_weapons_mid2_mesh"
+	
+	#locator = { name = "small_gun_01"	position = { 0 1.25 -14 } }
+	#locator = { name = "small_gun_02"	position = { 0 1.25 -14 } }
+	#locator = { name = "small_gun_03"	position = { 0 1.25 -14 } }
+	#locator = { name = "small_gun_04"	position = { 0 1.25 -14 } }
+	#locator = { name = "strike_craft_locator_01"	position = { 0 1.25 -14 } }
+	#locator = { name = "strike_craft_locator_02"	position = { 0 1.25 -14 } }
+}
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_mid2_M4SHB_entity"
+	pdxmesh = "mec_asari_01_carrier_weapons_mid2_mesh"
+	
+	#locator = { name = "large_gun_01"	position = { 0 1.25 -14 } }
+	#locator = { name = "large_gun_02"	position = { 0 1.25 -14 } }
+	#locator = { name = "medium_gun_01"	position = { 0 1.25 -14 } }
+	#locator = { name = "medium_gun_02"	position = { 0 1.25 -14 } }
+	#locator = { name = "strike_craft_locator_01"	position = { 0 1.25 -14 } }
+	#locator = { name = "strike_craft_locator_02"	position = { 0 1.25 -14 } }
+}
+
+#############
+### STERN ###
+#############
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_stern_L1_entity"
+	pdxmesh = "mec_asari_01_empty_mesh"
+	
+	locator = { name = "large_gun_01"	position = { 0 3.0 -6 } }
+}
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_stern_M1S2_entity"
+	pdxmesh = "mec_asari_01_empty_mesh"
+	
+	locator = { name = "medium_gun_01"	position = { 0 3.0 -6 } }
+	locator = { name = "small_gun_01"	position = { 0 3.0 -6 } }
+	locator = { name = "small_gun_02"	position = { 0 3.0 -6 } }
+}
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_stern_M2_entity"
+	pdxmesh = "mec_asari_01_empty_mesh"
+	
+	locator = { name = "medium_gun_01"	position = { 0 3.0 -6 } }
+	locator = { name = "medium_gun_02"	position = { 0 3.0 -6 } }
+}
+
+entity = {
+	name = "mec_asari_01_SCX_Carrier_stern_S4_entity"
+	pdxmesh = "mec_asari_01_empty_mesh" 
+	
+	locator = { name = "small_gun_01"	position = { 0 3.0 -6 } }
+	locator = { name = "small_gun_02"	position = { 0 3.0 -6 } }
+	locator = { name = "small_gun_03"	position = { 0 3.0 -6 } }
+	locator = { name = "small_gun_04"	position = { 0 3.0 -6 } }
+}

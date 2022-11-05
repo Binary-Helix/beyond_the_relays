@@ -1,0 +1,106 @@
+# Base AI economic plans
+
+# Early ---------------------------------------
+
+early_default_plan_2 = {
+
+	income = {
+		energy = 50
+		minerals = 200
+		alloys = 100
+		unity = 50
+
+		physics_research = 500
+		society_research = 500
+		engineering_research = 500
+
+		helium_3 = 1
+		volatile_motes = 1
+		rare_crystals = 1
+	}
+
+	focus = {
+		energy = 10
+		minerals = 30
+		alloys = 50
+	}
+
+	subplan = {
+		set_name = "btr fallback2 food/cgs"
+		potential = {
+			country_uses_consumer_goods = yes
+			country_uses_food = yes
+		}
+
+		income = {
+			food = 50
+			consumer_goods = 50
+		}
+
+		focus = {
+			food = 10
+			consumer_goods = 20
+		}
+	}
+
+	subplan = {
+		set_name = "btr fallback2 cgs"
+		potential = {
+			country_uses_consumer_goods = yes
+			country_uses_food = no
+		}
+
+		income = {
+			consumer_goods = 50
+		}
+
+		focus = {
+			consumer_goods = 20
+		}
+	}
+
+	# increased food goals for hiveminds
+	subplan = {
+		set_name = "btr fallback2 food"
+		potential = {
+			country_uses_consumer_goods = no
+			country_uses_food = yes
+		}
+
+		income = {
+			food = 50
+		}
+
+		focus = {
+			food = 10
+		}
+	}
+
+	subplan = {
+        set_name = "btr fallback2 early_default_plan_2 scaling"
+		scaling = yes
+        potential = {
+            has_monthly_income = { resource = energy value > 20 }
+            has_monthly_income = { resource = minerals value > 60 }
+        }
+
+        income = {
+            alloys = 10
+            minerals = 5
+            energy = 5
+            physics_research = 5
+            society_research = 5
+            engineering_research = 5
+        }
+    }
+
+	pops = 500
+	# empire_size = 1
+
+	potential = {
+		has_country_flag = btr_reconsider_plans
+	}
+	ai_weight = {
+		weight = 500
+	}
+}

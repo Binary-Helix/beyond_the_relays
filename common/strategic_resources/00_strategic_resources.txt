@@ -1,0 +1,921 @@
+# This file is written mostly by Equalizer, huge thanks for the help
+
+# IMPORTANT:
+# AI_MIN_CURRENCY_TO_SELL = 1000
+# Appears to be needed in defines for for resource buy/selling to work correctly.
+
+
+# If below this threshold and negative income all targets are disabled to try and buy the resource until above threshold.
+@critical_energy_value = 50
+@critical_minerals_value = 700
+@critical_food_value = 100
+@critical_consumer_goods_value = 50
+@critical_alloys_value = 50
+@critical_mote_value = 25
+@critical_helium_3_value = 25
+@critical_rare_crystals_value = 25
+
+#These are the targets AI will try to hit if below the critical threshold. AI wilingness to buy depends on how far the goal is, so these have to be very large
+@critical_energy_target_value = 500
+@critical_minerals_target_value = 7000
+@critical_food_target_value = 5000
+@critical_consumer_goods_target_value = 1000
+@critical_alloys_target_value = 1000
+@critical_mote_target_value = 400
+@critical_helium_3_target_value = 400
+@critical_rare_crystals_target_value = 400
+
+# Resources tend not to be sold unless above these thresholds (except if a resource is critical).
+@target_energy_value = 1300
+@target_minerals_value = 5000
+@target_food_value = 1000
+@target_consumer_goods_value = 350
+@target_alloys_value = 1500
+@target_mote_value = 150
+@target_helium_3_value = 150
+@target_rare_crystals_value = 150
+
+# If above this threshold resource given reduced weight so that it is more likely to be sold.
+@sell_mote_value = 400
+@sell_helium_3_value = 400
+@sell_rare_crystals_value = 400
+
+
+
+### System Resources
+
+#allow_deficit = no #default yes // only implemented for tech resources
+
+time = {
+#	deficit_situation = total_panic		#TODO TODO: avoid at all costs
+}
+
+
+### Basic Resources
+
+energy = {
+	tradable = yes
+	category = basic
+	max = 50000
+
+	deficit_situation = situation_energy_deficit
+
+	ai_weight = {
+		weight = 0.9 # IMPORTANT: Energy weight can cause buy/sell looping.
+		modifier = {
+			factor = 1.5
+			resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+			resource_income_compare = { resource = energy value < 0 }
+		}
+		modifier = {
+			factor = 1.25 # IMPORTANT: This should be matched to the AI_MIN_CURRENCY_TO_SELL and AI_MIN_CURRENCY_INCOME_TO_SELL in defines.
+			resource_stockpile_compare = { resource = energy value < 1000 }
+			resource_income_compare = { resource = energy value < 10 }
+		}
+		modifier = {
+			factor = 1.75
+			or = {
+				has_ascension_perk = ap_world_shaper
+				has_ascension_perk = ap_hive_worlds
+				has_ascension_perk = ap_machine_worlds
+			}
+		}
+		modifier = {
+			factor = 1.5
+			has_country_flag = btr_lets_terraform
+		}
+	}
+
+	ai_wants = {
+		base = 1
+		modifier = {
+			add = @target_energy_value
+			NOR = {
+				AND = {
+					resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+					resource_income_compare = { resource = energy value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+					resource_income_compare = { resource = minerals value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = food value < @critical_food_value }
+					resource_income_compare = { resource = food value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+					resource_income_compare = { resource = alloys value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+					resource_income_compare = { resource = consumer_goods value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+					resource_income_compare = { resource = volatile_motes value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+					resource_income_compare = { resource = helium_3 value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+					resource_income_compare = { resource = rare_crystals value < 0 }
+				}
+			}
+		}
+		modifier = {
+			factor = 10
+			or = {
+				has_ascension_perk = ap_world_shaper
+				has_ascension_perk = ap_hive_worlds
+				has_ascension_perk = ap_machine_worlds
+				has_country_flag = btr_lets_terraform
+			}
+		}
+
+		modifier = {
+			add = @critical_energy_target_value
+			resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+			resource_income_compare = { resource = energy value < 0 }
+		}
+	}
+}
+
+minerals = {
+	tradable = yes
+	category = basic
+	market_amount = 100
+	market_price = 100
+	max = 15000
+
+	deficit_situation = situation_mineral_deficit
+
+	ai_weight = {
+		weight = 1.5
+		modifier = {
+			factor = 3
+			resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+			resource_income_compare = { resource = minerals value < 20 }
+		}
+		modifier = {
+			factor = 2
+			resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+			resource_income_compare = { resource = minerals value < 40 }
+		}
+	}
+
+	ai_wants = {
+		base = 1
+		modifier = {
+			add = 25000
+			resource_income_compare = { resource = minerals value < 100 }
+			resource_stockpile_compare = { resource = minerals value < 400 }
+			resource_stockpile_compare = { resource = energy value > 400 }
+		}
+		modifier = {
+			add = 25000
+			years_passed > 40
+			resource_income_compare = { resource = minerals value < 150 }
+			resource_stockpile_compare = { resource = minerals value < 400 }
+			resource_stockpile_compare = { resource = energy value > 400 }
+		}
+		modifier = {
+			add = 25000
+			years_passed > 60
+			resource_stockpile_compare = { resource = minerals value < 800 }
+			resource_stockpile_compare = { resource = energy value > 1000 }
+		}
+
+		modifier = {
+			add = 25000
+			or = { 
+				has_ascension_perk = ap_arcology_project
+				and = {
+					has_origin = origin_remnants
+					has_technology = tech_housing_2
+				}
+			}
+			resource_stockpile_compare = { resource = minerals value < 20000 }
+			resource_stockpile_compare = { resource = energy value > 1000 }
+		}
+
+		modifier = {
+			add = 25000
+			btr_menacing_crisis = yes
+			resource_stockpile_compare = { resource = minerals value < 1000 }
+			resource_stockpile_compare = { resource = energy value > 5000 }
+		}
+		modifier = {
+			add = 10000
+			or = { has_origin = origin_void_dwellers has_origin = origin_shattered_ring }
+			resource_income_compare = { resource = minerals value < 100 }
+			resource_stockpile_compare = { resource = minerals value < 800 }
+			resource_stockpile_compare = { resource = energy value > 400 }
+		}
+
+		modifier = {
+			add = @target_minerals_value
+			NOR = {
+				AND = {
+					resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+					resource_income_compare = { resource = energy value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+					resource_income_compare = { resource = minerals value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = food value < @critical_food_value }
+					resource_income_compare = { resource = food value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+					resource_income_compare = { resource = alloys value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+					resource_income_compare = { resource = consumer_goods value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+					resource_income_compare = { resource = volatile_motes value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+					resource_income_compare = { resource = helium_3 value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+					resource_income_compare = { resource = rare_crystals value < 0 }
+				}
+			}
+		}
+		modifier = {
+			add = @critical_minerals_target_value
+			resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+			resource_income_compare = { resource = minerals value < 40 }
+		}
+	}
+}
+
+food = {
+	tradable = yes
+	category = basic
+	market_amount = 100
+	market_price = 100
+	max = 15000
+
+	deficit_situation = situation_food_deficit
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 2
+			resource_stockpile_compare = { resource = food value < @critical_food_value }
+			resource_income_compare = { resource = food value < 0 }
+		}
+	}
+
+	ai_wants = {
+		base = 1
+		modifier = {
+			add = 10000
+			resource_stockpile_compare = {
+				resource = minerals
+				value > 300
+			}
+			resource_income_compare = {
+				resource = food
+				value < 5
+			}
+			resource_stockpile_compare = {
+				resource = food
+				value < 180
+			}
+			resource_stockpile_compare = {
+				resource = energy
+				value > 1000
+			}
+			is_at_war = no
+			ai_colonize_plans > 0
+		}
+
+		modifier = {
+			add = @target_food_value
+			NOR = {
+				AND = {
+					resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+					resource_income_compare = { resource = energy value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+					resource_income_compare = { resource = minerals value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = food value < @critical_food_value }
+					resource_income_compare = { resource = food value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+					resource_income_compare = { resource = alloys value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+					resource_income_compare = { resource = consumer_goods value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+					resource_income_compare = { resource = volatile_motes value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+					resource_income_compare = { resource = helium_3 value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+					resource_income_compare = { resource = rare_crystals value < 0 }
+				}
+			}
+		}
+		modifier = {
+			add = @critical_food_target_value
+			resource_stockpile_compare = { resource = food value < @critical_food_value }
+			resource_income_compare = { resource = food value < 0 }
+		}
+	}
+}
+
+physics_research = {
+	category = other
+	allow_deficit = no
+	ai_weight = {
+		weight = 1
+	}
+}
+
+society_research = {
+	category = other
+	allow_deficit = no
+	ai_weight = {
+		weight = 1
+	}
+}
+
+engineering_research = {
+	category = other
+	allow_deficit = no
+	ai_weight = {
+		weight = 1
+	}
+}
+
+influence = {
+	category = other
+	max = 1000
+	tooltip_decimals = 1
+	fixed_max_amount = yes
+
+	deficit_modifier = influence_deficit #found in static modifiers
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+unity = {
+	category = other
+	deficit_modifier = unity_deficit #found in static modifiers
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+##########################
+### Advanced Resources ###
+##########################
+
+consumer_goods = {
+	tradable = yes
+	category = advanced
+	market_amount = 50
+	market_price = 100
+	max = 15000
+
+	deficit_situation = situation_consumer_goods_deficit
+
+	ai_weight = {
+		weight = 2
+		modifier = {
+			factor = 2
+			resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+			resource_income_compare = { resource = consumer_goods value < 0 }
+		}
+	}
+
+	ai_wants = {
+		base = 1
+		modifier = {
+			add = 5000
+			resource_stockpile_compare = {
+				resource = minerals
+				value > 300
+			}
+			resource_income_compare = {
+				resource = consumer_goods
+				value < 10
+			}
+			resource_stockpile_compare = {
+				resource = consumer_goods
+				value < 180
+			}
+			resource_stockpile_compare = {
+				resource = energy
+				value > 1000
+			}
+			is_at_war = no
+			ai_colonize_plans > 0
+		}
+		modifier = {
+			add = @target_consumer_goods_value
+			NOR = {
+				AND = {
+					resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+					resource_income_compare = { resource = energy value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+					resource_income_compare = { resource = minerals value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = food value < @critical_food_value }
+					resource_income_compare = { resource = food value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+					resource_income_compare = { resource = alloys value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+					resource_income_compare = { resource = consumer_goods value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+					resource_income_compare = { resource = volatile_motes value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+					resource_income_compare = { resource = helium_3 value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+					resource_income_compare = { resource = rare_crystals value < 0 }
+				}
+			}
+		}
+		modifier = {
+			add = @critical_consumer_goods_target_value
+			resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+			resource_income_compare = { resource = consumer_goods value < 0 }
+		}
+	}
+}
+
+alloys = {
+	tradable = yes
+	category = advanced
+	market_amount = 25
+	market_price = 100
+	max = 15000
+
+	deficit_situation = situation_alloys_deficit
+
+	ai_weight = {
+		weight = 4
+		modifier = {
+			factor = 2
+			resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+			resource_income_compare = { resource = alloys value < 15 }
+		}
+	}
+
+	ai_wants = {
+		base = 1
+		modifier = {
+			factor = 2
+			resource_stockpile_compare = {
+				resource = alloys
+				value > 4000
+			}
+		}
+		modifier = {
+			add = 10000
+			resource_stockpile_compare = {
+				resource = alloys
+				value < 500
+			}
+			resource_stockpile_compare = {
+				Resource = energy
+				value > 800
+			}
+			resource_income_compare = {
+				Resource = energy
+				value > 20
+			}
+			years_passed > @btr_years_of_guaranteed_truce
+			years_passed < @btr_years_of_twilight
+			or = {
+				used_naval_capacity_percent < 0.5
+				and = { is_at_war = yes used_naval_capacity_percent < 1 }
+			}
+		}
+		modifier = {
+			add = 10000
+			resource_stockpile_compare = {
+				resource = alloys
+				value < 300
+			}
+			btr_make_fleet_against_rush = yes
+		}
+		modifier = {
+			add = 10000
+			resource_stockpile_compare = {
+				resource = alloys
+				value < 300
+			}
+			resource_stockpile_compare = {
+				Resource = energy
+				value > 800
+			}
+			resource_income_compare = {
+				Resource = energy
+				value > 20
+			}
+			is_at_war = yes
+			used_naval_capacity_percent < 1
+		}
+		modifier = {
+			factor = 3
+			resource_stockpile_compare = {
+				resource = alloys
+				value > 4000
+			}
+			has_technology = tech_mega_engineering
+		}
+
+		modifier = {
+			add = @target_alloys_value
+			NOR = {
+				AND = {
+					resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+					resource_income_compare = { resource = energy value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+					resource_income_compare = { resource = minerals value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = food value < @critical_food_value }
+					resource_income_compare = { resource = food value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+					resource_income_compare = { resource = alloys value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+					resource_income_compare = { resource = consumer_goods value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+					resource_income_compare = { resource = volatile_motes value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+					resource_income_compare = { resource = helium_3 value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+					resource_income_compare = { resource = rare_crystals value < 0 }
+				}
+			}
+		}
+		modifier = {
+			add = @critical_alloys_target_value
+			resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+			resource_income_compare = { resource = alloys value < 0 }
+		}
+	}
+}
+
+###########################
+### Strategic Resources ###
+###########################
+
+volatile_motes = {
+	tradable = yes
+	category = strategic
+	market_amount = 10
+	market_price = 100
+	max = 15000
+
+	prerequisites = { "tech_mine_volatile_motes" }
+
+	deficit_situation = situation_volatile_motes_deficit
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 2
+			resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+			resource_income_compare = { resource = volatile_motes value < 0 }
+		}
+		modifier = {
+			factor = 0.5
+			resource_stockpile_compare = { resource = volatile_motes value > @sell_mote_value }
+		}
+	}
+
+	ai_wants = {
+		base = 1
+		modifier = {
+			add = @target_mote_value
+			NOR = {
+				AND = {
+					resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+					resource_income_compare = { resource = energy value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+					resource_income_compare = { resource = minerals value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = food value < @critical_food_value }
+					resource_income_compare = { resource = food value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+					resource_income_compare = { resource = alloys value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+					resource_income_compare = { resource = consumer_goods value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+					resource_income_compare = { resource = volatile_motes value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+					resource_income_compare = { resource = helium_3 value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+					resource_income_compare = { resource = rare_crystals value < 0 }
+				}
+			}
+		}
+		modifier = {
+			add = @critical_mote_target_value
+			resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+			resource_income_compare = { resource = volatile_motes value < 0 }
+		}
+	}
+}
+
+helium_3 = {
+	tradable = yes
+	category = strategic
+	market_amount = 10
+	market_price = 100
+	max = 15000
+
+	prerequisites = { "tech_mine_helium_3" }
+
+	deficit_situation = situation_helium_3_deficit
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 2
+			resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+			resource_income_compare = { resource = helium_3 value < 0 }
+		}
+		modifier = {
+			factor = 0.5
+			resource_stockpile_compare = { resource = helium_3 value > @sell_helium_3_value }
+		}
+	}
+
+	ai_wants = {
+		base = 1
+		modifier = {
+			add = @target_helium_3_value
+			NOR = {
+				AND = {
+					resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+					resource_income_compare = { resource = energy value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+					resource_income_compare = { resource = minerals value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = food value < @critical_food_value }
+					resource_income_compare = { resource = food value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+					resource_income_compare = { resource = alloys value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+					resource_income_compare = { resource = consumer_goods value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+					resource_income_compare = { resource = volatile_motes value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+					resource_income_compare = { resource = helium_3 value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+					resource_income_compare = { resource = rare_crystals value < 0 }
+				}
+			}
+		}
+		modifier = {
+			add = @critical_helium_3_target_value
+			resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+			resource_income_compare = { resource = helium_3 value < 0 }
+		}
+	}
+}
+
+rare_crystals = {
+	tradable = yes
+	category = strategic
+	market_amount = 10
+	market_price = 100
+	max = 15000
+
+	prerequisites = { "tech_mine_rare_crystals" }
+
+	deficit_situation = situation_rare_crystals_deficit
+
+	ai_weight = {
+		weight = 10
+		modifier = {
+			factor = 2
+			resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+			resource_income_compare = { resource = rare_crystals value < 0 }
+		}
+		modifier = {
+			factor = 0.5
+			resource_stockpile_compare = { resource = rare_crystals value > @sell_rare_crystals_value }
+		}
+	}
+
+	ai_wants = {
+		base = 1
+		modifier = {
+			add = @target_rare_crystals_value
+			NOR = {
+				AND = {
+					resource_stockpile_compare = { resource = energy value < @critical_energy_value }
+					resource_income_compare = { resource = energy value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = minerals value < @critical_minerals_value }
+					resource_income_compare = { resource = minerals value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = food value < @critical_food_value }
+					resource_income_compare = { resource = food value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = alloys value < @critical_alloys_value }
+					resource_income_compare = { resource = alloys value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = consumer_goods value < @critical_consumer_goods_value }
+					resource_income_compare = { resource = consumer_goods value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = volatile_motes value < @critical_mote_value }
+					resource_income_compare = { resource = volatile_motes value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = helium_3 value < @critical_helium_3_value }
+					resource_income_compare = { resource = helium_3 value < 0 }
+				}
+				AND = {
+					resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+					resource_income_compare = { resource = rare_crystals value < 0 }
+				}
+			}
+		}
+		modifier = {
+			add = @critical_rare_crystals_target_value
+			resource_stockpile_compare = { resource = rare_crystals value < @critical_rare_crystals_value }
+			resource_income_compare = { resource = rare_crystals value < 0 }
+		}
+	}
+}
+
+
+#######################
+###	Rare Resources	###
+#######################
+
+# Living Metal
+sr_living_metal = {
+	tradable = yes
+	category = rare
+	market_amount = 5
+	market_price = 100
+	max = 15000
+
+	prerequisites = { "tech_mine_living_metal" }
+	visibility_prerequisite = { always = yes }
+	deficit_modifier = sr_living_metal_deficit
+
+	ai_weight = {
+		weight = 25
+	}
+}
+
+# Zro
+sr_zro = {
+	tradable = yes
+	category = rare
+	market_amount = 5
+	market_price = 100
+	max = 15000
+
+	prerequisites = { "tech_mine_zro" }
+	visibility_prerequisite = { always = yes }
+	deficit_modifier = sr_zro_deficit
+
+	ai_weight = {
+		weight = 25
+	}
+}
+
+# Dark Matter
+sr_dark_matter = {
+	tradable = yes
+	category = rare
+	market_amount = 5
+	market_price = 100
+	max = 15000
+
+	prerequisites = { "tech_mine_dark_matter" }
+	visibility_prerequisite = { always = yes }
+
+	ai_weight = {
+		weight = 100
+	}
+	deficit_modifier = dark_matter_deficit #found in static modifiers
+}
+
+# Nanites
+nanites = {
+	tradable = no
+	category = rare
+	max = 15000
+
+	visibility_prerequisite = { always = yes }
+	deficit_modifier = nanites_deficit #found in static modifiers
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+# Minor Artifacts
+minor_artifacts = {
+	tradable = no
+	category = other
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+###############
+###	Nemesis	###
+###############
+
+menace = {
+	tradable = no
+	category = other
+
+	ai_weight = {
+		weight = 1
+	}
+}
