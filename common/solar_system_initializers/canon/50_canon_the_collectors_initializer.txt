@@ -6,7 +6,7 @@
 
 sys_tartarusdebrisfield_init = {
     name = "Tartarus_Debris_Field"
-    class = "sc_black_hole"
+    class = sc_black_hole
 	flags = { galactic_core_system tartarus_system btr_system custom_system empire_home_system }
 	init_effect = { 
 		random_country = { 
@@ -53,7 +53,7 @@ sys_tartarusdebrisfield_init = {
 
 	planet = {
 		name = "Tartarus Debris Field"
-		class = "pc_black_hole"
+		class = pc_black_hole
 		orbit_distance = 0
 		orbit_angle = 1
 		size = 70
@@ -87,7 +87,7 @@ sys_tartarusdebrisfield_init = {
 	}
 	planet = {
 		name = "Polus"
-		class = "pc_asteroid"
+		class = pc_asteroid
 		orbit_distance = 35
 		orbit_angle = { min = 1 max = 360 }
 		size = 2
@@ -99,7 +99,7 @@ sys_tartarusdebrisfield_init = {
 	}
 	planet = {
 		name = "Inid"
-		class = "pc_asteroid"
+		class = pc_asteroid
 		orbit_distance = 35
 		orbit_angle = { min = 1 max = 360 }
 		size = 1
@@ -130,16 +130,16 @@ sys_tartarusdebrisfield_init = {
 				name = "Collectors"
 				class = COL
 				portrait = collector
-				#homeworld = THIS 
-				traits = { 
-				trait="trait_machine_unit"
-				trait="trait_robot_logic_engines"
-				trait="trait_robot_high_maintenance"
-				trait="trait_robot_high_bandwidth"
-				  # ideal_planet_class = "pc_arid"
+				#homeworld = THIS .
+				traits = {
+					trait = collector_trait_core
+					trait = collector_trait_drones
+					trait = collector_trait_instruments
+					trait = collector_trait_lovecraftian
+					trait = collector_trait_habitability_preference
+					  # ideal_planet_class = "pc_arid"
 				}
-				extra_trait_points = 3
-				}
+			}
 			  last_created_species = { save_global_event_target_as = collectorSpecies }
 				create_country = {
 					name = "The Collectors"
@@ -148,7 +148,7 @@ sys_tartarusdebrisfield_init = {
 					civics = { civic = "civic_machine_assimilator" civic = "civic_machine_unitary_cohesion"}
 					authority = auth_machine_intelligence
 					name_list = btr_collectors
-					origin = origin_collectors
+					origin = collectors_origin
 					ethos = { ethic = "ethic_gestalt_consciousness" }
 					species = event_target:collectorSpecies
 					flag = {
