@@ -1,0 +1,29 @@
+@ion_scale = 0.5
+@frame_size = 30.0
+
+########################
+### ASARI ION CANNON ###
+########################
+
+entity = {
+	name = "mec_asari_01_ion_cannon_entity"
+	pdxmesh = "mec_asari_01_empty_mesh"
+	locator = { name = "part1" position = { 0 0 0 } }
+	
+	state = { name = "death" state_time = 2 looping = no
+		event = { time = 1.9 particle = "small_player_ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+}
+
+entity = {
+	name = "mec_asari_01_ion_cannon_section_entity"
+	pdxmesh = "mec_asari_01_ion_cannon_mesh"
+	scale = @ion_scale
+	locator = { name = "root" position = { 0 0 0 } }
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5 
+		start_event = { node = "xl_gun_01" particle = "ion_cannon_core_effect" keep_particle = yes trigger_once = yes }
+	}
+}
+

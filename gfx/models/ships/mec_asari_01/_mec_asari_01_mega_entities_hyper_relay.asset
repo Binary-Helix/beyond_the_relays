@@ -1,0 +1,47 @@
+#######################
+## ASARI HYPER RELAY ##
+#######################
+
+entity = {
+	name = "mec_asari_01_hyper_relay_entity"
+	pdxmesh = "mec_asari_01_hyper_relay_01_mesh"
+
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_speed = 0.5 
+			event = { time = 0 node = "root" particle = "mec_asari_01_hyper_relay_portal_effect" keep_particle = yes trigger_once = yes }
+			event = { trigger_once = yes sound = { soundeffect = "amb_megastructure_hyper_relay_01_idle" } }
+
+}
+	state = { name = "death" animation = "death" looping = no}
+	
+	attach = { "root" = "mec_asari_01_hyper_relay_01_portal_entity" }
+	attach = { "root" = "mec_asari_01_hyper_relay_01_portal_spin_entity" }
+}
+
+#########################
+## ASARI PORTAL COLORS ##
+#########################
+
+entity = {
+	name = "mec_asari_01_hyper_relay_01_portal_entity"
+	pdxmesh = "mec_asari_01_hyper_relay_01_portal_mesh"
+
+	scale = 1.15
+		game_data = {
+		bloom_factor			= 1.5
+		uv_animation_speed 		= -0.5
+		uv_animation_direction 	= { 0.7 -0.8 }
+		}
+}
+
+entity = {
+	name = "mec_asari_01_hyper_relay_01_portal_spin_entity"
+	pdxmesh = "mec_asari_01_hyper_relay_01_portal_spin_mesh"
+
+	scale = 1
+		game_data = {
+		bloom_factor			= 1
+		uv_animation_speed 		= -.5
+		uv_animation_direction 	= { 0.2 0.7 }
+		}
+}

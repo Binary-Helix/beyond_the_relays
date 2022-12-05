@@ -1,0 +1,258 @@
+@ringworld_segment_size = 50
+
+#####################
+## ASARI RINGWORLD ##
+#####################
+
+################################
+## SCAFFOLDING SINGLE SECTION ##
+################################
+entity = {
+	name = "mec_asari_01_ringworld_construction_entity"
+	pdxmesh = "ringworld_construction_mesh"
+	
+	meshsettings = {
+		name = "polySurface128Shape"
+		index = 0
+		texture_diffuse = "mec_asari_01_ringworld_construction_diffuse.dds"
+		texture_normal = "ringworld_construction_normal.dds"
+		texture_specular = "mec_asari_01_ringworld_construction_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+
+	meshsettings = {
+		name = "polySurface161Shape"
+		index = 0
+		texture_diffuse = "mec_asari_01_ringworld_seam_diffuse.dds"
+		texture_normal = "ringworld_seam_normal.dds"
+		texture_specular = "mec_asari_01_ringworld_seam_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+}
+
+###########################
+## 3-SECTION SCAFFOLDING ##
+###########################
+entity = {
+	name = "mec_asari_01_ringworld_3x_seams_entity"
+	cull_radius = 500.0
+	pdxmesh = "ringworld_construction_mesh"
+	
+	meshsettings = {
+		name = "polySurface128Shape"
+		index = 0
+		texture_diffuse = "mec_asari_01_ringworld_construction_diffuse.dds"
+		texture_normal = "ringworld_construction_normal.dds"
+		texture_specular = "mec_asari_01_ringworld_construction_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+
+	meshsettings = {
+		name = "polySurface161Shape"
+		index = 0
+		texture_diffuse = "mec_asari_01_ringworld_seam_diffuse.dds"
+		texture_normal = "ringworld_seam_normal.dds"
+		texture_specular = "mec_asari_01_ringworld_seam_specular.dds"
+		shader = "PdxMeshTerra"
+	}
+	
+	default_state = "idle"
+	state = { name = "idle"
+	start_event = { trigger_once = yes sound = { soundeffect = "ringworld_hum_idle_02" stop_on_state_change = yes } }
+	}
+	
+	state = { name = "construction"
+	start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+	}
+	
+	locator = { name = "locator1" 	position = {  -225 	0 	-60.289 	} rotation ={ -30 0 0} 	}
+	locator = { name = "locator2" 	position = {   225 	0 	-60.289 	} rotation ={ 30 0 0}	}
+	
+	attach = { locator1 = "mec_asari_01_ringworld_construction_entity" }
+	attach = { locator2 = "mec_asari_01_ringworld_construction_entity" }
+}
+
+##########################
+## COMPLETE SCAFFOLDING ##
+##########################
+entity = {
+	name = "mec_asari_01_ringworld_seam_entity_01_full_entity"
+	cull_radius = 10000.0
+	
+	
+	locator = { name = "ringworld_north" 		position = { 450	0 	0 		} rotation = {	90	0	0	}		}
+	locator = { name = "ringworld_south" 		position = { -450	0 	0 		} rotation = {	-90	0	0	}		}
+	locator = { name = "ringworld_west" 		position = { 0		0 	450 	} rotation = {	0	0	0	}		}
+	locator = { name = "ringworld_east" 		position = { 0		0 	-450 	} rotation = {	180	0	0	}		}	
+    
+	state = { name = "construction"
+	}
+    
+	attach = { ringworld_north 		= "mec_asari_01_ringworld_3x_seams_entity" }
+	attach = { ringworld_south 		= "mec_asari_01_ringworld_3x_seams_entity" }
+	attach = { ringworld_west 		= "mec_asari_01_ringworld_3x_seams_entity" }
+	attach = { ringworld_east 		= "mec_asari_01_ringworld_3x_seams_entity" }
+}
+
+######################################
+############## SECTIONS ##############
+######################################
+#### NOTE: FIX sections are used to correct for placement. The ring sections are all exported at their original correct position in Maya!! So, we need to make a FIX entity so they will properly be in the center when constructed.
+
+#############
+## HABITAT ##
+#############
+
+entity = {
+	name = "mec_asari_01_ringworld_habitable_entity_01_entity"
+	cull_radius = 500.0
+	#pdxmesh = ""
+	
+	#scale = 1.0
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 100 time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "ringworld_hum_idle_01" stop_on_state_change = yes } }
+		start_event = { trigger_once = yes sound = { soundeffect = "ringworld_hum_idle_02" stop_on_state_change = yes } }
+	}
+	state = { name = "construction"
+	start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+	}
+
+	game_data = {
+		size = @ringworld_segment_size
+	}
+	
+	locator = { name = "habitat" 	position = { 0 	0 	-440 } rotation ={ 0 0 0} 	}
+	attach = { habitat = "mec_asari_01_ringworld_habitat_fix_entity" }	
+	attach = { habitat = "mec_asari_ringworld_habitat_clouds_entity" }	
+}
+
+entity = {
+	name = "mec_asari_01_ringworld_habitat_fix_entity"
+	cull_radius = 500.0
+	pdxmesh = "mec_asari_01_ringworld_habitat_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"		state_time = 5
+	}
+	state = { name = "construction"
+	}
+	
+	game_data = {
+		size = @ringworld_segment_size
+	}
+}
+
+entity = {
+	name = "mec_asari_ringworld_habitat_clouds_entity"
+	cull_radius = 500.0
+	pdxmesh = "mec_asari_01_ringworld_habitat_clouds_mesh"
+		
+	default_state = "idle"
+	state = { name = "idle" state_time = 100 time_offset = { 0 100 } }
+	state = { name = "construction" }
+
+	game_data = {
+		size = @ringworld_segment_size
+		uv_animation_speed 		= 0.002
+		uv_animation_direction 	= { 1.0 0.0 }
+	}
+}
+
+##########
+## TECH ##
+##########
+entity = {
+	name = "mec_asari_01_ringworld_tech_entity_01_entity"
+	cull_radius = 500.0
+	#pdxmesh = ""
+	
+	default_state = "idle"
+	state = { name = "idle"		state_time = 5
+	}
+	state = { name = "construction"
+	}
+
+	game_data = {
+		size = @ringworld_segment_size
+	}
+	
+	locator = { name = "tech" 	position = {  0 0 -440	} rotation ={ 0 0 0}	}	
+	attach = { tech = "mec_asari_01_ringworld_tech_fix_entity" }
+	
+}
+
+entity = {
+	name = "mec_asari_01_ringworld_tech_fix_entity"
+	cull_radius = 500.0
+	pdxmesh = "mec_asari_01_ringworld_tech_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"		state_time = 5
+	}
+	state = { name = "construction"
+	}
+	
+	game_data = {
+		size = @ringworld_segment_size
+	}
+}
+
+##########
+## SEAM ##
+##########
+entity = {
+	name = "mec_asari_01_ringworld_seam_entity_01_entity"
+	cull_radius = 500.0
+	#pdxmesh = ""
+
+	state = { name = "construction"
+	}
+	
+	game_data = {
+		size = @ringworld_segment_size
+	}
+	
+	locator = { name = "seam" 	position = { 0 	0 	-440 } rotation ={ 0 0 0} 	}
+	attach = { seam = "mec_asari_01_ringworld_seam_fix_entity" }
+}
+
+entity = {
+	name = "mec_asari_01_ringworld_seam_fix_entity"
+	cull_radius = 500.0
+	pdxmesh = "mec_asari_01_ringworld_seam_mesh"
+
+	state = { name = "construction"
+	}
+	
+	game_data = {
+		size = @ringworld_segment_size
+	}
+}
+
+###############################
+## FINAL CONSTRUCTION ENTITY ##
+###############################
+entity = {
+	name = "mec_asari_01_ringworld_phase_3_construction_entity"
+	cull_radius = 500.0
+	#pdxmesh = "mec_asari_01_ringworld_habitat_mesh"
+	
+	state = { name = "construction"
+	start_event = { trigger_once = yes sound = { soundeffect = "ringworld_construction_ambient" } }
+	}
+	
+	locator = { name = "seam" 	position = { 0 0 -440 } rotation = { -30 0 0 } }
+	attach = { seam = "mec_asari_01_ringworld_seam_fix_entity" }
+	
+	locator = { name = "tech" 	position = { 0 0 -440 } rotation = {  30 0 0 } }
+	attach = { tech = "mec_asari_01_ringworld_tech_fix_entity" }
+	
+	locator = { name = "habitat" position = { 0 0 -440 } rotation = { 0 0 0 }	}
+	attach = { habitat = "mec_asari_01_ringworld_habitat_fix_entity" }
+	
+	game_data = {
+		size = @ringworld_segment_size
+	}
+}

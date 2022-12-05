@@ -1,0 +1,615 @@
+# This is a template which multiple species can use.
+
+mammalian_human_female_clothes_01 = {
+	default = "gfx/models/portraits/human/human_female_clothes_ruler.dds"
+	
+	game_setup = {#will run with a limited country scope. species and government is set but the country does not actually exist
+		default = "gfx/models/portraits/human/human_female_clothes_admiral.dds"
+	}
+	
+	#species scope
+	species = { #generic portrait for a species
+		default = "gfx/models/portraits/human/human_female_clothes_ruler.dds"
+	}
+	
+	#pop scope
+	pop = { #for a specific pop
+		default = "gfx/models/portraits/human/human_female_clothes_governor.dds"
+		
+		random = {
+			trigger = { # Dummy list to put Vanilla clothes in the front
+				always = no
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_ruler.dds"
+				"gfx/models/portraits/human/human_female_outfit_scientist.dds"
+				"gfx/models/portraits/human/human_female_clothes_general.dds"
+				"gfx/models/portraits/human/human_female_clothes_admiral.dds"
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+				"gfx/models/portraits/human/human_female_clothes_ruler2.dds"
+				"gfx/models/portraits/human/human_female_clothes_royal.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				OR = {
+					is_pop_category = worker
+					is_pop_category = simple_drone
+				}
+				NOR = {
+					is_pop_category = pre_sapients
+					has_job = clerk
+					has_job = soldier
+					has_job = preacher
+					has_job = patrol_drone
+					has_job = warrior_drone
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_admiral.dds"
+				"gfx/models/portraits/human/human_female_clothes_general.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_civilian_2.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				is_pop_category = worker
+				owner = {
+					has_country_flag = "systems_alliance"
+				}
+			}
+			list = {
+				"gfx/models/portraits/alliance/alliance_female_outfit_civilian_3.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				is_pop_category = worker
+				owner = {
+					has_country_flag = "cerberus"
+				}
+			}
+			list = {
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_governer.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				OR = {
+					is_pop_category = specialist
+					is_pop_category = complex_drone
+				}
+				NOR = {
+					is_pop_category = pre_sapients
+					has_job = enforcer
+					has_job = telepath
+					has_job = duelist
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_outfit_scientist.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_general.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_scientist.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_scientist_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_2.dds"
+			}
+		}
+		
+		
+		random = {
+			trigger = {
+				is_pop_category = specialist
+				owner = {
+					has_country_flag = "cerberus"
+				}
+			}
+			list = {
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_3.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				is_pop_category = ruler
+				NOR = {
+					is_pop_category = pre_sapients
+					owner = {
+						has_country_flag = "systems_alliance"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_royal.dds"
+				"gfx/models/portraits/human/human_female_clothes_ruler.dds"
+				"gfx/models/portraits/human/human_female_clothes_ruler2.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_ruler.dds"
+			}
+		}
+
+		random = {
+			trigger = {
+				is_pop_category = ruler
+				owner = {
+					has_country_flag = "systems_alliance"
+				}
+			}
+			list = {
+				"gfx/models/portraits/alliance/alliance_female_outfit_admiral.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				OR = {
+					has_job = clerk
+					has_job = preacher
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_civilian.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_governor.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				OR = {
+					has_job = clerk
+					has_job = preacher
+				}
+				owner = {
+					has_country_flag = "cerberus"
+				}
+			}
+			list = {
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_admiral.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				OR = {
+					has_job = soldier
+					has_job = patrol_drone
+					has_job = warrior_drone
+					has_job = enforcer
+					has_job = telepath
+					has_job = duelist
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_admiral.dds"
+				"gfx/models/portraits/human/human_female_clothes_general.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_armor.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_armor_2.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_armor_f_shep.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_trellis.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_general_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_governer_2.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				OR = {
+					has_job = soldier
+					has_job = enforcer
+					has_job = telepath
+					has_job = duelist
+				}
+				owner = {
+					has_country_flag = "cerberus"
+				}
+			}
+			list = {
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_admiral_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_general.dds"
+			}
+		}
+	}
+	
+	#leader scope
+	leader = { #scientists, generals, admirals, governor
+		
+		random = { # Collection of all available outfits to put them into a general order
+			trigger = {
+				always = no
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_ruler.dds"
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+				"gfx/models/portraits/human/human_female_outfit_scientist.dds"
+				"gfx/models/portraits/human/human_female_clothes_general.dds"
+				"gfx/models/portraits/human/human_female_clothes_admiral.dds"
+				"gfx/models/portraits/human/human_female_clothes_ruler2.dds"
+				"gfx/models/portraits/human/human_female_clothes_royal.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_admiral.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_governor.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_scientist.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_scientist_2.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_general.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_ruler.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_armor.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_armor_2.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_trellis.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_civilian.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_civilian_2.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_civilian_3.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_governer.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_governer_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_3.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_general.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_general_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_admiral.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_admiral_2.dds"
+			}
+		}
+		
+		# Neither Systems Alliance or Cerberus
+		random = {
+			trigger = {
+				leader_class = scientist
+				nor = {
+					owner = {
+						has_country_flag = "systems_alliance"
+					}
+					owner = {
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_outfit_scientist.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				leader_class = general
+				nor = {
+					owner = {
+						has_country_flag = "systems_alliance"
+					}
+					owner = {
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_general.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				leader_class = admiral
+				nor = {
+					owner = {
+						has_country_flag = "systems_alliance"
+					}
+					owner = {
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_admiral.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				leader_class = governor
+				nor = {
+					owner = {
+						has_country_flag = "systems_alliance"
+					}
+					owner = {
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+			}
+		}
+		
+		# Systems Alliance
+		random = {
+			trigger = {
+				leader_class = scientist
+				owner = { has_country_flag = "systems_alliance" }
+			}
+			list = {
+				"gfx/models/portraits/alliance/alliance_female_outfit_civilian.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_general.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_governor.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_scientist.dds"
+				"gfx/models/portraits/human/human_female_outfit_scientist.dds"
+			}
+		}
+		random = {
+			trigger = {
+				leader_class = general
+				owner = { has_country_flag = "systems_alliance" }
+			}
+			list = {
+				"gfx/models/portraits/alliance/alliance_female_outfit_armor.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_armor_2.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_civilian_3.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_scientist_2.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_trellis.dds"
+				"gfx/models/portraits/human/human_female_clothes_general.dds"
+			}
+		}
+		random = {
+			trigger = {
+				leader_class = admiral
+				owner = { has_country_flag = "systems_alliance" }
+			}
+			list = {
+				"gfx/models/portraits/alliance/alliance_female_outfit_admiral.dds"
+			}
+		}
+		random = {
+			trigger = {
+				leader_class = governor
+				owner = { has_country_flag = "systems_alliance" }
+			}
+			list = {
+				"gfx/models/portraits/alliance/alliance_female_outfit_admiral.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_civilian.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_governor.dds"
+				"gfx/models/portraits/alliance/alliance_female_outfit_ruler.dds"
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+			}
+		}
+
+		# Cerberus
+		random = {
+			trigger = {
+				leader_class = scientist
+				owner = { has_country_flag = "cerberus" }
+			}
+			list = {
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_admiral.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_governer.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_3.dds"
+				"gfx/models/portraits/human/human_female_outfit_scientist.dds"
+			}
+		}
+		random = {
+			trigger = {
+				leader_class = general
+				owner = { has_country_flag = "cerberus" }
+			}
+			list = {
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_admiral_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_general.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_general_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_governer_2.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_3.dds"
+				"gfx/models/portraits/human/human_female_clothes_general.dds"
+			}
+		}
+		random = {
+			trigger = {
+				leader_class = admiral
+				owner = { has_country_flag = "cerberus" }
+			}
+			list = {
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_admiral.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_3.dds"
+				"gfx/models/portraits/human/human_female_clothes_admiral.dds"
+			}
+		}
+		random = {
+			trigger = {
+				leader_class = governor
+				owner = { has_country_flag = "cerberus" }
+			}
+			list = {
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_admiral.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_3.dds"
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+			}
+		}
+	}
+	
+	#leader scope 
+	ruler = { #for rulers
+		default = "gfx/models/portraits/human/human_female_clothes_ruler.dds"
+		
+		# Military
+		random = {
+			trigger = {
+				owner = {
+					has_militarist_government = yes
+					nor = {
+						has_authority = auth_imperial
+						has_country_flag = "systems_alliance"
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_general.dds"
+			}
+		}
+
+		# Generic
+		random = {
+			trigger = { 
+				owner = {
+					has_generic_government = yes
+					nor = {
+						has_authority = auth_imperial
+						has_country_flag = "systems_alliance"
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_ruler2.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				owner = {
+					has_spiritualist_government = yes
+					NOR = {
+						has_authority = auth_imperial
+						has_country_flag = "systems_alliance"
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_ruler.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				owner = {
+					has_pacifist_government = yes
+					NOR = {
+						has_authority = auth_imperial
+						has_country_flag = "systems_alliance"
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				owner = {
+					has_materialist_government = yes
+					NOR = {
+						has_authority = auth_imperial
+						has_country_flag = "systems_alliance"
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_outfit_scientist.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				owner = {
+					has_authority = auth_imperial
+					NOR = {
+						has_country_flag = "systems_alliance"
+						has_country_flag = "cerberus"
+					}
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_royal.dds"
+			}
+		}
+		
+		# Systems Alliance
+		random = {
+			trigger = {
+				owner = {
+					has_country_flag = "systems_alliance"
+				}
+			}
+			list = {
+				"gfx/models/portraits/alliance/alliance_female_outfit_admiral.dds"
+			}
+		}
+		
+		# Cerberus
+		random = {
+			trigger = {
+				owner = {
+					has_country_flag = "cerberus"
+				}
+			}
+			list = {
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_admiral.dds"
+				"gfx/models/portraits/cerberus/cerberus_female_outfit_scientist_3.dds"
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+				"gfx/models/portraits/human/human_female_clothes_royal.dds"
+				"gfx/models/portraits/human/human_female_clothes_ruler.dds"
+			}
+		}
+
+		# Primitives
+		random = {
+			trigger = {
+				owner = {
+					has_primitive_government = yes
+				}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+			}
+		}
+						
+		# Fallen Empire
+		random = {
+			trigger = { 
+					or = {
+						owner = { has_government = gov_stagnant_ascendancy }
+						owner = { has_government = gov_awakened_ascendancy }
+					}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_ruler.dds"
+				"gfx/models/portraits/human/human_female_clothes_ruler2.dds"
+			}
+		}
+						 
+		# Sentinels
+		random = {
+			trigger = { 
+						owner = { has_government = gov_military_order  }
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_general.dds"
+			}
+		}
+		
+		# Artist Enclaves
+		random = {
+			trigger = {
+						owner = { has_government = gov_artist_enclave }
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+			}
+		}
+		
+		# Trader & Curator Enclaves
+		random = {
+			trigger = { 
+					or = {
+						owner = { has_government = gov_curator_enclave }
+						owner = { has_government = gov_trader_enclave }
+					}
+			}
+			list = {
+				"gfx/models/portraits/human/human_female_clothes_governor.dds"
+				"gfx/models/portraits/human/human_female_outfit_scientist.dds"
+			}
+		}
+	}
+}

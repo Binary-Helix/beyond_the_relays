@@ -1,0 +1,71 @@
+#####################
+## DESIGNER SCALES ##
+#####################
+
+@observation_station = 13
+
+############
+## SCALES ##
+############
+
+@observation_station_scale = 0.9
+
+######################
+## OBSERVATION POST ##
+######################
+
+## NOTE: This wonky setup is to stop the even wonkier effect of two science stations being drawn on top of each other. It appears that some kind of hardcoded (or somewhere I can't find) thing will -always- paste whatever the pdxmesh is on "part1". So here I specify an empty mesh. So it can do it's crazy stuff on that, THEN I attach my actual science station "mec_asari_01_observation_station_object_entity". 
+entity = {
+	name = "mec_asari_01_observation_station_entity"
+	pdxmesh = "mec_asari_01_empty_mesh"
+
+	locator = { name = "part1" 		position = { 0 0 0 } }
+	
+	state = { name = "death" state_time = 3 looping = no
+		event = { time = 2.9 particle = "small_player_ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }
+	}
+	
+	attach = { "part1" = "mec_asari_01_observation_station_object_entity" }
+}
+
+entity = {
+	name = "mec_asari_01_observation_station_object_entity"
+	pdxmesh = "mec_asari_01_science_station_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 0.3 animation_speed = 0.9 looping = yes
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_research_station_signals" } }
+		
+		event = { time = 0.8 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 3 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 2 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 1 node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 2.6 node = "light_locator_05" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	
+	state = { name = "death" animation = "death" looping = no animation_blend_time = 0.3 animation_speed = 1.0 
+		event = { time = 0.0 node = "explosion_locator_01" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+		event = { time = 0.5 node = "explosion_locator_02" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+		event = { time = 0.8 node = "explosion_locator_03" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+		event = { time = 1.0 node = "explosion_locator_04" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+		event = { time = 1.5 node = "explosion_locator_05" particle = "ship_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_small" } }
+	}
+	
+	scale = @observation_station_scale
+	
+	game_data = {
+		size = @observation_station
+	}
+}
+
+## OBSERVATION POST CONSTRUCTION ENTITY ##
+entity = {
+	name = "mec_asari_01_observation_station_construction_entity"
+	pdxmesh = "mec_asari_01_science_station_mesh"
+		default_state = "idle"
+		state = { name = "idle" animation = "death" state_time = 5
+			event = { trigger_once = yes sound = { soundeffect = "place_construction" } }
+		}
+	
+	scale = @observation_station_scale
+}

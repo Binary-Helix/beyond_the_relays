@@ -1,0 +1,252 @@
+particle={
+	name="orange_dust_effect"
+	subsystem={
+		name="dust_inner"
+		max_amount=20
+		slave_particles=0
+		sort="depth"
+		emitter_type="sphere"
+		sphere_emitter_radius={ 20 10 }
+		sphere_emitter_yaw={ 0 180 }
+		sphere_emitter_pitch={ 0 10 }
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/rs_cloud_3.dds"
+			x=1
+			y=1
+			shader="ParticleAlphaBlend"
+		}
+		color={
+			x=170
+			y=90
+			z=60
+			alpha=255,alpha_fade
+		}
+		position={
+			x=0
+			y=0
+			z=0
+		}
+		duration=-1
+		emitter_yaw={ 0 0 }
+		emitter_pitch={ 0 0 }
+		velocity_pitch={ -10 25 }
+		velocity_yaw=90
+		velocity=0.5
+		life={ 40 10 }
+		emission=100
+		size={ 50,grow 10 }
+		rotation={ 0 180 }
+		rotation_speed=0.3
+		mass={ 1.5 0.5 }
+		force=push
+	}
+	subsystem={
+		name="dust_mid"
+		max_amount=30
+		slave_particles=0
+		sort="depth"
+		emitter_type="sphere"
+		sphere_emitter_radius={ 40 20 }
+		sphere_emitter_yaw={ 0 180 }
+		sphere_emitter_pitch={ 0 10 }
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=no
+		hide=no
+		texture={
+			file="gfx/particles/rs_cloud_3.dds"
+			x=1
+			y=1
+			shader="ParticleAlphaBlend"
+		}
+		color={
+			x=180
+			y=110
+			z=60
+			alpha=200,alpha_fade
+		}
+		position={
+			x=0
+			y=0
+			z=0
+		}
+		duration=-1
+		emitter_yaw={ 0 0 }
+		emitter_pitch={ 0 0 }
+		velocity_pitch={ -10 25 }
+		velocity_yaw=90
+		velocity=0.1
+		life={ 40 10 }
+		emission=100
+		size={ 50,grow 10 }
+		particle_yaw={ 0 10 }
+		particle_pitch={ 90 10 }
+		rotation={ 0 180 }
+		rotation_speed=0.2
+		mass={ 3 1.5 }
+		force=vortex,push
+	}
+	subsystem={
+		name="dust_outer"
+		max_amount=40
+		slave_particles=0
+		sort="depth"
+		emitter_type="sphere"
+		sphere_emitter_radius={ 50 30 }
+		sphere_emitter_yaw={ 0 180 }
+		sphere_emitter_pitch={ 0 10 }
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/rs_cloud_3.dds"
+			x=1
+			y=1
+			shader="ParticleAlphaBlend"
+		}
+		color={
+			x=190
+			y=120
+			z=60
+			alpha=150,alpha_fade
+		}
+		position={
+			x=0
+			y=0
+			z=0
+		}
+		duration=-1
+		emitter_yaw={ 0 0 }
+		emitter_pitch={ 0 0 }
+		velocity_pitch={ -10 25 }
+		velocity_yaw=90
+		velocity=0.5
+		life={ 50 20 }
+		emission=100
+		size={ 70,grow 20 }
+		rotation={ 0 180 }
+		rotation_speed=0.1
+		mass={ 3.5 1 }
+		force=vortex,push
+	}
+	subsystem={
+		name="dust_glow"
+		max_amount=3
+		slave_particles=0
+		sort="depth"
+		emitter_type="sphere"
+		sphere_emitter_radius={ 50 10 }
+		sphere_emitter_yaw={ 0 180 }
+		sphere_emitter_pitch={ 0 10 }
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/rs_cloud_2.dds"
+			x=1
+			y=1
+			shader="ParticleAdditive"
+		}
+		color={
+			x=170
+			y=90
+			z=60
+			alpha=255,smoke_glow_alpha
+		}
+		position={
+			x=0
+			y=0
+			z=0
+		}
+		duration=-1
+		emitter_yaw={ 0 0 }
+		emitter_pitch={ 0 0 }
+		velocity_pitch={ -10 25 }
+		velocity_yaw=90
+		velocity=0.5
+		life={ 20 2 }
+		emission=400
+		size={ 60 10 }
+		rotation={ 0 180 }
+		rotation_speed=0.5
+		mass={ 1.5 0.5 }
+		force=vortex,push
+	}
+	animation={
+		name="alpha_fade"
+		start=0
+		duration=1
+		repeat=no
+		minValue=0
+		maxValue=1
+		curve={
+			0 0 0.297 0.938 0.771 0.641 1 0 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="smoke_glow_alpha"
+		start=0
+		duration=1
+		repeat=no
+		minValue=0
+		maxValue=1
+		curve={
+			0 0 0.07059 0.19531 0.206 0.992 0.3 1 0.488 0.414 0.674 0.82 1 0 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="grow"
+		start=0
+		duration=1
+		repeat=no
+		minValue=0
+		maxValue=1
+		curve={
+			0 0.711 1 1 
+		}
+		op="MUL"
+		time="life"
+	}
+	force={
+		type="vortex"
+		name="vortex"
+		position={
+			0 0 0 
+		}
+		direction={
+			0 1 0 
+		}
+		local_force=yes
+		yaw=0
+		division=16
+		amount=0.05
+	}
+	force={
+		type="point"
+		name="push"
+		position={
+			0 0 0 
+		}
+		direction={
+			0 1 0 
+		}
+		local_force=yes
+		yaw=0
+		division=16
+		amount=0.02
+	}
+}
