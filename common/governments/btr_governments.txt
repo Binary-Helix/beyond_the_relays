@@ -1,0 +1,112 @@
+#Governments File
+
+asari_rep_gov = {
+	ruler_title = RT_ASARI_MATRIARCH
+
+	leader_class = governor # Initial ruler will become this if elected out of office
+
+	election_candidates = {
+		modifier = {
+			add = 100
+			leader_class = ruler
+		}
+		modifier = {
+			add = 10
+			OR = {
+				leader_class = governor
+				leader_class = scientist
+			}
+		}
+		modifier = {
+			factor = 5
+			gender = female
+		}
+	}
+
+	possible = {
+		has_authority = auth_democratic
+		has_civic = asari_rep_civic_thes_dip_corp
+	}
+
+	weight = {
+		base = 9999
+	}
+}
+
+salarian_uni_gov = {
+	ruler_title  = RT_SALARIAN_DALATRASS 
+	
+	should_force_rename = no
+
+	leader_class = governor
+	election_candidates = {
+		modifier = {
+			add = 100
+			leader_class = ruler
+		}
+		modifier = {
+			add = 10
+			leader_class = governor
+		}
+	}
+	possible = {
+		has_authority = auth_oligarchic
+		has_valid_civic = salarian_uni_hold_the_line
+	}
+
+	weight = {
+		base = 10000
+	}
+}
+
+turian_hier_gov = {
+	ruler_title  = RT_TURIAN_PRIMARCH
+	
+	should_force_rename = no
+
+	leader_class = governor
+	election_candidates = {
+		modifier = {
+			add = 100
+			leader_class = ruler
+		}
+		modifier = {
+			add = 10
+			leader_class = governor
+		}
+	}
+	possible = {
+		has_authority = auth_oligarchic
+		has_valid_civic = turian_hier_honor
+	}
+
+	weight = {
+		base = 10000
+	}
+}
+
+systems_all_gov = {
+	ruler_title  = RT_ALLIANCE_MINISTER
+	
+	should_force_rename = no
+
+	leader_class = governor
+	election_candidates = {
+		modifier = {
+			add = 100
+			leader_class = ruler
+		}
+		modifier = {
+			add = 10
+			leader_class = governor
+		}
+	}
+	possible = {
+		has_authority = auth_democratic
+		has_valid_civic = systems_all_colonial_government
+	}
+
+	weight = {
+		base = 10000
+	}
+}

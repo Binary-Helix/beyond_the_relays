@@ -1,0 +1,1276 @@
+#Civics File
+
+#civic_example = {
+#	playable = {}								# AND trigger, no scope; use this to prevent the civic from being selectable by the player (UI)
+#	potential = {}								# requirements list, see ../readme_requirements.txt
+#	possible = {}								# requirements list, see ../readme_requirements.txt
+#	pickable_at_start = yes / no				# default: yes
+#	modification = yes / no						# default: yes, set to no to prevent adding or removing this after creation of the empire
+#
+#	random_weight = { base = 5 }				# scriptable weight for randomizing a civic; required, else the civic will not get assigned randomly
+#												# Note: formula is "base + factor (default 1) * (result of modifiers)"
+#												# So to make it not spawn, set base and factor to 0
+#
+#	modifier = {}								# modifier added to the country if the civic is selected and valid
+#	can_build_ruler_ship = yes / no				# default: no
+#	traits = { trait = ... }					# default: empty; trait set to enforce on the primary species. They cannot be removed, but more can be added if points/picks permit
+#	has_secondary_species = {					# default: none; if present, will enable secondary species customization in empire designer and will create secondary species & pops at galaxy generation time (see empire_init_create_capital_secondary_pops)
+#		traits = { trait = ... }					# default: empty; trait set to enforce on the secondary species. They cannot be removed, but more can be added if points/picks permit
+#	}
+#	is_origin = yes / no						# default: no, set to yes if civic should be treated as an Origin
+#
+#	swap_type = {								# triggered name/desc/custom desc based on species class, no scope
+#		name = ...
+#		description = ...
+#		trigger = {
+#			local_human_species_class = ..
+#		}
+#	}
+#	ai_playable = {}							# Similar to "playable", for AI
+#}
+
+####################
+# ASARI REP CIVICS #
+####################
+asari_rep_civic_thes_dip_corp ={
+	modification = no
+	potential = {
+		origin = {
+			value = asari_rep_origin
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		envoys_add = 3
+		diplo_weight_mult = 0.33
+		diplo_weight_naval_mult = -0.1
+	}
+}
+
+asari_rep_civic_democracy = {
+	modification = no
+	potential = {
+		origin = {
+			value = asari_rep_origin
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		country_war_exhaustion_mult = 0.1
+		empire_size_colonies_mult = -0.5
+	}
+}
+
+asari_rep_civic_universities = {
+	potential = {
+		origin = {
+			value = asari_rep_origin
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		diplo_weight_technology_mult = 0.1
+		all_technology_research_speed = 0.05
+		empire_size_colonies_mult = -0.5
+	}
+}
+
+###################
+# SALARIAN UNION CIVICS #
+###################
+salarian_uni_hold_the_line ={
+	modification = no
+	potential = {
+		origin = {
+			value = salarian_uni_origin
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		spy_network_daily_value_add = 3
+		ship_evasion_mult = 0.4
+	}
+	
+	description = "salarian_uni_hold_the_line_effects"
+}
+
+salarian_uni_qual_tech_results ={
+	modification = no
+	potential = {
+		origin = {
+			value = salarian_uni_origin
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		starbase_shipyard_build_speed_mult = 0.5
+		ships_upkeep_mult = 0.5
+		armies_upkeep_mult = 0.5
+		country_naval_cap_mult = -0.4
+		ship_speed_mult = 0.35
+		ship_windup_mult = -0.25
+		ship_disengage_chance_mult = 0.2
+		ship_sensor_range_add = 1
+	}
+
+}
+
+salarian_uni_strat_enlight ={
+	modification = no
+	potential = {
+		origin = {
+			value = salarian_uni_origin
+		}
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		shipclass_observation_station_build_cost_mult = -0.3
+		country_society_research_produces_mult = 0.05
+	}
+}
+
+####################
+# TURIAN HIER CIVICS #
+####################
+
+turian_hier_honor ={
+	modification = no
+
+	potential = {
+		origin = {
+			value = turian_hier_origin
+		}	
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		country_war_exhaustion_mult = -0.25
+		pop_government_ethic_attraction = 0.10
+	}
+}
+
+turian_hier_universal_service ={
+	modification = no
+	potential = {
+		origin = {
+			value = turian_hier_origin
+		}	
+	}
+	random_weight = {
+		base = 0
+	}
+	modifier = {
+		country_naval_cap_mult = 0.25
+		country_admin_cap_mult = 0.10
+	}
+}
+
+# turian_hier_elkoss ={
+# 	potential = {
+# 		origin = {
+# 			value = turian_hier_origin
+# 		}	
+# 	}
+	
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_alloys_produces_mult = 0.15
+# 		starbase_shipyard_build_speed_mult = 0.33
+# 	}
+# }
+
+##########################
+# SYSTEM ALLIANCE CIVICS #
+##########################
+
+systems_all_colonial_government = {
+	modification = no
+	potential = {
+		origin = {
+			value = systems_all_origin
+		}
+	}
+	random_weight = {
+		weight = 0
+	}
+	modifier = {
+		country_starbase_influence_cost_mult = -0.2
+		planet_colony_development_speed_mult = 0.1
+	}
+}
+
+systems_all_unfettered_ai = {
+	modification = no
+	potential = {
+		origin = {
+			value = systems_all_origin
+		}
+	}
+	random_weight = {
+		weight = 0
+	}
+	modifier = {
+		ship_evasion_mult = 0.10
+		ship_tracking_mult = 0.10
+		ship_fire_rate_mult = 0.10
+	}
+}
+
+systems_all_alien_vogue = {
+	potential = {
+		origin = {
+			value = systems_all_origin
+		}
+	}
+	random_weight = {
+		weight = 0
+	}
+	modifier = {
+		pop_ethic_xenophile_attraction_mult = 0.2
+		# Unity per embassy in diplomacy_economy/btr_diplomatic_economy.txt
+	}
+}
+
+# ############################
+# # BATARIAN HEGEMONY CIVICS #
+# ############################
+
+# batarian_all_mighty_state = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = batarian_heg_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		weight = 0
+# 	}
+# 	modifier = {
+# 		planet_stability_add = 5
+# 		country_naval_cap_mult = 0.1
+# 		intel_encryption_add = 2
+# 		ships_upkeep_mult = 0.2
+# 		country_trade_fee = 0.2
+# 		diplo_weight_mult = -0.25
+# 	}
+# }
+
+# batarian_caste_system = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = batarian_heg_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		weight = 0
+# 	}
+# 	modifier = {
+# 		country_unity_produces_mult = 0.05
+# 		pop_ethics_shift_speed_mult = -0.5
+# 		planet_jobs_slave_produces_mult = 0.15
+# 		pop_amenities_usage_organic_mult = -0.2
+# 		pop_resettlement_cost_mult = -1
+# 	}
+# }
+
+# batarian_leviathan_engineering = {
+# 	potential = {
+# 		origin = {
+# 			value = batarian_heg_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		weight = 0
+# 	}
+# 	modifier = {
+# 		country_engineering_tech_research_speed = 0.1
+# 		country_physics_tech_research_speed = 0.1
+# 		num_tech_alternatives_add = 3
+# 		species_leader_exp_gain = -0.1
+# 		leader_age = -10
+# 	}
+# }
+
+# #########################
+# # ARALAKH KAHMAT CIVICS #
+# #########################
+
+# krogan_blood_and_ash = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = aralakh_kahmat_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		weight = 0
+# 	}
+# 	modifier = {
+# 		country_war_exhaustion_mult = -0.3
+# 		country_claim_influence_cost_mult = -0.25
+# 	}
+# }
+
+# krogan_clans_of_tuchanka = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = aralakh_kahmat_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		weight = 0
+# 	}
+# 	modifier = {
+# 		pop_government_ethic_attraction = 0.2
+# 		job_researcher_per_pop = -3
+# 	}
+# }
+
+# krogan_vengance_burns_bright = {
+# 	potential = {
+# 		origin = {
+# 			value = aralakh_kahmat_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		weight = 0
+# 	}
+# 	modifier = {
+# 		ship_orbital_bombardment_mult = 0.22
+# 		country_unity_produces_mult = 0.1
+# 	}
+# }
+
+# ############################
+# # COURTS OF DEKUUNA CIVICS #
+# ############################
+
+# elcor_history_of_stability ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = courts_of_dekuuna_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		pop_government_ethic_attraction = 0.25
+# 		planet_stability_add = 10
+# 		pop_demotion_time_mult = 0.66
+# 	    planet_administrators_upkeep_mult = -0.10
+# 		planet_researchers_produces_mult = -0.5
+# 	}
+# }
+
+# elcor_elders_of_dekuuna ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = courts_of_dekuuna_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		governor_skill_levels = 7
+# 		species_leader_exp_gain = -0.75
+# 	}
+# }
+
+# elcor_breadbasket_of_the_council_space = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = courts_of_dekuuna_origin
+# 		}
+# 	}	
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_jobs_worker_only_food_produces_mult = 0.10
+# 		country_resource_max_food_add = 40000
+# 		monthly_trades_food_produces_add = 0.5
+# 		country_galactic_standard_food_produces_add = 0.20
+# 	}
+# }
+
+# ###########################
+# # VOL PROTECTORATE CIVICS #
+# ###########################
+
+# volus_mercantile_supremacy ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = vol_protectorate_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_naval_cap_mult = -0.7
+# 		ships_upkeep_mult = 0.5
+# 		planet_artisans_unity_produces_add = 2
+# 	}
+# }
+
+# volus_galactic_regulators ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = vol_protectorate_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		diplo_weight_economy_mult = 0.5
+# 		envoys_add = 5
+# 		starbase_trade_collection_range_add = 1
+# 		starbase_trade_protection_add = 5
+# 	}
+# }
+
+# volus_flexible_government = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = vol_protectorate_origin
+# 		}
+# 	}	
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		pop_government_ethic_attraction = 50
+# 		planet_crime_mult = -0.1
+# 		piracy_suppression_mult = -0.3
+# 	}
+# }
+
+# ###########################
+# # GOTHONES REMNANT CIVICS #
+# ###########################
+
+# gothones_cooperative_reciprocity ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = gothones_remnant_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_civics_consumer_goods_upkeep_add = -0.2
+# 		planet_stability_add = 10
+# 		pop_demotion_time_mult = -0.45
+# 	}
+# }
+
+# gothones_warriors_of_the_green ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = gothones_remnant_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_buildings_cost_mult = 0.25
+# 		planet_buildings_energy_upkeep_mult = -0.15
+# 	}
+# }
+
+# gothones_braves_of_vindicta = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = gothones_remnant_origin
+# 		}
+# 	}	
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		army_attack_damage_mult = 0.2
+# 		ship_speed_mult = 0.05
+# 		ship_disengage_chance_mult = 0.15
+# 		weapon_type_strike_craft_speed_mult = 0.1
+# 	}
+# }
+
+# #########################
+# # GETH CONSENSUS CIVICS #
+# #########################
+
+# geth_consensus_nebulous = {
+# 	modification = no
+
+# 	potential = {
+# 		origin = {
+# 			value = geth_consensus_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		factor = 0
+# 	}
+# 	modifier = {
+# 		country_claim_influence_cost_mult = 1
+# 		starbase_outpost_influence_cost_mult = 0.5
+# 		intel_encryption_add = 10
+# 	}
+# }
+
+# geth_consensus_nebulous_late = {
+# 	modification = no
+
+# 	potential = {
+# 		origin = {
+# 			value = geth_consensus_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		factor = 0
+# 	}
+# 	modifier = {
+# 		country_claim_influence_cost_mult = 1
+# 		starbase_outpost_influence_cost_mult = 0.5
+# 		intel_encryption_add = 10
+# 	}
+# }
+
+# geth_consensus_collective_conscious = {
+# 	modification = no
+
+# 	potential = {
+# 		origin = {
+# 			value = geth_consensus_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		factor = 0
+# 	}
+# 	modifier = {
+# 		planet_crime_mult = -0.1
+# 	}
+# }
+
+# geth_consensus_remnant_code = {
+
+# 	potential = {
+# 		origin = {
+# 			value = geth_consensus_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		factor = 0
+# 	}
+# 	modifier = {
+# 		planet_amenities_mult = 0.1
+# 		army_damage_mult = 0.4
+# 	}
+# }
+
+# ################################
+# # SED'RIICAE COLLECTIVE CIVICS #
+# ################################
+
+# sedriicae_collective_totalitarian_state ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = sedriicae_collective_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		pop_happiness = 0.05
+# 		planet_stability_add = 20
+# 		pop_ethic_categories_attraction_mult = 0.75
+# 		edicts_cost_mult = -0.5
+# 		country_edict_fund_add = 200
+# 	}
+# }
+
+# sedriicae_collective_status_intellectus ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = sedriicae_collective_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		envoys_add = -2
+# 		diplo_weight_mult = -0.2
+# 		intel_encryption_add = 2
+# 		intel_decryption_add = -4
+# 	}
+# }
+
+# sedriicae_collective_desperate_measures = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = sedriicae_collective_origin
+# 		}
+# 	}	
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 	}
+# }
+
+# ################
+# # HANAR CIVICS #
+# ################
+# hanar_first_from_the_enkindlers = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = illuminated_primacy_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_unity_produces_mult = 0.10
+# 		pop_government_ethic_attraction = 0.40
+# 		country_society_tech_research_speed = 0.2
+# 	}
+# }
+
+# hanar_enkindler_zealots ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = illuminated_primacy_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		ship_archaeological_site_excavation_speed_mult = -0.5
+# 		#Archeology Skill -4?
+# 	}
+# }
+
+# hanar_drell_attendants ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = illuminated_primacy_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		intel_decryption_add = 5
+# 		intel_encryption_add = 5
+# 		planet_jobs_worker_produces_mult = 0.10
+# 		army_defense_damage_mult = 0.5
+# 	}
+# }
+
+
+# ##################
+# # YAHG CIVICS #
+# ##################
+# yahg_pack_mentality ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = parnack_regime_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_stability_add = 15
+# 		pop_government_ethic_attraction = 0.50
+# 		pop_happiness = 0.10
+# 	}
+# }
+
+# yahg_enforce_isolation ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = parnack_regime_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_trust_growth = -0.33
+# 		diplo_weight_naval_mult = 0.50
+# 		country_war_exhaustion_mult = -0.25
+# 		country_claim_influence_cost_mult = -0.10
+# 		country_trust_cap_add = -33
+# 	}
+# }
+
+# yahg_galactic_hegemony ={
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = parnack_regime_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 	}
+# }
+
+# ################
+# # LYSTHENI CIVICS #
+# ################
+
+# lystheni_order_thirteenth_proimise ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = lystheni_order_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_war_exhaustion_mult = -0.15
+# 		army_damage_mult = 0.25
+# 		ship_weapon_damage = 0.25
+# 	}
+# }
+
+# lystheni_order_divine ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = lystheni_order_origin
+# 		}
+# 	}	
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_naval_cap_mult = 0.1
+# 		starbase_shipyard_build_speed_mult = 0.5
+# 		ships_upkeep_mult = 0.5
+# 		armies_upkeep_mult = 0.5
+# 		country_engineering_tech_research_speed = 0.35
+# 		country_physics_tech_research_speed = 0.35
+# 		ship_weapon_range_mult = 0.25
+# 	}
+# }
+
+# lystheni_order_ways = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = lystheni_order_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		envoys_add = 2
+# 		spy_network_daily_value_mult = 0.25
+# 	}
+# }
+
+# #################
+# # VORCHA CIVICS #
+# #################
+
+# vorcha_we_take_now = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = vorcha_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_jobs_slave_produces_mult = 0.2
+# 		adding_unrest_slaves = -0.1
+# 		planet_colony_development_speed_mult = 0.1
+# 	}
+# }
+
+# vorcha_aagh ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = vorcha_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_stability_add = -20
+# 		diplo_weight_pops_mult = -0.5
+# 		armies_upkeep_mult = -0.35
+# 		planet_soldiers__food_produces_add = 3
+# 	}
+# }
+
+# vorcha_everyone_knows = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = vorcha_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		pop_ethic_xenophile_attraction_mult = 0.2
+# 		pop_resettlement_cost_mult = -1
+# 	}
+# }
+
+# ################
+# # OMEGA CIVICS #
+# ################
+
+# omega_merc_enforcers = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = omega_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_enforcers__energy_produces_add = 4
+# 		planet_crime_mult = -0.5
+# 		planet_enforcers__produces_add = 8
+# 		planet_army_build_speed_mult = 1
+# 		pop_defense_armies_add = 1
+# 		armies__energy_upkeep_mult = 1
+# 	}
+# }
+
+# omega_common_cause = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = omega_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country__unity_produces_mult = 0.1
+# 		pop_amenities_usage_mult = -0.2
+# 	}
+# }
+
+# omega_broken_mirror = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = omega_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		diplo_weight_pops_mult = 0.2
+# 		country_border_friction_mult = 0.1
+# 		country_subject_trust_cap_add = 100
+# 		country_subject_power_penalty_mult = -0.5
+# 	}
+# }
+
+# #################
+# # ILLIUM CIVICS #
+# #################
+
+# illium_defense_force = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = illium_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_naval_cap_mult = -0.66
+# 		ship_weapon_damage = -0.5
+# 		country_starbase_capacity_add = 3
+# 		shipclass_starbase_hull_mult = 0.5
+# 		ship_evasion_mult = 0.1
+# 		ship_tracking_mult = 0.1
+# 		ship_accuracy_mult = 0.1
+# 	}
+# }
+
+# illium_indentured_servitude = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = illium_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		pop_category_slave__upkeep_mult = 0.3
+# 		pop_cat_slave_happiness = 0.15
+# 		planet_jobs_slave_produces_mult = 0.05
+# 	}
+# }
+
+# illium_gateway = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = illium_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_branch_offices__cost_mult = -0.5
+# 		country_base_influence_produces_add = 2
+# 	}
+# }
+
+# ##############################
+# # DISCIPLES OF NAZARA CIVICS #
+# ##############################
+
+# nazara_gifts = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = disciples_of_nazara_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_pop_assembly_mult = 0.1
+# 		intel_encryption_add = 10
+# 		all_technology_research_speed = 0.5
+# 	}
+# }
+
+# nazara_schism = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = disciples_of_nazara_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		drone_deviancy = 0.1
+# 	}
+# }
+
+# nazara_upgraded_code = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = disciples_of_nazara_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_jobs_productive__produces_mult = 0.1
+# 		planet_pop_assembly_mult = 0.1
+# 		ship_speed_mult = 0.15
+# 	}
+# }
+
+# ##########################
+# # RALOI REPUBLIC CIVICS #
+# ##########################
+
+# raloi_rep_civics_spreading_our_wings={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = raloi_rep_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_influence_produces_mult = 1
+# 		country_trust_growth = 0.25
+# 		science_ship_survey_speed = 0.33
+# 	}
+# }
+
+# raloi_rep_civics_birds_of_a_feather ={
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = raloi_rep_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_unity_produces_mult = 0.15
+# 		pop_demotion_time_mult = -0.25
+# 		species_empire_size_mult = -0.25
+# 	}
+# }
+
+# raloi_rep_civics_lessons = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = raloi_rep_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		ship_speed_mult = 0.1
+# 		all_technology_research_speed = 0.05
+# 	}
+# }
+
+# ##########################
+# # RACHNI SWARM CIVICS #
+# ##########################
+
+# rachni_swarm_del_capo_al_fine = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = rachni_swarm_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		starbase_defensive_war_ship_build_speed_mult = 0.2
+# 		ships_upkeep_mult = -0.2
+# 		ship_speed_mult = 0.1
+# 	}
+# }
+
+# rachni_swarm_crescendo = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = rachni_swarm_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		planet_building_build_speed_mult = 0.1
+# 		# Deviancy doesn't seem to apply to Gestalt Consciousness Empires
+# 	}
+# }
+
+# rachni_swarm_symphonic_structure = {
+# 	modification = yes
+# 	icon = ""
+# 	potential = {
+# 		origin = {
+# 			value = rachni_swarm_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		country_unity_produces_mult = 0.15
+# 		planet_building_build_speed_mult = 0.1
+# 	}
+# }
+
+# ##################
+# # THE COLLECTORS #
+# ##################
+
+# civic_machine_assimilator = {
+# 	potential = { 
+# 		origin = {
+# 			value = collectors_origin
+# 		}
+# 	}
+# 	modification = no
+# 	random_weight = {
+# 		base = 5
+# 		modifier = {
+# 			factor = 0
+# 			NOT = { host_has_dlc = "Synthetic Dawn Story Pack" }
+# 		}
+# 		modifier = {
+# 			# civic has no effect after galaxy generation, disable for random generation
+# 			factor = 0
+# 			has_global_flag = game_started
+# 		}
+# 	}
+# 	description = civic_tooltip_machine_assimilator_effects
+# 	has_secondary_species = {	# see game_start.11
+# 		title = civic_machine_assimilator_secondary_species
+# 		traits = {
+# 			trait = trait_cybernetic
+# 		}
+# 	}
+# }
+
+# collector_voice_of_reapers = {
+# 	modification = no
+# 	potential = {
+# 		origin = {
+# 			value = collectors_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		intel_decryption_add = 3
+# 		intel_encryption_add = 3
+# 	}
+# }
+
+# collector_apostle_of_gods = {
+# 	modification = yes
+# 	potential = {
+# 		origin = {
+# 			value = collectors_origin
+# 		}
+# 	}
+# 	random_weight = {
+# 		base = 0
+# 	}
+# 	modifier = {
+# 		all_technology_research_speed = 0.40
+# 		species_leader_exp_gain = 0.3
+# 	}
+# }
+
+# ########################
+# # MIGRANT FLEET CIVICS #
+# ########################
+
+
+# ###################
+# # CERBERUS CIVICS #
+# ###################
+
+# # cerberus_guardian = {
+# # 	modification = no
+# # 	icon = "gfx\interface\icons\governments\civics\cerberus\guardian_of_humanity.dds"
+# # 	potential = {
+# # 		origin = {
+# # 			value = cerberus_origin
+# # 		}
+# # 	}
+# # 	random_weight = {
+# # 		base = 0
+# # 	}
+# # 	modifier = {
+# # 		# damage_vs_country_type_default_mult = 
+# # 		#not sure how to implement auto positive relations
+# # 	}
+# # }
+
+# # cerberus_doorway = {
+# # 	modification = no
+# # 	icon = "gfx\interface\icons\governments\civics\cerberus\project_doorway.dds"
+# # 	potential = {
+# # 		origin = {
+# # 			value = cerberus_origin
+# # 		}
+# # 	}
+# # 	random_weight = {
+# # 		base = 0
+# # 	}
+# # 	modifier = {
+# # 		espionage_operation_speed_mult = 0.2
+# # 		espionage_hostile_operation_difficulty_add = -0.05
+# # 	}
+# # }
+
+# # cerberus_ideals = {
+# # 	modification = yes
+# # 	icon = "gfx\interface\icons\governments\civics\cerberus\sophistic_ideals.dds"
+# # 	potential = {
+# # 		origin = {
+# # 			value = cerberus_origin
+# # 		}
+# # 	}
+# # 	random_weight = {
+# # 		base = 0
+# # 	}
+# # 	modifier = {
+# # 		# NOT SURE HOW TO GIVE CRISIS 
+# # 		country_menace_produces_mult = 0.1
+# # 	}
+# # }

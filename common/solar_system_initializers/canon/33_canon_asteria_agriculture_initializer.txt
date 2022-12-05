@@ -1,0 +1,279 @@
+###############################
+##### ASTERIA AGRICULTURE #####
+###############################
+
+##### HADES NEXUS #####
+
+sys_hekate_init = {
+    name = "Hekate"
+    class = sc_g
+	flags = { attican_traverse_system hades_nexus_system hekate_system btr_system custom_system empire_home_system }	
+	# init_effect = { 
+	# 	random_country = { 
+	# 		limit = { has_country_flag = asteria_agriculture } 
+	# 		save_global_event_target_as = asteria_agriculture
+	# 	}	
+	# generate_home_system_resources = yes
+	# }
+
+	usage = custom_empire
+	max_instances = 1
+
+    planet = {
+		name = "Hekate"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 30
+		flags = { hekate_star }
+    }
+
+    planet = {
+        name = "Asteria"
+        class = pc_desert
+        orbit_distance = 125
+        orbit_angle = 306
+        has_ring = no
+		size = 14
+		flags = { asteria_planet btr_custom }
+		entity = "dune_planet_01_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dune_world
+				days = -1
+			}
+			# random_country = {
+			# 	limit = { has_country_flag = asteria_agriculture }
+			# 	save_global_event_target_as = asteria_agriculture
+			# }
+			# prevent_anomaly = yes
+			# set_global_flag = asteria_homeworld_spawned
+
+			# if = {
+			# 	limit = { NOT = { any_country = { has_country_flag = asteria_agriculture } } }
+			# 	create_country = {
+			# 		name = "Asteria Agriculture"
+			# 		ship_prefix = ""
+			# 		type = independent_colony
+			# 		origin = "origin_asteria_agriculture"
+			# 		ignore_initial_colony_error = yes
+			# 		civics = { civic = "civic_franchising" civic = "civic_free_traders" }
+			# 		authority = auth_corporate
+			# 		name_list = "btr_asari"
+			# 		ethos = { ethic = "ethic_authoritarian" ethic = "ethic_xenophile" ethic = "ethic_materialist" }
+			# 		species = event_target:asariSpecies
+			# 		flag = {
+			# 			icon={
+			# 				category="zoological"
+			# 				file="flag_zoological_19.dds"
+			# 			}
+			# 			background={
+			# 				category="backgrounds"
+			# 				file="00_solid.dds"
+			# 			}
+			# 			colors={
+			# 				"green"
+			# 				"grey"
+			# 				"null"
+			# 				"null"
+			# 			}
+			# 		}
+			# 		effect = {
+			# 			set_graphical_culture = industrial_01
+			# 			set_country_flag = asteria_agriculture
+			# 			set_country_flag = init_spawned
+			# 			set_country_flag = custom_start_screen
+			# 			set_country_flag = canon_map
+			# 			save_global_event_target_as = asteria_agriculture
+			# 		}
+			# 	}
+			# }	
+			# set_capital = yes
+			# random_country = {
+			# 	limit = { has_country_flag = asteria_agriculture }
+			# 	save_global_event_target_as = asteria_agriculture
+			# 	species = { save_global_event_target_as = asariSpecies }
+			# }
+			# set_owner = event_target:asteria_agriculture
+			# generate_btr_start_deposits_and_blockers = yes
+			# generate_btr_major_empire_start_buildings = yes
+			# generate_asteria_pops = yes
+			# set_name = "Asteria"
+		}
+    }
+
+    planet = {
+        name = "Ker" 
+        class = pc_barren_cold
+        orbit_distance = 125
+        orbit_angle = 296
+        has_ring = no
+		size = 16
+		flags = { ker_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_minerals_9
+			add_deposit = d_society_5
+    	}
+	}
+
+    planet = {
+        name = "Triodia"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 293
+        has_ring = no
+		size = 27
+		flags = { triodia_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+			add_modifier = {
+				modifier = extensive_moon_system
+				days = -1
+			}
+		}
+		moon = {
+			name = "Keare"
+			class = pc_asteroid
+			orbit_distance = 20
+			orbit_angle = 96
+			size = 3
+		}
+		moon = {
+			name = "Alovau"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 128
+			size = 2
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_rare_crystals_2	
+			}
+		}	
+		moon = {
+			name = "Emgao"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 128
+			size = 1
+		}		
+		moon = {
+			name = "Phearlea"
+			class = pc_frozen
+			orbit_distance = 5
+			orbit_angle = 3
+			size = 3
+		}
+		moon = {
+			name = "Lysrynia"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 53
+			size = 1
+		}	
+		moon = {
+			name = "Janariya"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 128
+			size = 1
+		}
+		moon = {
+			name = "Se'no"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 256
+			size = 1
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_minerals_1
+	
+			}
+		}
+		moon = {
+			name = "Zeucka"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 180
+			size = 1
+		}
+		moon = {
+			name = "Falelthea"
+			class = pc_frozen
+			orbit_distance = 5
+			orbit_angle = 10
+			size = 6
+		}
+		moon = {
+			name = "Biumha"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 100
+			size = 1
+		}	
+		moon = {
+			name = "Ushilea"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 145
+			size = 1
+			init_effect = {
+				prevent_anomaly = yes
+				# add_deposit = d_platinum_1
+	
+			}
+		}	
+		moon = {
+			name = "Chaessley"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 256
+			size = 1
+		}
+		moon = {
+			name = "Alaname"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 73
+			size = 1
+		}
+		moon = {
+			name = "Telestze"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 22
+			size = 1
+			init_effect = {
+				prevent_anomaly = yes
+				# add_deposit = d_palladium_1
+	
+			}
+		}			
+    }
+
+    planet = {
+        name = "Bothros"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 194
+        has_ring = no
+		size = 18
+		flags = { bothros_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			# add_deposit = d_element_zero_1
+			# add_deposit = d_platinum_4
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_society_3
+			add_deposit = d_engineering_6
+			add_modifier = {
+				modifier = asteroid_impacts
+				days = -1
+			}
+		}
+	}   	
+}

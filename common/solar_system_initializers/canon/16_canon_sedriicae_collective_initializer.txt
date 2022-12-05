@@ -1,0 +1,782 @@
+###############################
+##### REGDIKAN COLLECTIVE #####
+###############################
+
+##### EYES OF MIZHUNA #####
+
+sys_nosikae_init = {
+    name = "Nosikae"
+    class = sc_k_giant
+	flags = { terminus_system eyesofmizhuna_system nosikae_system btr_system custom_system empire_home_system }
+	
+	init_effect = { 
+		random_country = { 
+			limit = { has_country_flag = sedriicae_collective } 
+			save_global_event_target_as = sedriicae_collective
+		}	
+	generate_home_system_resources = yes
+	}
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+		name = "Nosikae"
+        class = pc_k_giant_star
+        orbit_distance = 0
+        size = 35
+		flags = { nosikae_star }
+    }
+
+	planet = {
+		name = "Sed'riicae"
+		class = pc_dextro_desert
+		orbit_distance = 125
+		size = 24
+		has_ring = no
+		starting_planet = yes
+		flags = { sedriicae_planet btr_custom}
+		# init_effect = {
+		# 	prevent_anomaly = yes
+		# 	set_global_flag = forayan_homeworld_spawned
+		# 	if = {
+		# 		limit = { NOT = { any_country = { has_country_flag = sedriicae_collective } } }
+		# 		create_species = { 
+		# 			name = "Forayan"
+		# 			class = ART
+		# 			portrait = art3
+		# 			#homeworld = THIS 
+		# 			traits = { 
+		# 				trait = sedriicae_trait_core
+		# 				trait = sedriicae_trait_happiness
+		# 				trait = sedriicae_trait_insectoids
+		# 				trait = sedriicae_trait_gender_castes
+		# 			  # ideal_planet_class = "pc_dextro_arid"
+		# 			}
+		# 		  }
+		# 		  last_created_species = { save_global_event_target_as = forayanSpecies }
+		# 		create_country = {
+		# 			name = "Sed'riicae Collective"
+		# 			ship_prefix = "PRESCRIPTED_ship_prefix_sedriicae_collective"
+		# 			type = default
+		# 			origin = sedriicae_collective_origin
+		# 			ignore_initial_colony_error = yes
+		# 			civics = { civic = sedriicae_collective_totalitarian_state civic = sedriicae_collective_status_intellectus }
+		# 			authority = "auth_imperial"
+		# 			name_list = "ART3"
+		# 			ethos = { ethic = "ethic_pacifist" ethic = "ethic_fanatic_authoritarian" }
+		# 			species = event_target:forayanSpecies
+		# 			flag = {
+		# 				icon={
+		# 					category="beyondtherelays"
+		# 					file="sedriicae_collective.dds"
+		# 				}
+		# 				background={
+		# 					category="backgrounds"
+		# 					file="00_solid.dds"
+		# 				}
+		# 				colors={
+		# 					"red"
+		# 					"teal"
+		# 					"null"
+		# 					"null"
+		# 				}
+		# 			}
+		# 			effect = {
+		# 				set_graphical_culture = arthropoid_01
+		# 				set_country_flag = sedriicae_collective
+		# 				set_country_flag = init_spawned
+		# 				set_country_flag = custom_start_screen
+		# 				set_country_flag = canon_map
+		# 				save_global_event_target_as = sedriicae_collective
+		# 			}
+		# 		}
+		# 	}	
+		# 	set_capital = yes
+		# 	random_country = {
+		# 		limit = { has_country_flag = sedriicae_collective }
+		# 		save_global_event_target_as = sedriicae_collective
+		# 		species = { save_global_event_target_as = forayanSpecies }
+		# 	}
+		# 	set_owner = event_target:sedriicae_collective
+		# 	generate_btr_start_deposits_and_blockers = yes			
+		# 	generate_for_regdika_capitol_buildings = yes
+		# 	generate_for_regdika_pops = yes
+		# 	add_deposit = btr_d_sedcol_mukiilak
+		# 	add_deposit = btr_d_sedcol_mines
+		# 	add_deposit = btr_d_sedcol_industry_hub
+		# 	add_deposit = btr_d_sedcol_underground
+		# 	add_deposit = btr_d_sedcol_collector_arrays
+		# 	set_name = "Sed'riicae"
+		# }			
+	}
+	
+	planet = {
+		name = "Xhentura"
+		class = pc_barren
+		orbit_distance = 125
+		size = 10
+		has_ring = no
+		flags = { xhentura_planet btr_custom}
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}	
+	}
+	
+	planet = {
+		name = "Iciinae"
+		class = pc_hothouse
+		orbit_distance = 125
+		size = 20
+		has_ring = yes
+		flags = { iciinae_planet btr_custom}
+		init_effect = {
+			add_deposit = d_engineering_5
+			add_deposit = d_physics_5
+		}	
+	}
+
+	planet = {
+		name = "Lesiik"
+		class = pc_frozen
+		orbit_distance = 125
+		size = 12
+		has_ring = no
+		flags = { lesiik_planet btr_custom}
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+		}	
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_6_secondaryrelay" 
+			name = "Eyes of Mizhuna Secondary Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_brizhiine_init = {
+    name = "Brizhiine"
+    class = sc_f
+	flags = { terminus_system eyesofmizhuna_system brizhiine_system btr_system custom_system empire_home_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	max_instances = 1	
+
+    planet = {
+		name = "Brizhiine"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 35
+		flags = { brizhiine_star }
+    }
+
+	planet = {
+		name = "Trafd'uk"
+		class = pc_hot_giant
+		orbit_distance = 100
+		size = 30
+		has_ring = no
+		flags = { trafduk_planet btr_custom}
+		init_effect = {
+			add_deposit = d_physics_2
+		}	
+	}
+	
+	planet = {
+		name = "Sarde"
+		class = pc_hothouse
+		orbit_distance = 100
+		size = 14
+		has_ring = no
+		flags = { sarde_planet btr_custom}
+		init_effect = {
+			add_deposit = d_minerals_2
+		}	
+	}
+
+	
+	planet = {
+		name = "Iya'xe"
+		class = pc_gas_giant
+		orbit_distance = 100
+		size = 33
+		has_ring = yes
+		flags = { iyaxe_planet btr_custom}
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+	}
+
+	planet = {
+		name = "Kindirae"
+		class = pc_ice_giant
+		orbit_distance = 100
+		size = 27
+		has_ring = no
+		flags = { kindirae_planet btr_custom}
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+		moon = {
+			name = "Kindirae a"
+			class = pc_barren
+			orbit_distance = 20
+			size = 18
+			has_ring = no
+			init_effect = {
+				add_deposit = d_society_4
+			}	
+		}
+	}
+
+	planet = {
+		name = "Qoxuca"
+		class = pc_iron
+		orbit_distance = 100
+		size = 6
+		has_ring = no
+		flags = { qoxuca_planet btr_custom}
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_minerals_2
+		}	
+	}
+}
+
+
+sys_onricidae_init = {
+    name = "Onri'cidae"
+    class = sc_pulsar
+	flags = { terminus_system eyesofmizhuna_system onricidae_system btr_system custom_system empire_home_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	max_instances = 1	
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 250
+	}
+    planet = {
+		name = "Onri'cidae"
+        class = pc_pulsar
+        orbit_distance = 0
+        size = 35
+		flags = { nosikae_star }
+    }
+
+	change_orbit = 250
+
+	planet = {
+		count = 3
+        class = pc_asteroid
+        orbit_distance = 0
+        size = 3
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_minerals_4
+		}	
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "eyesofmizhuna_sakuranebula_primaryrelay" 
+			name = "Mizhuna 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}	
+
+sys_serdicina_init = {
+    name = "Sedricina"
+    class = sc_g
+	flags = { terminus_system eyesofmizhuna_system serdicina_system btr_system custom_system empire_home_system }
+	max_instances = 1	
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 120
+	}
+    planet = {
+		name = "Sedricina"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 35
+		flags = { serdicina_star }
+    }
+
+	planet = {
+		name = "Dordae"
+		class = pc_molten
+		orbit_distance = 80
+		size = 8
+		has_ring = no
+		flags = { dordae_planet btr_custom}
+	}
+	
+	planet = {
+		name = "Junsiik"
+		class = pc_dextro_tropical
+		orbit_distance = 80
+		size = 11
+		has_ring = no
+		entity = "jungle_planet_08_entity"
+		flags = { junsiik_planet btr_custom}
+		init_effect = {
+			add_deposit = d_minerals_2
+			add_modifier = {
+				modifier = jungle_world
+				days = -1
+			}
+		}
+	}
+	
+	planet = {
+		name = "Vollumba"
+		class = pc_gas_giant
+		orbit_distance = 80
+		size = 36
+		has_ring = no
+		flags = { vollumba_planet btr_custom}
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+			add_deposit = d_society_3
+		}	
+	}
+
+	planet = {
+		name = "Grijki"
+		class = pc_iron
+		orbit_distance = 80
+		size = 12
+		has_ring = no
+		flags = { grijki_planet btr_custom}
+		init_effect = {
+			add_deposit = d_minerals_8
+		}	
+	}
+
+	planet = {
+		name = "Xixik'ii"
+		class = pc_desert
+		orbit_distance = 80
+		size = 17
+		has_ring = no
+		flags = { xixikii_planet btr_custom}
+		entity = "outback_planet_11_entity"
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = outback_world
+		# 		days = -1
+		# 	}
+		# 	set_owner = event_target:sedriicae_collective
+		# 	create_colony = {
+		# 		owner = event_target:sedriicae_collective
+		# 		species = event_target:forayanSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_for_xixikii_pops = yes
+		# 	generate_for_xixikii_colony_buildings = yes	
+
+		# 	set_name = "Xixik'ii"		
+		# }
+		moon = {
+			name = "Trendenku"
+			class = pc_barren_cold
+			orbit_distance = 20
+			size = 4
+			has_ring = no
+			flags = { trendeku_planet btr_custom}
+			init_effect = {
+				add_deposit = d_zro_deposit_3
+			}	
+		}	
+	}
+
+	planet = {
+		name = "Pagasil"
+		class = pc_frozen
+		orbit_distance = 80
+		size = 6
+		has_ring = no
+		flags = { pagasil_planet btr_custom}
+	}
+}
+
+sys_tiikren_init = {
+    name = "Tiikren"
+    class = sc_m
+	flags = { terminus_system eyesofmizhuna_system tiikren_system btr_system custom_system empire_home_system }
+
+	max_instances = 1	
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 375
+	}
+
+    planet = {
+		name = "Tiikren"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 35
+		flags = { tiikren_star }
+    }
+
+	planet = {
+		name = "Fumimi"
+		class = pc_carbon
+		orbit_distance = 250
+		size = 10
+		has_ring = no
+		flags = { fumimi_planet btr_custom}
+		# init_effect = {
+		# 	random_country = {
+		# 		limit = { has_country_flag = sedriicae_collective }
+		# 		save_global_event_target_as = sedriicae_collective
+		# 		species = { save_global_event_target_as = forayanSpecies }
+		# 		create_archaeological_site = btr_site_collective_archeology
+		# 	}
+		# }
+	}
+
+	planet = {
+		name = "Eztra'kiik"
+		class = pc_iron
+		orbit_distance = 250
+		size = 18
+		has_ring = no
+		flags = { eztrakiik_planet btr_custom}
+		init_effect = {
+			add_deposit = d_minerals_5
+		}	
+	}
+}
+
+
+##### PIRAXHI SQUARE #####
+
+sys_cedinae_init = {
+    name = "Cedin'ae"
+    class = sc_m_hyper
+	flags = { terminus_system piraxhi_square_system cedinae_system btr_system custom_system empire_home_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	max_instances = 1	
+
+    planet = {
+		name = "Brizhiine"
+        class = pc_m_hyper_star
+        orbit_distance = 0
+        size = 35
+		flags = { brizhiine_star }
+    }
+
+	planet = {
+		name = "Cukcu"
+		class = pc_chthonian
+		orbit_distance = 250
+		size = 24
+		has_ring = no
+		flags = { cukcu_planet btr_custom}
+		init_effect = {
+			add_deposit = d_zro_deposit_2
+			add_deposit = d_engineering_4
+			add_deposit = d_physics_3
+		}	
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "paraxhisquare_elkrasbasin_primaryrelay" 
+			name = "PParaxhi 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_lisiine_init = {
+    name = "Lisii'ne"
+    class = sc_m_giant
+	flags = { terminus_system eyesofmizhuna_system lisiine_system btr_system custom_system empire_home_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 60
+	}
+
+    planet = {
+		name = "Lisii'ne"
+        class = pc_m_giant_star
+        orbit_distance = 0
+        size = 35
+		flags = { lisiine_star }
+    }
+
+	planet = {
+		name = "Axhani"
+		class = pc_gas_giant
+		orbit_distance = 80
+		size = 24
+		has_ring = yes
+		flags = { axhani_planet btr_custom}	
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+		}	
+		moon = {
+			name = "Axhani a"
+			class = pc_barren
+			orbit_distance = 20
+			size = 4
+		}	
+		moon = {
+			name = "Axhani b"
+			class = pc_frozen
+			orbit_distance = 5
+			size = 4
+			flags = { btr_custom }
+		}	
+	}
+	
+	planet = {
+		name = "Perix"
+		class = pc_dextro_desert
+		orbit_distance = 80
+		size = 16
+		has_ring = no
+		flags = { perix_planet btr_custom}
+		entity = "cenote_planet_11_entity"
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = cenote_world
+		# 		days = -1
+		# 	}
+		# 	set_owner = event_target:sedriicae_collective
+		# 	create_colony = {
+		# 		owner = event_target:sedriicae_collective
+		# 		species = event_target:forayanSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_for_perix_pops = yes
+		# 	generate_for_perix_colony_buildings = yes	
+		# 	set_name = "Perix"		
+		# }
+	}
+	
+	planet = {
+		name = "Siniez'ma"
+		class = pc_methane
+		orbit_distance = 80
+		size = 12
+		has_ring = yes
+		entity = "methane_tundra_planet_09_entity"
+		flags = { siniezma_planet btr_custom}
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_minerals_4
+			add_modifier = {
+				modifier = fungal_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Ak'xhandi"
+		class = pc_barren_cold
+		orbit_distance = 80
+		size = 7
+		has_ring = no
+		flags = { akxhandi_planet btr_custom}
+		init_effect = {
+			add_deposit = d_society_3
+		}	
+	}
+
+	planet = {
+		name = "Kcots"
+		class = pc_frozen
+		orbit_distance = 80
+		size = 6
+		has_ring = no
+		flags = { kcots_planet btr_custom}
+		init_effect = {
+			add_deposit = d_physics_2
+		}	
+	}
+
+	planet = {
+		name = "Ouzha"
+		class = pc_frozen
+		orbit_distance = 80
+		size = 10
+		has_ring = no
+		flags = { ouzha_planet btr_custom}
+	}
+}
+
+
+sys_okred_init = {
+    name = "Okred"
+    class = sc_binary_a_d
+	flags = { terminus_system piraxhi_square_system okred_system btr_system custom_system empire_home_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+	max_instances = 1	
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 120
+	}
+    planet = {
+		name = "Okred A"
+        class = pc_d_star
+        orbit_distance = 10
+        size = 35
+		flags = { okreda_star }
+    }
+
+    planet = {
+		name = "Okred B"
+        class = pc_a_star
+        orbit_distance = 25
+        size = 35
+		flags = { okredb_star }
+    }
+	
+	planet = {
+		name = "Weuzha"
+		class = pc_barren
+		orbit_distance = 125
+		size = 14
+		has_ring = no
+		flags = { weuzha_planet btr_custom}
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+		}	
+	}
+
+	planet = {
+		name = "Raliik"
+		class = pc_ice_giant
+		orbit_distance = 150
+		size = 29
+		has_ring = yes
+		flags = { raliik_planet btr_custom}
+		init_effect = {
+			add_deposit = d_exotic_gases_1
+		}	
+	}
+
+	planet = {
+		name = "Nimuas"
+		class = pc_frozen
+		orbit_distance = 150
+		size = 3
+		has_ring = no
+		flags = { nimuas_planet btr_custom}
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_6
+		}	
+	}
+}	
+
+sys_suryan_init = {
+    name = "Suryan"
+    class = sc_b
+	flags = { terminus_system piraxhi_square_system suryan_system btr_system custom_system empire_home_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	max_instances = 1	
+
+    planet = {
+		name = "Suryan"
+        class = pc_b_star
+        orbit_distance = 0
+        size = 35
+		flags = { suryan_star }
+    }
+
+	planet = {
+		name = "Rauzha"
+		class = pc_hothouse
+		orbit_distance = 125
+		size = 14
+		has_ring = no
+		flags = { rauzha_planet btr_custom}
+	}
+	
+	planet = {
+		name = "Sanfua'ir"
+		class = pc_carbon
+		orbit_distance = 125
+		size = 13
+		has_ring = no
+		flags = { sanfuair_planet btr_custom}
+		init_effect = {
+			add_deposit = d_minerals_9
+			add_deposit = d_society_4
+		}	
+	}
+
+	
+	planet = {
+		name = "Magda"
+		class = pc_highgrav_ammonia
+		orbit_distance = 125
+		size = 20
+		has_ring = no
+		flags = { magda_planet btr_custom}
+		entity = "ammonia_alpine_planet_10_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = boreal_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Vigviik"
+		class = pc_iron
+		orbit_distance = 125
+		size = 7
+		has_ring = no
+		flags = { vigviik_planet btr_custom}
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_minerals_7
+		}	
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_6_secondaryrelay" 
+			name = "Paraxhi Square Secondary Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}

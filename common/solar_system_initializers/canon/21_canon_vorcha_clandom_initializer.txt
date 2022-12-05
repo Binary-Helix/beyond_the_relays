@@ -1,0 +1,502 @@
+############################
+##### VORCHA CLANDOM #####
+############################
+
+##### THE SHRIKE ABYSSAL #####
+
+sys_kyzil_init = {
+    name = "Kyzil"
+    class = sc_k
+	flags = { terminus_system shrike_abyssal_system kyzil_system btr_system custom_system empire_home_system }
+
+	# init_effect = { 
+	# 	random_country = { 
+	# 		limit = { has_country_flag = vorcha_clandom } 
+	# 		save_global_event_target_as = vorcha_clandom
+	# 	}	
+	# generate_home_system_resources = yes
+	# }
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+	    name = "Kyzil"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 15
+		flags = { kyzil_star }
+    }
+
+    planet = {
+        name = "Naskral"
+        class = pc_barren
+        orbit_distance = 100
+        orbit_angle = 331
+        has_ring = no
+		size = 4
+		flags = { naskral_planet btr_custom }
+		# init_effect = {
+		# 	add_deposit = d_rare_crystals_1
+		# 	add_deposit = d_minerals_3
+		#  	set_owner = event_target:vorcha_clandom
+		#  	create_colony = {
+		#  		owner = event_target:vorcha_clandom
+		#  		species = event_target:vorchaSpecies
+		#  		ethos = owner
+		# 	}
+		# 	generate_vor_naskral_pops = yes
+		#  	generate_vorcha_buildings = yes	
+			
+		#  	set_name = "Naskral"
+		#  }
+    }
+
+    planet = {
+        name = "Heshtok"
+        class = pc_primal
+        orbit_distance = 100
+        orbit_angle = 251
+        size = 9
+        has_ring = no
+		starting_planet = yes
+		modifiers = none				
+		flags = { heshtok_planet btr_custom }
+		# init_effect = {
+		# 	prevent_anomaly = yes
+		# 	set_global_flag = vorcha_homeworld_spawned
+		# 	if = {
+		# 		limit = { NOT = { any_country = { has_country_flag = vorcha_clandom } } }
+		# 		create_species = { 
+		# 			name = "Vorcha"
+		# 			class = VOR
+		# 			portrait = vorcha
+		# 			#homeworld = THIS 
+		# 			traits = { 
+		# 				trait = vorcha_trait_core
+		# 				trait = vorcha_trait_surreal_adaptation
+		# 				trait = vorcha_trait_conception
+		# 				trait = vorcha_trait_surreal_adaptation
+		# 			  # ideal_planet_class = "pc_arid"
+		# 			}
+		# 		  }
+		# 		  last_created_species = { save_global_event_target_as = vorchaSpecies }
+		# 		create_country = {
+		# 			name = "Vorcha Clandom"
+		# 			ship_prefix = "PRESCRIPTED_ship_prefix_vorcha_clandom"
+		# 			type = minor_empire
+		# 			origin = vorcha_origin
+		# 			ignore_initial_colony_error = yes
+		# 			civics = { civic = vorcha_aagh civic = vorcha_we_take_now }
+		# 			authority = auth_oligarchic
+		# 			name_list = "btr_vorcha"
+		# 			ethos = { ethic = "ethic_xenophobe" ethic = "ethic_fanatic_militarist" }
+		# 			species = event_target:vorchaSpecies
+		# 			flag = {
+		# 				icon={
+		# 					category="masseffect"
+		# 					file="Vorcha.dds"
+		# 				}
+		# 				background={
+		# 					category="backgrounds"
+		# 					file="00_solid.dds"
+		# 				}
+		# 				colors={
+		# 					"brown"
+		# 					"yellow"
+		# 					"null"
+		# 					"null"
+		# 				}
+		# 			}
+		# 			effect = {
+		# 				set_graphical_culture = reptilian_01
+		# 				set_country_flag = vorcha_clandom
+		# 				set_country_flag = init_spawned
+		# 				set_country_flag = custom_start_screen
+		# 				set_country_flag = canon_map
+		# 				save_global_event_target_as = vorcha_clandom
+		# 			}
+		# 		}
+		# 	}	
+		# 	set_capital = yes
+		# 	random_country = {
+		# 		limit = { has_country_flag = vorcha_clandom }
+		# 		save_global_event_target_as = vorcha_clandom
+		# 		species = { save_global_event_target_as = vorchaSpecies }
+		# 	}
+		# 	set_owner = event_target:vorcha_clandom
+		# 	generate_btr_start_deposits_and_blockers = yes			
+		# 	generate_vorcha_buildings = yes
+		# 	generate_vor_heshtok_pops = yes
+		# 	set_name = "Heshtok"
+		# }	
+    }
+
+    planet = {
+        name = "Parasc"
+        class = pc_frozen
+        orbit_distance = 100
+        orbit_angle = 165
+        has_ring = no
+		size = 5
+		# init_effect = {
+		# 	set_owner = event_target:vorcha_clandom
+		# 	create_colony = {
+		# 		owner = event_target:vorcha_clandom
+		# 		species = event_target:vorchaSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_vor_parasc_pops = yes
+		# 	generate_parasc_buildings = yes	
+		# 	set_name = "Parasc"
+		# }
+    }
+
+    planet = {
+        name = "Lihrat"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 101
+        has_ring = no
+		size = 37
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+    planet = {
+        name = "Rustaka"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 113
+        has_ring = no
+		size = 29
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+}
+
+##### ISMAR FRONTIER #####
+
+sys_aquila_init = {
+    name = "Aquila"
+    class = "sc_g"
+	max_instances = 1
+
+    flags = { attican_traverse_system ismar_frontier_system aquila_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Aquila"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 30
+		flags = { aquila_star }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_3
+		}
+    }
+
+    planet = {
+        name = "Lepini"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 322
+        size = 34
+		flags = { lepini_planet btr_custom }
+        has_ring = no
+		init_effect = {
+			# add_deposit = d_helium_3_1
+			add_deposit = d_exotic_gases_1
+		}
+		moon = {
+			name = "Lepini a"
+			class = pc_iron
+			orbit_angle = 175
+			orbit_distance = 20
+			size = 5
+		}	
+		moon = {
+			name = "Lepini b"
+			class = pc_arid
+			orbit_angle = 164
+			orbit_distance = 5
+			size = 5
+			entity = dust_world
+			init_effect = {
+				add_modifier = {
+					modifier = dust_world
+					days = -1
+				}
+			}
+		}
+    }
+
+    planet = {
+        name = "Vecchio"
+        class = pc_mephitic
+        orbit_distance = 40
+        orbit_angle = 174
+        size = 16
+        has_ring = no
+		flags = { vecchio_planet btr_custom }
+		entity = "dune_planet_07_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dune_world
+				days = -1
+			}
+			# add_deposit = d_iridium_4
+			add_deposit = d_rare_crystals_1
+		}
+    }
+
+    planet = {
+        name = "Volturno"
+        class = pc_highgrav_arctic
+        orbit_distance = 70
+        orbit_angle = 207
+        size = 25
+		entity = "snow_planet"
+        has_ring = no
+		flags = { volturno_planet btr_custom }
+		entity = "lichen_planet_09_entity"
+		init_effect = {
+			# add_deposit = d_platinum_3
+			add_deposit = d_rare_crystals_4
+			add_modifier = {
+				modifier = bleak_planet
+				days = -1
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_modifier = {
+				modifier = lichen_world
+				days = -1
+			}
+		}
+	}
+
+    planet = {
+        name = "Metaponto"
+        class = pc_gas_giant
+        orbit_distance = 50
+        orbit_angle = 214
+        size = 37
+        has_ring = no
+		flags = { metaponto_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+		}
+	}
+
+    planet = {
+        name = "Pollino"
+        class = pc_gas_giant
+        orbit_distance = 50
+        orbit_angle = 332
+        size = 30
+        has_ring = no
+		flags = { pollino_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_1
+			add_deposit = d_exotic_gases_1
+		}
+		moon = {
+			name = "Pollino a"
+			class = pc_ammonia
+			orbit_angle = 275
+			orbit_distance = 20
+			size = 4
+			entity = "ammonia_continental_planet_08_entity"
+			init_effect = {
+				add_modifier = {
+					modifier = prairie_world
+					days = -1
+				}
+			}
+		}	
+		moon = {
+			name = "Pollino b"
+			class = pc_barren
+			orbit_angle = 164
+			orbit_distance = 5
+			size = 3
+		}		
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "ismarfrontier_petunacluster_primaryrelay" 
+			name = "Ismar 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+##### PYLOS NEBULA #####
+
+sys_zaherin_init = {
+    name = "Zaherin"
+    class = sc_k
+	max_instances = 1
+
+	flags = { attican_traverse_system pylos_nebula_system zaherin_system btr_system custom_system }	
+		init_effect = {
+		generate_home_system_resources = yes
+	}
+	
+    planet = {
+		name = "Zaherin"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 30
+		flags = { zaherin_star }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_4
+			create_ambient_object = {
+				type = "nebula_2"
+				entity_offset_height = -5
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+    }
+
+    planet = {
+        name = "Ehstag"
+        class = pc_desert
+        orbit_distance = 125
+        orbit_angle = 326
+        has_ring = no
+		size = 17
+		flags = { ehstag_planet btr_custom }
+		entity = "dune_planet_03_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dune_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = btr_scorching_surface
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Namakli"
+        class = pc_desert
+        orbit_distance = 125
+        orbit_angle = 75
+        has_ring = no
+		size = 25
+		flags = { namakli_planet btr_custom }
+		entity = "mesa_planet_03_entity"
+		# init_effect = {
+		# 	prevent_anomaly = yes
+		# 	add_modifier = {
+		# 		modifier = mesa_world
+		# 		days = -1
+		# 	}
+		# 	add_modifier = {
+		# 		modifier = bleak_planet
+		# 		days = -1
+		# 	}
+		# 	set_global_flag = vorcha_tribals
+		# 	create_country = {
+		# 		name = "Vorcha Tribals"
+		# 		ship_prefix = ""
+		# 		type = primitive 
+		# 		civics = {
+		# 				civic = civic_warrior_culture
+		# 				civic = civic_barbaric_despoilers
+		# 		}
+		# 		authority = auth_dictatorial
+		# 		name_list = btr_vorcha
+		# 		ethos = { 
+		# 			ethic = "ethic_authoritarian"
+		# 			ethic = "ethic_fanatic_militarist"
+		# 		}
+
+		# 		species = event_target:vorchaSpecies
+		# 		flag = {
+		# 			icon = { 
+		# 				category = "masseffectblack"
+		# 				file = "Vorcha.dds"
+		# 			}	
+		# 			background = {
+		# 				category = "backgrounds"
+		# 				file = "00_solid.dds"
+		# 			}
+		# 			colors = { "red" "red" "null" "null"}
+		# 		}
+		# 	}	
+		# 	last_created_country = {
+		# 		set_graphical_culture = reptilian_01
+		# 		set_country_flag = vorcha_tribals
+		# 		set_country_flag = minor_faction
+		# 		save_global_event_target_as = vorcha_tribals
+		# 	}
+		# 	create_colony = { 
+		# 		owner = last_created_country 
+		# 		species = owner_main_species 
+		# 	}
+		# 	generate_namakli_pops = yes 							
+		# 	add_building = building_primitive_capital
+		# }			
+    }
+
+    planet = {
+        name = "Azrahas"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 181
+        has_ring = no
+		size = 11
+		flags = { azrahas_planet btr_custom }
+		init_effect = {
+			add_deposit = d_engineering_4
+		}
+    }
+
+    planet = {
+        name = "Rotesk"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 112
+        has_ring = yes
+		size = 26
+		flags = { rotesk_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_1
+			add_deposit = d_exotic_gases_2
+		}
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "pylosnebula_radanaburst_primaryrelay" 
+			name = "Pylos 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}

@@ -1,0 +1,38 @@
+##########################################################################
+# Decisions
+##########################################################################
+decision_shifty_cow_extermination = {
+	owned_planets_only = yes
+	sound = event_administrative_work
+	icon = decision_resources
+
+	enactment_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			influence = 25
+			energy = 500
+		}
+	}
+
+	potential = {
+		owner = {
+			is_regular_empire = yes
+		}
+		has_deposit = d_shifty_cow_2
+	}
+
+
+	effect = {
+		remove_deposit = d_shifty_cow_2
+		add_modifier = { 
+			modifier = "shifty_cow_death"
+			days = 360	
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}

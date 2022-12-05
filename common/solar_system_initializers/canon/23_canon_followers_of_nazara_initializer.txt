@@ -1,0 +1,1090 @@
+########################
+##### HERETIC GETH #####
+########################
+
+#####THE PHOENIX MASSING#####
+
+sys_theseaofstorms_init = {
+    name = "The Sea of Storms"
+    class = sc_deep_space
+	max_instances = 1
+
+	flags = { terminus_system phoenix_massing_system theseaofstorms_system btr_system custom_system }
+	# init_effect = { 
+	# 	random_country = { 
+	# 		limit = { has_country_flag = disciples_of_nazara } 
+	# 		save_global_event_target_as = disciples_of_nazara
+	# 	}
+	# }		
+	usage = custom_empire
+
+	planet = {
+		class = pc_invisible_star
+		size = 30
+		init_effect = {
+		}
+	}
+
+	change_orbit = 90
+
+    planet = {
+        name = "Heretic Station"
+        class = pc_habitat
+        orbit_distance = 0
+        orbit_angle = 144
+        size = 22
+        has_ring = no   
+		starting_planet = yes
+		flags = { heretic_station pd_science_hab }
+		# init_effect = {
+		# 	prevent_anomaly = yes
+		# 	set_global_flag = heretic_station_spawned
+		# 	if = {
+		# 		limit = { NOT = { any_country = { has_country_flag = disciples_of_nazara } } }
+		# 		create_country = {
+		# 			name = "Disciples of Nazara"
+		# 			ship_prefix = "PRESCRIPTED_ship_prefix_disciples_of_nazara"
+		# 			type = default
+        #       		origin = disciples_of_nazara_origin
+		# 			ignore_initial_colony_error = yes
+		# 			civics = { civic = "nazara_gifts" civic = "nazara_schism" }
+		# 			authority = auth_machine_intelligence
+		# 			name_list = "btr_geth"
+		# 			ethos = { ethic = "ethic_gestalt_consciousness" }
+		# 			species = event_target:gethSpecies
+		# 			flag = {
+		# 				icon={
+		# 					category="masseffect"
+		# 					file="Geth Armory.dds"
+		# 				}
+		# 				background={
+		# 					category="backgrounds"
+		# 					file="00_solid.dds"
+		# 				}
+		# 				colors={
+		# 					"dark_grey"
+		# 					"black"
+		# 					"null"
+		# 					"null"
+		# 				}
+		# 			}
+		# 			effect = {
+		# 				set_graphical_culture = gethnsc_01
+		# 				set_country_flag = disciples_of_nazara
+		# 				set_country_flag = init_spawned
+		# 				set_country_flag = custom_start_screen
+		# 				set_country_flag = canon_map
+		# 				save_global_event_target_as = disciples_of_nazara
+		# 			}
+		# 		}
+		# 	}	
+		# 	set_capital = yes
+		# 	random_country = {
+		# 		limit = { has_country_flag = disciples_of_nazara }
+		# 		save_global_event_target_as = disciples_of_nazara
+		# 		species = { save_global_event_target_as = gethSpecies }
+		# 	}
+		# 	set_owner = event_target:disciples_of_nazara
+		# 	generate_btr_start_deposits_and_blockers = yes
+		# 	generate_her_heretic_station_capitol_buildings = yes
+		# 	generate_her_station_pops = yes
+		# 	set_name = "Heretic Station"
+		# }    
+    }
+}
+
+##### Xosar Verge #####
+
+sys_haelazi_init = {
+    name = "Haelazi"
+    class = "sc_k"
+	flags = { terminus_system xosar_verge_system haelazi_system empire_home_system custom_system }	
+	init_effect = { 
+	generate_home_system_resources = yes
+	}
+
+	max_instances = 1
+
+    planet = {
+		name = "Haelazi"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { haelazi_star }
+    }
+
+    planet = {
+        name = "Henbay"
+        class = pc_hothouse
+        orbit_distance = 150
+		orbit_angle = { min = 40 max = 180 }
+        size = 10
+		has_ring = no
+		flags = { henbay_planet btr_custom }
+        init_effect = {
+			add_deposit = d_minerals_3
+		}
+	}
+
+	planet = {
+		name = "Yimorn"
+		class = pc_gas_giant
+		orbit_distance = 150
+		size = 34
+		has_ring = yes
+        flags = { yimorn_planet btr_custom }
+        init_effect = {
+			add_deposit = d_exotic_gases_1
+		}
+	}	
+
+    planet = {
+        name = "Ceeharu"
+        class = pc_mephitic
+        orbit_distance = 150
+        orbit_angle = 171
+        has_ring = no
+		size = 12
+        flags = { ceeharu_planet btr_custom }
+        entity = "mephitic_ocean_planet_11_entity"
+        init_effect = {
+            add_deposit = d_rare_crystals_1
+            add_modifier = {
+                modifier = coldocean_world
+                days = -1
+            }
+        }
+    }
+
+    init_effect = { 
+		spawn_megastructure = { 
+			type = "xosarverge_phoenixmassing_primaryrelay" 
+			name = "Xosar 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_xelazi_init = {
+	name = "Xelasi"
+	class = sc_a_super
+	max_instances = 1
+
+	flags = { terminus_system xosar_verge_system xelazi_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 280
+	}
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 360
+	}
+
+    asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 440
+	}
+
+
+	planet = {
+		name = "Xelasi"
+        class = pc_a_super_star
+        orbit_distance = 0
+        size = 35
+        flags = { xelasi_planet btr_custom }
+    }
+
+	planet = {
+        name = "Raanbay"
+        class = pc_hot_giant
+        orbit_distance = 80
+        orbit_angle = 119
+        has_ring = no
+		size = 32
+        flags = { raanbay_planet btr_custom }
+        init_effect = {
+			add_deposit = d_engineering_4
+            add_deposit = d_physics_3
+		}
+    }
+	
+	planet = {
+        name = "Rofo'Homma"
+        class = pc_molten
+        orbit_distance = 80
+        orbit_angle = 119
+        has_ring = no
+		size = 10
+        flags = { rofohomma_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+    }
+	
+	planet = {
+        name = "Wesost"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 119
+        has_ring = no
+		size = 7
+        flags = { wesost_planet btr_custom }
+    }
+
+	planet = {
+        name = "Genn"
+        class = pc_iron
+        orbit_distance = 80
+        orbit_angle = 119
+        has_ring = no
+		size = 10
+        flags = { genn_planet btr_custom }
+        init_effect = {
+			add_deposit = d_minerals_9
+            add_deposit = d_rare_crystals_1
+		}
+    }
+
+	planet = {
+		name = "Faso'Yul"
+        class = pc_barren
+        orbit_distance = 80
+        orbit_angle = 119
+        has_ring = no
+		size = 2
+        flags = { fasoyul_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_1
+            add_deposit = d_minerals_4
+		}
+	}
+
+	planet = {
+		name = "Jiman"
+        class = pc_ice_giant
+        orbit_distance = 80
+        orbit_angle = 119
+        has_ring = yes
+		size = 28
+        flags = { jiman_planet btr_custom }
+        init_effect = {
+			add_deposit = d_exotic_gases_1
+		}
+	}
+}
+
+sys_sesost_init = {
+	name = "Sesost"
+	class = sc_m_giant
+	max_instances = 1
+
+	flags = { terminus_system xosar_verge_system sesost_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Sesost"
+        class = pc_m_giant_star
+        orbit_distance = 0
+        size = 35
+    }
+
+	planet = {
+        name = "Heeris"
+        class = pc_molten
+        orbit_distance = 250
+        orbit_angle = 119
+        has_ring = no
+		size = 12
+        flags = { sesost_planet btr_custom }
+        init_effect = {
+			add_deposit = d_physics_6
+		}
+    }
+	
+	planet = {
+        name = "Saeto'Shar"
+        class = pc_arctic
+        orbit_distance = 250
+        orbit_angle = 119
+        has_ring = no
+		size = 6
+        entity = "antarctic_planet_03_entity"
+        flags = { saetoshar_planet btr_custom }
+		# init_effect = {
+        #     add_modifier = {
+        #         modifier = antar_world
+        #         days = -1
+        #     }
+		# 	set_owner = event_target:disciples_of_nazara
+		# 	create_colony = {
+		# 		owner = event_target:disciples_of_nazara
+		# 		species = event_target:gethSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_her_colony_pops = yes
+		# 	generate_her_major_colony_buildings = yes	
+			
+		# 	set_name = "Saeto'Shar"
+		# }
+    }
+}
+
+sys_yassu_init = {
+	name = "Yassu"
+	class = sc_g
+	max_instances = 1
+
+	flags = { terminus_system xosar_verge_system yassu_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Yassu"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 30
+    }
+
+	planet = {
+        name = "Hasha"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 119
+        has_ring = no
+		size = 8
+        flags = { hasha_planet btr_custom }
+        init_effect = {
+			add_deposit = d_minerals_4
+		}
+    }
+	
+	planet = {
+        name = "Shomos"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 119
+        has_ring = no
+		size = 16
+        flags = { shomos_planet btr_custom }
+    }
+
+	planet = {
+        name = "Fael"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 119
+        has_ring = no
+		size = 38
+        flags = { fael_planet btr_custom }
+        init_effect = {
+			add_deposit = d_exotic_gases_2
+		}
+    }
+	
+	planet = {
+        name = "Tunna"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 119
+        has_ring = no
+		size = 31
+        flags = { tunna_planet btr_custom }
+        init_effect = {
+			add_deposit = d_exotic_gases_2
+		}
+		moon = {
+			name = "Jarul"
+			class = pc_arctic
+			orbit_distance = 10
+			orbit_angle = 119
+			has_ring = no
+			size = 4
+            entity = "cryovolcanic_planet_06_entity"
+            flags = { jarul_planet btr_custom }
+            init_effect = {
+                add_deposit = d_zro_deposit_2
+                add_modifier = {
+                    modifier = cryovolcanic_world
+                    days = -1
+                }
+            }
+		}
+	}
+}
+
+sys_yeelixeeme_init = {
+	name = "Yeeli'Xeeme"
+	class = sc_m
+	max_instances = 1
+
+	flags = { terminus_system xosar_verge_system yeelixeeme_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Yeeli'Xeeme"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 25
+    }
+
+	planet = {
+        name = "Viko"
+        class = pc_barren_cold
+        orbit_distance = 125
+        orbit_angle = 119
+        has_ring = no
+		size = 7
+        flags = { viko_planet btr_custom }
+    }
+	
+	planet = {
+        name = "Jahi"
+        class = pc_shattered
+        orbit_distance = 125
+        orbit_angle = 119
+        has_ring = no
+		size = 14
+        flags = { jahi_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_5
+            add_deposit = d_minerals_10
+		}
+    }
+
+	planet = {
+        name = "Shewan"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 119
+        has_ring = no
+		size = 7
+        flags = { shewan_planet btr_custom }
+        init_effect = {
+			add_deposit = d_minerals_3
+		}
+    }
+	
+	planet = {
+        name = "Quiko"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 119
+        has_ring = no
+		size = 10
+        flags = { quiko_planet btr_custom }
+        init_effect = {
+			add_deposit = d_society_2
+		}
+    }
+}
+
+sys_seefisgaca_init = {
+	name = "Seefis'Gaca"
+	class = sc_k
+	max_instances = 1
+
+	flags = { terminus_system xosar_verge_system seefisgaca_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Seefis'Gaca"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+    }
+
+	planet = {
+        name = "Ceeleya"
+        class = pc_hothouse
+        orbit_distance = 50
+		orbit_angle = 119
+        has_ring = no
+		size = 12
+        flags = { ceelaya_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+    }
+	
+	planet = {
+        name = "Shaefirn"
+        class = pc_hothouse
+        orbit_distance = 50
+        orbit_angle = 119
+        has_ring = no
+		size = 14
+        flags = { shaefirn_planet btr_custom }
+    }
+
+	planet = {
+        name = "Rastrom"
+        class = pc_methane
+        orbit_distance = 50
+        orbit_angle = 119
+        has_ring = no
+		size = 17
+        flags = { rastrom_planet btr_custom }
+        entity = "methane_savannah_planet_05_entity"
+		# init_effect = {
+        #     add_modifier = {
+        #         modifier = steppe_world
+        #         days = -1
+        #     }
+		# 	set_owner = event_target:disciples_of_nazara
+		# 	create_colony = {
+		# 		owner = event_target:disciples_of_nazara
+		# 		species = event_target:gethSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_her_colony_pops = yes
+		# 	generate_her_major_colony_buildings = yes	
+		# 	set_name = "Rastrom"
+		# }
+    }
+	
+	planet = {
+        name = "Jael"
+        class = pc_carbon
+        orbit_distance = 50
+        orbit_angle = 119
+        has_ring = no
+		size = 9
+        flags = { jael_planet btr_custom }
+        init_effect = {
+			add_deposit = d_zro_deposit_4
+            add_deposit = d_minerals_8
+		}
+    }
+
+	planet = {
+        name = "Yaestrom"
+        class = pc_barren_cold
+        orbit_distance = 50
+        orbit_angle = 119
+        has_ring = no
+		size = 6
+        flags = { yaestrom_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+    }
+
+	planet = {
+        name = "Xandeka"
+        class = pc_frozen
+        orbit_distance = 50
+        orbit_angle = 119
+        has_ring = no
+		size = 11
+        flags = { xandeka_planet btr_custom }
+    }
+	
+	planet = {
+        name = "Zeetalir"
+        class = pc_ammonia
+        orbit_distance = 50
+        orbit_angle = 119
+        has_ring = no
+		size = 18
+        entity = "ammonia_ocean_planet_08_entity"
+        flags = { zeetalir_planet btr_custom }
+        init_effect = {
+            add_deposit = d_engineering_3
+            add_modifier = {
+                modifier = coldocean_world
+                days = -1
+            }
+        }
+    }
+
+	planet = {
+        name = "Fito"
+        class = pc_frozen
+        orbit_distance = 50
+        orbit_angle = 119
+        has_ring = no
+		size = 3
+        flags = { fito_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_2
+		}
+    }
+
+	planet = {
+        name = "Waamornh"
+        class = pc_barren_cold
+        orbit_distance = 50
+        orbit_angle = 119
+        has_ring = no
+		size = 5
+        flags = { waamornh_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+    }
+
+    init_effect = { 
+		spawn_megastructure = { 
+			type = "attican_traverse_sector_9_secondaryrelay" 
+			name = "Traverse Secondary - Sector 9 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+#####CASSIOPEIA CLUSTER#####
+sys_keelulon_init = {
+    name = "Kee-Lulon"
+    class = sc_binary_3
+	max_instances = 1
+
+	flags = { terminus_system cassiopeia_cluster_system keelulon_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+
+    asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 500
+	}
+
+    planet = {
+		name = "Kee"
+        class = pc_m_giant_star
+        orbit_distance = 0
+        size = 30
+		flags = { dholen_star}
+    }
+
+	planet = {
+		name = "Lulon"
+        class = pc_b_star
+        orbit_distance = 30
+        size = 20
+		flags = { dholen_star}
+    }
+
+    planet = {
+        name = "Jaela"
+        class = pc_molten
+        orbit_distance = 250
+        orbit_angle = 239
+        has_ring = no
+		size = 12
+		flags = { jaela_planet btr_custom }	
+        init_effect = {
+			add_deposit = d_rare_crystals_2
+            add_deposit = d_engineering_3
+		}	
+    }
+
+    planet = {
+        name = "Taedor"
+        class = pc_ice_giant
+        orbit_distance = 220
+        orbit_angle = 214
+        has_ring = no
+		size = 34
+		flags = { taedor_planet btr_custom }
+        init_effect = {
+			add_deposit = d_exotic_gases_3
+		}
+    }
+}
+
+sys_raadarum_init = {
+    name = "Raadarum"
+    class = sc_b_super
+	max_instances = 1
+
+	flags = { terminus_system cassiopeia_cluster_system raadarum_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Raadarum"
+        class = pc_b_super_star
+        orbit_distance = 0
+        size = 30
+    }
+	
+    planet = {
+        name = "Xonar"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 239
+        has_ring = no
+		size = 14
+		flags = { xonar_planet btr_custom }
+    }
+
+    planet = {
+        name = "Rafeed"
+        class = pc_carbon
+        orbit_distance = 125
+        orbit_angle = 214
+        has_ring = no
+		size = 10
+		flags = { rafeed_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+    }
+
+    planet = {
+        name = "Rayna"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 90
+        has_ring = no
+		size = 5
+		flags = { rayna_planet btr_custom }
+        init_effect = {
+			add_deposit = d_zro_deposit_2
+		}
+    }	
+
+	planet = {
+        name = "Xulan"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 90
+        has_ring = yes
+		size = 35
+		flags = { xulan_planet btr_custom }
+        init_effect = {
+			add_deposit = d_exotic_gases_2
+		}
+		moon = {
+			name = "Xulan a"
+			class = pc_barren_cold
+			orbit_distance = 20
+			orbit_angle = 90
+			has_ring = no
+			size = 3
+            init_effect = {
+                add_deposit = d_minerals_2
+            }
+		}
+    }
+}	
+
+sys_jaavo_init = {
+    name = "Jaavo"
+    class = sc_g
+	max_instances = 1
+
+	flags = { terminus_system cassiopeia_cluster_system jaavo_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Jaavo"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 30
+    }
+
+    planet = {
+        name = "Herris"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 146
+        has_ring = no
+		size = 12
+        flags = { herris_planet btr_custom }
+    }
+
+	planet = {
+        name = "Gaezal'Jenal"
+        class = pc_dextro_alpine
+        orbit_distance = 125
+        orbit_angle = 146
+        has_ring = no
+		size = 22
+        flags = { gaezaljenal_planet btr_custom }
+        entity = "highland_planet_02_entity"
+		# init_effect = {
+        #     add_modifier = {
+        #         modifier = highland_world
+        #         days = -1
+        #     }
+		# 	set_owner = event_target:disciples_of_nazara
+		# 	create_colony = {
+		# 		owner = event_target:disciples_of_nazara
+		# 		species = event_target:gethSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_her_colony_pops = yes
+		# 	generate_her_major_colony_buildings = yes
+			
+		# 	set_name = "Gaezal'Jenal"
+		# }
+    }
+
+	planet = {
+        name = "Gernal"
+        class = pc_barren_cold
+        orbit_distance = 125
+        orbit_angle = 146
+        has_ring = no
+		size = 18
+        flags = { gernal_planet btr_custom }
+    }
+
+	planet = {
+        name = "Lofirn"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 146
+        has_ring = no
+		size = 18
+        flags = { lofirn_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_1
+            add_deposit = d_minerals_2
+		}
+    }
+}
+
+sys_ruvum_init = {
+    name = "Ruvum"
+    class = sc_d
+	max_instances = 1
+
+	flags = { terminus_system cassiopeia_cluster_system ruvum_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 325
+    }
+
+    planet = {
+		name = "Ruvum"
+        class = pc_d_star
+        orbit_distance = 0
+        size = 30
+    }
+
+    planet = {
+        name = "Refaes"
+        class = pc_molten
+        orbit_distance = 125
+        orbit_angle = 146
+        has_ring = no
+		size = 8
+        flags = { refaes_planet btr_custom }
+    }
+
+	planet = {
+        name = "Yulla'Saar"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 146
+        has_ring = no
+		size = 5
+        flags = { yullasaar_planet btr_custom }
+        init_effect = {
+			add_deposit = d_zro_deposit_1
+            add_deposit = d_engineering_2
+		}
+    }
+
+	planet = {
+        name = "Jessu"
+        class = pc_mephitic
+        orbit_distance = 125
+        orbit_angle = 146
+        has_ring = no
+		size = 20
+        entity = "mephitic_alpine_planet_11_entity"
+        init_effect = {
+            add_modifier = {
+                modifier = crag_world
+                days = -1
+            }
+        }
+        flags = { jessu_planet btr_custom }
+    }
+
+	planet = {
+        name = "Zeezorm Leemm"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 146
+        has_ring = no
+		size = 18
+        flags = { zeezormleemm_planet btr_custom }
+        init_effect = {
+			add_deposit = d_engineering_3
+            add_deposit = d_physics_6
+		}
+    }
+
+    init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_7_secondaryrelay" 
+			name = "Terminus Secondary - Sector 7 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+
+sys_gaalozozh_init = {
+    name = "Gaalo-Zozh"
+    class = sc_binary_b_t
+	max_instances = 1
+
+	flags = { terminus_system cassiopeia_cluster_system gaalozozh_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Gaalo"
+        class = pc_b_star
+        orbit_distance = 0
+        size = 30
+    }
+
+    planet = {
+        name = "Zozh"
+        class = pc_t_star
+        orbit_distance = 20
+        orbit_angle = 146
+        has_ring = no
+		size = 8
+    }
+
+	planet = {
+        name = "Maeni"
+        class = pc_barren
+        orbit_distance = 60
+        orbit_angle = 146
+        has_ring = no
+		size = 15
+        flags = { maeni_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+    }
+
+	planet = {
+        name = "Yena"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 146
+        has_ring = no
+		size = 10
+        flags = { yena_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_1
+            add_deposit = d_society_4
+		}
+    }
+
+	planet = {
+        name = "Sochol"
+        class = pc_barren_cold
+        orbit_distance = 80
+        orbit_angle = 146
+        has_ring = no
+		size = 18
+        flags = { sochol_planet btr_custom }
+        init_effect = {
+			add_deposit = d_rare_crystals_2
+		}
+    }
+
+	planet = {
+        name = "Naara'Das"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 146
+        has_ring = yes
+		size = 34
+        flags = { naaradas_planet btr_custom }
+        init_effect = {
+			add_deposit = d_exotic_gases_2
+		}
+    }
+
+	planet = {
+        name = "Tonbarr"
+        class = pc_chlorine
+        orbit_distance = 80
+        orbit_angle = 146
+        has_ring = no
+		size = 16
+        entity = "chlorine_desert_planet_11_entity"
+        init_effect = {
+            add_modifier = {
+                modifier = oasis_world
+                days = -1
+            }
+        }
+        flags = { tonbarr_planet btr_custom }
+    }
+
+	planet = {
+        name = "Vael"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 146
+        has_ring = no
+		size = 32
+        flags = { vael_planet btr_custom }
+		moon = {
+			name = "Yedu"
+			class = pc_methane
+			orbit_distance = 20
+			orbit_angle = 146
+			has_ring = no
+			size = 8
+            entity = "methane_arid_planet_04_entity"
+            init_effect = {
+                add_deposit = d_exotic_gases_3
+                add_modifier = {
+                    modifier = aquifer_world
+                    days = -1
+                }
+            }
+            flags = { yedu_planet btr_custom }
+		}
+    }
+
+    init_effect = { 
+		spawn_megastructure = { 
+			type = "cassiopeiacluster_farrim_primaryrelay" 
+			name = "Cassiopeia 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}

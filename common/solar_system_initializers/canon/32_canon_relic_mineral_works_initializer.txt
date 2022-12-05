@@ -1,0 +1,258 @@
+###############################
+##### RELIC MINERAL WORKS #####
+###############################
+
+sys_relic_init = {
+    name = "Relic"
+    class = sc_g
+    flags = { attican_traverse_system eagle_nebula_system relic_system btr_system custom_system }
+	# init_effect = { 
+	# 	random_country = { 
+	# 		limit = { has_country_flag = relic_mineral_works } 
+	# 		save_global_event_target_as = relic_mineral_works
+	# 	}	
+	# generate_home_system_resources = yes
+	# }	
+
+	usage = custom_empire
+	max_instances = 1
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 290
+	}	
+
+    planet = {
+		name = "Relic"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 26
+		flags = { relic_star }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			create_ambient_object = {
+				type = "nebula_4"
+				entity_offset_height = -5
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+    }
+
+    planet = {
+        name = "Murky Water"
+        class = pc_hothouse
+        orbit_distance = 70
+        orbit_angle = 243
+        has_ring = no
+		size = 25
+		flags = { murky_water_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_minerals_2
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Fitful Current"
+        class = pc_chthonian
+        orbit_distance = 70
+        orbit_angle = 284
+        has_ring = no
+		size = 23
+		flags = { fitful_current_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_deposit = d_minerals_5
+		}
+    }
+
+    planet = {
+        name = "First Land"
+        class = pc_gas_giant
+        orbit_distance = 70
+        orbit_angle = 58
+        has_ring = yes
+		size = 33
+		flags = { first_land_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			# add_deposit = d_helium_3_5
+			add_deposit = d_exotic_gases_5
+		}
+		moon = {
+			name = "Drifting Skies"
+			count = 1
+			class = pc_habitat
+			orbit_distance = 20
+			size = 8
+			flags = { drifting_skies_habitat btr_custom }
+		# 	init_effect = {
+		# 		if = {
+		# 			limit = { NOT = { any_country = { has_country_flag = relic_mineral_works } } }
+		# 			create_country = {
+		# 				name = "Relic Mineral Works"
+		# 				ship_prefix = "PRESCRIPTED_ship_prefix_relic_mineral_works"
+		# 				type = independent_colony
+		# 				origin = "origin_relic_mineral_works"
+		# 				ignore_initial_colony_error = yes
+		# 				civics = { civic = "civic_private_prospectors" civic = "civic_public_relations_specialists" }
+		# 				authority = auth_corporate
+		# 				name_list = "btr_hanar"
+		# 				ethos = { ethic = "ethic_pacifist" ethic = "ethic_spiritualist" 	ethic = "ethic_xenophile" }
+		# 				species = event_target:hanarSpecies
+		# 				flag = {
+		# 					icon={
+		# 						category="domination"
+		# 						file="domination_9.dds"
+		# 					}
+		# 					background={
+		# 						category="backgrounds"
+		# 						file="circle.dds"
+		# 					}
+		# 					colors={
+		# 						"purple"
+		# 						"red"
+		# 						"null"
+		# 						"null"
+		# 					}
+		# 				}
+		# 				effect = {
+		# 					set_graphical_culture = industrial_01
+		# 					set_country_flag = relic_mineral_works
+		# 					set_country_flag = init_spawned
+		# 					set_country_flag = custom_start_screen
+		# 					set_country_flag = canon_map
+		# 					save_global_event_target_as = relic_mineral_works
+		# 				}
+		# 			}
+		# 		}	
+		# 		set_capital = yes
+		# 		random_country = {
+		# 			limit = { has_country_flag = relic_mineral_works }
+		# 			save_global_event_target_as = relic_mineral_works
+		# 		}
+		# 		prevent_anomaly = yes
+		# 		set_global_flag = rmw_homeworld_spawned
+
+		# 		if = {
+		# 			limit = { NOT = { any_country = { has_country_flag = relic_mineral_works } } }
+		# 			create_colony = { 
+		# 				owner = event_target:relic_mineral_works 
+		# 				species = event_target:hanarSpecies 
+		# 			}	
+		# 		set_owner = event_target:relic_mineral_works
+		# 		generate_btr_start_deposits_and_blockers = yes
+		# 		generate_relic_drifting_skies_pops = yes
+		# 		set_name = "Drifting Skies"				
+		# 	}
+		}
+    }
+
+    planet = {
+        name = "Island Wind"
+        class = pc_gas_giant
+        orbit_distance = 70
+        orbit_angle = 86
+        has_ring = no
+		size = 37
+		flags = { island_wind_planet btr_custom }
+		init_effect = {
+			add_deposit = d_exotic_gases_1
+		}
+	}
+
+    planet = {
+		name = "Rough Tide"
+        class = pc_mephitic
+        orbit_distance = 70
+        orbit_angle = 192
+        has_ring = no
+		size = 5
+		flags = { rough_tide_planet btr_custom }
+		entity = "mephitic_desert_planet_01_entity"
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = mesa_world
+		# 		days = -1
+		# 	}
+		# 	prevent_anomaly = yes
+		# 	clear_deposits = yes
+		# 	add_deposit = d_rare_crystals_2
+		# 	add_deposit = d_trade_value_2
+		# 	prevent_anomaly = yes
+		# 	set_owner = event_target:relic_mineral_works
+		# 	create_colony = {
+		# 		owner = event_target:relic_mineral_works
+		# 		species = event_target:hanarSpecies
+		# 		ethos = owner
+		# 	}
+		# 		generate_btr_start_deposits_and_blockers = yes
+		# 		generate_btr_major_empire_start_buildings = yes	
+		# 		generate_relic_pops = yes
+		# 		set_owner = event_target:relic_mineral_works
+		# 		set_capital = yes
+		# 	}
+	}	
+
+    planet = {
+        name = "Preying Mouth"
+        class = pc_gas_giant
+        orbit_distance = 70
+        orbit_angle = 351
+        has_ring = yes
+		size = 31
+		flags = { preying_mouth_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes				
+			add_deposit = d_zro_deposit_2
+			clear_planet_modifiers = yes 
+		}		
+    }
+
+    planet = {
+        name = "Beach Thunder"
+        class = pc_arctic
+        orbit_distance = 70
+        orbit_angle = 39
+        has_ring = no
+		size = 18
+		flags = { beach_thunder_planet btr_custom }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_minerals_4
+			# add_deposit = d_iridium_1
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_alloys_1
+			# create_colony = { 
+			# 	owner = last_created_country 
+			# 	species = last_created 
+			# }
+			# generate_relic_pops = yes
+			# set_owner = event_target:relic_mineral_works
+		}		
+    }
+}

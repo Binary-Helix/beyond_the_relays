@@ -1,0 +1,453 @@
+
+### ASARI REPUBLICS
+
+#Republic Communications Center
+building_asari_rep_comm_center = {
+    base_buildtime = 360
+    base_cap_amount = 1
+	icon = building_residence
+    exempt_from_ai_planet_specialization = no
+
+    category = government
+
+    potential = {
+        owner = {
+            has_origin = asari_rep_origin
+        }
+        exists = owner
+        owner = {
+            is_regular_empire = yes
+        }
+    }
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+		}
+	}
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 400
+            energy = 500
+        }
+        upkeep = {
+            energy = 6
+        }
+        produces = {
+            unity = 4
+        }
+    }
+
+    planet_modifier = {
+        job_culture_worker_add =1
+    }
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_amenities_mult = 0.05
+    }
+    triggered_desc = {
+        text = job_culture_worker_effect_desc
+    }
+}
+
+#Galactic Sports Center
+building_asari_galactic_sports_center = {
+    base_buildtime = 600
+
+    exempt_from_ai_planet_specialization = no
+	icon = building_commercial_zone
+    empire_limit = 1
+
+    category = unity
+
+    potential = {
+        owner = {
+            has_origin = asari_rep_origin
+        }
+    }
+
+    destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+		}
+	}
+
+    resources = {
+        category = planet_buildings
+        cost = {
+            minerals = 2000
+            alloys = 200
+            energy = 1000
+        }
+        upkeep = {
+            energy = 5
+            food = 5
+            minerals = 1
+        }
+        produces = {
+            energy = 20
+            unity = 2
+        }
+    }
+
+    planet_modifier = {
+        job_entertainer_add = 1
+        job_duelist_add = 1
+        job_culture_worker_add =1
+    }
+
+    triggered_planet_modifier = {
+        potential = {
+            always = yes
+        }
+        planet_amenities_mult = 0.05
+    }
+
+    triggered_country_modifier ={
+        potential = {
+            always = yes
+        }
+        pop_happiness = 0.05
+    }
+
+
+    triggered_desc = {
+        text = job_entertainer_effect_desc
+    }
+    triggered_desc = {
+        text = job_duelist_effect_desc
+    }
+    triggered_desc = {
+        text = job_culture_worker_effect_desc
+    }
+
+}
+
+### SALARIAN UNION
+
+#Institute for Exo-Archaeological Research Outpost
+building_salarian_exo_arch_res_outpost = {
+	base_buildtime = 720
+	icon = building_research_lab_3
+	base_cap_amount = 1
+	empire_limit = 1
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_origin = salarian_uni_origin
+		}
+	}
+
+	allow = {
+		#buildings_simple_allow = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			### AI destruction logic
+			# AND = {
+			# 	free_building_slots = 0
+			#	free_jobs < 1
+			#	free_housing > 10
+			#	owner = {
+			#		is_ai = yes
+			#	}
+			# }
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = salarian_uni_origin } }
+		}
+	}
+
+	country_modifier = {
+		all_technology_research_speed = 0.15
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1500
+		}
+		upkeep = {
+			energy = 3
+		}
+	}
+}
+
+building_salarian_covert_collection = {
+	base_buildtime = 600
+	base_cap_amount = 1
+	icon = building_illicit_research_labs
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_origin = salarian_uni_origin
+			has_technology = tech_salarian_exo_arch
+		}
+	}
+
+	allow = {
+		exists = owner
+		has_major_upgraded_capital = yes
+		#buildings_simple_allow = yes
+		owner = {
+			has_technology = tech_colonial_centralization
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			### AI destruction logic
+			# AND = {
+			# 	free_building_slots = 0
+			#	free_jobs < 1
+			#	free_housing > 10
+			#	owner = {
+			#		is_ai = yes
+			#	}
+			# }
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = salarian_uni_origin } }
+		}
+	}
+
+	planet_modifier = {
+		country_engineering_research_produces_mult = 0.05
+		planet_crime_add = -35
+		planet_jobs_unity_produces_mult = 0.1
+		job_technician_add = 6
+	}
+
+	country_modifier = {
+		envoys_add = 1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+}
+
+### TURIAN HIERARCHY
+
+#Planetary Kasrs
+building_turian_planetary_kasrs = {
+	base_buildtime = 365
+	base_cap_amount = 1
+	icon = building_stronghold
+	category = army
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_origin = turian_hier_origin
+			has_technology = tech_turian_planetary_kasrs
+		}
+	}
+
+	allow = {
+		exists = owner
+		has_major_upgraded_capital = yes
+		#buildings_simple_allow = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			### AI destruction logic
+			# AND = {
+			# 	free_building_slots = 0
+			#	free_jobs < 1
+			#	free_housing > 10
+			#	owner = {
+			#		is_ai = yes
+			#	}
+			# }
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = turian_hier_origin } }
+		}
+	}
+	
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.10
+		job_soldier_add = 2
+		pop_defense_armies_add = 4
+		army_defense_damage_mult = 0.25
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 4
+		}
+		produces = {
+			unity = 1
+		}
+	}
+}
+
+#Castra Auxilia
+building_turian_castra_auxilia = {
+	base_buildtime = 365
+	base_cap_amount = 1
+	icon = building_guard_quarters
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_origin = turian_hier_origin
+			has_technology = tech_turian_planetary_kasrs
+		}
+	}
+
+	allow = {
+		exists = owner
+		has_major_upgraded_capital = yes
+		#buildings_simple_allow = yes
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			### AI destruction logic
+			# AND = {
+			# 	free_building_slots = 0
+			#	free_jobs < 1
+			#	free_housing > 10
+			#	owner = {
+			#		is_ai = yes
+			#	}
+			# }
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = turian_hier_origin } }
+		}
+	}
+
+	planet_modifier = {
+		pop_growth_speed = 0.1
+		job_soldier_add = 1
+		pop_defense_armies_add = 3
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+###Systems Alliance
+building_systems_colonial_affairs_office = {
+	base_buildtime = 150
+	base_cap_amount = 1
+	icon = building_public_relations_office
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_origin = systems_all_origin
+		}
+	}
+
+	allow = {
+		exists = owner
+		colony_age = 120
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			### AI destruction logic
+			# AND = {
+			# 	free_building_slots = 0
+			#	free_jobs < 1
+			#	free_housing > 10
+			#	owner = {
+			#		is_ai = yes
+			#	}
+			# }
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = systems_all_origin } }
+		}
+	}
+
+	planet_modifier = {
+		pop_growth_speed = 0.05
+		pop_resettlement_cost_mult = -0.15
+		job_bureaucrat_add = 1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 300
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}
+
+building_systems_ict_academy = {
+	base_buildtime = 720
+	empire_limit = 1
+	icon = building_military_academy
+	category = army
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_origin = systems_all_origin
+		}
+	}
+
+	allow = {
+		exists = owner
+		has_planet_flag = earth_planet
+	}
+
+	destroy_trigger = {
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = systems_all_origin } }
+		}
+	}
+
+	planet_modifier = {
+		pop_defense_armies_add = 2
+		army_starting_experience_add = 150
+		job_soldier_add = 1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1500
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+}

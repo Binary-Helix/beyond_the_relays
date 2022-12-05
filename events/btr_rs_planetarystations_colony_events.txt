@@ -1,0 +1,2183 @@
+############################
+#
+# Colony Events
+#
+# Written by Annatar
+#
+############################
+
+namespace = planetarystations_colony_event
+
+planet_event = {
+	id = planetarystations_colony_event.1
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		random_list = {
+			10 = {
+				random_list = {
+					13 = {
+						#Contaminated air filters
+						modifier = {
+							factor = 0
+							owner = { is_machine_empire = yes }
+						}
+						modifier = {
+							factor = 2
+							colony_age > 240
+						}
+						modifier = {
+							factor = 3
+							colony_age > 600
+						}
+						planet_event = { id = planetarystations_colony_event.2 days = 360 random = 90 }
+					}
+					12 = {
+						#Popular station
+						modifier = {
+							factor = 0
+							OR = {
+								owner = { is_gestalt = yes }
+								has_planet_flag = prison_station
+							}
+						}
+						modifier = {
+							factor = 2
+							has_planet_flag = cultural_station
+						}
+						planet_event = { id = planetarystations_colony_event.3 days = 360 random = 90 }
+					}
+					10 = {
+						#Life support fail
+						modifier = {
+							factor = 0
+							owner = { is_machine_empire = yes }
+						}
+						modifier = {
+							factor = 2
+							colony_age > 500
+						}
+						planet_event = { id = planetarystations_colony_event.4 days = 360 random = 90 }
+					}
+					5 = {
+						#Worker strikes
+						modifier = {
+							factor = 0
+							OR = {
+								owner = { is_gestalt = yes }
+								has_planet_flag = prison_station
+								has_planet_flag = cultural_station
+							}
+						}
+						modifier = {
+							factor = 2
+							planet_stability < 60
+						}
+						modifier = {
+							factor = 3
+							planet_stability < 40
+						}
+						planet_event = { id = planetarystations_colony_event.5 days = 360 random = 90 }
+					}
+					2 = {
+						#Alien
+						planet_event = { id = planetarystations_colony_event.6 days = 360 random = 90 }
+					}
+					4 = {
+						#Power grid failures
+						modifier = {
+							factor = 0
+							NOT = { has_planet_flag = energy_station }
+						}
+						planet_event = { id = planetarystations_colony_event.20 days = 360 random = 90 }
+					}
+					4 = {
+						#Mineral depletion
+						modifier = {
+							factor = 0
+							OR = {
+								NOT = { has_planet_flag = mining_station }
+								NOT = { has_planet_flag = prison_station }
+							}
+							NOT = { has_deposit = d_mineral_lodes }
+						}
+						modifier = {
+							factor = 2
+							colony_age > 240
+						}
+						planet_event = { id = planetarystations_colony_event.21 days = 360 random = 90 }
+					}
+					4 = {
+						#Rich deposits
+						modifier = {
+							factor = 0
+							OR = {
+								NOT = { has_planet_flag = mining_station }
+								NOT = { has_planet_flag = prison_station }
+							}
+							NOT = { has_deposit = d_mineral_lodes }
+						}
+						planet_event = { id = planetarystations_colony_event.22 days = 360 random = 90 }
+					}
+					4 = {
+						#Lode is over
+						modifier = {
+							factor = 0
+							OR = {
+								NOT = { has_planet_flag = mining_station }
+								NOT = { has_planet_flag = prison_station }
+							}
+							NOT = { has_deposit = d_mineral_lodes }
+						}
+						modifier = {
+							factor = 2
+							colony_age > 240
+						}
+						modifier = {
+							factor = 3
+							colony_age > 600
+						}
+						planet_event = { id = planetarystations_colony_event.23 days = 360 random = 90 }
+					}
+					5 = {
+						#Ore vein found
+						modifier = {
+							factor = 2
+							OR = {
+								has_planet_flag = mining_station
+								has_planet_flag = prison_station
+							}
+						}
+						modifier = {
+							factor = 3
+							has_deposit = d_mineral_lodes
+						}
+						planet_event = { id = planetarystations_colony_event.24 days = 360 random = 90 }
+					}
+					2 = {
+						#Anomaly
+						modifier = {
+							factor = 0
+							NOT = { has_planet_flag = research_station }
+						}
+						planet_event = { id = planetarystations_colony_event.25 days = 360 random = 90 }
+					}
+					5 = {
+						#Odd life forms
+						modifier = {
+							factor = 0
+							NOT = { has_planet_flag = research_station }
+						}
+						planet_event = { id = planetarystations_colony_event.26 days = 360 random = 90 }
+					}
+					3 = {
+						#Alien Wreckage
+						modifier = {
+							factor = 0
+							NOT = { has_planet_flag = research_station }
+						}
+						planet_event = { id = planetarystations_colony_event.27 days = 360 random = 90 }
+					}
+					2 = {
+						#Critical accident
+						modifier = {
+							factor = 0
+							NOT = { has_planet_flag = research_station }
+						}
+						planet_event = { id = planetarystations_colony_event.28 days = 360 random = 90 }
+					}
+					5 = {
+						#Rising Corruption
+						modifier = {
+							factor = 0
+							OR = {
+								owner = { is_gestalt = yes }
+								NOT = { has_planet_flag = civil_station }
+							}
+						}
+						planet_event = { id = planetarystations_colony_event.29 days = 360 random = 90 }
+					}
+					5 = {
+						#Overloading transport hubs
+						modifier = {
+							factor = 0
+							OR = {
+								owner = { is_gestalt = yes }
+								NOT = { has_planet_flag = civil_station }
+							}
+						}
+						planet_event = { id = planetarystations_colony_event.30 days = 360 random = 90 }
+					}
+					5 = {
+						#Advantageous location
+						modifier = {
+							factor = 0
+							OR = {
+								owner = { is_gestalt = yes }
+								NOT = { has_planet_flag = civil_station }
+							}
+						}
+						planet_event = { id = planetarystations_colony_event.30 days = 360 random = 90 }
+					}
+					2 = {
+						#Prisoner Revolt
+						modifier = {
+							factor = 0
+							NOT = { has_planet_flag = prison_station }
+						}
+						modifier = {
+							factor = 2
+							planet_stability < 50
+						}
+						planet_event = { id = planetarystations_colony_event.31 days = 360 random = 90 }
+					}
+					2 = {
+						#Cosmic Tour
+						modifier = {
+							factor = 0.25
+							is_asteroid_station = yes
+						}
+						modifier = {
+							factor = 0
+							owner = { is_gestalt = yes }
+						}
+						planet_event = { id = planetarystations_colony_event.42 days = 360 random = 90 }
+					}
+					2 = {
+						#Space Rush
+						modifier = {
+							factor = 0
+							owner = { is_gestalt = yes }
+						}
+						planet_event = { id = planetarystations_colony_event.43 days = 360 random = 90 }
+					}
+					4 = {
+						#Trade Route
+						modifier = {
+							factor = 0
+							OR = {
+								owner = { is_gestalt = yes }
+								NOT = { has_planet_flag = civil_station }
+							}
+						}
+						planet_event = { id = planetarystations_colony_event.44 days = 360 random = 90 }
+					}
+				}
+			}
+			90 = {
+				#Null
+			}
+		}
+	}
+}
+
+#Contaminated air filters
+planet_event = {
+	id = planetarystations_colony_event.2
+	title = "planetarystations_colony_event.2.name"
+	desc = "planetarystations_colony_event.2.desc"
+	picture = GFX_evt_glitchy_matrix
+	show_sound = event_yellow_alert
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = planetary_station
+		owner = { is_machine_empire = no }
+	}
+	
+	option = {
+		name = planetarystations_colony_event.2.a
+		trigger = { owner = { is_regular_empire = yes } }
+		add_modifier = {
+			modifier = increased_maintenance
+			days = 1800
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.2.hive.a
+		trigger = { owner = { is_hive_empire = yes } }
+		add_modifier = {
+			modifier = increased_maintenance_hive
+			days = 1800
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.2.b
+		add_modifier = {
+			modifier = contaminated_filters
+			days = 1800
+		}
+	}
+}
+
+#Popular station
+planet_event = {
+	id = planetarystations_colony_event.3
+	title = "planetarystations_colony_event.3.name"
+	desc = "planetarystations_colony_event.3.desc"
+	picture = GFX_evt_tradestation_interior
+	show_sound = event_factions
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = planetary_station
+		NOT = { has_planet_flag = prison_station }
+	}
+	
+	option = {
+		name = planetarystations_colony_event.3.a
+		add_modifier = {
+			modifier = heightened_security
+			days = 1800
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.3.b
+		add_modifier = {
+			modifier = open_station
+			days = 1800
+		}
+	}
+}
+
+# Life Support Failure
+planet_event = {
+	id = planetarystations_colony_event.4
+	title = "planetarystations_colony_event.4.name"
+	desc = "planetarystations_colony_event.4.desc"
+	picture = GFX_evt_station_wreckage
+	show_sound = event_red_alert
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = planetary_station
+		owner = { is_machine_empire = no }
+	}
+	
+	immediate = {
+		add_planet_devastation = 20
+		random_owned_pop = {
+			limit = { is_robot_pop = no }
+			kill_pop = yes
+		}
+		add_modifier = {
+			modifier = life_support_failure
+			days = 360
+		}
+	}
+	
+	option = {
+		name = CURSES
+		tooltip = {
+			add_planet_devastation = 20
+			random_owned_pop = {
+				limit = { is_robot_pop = no }
+				kill_pop = yes
+			}
+			add_modifier = {
+				modifier = life_support_failure
+				days = 360
+			}
+		}
+	}
+}
+
+#Worker strikes
+planet_event = {
+	id = planetarystations_colony_event.5
+	title = "planetarystations_colony_event.5.name"
+	desc = "planetarystations_colony_event.5.desc"
+	picture = GFX_evt_civil_action
+	show_sound = event_planetary_riot
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = planetary_station
+		NOR = { 
+			has_planet_flag = prison_station
+			has_planet_flag = cultural_station
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.5.a
+		add_modifier = {
+			modifier = conciliation_measures
+			days = 1800
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.5.b
+		add_modifier = {
+			modifier = prolonged_strike
+			days = 1800
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.5.c
+		trigger = {
+			owner = {
+				any_owned_planet = {
+					NOR = {
+						has_planet_flag = prison_station
+						OR = {
+							num_pops < 30
+							NOT = { has_modifier = planet_population_control }
+						}
+					}
+				}
+			}
+		}
+		add_modifier = {
+			modifier = suppressed_protests
+			days = 360
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.5.c
+		trigger = {
+			owner = {
+				any_owned_planet = {
+					has_planet_flag = prison_station
+					OR = {
+						num_pops < 30
+						NOT = { has_modifier = planet_population_control }
+					}
+				}
+			}
+		}
+		add_modifier = {
+			modifier = suppressed_protests
+			days = 360
+		}
+		
+		hidden_effect = {
+			custom_tooltip = planetarystations_colony_event.5.arrests
+			owner = {
+				random_owned_planet = { 
+					limit = { 
+						has_planet_flag = prison_station
+						OR = {
+							num_pops < 30
+							NOT = { has_modifier = planet_population_control }
+						}
+					}
+					save_event_target_as = prison_station
+				}
+			}
+			
+			random_owned_pop = {
+				limit = {
+					has_job_category = worker
+				}
+				resettle_pop = {
+					pop = this
+					planet = event_target:prison_station
+				}
+			}
+			
+			create_message = {
+				type = FELONY_TRANSPORT
+				localization = FELONY_TRANSPORT_DESC
+				days = 30
+					target = THIS
+				variable = {
+					type = name
+					localization = PLANET
+					scope = this
+				}
+				variable = {
+						type = name
+						localization = PRISON
+						scope = event_target:prison_station
+				}
+			}
+		}
+	}
+}
+
+#The Alien
+planet_event = {
+	id = planetarystations_colony_event.6
+	title = "planetarystations_colony_event.6.name"
+	desc = {
+		text = planetarystations_colony_event.6.desc.normal
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+	desc = {
+		text = planetarystations_colony_event.6.desc.gestalt
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+	}
+	picture = GFX_evt_planetary_station
+	show_sound = event_mystic_reveal
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		random_list = {
+			20 = {
+				#The Pet
+				modifier = {
+					factor = 0
+					owner = { is_gestalt = yes }
+				}
+				planet_event = { id = planetarystations_colony_event.7 days = 30 random = 15 }
+			}
+			40 = {
+				#The First Victims
+				modifier = {
+					factor = 0
+					owner = { is_gestalt = yes }
+				}
+				planet_event = { id = planetarystations_colony_event.8 days = 90 random = 30 }
+			}
+			40 = {
+				#The Threat Within
+				modifier = {
+					factor = 0
+					owner = { is_gestalt = no }
+				}
+				planet_event = { id = planetarystations_colony_event.9 days = 90 random = 30 }
+			}
+		}
+	}
+	
+	option = {
+		name = INTERESTING
+	}
+}
+
+#The Pet
+planet_event = {
+	id = planetarystations_colony_event.7
+	title = "planetarystations_colony_event.7.name"
+	desc = "planetarystations_colony_event.7.desc"
+	picture = GFX_evt_planetary_station
+	show_sound = event_mystic_reveal
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = planetary_station
+	}
+	
+	option = {
+		name = INCREDIBLE
+		add_modifier = {
+			modifier = station_mascot
+			days = 3600
+		}
+	}
+}
+
+#The First Victims
+planet_event = {
+	id = planetarystations_colony_event.8
+	title = "planetarystations_colony_event.8.name"
+	desc = "planetarystations_colony_event.8.desc"
+	picture = GFX_evt_station_invasion
+	show_sound = event_mystic_reveal
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = aura_of_fear
+			days = -1
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.8.a
+		tooltip = {
+			add_modifier = {
+				modifier = aura_of_fear
+				days = -1
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "ALIEN_HUNTING_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.8.b
+		tooltip = {
+			add_modifier = {
+				modifier = aura_of_fear
+				days = -1
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "SPECIAL_FORCES_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+#The Unidentified Intruder
+planet_event = {
+	id = planetarystations_colony_event.9
+	title = "planetarystations_colony_event.9.name"
+	desc = "planetarystations_colony_event.9.desc"
+	picture = GFX_evt_station_invasion
+	show_sound = event_mystic_reveal
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = yes }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = unidentified_intruder
+			days = -1
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.9.a
+		tooltip = {
+			add_modifier = {
+				modifier = unidentified_intruder
+				days = -1
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "SECURITY_PROTOCOL_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.9.b
+		tooltip = {
+			add_modifier = {
+				modifier = unidentified_intruder
+				days = -1
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "ANTIINVASION_GROUP_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+#Special Project Completed - The creature has been eliminated
+planet_event = {
+	id = planetarystations_colony_event.10
+	title = "planetarystations_colony_event.10.name"
+	desc = "planetarystations_colony_event.10.desc"
+	picture = GFX_evt_interior_battle
+	show_sound = event_ground_battle
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		remove_modifier = aura_of_fear
+	}
+	
+	option = {
+		name = INCREDIBLE
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_research_option = tech_morphogenetic_field_mastery
+			add_tech_progress = {
+				tech = tech_morphogenetic_field_mastery
+				progress = 0.1
+			}
+		}
+	}
+}
+
+#Special Project Completed - The squad was destroyed
+planet_event = {
+	id = planetarystations_colony_event.11
+	title = "planetarystations_colony_event.11.name"
+	desc = "planetarystations_colony_event.11.desc"
+	picture = GFX_evt_derelict_interior
+	show_sound = event_ground_battle
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		random_planet_army = {
+			limit = {
+				is_owned_by = planet.owner
+			}
+			remove_army = yes
+		}
+		random_planet_army = {
+			limit = {
+				is_owned_by = planet.owner
+			}
+			remove_army = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.11.a
+		tooltip = {
+			random_planet_army = {
+				limit = {
+					is_owned_by = planet.owner
+				}
+				remove_army = yes
+			}
+			random_planet_army = {
+				limit = {
+					is_owned_by = planet.owner
+				}
+				remove_army = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "ALIEN_HUNTING_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.11.b
+		tooltip = {
+			random_planet_army = {
+				limit = {
+					is_owned_by = planet.owner
+				}
+				remove_army = yes
+			}
+			random_planet_army = {
+				limit = {
+					is_owned_by = planet.owner
+				}
+				remove_army = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "SPECIAL_FORCES_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+#Special Project Completed - Alien Attack
+planet_event = {
+	id = planetarystations_colony_event.12
+	title = "planetarystations_colony_event.12.name"
+	desc = "planetarystations_colony_event.12.desc"
+	picture = GFX_evt_station_invasion
+	show_sound = event_red_alert
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		remove_modifier = aura_of_fear
+		owner = { set_country_flag = aliens_invade_country }
+		set_planet_flag = aliens_invade_planet
+		create_country = {
+			name = "NAME_Alien_Creatures"
+			type = faction
+			effect = {
+				establish_communications_no_message = root.owner
+			}
+		}
+		create_army = {
+			name = "NAME_Alien_Creatures"
+			owner = last_created_country
+			type = "alien_army"
+		}
+		create_army = {
+			name = "NAME_Alien_Creatures"
+			owner = last_created_country
+			type = "alien_army"
+		}
+		create_army = {
+			name = "NAME_Alien_Creatures"
+			owner = last_created_country
+			type = "alien_army"
+		}
+			
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.12.a
+		custom_tooltip = aliens_attack
+		tooltip = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+}
+
+#Special Project Fail - The horrors continue
+planet_event = {
+	id = planetarystations_colony_event.13
+	title = "planetarystations_colony_event.13.name"
+	desc = "planetarystations_colony_event.13.desc"
+	picture = GFX_evt_derelict_interior
+	show_sound = event_ground_battle
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.13.a
+		tooltip = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "ALIEN_HUNTING_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.13.b
+		tooltip = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "SPECIAL_FORCES_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+# Victory over Aliens
+country_event = {
+	id = planetarystations_colony_event.14
+	title = "planetarystations_colony_event.14.name"
+	desc = "planetarystations_colony_event.14.desc"
+	picture = GFX_evt_interior_battle
+	show_sound = event_ground_battle
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_gestalt = no
+		has_country_flag = aliens_invade_country
+		FROMFROM = { has_planet_flag = aliens_invade_planet }
+	}
+
+	immediate = {
+		remove_country_flag = aliens_invade_country
+		FROMFROM = {
+			remove_planet_flag = aliens_invade_planet
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+			add_research_option = tech_morphogenetic_field_mastery
+			add_tech_progress = {
+				tech = tech_morphogenetic_field_mastery
+				progress = 0.2
+			}
+		}
+	}
+}
+
+#Special Project Completed - The creature has been eliminated
+planet_event = {
+	id = planetarystations_colony_event.15
+	title = "planetarystations_colony_event.15.name"
+	desc = "planetarystations_colony_event.15.desc"
+	picture = GFX_evt_interior_battle
+	show_sound = event_ground_battle
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = yes }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		remove_modifier = unidentified_intruder
+	}
+	
+	option = {
+		name = OK
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_research_option = tech_morphogenetic_field_mastery
+			add_tech_progress = {
+				tech = tech_morphogenetic_field_mastery
+				progress = 0.1
+			}
+		}
+	}
+}
+
+#Special Project Completed - The squad was destroyed
+planet_event = {
+	id = planetarystations_colony_event.16
+	title = "planetarystations_colony_event.16.name"
+	desc = "planetarystations_colony_event.16.desc"
+	picture = GFX_evt_derelict_interior
+	show_sound = event_ground_battle
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = yes }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		random_planet_army = {
+			limit = {
+				is_owned_by = planet.owner
+			}
+			remove_army = yes
+		}
+		random_planet_army = {
+			limit = {
+				is_owned_by = planet.owner
+			}
+			remove_army = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.16.a
+		tooltip = {
+			random_planet_army = {
+				limit = {
+					is_owned_by = planet.owner
+				}
+				remove_army = yes
+			}
+			random_planet_army = {
+				limit = {
+					is_owned_by = planet.owner
+				}
+				remove_army = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "ALIEN_HUNTING_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.16.b
+		tooltip = {
+			random_planet_army = {
+				limit = {
+					is_owned_by = planet.owner
+				}
+				remove_army = yes
+			}
+			random_planet_army = {
+				limit = {
+					is_owned_by = planet.owner
+				}
+				remove_army = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "SPECIAL_FORCES_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+#Special Project Completed - Alien Attack
+planet_event = {
+	id = planetarystations_colony_event.17
+	title = "planetarystations_colony_event.17.name"
+	desc = "planetarystations_colony_event.17.desc"
+	picture = GFX_evt_station_invasion
+	show_sound = event_red_alert
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		remove_modifier = unidentified_intruder
+		owner = { set_country_flag = aliens_invade_country }
+		set_planet_flag = aliens_invade_planet
+		create_country = {
+			name = "NAME_Alien_Creatures"
+			type = faction
+			effect = {
+				establish_communications_no_message = root.owner
+			}
+		}
+		create_army = {
+			name = "NAME_Alien_Creatures"
+			owner = last_created_country
+			type = "alien_army"
+		}
+		create_army = {
+			name = "NAME_Alien_Creatures"
+			owner = last_created_country
+			type = "alien_army"
+		}
+		create_army = {
+			name = "NAME_Alien_Creatures"
+			owner = last_created_country
+			type = "alien_army"
+		}
+			
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.17.a
+		custom_tooltip = aliens_attack
+		tooltip = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+}
+
+#Special Project Fail - The horrors continue
+planet_event = {
+	id = planetarystations_colony_event.18
+	title = "planetarystations_colony_event.18.name"
+	desc = "planetarystations_colony_event.18.desc"
+	picture = GFX_evt_derelict_interior
+	show_sound = event_ground_battle
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = yes }
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.18.a
+		tooltip = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "ALIEN_HUNTING_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.18.b
+		tooltip = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "SPECIAL_FORCES_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+# Victory over Aliens
+country_event = {
+	id = planetarystations_colony_event.19
+	title = "planetarystations_colony_event.19.name"
+	desc = "planetarystations_colony_event.19.desc"
+	picture = GFX_evt_interior_battle
+	show_sound = event_ground_battle
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_gestalt = yes
+		has_country_flag = aliens_invade_country
+		FROMFROM = { has_planet_flag = aliens_invade_planet }
+	}
+
+	immediate = {
+		remove_country_flag = aliens_invade_country
+		FROMFROM = {
+			remove_planet_flag = aliens_invade_planet
+		}
+	}
+
+	option = {
+		name = OK
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+			add_research_option = tech_morphogenetic_field_mastery
+			add_tech_progress = {
+				tech = tech_morphogenetic_field_mastery
+				progress = 0.2
+			}
+		}
+	}
+}
+
+#Power grid failures
+planet_event = {
+	id = planetarystations_colony_event.20
+	title = "planetarystations_colony_event.20.name"
+	desc = "planetarystations_colony_event.20.desc"
+	picture = GFX_evt_glitchy_matrix
+	show_sound = event_yellow_alert
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = energy_station
+	}
+	
+	option = {
+		name = planetarystations_colony_event.20.a
+		trigger = { owner = { has_resource = { type = alloys amount >= 500 } } }
+		add_modifier = {
+			modifier = energy_leak
+			days = 1800
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.20.b
+		trigger = { owner = { has_resource = { type = alloys amount >= 500 } } }
+		owner = {
+			add_resource = {
+				alloys = -500
+			}
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.20.c
+		trigger = { owner = { has_resource = { type = alloys amount < 500 } } }
+		add_modifier = {
+			modifier = energy_leak
+			days = 1800
+		}
+	}
+}
+
+#Mineral depletion
+planet_event = {
+	id = planetarystations_colony_event.21
+	title = "planetarystations_colony_event.21.name"
+	desc = "planetarystations_colony_event.21.desc"
+	picture = GFX_evt_mining_operations
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_mineral_lodes
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = mineral_poor
+			days = -1
+		}
+	}
+	
+	option = {
+		name = UNFORTUNATE
+		tooltip = {
+			add_modifier = {
+				modifier = mineral_poor
+				days = -1
+			}
+		}
+	}
+}
+
+#Rich deposits
+planet_event = {
+	id = planetarystations_colony_event.22
+	title = "planetarystations_colony_event.22.name"
+	desc = "planetarystations_colony_event.22.desc"
+	picture = GFX_evt_mining_operations
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_mineral_lodes
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = mineral_rich
+			days = -1
+		}
+	}
+	
+	option = {
+		name = GOOD
+		tooltip = {
+			add_modifier = {
+				modifier = mineral_rich
+				days = -1
+			}
+		}
+	}
+}
+
+#Lode is over
+planet_event = {
+	id = planetarystations_colony_event.23
+	title = "planetarystations_colony_event.23.name"
+	desc = "planetarystations_colony_event.23.desc"
+	picture = GFX_evt_mining_operations
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_mineral_lodes
+	}
+	
+	immediate = {
+		remove_deposit = d_mineral_lodes
+	}
+	
+	option = {
+		name = UNFORTUNATE
+		tooltip = {
+			remove_deposit = d_mineral_lodes
+		}
+	}
+}
+
+#Ore vein found
+planet_event = {
+	id = planetarystations_colony_event.24
+	title = "planetarystations_colony_event.24.name"
+	desc = "planetarystations_colony_event.24.desc"
+	picture = GFX_evt_mining_operations
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		add_deposit = d_mineral_lodes
+	}
+	
+	option = {
+		name = GOOD
+		tooltip = {
+			add_deposit = d_mineral_lodes
+		}
+	}
+}
+
+#Anomaly
+planet_event = {
+	id = planetarystations_colony_event.25
+	title = "planetarystations_colony_event.25.name"
+	desc = "planetarystations_colony_event.25.desc"
+	picture = GFX_evt_physics_research
+	show_sound = event_laboratory_sound
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = research_station
+	}
+	
+	immediate = {
+		add_deposit = d_dark_matter_formation
+	}
+	
+	option = {
+		name = GOOD
+		tooltip = {
+			add_deposit = d_dark_matter_formation
+		}
+	}
+}
+
+#Odd life forms
+planet_event = {
+	id = planetarystations_colony_event.26
+	title = "planetarystations_colony_event.26.name"
+	desc = "planetarystations_colony_event.26.desc"
+	picture = GFX_evt_microscopic_life
+	show_sound = event_laboratory_sound
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		add_deposit = d_odd_life_forms
+	}
+	
+	option = {
+		name = GOOD
+		tooltip = {
+			add_deposit = d_odd_life_forms
+		}
+	}
+}
+
+#Alien Wreckage
+planet_event = {
+	id = planetarystations_colony_event.27
+	title = "planetarystations_colony_event.27.name"
+	desc = "planetarystations_colony_event.27.desc"
+	picture = GFX_evt_relic_shipyard
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = planetary_station
+	}
+	
+	immediate = {
+		add_deposit = d_alien_wreckage
+	}
+	
+	option = {
+		name = GOOD
+		tooltip = {
+			add_deposit = d_alien_wreckage
+		}
+	}
+}
+
+#Critical accident
+planet_event = {
+	id = planetarystations_colony_event.28
+	title = "planetarystations_colony_event.28.name"
+	desc = "planetarystations_colony_event.28.desc"
+	picture = GFX_evt_shattered_planet
+	show_sound = event_structural_collapse
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = research_station
+	}
+	
+	option = {
+		name = TERRIBLE
+		custom_tooltip = planetary_station_destroyed
+		hidden_effect = {
+			destroy_planetary_station = yes
+		}
+		change_pc = pc_broken
+	}
+}
+
+#Rising Corruption
+planet_event = {
+	id = planetarystations_colony_event.29
+	title = "planetarystations_colony_event.29.name"
+	desc = "planetarystations_colony_event.29.desc"
+	picture = GFX_evt_dark_alley
+	show_sound = event_mystic_reveal
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = civil_station
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = rising_corruption
+			days = 3600
+		}
+	}
+	
+	option = {
+		name = UNFORTUNATE
+		tooltip = {
+			add_modifier = {
+				modifier = rising_corruption
+				days = 3600
+			}
+		}
+	}
+}
+
+#Overloading transport hubs
+planet_event = {
+	id = planetarystations_colony_event.30
+	title = "planetarystations_colony_event.30.name"
+	desc = "planetarystations_colony_event.30.desc"
+	picture = GFX_evt_cargoship_caravan
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = civil_station
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = overloading_transport_hubs
+			days = 1800
+		}
+	}
+	
+	option = {
+		name = UNFORTUNATE
+		tooltip = {
+			add_modifier = {
+				modifier = overloading_transport_hubs
+				days = 1800
+			}
+		}
+	}
+}
+
+#Advantageous location
+planet_event = {
+	id = planetarystations_colony_event.31
+	title = "planetarystations_colony_event.31.name"
+	desc = "planetarystations_colony_event.31.desc"
+	picture = GFX_evt_financial_instruments
+	show_sound = event_factions
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = civil_station
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = advantageous_location
+			days = 1800
+		}
+	}
+	
+	option = {
+		name = GOOD
+		tooltip = {
+			add_modifier = {
+				modifier = advantageous_location
+				days = 1800
+			}
+		}
+	}
+}
+
+#Prisoner Revolt
+planet_event = {
+	id = planetarystations_colony_event.32
+	title = "planetarystations_colony_event.32.name"
+	desc = "planetarystations_colony_event.32.desc"
+	picture = GFX_evt_open_revolt
+	show_sound = event_planetary_riot
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = prison_station
+	}
+	
+	immediate = {
+		add_modifier = {
+			modifier = prisoner_revolt
+			days = -1
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.32.a
+		tooltip = {
+			add_modifier = {
+				modifier = prisoner_revolt
+				days = -1
+			}
+		}
+		enable_special_project = {
+			name = "RIOT_CONTROL_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.32.b
+		tooltip = {
+			add_modifier = {
+				modifier = prisoner_revolt
+				days = -1
+			}
+		}
+		enable_special_project = {
+			name = "LIQUIDATOR_SQUAD_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+#Special Project Completed - Revolt crushed
+planet_event = {
+	id = planetarystations_colony_event.33
+	title = "planetarystations_colony_event.33.name"
+	desc = "planetarystations_colony_event.33.desc"
+	picture = GFX_evt_station_invasion
+	show_sound = event_planetary_riot
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = prison_station
+	}
+	
+	immediate = {
+		remove_modifier = prisoner_revolt
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = GOOD
+		tooltip = {
+			remove_modifier = prisoner_revolt
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+}
+
+#Special Project Completed - Revolt continues
+planet_event = {
+	id = planetarystations_colony_event.34
+	title = "planetarystations_colony_event.34.name"
+	desc = "planetarystations_colony_event.34.desc"
+	picture = GFX_evt_station_invasion
+	show_sound = event_planetary_riot
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = prison_station
+	}
+	
+	immediate = {
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.34.a
+		tooltip = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "RIOT_CONTROL_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+	
+	option = {
+		name = planetarystations_colony_event.34.b
+		tooltip = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		enable_special_project = {
+			name = "LIQUIDATOR_SQUAD_PROJECT"
+			location = this
+			owner = root
+		}
+	}
+}
+
+#Special Project Completed - The rioters were eliminated
+planet_event = {
+	id = planetarystations_colony_event.35
+	title = "planetarystations_colony_event.35.name"
+	desc = "planetarystations_colony_event.35.desc"
+	picture = GFX_evt_interior_battle
+	show_sound = event_ground_battle
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = prison_station
+	}
+	
+	immediate = {
+		remove_modifier = prisoner_revolt
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = GOOD
+		tooltip = {
+			remove_modifier = prisoner_revolt
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+}
+
+#Special Project Fail - Armed insurrection
+planet_event = {
+	id = planetarystations_colony_event.36
+	title = "planetarystations_colony_event.36.name"
+	desc = "planetarystations_colony_event.36.desc"
+	picture = GFX_evt_open_revolt
+	show_sound = event_planetary_riot
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		has_planet_flag = prison_station
+	}
+	
+	immediate = {
+		owner = { set_country_flag = prisoner_revolt_country }
+		set_planet_flag = prisoner_revolt_planet
+		create_country = {
+			name = "NAME_Rebellious_Prisoners"
+			type = faction
+			effect = {
+				establish_communications_no_message = root.owner
+				set_country_flag = rebellious_prisoners
+			}
+		}
+		while = {
+			count = 10
+			create_army = {
+				name = "NAME_Rebellious_Prisoners"
+				owner = last_created_country
+				type = "prisoner_army"
+			}
+		}
+			
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+	
+	option = {
+		name = TERRIBLE
+		custom_tooltip = prisoner_attack
+		tooltip = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+}
+
+# The Rebels have won
+planet_event = {
+	id = planetarystations_colony_event.37
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		fromfrom = { has_country_flag = rebellious_prisoners }
+	}
+
+	immediate = {
+		remove_modifier = prisoner_revolt
+		random_list = {
+			50 = {	
+				owner = {
+					remove_country_flag = prisoner_revolt_country
+					country_event = { id = planetarystations_colony_event.38 days = 1 }
+				}
+				create_country = {
+					name = random
+					species = root.owner.species
+					type = default
+					ethos = root.owner
+					authority = auth_corporate  
+					civics = {
+						civic = civic_criminal_heritage
+						civic = random
+					}
+					flag = random
+				}
+				last_created_country = {
+					establish_communications_no_message = root.owner
+				}
+				
+				remove_planet_flag = prison_station
+				remove_planet_flag = prisoner_revolt_planet
+				validate_planet_buildings_and_districts = yes
+				
+				set_owner = last_created_country
+				set_controller = last_created_country
+					
+				every_planet_army = {
+					limit = { army_type = prisoner_army }
+					modify_army = {
+						name = random
+						type = defense_army
+					}
+					set_owner = last_created_country
+				}
+				# flip starbase
+				solar_system = {
+					if = {
+						limit = { exists = starbase }
+						starbase = { set_owner = last_created_country }
+					}
+				}
+			}
+			50 = {
+				planet_event = { id = planetarystations_colony_event.40 days = 1 }
+				owner = { remove_country_flag = prisoner_revolt_country }
+				remove_planet_flag = prisoner_revolt_planet
+			}
+		}
+	}
+}
+
+#The station is overrun
+country_event = {
+	id = planetarystations_colony_event.38
+	title = "planetarystations_colony_event.38.name"
+	desc = "planetarystations_colony_event.38.desc"
+	picture = GFX_evt_planetary_station
+	show_sound = event_radio_chatter
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = UNFORTUNATE
+	}
+}
+
+# Victory over Rebellious Prisoners
+country_event = {
+	id = planetarystations_colony_event.39
+	title = "planetarystations_colony_event.39.name"
+	desc = "planetarystations_colony_event.39.desc"
+	picture = GFX_evt_interior_battle
+	show_sound = event_ground_battle
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	trigger = {
+		is_gestalt = no
+		has_country_flag = prisoner_revolt_country
+		FROMFROM = { has_planet_flag = prisoner_revolt_planet }
+	}
+
+	immediate = {
+		remove_modifier = prisoner_revolt
+		remove_country_flag = prisoner_revolt_country
+		FROMFROM = {
+			remove_planet_flag = prisoner_revolt_planet
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		tooltip = {
+			remove_modifier = prisoner_revolt
+		}
+	}
+}
+
+# Piracy in the prison system
+planet_event = {
+	id = planetarystations_colony_event.40
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			set_timed_country_flag = { flag = crime_pirates_spawned days = 3600 }
+			owner_species = { save_event_target_as = owner_species }
+			country_event = { id = planetarystations_colony_event.41 days = 1 }
+		}
+		solar_system = {
+			save_event_target_as = pirate_system
+			create_normal_pirate_country = yes
+			create_pirate_fleet = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+		random_owned_pop = {
+			kill_pop = yes
+		}
+	}
+}
+
+# Piracy in the prison system
+country_event = {
+	id = planetarystations_colony_event.41
+	title = "planetarystations_colony_event.41.name"
+	desc = "planetarystations_colony_event.41.desc"
+	picture = GFX_evt_pirates_attacking_cargo
+	show_sound = event_space_battle
+	location = root
+
+	is_triggered_only = yes
+
+	option = {
+		name = planetarystations_colony_event.41.a
+		custom_tooltip = planetarystations_colony_event.41.tooltip
+	}
+}
+
+# Cosmic Tour
+planet_event = {
+	id = planetarystations_colony_event.42
+	title = "planetarystations_colony_event.42.name"
+	desc = "planetarystations_colony_event.42.desc"
+	picture = GFX_evt_huge_monument
+	show_sound = event_factions
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+	}
+	
+	immediate = {
+		add_tourist_deposit = yes
+	}
+	
+	option = {
+		name = GOOD
+		custom_tooltip = add_tourist_deposit_effect
+	}
+}
+
+# Space Rush
+planet_event = {
+	id = planetarystations_colony_event.43
+	title = "planetarystations_colony_event.43.name"
+	desc = "planetarystations_colony_event.43.desc"
+	picture = GFX_evt_crystal_mining
+	show_sound = event_factions
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+	}
+	
+	immediate = {
+		add_prospector_deposit = yes
+	}
+	
+	option = {
+		name = GOOD
+		custom_tooltip = add_prospector_deposit_effect
+	}
+}
+
+# Trade Route
+planet_event = {
+	id = planetarystations_colony_event.44
+	title = "planetarystations_colony_event.44.name"
+	desc = "planetarystations_colony_event.44.desc"
+	picture = GFX_evt_tradestation_interior
+	show_sound = event_factions
+	location = ROOT
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		owner = { is_gestalt = no }
+		has_planet_flag = civil_station
+	}
+	
+	immediate = {
+	}
+	
+	option = {
+		name = GOOD
+		add_deposit = d_trading_route
+	}
+}

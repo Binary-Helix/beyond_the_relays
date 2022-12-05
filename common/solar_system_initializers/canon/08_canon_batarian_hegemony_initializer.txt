@@ -1,0 +1,1466 @@
+#############################
+##### BATARIAN HEGEMONY #####
+#############################
+
+##### KITE'S NEST #####
+
+sys_harsa_init = {
+    name = "Harsa"
+    class = sc_g
+	flags = { batarian_hegemony_system kites_nest_system harsa_system empire_home_system custom_system }
+	# init_effect = { 
+	# 	random_country = { 
+	# 		limit = { has_country_flag = batarian_hegemony } 
+	# 		save_global_event_target_as = batarian_hegemony
+	# 	}	
+	# generate_home_system_resources = yes
+	# }
+
+	usage = custom_empire
+	max_instances = 1
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}	
+
+    planet = {
+		name = "Harsa"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 15
+		flags = { harsa_star }
+    }
+
+    planet = {
+        name = "Dezda"
+        class = pc_barren
+        orbit_distance = 100
+        orbit_angle = 219
+        size = 3
+        has_ring = no
+		flags = { dezda_planet btr_custom }
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_2
+		}	
+    }
+
+    planet = {
+        name = "Khar'shan"
+        class = pc_savannah
+        orbit_distance = 100
+        orbit_angle = 130
+        size = 13
+        has_ring = no			
+		starting_planet = yes
+
+		deposit_blockers = none
+		modifiers = none
+		flags = { kharshan_planet btr_custom }
+		entity = "steppe_planet_02_entity"
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = steppe_world
+		# 		days = -1
+		# 	}
+		# 	prevent_anomaly = yes
+		# 	set_global_flag = batarian_homeworld_spawned
+		# 	if = {
+		# 		limit = { NOT = { any_country = { has_country_flag = batarian_hegemony } } }
+		# 		create_species = { 
+		# 			name = "Batarian"
+		# 			class = BAT
+		# 			portrait = batarian
+		# 			#homeworld = THIS 
+		# 			traits = { 
+		# 			 trait = batarian_trait_core
+		# 			 trait = batarian_trait_shrewd_business
+		# 			 trait = batarian_trait_enduring_physique
+		# 			 trait = batarian_trait_four_eyed
+		# 			# ideal_planet_class = "pc_continental"
+		# 			}
+		# 		  }
+		# 		  last_created_species = { save_global_event_target_as = batarianSpecies }
+		# 		create_country = {
+		# 			name = "Batarian Hegemony"
+		# 			ship_prefix = "PRESCRIPTED_ship_prefix_batarian_hegemony"
+		# 			type = default
+		# 			origin = batarian_heg_origin
+		# 			ignore_initial_colony_error = yes
+		# 			civics = { civic = batarian_all_mighty_state civic = batarian_caste_system }
+		# 			authority = auth_dictatorial
+		# 			name_list = "btr_batarian"
+		# 			ethos = { ethic = "ethic_fanatic_authoritarian" ethic = "ethic_xenophobe" }
+		# 			species = event_target:batarianSpecies
+		# 			flag = {
+		# 				icon={
+		# 					category="masseffect"
+		# 					file="Batarian Hegemony.dds"
+		# 				}
+		# 				background={
+		# 					category="backgrounds"
+		# 					file="00_solid.dds"
+		# 				}
+		# 				colors={
+		# 					"dark_brown"
+		# 					"grey"
+		# 					"null"
+		# 					"null"
+		# 				}
+		# 			}
+		# 			effect = {
+		# 				set_graphical_culture = reptilian_01
+		# 				set_country_flag = batarian_hegemony
+		# 				set_country_flag = init_spawned
+		# 				set_country_flag = custom_start_screen
+		# 				set_country_flag = canon_map
+		# 				save_global_event_target_as = batarian_hegemony
+		# 			}
+		# 		}
+		# 	}	
+		# 	set_capital = yes
+		# 	random_country = {
+		# 		limit = { has_country_flag = batarian_hegemony }
+		# 		save_global_event_target_as = batarian_hegemony
+		# 		species = { save_global_event_target_as = batarianSpecies }
+		# 	}
+		# 	set_owner = event_target:batarian_hegemony
+		# 	generate_btr_start_deposits_and_blockers = yes			
+		# 	generate_bat_kharshan_capitol_buildings = yes
+		# 	generate_bat_kharshan_pops = yes
+		# 	add_deposit = d_kharshan_qnobis
+		# 	add_deposit = d_kharshan_dizesh
+		# 	set_name = "Khar'shan"
+		# }		
+    }
+
+    planet = {
+        name = "Verush"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 223
+        has_ring = yes
+		size = 33
+		init_effect = {
+			set_planet_flag = verush_codex
+			add_deposit = d_exotic_gases_3
+			}
+
+		moon = {
+			name = "Verush a"
+			class = pc_iron
+			orbit_distance = 20
+			size = 8
+		}
+		moon = {
+			name = "Verush b"
+			class = pc_iron
+			orbit_distance = 5
+			size = 4
+		}
+		moon = {
+			name = "Bira"
+			class = pc_frozen
+			orbit_distance = 5
+			size = 10
+			flags = { btr_custom }
+			# init_effect = {
+			# 	set_owner = event_target:batarian_hegemony
+			# 	create_colony = {
+			# 		owner = event_target:batarian_hegemony
+			# 		species = event_target:batarianSpecies
+			# 		ethos = owner
+			# 	}
+			# 	generate_bat_bira_pops = yes
+			# 	generate_bat_bira_colony_buildings = yes	
+			# 	create_archaeological_site = btr_site_prothean_beacon_bats
+			# 	set_name = "Bira"		
+			# }
+		}				
+    }
+
+    planet = {
+        name = "Ilem"
+        class = pc_frozen
+        orbit_distance = 100
+        orbit_angle = 157
+        size = 5
+        has_ring = no
+		init_effect = {
+			add_deposit = d_engineering_3
+		}	
+    }
+
+    planet = {
+        name = "Spekilas"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 97
+        size = 19
+        has_ring = no
+		init_effect = {
+			add_deposit = d_physics_4
+		}	
+    }
+}
+
+sys_indris_init = {
+    name = "Indris"
+    class = sc_k
+	max_instances = 1
+
+	flags = { alliance_space_system kites_nest_system indris_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Indris"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 20
+		flags = { indris_star }
+    }
+
+    planet = {
+        name = "Cholis"
+        class = pc_hothouse
+        orbit_distance = 100
+        orbit_angle = 323
+        size = 24
+		has_ring = no
+		flags = { cholis_planet btr_custom }
+		init_effect = {
+			add_deposit = d_society_4
+		}	
+    }
+
+    planet = {
+        name = "Camala"
+        class = pc_desert
+        orbit_distance = 100
+        orbit_angle = 71
+        size = 12
+		has_ring = no
+		entity = "oasis_planet_04_entity"
+		flags = { camala_planet btr_custom }
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = oasis_world
+		# 		days = -1
+		# 	}
+		# 	add_deposit = d_rich_eezo_deposits
+		# 	add_deposit = d_rich_eezo_deposits
+
+		# 	set_owner = event_target:batarian_hegemony
+		# 	create_colony = {
+		# 		owner = event_target:batarian_hegemony
+		# 		species = event_target:batarianSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_bat_camala_pops = yes
+		# 	generate_bat_camala_colony_buildings = yes	
+
+		# 	set_name = "Camala"
+		# }
+    }
+
+    planet = {
+        name = "Ramlat"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 98
+        size = 11
+		has_ring = no
+		flags = { ramlat_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_9
+		}
+    }
+
+    planet = {
+        name = "Hiba"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 186
+        size = 34
+		has_ring = yes
+		flags = { hiba_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_3
+			add_deposit = d_exotic_gases_3
+		}
+    }
+
+	planet = {
+        name = "Kaver Station"
+        class = pc_habitat
+        orbit_distance = 50
+        orbit_angle = 186
+        size = 5
+		has_ring = no
+		flags = { kaver_station pd_commercial_hab }
+    }
+
+    planet = {
+        name = "Maklan"
+        class = pc_methane
+        orbit_distance = 50
+        orbit_angle = 138
+        size = 9
+		has_ring = no
+		flags = { maklan_planet btr_custom }
+		entity = "methane_arctic_planet_06_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = glacial_world
+				days = -1
+			}
+			# add_deposit = d_average_iridium_deposits
+			# add_deposit = d_average_palladium_deposits
+			add_deposit = d_rare_crystals_2
+		}
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "alliance_space_sector_8_secondaryrelay" 
+			name = "Bahanak Frontier Secondary - Sector 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_koshlanhk_init = {
+    name = "Koshlanhk"
+    class = sc_m
+	max_instances = 1
+	flags = { alliance_space_system kites_nest_system koshlanhk_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+    name = "Koshlanhk"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { koshlankh_star }
+    }
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 225
+		}
+		
+	planet = {
+		name = "Naribnost"
+		class = pc_carbon
+		orbit_distance = 150
+		size = 6
+		has_ring = no
+		flags = { naribnost_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_iridium_2
+			# add_deposit = d_platinum_3
+			add_deposit = d_rare_crystals_2
+		}
+	}
+
+	planet = {
+		name = "Larklesh"
+		class = pc_ammonia
+		orbit_distance = 150
+		size = 18
+		has_ring = yes
+		flags = { larklesh_planet btr_custom }
+		entity = "ammonia_arid_planet_06_entity"
+		init_effect = {
+			# add_deposit = d_palladium_2
+			add_deposit = d_rare_crystals_1
+			add_modifier = {
+				modifier = aquifer_world
+				days = -1
+			}		
+		}	
+	}
+
+	planet = {
+		name = "Khuramna"
+		class = pc_ice_giant
+		orbit_distance = 150
+		size = 31
+		has_ring = no
+		flags = { khuramna_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+		}			
+		moon = {  
+			name = "Khuramna a"
+			class = pc_asteroid
+			orbit_distance = 20
+			size = 2
+		}	
+		moon = {
+			name = "Khuramna b"
+			class = pc_asteroid
+			orbit_distance = 5
+			size = 2
+		}	
+		moon = {
+			name = "Khuramna Station"
+			class = pc_habitat
+			orbit_distance = 5
+			size = 2
+			flags = { khuramna_station pd_commercial_hab }
+			init_effect = {
+				add_deposit = d_trade_value_4
+			}
+		}	
+	}	
+}
+
+sys_vular_init = {
+    name = "Vular"
+    class = sc_g
+	max_instances = 1
+	flags = { alliance_space_system kites_nest_system vular_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Vular"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { vular_star }
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 350
+	}	
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 500
+	}	
+
+    planet = {
+        name = "Erszbat"
+        class = pc_savannah
+        orbit_distance = 150
+        orbit_angle = 5
+		size = 10
+		has_ring = no
+		flags = { erszbat_planet btr_custom }
+		entity = "medit_planet_09_entity"
+		# init_effect = {
+		# 	add_deposit = d_element_zero_1
+		# 	add_modifier = {
+		# 		modifier = mediter_world
+		# 		days = -1
+		# 	}
+		# 	set_owner = event_target:batarian_hegemony
+		# 	create_colony = {
+		# 		owner = event_target:batarian_hegemony
+		# 		species = event_target:batarianSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_bat_erzsbat_pops = yes
+		# 	generate_bat_erszbat_colony_buildings = yes	
+
+		# 	set_name = "Erszbat"		
+		# }
+    }
+
+    planet = {
+        name = "Azimir"
+        class = pc_gas_giant
+        orbit_distance = 150
+        orbit_angle = 147
+		size = 33
+		has_ring = yes
+		flags = { azimir_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+		}
+    }
+
+    planet = {
+        name = "Vana"
+        class = pc_frozen
+        orbit_distance = 150
+        orbit_angle = 71
+		size = 25
+		has_ring = no
+		flags = { vana_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_4
+		}
+    }	
+	
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "kitesnest_vipernebula_primaryrelay" 
+			name = "Bahanak Frontier Priamry - Kite 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_untrel_init = {
+    name = "Untrel"
+    class = sc_f
+	max_instances = 1
+	flags = { alliance_space_system kites_nest_system untrel_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Untrel"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 20
+		flags = { untrel_star}
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 425
+	}
+
+    planet = {
+        name = "Ezka"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 44
+		size = 16
+		has_ring = no
+		flags = { ezka_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_3
+			add_deposit = d_physics_3
+		}
+    }
+
+    planet = {
+        name = "Klos"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 315
+		size = 25
+		has_ring = no
+		flags = { klos_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_iridium_1
+			# add_deposit = d_platinum_4
+			# add_deposit = d_palladium_2
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_minerals_5
+		}
+	}
+
+    planet = {
+        name = "Adek"
+        class = pc_swamp
+        orbit_distance = 125
+        orbit_angle = 270
+        has_ring = no
+		size = 12
+		entity = "bog_planet_12_entity"
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = bog_world
+		# 		days = -1
+		# 	}
+		# 	set_owner = event_target:batarian_hegemony
+		# 	create_colony = {
+		# 		owner = event_target:batarian_hegemony
+		# 		species = event_target:batarianSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_bat_adek_pops = yes
+		# 	generate_bat_adek_colony_buildings = yes	
+
+		# 	set_name = "Adek"	
+		# }
+    }
+
+    planet = {
+        name = "Uza"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 256
+		size = 30
+		has_ring = no
+		flags = { uza_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+		}
+    }	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "kitesnest_llewynnebula_primaryrelay" 
+			name = "Bahanak Frontier Primary = Kite 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+#####DABO'S KNOT#####
+
+sys_gravnaz_init = {
+	name = "Grav'naz"
+	class = sc_a
+	max_instances = 1
+	flags = { alliance_space_system dabos_knot_system gravnaz_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	planet = {
+		name = "Grav'naz"
+		class = pc_a_star
+        orbit_distance = 0
+		size = 30
+		flags = { gravnaz_star }
+	}
+
+    planet = {
+        name = "Molga"
+        class = pc_molten
+        orbit_distance = 35
+        orbit_angle = 15
+        has_ring = no
+		size = 10
+		flags = { molga_planet btr_custom }
+    }
+
+    planet = {
+        name = "Rekk'ud"
+        class = pc_molten
+        orbit_distance = 25
+        orbit_angle = 181
+        has_ring = no
+		size = 14
+		flags = { rekkud_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_palladium_2
+			add_deposit = d_rare_crystals_2
+		}
+    }
+
+    planet = {
+        name = "Fragga"
+        class = pc_gas_giant
+        orbit_distance = 60
+        orbit_angle = 80
+        has_ring = no
+		size = 31
+		flags = { fragga_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+		}
+		moon = {
+			name = "Mught"
+			class = pc_alpine
+			orbit_distance = 8
+			has_ring = no
+			size = 7
+			flags = { mught_planet btr_custom }
+			entity = "highland_planet_03_entity"
+			# init_effect = {
+			# 	add_modifier = {
+			# 		modifier = highland_world
+			# 		days = -1
+			# 	}
+			# 	set_owner = event_target:batarian_hegemony
+			# 	create_colony = {
+			# 		owner = event_target:batarian_hegemony
+			# 		species = event_target:batarianSpecies
+			# 		ethos = owner
+			# 	}
+			# 	generate_bat_mught_pops = yes
+			# 	generate_bat_mught_colony_buildings = yes	
+	
+			# 	set_name = "Mught"		
+			# }
+		}
+    }	
+
+	planet = {
+		name = "Ygdra"
+		class = pc_ice_giant
+        orbit_distance = 45
+		has_ring = yes
+		size = 30
+		flags = { ygdra_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_1
+			add_deposit = d_exotic_gases_1
+		}
+	}
+
+	planet = {
+		name = "Jorastan"
+		class = pc_ice_giant
+        orbit_distance = 30
+		has_ring = no
+		size = 28
+		flags = { jorastan_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+
+		}
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "dabosknot_merariring_primaryrelay" 
+			name = "Dabo 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_shuoma_init = {
+	name = "Shuoma"
+	class = sc_m
+	max_instances = 1
+	flags = { alliance_space_system dabos_knot_system shuoma_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+	
+	planet = {
+		name = "Shuoma"
+		class = pc_m_star
+        orbit_distance = 0
+		size = 20
+		flags = { shuoma_star }
+	}
+
+	planet = {
+       	name = "Bumi"
+       	class = pc_ammonia
+       	orbit_distance = 100
+       	orbit_angle = 2
+		size = 17
+	   	has_ring = no
+		flags = { bumi_planet btr_custom }
+		entity = "ammonia_continental_planet_01_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = prairie_world
+				days = -1
+			}
+			# add_deposit = d_average_iridium_deposits
+			# add_deposit = d_rich_mineral_deposits
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_9
+		}
+	}
+	
+	planet = {
+	    name = "Sec Tur"
+	    class = pc_barren
+	    orbit_distance = 100
+	    orbit_angle = 87
+		size = 21
+	    has_ring = no   
+		flags = { sectur_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_poor_palladium_deposits
+			# add_deposit = d_average_mineral_deposits
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_minerals_3
+		}
+	}
+	
+	planet = {
+        name = "Nukvarn"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 207
+		size = 35
+		has_ring = yes
+		flags = { nukvarn_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_4
+			add_deposit = d_exotic_gases_4
+
+		}
+		moon = {
+            name = "Makrag"
+            class = pc_carbon
+            orbit_distance = 20
+            orbit_angle = 200
+            has_ring = no
+            size = 3
+			flags = { makrag_planet btr_custom }
+			init_effect = {
+				# add_deposit = d_iridium_3
+				# add_deposit = d_platinum_1
+				# add_deposit = d_palladium_2
+				add_deposit = d_rare_crystals_3
+	
+			}
+		}
+		moon = {
+            name = "Gorbak'pa"
+            class = pc_frozen
+            orbit_distance = 5
+            orbit_angle = 359
+            has_ring = no
+            size = 5
+			flags = { gorbakpa_planet btr_custom }
+			init_effect = {
+				# add_deposit = d_platinum_2
+				add_deposit = d_rare_crystals_1
+				add_deposit = d_minerals_8
+			}
+        }
+	}
+	
+	planet = {
+        name = "Ghra'da"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 2
+		size = 35
+		has_ring = no
+		flags = { ghrada_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+
+		}
+		moon = {
+            name = "Orn'Tvarn"
+            class = pc_methane
+            orbit_distance = 20
+            orbit_angle = 189
+            has_ring = no
+			size = 4
+			entity = "methane_ocean_planet_05_entity"
+			flags = { orntvarn_planet btr_custom }
+			init_effect = {
+				add_modifier = {
+					modifier = coldocean_world
+					days = -1
+				}
+				# add_deposit = d_element_zero_3
+				add_deposit = d_zro_deposit_3
+			}
+        }
+	}
+	
+	planet = {
+        name = "Qdurn"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 84
+		size = 30
+        has_ring = no
+		flags = { qdurn_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_element_zero_2
+			# add_deposit = d_helium_3_1
+			add_deposit = d_zro_deposit_2
+			add_deposit = d_exotic_gases_3
+		}
+		moon = {
+            name = "Nefari"
+            class = pc_barren
+            orbit_distance = 20
+            orbit_angle = 90
+            has_ring = no
+			size = 10
+			flags = { nefari_planet pd_mining_hab }
+			# init_effect = {
+			# 	set_owner = event_target:batarian_hegemony
+			# 	create_colony = {
+			# 		owner = event_target:batarian_hegemony
+			# 		species = event_target:batarianSpecies
+			# 		ethos = owner
+			# 	}
+			# 	generate_bat_nefari_pops = yes
+			# 	generate_bat_nefari_colony_buildings = yes	
+	
+			# 	set_name = "Nefari"		
+			# }
+		}
+    }
+}
+
+#####LOBAR'TER CLUSTER#####
+sys_foillavas_init = {
+    name = "Foilla'vas"
+    class = sc_g
+	max_instances = 1
+	flags = { alliance_space_system lobarter_cluster_system foillavas_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+    name = "Foilla'vas"	
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+    }
+	
+	planet = {
+		name = "Dukraar"
+		class = pc_swamp
+        orbit_distance = 250
+		size = 18
+		flags = { dukraar_planet btr_custom }
+		entity = "marsh_planet_02_entity"
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = marsh_world
+		# 		days = -1
+		# 	}
+		# 	set_owner = event_target:batarian_hegemony
+		# 	create_colony = {
+		# 		owner = event_target:batarian_hegemony
+		# 		species = event_target:batarianSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_bat_dukraar_pops = yes
+		# 	generate_bat_dukraar_colony_buildings = yes	
+
+		# 	set_name = "Dukraar"		
+		# }
+	}
+}
+
+sys_ruotht_init = {
+    name = "Ruotht"
+    class = sc_g
+	max_instances = 1
+	flags = { alliance_space_system lobarter_cluster_system ruotht_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+    name = "Ruotht"	
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+    }
+	
+	planet = {
+		name = "Tikk'ud"
+		class = pc_molten
+        orbit_distance = 150
+		size = 10
+		flags = { tikkud_planet btr_custom }
+		# init_effect = {
+		# 	set_owner = event_target:batarian_hegemony
+		# 	create_colony = {
+		# 		owner = event_target:batarian_hegemony
+		# 		species = event_target:batarianSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_bat_tikkud_pops = yes
+		# 	generate_bat_tikkud_colony_buildings = yes	
+
+		# 	set_name = "Tikk'ud"		
+		# }
+	}
+
+	planet = {
+		name = "Qetta"
+		class = pc_gas_giant
+        orbit_distance = 150
+		size = 17
+		flags = { qetta_planet btr_custom }
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+	}
+
+	planet = {
+		name = "Fhargon"
+		class = pc_highgrav_methane
+        orbit_distance = 150
+		size = 25
+		entity = "methane_savannah_planet_11_entity"
+		flags = { fhargon_planet btr_custom }
+		init_effect = {
+			add_modifier = {
+				modifier = steppe_world
+				days = -1
+			}
+		}
+	}
+}
+
+#####OMEGA NEBULA#####
+
+sys_fathar_init = {
+    name = "Fathar"
+    class = sc_m
+	max_instances = 1
+	flags = { terminus_system omega_nebula_system fathar_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Fathar"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 23
+    }
+
+    planet = {
+        name = "Lorek"
+        class = pc_ocean
+        orbit_distance = 150
+        orbit_angle = 327
+        has_ring = no
+		size = 16
+		entity = "hotocean_planet_05_entity"
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = hotocean_world
+		# 		days = -1
+		# 	}
+		# 	add_modifier = {
+		# 		modifier = tidal_locked
+		# 		days = -1
+		# 	}
+		# 	set_owner = event_target:batarian_hegemony
+		# 	create_colony = {
+		# 		owner = event_target:batarian_hegemony
+		# 		species = event_target:batarianSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_bat_lorek_pops = yes
+		# 	generate_bat_lorek_colony_buildings = yes	
+
+		# 	set_name = "Lorek"		
+		# }
+    }
+
+    planet = {
+        name = "Korar"
+        class = pc_barren_cold
+        orbit_distance = 150
+        orbit_angle = 257
+        has_ring = no
+		size = 4
+		init_effect = {
+			add_deposit = d_minerals_6
+		}	
+    }
+
+    planet = {
+        name = "Dorgal"
+        class = pc_methane
+        orbit_distance = 150
+        orbit_angle = 262
+        has_ring = no
+		size = 9
+		entity = "methane_ocean_planet_07_entity"
+		init_effect = {
+			add_deposit = d_rare_crystals_4
+			add_deposit = d_society_3
+			add_modifier = {
+				modifier = coldocean_world
+				days = -1
+			}
+		}
+    }
+}
+
+#####PETRA NEBULA#####
+
+sys_urdupos_init = {
+    name = "Urdu'pos" 
+    class = sc_k
+	max_instances = 1
+	flags = { alliance_space_system petra_nebula_system urdupos_system btr_system custom_system }
+
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 425
+	}
+
+    planet = {
+	    name = "Urdu'pos"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 30
+    }
+
+    planet = {
+        name = "Porlon"
+        class = pc_molten
+        orbit_distance = 125
+        orbit_angle = 222
+		size = 12
+        has_ring = no
+		flags = { porlon_planet btr_custom }
+    }
+
+    planet = {
+        name = "Juxhi"
+        class = pc_alpine
+        orbit_distance = 125
+        orbit_angle = 267
+		size = 14
+        has_ring = no
+		entity = "cascadian_planet_06_entity"
+		flags = { juxhi_planet btr_custom }
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = cascadian_world
+		# 		days = -1
+		# 	}
+		# 	add_deposit = d_element_zero_2
+		# 	set_owner = event_target:batarian_hegemony
+		# 	create_colony = {
+		# 		owner = event_target:batarian_hegemony
+		# 		species = event_target:batarianSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_bat_juxhi_pops = yes
+		# 	generate_bat_juxhi_colony_buildings = yes	
+		# 	set_name = "Juxhi"	
+		# }
+		moon = {
+			name = "Yando"
+			class = pc_barren
+			orbit_distance = 20
+			orbit_angle = 172
+			size = 7
+			has_ring = no
+			flags = { yando_planet btr_custom }
+			init_effect = {
+				add_deposit = d_minerals_2
+			}	
+		}
+		moon = {
+			name = "Budmi"
+			class = pc_arctic
+			orbit_distance = 5
+			orbit_angle = 172
+			size = 5
+			has_ring = no
+			entity = "cryovolcanic_planet_03_entity"
+			flags = { yando_planet btr_custom }
+			init_effect = {
+				add_deposit = d_zro_deposit_1
+				add_modifier = {
+					modifier = cryovolcanic_world
+					days = -1
+				}
+			}
+		}
+    }
+
+	planet = {
+        name = "Siav'man"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 172
+		size = 28
+        has_ring = yes
+		flags = { siavman_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_3
+		}	
+    }
+
+    planet = {
+        name = "Qonfod"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 172
+		size = 19
+        has_ring = no
+		flags = { qonfod_planet btr_custom }
+		init_effect = {
+			add_deposit = d_exotic_gases_4
+		}	
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "petranebula_llewynnebula_primaryrelay" 
+			name = "Skyllian Verge Primary - Petra 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+#####VIPER NEBULA#####
+
+sys_bahak_init = {
+    name = "Bahak"
+    class = sc_g
+	max_instances = 1
+	flags = { alliance_space_system viper_nebula_system bahak_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+	
+    planet = {
+		name = "Bahak"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 500
+	}
+
+    planet = {
+        name = "Clogon"
+        class = pc_hothouse
+        orbit_distance = 100
+        orbit_angle = 353
+        has_ring = no
+		size = 6
+		flags = { clogon_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_iridium_1
+			# add_deposit = d_platinum_1
+			# add_deposit = d_palladium_1
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_1
+		}
+    }
+
+    planet = {
+        name = "Aratoht"
+        class = pc_alpine
+        orbit_distance = 100
+        orbit_angle = 221
+        has_ring = no
+		size = 11
+		flags = { aratoht_planet btr_custom }
+		entity = "highland_planet_03_entity"
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = highland_world
+		# 		days = -1
+		# 	}
+		# 	set_owner = event_target:batarian_hegemony
+		# 	create_colony = {
+		# 		owner = event_target:batarian_hegemony
+		# 		species = event_target:batarianSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_bat_aratoht_pops = yes
+		# 	generate_bat_aratoht_colony_buildings = yes	
+
+		# 	set_name = "Aratoht"	
+		# }		
+		moon = {
+			name = "Hotar"
+			class = pc_molten
+			orbit_distance = 20
+			size = 4
+		}
+    }
+
+    planet = {
+        name = "Yunaca"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 168
+        has_ring = no
+		size = 4
+		flags = { yunaca_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_iridium_4
+			# add_deposit = d_platinum_2
+			# add_deposit = d_palladium_4
+			add_deposit = d_rare_crystals_4
+			add_deposit = d_minerals_9
+		}		
+    }
+
+    planet = {
+        name = "Urmola"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 323
+        has_ring = no
+		size = 37
+		flags = { urmola_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_3
+			add_deposit = d_exotic_gases_3
+		}
+    }
+
+    planet = {
+        name = "Bastzuda"
+        class = pc_gas_giant
+        orbit_distance = 50
+        orbit_angle = 274
+        has_ring = no
+		size = 36
+		flags = { bastzuda_planet btr_custom }
+		init_effect = {
+			# add_deposit = d_helium_3_1
+			add_deposit = d_exotic_gases_1
+		}
+    }
+
+	planet = {
+		name = "157-Golgotha"
+		class = pc_met_asteroid
+        orbit_distance = 50
+		size = 3
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+		}
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "vipernebula_kitesnest_primaryrelay" 
+			name = "Skyllian Verge Primary - Viper 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_chelae_init = {
+    name = "Chelae"
+    class = sc_g
+	max_instances = 1
+	flags = { alliance_space_system viper_nebula_system chelae_system btr_system custom_system }
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+    planet = {
+		name = "Chelae"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { chelae_star }
+    }
+
+	planet = {
+		name = "Ophapra"
+		class = pc_molten
+        orbit_distance = 25
+		size = 16
+		flags = { ophapra_planet btr_custom }
+		init_effect = {
+			add_deposit = d_minerals_7
+			add_deposit = d_rare_crystals_1
+		}
+	}
+
+	planet = {
+		name = "Uverth"
+		class = pc_chlorine
+        orbit_distance = 30
+		size = 12
+		flags = { uverth_planet btr_custom }
+		entity = "chlorine_alpine_planet_10_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = crag_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Viwei"
+		class = pc_continental
+        orbit_distance = 35
+		size = 14
+		flags = { viwei_planet btr_custom }
+		entity = "supercon_planet_01_entity"
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = supercon_world
+		# 		days = -1
+		# 	}
+		# 	add_deposit = d_poor_mineral_deposits
+		# 	set_owner = event_target:batarian_hegemony
+		# 	create_colony = {
+		# 		owner = event_target:batarian_hegemony
+		# 		species = event_target:batarianSpecies
+		# 		ethos = owner
+		# 	}
+		# 	generate_bat_viwei_pops = yes
+		# 	generate_bat_viwei_colony_buildings = yes	
+		# 	set_name = "Viwei"
+		# }
+	}
+
+	planet = {
+		name = "Traanides"
+		class = pc_dextro_highgrav_arctic
+        orbit_distance = 35
+		size = 20
+		flags = { traanides_planet btr_custom }
+		entity = "antarctic_planet_03_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_modifier = {
+				modifier = antar_world
+				days = -1
+			}
+			# add_deposit = d_element_zero_2
+			add_deposit = d_zro_deposit_2
+		}
+	}	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "alliance_space_sector_5_secondaryrelay" 
+			name = "Skyllian Verge Secondary - Sector 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}	

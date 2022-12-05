@@ -1,0 +1,3359 @@
+@station_cost = 300
+@station_maintenance = 4
+
+# Hausing - Starting Outpost
+
+district_residential_complex = {
+	base_buildtime = 240
+	icon = district_hab_housing
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		NOT = { has_planet_flag = prison_station }
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		NOT = { has_planet_flag = prison_station }
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	
+	conversion_ratio = 1
+	convert_to = {
+		district_cell_block
+		district_hive_sector
+		district_nexus_complex
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		job_maintenance_worker_add = 1
+		pop_growth_speed = 0.10
+	}
+}
+
+district_cell_block = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = prison_station
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = prison_station
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	
+	conversion_ratio = 1
+	convert_to = {
+		district_residential_complex
+		district_hive_sector
+		district_nexus_complex
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		job_maintenance_worker_add = 1
+	}
+}
+
+district_hive_sector = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	
+	conversion_ratio = 1
+	convert_to = {
+		district_residential_complex
+		district_cell_block
+		district_nexus_complex
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		job_maintenance_drone_add = 2
+		pop_growth_speed = 0.10
+	}
+
+	triggered_desc = {
+		text = job_maintenance_drone_effect_desc
+	}
+}
+
+district_nexus_complex = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+	
+	conversion_ratio = 1
+	convert_to = {
+		district_residential_complex
+		district_cell_block
+		district_hive_sector
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+		job_maintenance_drone_add = 2
+	}
+
+	triggered_desc = {
+		text = job_maintenance_drone_effect_desc
+	}
+}
+
+# Energy Station
+
+district_geothermal_power_plant = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = energy_station
+		has_deposit = d_geothermal_springs
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = energy_station
+		has_deposit = d_geothermal_springs
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_technician_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		job_technician_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		job_technician_drone_add = 3
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_technician_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_technician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_generator_effect_desc
+	}
+}
+
+district_hydrocarbon_power_plant = {
+	base_buildtime = 240
+	icon = district_generator
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = energy_station
+		has_deposit = d_hydrocarbon_deposits
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = energy_station
+		has_deposit = d_hydrocarbon_deposits
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_technician_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		job_technician_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		job_technician_drone_add = 3
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_technician_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_technician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_generator_effect_desc
+	}
+}
+
+district_atmospheric_power_plant = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = energy_station
+		has_deposit = d_storm_area
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = energy_station
+		has_deposit = d_storm_area
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_technician_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		job_technician_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		job_technician_drone_add = 3
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_technician_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_technician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_generator_effect_desc
+	}
+}
+
+district_reactor_block = {
+	base_buildtime = 240
+	icon = district_hab_energy
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = energy_station
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = energy_station
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_nuclear_employee_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		job_nuclear_drone_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		job_nuclear_drone_add = 3
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_nuclear_employee_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_nuclear_drone_effect_desc
+	}
+}
+
+# Mining Station
+
+district_mining_complex = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_mineral_lodes
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_mineral_lodes
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_miner_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_mine_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_mining_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_miner_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_mine_effect_desc
+	}
+}
+
+district_ore_processing_complex = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_ore_rich_rings
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_ore_rich_rings
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_miner_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_mine_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_mining_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_miner_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_mine_effect_desc
+	}
+}
+
+district_helium_extractor = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_rich_regolith_formations
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_rich_regolith_formations
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_regolith_miner_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_regolith_miner_drone_add = 2
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_regolith_miner_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_regolith_miner_effect_desc
+	}
+}
+
+district_helium_mining_facility = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_helium_clouds
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		has_deposit = d_helium_clouds
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_helium_extractor_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		job_helium_extraction_drone_add = 2
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_helium_extractor_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_helium_extraction_drone_effect_desc
+	}
+}
+
+district_mote_mine = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+			has_planet_flag = cracking_station
+		}
+		owner = { has_technology = tech_mine_volatile_motes }
+		has_deposit = d_dust_cavities
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		owner = { has_technology = tech_mine_volatile_motes }
+		has_deposit = d_dust_cavities
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_mote_harvester_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mote_harvesting_drone_add = 2
+		}
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_mote_harvester_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_mote_harvesting_drone_effect_desc
+	}
+}
+
+district_gas_refinery = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+			has_planet_flag = cracking_station
+		}
+		owner = { has_technology = tech_mine_exotic_gases }
+		OR = {
+			has_deposit = d_exotic_gases_vent
+			has_deposit = d_exotic_gases_clouds
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		owner = { has_technology = tech_mine_exotic_gases }
+		OR = {
+			has_deposit = d_exotic_gases_vent
+			has_deposit = d_exotic_gases_clouds
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_gas_extractor_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_gas_extraction_drone_add = 2
+		}
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_gas_extractor_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_gas_extraction_drone_desc
+	}
+}
+
+district_crystal_mining = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+			has_planet_flag = cracking_station
+		}
+		owner = { has_technology = tech_mine_rare_crystals }
+		has_deposit = d_crystal_cavities
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		owner = { has_technology = tech_mine_rare_crystals }
+		has_deposit = d_crystal_cavities
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_crystal_miner_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_crystal_mining_drone_add = 2
+		}
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_crystal_miner_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_crystal_mining_drone_effect_desc
+	}
+}
+
+district_zro_harvesting = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 3
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+			has_planet_flag = cracking_station
+		}
+		owner = { has_technology = tech_mine_zro }
+		has_deposit = d_zro_source
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = mining_station
+			has_planet_flag = prison_station
+		}
+		owner = { has_technology = tech_mine_zro }
+		has_deposit = d_zro_source
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_zro_harvester_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_zro_harvesting_drone_add = 2
+		}
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_zro_harvester_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_zro_harvesting_drone_effect_desc
+	}
+}
+
+# Cracking Station
+
+district_mining_bay = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cracking_station
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cracking_station
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_driller_drone_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_driller_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_driller_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_driller_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_driller_effect_desc
+	}
+}
+
+#Research Station
+
+district_experimental_complex = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = research_station
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = research_station
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		planet_jobs_physics_research_produces_mult = 0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+}
+
+district_biolaboratory = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = research_station
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = research_station
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		planet_jobs_society_research_produces_mult = 0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+}
+
+district_testing_site = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = research_station
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = research_station
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		planet_jobs_engineering_research_produces_mult = 0.10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+}
+
+district_dark_matter_extractor = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 3
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = research_station
+		owner = { has_technology = tech_mine_dark_matter }
+		has_deposit = d_dark_matter_formation
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = research_station
+		owner = { has_technology = tech_mine_dark_matter }
+		has_deposit = d_dark_matter_formation
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_dark_matter_collector_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_dark_matter_collector_drone_add = 1
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_calculator_add = 1
+		}
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_dark_matter_collector_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_dark_matter_collector_drone_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_calculator_effect_desc
+	}
+}
+
+#Civil Station
+
+district_bureaucratic_center = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+	
+	conversion_ratio = 0.5
+	convert_to = {
+		district_outer_limits_router
+		district_hive_sector
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		job_bureaucrat_add = 2
+	}
+
+	triggered_desc = {
+		text = job_bureaucrat_effect_desc
+	}
+}
+
+district_corporate_complex = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = {
+			is_megacorp = yes
+			is_spiritualist = no
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = {
+			is_megacorp = yes
+			is_spiritualist = no
+		}
+	}
+	
+	conversion_ratio = 0.5
+	convert_to = {
+		district_bureaucratic_center
+		district_outer_limits_router
+		district_hive_sector
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		job_manager_add = 2
+	}
+
+	triggered_desc = {
+		text = job_manager_effect_desc
+	}
+}
+
+district_outer_limits_router = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+	
+	conversion_ratio = 0.5
+	convert_to = {
+		district_bureaucratic_center
+		district_hive_sector
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		job_coordinator_add = 2
+	}
+
+	triggered_desc = {
+		text = job_coordinator_effect_desc
+	}
+}
+
+district_commercial_wards = {
+	base_buildtime = 240
+	icon = district_hab_commercial
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = { is_gestalt = no }
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_outer_limits_router
+		district_hive_sector
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_active_tradition = tr_prosperity_interstellar_franchising }
+		}
+		modifier = {
+			job_clerk_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = no }
+		}
+		modifier = {
+			job_clerk_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_manager_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+		modifier = {
+			job_merchant_add = 1
+		}
+	}
+
+	triggered_desc = {
+		text = job_clerk_effect_desc
+	}
+	triggered_desc = {
+		text = job_merchant_effect_desc
+		trigger = {
+			exists = owner
+			owner = {
+				has_active_tradition = tr_mercantile_commercial_enterprise
+			}
+		}
+	}
+}
+
+district_elevation_center = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = {
+			has_origin = origin_necrophage
+			has_trait = trait_necrophage
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		exists = owner
+		owner = {
+			has_origin = origin_necrophage
+			has_trait = trait_necrophage
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+			}
+		}
+	}
+	
+	conversion_ratio = 0.5
+	convert_to = {
+		district_outer_limits_router
+		district_commercial_wards
+		district_hive_sector
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 1
+		job_necro_apprentice_add = 2
+	}
+
+	triggered_desc = {
+		text = job_necro_apprentice_effect_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+				is_hive_empire = no
+			}
+		}
+	}
+	triggered_desc = {
+		text = job_necro_apprentice_effect_lithoid_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				is_hive_empire = no
+			}
+		}
+	}
+	triggered_desc = {
+		text = job_necro_apprentice_effect_hive_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = no
+				is_hive_empire = yes
+			}
+		}
+	}
+	triggered_desc = {
+		text = job_necro_apprentice_effect_hive_lithoid_desc
+		trigger = {
+			exists = owner
+			owner = {
+				is_lithoid_empire = yes
+				is_hive_empire = yes
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = necrophage_elevation_timer_tooltip
+		trigger = {
+			has_planet_flag = necrophage_elevation_timer
+		}
+	}
+}
+
+district_storage_yards = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		NOR = {
+			is_planet_class = pc_asteroid_station
+			is_planet_class = pc_ice_asteroid_station
+			is_planet_class = pc_crystal_asteroid_station
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		NOR = {
+			is_planet_class = pc_asteroid_station
+			is_planet_class = pc_ice_asteroid_station
+			is_planet_class = pc_crystal_asteroid_station
+		}
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_logistic_worker_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_logistic_drone_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_logistic_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_logistic_worker_effect_desc
+	}
+}
+
+district_docking_bay = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		OR = {
+			has_planet_flag = civil_station
+			has_planet_flag = cracking_station
+		}
+		OR = {
+			is_planet_class = pc_asteroid_station
+			is_planet_class = pc_ice_asteroid_station
+			is_planet_class = pc_crystal_asteroid_station
+			#is_planet_class = pc_cracking_station
+			#is_planet_class = pc_cracking_station_cold
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		OR = {
+			is_planet_class = pc_asteroid_station
+			is_planet_class = pc_ice_asteroid_station
+			is_planet_class = pc_crystal_asteroid_station
+		}
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+	
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_docker_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_docking_drone_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_docking_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_docker_effect_desc
+	}
+}
+
+district_free_port = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 5
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		has_deposit = d_trading_route
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = civil_station
+		has_deposit = d_trading_route
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		job_free_trader_add = 2
+	}
+
+	triggered_desc = {
+		text = job_free_trader_effect_desc
+	}
+}
+
+#Industrial Station
+
+district_manufacturing_complex = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = industrial_station
+		exists = owner
+		owner = {
+			country_uses_consumer_goods = yes
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = industrial_station
+		exists = owner
+		owner = {
+			country_uses_consumer_goods = yes
+		}
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_crafter_empire = no
+			}
+		}
+		modifier = {
+			job_artisan_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_crafter_empire = yes
+			}
+		}
+		modifier = {
+			job_artificer_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			has_designation = col_habitat_factory
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_artisan_drone_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_valid_civic = civic_machine_servitor
+			}
+		}
+		text = job_artisan_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_crafter_empire = yes
+			}
+		}
+		text = job_artificer_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+}
+
+district_foundry_plant = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = industrial_station
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = industrial_station
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_foundry_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_technician_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_alloy_drone_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		modifier = {
+			job_fabricator_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		modifier = {
+			job_catalytic_drone_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_foundry_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_technician_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_fabricator_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+				is_catalytic_empire = no
+			}
+		}
+		text = job_alloy_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_gestalt = yes
+				is_catalytic_empire = yes
+			}
+		}
+		text = job_catalytic_drone_effect_desc
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		modifier = {
+			job_maintenance_drone_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_machine_empire = yes
+				has_edict = industrial_maintenance
+			}
+		}
+		text = job_maintenance_drone_effect_desc
+	}
+}
+
+district_assembly_factory = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = industrial_station
+		owner = {
+			OR = {
+				AND = {
+					is_regular_empire = yes
+					NOT = { has_policy_flag = robots_outlawed }
+					has_technology = tech_robotic_workers
+				}
+				is_machine_empire = yes
+			}
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = industrial_station
+		owner = {
+			OR = {
+				AND = {
+					is_regular_empire = yes
+					NOT = { has_policy_flag = robots_outlawed }
+					has_technology = tech_robotic_workers
+				}
+				is_machine_empire = yes
+			}
+		}
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_roboticist_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_replicator_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_roboticist_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		text = job_replicator_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = {
+			has_building = building_clone_vats
+		}
+		text = tooltip_organic_and_artificial_assembly_warning
+	}
+}
+
+district_living_metal_processing = {
+	base_buildtime = 240
+	
+	min_for_deposits_on_planet = 1
+	max_for_deposits_on_planet = 1
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = industrial_station
+		owner = { has_technology = tech_mine_living_metal }
+		has_deposit = d_living_metal_source
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = industrial_station
+		owner = { has_technology = tech_mine_living_metal }
+		has_deposit = d_living_metal_source
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_living_metal_caster_add = 2
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_living_metal_drone_add = 2
+		}
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_living_metal_caster_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_living_metal_drone_effect_desc
+	}
+}
+
+#Military Station
+
+district_barracks = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = military_station
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = military_station
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_soldier_add = 2
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_warrior_drone_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_warrior_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_soldier_effect_desc
+	}
+}
+
+district_fortified_bunkers = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = military_station
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = military_station
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.01
+		planet_housing_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		modifier = {
+			job_soldier_add = 1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_warrior_drone_add = 1
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_warrior_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = no }
+		}
+		text = job_soldier_effect_desc
+	}
+}
+
+#Cultural Station
+
+district_leisure_sector = {
+	base_buildtime = 240
+	icon = district_hab_cultural
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			NOR = {
+				is_gestalt = yes
+				is_spiritualist = yes
+				has_valid_civic = civic_warrior_culture
+				has_valid_civic = civic_slaver_guilds
+			}
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			NOR = {
+				is_gestalt = yes
+				has_valid_civic = civic_warrior_culture
+				has_valid_civic = civic_slaver_guilds
+			}
+		}
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_temple_complex
+		district_grim_complex
+		district_battle_arena
+		district_synaptic_node
+		district_simulation_complex
+		district_sanctuary_complex
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		job_entertainer_add = 2
+	}
+	
+	triggered_desc = {
+		text = job_entertainer_effect_desc
+	}
+
+	triggered_desc = {
+		text = job_culture_worker_effect_desc
+	}
+}
+
+district_temple_complex = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			is_spiritualist = yes
+			NOR = {
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+			}
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			is_spiritualist = yes
+			NOR = {
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+			}
+		}
+	}
+	
+	conversion_ratio = 0.5
+	convert_to = {
+		district_leisure_sector
+		district_grim_complex
+		district_battle_arena
+		district_synaptic_node
+		district_simulation_complex
+		district_sanctuary_complex
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		job_priest_add = 2
+		pop_ethic_spiritualist_attraction_mult = 0.05
+	}
+
+	triggered_desc = {
+		text = job_priest_effect_desc
+	}
+}
+
+district_grim_complex = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			is_spiritualist = yes
+			OR = {
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+			}
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			is_spiritualist = yes
+			OR = {
+				has_valid_civic = civic_death_cult
+				has_valid_civic = civic_death_cult_corporate
+			}
+		}
+	}
+	
+	conversion_ratio = 0.5
+	convert_to = {
+		district_leisure_sector
+		district_temple_complex
+		district_battle_arena
+		district_synaptic_node
+		district_simulation_complex
+		district_sanctuary_complex
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		job_death_priest_add = 1
+		job_mortal_initiate_add = 1
+		pop_ethic_spiritualist_attraction_mult = 0.1
+	}
+
+	triggered_desc = {
+		text = job_death_priest_effect_desc
+	}
+}
+
+district_battle_arena = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			is_spiritualist = no
+			OR = {
+				has_valid_civic = civic_warrior_culture
+				has_valid_civic = civic_slaver_guilds
+			}
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_warrior_culture
+				has_valid_civic = civic_slaver_guilds
+			}
+		}
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_leisure_sector
+		district_temple_complex
+		district_grim_complex
+		district_synaptic_node
+		district_simulation_complex
+		district_sanctuary_complex
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_warrior_culture }
+		}
+		modifier = {
+			job_duelist_add = 1
+			job_culture_worker_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_slaver_guilds }
+		}
+		modifier = {
+			job_gladiator_add = 2
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				has_valid_civic = civic_warrior_culture
+			}
+		}
+		text = job_duelist_effect_desc
+	}
+	
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_valid_civic = civic_warrior_culture }
+		}
+		text = job_duelist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_valid_civic = civic_slaver_guilds }
+		}
+		text = job_gladiator_effect_desc
+	}
+}
+
+district_casino_level = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = { 
+			is_gestalt = no
+			is_spiritualist = no
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = { 
+			is_gestalt = no
+			is_spiritualist = no
+		}
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_temple_complex
+		district_grim_complex
+		district_synaptic_node
+		district_simulation_complex
+		district_sanctuary_complex
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		job_croupier_add = 1
+		job_adventurer_add = 1
+	}
+	
+	triggered_desc = {
+		text = job_croupier_effect_desc
+	}
+
+	triggered_desc = {
+		text = job_adventurer_effect_desc
+	}
+}
+
+district_race_track = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = { 
+			is_gestalt = no
+			is_spiritualist = no
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = { 
+			is_gestalt = no
+		}
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_temple_complex
+		district_grim_complex
+		district_synaptic_node
+		district_simulation_complex
+		district_sanctuary_complex
+	}
+
+	planet_modifier = {
+		job_racer_add = 2
+	}
+	
+	triggered_desc = {
+		text = job_racer_effect_desc
+	}
+}
+
+district_synaptic_node = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = { is_hive_empire = yes }
+	}
+	
+	conversion_ratio = 0.5
+	convert_to = {
+		district_leisure_sector
+		district_temple_complex
+		district_grim_complex
+		district_battle_arena
+		district_simulation_complex
+		district_sanctuary_complex
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+		job_synapse_drone_add = 3
+	}
+
+	triggered_desc = {
+		text = job_synapse_drone_effect_desc
+	}
+}
+
+district_simulation_complex = {
+	base_buildtime = 240
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = { is_machine_empire = yes }
+	}
+	
+	conversion_ratio = 0.5
+	convert_to = {
+		district_leisure_sector
+		district_temple_complex
+		district_grim_complex
+		district_battle_arena
+		district_synaptic_node
+		district_sanctuary_complex
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 1
+		job_evaluator_add = 2
+	}
+
+	triggered_desc = {
+		text = job_evaluator_effect_desc
+	}
+}
+
+district_sanctuary_complex = {
+	base_buildtime = 240
+	icon = district_hab_housing
+	is_capped_by_modifier = no
+
+	show_on_uncolonized = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+
+	potential = {
+		uses_district_set = planetary_station
+		has_planet_flag = cultural_station
+		exists = owner
+		owner = {
+			is_machine_empire = yes
+			has_valid_civic = civic_machine_servitor
+		}
+	}
+
+	resources = {
+		category = station_complex
+		cost = {
+			alloys = @station_cost
+		}
+		upkeep = {
+			energy = @station_maintenance
+		}
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_leisure_sector
+		district_temple_complex
+		district_grim_complex
+		district_battle_arena
+		district_synaptic_node
+		district_simulation_complex
+	}
+
+	planet_modifier = {
+		planet_housing_add = 2
+		job_bio_trophy_add = 3
+		job_maintenance_drone_add = 1
+	}
+
+	triggered_desc = {
+		text = job_bio_trophy_effect_desc
+	}
+	triggered_desc = {
+		text = job_maintenance_drone_effect_desc
+	}
+}

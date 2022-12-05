@@ -1,0 +1,168 @@
+##########################
+##### LYSTHENI ORDER #####
+##########################
+
+##### BYENZINE CLOUD #####
+
+sys_taesin_init = {
+    name = "Taesin"
+    class = sc_g
+	flags = { terminus_system byenzine_cloud_system taesin_system btr_system custom_system }
+
+	# init_effect = { 
+	# 	random_country = { 
+	# 		limit = { has_country_flag = lystheni_order } 
+	# 		save_global_event_target_as = lystheni_order
+	# 	}	
+	# generate_home_system_resources = yes
+	# }
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+	    name = "Taesin"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { taesin_star}
+    }
+
+    planet = {
+        name = "Lorel"
+        class = pc_hothouse
+        orbit_distance = 150
+        orbit_angle = 92
+        has_ring = no
+		flags = { lorel_planet btr_custom }
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}	
+    }
+
+    planet = {
+        name = "Sepkai"
+        class = pc_tropical
+        orbit_distance = 150
+        orbit_angle = 62
+        has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { sepkai_planet btr_custom }	
+		entity = "biolum_planet_08_entity"	
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = biolum_world
+		# 		days = -1
+		# 	}
+		# 	prevent_anomaly = yes
+		# 	set_global_flag = lystheni_homeworld_spawned
+		# 	if = {
+		# 		limit = { NOT = { any_country = { has_country_flag = lystheni_order } } }
+		# 		create_species = { 
+		# 			name = "Lystheni"
+		# 			class = LYS
+		# 			portrait = lystheni
+		# 			#homeworld = THIS 
+		# 			traits = { 
+		# 				trait = lystheni_trait_core
+		# 				trait = lystheni_trait_divine_duty
+		# 				trait = lystheni_trait_law_of_one
+		# 				trait = lystheni_trait_unimpeded_minds
+		# 			  # ideal_planet_class = "pc_tropical"
+		# 			}
+		# 		  }
+		# 		  last_created_species = { save_global_event_target_as = lystheniSpecies }
+		# 		create_country = {
+		# 			name = "Lystheni Order"
+		# 			ship_prefix = "PRESCRIPTED_ship_prefix_lystheni_order"
+		# 			type = default
+		# 			origin = lystheni_order_origin
+		# 			ignore_initial_colony_error = yes
+		# 			civics = { civic = lystheni_order_thirteenth_proimise civic = lystheni_order_divine }
+		# 			authority = "auth_oligarchic"
+		# 			name_list = "btr_salarian"
+		# 			ethos = { ethic = "ethic_militarist" ethic = "ethic_fanataic_spiritualist" }
+		# 			species = event_target:lystheniSpecies
+		# 			flag = {
+		# 				icon={
+		# 					category="masseffect"
+		# 					file="Salarian Union.dds"
+		# 				}
+		# 				background={
+		# 					category="backgrounds"
+		# 					file="00_solid.dds"
+		# 				}
+		# 				colors={
+		# 					"teal"
+		# 					"teal"
+		# 					"null"
+		# 					"null"
+		# 				}
+		# 			}
+		# 			effect = {
+		# 				set_graphical_culture = reptilian_01
+		# 				set_country_flag = lystheni_order
+		# 				set_country_flag = init_spawned
+		# 				set_country_flag = custom_start_screen
+		# 				set_country_flag = canon_map
+		# 				save_global_event_target_as = lystheni_order
+		# 			}
+		# 		}
+		# 	}	
+		# 	set_capital = yes
+		# 	random_country = {
+		# 		limit = { has_country_flag = lystheni_order }
+		# 		save_global_event_target_as = lystheni_order
+		# 		species = { save_global_event_target_as = lystheniSpecies }
+		# 	}
+		# 	set_owner = event_target:lystheni_order
+		# 	generate_btr_start_deposits_and_blockers = yes			
+		# 	generate_lys_sepkai_capitol_buildings = yes
+		# 	generate_lys_sepkai_pops = yes
+		# 	set_name = "Sepkai"
+		# }			
+		moon = {
+			name = "Nonau"
+			class = pc_barren
+			orbit_distance = 20
+			size = 7
+			init_effect = {
+				add_deposit = d_minerals_8
+				add_deposit = d_zro_deposit_1
+			}	
+		}
+		moon = {
+			name = "Kestor"
+			class = pc_iron
+			orbit_distance = 5
+			size = 4
+			init_effect = {
+				add_deposit = d_rare_crystals_2
+			}	
+		}		
+		moon = {
+			name = "Leojin"
+			class = pc_frozen
+			orbit_distance = 5
+			size = 2
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+				add_deposit = d_minerals_3
+			}	
+		}			
+    }
+
+    planet = {
+        name = "Jorio"
+        class = pc_gas_giant
+        orbit_distance = 150
+        orbit_angle = 163
+        has_ring = yes
+		flags = { jorio_planet btr_custom }
+		init_effect = {
+			add_deposit = d_exotic_gases_4
+		}	
+    }
+}
