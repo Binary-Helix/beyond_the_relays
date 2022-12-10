@@ -14,16 +14,12 @@ building_asari_rep_comm_center = {
         owner = {
             has_origin = asari_rep_origin
         }
-        exists = owner
-        owner = {
-            is_regular_empire = yes
-        }
     }
 
 	destroy_trigger = {
 		exists = owner
-		OR = {
-			owner = { is_regular_empire = no }
+		NOT = {
+			owner = { has_origin = asari_rep_origin }
 		}
 	}
 
@@ -42,14 +38,16 @@ building_asari_rep_comm_center = {
     }
 
     planet_modifier = {
-        job_culture_worker_add =1
+        job_culture_worker_add = 1
     }
+
     triggered_planet_modifier = {
         potential = {
             always = yes
         }
         planet_amenities_mult = 0.05
     }
+
     triggered_desc = {
         text = job_culture_worker_effect_desc
     }
@@ -73,8 +71,8 @@ building_asari_galactic_sports_center = {
 
     destroy_trigger = {
 		exists = owner
-		OR = {
-			owner = { is_regular_empire = no }
+		NOT = {
+			owner = { has_origin = asari_rep_origin }
 		}
 	}
 
@@ -107,15 +105,8 @@ building_asari_galactic_sports_center = {
             always = yes
         }
         planet_amenities_mult = 0.05
+		pop_happiness = 0.05
     }
-
-    triggered_country_modifier ={
-        potential = {
-            always = yes
-        }
-        pop_happiness = 0.05
-    }
-
 
     triggered_desc = {
         text = job_entertainer_effect_desc
@@ -451,3 +442,631 @@ building_systems_ict_academy = {
 		}
 	}
 }
+
+###Courts of Dekuuna
+
+building_elcor_elders_assembly = {
+	base_buildtime = 360
+	base_cap_amount = 1
+	icon = holding_park_ranger_lodge
+	category = government
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_origin = courts_of_dekuuna_origin
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = courts_of_dekuuna_origin } }
+		}
+	}	
+
+	planet_modifier = {
+		job_elder_add = 1
+		job_bureaucrat_add = 1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		produces = {
+			unity = 10
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+}
+
+building_elcor_communal_croplands = {
+	base_buildtime = 360
+	base_cap_amount = 1
+	icon = building_hydroponics_farm
+	category = resource
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+			has_origin = courts_of_dekuuna_origin
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = courts_of_dekuuna_origin } }
+		}
+	}	
+
+	planet_modifier = {
+		job_farmer_add = 2
+		planet_jobs_food_produces_mult = 0.25
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 8
+		}
+	}
+}
+
+###Vol Protectorate
+building_galactic_commercial_zone = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = trade
+
+	allow = {
+		has_major_upgraded_capital = yes 
+	}
+
+	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = vol_protectorate_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 400
+		}
+		upkeep = {
+			energy = 20
+		}
+	}
+
+	planet_modifier = {
+		job_clerk_add = 3
+		job_manager_add = 2
+		job_executive_add = 1
+		planet_amenities_add = 15
+	}
+
+	triggered_desc = {
+		text = job_clerk_effect_desc
+	}
+	triggered_desc = {
+		text = job_manager_effect_desc
+	}
+	triggered_desc = {
+		text = job_executive_effect_desc
+	}
+
+	prerequisites = {
+		"tech_galactic_markets"
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+}
+
+building_economic_regulation_office = {
+	base_buildtime = @b1_time
+	base_cap_amount = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = manufacturing
+
+	allow = {
+		has_upgraded_capital = yes
+	}
+
+	potential = {
+		owner = {
+			has_origin = vol_protectorate_origin
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = vol_protectorate_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 350
+		}
+		upkeep = {
+			energy = 10
+			unity = 10
+		}
+	}
+
+	planet_modifier = {
+		job_bureaucrat_add = 1
+		job_enforcer_add = 1
+		planet_artisans_produces_mult = 0.05
+		planet_metallurgists_produces_mult = 0.05
+		planet_farmers_produces_mult = 0.08
+		planet_miners_produces_mult = 0.08
+		planet_jobs_unity_produces_mult = 0.05
+		pop_happiness = -0.05
+		pop_demotion_time_mult = -0.1
+	}
+
+	triggered_desc = {
+		text = job_bureaucrat_effect_desc
+	}
+		triggered_desc = {
+		text = job_enforcer_effect_desc
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+}
+
+###Illuminated Primacy
+building_hanar_enkindler_reliquary = {
+	base_buildtime = 200
+	base_cap_amount = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = unity
+
+	allow = {
+		has_upgraded_capital = yes 
+	}
+
+	potential = {
+		owner = {
+			has_origin = illuminated_primacy_origin
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = illuminated_primacy_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 10
+			consumer_goods = 5
+		}
+	}
+
+	planet_modifier = {
+		job_high_priest_add = 1
+		job_caretaker_add = 3
+		planet_jobs_unity_produces_mult = 0.05
+		pop_ethic_fanatic_spiritualist_attraction_mult = 0.2
+	}
+
+	triggered_desc = {
+		text = job_high_priest_effect_desc
+	}
+	triggered_desc = {
+		text = job_caretaker_effect_desc
+	}
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+}
+
+building_hanar_drell_barracks = {
+	base_buildtime = 200
+	base_cap_amount = 2
+	
+	exempt_from_ai_planet_specialization = no
+	category = army
+
+	allow = {
+		has_upgraded_capital = yes 
+	}
+
+	potential = {
+		owner = {
+			has_origin = illuminated_primacy_origin
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = illuminated_primacy_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 500
+		}
+		upkeep = {
+			energy = 20
+			alloys = 1
+			#light_alloy = 1 TO BE ADDED LATER
+		}
+	}
+
+	planet_modifier = {
+		job_soldier_add = 4
+		planet_orbital_bombardment_damage = -0.2
+		army_defense_morale_mult = 0.5
+	}
+
+	triggered_desc = {
+		text = job_soldier_effect_desc
+	}
+
+	show_tech_unlock_if = {
+		is_regular_empire = yes
+	}
+}
+
+###Hegemony of Khar'shan
+building_batarian_slave_market = {
+	base_buildtime = 480
+	base_cap_amount = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = government
+
+	allow = {
+		has_upgraded_capital = yes 
+	}
+
+	potential = {
+		owner = {
+			has_origin = hegemony_kharshan_origin
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = hegemony_kharshan_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			energy = 500
+		}
+		upkeep = {
+			energy = 5
+			consumer_goods = 2
+			exotic_gases = 1
+			#light_alloy = 1 TO BE ADDED LATER
+		}
+	}
+
+	planet_modifier = {
+		pop_category_slave_upkeep_mult = -0.25
+		pop_cat_slave_political_power = -0.50
+		job_slave_overseer_add = 2
+	}
+}
+
+building_batarian_black_site = {
+	base_buildtime = 480
+	base_cap_amount = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = government
+
+	allow = {
+		has_upgraded_capital = yes 
+	}
+
+	potential = {
+		owner = {
+			has_origin = hegemony_kharshan_origin
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = hegemony_kharshan_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+			energy = 500
+		}
+		upkeep = {
+			energy = 4
+			volatile_motes = 3
+			#light_alloy = 1 TO BE ADDED LATER
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_add = -20
+		planet_emigration_push_add = -0.5
+		pop_government_ethic_attraction = 2
+	}
+}
+
+###Aralakh Kahmat
+building_krogan_maw_hammers = {
+	base_buildtime = 150
+	base_cap_amount = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = government
+
+	allow = {
+		has_deposit = d_wild_thresher_maws
+	}
+
+	potential = {
+		owner = {
+			has_origin = aralakh_kahmat_origin
+		}
+		planet = {
+			OR = {
+				has_deposit = d_territorial_thresher_maws
+				has_deposit = d_wild_thresher_maws
+			}
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = aralakh_kahmat_origin } }
+		}
+	}
+
+	planet_modifier = {
+		job_soldier_add = 1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 1
+			minerals = 1
+		}
+	}
+}
+
+building_krogan_neutral_ground = {
+	base_buildtime = 90
+	base_cap_amount = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = government
+
+	potential = {
+		owner = {
+			has_origin = aralakh_kahmat_origin
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = aralakh_kahmat_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			minerals = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_crime_mult = -0.25
+		job_soldier_add = 3
+		cohesion_add = 5
+	}
+}
+
+###Migrant Fleet
+building_quarian_salvage_drydock = {
+	base_buildtime = 480
+	empire_limit = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = government
+
+	allow = {
+		has_planet_flag = quarian_drydock
+	}
+
+	potential = {
+		owner = {
+			has_origin = migrant_fleet_origin
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = migrant_fleet_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			energy = 15
+			minerals = 15
+			alloys = 15
+			volatile_motes = 7
+			exotic_gases = 7
+			sr_zro = 1
+		}
+		upkeep = {
+			energy = 2
+			minerals = 2
+			alloys = 2
+			volatile_motes = 2
+			exotic_gases = 2
+		}
+	}
+
+	planet_modifier = {
+		job_bureaucrat_add = 1
+		job_executive_add = 1
+		job_artificer_add = 1
+		job_artisan_add = 1
+		job_chemist_add = 1
+		job_enforcer_add = 1
+		job_gas_extractor_add = 1
+		job_politician_add = 1
+		job_healthcare_add = 1
+		job_foundry_add = 1
+		job_researcher_add = 1
+		job_clerk_add = 1
+		job_miner_add = 1
+		job_scrap_miner_add = 1
+		job_technician_add = 1
+	}
+}
+
+###Cerberus
+
+
+###Omega
+building_omega_grey_market = {
+	base_buildtime = 100
+	base_cap_amount = 1
+	
+	exempt_from_ai_planet_specialization = no
+	category = government
+
+	allow = {
+		has_upgraded_capital = yes 
+	}
+
+	potential = {
+		owner = {
+			has_origin = omega_origin
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+			energy = 200
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	planet_modifier = {
+		planet_stability_add = 10
+		planet_jobs_unity_produces_mult = 0.05
+		planet_crime_add = 10
+		job_merchant_add = 1
+		job_clerk_add = 2
+	}
+}
+
+building_omega_scrap_garage = {
+	base_buildtime = 200
+	base_cap_amount = 2
+	
+	exempt_from_ai_planet_specialization = no
+	category = government
+
+	allow = {
+		has_upgraded_capital = yes 
+	}
+
+	potential = {
+		owner = {
+			has_origin = omega_origin
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 300
+		}
+		produces = {
+			energy = 5
+		}
+		upkeep = {
+			food = 2
+		}
+	}
+
+	planet_modifier = {
+		job_artificer_add = 2
+		job_scrap_miner_add = 2
+	}
+}
+
+###Illium Corporate Interests
+

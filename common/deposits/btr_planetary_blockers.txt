@@ -118,3 +118,40 @@ d_asari_devastated_republic_yisrin = {
 		weight = 0
 	}
 }
+
+d_territorial_thresher_maw = {
+	is_for_colonizable = yes
+
+	category = deposit_cat_rare_blocker
+
+	on_cleared = {
+		add_deposit = d_wild_thresher_maws
+	}
+
+	can_be_cleared = {
+		custom_tooltip = {
+			fail_text = thresher_maw_army_req
+			planet = {
+				NOT = { num_armies < 5 }
+			}
+		}
+	}
+
+	resources = {
+		category = deposit_blockers 
+		cost = {
+			minerals = 750
+		}
+	}
+
+	planet_modifier = {
+		pop_decline_speed = 0.1 
+	}
+
+	time = 30
+
+	drop_weight = {
+		weight = 0.1
+	}
+}
+
