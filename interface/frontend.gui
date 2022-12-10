@@ -125,10 +125,30 @@ guiTypes = {
 			
 		iconType = {
 			name = "game_logo"
-			position = { x = 15 y = 15 }
-			quadTextureSprite = "gfx_game_logo"
-			Orientation = "UPPER_LEFT"
-			scale = 0.75
+			if_resolution = {
+				 max_width = 2560 # min_width or max_width
+				 max_height = 1440 # min_height or max_height
+				position = { x = 15 y = 15 }
+				quadTextureSprite = "gfx_game_logo"
+				Orientation = "UPPER_LEFT"
+				scale = 0.75
+			}
+			if_resolution = {
+				max_width = 1920 # min_width or max_width
+				max_height = 1080 # min_height or max_height
+			   position = { x = 15 y = 15 }
+			   quadTextureSprite = "gfx_game_logo"
+			   Orientation = "UPPER_LEFT"
+			   scale = 0.50
+		   }
+		   if_resolution = {
+			 max_width = 1366 # min_width or max_width
+			 max_height = 768 # min_height or max_height
+		     position = { x = 15 y = 15 }
+		     quadTextureSprite = "gfx_game_logo"
+		     Orientation = "UPPER_LEFT"
+		   scale = 0.40
+	   }
 		}
 
 		containerWindowType = {
@@ -169,10 +189,28 @@ guiTypes = {
 		}
 		
 		containerWindowType = {
-			name ="menu"
-			position = { x=-200 y=-605 }	
-			size = { width=1280 height=720 }
-			orientation = LOWER_RIGHT
+            name ="menu"
+  				if_resolution = {
+     		 		max_width = 2560 # min_width or max_width
+   					max_height = 1440 # min_height or max_height
+    ### code only applies if game is running at 1920 width and 1080 height or higher
+      				position = { x=-200 y=-605 }
+  				}   
+ 					if_resolution = {
+						max_width = 1920 # min_width or max_width
+	 					max_height = 1080 # min_height or max_height
+	### code only applies if game is running at 1920 width and 1080 height or higher
+						position = { x=-200 y=-375 }
+					}   
+						if_resolution = {
+						 max_width = 1366 # min_width or max_width
+						 max_height = 768 # min_height or max_height
+	### code only applies if game is running at 1920 width and 1080 height or higher
+						 position = { x= -185 y=-200 }
+						}   
+
+    size = { width=1280 height=720 }
+    orientation = LOWER_RIGHT
 
 			instantTextBoxType = {
 				name = "version"
@@ -204,7 +242,7 @@ guiTypes = {
 					oversound = mouse_over
 					navRight = "multiplayer"
 					defaultSelection = yes
-					clicksound = main_menu_click
+					clicksound = menu_sting_bloop
 					scale = 1.0
 				}
 				
@@ -229,7 +267,7 @@ guiTypes = {
 					oversound = mouse_over
 					navLeft = "start"
 					navRight = "load"
-					clicksound = confirm_click
+					clicksound = menu_sting_multiplayer
 					scale = 1.0
 				}
 				
@@ -254,7 +292,7 @@ guiTypes = {
 					oversound = mouse_over
 					navLeft = "multiplayer"
 					navRight = "credits"
-					clicksound = confirm_click
+					clicksound = menu_sting_loadgame
 					scale = 1.0
 				}
 				
@@ -279,7 +317,7 @@ guiTypes = {
 					oversound = mouse_over
 					navLeft = "load"
 					navRight = "settings"
-					clicksound = confirm_click
+					clicksound = menu_sting_credits
 					scale = 1.0
 				}
 				
@@ -304,7 +342,7 @@ guiTypes = {
 					oversound = mouse_over
 					navLeft = "credits"
 					navRight = "quit"
-					clicksound = confirm_click
+					clicksound = echo_click
 					scale = 1.0
 				}
 				
@@ -328,6 +366,7 @@ guiTypes = {
 					#shortCut = "e"
 					oversound = mouse_over
 					navLeft = "settings"
+					clicksound = menu_sting_exit
 					actionShortCut = "cancel"
 					scale = 1.0
 				}
