@@ -1,0 +1,40 @@
+namespace = btr_arlkah
+# Spawn Thresher Maw Defensive Armies upon building Maw Hammers
+planet_event = {
+	id = btr_arlkah.01
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		AND = {
+			last_building_changed = building_krogan_maw_hammers
+			owner = {
+				has_origin = aralakh_kahmat_origin
+			}		
+			planet = {
+				NOT = {
+					has_planet_flag = thresher_maw_armies
+				}
+				has_deposit = d_wild_thresher_maws
+			}	
+		}
+	}
+
+	immediate = {
+		create_army = {
+			name = "NAME_Thresher_Maw"
+			owner = last_created_country
+			#species = last_created_species
+			type = "krogan_thresher_maw_defense_army"
+		}
+		create_army = {
+			name = "NAME_Thresher_Maw"
+			owner = last_created_country
+			#species = last_created_species
+			type = "krogan_thresher_maw_defense_army"
+		}
+
+		set_planet_flag = thresher_maw_armies
+		remove_deposit = d_wild_thresher_maws
+	}
+}

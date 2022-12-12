@@ -1,0 +1,39 @@
+###Drell Doomdsay Origin
+evacuation_protocols = {
+	length = -1
+	icon = "GFX_edict_type_policy"
+
+	resources = {
+		category = edicts
+		upkeep = {
+			unity = 10
+			multiplier = value:edict_size_effect
+		}
+	}
+
+	modifier = {
+		planet_colony_development_speed_mult = 1.00
+		pop_resettlement_cost_mult = -0.50
+	}
+
+	potential = {
+		has_origin = remnants_rakhana_origin
+		any_owned_planet = {
+			is_dying_planet = yes
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "requires_doomsday_colony"
+			any_owned_planet = {
+				habitable_planet = yes
+				is_doomsday_planet = no
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 500
+	}
+}

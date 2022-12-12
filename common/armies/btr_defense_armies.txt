@@ -7,19 +7,91 @@
 #		Calculation is health * spawn_chance (default: 1), and it always picks the best one
 
 # Defense Armies
+
+###Aralakh Kahmat
 krogan_thresher_maw_defense_army = {
 	defensive = yes
 	is_pop_spawned = no
-	health = 15
-	damage = 25
-	morale = 30
-	collateral_damage = 1.0
+	damage = 3.5
+	health = 6.0
+	has_morale = no
+	morale_damage = 3.5
+	collateral_damage = 4.0
 	war_exhaustion = 0.0 # No WE from defense armies
 	icon = GFX_army_type_thresher
 
 	potential = {
 		owner = {
 			has_origin = aralakh_kahmat_origin
+		}
+	}
+
+	resources = {
+		category = armies
+		upkeep = {
+			food = 2
+		}
+	}
+}
+
+###Lystheni Order
+lystheni_league_trained_army = {
+	defensive = yes
+	is_pop_spawned = no
+	health = 2.00
+	damage = 1.75
+	morale = 2.50
+	collateral_damage = 0.0
+	war_exhaustion = 0.0 # No WE from defense armies
+	icon = GFX_army_type_defensive
+
+	potential = {
+		owner = {
+			has_origin = lystheni_order_origin
+		}
+		planet = {
+			OR = {
+				has_building = building_lystheni_league_monastary
+				has_building = building_lystheni_fortress_one
+			}
+		}
+	}
+
+	resources = {
+		category = armies
+		upkeep = {
+			energy = 0.5
+			food = 1
+		}
+	}
+}
+
+lystheni_assisted_operatives_army = {
+	defensive = yes
+	is_pop_spawned = no
+	health = 2.00
+	damage = 2.25
+	morale = 1.25
+	collateral_damage = 1.25
+	war_exhaustion = 0.0 # No WE from defense armies
+	icon = GFX_army_type_defensive
+
+	potential = {
+		owner = {
+			AND = {
+				has_origin = lystheni_order_origin		
+				has_technology = tech_lystheni_oracle_ai		
+			}
+
+		}
+		
+	}
+
+	resources = {
+		category = armies
+		upkeep = {
+			energy = 0.5
+			food = 1
 		}
 	}
 }
