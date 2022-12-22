@@ -1,0 +1,99 @@
+
+portraits = {
+	# krogan
+	krogan_wrex = {	entity = "humanoid_04_male_01_entity"	clothes_selector = "krogan_clothes_02" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_i_male"	
+		character_textures = {
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_wrex_black.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_wrex_blue.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_wrex_new_2.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_wrex_new_3.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_wrex_new_4.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_wrex_new_5.dds"			
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_wrex_new_6.dds"			
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_wrex_new_7.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_wrex_red.dds"	
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_grunt_black.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_grunt_blue.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_grunt_red.dds"
+		}
+	}
+	
+	krogan_female = {	entity = "humanoid_04_male_01_entity"	clothes_selector = "krogan_clothes_02" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_i_female"	
+		character_textures = {
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_female_black.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_female_blue.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_female_green.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_female_grey.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_female_pink.dds"
+			"gfx/models/portraits/krogan/krogan_reptilian_massive_14_female_red.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	krogan = {
+		default = krogan_wrex
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = {
+					krogan_wrex
+				}
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = {
+					krogan_female
+				}
+			}
+		}		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					krogan_wrex
+					krogan_female
+				}
+			}
+		}		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					krogan_wrex
+					krogan_female
+				}
+			}
+		}
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					krogan_female
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					krogan_wrex
+				}
+			}
+		}
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					krogan_female
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					krogan_wrex
+				}
+			}
+		}
+	}	
+}

@@ -1,0 +1,182 @@
+# This is a template which multiple species can use. 
+
+gothones_clothes_01 = {
+	default = "gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+	
+	game_setup = {#will run with a limited country scope. species and government is set but the country does not actually exist
+		default = "gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+	}
+	
+	#species scope
+	species = { #generic portrait for a species
+		default = "gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+		
+		random = { 
+
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_admiral.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor4.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor5.dds"	
+				"gfx/models/portraits/gothones/gothones_clothes_robes.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_robes2.dds"
+			}
+		}
+	}
+	
+	#pop scope
+	pop = { #for a specific pop
+		default = "gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+	
+		random = { 
+			trigger = {
+				OR = {
+					is_pop_category = worker
+					is_pop_category = simple_drone
+					is_pop_category = slave
+				}
+				NOR = {
+					is_pop_category = pre_sapients
+					has_job = soldier
+					has_job = patrol_drone
+					has_job = warrior_drone
+				}
+			}
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_admiral.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				OR = {
+					is_pop_category = specialist
+					is_pop_category = ruler
+					is_pop_category = complex_drone
+				}
+				NOR = {
+					is_pop_category = pre_sapients
+					has_job = enforcer
+					has_job = telepath
+					has_job = duelist
+				}
+			}
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_robes.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_robes2.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				OR = {
+					has_job = soldier
+					has_job = patrol_drone
+					has_job = warrior_drone
+					has_job = enforcer
+					has_job = telepath
+					has_job = duelist
+				}
+			}
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_armor.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor4.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor5.dds"
+			}
+		}
+		
+		random = {
+			trigger = {
+				is_pop_category = slave
+			}
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_admiral2.dds"
+			}
+		}
+	}
+	
+	#leader scope
+	leader = { #scientists, generals, admirals, governor
+
+		random = {
+			trigger = { leader_class = admiral }
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_admiral.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor4.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor5.dds"
+			}
+		}	
+
+		random = {
+			trigger = { leader_class = general }
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_admiral.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor4.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor5.dds"
+			}
+		}	
+
+		random = {
+			trigger = { leader_class = scientist }
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_admiral.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor2.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor3.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor4.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_armor5.dds"	
+				"gfx/models/portraits/gothones/gothones_clothes_robes.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_robes2.dds"
+			}
+		}			
+
+		random = {
+			trigger = { leader_class = governor }
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_robes.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_robes2.dds"
+			}
+		}		
+	
+	
+	}
+
+	#leader scope 
+	ruler = { #for rulers
+		default = "gfx/models/portraits/gothones/gothones_clothes_admiral4.dds"
+		
+		# All Governments type
+		random = {
+			list = {
+				"gfx/models/portraits/gothones/gothones_clothes_robes.dds"
+				"gfx/models/portraits/gothones/gothones_clothes_robes2.dds"
+			}
+		}
+		
+	}
+}
