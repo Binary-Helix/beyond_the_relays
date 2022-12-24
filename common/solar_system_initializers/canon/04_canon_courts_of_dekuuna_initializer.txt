@@ -8,7 +8,7 @@
 sys_phontes_init = {
     name = "Phontes"
     class = sc_g
-	flags = { outer_council_system silean_nebula_system phontes_system btr_system custom_system empire_home_system }
+	flags = { courts_of_dekuuna_homeworld courts_of_dekuuna_capital_system canon_map phontes_system }
 	
 	init_effect = { 
 		generate_home_system_resources = yes
@@ -37,7 +37,6 @@ sys_phontes_init = {
         orbit_angle = 26
         has_ring = no
 		size = 25
-		flags = { lenuamund_planet btr_custom }
 		init_effect = {
 			add_deposit = d_minerals_4
 			#create_archaeological_site = btr_site_prothean_beacon_elcor
@@ -53,87 +52,111 @@ sys_phontes_init = {
 		has_ring = no
 		starting_planet = yes
 		deposit_blockers = none		
-		flags = { dekuuna_planet btr_custom }
+		flags = { dekuuna_planet btr_custom elcor_homeworld subclass_world }	
 		entity = "prairie_planet_02_entity"
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = prairie_world
-		# 		days = -1
-		# 	}
-		# 	add_modifier = {
-		# 		modifier = high_gravity
-		# 		days = -1
-		# 	}
-		# 	prevent_anomaly = yes
-		# 	set_global_flag = elcor_homeworld_spawned
-		# 	if = {
-		# 		limit = { NOT = { any_country = { has_country_flag = courts_of_dekuuna } } }
-		# 		create_species = { 
-		# 			name = "Elcor"
-		# 			class = ELC
-		# 			portrait = elcor
-		# 			#homeworld = THIS 
-		# 			traits = { 
-		# 				trait = elcor_trait_core
-		# 				trait = elcor_trait_homebound
-		# 				trait = elcor_gesture_based_speech
-		# 				trait = elcor_trait_ecologists
-		# 			  # ideal_planet_class = "pc_cascadian"
-		# 			}
-		# 		  }
-		# 		  last_created_species = { save_global_event_target_as = elcorSpecies }
-		# 		create_country = {
-		# 			name = "Courts of Dekuuna"
-		# 			ship_prefix = "PRESCRIPTED_ship_prefix_courts_of_dekuuna"
-		# 			type = default
-		# 			origin = courts_of_dekuuna_origin
-		# 			ignore_initial_colony_error = yes
-		# 			civics = { civic = elcor_elders_of_dekuuna civic = elcor_history_of_stability }
-		# 			authority = auth_oligarchic
-		# 			name_list = "btr_elcor"
-		# 			ethos = { ethic = "ethic_xenophile" ethic = "ethic_fanatic_pacifist" }
-		# 			species = event_target:elcorSpecies
-		# 			flag = {
-		# 				icon={
-		# 					category="masseffect"
-		# 					file="Courts of Dekuuna.dds"
-		# 				}
-		# 				background={
-		# 					category="backgrounds"
-		# 					file="rounded_middle.dds"
-		# 				}
-		# 				colors={
-		# 					"dark_teal"
-		# 					"grey"
-		# 					"null"
-		# 					"null"
-		# 				}
-		# 			}
-		# 			effect = {
-		# 				set_graphical_culture = avian_01
-		# 				set_country_flag = courts_of_dekuuna
-		# 				set_country_flag = init_spawned
-		# 				set_country_flag = custom_start_screen
-		# 				set_country_flag = canon_map
-		# 				save_global_event_target_as = courts_of_dekuuna
-		# 			}
-		# 		}
-		# 	}	
-		# 	set_capital = yes
-		# 	random_country = {
-		# 		limit = { has_country_flag = courts_of_dekuuna }
-		# 		save_global_event_target_as = courts_of_dekuuna
-		# 		species = { save_global_event_target_as = elcorSpecies }
-		# 	}
-		# 	set_owner = event_target:courts_of_dekuuna
-		# 	generate_btr_start_deposits_and_blockers = yes			
-		# 	generate_elc_dekuuna_capitol_buildings = yes
-		# 	generate_elc_dekuuna_pops = yes
-		# 	add_deposit = d_dekuuna_unovasereng
-		# 	add_deposit = d_dekuuna_forests
-		# 	add_deposit = d_society_3
-		# 	set_name = "Dekuuna"
-		# }	
+		init_effect = {
+			random_country = {
+				limit = {
+					has_country_flag = courts_of_dekuuna
+				}
+				save_global_event_target_as = courts_of_dekuuna
+			}
+			prevent_anomaly = yes
+			set_global_flag = elcor_homeworld_spawned
+			set_planet_flag = dekuuna_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = courts_of_dekuuna 
+						} 
+					} 
+				}
+				create_species = { 
+					name = "Elcor"
+					class = ELC
+					portrait = elcor
+					namelist = btr_elcor
+					homeworld = THIS 
+					traits = { 
+						trait = elcor_trait_core
+						trait = elcor_trait_homebound
+						trait = elcor_trait_gesture_based_speech
+						trait = elcor_trait_ecologists
+					    ideal_planet_class = pc_highgrav_continental
+					}
+				  }
+				last_created_species = { save_global_event_target_as = elcorSpecies }
+				create_country = {
+					name = "Courts of Dekuuna"
+					ship_prefix = ""
+					type = default
+					origin = courts_of_dekuuna_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = elcor_elders_of_dekuuna 
+						civic = elcor_history_of_stability 
+					}
+					authority = auth_oligarchic
+					name_list = "btr_elcor"
+					ethos = { 
+						ethic = "ethic_xenophile" 
+						ethic = "ethic_fanatic_pacifist" 
+					}
+					species = event_target:elcorSpecies
+					flag = {
+						icon = {
+							category = "beyondtherelays"
+							file = "courts_of_dekuuna.dds"
+						}
+						background = {
+							category = "backgrounds"
+							file = "00_solid.dds"
+						}
+						colors = {
+							"dark_teal"
+							"grey"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = mammalian_01
+						set_country_flag = courts_of_dekuuna
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = courts_of_dekuuna
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = courts_of_dekuuna 
+				}
+				save_global_event_target_as = courts_of_dekuuna
+				species = { 
+					save_global_event_target_as = elcorSpecies 
+				}
+			}
+			set_owner = event_target:courts_of_dekuuna
+			generate_btr_start_deposits_and_blockers = yes			
+			generate_elc_dekuuna_capitol_buildings = yes
+			generate_elc_dekuuna_pops = yes
+			generate_elc_dekuuna_deposits = yes
+			clear_blockers = yes
+			set_name = "Dekuuna"
+			add_modifier = {
+				modifier = prairie_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+		}	
 		moon = {
 			name = "Oltan"
 			class = pc_barren_cold
@@ -141,19 +164,21 @@ sys_phontes_init = {
 			orbit_angle = 300
 			has_ring = no
 			size = 16
-			# init_effect = {
-			# 	add_deposit = d_exotic_gases_1
-			# 	add_deposit = d_trade_value_4
-			# 	set_owner = event_target:courts_of_dekuuna
-			# 	create_colony = {
-			# 		owner = event_target:courts_of_dekuuna
-			# 		species = event_target:elcorSpecies
-			# 		ethos = owner
-			# 	}
-			# 	generate_elc_oltan_pops = yes
-			# 	generate_elc_oltan_colony_buildings = yes	
-			# 	set_name = "Oltan"
-			# }
+			init_effect = {
+				add_deposit = d_exotic_gases_1
+				add_deposit = d_trade_value_4
+				if = {
+					limit = { 
+						exists = event_target:courts_of_dekuuna
+					}
+					set_owner = event_target:courts_of_dekuuna
+					generate_btr_start_deposits_and_blockers = yes
+					generate_elc_oltan_pops = yes
+					generate_elc_oltan_colony_buildings = yes	
+					clear_blockers = yes
+					prevent_anomaly = yes
+				}
+			}
 		}		
 	}
 
@@ -192,10 +217,7 @@ sys_bisalas_init = {
 	class = sc_g
 	max_instances = 1
 
-	flags = { outer_council_system durwuula_stream_system bisalas_system btr_system custom_system }
-	init_effect = {
-		generate_home_system_resources = yes
-	}
+	flags = { bisalas_system courts_of_dekuuna_system canon_map }
 
 	planet = {
 	    name = "Bisalas"
@@ -212,7 +234,6 @@ sys_bisalas_init = {
         orbit_angle = 177
         size = 9
         has_ring = no
-		flags = { tuee_planet btr_custom }
 		init_effect = {
 			add_deposit = d_minerals_5
 			add_deposit = d_rare_crystals_1
@@ -226,7 +247,6 @@ sys_bisalas_init = {
         orbit_angle = 177
         size = 32
         has_ring = no
-		flags = { urdaum_planet btr_custom }
 		moon = {
 			name = "Yapolam"
 			class = pc_highgrav_swamp
@@ -234,25 +254,27 @@ sys_bisalas_init = {
 			orbit_angle = 177
 			size = 25	
 			entity = "lake_planet_03_entity"
-			# init_effect = {
-			# 	add_modifier = {
-			# 		modifier = high_gravity
-			# 		days = -1
-			# 	}
-			# 	add_modifier = {
-			# 		modifier = lake_world
-			# 		days = -1
-			# 	}
-			# 	set_owner = event_target:courts_of_dekuuna
-			# 	create_colony = {
-			# 		owner = event_target:courts_of_dekuuna
-			# 		species = event_target:elcorSpecies
-			# 		ethos = owner
-			# 	}
-			# 	generate_elc_yapolam_pops = yes
-			# 	generate_elc_yapolam_colony_buildings = yes	
-			# 	set_name = "Yapolam"
-			# }						
+			init_effect = {
+				if = {
+					limit = { 
+						exists = event_target:courts_of_dekuuna
+					}
+					set_owner = event_target:courts_of_dekuuna
+					generate_btr_start_deposits_and_blockers = yes
+					generate_elc_yapolam_pops = yes
+					generate_elc_yapolam_colony_buildings = yes	
+					clear_blockers = yes
+					prevent_anomaly = yes
+				}
+				add_modifier = {
+					modifier = high_gravity
+					days = -1
+				}
+				add_modifier = {
+					modifier = lake_world
+					days = -1
+				}
+			}						
 		}
     }
 
@@ -264,7 +286,6 @@ sys_bisalas_init = {
         size = 24
         has_ring = no
 		entity = "mephitic_desert_planet_02_entity"
-		flags = { gendul_planet btr_custom }
 		init_effect = {
 			add_deposit = d_society_5
 			add_modifier = {
@@ -281,7 +302,6 @@ sys_bisalas_init = {
         orbit_angle = 177
         size = 9
         has_ring = no
-		flags = { funtuus_planet btr_custom }
 		init_effect = {
 			add_deposit = d_minerals_2
 		}	
@@ -294,7 +314,6 @@ sys_bisalas_init = {
         orbit_angle = 177
         size = 9
         has_ring = no
-		flags = { isdame_planet btr_custom }
 		init_effect = {
 			add_deposit = d_rare_crystals_1
 		}	
@@ -307,11 +326,7 @@ sys_resyadum_init = {
 	class = sc_k
 	max_instances = 1
 
-	flags = { outer_council_system durwuula_stream_system resyadum_system btr_system custom_system }
-
-	init_effect = {
-		generate_home_system_resources = yes
-	}
+	flags = { resyadum_system courts_of_dekuuna_system canon_map }
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -338,7 +353,6 @@ sys_resyadum_init = {
         orbit_angle = 177
         size = 9
         has_ring = no
-		flags = { ordas_planet }
 		init_effect = {
 			add_deposit = d_society_3
 			add_deposit = d_physics_6
@@ -352,7 +366,6 @@ sys_resyadum_init = {
         orbit_angle = 177
         size = 32
         has_ring = no
-		flags = { sargen_planet btr_custom }
 		init_effect = {
 			add_deposit = d_exotic_gases_2
 		}	
@@ -365,27 +378,28 @@ sys_resyadum_init = {
         orbit_angle = 177
         size = 24
         has_ring = no
-		flags = { jurdal_planet btr_custom }
 		entity = "forest_planet_10_entity"
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = forest_world
-		# 		days = -1
-		# 	}
-		# 	add_modifier = {
-		# 		modifier = high_gravity
-		# 		days = -1
-		# 	}
-		# 	set_owner = event_target:courts_of_dekuuna
-		# 	create_colony = {
-		# 		owner = event_target:courts_of_dekuuna
-		# 		species = event_target:elcorSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_elc_jurdal_pops = yes
-		# 	generate_elc_jurdal_colony_buildings = yes	
-		# 	set_name = "Jurdal"
-		# }						
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:courts_of_dekuuna
+				}
+				set_owner = event_target:courts_of_dekuuna
+				generate_btr_start_deposits_and_blockers = yes
+				generate_elc_jurdal_pops = yes
+				generate_elc_jurdal_colony_buildings = yes	
+				clear_blockers = yes
+				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = forest_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+		}						
 	}
 }
 
@@ -395,15 +409,14 @@ sys_salahiel_init = {
     class = sc_k
 	max_instances = 1
 
-	flags = { terminus_system phoenix_massing_system salahiel_system btr_system custom_system }
-	init_effect = {
-		generate_home_system_resources = yes
-	}
+	flags = { salahiel_system courts_of_dekuuna_system canon_map }
 
     planet = {
+		name = "Salahiel"
         class = pc_k_star
         orbit_distance = 0
         size = 25
+		flags = { salahiel_star }
     }
 
     planet = {
@@ -414,27 +427,28 @@ sys_salahiel_init = {
         has_ring = no
 		size = 25
 		entity = "veld_planet_10_entity"
-		# init_effect = {
-		# 	add_deposit = d_zro_deposit_1
-		# 	add_modifier = {
-		# 		modifier = high_gravity
-		# 		days = -1
-		# 	}
-		# 	add_modifier = {
-		# 		modifier = veld_world
-		# 		days = -1
-		# 	}
-		# 	set_owner = event_target:courts_of_dekuuna
-		# 	create_colony = {
-		# 		owner = event_target:courts_of_dekuuna
-		# 		species = event_target:elcorSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_elc_ekuuna_pops = yes
-		# 	generate_elc_ekuuna_colony_buildings = yes	
-			
-		# 	set_name = "Ekuuna"
-		# }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:courts_of_dekuuna
+				}
+				set_owner = event_target:courts_of_dekuuna
+				generate_btr_start_deposits_and_blockers = yes
+				generate_elc_ekuuna_pops = yes
+				generate_elc_ekuuna_colony_buildings = yes	
+				clear_blockers = yes
+				prevent_anomaly = yes				
+			}
+			add_deposit = d_zro_deposit_1
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_modifier = {
+				modifier = veld_world
+				days = -1
+			}
+		}
 	}		
 }
 
@@ -443,16 +457,14 @@ sys_batalla_init = {
     class = sc_k
 	max_instances = 1
 
-	flags = { terminus_system omega_nebula_system batalla_system btr_system custom_system }
-	init_effect = {
-		generate_home_system_resources = yes
-	}
+	flags = { batalla_system courts_of_dekuuna_system canon_map }
 
     planet = {
 		name = "Batalla"
         class = pc_k_star
         orbit_distance = 0
         size = 25
+		flags = { batalla_star }
     }
 
     planet = {
@@ -480,25 +492,27 @@ sys_batalla_init = {
         orbit_angle = 305
         has_ring = no
 		size = 25
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = high_gravity
-		# 		days = -1
-		# 	}
-		# 	add_modifier = {
-		# 		modifier = forest_world
-		# 		days = -1
-		# 	}
-		# 	set_owner = event_target:courts_of_dekuuna
-		# 	create_colony = {
-		# 		owner = event_target:courts_of_dekuuna
-		# 		species = event_target:elcorSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_elc_thunawanuro_pops = yes
-		# 	generate_elc_thunawanuro_colony_buildings = yes	
-		# 	set_name = "Thunawanuro"
-		# }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:courts_of_dekuuna
+				}
+				set_owner = event_target:courts_of_dekuuna
+				generate_btr_start_deposits_and_blockers = yes
+				generate_elc_thunawanuro_pops = yes
+				generate_elc_thunawanuro_colony_buildings = yes
+				clear_blockers = yes
+				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_modifier = {
+				modifier = forest_world
+				days = -1
+			}
+		}
     }
 
     planet = {

@@ -7,15 +7,11 @@
 sys_aru_init = {
     name = "Aru"
     class = sc_g
-	flags = { outer_council_system aethon_cluster_system aru_system btr_system custom_system empire_home_system }
+	flags = { vol_protectorate_homeworld vol_protectorate_capital_system canon_map aru_system }
 
-	# init_effect = { 
-	# 	random_country = { 
-	# 		limit = { has_country_flag = vol_protectorate } 
-	# 		save_global_event_target_as = vol_protectorate
-	# 	}	
-	# generate_home_system_resources = yes
-	# }
+	init_effect = { 
+		generate_home_system_resources = yes
+	}
 
 	usage = custom_empire
 	max_instances = 1	
@@ -40,7 +36,6 @@ sys_aru_init = {
         orbit_angle = 26
         has_ring = no
         size = 25
-		flags = { jakser_planet btr_custom }
     }
 
     planet = {
@@ -54,80 +49,105 @@ sys_aru_init = {
 		deposit_blockers = none		
 		modifiers = none
 		entity = "ammonia_continental_planet_09_entity"
-		flags = { irune_planet btr_custom }
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = prairie_world
-		# 		days = -1
-		# 	}
-		# 	prevent_anomaly = yes
-		# 	set_global_flag = volus_homeworld_spawned
-		# 	if = {
-		# 		limit = { NOT = { any_country = { has_country_flag = vol_protectorate } } }
-		# 		create_species = { 
-		# 			name = "Volus"
-		# 			class = VOL
-		# 			portrait = volus
-		# 			#homeworld = THIS 
-		# 			traits = { 
-		# 				trait = volus_trait_core
-		# 				trait = volus_trait_clan_based
-		# 				trait = volus_trait_economic_mindset
-		# 				trait = volus_trait_yoqtan_survivor
-		# 			  # ideal_planet_class = "pc_ammonia"
-		# 			}
-		# 		  }
-		# 		  last_created_species = { save_global_event_target_as = volusSpecies }
-		# 		create_country = {
-		# 			name = "Vol Protectorate"
-		# 			ship_prefix = "PRESCRIPTED_ship_prefix_vol_protectorate"
-		# 			type = default
-		# 			origin = vol_protectorate_origin
-		# 			ignore_initial_colony_error = yes
-		# 			civics = { civic = "civic_btr_volus_shrewd_business" civic = "civic_btr_volus_the_negotiators" }
-		# 			authority = "auth_corporate"
-		# 			name_list = "btr_volus"
-		# 			ethos = { ethic = "ethic_pacifist" ethic = "ethic_egalitarian" ethic = "materialist" }
-		# 			species = event_target:volusSpecies
-		# 			flag = {
-		# 				icon={
-		# 					category="masseffect"
-		# 					file="Vol Protectorate.dds"
-		# 				}
-		# 				background={
-		# 					category="backgrounds"
-		# 					file="v.dds"
-		# 				}
-		# 				colors={
-		# 					"turquoise"
-		# 					"turquoise"
-		# 					"null"
-		# 					"null"
-		# 				}
-		# 			}
-		# 			effect = {
-		# 				set_graphical_culture = mammalian_01
-		# 				set_country_flag = vol_protectorate
-		# 				set_country_flag = init_spawned
-		# 				set_country_flag = custom_start_screen
-		# 				set_country_flag = canon_map
-		# 				save_global_event_target_as = vol_protectorate
-		# 			}
-		# 		}
-		# 	}	
-		# 	set_capital = yes
-		# 	random_country = {
-		# 		limit = { has_country_flag = vol_protectorate }
-		# 		save_global_event_target_as = vol_protectorate
-		# 		species = { save_global_event_target_as = volusSpecies }
-		# 	}
-		# 	set_owner = event_target:vol_protectorate
-		# 	generate_btr_start_deposits_and_blockers = yes			
-		# 	generate_vol_irune_capitol_buildings = yes
-		# 	generate_vol_irune_pops = yes
-		# 	add_deposit = d_irune_lenos
-		# 	set_name = "Irune"
-		# }
+		flags = { irune_planet btr_custom volus_homeworld subclass_world }
+		init_effect = {
+			random_country = {
+				limit = {
+					has_country_flag = vol_protectorate
+				}
+				save_global_event_target_as = vol_protectorate
+			}
+			prevent_anomaly = yes
+			set_global_flag = volus_homeworld_spawned
+			set_planet_flag = irune_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = vol_protectorate 
+						} 
+					} 
+				}
+				create_species = { 
+					name = "Volus"
+					class = VOL
+					portrait = volus
+					namelist = btr_volus
+					homeworld = THIS 
+					traits = { 
+						trait = volus_trait_core
+						trait = volus_trait_clan_based
+						trait = volus_trait_economic_mindset
+						trait = volus_trait_yoqtan_survivor
+					    ideal_planet_class = pc_ammonia
+					}
+				  }
+				last_created_species = { save_global_event_target_as = volusSpecies }
+				create_country = {
+					name = "Vol Protectorate"
+					ship_prefix = ""
+					type = default
+					origin = vol_protectorate_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = volus_galactic_regulators
+						civic = volus_mercantile_supremacy }
+					authority = auth_corporate
+					name_list = "btr_volus"
+					ethos = { 
+						ethic = "ethic_pacifist" 
+						ethic = "ethic_egalitarian" 
+						ethic = "materialist" 
+					}
+					species = event_target:volusSpecies
+					flag = {
+						icon = {
+							category = "beyondtherelays"
+							file = "vol_protectorate.dds"
+						}
+						background = {
+							category = "backgrounds"
+							file = "00_solid.dds"
+						}
+						colors = {
+							"turquoise"
+							"turquoise"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = mammalian_01
+						set_country_flag = vol_protectorate
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = vol_protectorate
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = vol_protectorate 
+				}
+				save_global_event_target_as = vol_protectorate
+				species = { 
+					save_global_event_target_as = volusSpecies 
+				}
+			}
+			set_owner = event_target:vol_protectorate
+			generate_btr_start_deposits_and_blockers = yes			
+			generate_vol_irune_capitol_buildings = yes
+			generate_vol_irune_pops = yes
+			generate_vol_irune_deposits = yes
+			set_name = "Irune"
+			add_modifier = {
+				modifier = prairie_world
+				days = -1
+			}
+		}
 	}
 	
     planet = {
@@ -137,8 +157,6 @@ sys_aru_init = {
         orbit_angle = 235
         has_ring = no
         size = 33
-		flags = { locil_planet btr_custom }
-		satellite_naming_policy = lower_case_latin_letters
 		init_effect = {
 			add_deposit = d_exotic_gases_3
 			add_deposit = d_trade_value_6
@@ -196,7 +214,6 @@ sys_aru_init = {
         orbit_angle = 228
         has_ring = no
         size = 30
-		flags = { cherksab_planet btr_custom }
 		init_effect = {
 			add_deposit = d_exotic_gases_2
 		}	
@@ -209,29 +226,35 @@ sys_aru_init = {
         orbit_angle = 74
         has_ring = no
         size = 28
-		flags = { doldit_planet btr_custom }
 		moon = {
 			name = "Doldit a"
-            class = pc_iron
+            class = pc_barren_cold_station
             orbit_distance = 5
             orbit_angle = 106
             has_ring = no
 			size = 4
-			# init_effect = {
-			# 	add_deposit = d_trade_value_3
-			# 	add_deposit = d_society_3
-			# 	add_deposit = d_engineering_3
-			# 	add_deposit = d_physics_3
-			# 	set_owner = event_target:vol_protectorate
-			# 	create_colony = {
-			# 		owner = event_target:vol_protectorate
-			# 		species = event_target:volusSpecies
-			# 		ethos = owner
-			# 	}
-			# 	generate_vol_doldit_pops = yes
-			# 	generate_vol_minor_colony_buildings = yes	
-			# 	set_name = "Doldit a"
-			# }
+			init_effect = {
+				if = {
+					limit = { 
+						exists = event_target:vol_protectorate
+					}
+					set_owner = event_target:vol_protectorate
+					set_planet_flag = planetary_station
+					set_planet_flag = civil_station
+					set_deposit_flags = yes
+					generate_btr_start_deposits_and_blockers = yes
+					generate_vol_doldit_pops = yes
+					generate_vol_minor_colony_buildings = yes	
+					clear_blockers = yes
+					prevent_anomaly = yes
+					add_deposit = d_barren_cold_blocker
+					add_deposit = d_mineral_lodes
+				}
+				# add_deposit = d_trade_value_3
+				# add_deposit = d_society_3
+				# add_deposit = d_engineering_3
+				# add_deposit = d_physics_3
+			}
         }
     }
 }
@@ -241,10 +264,7 @@ sys_menarel_init = {
 	class = sc_k_giant
 	max_instances = 1
 
-	flags = { inner_council_system aethon_cluster_system menarel_system btr_system custom_system }
-	init_effect = {
-		generate_home_system_resources = yes
-	}
+	flags = { menarel_system vol_protectorate_system canon_map }
 
 	planet = {
 		name = "Mena Rel"
@@ -259,25 +279,24 @@ sys_menarel_init = {
 		class = pc_ammonia
         orbit_distance = 250
         size = 14
-		flags = { tautram_planet btr_custom }
 		entity = "arctic_planet_09_entity"
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = glacial_world
-		# 		days = -1
-		# 	}
-		# 	add_deposit = d_iridium_2
-		# 	add_deposit = d_palladium_2
-		# 	set_owner = event_target:vol_protectorate
-		# 	create_colony = {
-		# 		owner = event_target:vol_protectorate
-		# 		species = event_target:volusSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_vol_tautram_pops = yes
-		# 	generate_vol_major_colony_buildings = yes	
-		# 	set_name = "Tau Tram"
-		# }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:vol_protectorate
+				}
+				set_owner = event_target:vol_protectorate
+				generate_btr_start_deposits_and_blockers = yes
+				generate_vol_tautram_pops = yes
+				generate_vol_major_colony_buildings = yes
+			}
+			add_modifier = {
+				modifier = glacial_world
+				days = -1
+			}
+			#add_deposit = d_iridium_2
+			#add_deposit = d_palladium_2
+		}
 	}
 
 	planet = {
@@ -286,7 +305,6 @@ sys_menarel_init = {
         orbit_distance = 250
         size = 29
 		has_ring = yes
-		flags = { yimunwol_planet btr_custom }
 		init_effect = {
 			# add_deposit = d_helium_3_2
 			add_deposit = d_exotic_gases_2
@@ -310,10 +328,8 @@ sys_yakawa_init = {
     class = sc_g
 	max_instances = 1
 
-	flags = { attican_traverse_system caleston_rift_system yakawa_system btr_system custom_system }
-	init_effect = {
-		generate_home_system_resources = yes
-	}
+	flags = { yakawa_system vol_protectorate_system canon_map }
+
     planet = {
 	    name = "Yakawa"
         class = pc_g_star
@@ -329,7 +345,6 @@ sys_yakawa_init = {
         orbit_angle = 98
         has_ring = no
 		size = 25
-		flags = { sakata_planet btr_custom }
 		init_effect = {
 			add_deposit = d_minerals_5
 			add_deposit = d_engineering_4
@@ -347,7 +362,6 @@ sys_yakawa_init = {
         orbit_angle = 210
         has_ring = yes
 		size = 32
-		flags = { nambu_planet btr_custom }
 		init_effect = {
 			# add_deposit = d_helium_3_1
 			add_deposit = d_exotic_gases_1
@@ -358,7 +372,6 @@ sys_yakawa_init = {
 			orbit_distance = 20
 			has_ring = no
 			size = 6
-			flags = { sumiko_planet btr_custom }
 			init_effect = {
 				prevent_anomaly = yes
 				add_deposit = d_rare_crystals_2
@@ -389,26 +402,25 @@ sys_yakawa_init = {
         orbit_angle = 293
         has_ring = no
 		size = 17
-		flags = { maskawa_planet btr_custom }
 		entity = "ammonia_alpine_planet_01_entity"
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = crag_world
-		# 		days = -1
-		# 	}
-		# 	add_deposit = d_rich_iridium_deposits
-		# 	add_deposit = d_average_platinum_deposits
-		# 	add_deposit = d_average_palladium_deposits
-		# 	set_owner = event_target:vol_protectorate
-		# 	create_colony = {
-		# 		owner = event_target:vol_protectorate
-		# 		species = event_target:volusSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_vol_maskawa_pops = yes
-		# 	generate_vol_minor_colony_buildings = yes	
-		# 	set_name = "Maskawa"
-		# }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:vol_protectorate
+				}
+				set_owner = event_target:vol_protectorate
+				generate_btr_start_deposits_and_blockers = yes
+				generate_vol_maskawa_pops = yes
+				generate_vol_minor_colony_buildings = yes
+			}
+			add_modifier = {
+				modifier = crag_world
+				days = -1
+			}
+			# add_deposit = d_rich_iridium_deposits
+			# add_deposit = d_average_platinum_deposits
+			# add_deposit = d_average_palladium_deposits
+		}
     }
 
     planet = {
@@ -418,7 +430,6 @@ sys_yakawa_init = {
         orbit_angle = 151
         has_ring = no
 		size = 16
-		flags = { karumto_planet btr_custom }
 		init_effect = {
 			add_modifier = {
 				modifier = unstable_tectonics
@@ -434,7 +445,6 @@ sys_yakawa_init = {
         orbit_angle = 134
         has_ring = yes
 		size = 29
-		flags = { kobayashi_planet btr_custom }
 		init_effect = {
 			# add_deposit = d_helium_3_4
 			add_deposit = d_exotic_gases_1
@@ -464,10 +474,7 @@ sys_cobines_init = {
 	class = sc_k_giant
 	max_instances = 1
 
-	flags = { alliance_space_system dabos_knot_system cobines_system btr_system custom_system }
-	init_effect = {
-		generate_home_system_resources = yes
-	}
+	flags = { cobines_system vol_protectorate_system canon_map }
 
 	planet = {
 		name = "Cobi Nes"
@@ -484,27 +491,27 @@ sys_cobines_init = {
         orbit_angle = 15
         has_ring = no
 		size = 20
-		flags = { salau_planet btr_custom }
+
 		entity = "ammonia_arid_planet_10_entity"
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = dune_world
-		# 		days = -1
-		# 	}
-		# 	add_modifier = {
-		# 		modifier = high_gravity
-		# 		days = -1
-		# 	}
-		# 	set_owner = event_target:vol_protectorate
-		# 	create_colony = {
-		# 		owner = event_target:vol_protectorate
-		# 		species = event_target:volusSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_vol_salau_pops = yes
-		# 	generate_vol_major_colony_buildings = yes	
-		# 	set_name = "Salau"
-		# }
+		init_effect = {
+			if = {
+				limit = {
+					exists = event_target:vol_protectorate
+				}
+				set_owner = event_target:vol_protectorate
+				generate_btr_start_deposits_and_blockers = yes
+				generate_vol_salau_pops = yes
+				generate_vol_major_colony_buildings = yes
+			}
+			add_modifier = {
+				modifier = dune_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+		}
 		moon = {
 			name = "Reval"
 			class = pc_frozen
@@ -521,7 +528,6 @@ sys_cobines_init = {
         has_ring = no
 		size = 16
 		entity = "chlorine_swamp_planet_04_entity"
-		flags = { quonfuz_planet btr_custom }
 		init_effect = {
 			add_deposit = d_society_5
 			add_modifier = {
@@ -538,7 +544,6 @@ sys_cobines_init = {
         orbit_angle = 80
         has_ring = no
 		size = 27
-		flags = { lahman_planet btr_custom }
 		init_effect = {
 			# add_deposit = d_helium_3_3
 			add_deposit = d_exotic_gases_2
@@ -560,10 +565,7 @@ sys_omaverizh_init = {
 	class = sc_m_giant
 	max_instances = 1
 
-	flags = { alliance_space_system dabos_knot_system omaverizh_system btr_system custom_system }
-	init_effect = {
-		generate_home_system_resources = yes
-	}
+	flags = { omaverizh_system vol_protectorate_system canon_map }
 
 	asteroid_belt = {
 		type = icy_asteroid_belt
@@ -590,7 +592,6 @@ sys_omaverizh_init = {
         orbit_angle = 15
         has_ring = no
 		size = 9
-		flags = { idaro_planet btr_custom }
 		init_effect = {
 			add_deposit = d_physics_5
 		}	
@@ -652,23 +653,22 @@ sys_omaverizh_init = {
         orbit_angle = 45
         has_ring = no
 		size = 22
-		flags = { walden_planet btr_custom }
 		entity = "ammonia_savannah_planet_06_entity"
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = steppe_world
-		# 		days = -1
-		# 	}
-		# 	set_owner = event_target:vol_protectorate
-		# 	create_colony = {
-		# 		owner = event_target:vol_protectorate
-		# 		species = event_target:volusSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_vol_walden_pops = yes
-		# 	generate_vol_major_colony_buildings = yes	
-		# 	set_name = "Walden"
-		# }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:vol_protectorate
+				}
+				set_owner = event_target:vol_protectorate
+				generate_btr_start_deposits_and_blockers = yes
+				generate_vol_walden_pops = yes
+				generate_vol_major_colony_buildings = yes
+			}
+			add_modifier = {
+				modifier = steppe_world
+				days = -1
+			}
+		}
     }
 
 	planet = {
@@ -678,7 +678,6 @@ sys_omaverizh_init = {
         orbit_angle = 45
         has_ring = yes
 		size = 22
-		flags = { furwond_planet btr_custom }
 		init_effect = {
 			# add_deposit = d_helium_3_3
 			add_deposit = d_exotic_gases_2
@@ -693,10 +692,7 @@ sys_uba_init = {
     class = sc_m
 	max_instances = 1
 
-	flags = { outer_council_system minos_wasteland_system uba_system btr_system custom_system }
-	init_effect = {
-		generate_home_system_resources = yes
-	}
+	flags = { uba_system vol_protectorate_system canon_map }
 
     planet = {
 	    name = "Uba"
@@ -711,23 +707,22 @@ sys_uba_init = {
 		class = pc_ammonia
         orbit_distance = 250
 		size = 17
-		flags = { daleon_planet btr_custom }
 		entity = "ammonia_tundra_planet_04_entity"
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = lichen_world
-		# 		days = -1
-		# 	}
-		# 	set_owner = event_target:vol_protectorate
-		# 	create_colony = {
-		# 		owner = event_target:vol_protectorate
-		# 		species = event_target:volusSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_vol_daleon_pops = yes
-		# 	generate_vol_minor_colony_buildings = yes	
-		# 	set_name = "Daleon"
-		# }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:vol_protectorate
+				}
+				set_owner = event_target:vol_protectorate
+				generate_btr_start_deposits_and_blockers = yes
+				generate_vol_daleon_pops = yes
+				generate_vol_minor_colony_buildings = yes	
+			}
+			add_modifier = {
+				modifier = lichen_world
+				days = -1
+			}
+		}
 		moon = {
 			name = "Asok"
 			class = pc_barren
