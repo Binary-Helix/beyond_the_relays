@@ -4236,6 +4236,9 @@ country_event = {
 			establish_turian_hierarchy_communication = yes
 			establish_systems_alliance_communication = yes	
 			establish_courts_of_dekuuna_communication = yes
+			establish_vol_protectorate_communication = yes
+			establish_illuminated_primacy_communication = yes
+			establish_hegemony_of_kharshan_communication = yes
 		}		
 	}
 }
@@ -4383,18 +4386,18 @@ country_event = {
 			add_resource = { consumer_goods = 1400 }
 		}
 
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = batarian_hegemony	
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 1200	}
-		# 	add_resource = { minerals = 600 }
-		# 	add_resource = { alloys = 340	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 1700	}
-		# 	add_resource = { consumer_goods = 450 }
-		# }
+		if = {
+			limit = {
+				has_country_flag = hegemony_of_kharshan	
+				galaxy_size = btr_hybrid_600
+			}
+			add_resource = { energy = 1200	}
+			add_resource = { minerals = 600 }
+			add_resource = { alloys = 340	}
+			add_resource = { influence = 100 }
+			add_resource = { food = 1700	}
+			add_resource = { consumer_goods = 450 }
+		}
 		# if = {
 		# 	limit = {
 		# 		has_country_flag = remnants_of_rakhana	
@@ -5910,225 +5913,210 @@ event = {
 					}
 					btr_generate_stations = yes
 				}
-			}
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_origin = origin_batarian_hegemony
-			# 		any_system_within_border = {
-			# 			has_star_flag = harsa_system
-			# 		}
-			# 	}
-			# 	random_owned_planet = {
-			# 		limit = {
-			# 			has_planet_flag = kharshan_planet
-			# 		}
-			# 		set_capital = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = harsa_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = fleet_academy
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = koshlanhk_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = crew_quarters
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = untrel_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = trading_hub
-			# 			module = hangar_bay
-			# 			building = hydroponics_bay
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = gravnaz_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = trading_hub
-			# 			module = hangar_bay
-			# 			building = hydroponics_bay
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = indris_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
+				else_if = {
+					limit = {
+						has_star_flag = harsa_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = trading_hub
+						building = fleet_academy
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = koshlanhk_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = trading_hub
+						building = crew_quarters
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = untrel_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = trading_hub
+						module = hangar_bay
+						building = hydroponics_bay
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = gravnaz_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = trading_hub
+						module = hangar_bay
+						building = hydroponics_bay
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = indris_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
 
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = vular_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = shuoma_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = foillavas_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = ruotht_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = fathar_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = urdupos_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = bahak_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = chelae_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = kesd_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = hadassah_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = elam_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = drakhar_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = urdupos_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = urk_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:batarian_hegemony
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
+				else_if = {
+					limit = {
+						has_star_flag = vular_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = shuoma_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = foillavas_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = ruotht_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = fathar_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = urdupos_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = bahak_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = chelae_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = kesd_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = hadassah_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = elam_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = drakhar_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = urdupos_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+				else_if = {
+					limit = {
+						has_star_flag = urk_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+					btr_generate_stations = yes
+				}
+			}
 			# if = {
 			# 	limit = {
 			# 		galaxy_size = btr_hybrid_400
@@ -7210,8 +7198,9 @@ event = {
 			# 		btr_generate_stations = yes
 			# 	}	
 		}
-	}	
-}
+	}
+}		
+
 
 #Starting Ship Spawning
 country_event = {
@@ -8317,475 +8306,475 @@ country_event = {
 			}
 		}		
 
-# 		if = {
-# 			limit = {
-# 				has_country_flag = courts_of_dekuuna
-# 			}
-# 			#constructor
-# 			create_fleet = {
-# 				effect = {
-# 					set_owner = prev
-
-# 					create_ship = {
-# 						name = random
-# 						random_existing_design = constructor
-# 					}
-
-# 					set_fleet_stance = evasive
-# 					set_location = prev.capital_star
-# 				}
-# 			}
-
-# 			create_fleet = {
-# 				effect = {
-# 					set_owner = prev
-
-# 					create_ship = {
-# 						name = random
-# 						random_existing_design = science
-# 					}
-
-# 					set_fleet_stance = evasive
-# 					set_location = prev.capital_star
-# 				}
-# 			}
-
-# 			#Elcor 1st Fleet
-# 			create_fleet = {
-# 				set_take_point = yes
-# 				effect = {
-# 					set_owner = prev
-
-# 					while = {
-# 						count = 18
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = corvette
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 17
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = destroyer
-# 						}
-# 					}
-# 					set_location = prev.capital_star
-# 				}
-# 				name = "Elcor 1st Fleet"
-# 			}
-# 		}	
-
-
-# 		if = {
-# 			limit = {
-# 				has_country_flag = illuminated_primacy
-# 			}
-# 			#constructor
-# 			create_fleet = {
-# 				effect = {
-# 					set_owner = prev
-
-# 					create_ship = {
-# 						name = random
-# 						random_existing_design = constructor
-# 					}
-
-# 					set_fleet_stance = evasive
-# 					set_location = prev.capital_star
-# 				}
-# 			}
-
-# 			create_fleet = {
-# 				effect = {
-# 					set_owner = prev
-
-# 					create_ship = {
-# 						name = random
-# 						random_existing_design = constructor
-# 					}
-
-# 					set_fleet_stance = evasive
-# 					set_location = prev.capital_star
-# 				}
-# 			}
-
-# 			create_fleet = {
-# 				effect = {
-# 					set_owner = prev
-
-# 					create_ship = {
-# 						name = random
-# 						random_existing_design = science
-# 					}
-
-# 					set_fleet_stance = evasive
-# 					set_location = prev.capital_star
-# 				}
-# 			}
-
-# 			#Hanar 1st Fleet
-# 			create_fleet = {
-# 				set_take_point = yes
-# 				effect = {
-# 					set_owner = prev
-
-# 					while = {
-# 						count = 14
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = corvette
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 6
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = destroyer
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 1
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = cruiser
-# 						}
-# 					}
-# 				}
-# 				name = "Hanar 1st Fleet"
-
-# 			}
-# 		}		
-
-# 		if = {
-# 			limit = {
-# 				has_country_flag = vol_protectorate
-# 			}
-
-# 			#constructor
-# 			create_fleet = {
-# 				effect = {
-# 					set_owner = prev
-
-# 					create_ship = {
-# 						name = random
-# 						random_existing_design = constructor
-# 					}
-
-# 					set_fleet_stance = evasive
-# 					set_location = prev.capital_star
-# 				}
-# 			}
-
-# 			create_fleet = {
-# 				effect = {
-# 					set_owner = prev
-
-# 					create_ship = {
-# 						name = random
-# 						random_existing_design = science
-# 					}
-
-# 					set_fleet_stance = evasive
-# 					set_location = prev.capital_star
-# 				}
-# 			}
-
-# 			#Vol 1st Fleet
-# 			create_fleet = {
-# 				set_take_point = yes
-# 				effect = {
-# 					set_owner = prev
-
-# 					while = {
-# 						count = 6
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = corvette
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 8
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = destroyer
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 5
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = cruiser
-# 						}
-# 					}
-# 					set_location = prev.capital_star
-# 				}
-# 				name = "Volus 1st Fleet"
-# 			}
-
-# 			create_fleet = {
-# 				set_take_point = yes
-# 				effect = {
-# 					set_owner = prev
-
-# 					while = {
-# 						count = 6
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = corvette
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 8
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = destroyer
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 4
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = cruiser
-# 						}
-# 					}
-# 					set_location = prev.capital_star
-# 				}
-# 				name = "Volus 2nd Fleet"
-# 			}
-
-# 			create_fleet = {
-# 				set_take_point = yes
-# 				effect = {
-# 					set_owner = prev
-
-# 					while = {
-# 						count = 6
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = corvette
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 8
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = destroyer
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 4
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = cruiser
-# 						}
-# 					}
-# 					set_location = prev.capital_star
-# 				}
-# 				name = "Volus 3rd Fleet"
-# 			}
-# 		}
-
-# 		if = {
-# 			limit = {
-# 				has_country_flag = batarian_hegemony
-# 			}
-
-# 			#constructor
-# 			create_fleet = {
-# 				effect = {
-# 					set_owner = prev
-
-# 					create_ship = {
-# 						name = random
-# 						random_existing_design = constructor
-# 					}
-
-# 					set_fleet_stance = evasive
-# 					set_location = prev.capital_star
-# 				}
-# 			}
-
-# 			create_fleet = {
-# 				effect = {
-# 					set_owner = prev
-
-# 					create_ship = {
-# 						name = random
-# 						random_existing_design = science
-# 					}
-
-# 					set_fleet_stance = evasive
-# 					set_location = prev.capital_star
-# 				}
-# 			}
-
-# 			#Batarian 1st Fleet
-# 			create_fleet = {
-# 				set_take_point = yes
-# 				effect = {
-# 					set_owner = prev
-
-# 					while = {
-# 						count = 10
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = corvette
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 24
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = destroyer
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 11
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = cruiser
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 1
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = battleship
-# 						}
-# 					}
-# 					set_location = prev.capital_star
-# 				}
-# 				name = "Batarian 1st Fleet"
-# 			}
-
-# 			create_fleet = {
-# 				set_take_point = yes
-# 				effect = {
-# 					set_owner = prev
-
-# 					while = {
-# 						count = 9
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = corvette
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 24
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = destroyer
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 10
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = cruiser
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 1
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = battleship
-# 						}
-# 					}
-# 					set_location = prev.capital_star
-# 				}
-# 				name = "Batarian 2nd Fleet"
-# 			}
-
-# 			create_fleet = {
-# 				set_take_point = yes
-# 				effect = {
-# 					set_owner = prev
-
-# 					while = {
-# 						count = 9
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = corvette
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 24
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = destroyer
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 10
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = cruiser
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 1
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = battleship
-# 						}
-# 					}
-# 					set_location = prev.capital_star
-# 				}
-# 				name = "Batarian 3rd Fleet"
-# 			}
-
-# 			create_fleet = {
-# 				set_take_point = yes
-# 				effect = {
-# 					set_owner = prev
-
-# 					while = {
-# 						count = 9
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = corvette
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 23
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = destroyer
-# 						}
-# 					}
-
-# 					while = {
-# 						count = 10
-# 						create_ship = {
-# 							name = random
-# 							random_existing_design = cruiser
-# 						}
-# 					}
-# 					set_location = prev.capital_star
-# 				}
-# 				name = "Batarian 3rd Fleet"
-# 			}
-# 		}					
+		if = {
+			limit = {
+				has_country_flag = courts_of_dekuuna
+			}
+			#constructor
+			create_fleet = {
+				effect = {
+					set_owner = prev
+
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+					}
+
+					set_fleet_stance = evasive
+					set_location = prev.capital_star
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = prev
+
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+
+					set_fleet_stance = evasive
+					set_location = prev.capital_star
+				}
+			}
+
+			#Elcor 1st Fleet
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 18
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+
+					while = {
+						count = 17
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+					set_location = prev.capital_star
+				}
+				name = "Elcor 1st Fleet"
+			}
+		}	
+
+
+		if = {
+			limit = {
+				has_country_flag = illuminated_primacy
+			}
+			#constructor
+			create_fleet = {
+				effect = {
+					set_owner = prev
+
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+					}
+
+					set_fleet_stance = evasive
+					set_location = prev.capital_star
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = prev
+
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+					}
+
+					set_fleet_stance = evasive
+					set_location = prev.capital_star
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = prev
+
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+
+					set_fleet_stance = evasive
+					set_location = prev.capital_star
+				}
+			}
+
+			#Hanar 1st Fleet
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 14
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+
+					while = {
+						count = 6
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+
+					while = {
+						count = 1
+						create_ship = {
+							name = random
+							random_existing_design = cruiser
+						}
+					}
+				}
+				name = "Hanar 1st Fleet"
+
+			}
+		}		
+
+		if = {
+			limit = {
+				has_country_flag = vol_protectorate
+			}
+
+			#constructor
+			create_fleet = {
+				effect = {
+					set_owner = prev
+
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+					}
+
+					set_fleet_stance = evasive
+					set_location = prev.capital_star
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = prev
+
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+
+					set_fleet_stance = evasive
+					set_location = prev.capital_star
+				}
+			}
+
+			#Vol 1st Fleet
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 6
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+
+					while = {
+						count = 8
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+
+					while = {
+						count = 5
+						create_ship = {
+							name = random
+							random_existing_design = cruiser
+						}
+					}
+					set_location = prev.capital_star
+				}
+				name = "Volus 1st Fleet"
+			}
+
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 6
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+
+					while = {
+						count = 8
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							random_existing_design = cruiser
+						}
+					}
+					set_location = prev.capital_star
+				}
+				name = "Volus 2nd Fleet"
+			}
+
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 6
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+
+					while = {
+						count = 8
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							random_existing_design = cruiser
+						}
+					}
+					set_location = prev.capital_star
+				}
+				name = "Volus 3rd Fleet"
+			}
+		}
+
+		if = {
+			limit = {
+				has_country_flag = hegemony_of_kharshan
+			}
+
+			#constructor
+			create_fleet = {
+				effect = {
+					set_owner = prev
+
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+					}
+
+					set_fleet_stance = evasive
+					set_location = prev.capital_star
+				}
+			}
+
+			create_fleet = {
+				effect = {
+					set_owner = prev
+
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+
+					set_fleet_stance = evasive
+					set_location = prev.capital_star
+				}
+			}
+
+			#Batarian 1st Fleet
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 10
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+
+					while = {
+						count = 24
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+
+					while = {
+						count = 11
+						create_ship = {
+							name = random
+							random_existing_design = cruiser
+						}
+					}
+
+					while = {
+						count = 1
+						create_ship = {
+							name = random
+							random_existing_design = battleship
+						}
+					}
+					set_location = prev.capital_star
+				}
+				name = "Batarian 1st Fleet"
+			}
+
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 9
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+
+					while = {
+						count = 24
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+
+					while = {
+						count = 10
+						create_ship = {
+							name = random
+							random_existing_design = cruiser
+						}
+					}
+
+					while = {
+						count = 1
+						create_ship = {
+							name = random
+							random_existing_design = battleship
+						}
+					}
+					set_location = prev.capital_star
+				}
+				name = "Batarian 2nd Fleet"
+			}
+
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 9
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+
+					while = {
+						count = 24
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+
+					while = {
+						count = 10
+						create_ship = {
+							name = random
+							random_existing_design = cruiser
+						}
+					}
+
+					while = {
+						count = 1
+						create_ship = {
+							name = random
+							random_existing_design = battleship
+						}
+					}
+					set_location = prev.capital_star
+				}
+				name = "Batarian 3rd Fleet"
+			}
+
+			create_fleet = {
+				set_take_point = yes
+				effect = {
+					set_owner = prev
+
+					while = {
+						count = 9
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+
+					while = {
+						count = 23
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+
+					while = {
+						count = 10
+						create_ship = {
+							name = random
+							random_existing_design = cruiser
+						}
+					}
+					set_location = prev.capital_star
+				}
+				name = "Batarian 3rd Fleet"
+			}
+		}					
 
 # 		if = {
 # 			limit = {
