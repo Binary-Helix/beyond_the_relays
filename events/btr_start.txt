@@ -4206,7 +4206,7 @@ country_event = {
 		random_country = { limit = { has_country_flag = sedriicae_collective } save_event_target_as = sedriicae_collective }		
 		random_country = { limit = { has_country_flag = lystheni_order } save_event_target_as = lystheni_order }
 		random_country = { limit = { has_country_flag = gothones_remnant } save_event_target_as = gothones_remnant }		
-		random_country = { limit = { has_country_flag = parnack_regime } save_event_target_as = parnack_regime }
+		random_country = { limit = { has_country_flag = parnack_regime_player } save_event_target_as = parnack_regime }
 		random_country = { limit = { has_country_flag = raloi_republic } save_event_target_as = raloi_republic }		
 		random_country = { limit = { has_country_flag = geth_consensus } save_event_target_as = geth_consensus }
 		random_country = { limit = { has_country_flag = disciples_of_nazara } save_event_target_as = disciples_of_nazara }
@@ -4244,6 +4244,10 @@ country_event = {
 			establish_illium_corporate_interests_communication = yes
 			establish_remnants_of_rakhana_communication = yes
 			establish_vorcha_clandom_communication = yes
+			establish_sedriicae_collective_communication = yes
+			establish_lystheni_order_communication = yes
+			establish_gothones_remnant_communication = yes
+			establish_disciples_of_nazara_communication = yes
 			establish_geth_consensus_communication = yes
 		}		
 	}
@@ -4536,57 +4540,58 @@ country_event = {
 			add_resource = { food = 900	}
 			add_resource = { consumer_goods = 300 }
 		}
+		if = {
+			limit = {
+				has_country_flag = raloi_republic_player
+				galaxy_size = btr_hybrid_600
+			}
+			add_resource = { energy = 450	}
+			add_resource = { minerals = 200 }
+			add_resource = { alloys = 250	}
+			add_resource = { influence = 100 }
+			add_resource = { food = 1300	}
+			add_resource = { consumer_goods = 520 }
+		}
+		if = {
+			limit = {
+				has_country_flag = geth_consensus
+				galaxy_size = btr_hybrid_600
+			}
+			add_resource = { energy = 2800	}
+			add_resource = { minerals = 1050 }
+			add_resource = { alloys = 1450	}
+			add_resource = { influence = 100 }
+		}
+		if = {
+			limit = {
+				has_country_flag = disciples_of_nazara
+				galaxy_size = btr_hybrid_600
+			}
+			add_resource = { energy = 2700	}
+			add_resource = { minerals = 1050 }
+			add_resource = { alloys = 1450	}
+			add_resource = { influence = 100 }
+		}
+		if = {
+			limit = {
+				has_country_flag = rachni_swarm
+				galaxy_size = btr_hybrid_600
+			}
+			add_resource = { energy = 800	}
+			add_resource = { minerals = 350 }
+			add_resource = { alloys = 250	}
+			add_resource = { influence = 100 }
+			add_resource = { food = 1540	}
+		}
 
 
 
 
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = raloi_republic
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 450	}
-		# 	add_resource = { minerals = 200 }
-		# 	add_resource = { alloys = 250	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 1300	}
-		# 	add_resource = { consumer_goods = 520 }
-		# }
-
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = geth_consensus
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 2800	}
-		# 	add_resource = { minerals = 1050 }
-		# 	add_resource = { alloys = 1450	}
-		# 	add_resource = { influence = 100 }
-		# }
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = rachni_hive
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 800	}
-		# 	add_resource = { minerals = 350 }
-		# 	add_resource = { alloys = 250	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 1540	}
-		# }
 
 
 
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = disciples_of_nazara
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 2700	}
-		# 	add_resource = { minerals = 1050 }
-		# 	add_resource = { alloys = 1450	}
-		# 	add_resource = { influence = 100 }
-		# }
+
+
 		# if = {
 		# 	limit = {
 		# 		has_country_flag = citadel_council
@@ -4670,7 +4675,6 @@ country_event = {
 		# 	add_resource = { influence = 100 }
 		# 	add_resource = { food = 2050	}
 		# }
-
 	}
 }
 
@@ -6359,148 +6363,247 @@ event = {
 						owner = event_target:gothones_remnant
 					}
 				}
+				else_if = {
+					limit = {
+						has_star_flag = tikkun_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = hangar_bay
+						building = fleet_academy
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = dholen_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = hangar_bay
+						building = fleet_academy
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = maat_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = hangar_bay
+						building = fleet_academy
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = raadarum_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = hangar_bay
+						building = crew_quarters
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = kholas_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = caarehyosal_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:geth_consensus
+					}
+				}
 
-
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_origin = origin_geth_consensus
-			# 		any_system_within_border = {
-			# 			has_star_flag = tikkun_system
-			# 		}
-			# 	}
-			# 	random_owned_planet = {
-			# 		limit = {
-			# 			has_planet_flag = rannoch_planet
-			# 		}
-			# 		set_capital = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = tikkun_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = hangar_bay
-			# 			building = fleet_academy
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = dholen_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = hangar_bay
-			# 			building = fleet_academy
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = maat_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = hangar_bay
-			# 			building = fleet_academy
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = raadarum_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = hangar_bay
-			# 			building = crew_quarters
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = kholas_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = caarehyosal_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = disul_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}	
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = jaavo_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = keelulon_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = gaalozozh_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = ruvum_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpostR
-			# 			owner = event_target:geth_consensus
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
-
-
+				else_if = {
+					limit = {
+						has_star_flag = disul_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:geth_consensus
+					}
+				}	
+				else_if = {
+					limit = {
+						has_star_flag = jaavo_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = keelulon_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = gaalozozh_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = ruvum_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = theseaofstorms_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = hangar_bay
+						building = fleet_academy
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = haelazi_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = hangar_bay
+						building = fleet_academy
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = xelazi_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = hangar_bay
+						building = crew_quarters
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = yeelixeeme_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = yassu_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = seefisgaca_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = sesost_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = hong_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = vamshi_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = grissom_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = tereshkova_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = gagarin_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = maskimxul_system
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						module = hangar_bay
+						building = crew_quarters
+						owner = event_target:rachni_hive
+					}
+				}
 			# if = {
 			# 	limit = {
 			# 		has_country_flag = citadel_council
@@ -6540,287 +6643,6 @@ event = {
 			# 			module = hangar_bay
 			# 			building = listening_post
 			# 			owner = event_target:citadel_council
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = cerberus_empire
-			# 		any_system_within_border = {
-			# 			has_star_flag = anadius_system
-			# 		}
-			# 	}
-			# 	random_owned_planet = {
-			# 		limit = {
-			# 			has_planet_flag = cronos_station
-			# 		}
-			# 		set_capital = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = anadius_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = fleet_academy
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = lv426_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = hangar_bay
-			# 			module = trading_hub
-			# 			building = hydroponics_bay
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = patella_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = hangar_bay
-			# 			module = trading_hub
-			# 			building = hydroponics_bay
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = amazon_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = hangar_bay
-			# 			module = trading_hub
-			# 			building = crew_quarters
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = strenuus_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = columbia_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = yangtze_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = lazarus_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = 41275l_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = netheril_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = dakka_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = disciples_of_nazara
-			# 		any_system_within_border = {
-			# 			has_star_flag = theseaofstorms_system
-			# 		}
-			# 	}
-			# 	random_owned_planet = {
-			# 		limit = {
-			# 			has_planet_flag = heretic_station
-			# 		}
-			# 		set_capital = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = theseaofstorms_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = hangar_bay
-			# 			building = fleet_academy
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = haelazi_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = hangar_bay
-			# 			building = fleet_academy
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = xelazi_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = hangar_bay
-			# 			building = crew_quarters
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = yeelixeeme_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = yassu_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = seefisgaca_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = sesost_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = hong_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = vamshi_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = grissom_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = tereshkova_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:disciples_of_nazara
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = gagarin_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:disciples_of_nazara
 			# 		}
 			# 		btr_generate_stations = yes
 			# 	}
@@ -6977,50 +6799,10 @@ event = {
 			# 		btr_generate_stations = yes
 			# 	}
 			# }
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = raloi_republic
-			# 		any_system_within_border = {
-			# 			has_star_flag = azedes_system
-			# 		}
-			# 	}	
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = azedes_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = crew_quarters
-			# 			owner = event_target:raloi_republic
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }	
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = rachni_hive
-			# 		any_system_within_border = {
-			# 			has_star_flag = maskimxul_system
-			# 		}
-			# 	}	
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = maskimxul_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = hangar_bay
-			# 			building = crew_quarters
-			# 			owner = event_target:rachni_hive
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
+
+
+
+
 			# if = {
 			# 	limit = {
 			# 		galaxy_size = btr_hybrid_400
@@ -7048,6 +6830,143 @@ event = {
 			# 		}
 			# 		btr_generate_stations = yes
 			# 	}
+						# if = {
+			# 	limit = {
+			# 		galaxy_size = btr_hybrid_400
+			# 		has_country_flag = cerberus_empire
+			# 		any_system_within_border = {
+			# 			has_star_flag = anadius_system
+			# 		}
+			# 	}
+			# 	random_owned_planet = {
+			# 		limit = {
+			# 			has_planet_flag = cronos_station
+			# 		}
+			# 		set_capital = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = anadius_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_starport
+			# 			module = shipyard
+			# 			module = trading_hub
+			# 			building = fleet_academy
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = lv426_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_starport
+			# 			module = hangar_bay
+			# 			module = trading_hub
+			# 			building = hydroponics_bay
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = patella_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_starport
+			# 			module = hangar_bay
+			# 			module = trading_hub
+			# 			building = hydroponics_bay
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = amazon_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_starport
+			# 			module = hangar_bay
+			# 			module = trading_hub
+			# 			building = crew_quarters
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = strenuus_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_outpost
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = columbia_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_outpost
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = yangtze_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_outpost
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = lazarus_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_outpost
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = 41275l_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_outpost
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = netheril_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_outpost
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# 	else_if = {
+			# 		limit = {
+			# 			has_star_flag = dakka_system
+			# 		}
+			# 		create_starbase = {
+			# 			size = starbase_outpost
+			# 			owner = event_target:cerberus_empire
+			# 		}
+			# 		btr_generate_stations = yes
+			# 	}
+			# }
 			}	
 		}
 	}
@@ -8910,7 +8829,7 @@ country_event = {
 								has_planet_flag = military_station
 								has_planet_flag = cultural_station
 								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
+								has_planet_flag = cracking_station
 							}
 						}
 						set_planet_flag = civil_station

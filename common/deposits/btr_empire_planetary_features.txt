@@ -1511,8 +1511,18 @@ d_rannoch_geth_factory = {
 	icon = d_rannoch_geth_factory
 	category = deposit_cat_rare
 
-	planet_modifier = {
-		pop_assembly_speed = 0.20
+	triggered_planet_modifier = {
+		potential = {
+			owner = {
+				OR = {
+					has_origin = geth_consensus_origin
+					has_origin = disciples_of_nazara_origin
+				}
+			}
+		}
+		modifier = {
+			planet_pop_assembly_mult = 0.20
+		}
 	}
 
 	drop_weight = {
@@ -2287,9 +2297,9 @@ d_heshtok_tribal_settlements = {
 	}
 }
 
-### Regdika
+### Sed'riicae
 
-d_regdika_mukiilak_ocean = {
+d_sedriicae_mukiilak_ocean = {
 	is_for_colonizable = yes
 	icon = d_regdika_mukiilak_ocean
 	category = deposit_cat_rare
@@ -2314,7 +2324,7 @@ d_regdika_mukiilak_ocean = {
 	}
 }
 
-d_regdika_natural_mines = {
+d_sedriicae_natural_mines = {
 	is_for_colonizable = yes
 	icon = d_regdika_mukiilak_ocean
 	category = deposit_cat_rare
@@ -2338,7 +2348,7 @@ d_regdika_natural_mines = {
 	}
 }
 
-d_regdika_main_industry_hub = {
+d_sedriicae_main_industry_hub = {
 	is_for_colonizable = yes
 	icon = d_regdika_mukiilak_ocean
 	category = deposit_cat_rare
@@ -2364,7 +2374,7 @@ d_regdika_main_industry_hub = {
 	}
 }
 
-d_regdika_underground_world = {
+d_sedriicae_underground_world = {
 	is_for_colonizable = yes
 	icon = d_regdika_underground_world
 	category = deposit_cat_rare
@@ -2378,7 +2388,7 @@ d_regdika_underground_world = {
 	}
 }
 
-d_regdika_surface_radiation_collector = {
+d_sedriicae_surface_radiation_collector = {
 	is_for_colonizable = yes
 	icon = d_regdika_surface_radiation_collector
 	category = deposit_cat_rare
@@ -2915,7 +2925,7 @@ d_rachni_origin = {
 	potential = {
 		exists = owner
 		owner = {
-			has_origin = rachni_swarm_origin
+			has_origin = rachni_hive_origin
 		}
 	}
 
@@ -2939,7 +2949,7 @@ d_rachni_nests = {
 		exists = owner
 		planet = {
 			owner = {
-				has_origin = rachni_swarm_origin
+				has_origin = rachni_hive_origin
 			}
 		}
 	}

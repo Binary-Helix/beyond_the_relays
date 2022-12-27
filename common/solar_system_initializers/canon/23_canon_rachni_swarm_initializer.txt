@@ -7,21 +7,17 @@
 sys_maskimxul_init = {
     name = "Maskim Xul"
     class = "sc_m"
-	flags = { attican_traverse_system ninmah_cluster_system maskimxul_system btr_system custom_system empire_home_system }
-	# init_effect = { 
-	# 	random_country = { 
-	# 		limit = { has_country_flag = rachni_hive } 
-	# 		save_global_event_target_as = rachni_hive
-	# 	}	
-	# generate_home_system_resources = yes
-	# }
+	flags = { rachni_hive_homeworld rachni_hive_capital_system canon_map maskim_xul_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+	}
 
     planet = {
 		name = "Maskim Xul"
         class = "pc_m_star"
         orbit_distance = 0
         size = 22
-		flags = { maskimxul_star }
+		flags = { maskim_xul_star }
     }
 	
 	asteroid_belt = {
@@ -40,89 +36,18 @@ sys_maskimxul_init = {
 		deposit_blockers = none		
 		modifiers = none
 		entity = "mephitic_desert_planet_09_entity"
-		flags = { suen_planet subclass_world }
-
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = badlands_world
-		# 		days = -1
-		# 	}
-		# 	prevent_anomaly = yes
-		# 	set_global_flag = rachni_homeworld_spawned
-		# 	if = {
-		# 		limit = { NOT = { any_country = { has_country_flag = rachni_hive } } }
-		# 		create_species = { 
-		# 			name = "Rachni"
-		# 			class = RAC
-		# 			portrait = rachni
-		# 			#homeworld = THIS 
-		# 			traits = { 
-		# 		  trait="trait_hive_mind"
-		# 		  trait="btr_rachni_melodic"
-		# 		  trait="btr_rachni_harsh_enviroment_adaptability"
-		# 		  trait="trait_rapid_breeders"
-		# 		  trait="trait_repugnant"
-		# 		  trait="trait_strong"
-		# 			  # ideal_planet_class = "pc_arid"
-		# 			}
-		# 		  }
-		# 		  last_created_species = { save_global_event_target_as = rachniSpecies }
-		# 		create_country = {
-		# 			name = "Rachni Hive"
-		# 			ship_prefix = "PRESCRIPTED_ship_prefix_rachni_hive"
-		# 			type = default
-		# 			origin = "origin_rachni_hive"
-		# 			ignore_initial_colony_error = yes
-		# 			civics = { civic = "civic_btr_rachni_crescendo" civic = "civic_btr_rachni_de_capo_al_fine" }
-		# 			authority = auth_hive_mind
-		# 			name_list = "btr_collectors"
-		# 			ethos = { ethic = "ethic_gestalt_consciousness" }
-		# 			species = event_target:rachniSpecies
-		# 			flag = {
-		# 				icon={
-		# 					category="domination"
-		# 					file="domination_13.dds"
-		# 				}
-		# 				background={
-		# 					category="backgrounds"
-		# 					file="00_solid.dds"
-		# 				}
-		# 				colors={
-		# 					"grey"
-		# 					"purple"
-		# 					"null"
-		# 					"null"
-		# 				}
-		# 			}
-		# 			effect = {
-		# 				set_graphical_culture = molluscoid_01
-		# 				set_country_flag = rachni_hive
-		# 				set_country_flag = init_spawned
-		# 				set_country_flag = custom_start_screen
-		# 				set_country_flag = canon_map
-		# 				save_global_event_target_as = rachni_hive
-		# 			}
-		# 		}
-		# 	}	
-		# 	set_capital = yes
-		# 	random_country = {
-		# 		limit = { has_country_flag = rachni_hive }
-		# 		save_global_event_target_as = rachni_hive
-		# 	}
-		# 	set_owner = event_target:rachni_hive
-		# 	generate_btr_start_deposits_and_blockers = yes
-		# 	generate_rac_suen_start_buildings = yes
-		# 	generate_rac_suen_pops = yes
-		# 	add_modifier = {
-		# 		modifier = btr_underground_civilization
-		# 		days = -1
-		# 	}
-		# 	add_modifier = {
-		# 		modifier = tidal_locked
-		# 		days =-1
-		# 	}
-		# 	set_name = "Suen"
-		# }
+		flags = { suen_planet rachni_homeworld subclass_world }	
+		init_effect = {
+			set_global_flag = rachni_homeworld_spawned
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = tidal_locked
+				days =-1
+			}
+		}	
     }
 
     planet = {
@@ -133,7 +58,7 @@ sys_maskimxul_init = {
         has_ring = no
 		size = 3
 		entity = "mephitic_arid_planet_10_entity"
-		flags = { kashshaptu_planet subclass_world }
+		flags = { subclass_world }
 		init_effect = {
 			add_modifier = {
 				modifier = dust_world
@@ -156,7 +81,6 @@ sys_maskimxul_init = {
         orbit_angle = 242
         has_ring = no
 		size = 28
-		flags = { damkianna_planet subclass_world }
 		init_effect = {
 			prevent_anomaly = yes
 			clear_deposits = yes
@@ -172,7 +96,7 @@ sys_mullaxul_init = {
     class = sc_k
 	max_instances = 1
 
-	flags = { attican_traverse_system ninmah_cluster_system mullaxul_system btr_system custom_system empire_home_system }
+	flags = { mullaxul_system rachni_hive_system canon_map }
 
 	init_effect = { 
 	generate_home_system_resources = yes
@@ -201,7 +125,6 @@ sys_mullaxul_init = {
         orbit_angle = 202
         has_ring = no
 		size = 21
-		flags = { maldor_planet subclass_world }
 		init_effect = {
 			# add_deposit = d_poor_iridium_deposits
 			# add_deposit = d_poor_platinum_deposits
@@ -225,22 +148,98 @@ sys_mullaxul_init = {
         size = 17
 		entity = "badlands_planet_06_entity"
 		flags = { utukku_planet subclass_world }
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = badlands_world
-		# 		days = -1
-		# 	}
-		# 	add_deposit = d_rich_mineral_deposits
-		# 	set_owner = event_target:rachni_hive
-		# 	create_colony = {
-		# 		owner = event_target:rachni_hive
-		# 		species = event_target:rachniSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_rac_utukku_start_buildings = yes
-		# 	generate_rac_utukku_pops = yes	
-		# 	set_name = "Utukku"
-		# }	
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = rachni_startworld_spawned
+			set_planet_flag = utukku_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = rachni_hive
+						} 
+					} 
+				}
+				create_species = { 
+					name = "Rachni"
+					class = RAC
+					portrait = rachni
+					namelist = ART3
+					homeworld = THIS 
+					traits = { 
+						trait = rachni_trait_core
+						trait = rachni_trait_hardened_biology
+						trait = rachni_trait_collective_engineering
+						trait = rachni_trait_wrath_of_the_swarm
+						trait = trait_hive_mind
+					    ideal_planet_class = "pc_mephitic"
+					}
+				  }
+				last_created_species = { save_global_event_target_as = rachniSpecies }
+				create_country = {
+					name = "Rachni Hive"
+					ship_prefix = ""
+					type = default
+					origin = rachni_hive_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = rachni_hive_del_capo_al_fine 
+						civic = rachni_hive_crescendo 
+					}
+					authority = auth_hive_mind
+					name_list = "btr_collectors"
+					ethos = { 
+						ethic = "ethic_gestalt_consciousness" 
+					}
+					species = event_target:rachniSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="rachni_hive.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"grey"
+							"purple"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = molluscoid_01
+						set_country_flag = rachni_hive
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = rachni_hive
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = rachni_hive 
+				}
+				save_global_event_target_as = rachni_hive
+			}
+			set_owner = event_target:rachni_hive
+			generate_btr_start_deposits_and_blockers = yes
+			generate_rac_utukku_start_buildings = yes
+			generate_rac_utukku_pops = yes
+			set_name = "Utukku"
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = btr_underground_civilization
+				days = -1
+			}
+		}
     }
 	
 	planet = { 
@@ -249,7 +248,6 @@ sys_mullaxul_init = {
 		orbit_angle = 136
 		orbit_distance = 75
 		size = 1
-		flags = { inakhos_planet subclass_world }
 		init_effect = {
 			add_deposit = d_minerals_8
 			add_deposit = d_trade_value_3
@@ -263,7 +261,6 @@ sys_mullaxul_init = {
         orbit_angle = 213
         has_ring = yes
 		size = 37
-		flags = { keph_planet subclass_world }
 		init_effect = {
 			# add_deposit = d_helium_3_2
 			add_deposit = d_exotic_gases_2

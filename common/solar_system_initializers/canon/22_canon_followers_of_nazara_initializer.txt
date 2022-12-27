@@ -7,16 +7,14 @@
 sys_theseaofstorms_init = {
     name = "The Sea of Storms"
     class = sc_deep_space
-	max_instances = 1
+	flags = { disciples_of_nazara_homeworld disciples_of_nazara_capital_system canon_map theseaofstorms_system }
 
-	flags = { terminus_system phoenix_massing_system theseaofstorms_system btr_system custom_system }
-	# init_effect = { 
-	# 	random_country = { 
-	# 		limit = { has_country_flag = disciples_of_nazara } 
-	# 		save_global_event_target_as = disciples_of_nazara
-	# 	}
-	# }		
+    init_effect = { 
+		generate_home_system_resources = yes
+	}
+
 	usage = custom_empire
+	max_instances = 1
 
 	planet = {
 		class = pc_invisible_star
@@ -35,61 +33,77 @@ sys_theseaofstorms_init = {
         size = 22
         has_ring = no   
 		starting_planet = yes
-		flags = { heretic_station pd_science_hab }
-		# init_effect = {
-		# 	prevent_anomaly = yes
-		# 	set_global_flag = heretic_station_spawned
-		# 	if = {
-		# 		limit = { NOT = { any_country = { has_country_flag = disciples_of_nazara } } }
-		# 		create_country = {
-		# 			name = "Disciples of Nazara"
-		# 			ship_prefix = "PRESCRIPTED_ship_prefix_disciples_of_nazara"
-		# 			type = default
-        #       		origin = disciples_of_nazara_origin
-		# 			ignore_initial_colony_error = yes
-		# 			civics = { civic = "nazara_gifts" civic = "nazara_schism" }
-		# 			authority = auth_machine_intelligence
-		# 			name_list = "btr_geth"
-		# 			ethos = { ethic = "ethic_gestalt_consciousness" }
-		# 			species = event_target:gethSpecies
-		# 			flag = {
-		# 				icon={
-		# 					category="masseffect"
-		# 					file="Geth Armory.dds"
-		# 				}
-		# 				background={
-		# 					category="backgrounds"
-		# 					file="00_solid.dds"
-		# 				}
-		# 				colors={
-		# 					"dark_grey"
-		# 					"black"
-		# 					"null"
-		# 					"null"
-		# 				}
-		# 			}
-		# 			effect = {
-		# 				set_graphical_culture = gethnsc_01
-		# 				set_country_flag = disciples_of_nazara
-		# 				set_country_flag = init_spawned
-		# 				set_country_flag = custom_start_screen
-		# 				set_country_flag = canon_map
-		# 				save_global_event_target_as = disciples_of_nazara
-		# 			}
-		# 		}
-		# 	}	
-		# 	set_capital = yes
-		# 	random_country = {
-		# 		limit = { has_country_flag = disciples_of_nazara }
-		# 		save_global_event_target_as = disciples_of_nazara
-		# 		species = { save_global_event_target_as = gethSpecies }
-		# 	}
-		# 	set_owner = event_target:disciples_of_nazara
-		# 	generate_btr_start_deposits_and_blockers = yes
-		# 	generate_her_heretic_station_capitol_buildings = yes
-		# 	generate_her_station_pops = yes
-		# 	set_name = "Heretic Station"
-		# }    
+		flags = { heretic_station }
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = heretic_station_spawned
+			if = {
+				limit = { 
+                    NOT = { 
+                        any_country = { 
+                            has_country_flag = disciples_of_nazara 
+                        } 
+                    } 
+                }
+				create_country = {
+					name = "Disciples of Nazara"
+					ship_prefix = ""
+					type = default
+              		origin = disciples_of_nazara_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+                        civic = nazara_gifts_of_nazara 
+                        civic = nazara_the_schism
+                    }
+					authority = auth_machine_intelligence
+					name_list = "btr_geth"
+					ethos = { 
+                        ethic = "ethic_gestalt_consciousness" 
+                    }
+					species = event_target:gethSpecies
+					flag = {
+                        icon={
+                            category="beyondtherelays"
+                            file="disciples_of_nazara.dds"
+                        }
+                        background={
+                            category="backgrounds"
+                            file="00_solid.dds"
+                        }
+                        colors={
+                            "turquoise"
+                            "turquoise"
+                            "null"
+                            "null"
+                        }
+					}
+					effect = {
+						set_graphical_culture = ai_01
+						set_country_flag = disciples_of_nazara
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+                        set_country_flag = btr_empire
+						save_global_event_target_as = disciples_of_nazara
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+                    has_country_flag = disciples_of_nazara
+                 }
+				save_global_event_target_as = disciples_of_nazara
+				species = { 
+                    save_global_event_target_as = gethSpecies 
+                }
+			}
+			set_owner = event_target:disciples_of_nazara
+			generate_btr_start_deposits_and_blockers = yes
+			generate_naz_heretic_station_capitol_buildings = yes
+			generate_naz_station_pops = yes
+			set_name = "Heretic Station"
+		}    
     }
 }
 
@@ -98,7 +112,7 @@ sys_theseaofstorms_init = {
 sys_haelazi_init = {
     name = "Haelazi"
     class = "sc_k"
-	flags = { terminus_system xosar_verge_system haelazi_system empire_home_system custom_system }	
+	flags = { haelazi_system disciples_of_nazara_system canon_map }	
 	init_effect = { 
 	generate_home_system_resources = yes
 	}
@@ -120,7 +134,6 @@ sys_haelazi_init = {
 		orbit_angle = { min = 40 max = 180 }
         size = 10
 		has_ring = no
-		flags = { henbay_planet subclass_world }
         init_effect = {
 			add_deposit = d_minerals_3
 		}
@@ -132,7 +145,6 @@ sys_haelazi_init = {
 		orbit_distance = 150
 		size = 34
 		has_ring = yes
-        flags = { yimorn_planet subclass_world }
         init_effect = {
 			add_deposit = d_exotic_gases_1
 		}
@@ -145,7 +157,7 @@ sys_haelazi_init = {
         orbit_angle = 171
         has_ring = no
 		size = 12
-        flags = { ceeharu_planet subclass_world }
+        flags = { subclass_world }
         entity = "mephitic_ocean_planet_11_entity"
         init_effect = {
             add_deposit = d_rare_crystals_1
@@ -171,7 +183,7 @@ sys_xelazi_init = {
 	class = sc_a_super
 	max_instances = 1
 
-	flags = { terminus_system xosar_verge_system xelazi_system btr_system custom_system }
+	flags = { xelazi_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -197,7 +209,7 @@ sys_xelazi_init = {
         class = pc_a_super_star
         orbit_distance = 0
         size = 35
-        flags = { xelasi_planet subclass_world }
+        flags = { xelasi_star }
     }
 
 	planet = {
@@ -207,7 +219,6 @@ sys_xelazi_init = {
         orbit_angle = 119
         has_ring = no
 		size = 32
-        flags = { raanbay_planet subclass_world }
         init_effect = {
 			add_deposit = d_engineering_4
             add_deposit = d_physics_3
@@ -221,7 +232,6 @@ sys_xelazi_init = {
         orbit_angle = 119
         has_ring = no
 		size = 10
-        flags = { rofohomma_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_1
 		}
@@ -234,7 +244,6 @@ sys_xelazi_init = {
         orbit_angle = 119
         has_ring = no
 		size = 7
-        flags = { wesost_planet subclass_world }
     }
 
 	planet = {
@@ -244,7 +253,6 @@ sys_xelazi_init = {
         orbit_angle = 119
         has_ring = no
 		size = 10
-        flags = { genn_planet subclass_world }
         init_effect = {
 			add_deposit = d_minerals_9
             add_deposit = d_rare_crystals_1
@@ -258,7 +266,6 @@ sys_xelazi_init = {
         orbit_angle = 119
         has_ring = no
 		size = 2
-        flags = { fasoyul_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_1
             add_deposit = d_minerals_4
@@ -272,7 +279,6 @@ sys_xelazi_init = {
         orbit_angle = 119
         has_ring = yes
 		size = 28
-        flags = { jiman_planet subclass_world }
         init_effect = {
 			add_deposit = d_exotic_gases_1
 		}
@@ -284,7 +290,7 @@ sys_sesost_init = {
 	class = sc_m_giant
 	max_instances = 1
 
-	flags = { terminus_system xosar_verge_system sesost_system btr_system custom_system }
+	flags = { sesost_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -294,6 +300,7 @@ sys_sesost_init = {
         class = pc_m_giant_star
         orbit_distance = 0
         size = 35
+        flags = { sesost_star }
     }
 
 	planet = {
@@ -303,7 +310,6 @@ sys_sesost_init = {
         orbit_angle = 119
         has_ring = no
 		size = 12
-        flags = { sesost_planet subclass_world }
         init_effect = {
 			add_deposit = d_physics_6
 		}
@@ -317,23 +323,23 @@ sys_sesost_init = {
         has_ring = no
 		size = 6
         entity = "antarctic_planet_03_entity"
-        flags = { saetoshar_planet subclass_world }
-		# init_effect = {
-        #     add_modifier = {
-        #         modifier = antar_world
-        #         days = -1
-        #     }
-		# 	set_owner = event_target:disciples_of_nazara
-		# 	create_colony = {
-		# 		owner = event_target:disciples_of_nazara
-		# 		species = event_target:gethSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_her_colony_pops = yes
-		# 	generate_her_major_colony_buildings = yes	
-			
-		# 	set_name = "Saeto'Shar"
-		# }
+        flags = { subclass_world }
+		init_effect = {
+            if = {
+                limit = { 
+                    exists = event_target:disciples_of_nazara
+                }
+                set_owner = event_target:disciples_of_nazara
+                generate_naz_colony_pops = yes
+                generate_naz_major_colony_buildings = yes	
+                clear_blockers = yes
+				prevent_anomaly = yes
+            }
+            add_modifier = {
+                modifier = antar_world
+                days = -1
+            }
+		}
     }
 }
 
@@ -342,7 +348,7 @@ sys_yassu_init = {
 	class = sc_g
 	max_instances = 1
 
-	flags = { terminus_system xosar_verge_system yassu_system btr_system custom_system }
+	flags = { yassu_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -352,6 +358,7 @@ sys_yassu_init = {
         class = pc_g_star
         orbit_distance = 0
         size = 30
+        flags = { yassu_star }
     }
 
 	planet = {
@@ -361,7 +368,6 @@ sys_yassu_init = {
         orbit_angle = 119
         has_ring = no
 		size = 8
-        flags = { hasha_planet subclass_world }
         init_effect = {
 			add_deposit = d_minerals_4
 		}
@@ -374,7 +380,6 @@ sys_yassu_init = {
         orbit_angle = 119
         has_ring = no
 		size = 16
-        flags = { shomos_planet subclass_world }
     }
 
 	planet = {
@@ -384,7 +389,6 @@ sys_yassu_init = {
         orbit_angle = 119
         has_ring = no
 		size = 38
-        flags = { fael_planet subclass_world }
         init_effect = {
 			add_deposit = d_exotic_gases_2
 		}
@@ -397,7 +401,6 @@ sys_yassu_init = {
         orbit_angle = 119
         has_ring = no
 		size = 31
-        flags = { tunna_planet subclass_world }
         init_effect = {
 			add_deposit = d_exotic_gases_2
 		}
@@ -409,7 +412,7 @@ sys_yassu_init = {
 			has_ring = no
 			size = 4
             entity = "cryovolcanic_planet_06_entity"
-            flags = { jarul_planet subclass_world }
+            flags = { subclass_world }
             init_effect = {
                 add_deposit = d_zro_deposit_2
                 add_modifier = {
@@ -426,7 +429,7 @@ sys_yeelixeeme_init = {
 	class = sc_m
 	max_instances = 1
 
-	flags = { terminus_system xosar_verge_system yeelixeeme_system btr_system custom_system }
+	flags = {yeelixeeme_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -436,6 +439,7 @@ sys_yeelixeeme_init = {
         class = pc_m_star
         orbit_distance = 0
         size = 25
+        flags = { yeelixeeme_star }
     }
 
 	planet = {
@@ -445,7 +449,6 @@ sys_yeelixeeme_init = {
         orbit_angle = 119
         has_ring = no
 		size = 7
-        flags = { viko_planet subclass_world }
     }
 	
 	planet = {
@@ -455,7 +458,6 @@ sys_yeelixeeme_init = {
         orbit_angle = 119
         has_ring = no
 		size = 14
-        flags = { jahi_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_5
             add_deposit = d_minerals_10
@@ -469,7 +471,6 @@ sys_yeelixeeme_init = {
         orbit_angle = 119
         has_ring = no
 		size = 7
-        flags = { shewan_planet subclass_world }
         init_effect = {
 			add_deposit = d_minerals_3
 		}
@@ -482,7 +483,6 @@ sys_yeelixeeme_init = {
         orbit_angle = 119
         has_ring = no
 		size = 10
-        flags = { quiko_planet subclass_world }
         init_effect = {
 			add_deposit = d_society_2
 		}
@@ -494,7 +494,7 @@ sys_seefisgaca_init = {
 	class = sc_k
 	max_instances = 1
 
-	flags = { terminus_system xosar_verge_system seefisgaca_system btr_system custom_system }
+	flags = { seefisgaca_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -504,6 +504,7 @@ sys_seefisgaca_init = {
         class = pc_k_star
         orbit_distance = 0
         size = 25
+        flags = { seefisgaca_star }
     }
 
 	planet = {
@@ -513,7 +514,6 @@ sys_seefisgaca_init = {
 		orbit_angle = 119
         has_ring = no
 		size = 12
-        flags = { ceelaya_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_1
 		}
@@ -526,7 +526,6 @@ sys_seefisgaca_init = {
         orbit_angle = 119
         has_ring = no
 		size = 14
-        flags = { shaefirn_planet subclass_world }
     }
 
 	planet = {
@@ -536,23 +535,24 @@ sys_seefisgaca_init = {
         orbit_angle = 119
         has_ring = no
 		size = 17
-        flags = { rastrom_planet subclass_world }
+        flags = { subclass_world }
         entity = "methane_savannah_planet_05_entity"
-		# init_effect = {
-        #     add_modifier = {
-        #         modifier = steppe_world
-        #         days = -1
-        #     }
-		# 	set_owner = event_target:disciples_of_nazara
-		# 	create_colony = {
-		# 		owner = event_target:disciples_of_nazara
-		# 		species = event_target:gethSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_her_colony_pops = yes
-		# 	generate_her_major_colony_buildings = yes	
-		# 	set_name = "Rastrom"
-		# }
+		init_effect = {
+            if = {
+                limit = { 
+                    exists = event_target:disciples_of_nazara
+                }
+                set_owner = event_target:disciples_of_nazara
+                generate_naz_colony_pops = yes
+                generate_naz_major_colony_buildings = yes	
+                clear_blockers = yes
+				prevent_anomaly = yes
+            }    
+            add_modifier = {
+                modifier = steppe_world
+                days = -1
+            }
+		}
     }
 	
 	planet = {
@@ -562,7 +562,6 @@ sys_seefisgaca_init = {
         orbit_angle = 119
         has_ring = no
 		size = 9
-        flags = { jael_planet subclass_world }
         init_effect = {
 			add_deposit = d_zro_deposit_4
             add_deposit = d_minerals_8
@@ -576,7 +575,6 @@ sys_seefisgaca_init = {
         orbit_angle = 119
         has_ring = no
 		size = 6
-        flags = { yaestrom_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_1
 		}
@@ -589,7 +587,6 @@ sys_seefisgaca_init = {
         orbit_angle = 119
         has_ring = no
 		size = 11
-        flags = { xandeka_planet subclass_world }
     }
 	
 	planet = {
@@ -600,7 +597,7 @@ sys_seefisgaca_init = {
         has_ring = no
 		size = 18
         entity = "ammonia_ocean_planet_08_entity"
-        flags = { zeetalir_planet subclass_world }
+        flags = { subclass_world }
         init_effect = {
             add_deposit = d_engineering_3
             add_modifier = {
@@ -617,7 +614,6 @@ sys_seefisgaca_init = {
         orbit_angle = 119
         has_ring = no
 		size = 3
-        flags = { fito_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_2
 		}
@@ -630,7 +626,6 @@ sys_seefisgaca_init = {
         orbit_angle = 119
         has_ring = no
 		size = 5
-        flags = { waamornh_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_1
 		}
@@ -652,7 +647,7 @@ sys_keelulon_init = {
     class = sc_binary_3
 	max_instances = 1
 
-	flags = { terminus_system cassiopeia_cluster_system keelulon_system btr_system custom_system }
+	flags = { keelulon_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -672,7 +667,7 @@ sys_keelulon_init = {
         class = pc_m_giant_star
         orbit_distance = 0
         size = 30
-		flags = { dholen_star}
+		flags = { keelulon_star}
     }
 
 	planet = {
@@ -680,7 +675,7 @@ sys_keelulon_init = {
         class = pc_b_star
         orbit_distance = 30
         size = 20
-		flags = { dholen_star}
+		flags = { keelulon_star}
     }
 
     planet = {
@@ -690,7 +685,6 @@ sys_keelulon_init = {
         orbit_angle = 239
         has_ring = no
 		size = 12
-		flags = { jaela_planet subclass_world }	
         init_effect = {
 			add_deposit = d_rare_crystals_2
             add_deposit = d_engineering_3
@@ -704,7 +698,6 @@ sys_keelulon_init = {
         orbit_angle = 214
         has_ring = no
 		size = 34
-		flags = { taedor_planet subclass_world }
         init_effect = {
 			add_deposit = d_exotic_gases_3
 		}
@@ -716,7 +709,7 @@ sys_raadarum_init = {
     class = sc_b_super
 	max_instances = 1
 
-	flags = { terminus_system cassiopeia_cluster_system raadarum_system btr_system custom_system }
+	flags = { raadarum_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -726,6 +719,7 @@ sys_raadarum_init = {
         class = pc_b_super_star
         orbit_distance = 0
         size = 30
+        flags = { raadarum_star }
     }
 	
     planet = {
@@ -735,7 +729,6 @@ sys_raadarum_init = {
         orbit_angle = 239
         has_ring = no
 		size = 14
-		flags = { xonar_planet subclass_world }
     }
 
     planet = {
@@ -745,7 +738,6 @@ sys_raadarum_init = {
         orbit_angle = 214
         has_ring = no
 		size = 10
-		flags = { rafeed_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_1
 		}
@@ -758,7 +750,6 @@ sys_raadarum_init = {
         orbit_angle = 90
         has_ring = no
 		size = 5
-		flags = { rayna_planet subclass_world }
         init_effect = {
 			add_deposit = d_zro_deposit_2
 		}
@@ -771,7 +762,6 @@ sys_raadarum_init = {
         orbit_angle = 90
         has_ring = yes
 		size = 35
-		flags = { xulan_planet subclass_world }
         init_effect = {
 			add_deposit = d_exotic_gases_2
 		}
@@ -794,7 +784,7 @@ sys_jaavo_init = {
     class = sc_g
 	max_instances = 1
 
-	flags = { terminus_system cassiopeia_cluster_system jaavo_system btr_system custom_system }
+	flags = { jaavo_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -804,6 +794,7 @@ sys_jaavo_init = {
         class = pc_g_star
         orbit_distance = 0
         size = 30
+        flags = { jaavo_star }
     }
 
     planet = {
@@ -813,7 +804,6 @@ sys_jaavo_init = {
         orbit_angle = 146
         has_ring = no
 		size = 12
-        flags = { herris_planet subclass_world }
     }
 
 	planet = {
@@ -823,24 +813,24 @@ sys_jaavo_init = {
         orbit_angle = 146
         has_ring = no
 		size = 22
-        flags = { gaezaljenal_planet subclass_world }
+        flags = { subclass_world }
         entity = "highland_planet_02_entity"
-		# init_effect = {
-        #     add_modifier = {
-        #         modifier = highland_world
-        #         days = -1
-        #     }
-		# 	set_owner = event_target:disciples_of_nazara
-		# 	create_colony = {
-		# 		owner = event_target:disciples_of_nazara
-		# 		species = event_target:gethSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_her_colony_pops = yes
-		# 	generate_her_major_colony_buildings = yes
-			
-		# 	set_name = "Gaezal'Jenal"
-		# }
+		init_effect = {
+            if = {
+                limit = { 
+                    exists = event_target:disciples_of_nazara
+                }
+                set_owner = event_target:disciples_of_nazara
+                generate_naz_colony_pops = yes
+			    generate_naz_major_colony_buildings = yes
+                clear_blockers = yes
+				prevent_anomaly = yes
+            }
+            add_modifier = {
+                modifier = highland_world
+                days = -1
+            }
+		}
     }
 
 	planet = {
@@ -850,7 +840,6 @@ sys_jaavo_init = {
         orbit_angle = 146
         has_ring = no
 		size = 18
-        flags = { gernal_planet subclass_world }
     }
 
 	planet = {
@@ -860,7 +849,6 @@ sys_jaavo_init = {
         orbit_angle = 146
         has_ring = no
 		size = 18
-        flags = { lofirn_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_1
             add_deposit = d_minerals_2
@@ -873,7 +861,7 @@ sys_ruvum_init = {
     class = sc_d
 	max_instances = 1
 
-	flags = { terminus_system cassiopeia_cluster_system ruvum_system btr_system custom_system }
+	flags = { ruvum_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -888,6 +876,7 @@ sys_ruvum_init = {
         class = pc_d_star
         orbit_distance = 0
         size = 30
+        flags = { ruvum_star }
     }
 
     planet = {
@@ -897,7 +886,6 @@ sys_ruvum_init = {
         orbit_angle = 146
         has_ring = no
 		size = 8
-        flags = { refaes_planet subclass_world }
     }
 
 	planet = {
@@ -907,7 +895,6 @@ sys_ruvum_init = {
         orbit_angle = 146
         has_ring = no
 		size = 5
-        flags = { yullasaar_planet subclass_world }
         init_effect = {
 			add_deposit = d_zro_deposit_1
             add_deposit = d_engineering_2
@@ -922,13 +909,13 @@ sys_ruvum_init = {
         has_ring = no
 		size = 20
         entity = "mephitic_alpine_planet_11_entity"
+        flags = { subclass_world }
         init_effect = {
             add_modifier = {
                 modifier = crag_world
                 days = -1
             }
         }
-        flags = { jessu_planet subclass_world }
     }
 
 	planet = {
@@ -938,7 +925,6 @@ sys_ruvum_init = {
         orbit_angle = 146
         has_ring = no
 		size = 18
-        flags = { zeezormleemm_planet subclass_world }
         init_effect = {
 			add_deposit = d_engineering_3
             add_deposit = d_physics_6
@@ -961,7 +947,7 @@ sys_gaalozozh_init = {
     class = sc_binary_b_t
 	max_instances = 1
 
-	flags = { terminus_system cassiopeia_cluster_system gaalozozh_system btr_system custom_system }
+	flags = { gaalozozh_system disciples_of_nazara_system canon_map }	
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -971,6 +957,7 @@ sys_gaalozozh_init = {
         class = pc_b_star
         orbit_distance = 0
         size = 30
+        flags = { gaalozozh_star }
     }
 
     planet = {
@@ -989,7 +976,6 @@ sys_gaalozozh_init = {
         orbit_angle = 146
         has_ring = no
 		size = 15
-        flags = { maeni_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_1
 		}
@@ -1002,7 +988,6 @@ sys_gaalozozh_init = {
         orbit_angle = 146
         has_ring = no
 		size = 10
-        flags = { yena_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_1
             add_deposit = d_society_4
@@ -1016,7 +1001,6 @@ sys_gaalozozh_init = {
         orbit_angle = 146
         has_ring = no
 		size = 18
-        flags = { sochol_planet subclass_world }
         init_effect = {
 			add_deposit = d_rare_crystals_2
 		}
@@ -1029,7 +1013,6 @@ sys_gaalozozh_init = {
         orbit_angle = 146
         has_ring = yes
 		size = 34
-        flags = { naaradas_planet subclass_world }
         init_effect = {
 			add_deposit = d_exotic_gases_2
 		}
@@ -1042,6 +1025,7 @@ sys_gaalozozh_init = {
         orbit_angle = 146
         has_ring = no
 		size = 16
+        flags = { subclass_world }
         entity = "chlorine_desert_planet_11_entity"
         init_effect = {
             add_modifier = {
@@ -1049,7 +1033,6 @@ sys_gaalozozh_init = {
                 days = -1
             }
         }
-        flags = { tonbarr_planet subclass_world }
     }
 
 	planet = {
@@ -1059,7 +1042,6 @@ sys_gaalozozh_init = {
         orbit_angle = 146
         has_ring = no
 		size = 32
-        flags = { vael_planet subclass_world }
 		moon = {
 			name = "Yedu"
 			class = pc_methane
@@ -1067,6 +1049,7 @@ sys_gaalozozh_init = {
 			orbit_angle = 146
 			has_ring = no
 			size = 8
+            flags = { subclass_world }
             entity = "methane_arid_planet_04_entity"
             init_effect = {
                 add_deposit = d_exotic_gases_3
@@ -1075,7 +1058,6 @@ sys_gaalozozh_init = {
                     days = -1
                 }
             }
-            flags = { yedu_planet subclass_world }
 		}
     }
 
