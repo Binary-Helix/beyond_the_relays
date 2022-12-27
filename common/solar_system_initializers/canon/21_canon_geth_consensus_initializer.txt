@@ -7,14 +7,10 @@
 sys_tikkun_init = {
     name = "Tikkun"
     class = sc_k
-	flags = { terminus_system perseus_veil_system tikkun_system empire_home_system custom_system }	
-	# init_effect = { 
-	# 	random_country = { 
-	# 		limit = { has_country_flag = geth_consensus } 
-	# 		save_global_event_target_as = geth_consensus
-	# 	}	
-	# generate_home_system_resources = yes
-	# }
+	flags = { geth_consensus_homeworld geth_consensus_capital_system quarian_species_homeworld canon_map tikkun_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+	}
 
 	usage = custom_empire
 	max_instances = 1
@@ -43,89 +39,105 @@ sys_tikkun_init = {
 		deposit_blockers = none
 		modifiers = none
 		entity = "mesa_planet_09_entity"
-		flags = { rannoch_planet btr_custom }
-
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = dextro_world
-		# 		days = -1
-		# 	}
-		# 	add_modifier = {
-		# 		modifier = mesa_world
-		# 		days = -1
-		# 	}
-		# 	prevent_anomaly = yes
-		# 	set_global_flag = geth_homeworld_spawned
-		# 	if = {
-		# 		limit = { NOT = { any_country = { has_country_flag = geth_consensus } } }
-		# 		create_species = { 
-		# 			name = "Geth"
-		# 			class = GTH
-		# 			portrait = geth
-		# 			#homeworld = THIS 
-		# 			traits = { 
-		# 				trait = "trait_machine_unit"
-		# 				trait = geth_trait_core
-		# 				trait = geth_trait_linked_consci
-		# 				trait = geth_trait_purpose_built_models
-		# 				trait = geth_trait_deontological_primacy
-		# 			}
-		# 		  }
-		# 		  last_created_species = { save_global_event_target_as = gethSpecies }
-		# 		create_country = {
-		# 			name = "Geth Consensus"
-		# 			ship_prefix = "PRESCRIPTED_ship_prefix_geth_consensus"
-		# 			type = default
-		# 			origin = geth_consensus_origin
-		# 			ignore_initial_colony_error = yes
-		# 			civics = { civic = geth_consensus_nebulous civic = geth_consensus_collective_conscious }
-		# 			authority = auth_machine_intelligence
-		# 			name_list = "btr_geth"
-		# 			ethos = { ethic = "ethic_gestalt_consciousness" }
-		# 			species = event_target:gethSpecies
-		# 			flag = {
-		# 				icon={
-		# 					category="masseffect"
-		# 					file="Geth Armory.dds"
-		# 				}
-		# 				background={
-		# 					category="backgrounds"
-		# 					file="00_solid.dds"
-		# 				}
-		# 				colors={
-		# 					"dark_grey"
-		# 					"black"
-		# 					"null"
-		# 					"null"
-		# 				}
-		# 			}
-		# 			effect = {
-		# 				set_graphical_culture = gethnsc_01
-		# 				set_country_flag = geth_consensus
-		# 				set_country_flag = init_spawned
-		# 				set_country_flag = custom_start_screen
-		# 				set_country_flag = canon_map
-		# 				save_global_event_target_as = geth_consensus
-		# 			}
-		# 		}
-		# 	}	
-		# 	set_capital = yes
-		# 	random_country = {
-		# 		limit = { has_country_flag = geth_consensus }
-		# 		save_global_event_target_as = geth_consensus
-		# 	}
-		# 	set_owner = event_target:geth_consensus
-		# 	generate_btr_start_deposits_and_blockers = yes
-		# 	generate_get_rannoch_capitol_buildings = yes
-		# 	generate_get_rannoch_pops = yes
-		# 	set_name = "Rannoch"
-
-		# 	add_deposit = btr_d_getcon_insect
-		# 	add_deposit = btr_d_getcon_mining_pads
-		# 	add_deposit = btr_d_getcon_graveyard
-		# 	add_deposit = btr_d_getcon_mother_heat
-		# 	add_deposit = btr_d_getcon_ancestor_fleet
-		# }
+		flags = { rannoch_planet subclass_world geth_homeworld quarian_homeworld subclass_world }
+		init_effect = {
+			random_country = {
+				limit = {
+					has_country_flag = geth_consensus
+				}
+			}
+			prevent_anomaly = yes
+			set_global_flag = geth_homeworld_spawned
+			set_global_flag = quarian_species_homeworld_spawned
+			set_planet_flag = rannoch_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = geth_consensus 
+						} 
+					} 
+				}
+				create_species = { 
+					name = "Geth"
+					class = GTH
+					portrait = geth
+					namelist = btr_geth
+					homeworld = THIS 
+					traits = { 
+						trait = trait_machine_unit
+						trait = geth_trait_core
+						trait = geth_trait_linked_consciousness
+						trait = geth_trait_purpose_built_models
+						trait = geth_trait_deontological_primacy
+					}
+				  }
+				  last_created_species = { save_global_event_target_as = gethSpecies }
+				create_country = {
+					name = "Geth Consensus"
+					ship_prefix = ""
+					type = default
+					origin = geth_consensus_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = geth_consensus_nebulous 
+						civic = geth_consensus_collective_conscious 
+					}
+					authority = auth_machine_intelligence
+					name_list = "btr_geth"
+					ethos = { 
+						ethic = "ethic_gestalt_consciousness" 
+					}
+					species = event_target:gethSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="geth_consensus.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"turquoise"
+							"turquoise"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = gethnsc_01
+						set_country_flag = geth_consensus
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = geth_consensus
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = geth_consensus 
+				}
+				save_global_event_target_as = geth_consensus
+			}
+			set_owner = event_target:geth_consensus
+			generate_btr_start_deposits_and_blockers = yes
+			generate_get_rannoch_capitol_buildings = yes
+			generate_get_rannoch_pops = yes
+			generate_get_rannoch_deposits = yes
+			set_name = "Rannoch"
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = mesa_world
+				days = -1
+			}
+		}
 		
 		moon = {
 			name = "Jelachai"
@@ -161,22 +173,23 @@ sys_tikkun_init = {
         orbit_angle = 171
         has_ring = no
 		size = 11
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = badlands_world
-		# 		days = -1
-		# 	}
-		# 	set_owner = event_target:geth_consensus
-		# 	create_colony = {
-		# 		owner = event_target:geth_consensus
-		# 		species = event_target:gethSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_get_adas_pops = yes
-		# 	generate_get_adas_colony_buildings = yes	
-			
-		# 	set_name = "Adas"
-		# }
+		flags = { subclass_world }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:geth_consensus
+				}
+				set_owner = event_target:geth_consensus
+				generate_get_adas_pops = yes
+				generate_get_adas_colony_buildings = yes	
+				clear_blockers = yes
+				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
+		}
     }
 
     planet = {
@@ -223,18 +236,20 @@ sys_tikkun_init = {
 sys_caarehyosal_init = {
 	name = "Caareh'yosal"
 	class = sc_b_super
-	max_instances = 1
-
-	flags = { terminus_system perseus_veil_system caarehyosal_system btr_system custom_system }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { caarehyosal_system geth_consensus_system canon_map }
 
 	planet = {
 		name = "Caareh'yosal"
         class = pc_b_super_star
         orbit_distance = 0
         size = 35
+		flags = { caarehyosal_star }
     }
 
 	planet = {
@@ -256,27 +271,28 @@ sys_caarehyosal_init = {
         orbit_angle = 119
         has_ring = no
 		size = 18
+		flags = { subclass_world }
 		entity = "crag_planet_12_entity"
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = dextro_world
-		# 		days = -1
-		# 	}
-		# 	add_modifier = {
-		# 		modifier = crag_world
-		# 		days = -1
-		# 	}
-		# 	set_owner = event_target:geth_consensus
-		# 	create_colony = {
-		# 		owner = event_target:geth_consensus
-		# 		species = event_target:gethSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_get_naanacurrel_pops = yes
-		# 	generate_get_naanacurrel_colony_buildings = yes	
-			
-		# 	set_name = "Naana'currel"
-		# }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:geth_consensus
+				}
+				set_owner = event_target:geth_consensus
+				generate_get_naanacurrel_pops = yes
+				generate_get_naanacurrel_colony_buildings = yes	
+				clear_blockers = yes
+				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = crag_world
+				days = -1
+			}
+		}
     }
 	
 	planet = {
@@ -293,19 +309,20 @@ sys_caarehyosal_init = {
 sys_kholas_init = {
 	name = "Kholas"
 	class = sc_k
-	max_instances = 1
-
-	flags = { terminus_system perseus_veil_system kholas_system btr_system custom_system }
-
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { kholas_system geth_consensus_system canon_map }
 
 	planet = {
 		name = "Kholas"
         class = pc_k_star
         orbit_distance = 0
         size = 35
+		flags = { kholas_star }
     }
 
 	planet = {
@@ -339,23 +356,24 @@ sys_kholas_init = {
         orbit_angle = 119
         has_ring = no
 		size = 7
+		flags = { subclass_world }
 		entity = "coastal_planet_09_entity"
-		# init_effect = {
-		# 	add_modifier = {
-		# 		modifier = coastal_world
-		# 		days = -1
-		# 	}
-		# 	set_owner = event_target:geth_consensus
-		# 	create_colony = {
-		# 		owner = event_target:geth_consensus
-		# 		species = event_target:gethSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_get_kasdavar_pops = yes
-		# 	generate_get_kasdavar_colony_buildings = yes	
-			
-		# 	set_name = "Kasda'Var"
-		# }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:geth_consensus
+				}
+				set_owner = event_target:geth_consensus
+				generate_get_kasdavar_pops = yes
+				generate_get_kasdavar_colony_buildings = yes	
+				clear_blockers = yes
+				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = coastal_world
+				days = -1
+			}
+		}
     }
 
 	
@@ -365,10 +383,13 @@ sys_kholas_init = {
 sys_dholen_init = {
     name = "Dholen"
     class = sc_m_hyper
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
-	flags = { terminus_system far_rim_system dholen_system btr_system custom_system }
-	init_effect = { generate_home_system_resources = yes }
+	flags = { dholen_system geth_consensus_system canon_map }
 
     planet = {
 		name = "Dholen"
@@ -390,7 +411,6 @@ sys_dholen_init = {
         orbit_angle = 239
         has_ring = no
 		size = 2
-		flags = { gotha_planet btr_custom }		
 		init_effect = {
 			# add_deposit = d_iridium_3
 			# add_deposit = d_platinum_5
@@ -403,26 +423,27 @@ sys_dholen_init = {
 
     planet = {
         name = "Charoum"
-        class = pc_gas_giant
+        class = pc_gas_giant_station
         orbit_distance = 150
         orbit_angle = 214
         has_ring = no
 		size = 34
-		flags = { charoum_planet pd_mining_hab }
-		# init_effect = {
-		# 	add_deposit= d_rich_mineral_deposits
-		# 	set_owner = event_target:geth_consensus
-		# 	create_colony = {
-		# 		owner = event_target:geth_consensus
-		# 		species = event_target:gethSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_get_charoum_pops = yes
-		# 	generate_get_charoum_colony_buildings = yes	
-			
-		# 	set_name = "Charoum"
-		# }
-        satellite_naming_policy = lower_case_latin_letters
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:geth_consensus
+				}
+				set_planet_flag = planetary_station
+				set_planet_flag = research_station
+				set_deposit_flags = yes
+				set_owner = event_target:geth_consensus
+				generate_get_charoum_pops = yes
+				generate_get_charoum_colony_buildings = yes
+				clear_blockers = yes
+				prevent_anomaly = yes
+				add_deposit = d_gas_giant_blocker
+			}
+		}
         moon = {
 			name = "Charoum a"
 			class = pc_frozen
@@ -445,7 +466,7 @@ sys_dholen_init = {
         orbit_angle = 90
         has_ring = no
 		size = 16
-		flags = { haestrom_planet btr_custom }
+		flags = { haestrom_planet subclass_world }
 		init_effect = {
 			add_deposit = d_minerals_8
 			add_deposit = d_physics_9
@@ -465,18 +486,20 @@ sys_dholen_init = {
 sys_disul_init = {
     name = "Disul"
     class = sc_m_hyper
-	max_instances = 1
-
-	flags = { terminus_system far_rim_system disul_system btr_system custom_system }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { disul_system geth_consensus_system canon_map }
 
     planet = {
 		name = "Disul"
         class = pc_m_hyper_star
         orbit_distance = 0
         size = 20
+		flags = { disul_star }
     }
 	
     planet = {
@@ -486,7 +509,6 @@ sys_disul_init = {
         orbit_angle = 239
         has_ring = no
 		size = 8
-		flags = { vasri_planet btr_custom }
 		init_effect = {
 			add_deposit = d_minerals_9
 		}
@@ -499,7 +521,6 @@ sys_disul_init = {
         orbit_angle = 214
         has_ring = no
 		size = 10
-		flags = { ciko_planet btr_custom }
 		init_effect = {
 			# add_deposit = d_iridium_3
 			# add_deposit = d_platinum_3
@@ -514,7 +535,6 @@ sys_disul_init = {
         orbit_angle = 90
         has_ring = no
 		size = 12
-		flags = { goraka_planet btr_custom }
 		init_effect = {
 			# add_deposit = d_element_zero_2
 			add_deposit = d_zro_deposit_2
@@ -534,18 +554,20 @@ sys_disul_init = {
 sys_maat_init = {
     name = "Ma-at"
     class = sc_g
-	max_instances = 1
-
-	flags = { terminus_system far_rim_system maat_system btr_system custom_system }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { maat_system geth_consensus_system canon_map }
 
     planet = {
 		name = "Ma-at"
         class = pc_g_star
         orbit_distance = 0
         size = 20
+		flags = { maat_star }
     }
 
     planet = {
@@ -555,20 +577,21 @@ sys_maat_init = {
         orbit_angle = 146
         has_ring = no
 		size = 41
-		flags = { ammut_planet btr_custom }
-		# init_effect = {
-		# 	add_deposit= d_helium_3_3
-		# 	set_owner = event_target:geth_consensus
-		# 	create_colony = {
-		# 		owner = event_target:geth_consensus
-		# 		species = event_target:gethSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_get_ammut_pops = yes
-		# 	generate_get_ammut_colony_buildings = yes	
-		
-		# 	set_name = "Ammut"
-		# }
+		flags = { ammut_planet subclass_world }
+		if = {
+			limit = { 
+				exists = event_target:geth_consensus
+			}
+			set_planet_flag = planetary_station
+			set_planet_flag = research_station
+			set_deposit_flags = yes
+			set_owner = event_target:geth_consensus
+			generate_get_ammut_pops = yes
+			generate_get_ammut_colony_buildings = yes	
+			clear_blockers = yes
+			prevent_anomaly = yes
+			add_deposit = d_gas_giant_blocker
+		}
         moon = {
 			name = "Ammut a"
 			class = pc_molten

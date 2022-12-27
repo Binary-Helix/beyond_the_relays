@@ -1,0 +1,243 @@
+#####################################
+##### ASARI CORPORATE INTERESTS #####
+#####################################
+
+##### CRESCENT NEBULA #####
+
+sys_tasale_init = {
+    name = "Tasale"
+	class = sc_g
+	flags = { illium_corporate_interests_capital_system canon_map tasale_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 140
+	}	
+
+	planet = {
+		name = "Tasale"
+		class = pc_g_star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 35
+		has_ring = no
+		flags = { tasale_star }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_5
+			set_planet_flag = starting_mining_target
+		}		
+	}
+	
+	planet = {
+		name = "Beregale"
+		class = pc_molten
+		orbit_distance = 100
+		orbit_angle = 15
+		size = 25
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_minerals_5
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_engineering_4
+			set_planet_flag = starting_mining_target
+		}
+	}
+	
+	planet = {
+		name = "Illium"
+		class = pc_continental
+		orbit_distance = 100
+		orbit_angle = 160
+		size = 18
+		has_ring = no		
+		starting_planet = yes	
+		deposit_blockers = none
+		modifiers = none
+		flags = { illium_planet subclass_world }		
+		entity = "temperate_planet_09_entity"
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = illium_homeworld_spawned	
+			set_planet_flag = illium_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = illium_corporate_interests 
+						} 
+					} 
+				}
+				create_country = {
+					name = "Illium Corporate Interests"
+					ship_prefix = ""
+					type = default
+					origin = illium_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = illium_defense_force 
+						civic = illium_indentured_servitude 
+					}
+					authority = auth_corporate
+					name_list = "btr_asari"
+					ethos = { 
+						ethic = "ethic_egalitarian"	
+						ethic = "ethic_fanatic_materialist" 
+					}
+					species = event_target:asariSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="illium_corporate_interests.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"turquoise"
+							"turquoise"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = mec_asari_01
+						set_country_flag = illium_corporate_interests
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = illium_corporate_interests
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = illium_corporate_interests 
+				}
+				save_global_event_target_as = illium_corporate_interests
+				species = { 
+					save_global_event_target_as = asariSpecies 
+				}
+			}
+			set_owner = event_target:illium_corporate_interests
+			generate_btr_start_deposits_and_blockers = yes
+			generate_illium_capitol_buildings = yes
+			generate_illium_pops = yes
+			clear_blockers = yes
+			generate_illium_deposits = yes
+			set_name = "Illium"
+			add_modifier = {
+				modifier = temperate_world
+				days = -1
+			}
+		}			
+	}
+	
+	planet = {
+		name = "Ponolus"
+		class = pc_hothouse
+		orbit_distance = 100
+		orbit_angle = 180
+		size = 14
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_physics_3
+			add_deposit = d_rare_crystals_3
+			set_planet_flag = starting_research_target
+		}		
+	}
+	
+	change_orbit = 50
+	
+	planet = {
+		count = 3
+		class = pc_carb_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 40 max = 100 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+		}		
+	}
+	
+	planet = {
+		class = pc_met_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 40 max = 100 }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_minerals_3	
+
+		}		
+	}
+	
+	planet = {
+		name = "Teukria"
+		class = pc_iron
+		orbit_distance = 0
+		orbit_angle = { min = 40 max = 100 }
+		size = 2
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_minerals_10
+			add_deposit = d_trade_value_5
+			set_planet_flag = starting_mining_target
+		}		
+	}
+	
+	planet = {
+		name = "Thail"
+		class = pc_gas_giant
+		orbit_distance = 50
+		orbit_angle = 170
+		size = 38
+		has_ring = yes
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_2
+			add_deposit = d_exotic_gases_2
+		}
+	}
+	
+	planet = {
+		name = "Naxell"
+		class = pc_gas_giant
+		orbit_distance = 100
+		orbit_angle = -75
+		size = 34
+		has_ring = no
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_5
+			add_deposit = d_exotic_gases_3
+			set_planet_flag = starting_mining_target
+		}
+	}	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "attican_traverse_sector_2_secondaryrelay" 
+			name = "Traverse Secondary - Sector 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}

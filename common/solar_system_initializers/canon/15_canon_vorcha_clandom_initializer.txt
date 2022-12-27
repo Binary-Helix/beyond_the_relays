@@ -7,15 +7,10 @@
 sys_kyzil_init = {
     name = "Kyzil"
     class = sc_k
-	flags = { terminus_system shrike_abyssal_system kyzil_system btr_system custom_system empire_home_system }
-
-	# init_effect = { 
-	# 	random_country = { 
-	# 		limit = { has_country_flag = vorcha_clandom } 
-	# 		save_global_event_target_as = vorcha_clandom
-	# 	}	
-	# generate_home_system_resources = yes
-	# }
+	flags = { vorcha_clandom_homeworld vorcha_clandom_capital_system canon_map kyzil_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+	}
 
 	usage = custom_empire
 	max_instances = 1	
@@ -30,26 +25,30 @@ sys_kyzil_init = {
 
     planet = {
         name = "Naskral"
-        class = pc_barren
+        class = pc_barren_station
         orbit_distance = 100
         orbit_angle = 331
         has_ring = no
 		size = 4
-		flags = { naskral_planet btr_custom }
-		# init_effect = {
-		# 	add_deposit = d_rare_crystals_1
-		# 	add_deposit = d_minerals_3
-		#  	set_owner = event_target:vorcha_clandom
-		#  	create_colony = {
-		#  		owner = event_target:vorcha_clandom
-		#  		species = event_target:vorchaSpecies
-		#  		ethos = owner
-		# 	}
-		# 	generate_vor_naskral_pops = yes
-		#  	generate_vorcha_buildings = yes	
-			
-		#  	set_name = "Naskral"
-		#  }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:vorcha_clandom
+				}
+				set_planet_flag = planetary_station
+				set_planet_flag = civil_station
+				set_deposit_flags = yes
+				set_owner = event_target:vorcha_clandom
+				generate_vor_naskral_pops = yes
+				generate_vorcha_buildings = yes	
+				clear_blockers = yes
+				prevent_anomaly = yes
+				add_deposit = d_barren_blocker
+				add_deposit = d_mineral_lodes
+			}
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_minerals_3
+		 }
     }
 
     planet = {
@@ -61,75 +60,95 @@ sys_kyzil_init = {
         has_ring = no
 		starting_planet = yes
 		modifiers = none				
-		flags = { heshtok_planet btr_custom }
-		# init_effect = {
-		# 	prevent_anomaly = yes
-		# 	set_global_flag = vorcha_homeworld_spawned
-		# 	if = {
-		# 		limit = { NOT = { any_country = { has_country_flag = vorcha_clandom } } }
-		# 		create_species = { 
-		# 			name = "Vorcha"
-		# 			class = VOR
-		# 			portrait = vorcha
-		# 			#homeworld = THIS 
-		# 			traits = { 
-		# 				trait = vorcha_trait_core
-		# 				trait = vorcha_trait_surreal_adaptation
-		# 				trait = vorcha_trait_conception
-		# 				trait = vorcha_trait_surreal_adaptation
-		# 			  # ideal_planet_class = "pc_arid"
-		# 			}
-		# 		  }
-		# 		  last_created_species = { save_global_event_target_as = vorchaSpecies }
-		# 		create_country = {
-		# 			name = "Vorcha Clandom"
-		# 			ship_prefix = "PRESCRIPTED_ship_prefix_vorcha_clandom"
-		# 			type = minor_empire
-		# 			origin = vorcha_origin
-		# 			ignore_initial_colony_error = yes
-		# 			civics = { civic = vorcha_aagh civic = vorcha_we_take_now }
-		# 			authority = auth_oligarchic
-		# 			name_list = "btr_vorcha"
-		# 			ethos = { ethic = "ethic_xenophobe" ethic = "ethic_fanatic_militarist" }
-		# 			species = event_target:vorchaSpecies
-		# 			flag = {
-		# 				icon={
-		# 					category="masseffect"
-		# 					file="Vorcha.dds"
-		# 				}
-		# 				background={
-		# 					category="backgrounds"
-		# 					file="00_solid.dds"
-		# 				}
-		# 				colors={
-		# 					"brown"
-		# 					"yellow"
-		# 					"null"
-		# 					"null"
-		# 				}
-		# 			}
-		# 			effect = {
-		# 				set_graphical_culture = reptilian_01
-		# 				set_country_flag = vorcha_clandom
-		# 				set_country_flag = init_spawned
-		# 				set_country_flag = custom_start_screen
-		# 				set_country_flag = canon_map
-		# 				save_global_event_target_as = vorcha_clandom
-		# 			}
-		# 		}
-		# 	}	
-		# 	set_capital = yes
-		# 	random_country = {
-		# 		limit = { has_country_flag = vorcha_clandom }
-		# 		save_global_event_target_as = vorcha_clandom
-		# 		species = { save_global_event_target_as = vorchaSpecies }
-		# 	}
-		# 	set_owner = event_target:vorcha_clandom
-		# 	generate_btr_start_deposits_and_blockers = yes			
-		# 	generate_vorcha_buildings = yes
-		# 	generate_vor_heshtok_pops = yes
-		# 	set_name = "Heshtok"
-		# }	
+		flags = { heshtok_planet subclass_world vorcha_homeworld subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = vorcha_homeworld_spawned
+			set_planet_flag = heshtok_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = vorcha_clandom 
+						} 
+					} 
+				}
+				create_species = { 
+					name = "Vorcha"
+					class = VOR
+					portrait = vorcha
+					namelist = btr_vorcha
+					homeworld = THIS 
+					traits = { 
+						trait = vorcha_trait_core
+						trait = vorcha_trait_surreal_adaptation
+						trait = vorcha_trait_spontaneous_conception
+						trait = vorcha_trait_philistine_horde
+					    ideal_planet_class = "pc_primal"
+					}
+				  }
+				  last_created_species = { save_global_event_target_as = vorchaSpecies }
+				create_country = {
+					name = "Vorcha Clandom"
+					ship_prefix = ""
+					type = minor_empire
+					origin = vorcha_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = vorcha_aagh 
+						civic = vorcha_we_take_now 
+					}
+					authority = auth_oligarchic
+					name_list = "btr_vorcha"
+					ethos = { 
+						ethic = "ethic_xenophobe" 
+						ethic = "ethic_fanatic_militarist" 
+					}
+					species = event_target:vorchaSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="vorcha_clandom.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"brown"
+							"yellow"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = reptilian_01
+						set_country_flag = vorcha_clandom
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = vorcha_clandom
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = vorcha_clandom 
+				}
+				save_global_event_target_as = vorcha_clandom
+				species = { 
+					save_global_event_target_as = vorchaSpecies 
+				}
+			}
+			set_owner = event_target:vorcha_clandom
+			generate_btr_start_deposits_and_blockers = yes			
+			generate_vor_heshtok_buildings = yes
+			generate_vor_heshtok_pops = yes
+			generate_vor_heshtok_deposits = yes
+			set_name = "Heshtok"
+		}	
     }
 
     planet = {
@@ -208,7 +227,7 @@ sys_aquila_init = {
         orbit_distance = 80
         orbit_angle = 322
         size = 34
-		flags = { lepini_planet btr_custom }
+		flags = { lepini_planet subclass_world }
         has_ring = no
 		init_effect = {
 			# add_deposit = d_helium_3_1
@@ -244,7 +263,7 @@ sys_aquila_init = {
         orbit_angle = 174
         size = 16
         has_ring = no
-		flags = { vecchio_planet btr_custom }
+		flags = { vecchio_planet subclass_world }
 		entity = "dune_planet_07_entity"
 		init_effect = {
 			add_modifier = {
@@ -264,7 +283,7 @@ sys_aquila_init = {
         size = 25
 		entity = "snow_planet"
         has_ring = no
-		flags = { volturno_planet btr_custom }
+		flags = { volturno_planet subclass_world }
 		entity = "lichen_planet_09_entity"
 		init_effect = {
 			# add_deposit = d_platinum_3
@@ -291,7 +310,7 @@ sys_aquila_init = {
         orbit_angle = 214
         size = 37
         has_ring = no
-		flags = { metaponto_planet btr_custom }
+		flags = { metaponto_planet subclass_world }
 		init_effect = {
 			# add_deposit = d_helium_3_2
 			add_deposit = d_exotic_gases_2
@@ -305,7 +324,7 @@ sys_aquila_init = {
         orbit_angle = 332
         size = 30
         has_ring = no
-		flags = { pollino_planet btr_custom }
+		flags = { pollino_planet subclass_world }
 		init_effect = {
 			# add_deposit = d_helium_3_1
 			add_deposit = d_exotic_gases_1
@@ -387,7 +406,7 @@ sys_zaherin_init = {
         orbit_angle = 326
         has_ring = no
 		size = 17
-		flags = { ehstag_planet btr_custom }
+		flags = { ehstag_planet subclass_world }
 		entity = "dune_planet_03_entity"
 		init_effect = {
 			add_modifier = {
@@ -408,7 +427,7 @@ sys_zaherin_init = {
         orbit_angle = 75
         has_ring = no
 		size = 25
-		flags = { namakli_planet btr_custom }
+		flags = { namakli_planet subclass_world }
 		entity = "mesa_planet_03_entity"
 		# init_effect = {
 		# 	prevent_anomaly = yes
@@ -471,7 +490,7 @@ sys_zaherin_init = {
         orbit_angle = 181
         has_ring = no
 		size = 11
-		flags = { azrahas_planet btr_custom }
+		flags = { azrahas_planet subclass_world }
 		init_effect = {
 			add_deposit = d_engineering_4
 		}
@@ -484,7 +503,7 @@ sys_zaherin_init = {
         orbit_angle = 112
         has_ring = yes
 		size = 26
-		flags = { rotesk_planet btr_custom }
+		flags = { rotesk_planet subclass_world }
 		init_effect = {
 			# add_deposit = d_helium_3_1
 			add_deposit = d_exotic_gases_2

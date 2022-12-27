@@ -51,14 +51,8 @@ sys_kanala_init = {
 		starting_planet = yes
 		deposit_blockers = none
 		modifiers = none
-		flags = { kahje_planet btr_custom hanar_homeworld subclass_world }
+		flags = { kahje_planet subclass_world hanar_homeworld subclass_world }
 		init_effect = {
-            random_country = {
-                limit = {
-                    has_country_flag = illuminated_primacy
-                }
-                save_global_event_target_as = illuminated_primacy
-            }
 			prevent_anomaly = yes
 			set_global_flag = hanar_homeworld_spawned
             set_planet_flag = kahje_planet
@@ -218,6 +212,10 @@ sys_kanala_init = {
 sys_obek_init = {
     name = "Obek"
     class = sc_m
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { obek_system illuminated_primacy_system canon_map }
@@ -343,6 +341,10 @@ sys_obek_init = {
 sys_stabiae_init = {
     name = "Stabiae"
     class = sc_g
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { stabiae_system illuminated_primacy_system canon_map }
