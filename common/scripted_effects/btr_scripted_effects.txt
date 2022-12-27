@@ -1,22 +1,24 @@
 
 btr_generate_stations = {
-	every_system_planet = {
-		limit = {
-			has_deposit_for = shipclass_mining_station
-			has_mining_station = no
+	solar_system = {
+		every_system_planet = {
+			limit = {
+				has_deposit_for = shipclass_mining_station
+				has_mining_station = no
+			}
+			create_mining_station = {
+				owner = prevprev.owner
+			}
 		}
-		create_mining_station = {
-			owner = root
-		}
-	}
-	every_system_planet = {
-		limit = {
-			has_deposit_for = shipclass_research_station
-			has_research_station = no
-		}
-		create_research_station = {
-			owner = root
-		}
+		every_system_planet = {
+			limit = {
+				has_deposit_for = shipclass_research_station
+				has_research_station = no
+			}
+			create_research_station = {
+				owner = prevprev.owner
+			}
+		}		
 	}
 }
 
@@ -1381,14 +1383,6 @@ give_btr_T0_starting_tech = {
 		give_technology = { tech = tech_space_defense_station_1 message = no }
 		give_technology = { tech = tech_assault_armies message = no }
 	}
-}	
-
-give_btr_vorcha_starting_tech = {
-	owner = {
-		give_technology = { tech = tech_planetary_government message = no }
-		give_technology = { tech = tech_basic_science_lab_1 message = no }
-		give_technology = { tech = tech_basic_industry message = no }
-	}
 }
 
 give_btr_T1_starting_tech = {
@@ -1588,38 +1582,10 @@ give_btr_T2_starting_tech = {
 	}	
 }
 
-give_btr_asari_rep_starting_tech = {
-
-}
-
-give_btr_turian_hier_starting_tech = {
-	
-}
-
-give_btr_salarian_uni_starting_tech = {
-	
-}
-
-give_btr_courts_of_dek_starting_tech = {
-	
-}
-
-give_btr_systems_all_starting_tech = {
-	
-}
-
-give_btr_vol_pro_starting_tech = {
-	
-}
-
-give_btr_illuminated_pri_starting_tech = {
-	
-}
-
-give_btr_hegemony_of_khar_starting_tech = {
-	
-}
-
-give_btr_aralakh_kah_starting_tech = {
-	
+give_btr_vorcha_starting_tech = {
+	owner = {
+		give_technology = { tech = tech_planetary_government message = no }
+		give_technology = { tech = tech_basic_science_lab_1 message = no }
+		give_technology = { tech = tech_basic_industry message = no }
+	}
 }
