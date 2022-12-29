@@ -4067,120 +4067,6 @@ event = {
 	}
 }
 
-# ###Set Homeworlds
-# country_event = {
-# 	id = btr_start.4
-# 	hide_window = yes
-# 	is_triggered_only = yes
-# 	immediate = {
-# 		every_galaxy_species = {
-# 			switch = {
-# 				trigger = is_species_class
-# 				ASA = {
-# 					set_homeworld = {
-# 						planet_flag = thessia_planet	
-# 					}
-# 				}	
-# 				SAL = {
-# 					set_homeworld = {
-# 						planet_flag = surkesh_planet
-# 					}
-# 				}
-# 				TUR = {
-# 					set_homeworld = {
-# 						planet_flag = palaven_planet
-# 					}
-# 				}
-# 				# ELC = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = dekuuna_planet
-# 				# 	}
-# 				# }
-# 				# HAN = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = kahje_planet
-# 				# 	}
-# 				# }
-# 				# HUM = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = earth_planet
-# 				# 	}
-# 				# }
-# 				# VOL = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = irune_planet
-# 				# 	}
-# 				# }
-# 				# BAT = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = kharshan_planet
-# 				# 	}
-# 				# }
-# 				# GTH = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = rannoch_planet
-# 				# 	}
-# 				# }
-# 				# GOT = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = vindicta_planet
-# 				# 	}
-# 				# }
-# 				# KRO = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = tuchanka_planet
-# 				# 	}
-# 				# }
-# 				# LYS = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = sepkai_planet
-# 				# 	}	
-# 				# }
-# 				# QUA = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = rannoch_planet
-# 				# 	}
-# 				# }
-# 				# SED = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = sedriicae_planet
-# 				# 	}
-# 				# }
-# 				# YAH = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = parnack_planet
-# 				# 	}
-# 				# }
-# 				# RAC = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = suen_planet
-# 				# 	}
-# 				# }
-# 				# RAL = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = turvess_planet
-# 				# 	}
-# 				# }
-# 				# DRE = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = rakhana_planet
-# 				# 	}
-# 				# }
-# 				# VOR = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = heshtok_planet
-# 				# 	}
-# 				# }
-# 				# COL = {
-# 				# 	set_homeworld = {
-# 				# 		planet_flag = collector_base
-# 				# 	}
-# 				# }
-# 			}
-# 		}
-# 	}
-# }
-
 ###Set Empire Flags and Communications
 country_event = {
 	id = btr_start.5
@@ -4297,6 +4183,51 @@ event = {
 				every_country = {
 					every_owned_planet = {
 						check_planet_employment = yes				
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = geth_consensus
+						has_country_flag = disciples_of_nazara
+					}
+				}
+				every_owned_pop = {
+					change_species = event_target:gethSpecies
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = omega_empire
+				}
+				every_owned_pop = {
+					if = {
+						limit = { 
+							NOR = {
+								is_species = event_target:asariSpecies
+								is_species = event_target:salarianSpecies
+								is_species = event_target:turianSpecies
+								is_species = event_target:humanSpecies
+								is_species = event_target:elcorSpecies
+								is_species = event_target:volusSpecies
+								is_species = event_target:hanarSpecies
+								is_species = event_target:batarianSpecies
+								is_species = event_target:kroganSpecies
+								is_species = event_target:quarianSpecies
+								is_species = event_target:drellSpecies
+								is_species = event_target:vorchaSpecies
+								is_species = event_target:forayanSpecies
+								is_species = event_target:lystheniSpecies
+								is_species = event_target:gothonesSpecies
+								is_species = event_target:yahgSpecies
+								is_species = event_target:raloiSpecies
+								is_species = event_target:gethSpecies
+								is_species = event_target:rachniSpecies
+								is_species = event_target:collectorsSpecies
+							}
+						}
+						kill_pop = yes
 					}
 				}
 			}
@@ -5039,6 +4970,15 @@ event = {
 				}
 				else_if = {
 					limit = {
+						has_star_flag = buitre_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:turian_hierarchy
+					}
+				}
+				else_if = {
+					limit = {
 						has_star_flag = arrae_system
 					}
 					create_starbase = {
@@ -5677,6 +5617,15 @@ event = {
 						owner = event_target:courts_of_dekuuna
 					}
 				}
+				else_if = {
+					limit = {
+						has_star_flag = tassrah_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:courts_of_dekuuna
+					}
+				}
 				#Illuminated Primacy
 				else_if = {
 					limit = {
@@ -6086,6 +6035,15 @@ event = {
 						owner = event_target:hegemony_of_kharshan
 					}
 				}
+				else_if = {
+					limit = {
+						has_star_flag = ab113_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:hegemony_of_kharshan
+					}
+				}
 				#Aralakh Kahmat
 				else_if = {
 					limit = {
@@ -6118,6 +6076,18 @@ event = {
 					}
 				}
 				#Omega
+				else_if = {
+					limit = {
+						has_star_flag = sahrabarik_system
+					}
+					create_starbase = {
+						size = starbase_starhold
+						module = shipyard
+						module = trading_hub
+						building = offworld_trading_company
+						owner = event_target:omega_empire
+					}
+				}
 				else_if = {
 					limit = {
 						has_star_flag = arinlarkan_system
@@ -6358,7 +6328,7 @@ event = {
 				}
 				else_if = {
 					limit = {
-						has_star_flag = han_system
+						has_star_flag = nalu_system
 					}
 					create_starbase = {
 						size = starbase_starport
@@ -6370,7 +6340,7 @@ event = {
 				}
 				else_if = {
 					limit = {
-						has_star_flag = ming_system
+						has_star_flag = guc_system
 					}
 					create_starbase = {
 						size = starbase_starport
@@ -6382,7 +6352,16 @@ event = {
 				}
 				else_if = {
 					limit = {
-						has_star_flag = wigat_system
+						has_star_flag = mer_gor_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:gothones_remnant
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = thuva_system
 					}
 					create_starbase = {
 						size = starbase_outpost
@@ -6503,6 +6482,15 @@ event = {
 				}
 				else_if = {
 					limit = {
+						has_star_flag = vasraal_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:geth_consensus
+					}
+				}
+				else_if = {
+					limit = {
 						has_star_flag = theseaofstorms_system
 					}
 					create_starbase = {
@@ -6612,6 +6600,24 @@ event = {
 				else_if = {
 					limit = {
 						has_star_flag = gagarin_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = ekarii_system
+					}
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:disciples_of_nazara
+					}
+				}
+				else_if = {
+					limit = {
+						has_star_flag = tydeous_system
 					}
 					create_starbase = {
 						size = starbase_outpost
