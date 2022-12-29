@@ -1,0 +1,91 @@
+
+portraits = {
+	# drell
+	drell_male 	= {	entity = "portrait_human_male_01_entity"	clothes_selector = "mammalian_human_male_clothes_01" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_d_male"	
+		character_textures = {
+			"gfx/models/portraits/drell/drell_male_body_01.dds"
+			"gfx/models/portraits/drell/drell_male_body_02_new.dds"
+			"gfx/models/portraits/drell/drell_male_body_03_new.dds"
+			"gfx/models/portraits/drell/drell_male_body_04_new.dds"
+			"gfx/models/portraits/drell/drell_male_body_05_new.dds"
+		}
+	}
+
+	drell_female = {	entity = "portrait_human_female_01_entity"	clothes_selector = "mammalian_human_female_clothes_01" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_d_female"	
+		character_textures = {
+			"gfx/models/portraits/drell/drell_female_body_01.dds"
+			"gfx/models/portraits/drell/drell_female_body_02_new.dds"
+			"gfx/models/portraits/drell/drell_female_body_03_new.dds"
+			"gfx/models/portraits/drell/drell_female_body_04_new.dds"
+			"gfx/models/portraits/drell/drell_female_body_05_new.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	drell = {
+		default = drell_male
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = {
+					drell_male
+				}
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = {
+					drell_female
+				}
+			}
+		}		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					drell_male
+					drell_female
+				}
+			}
+		}		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					drell_male
+					drell_female
+				}
+			}
+		}
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					drell_female
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					drell_male
+				}
+			}
+		}
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					drell_female
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					drell_male
+				}
+			}
+		}
+	}	
+}

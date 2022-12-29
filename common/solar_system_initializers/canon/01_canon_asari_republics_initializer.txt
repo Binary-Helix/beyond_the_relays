@@ -59,14 +59,8 @@ sys_parnitha_init = {
 		deposit_blockers = none
 		modifiers = none
 		entity = "temperate_planet_01_entity"
-		flags = { thessia_planet btr_custom asari_homeworld subclass_world }		
+		flags = { thessia_planet subclass_world asari_homeworld subclass_world }		
 		init_effect = {
-			random_country = {
-				limit = {
-					has_country_flag = asari_republics
-				}
-				save_global_event_target_as = asari_republics
-			}
 			prevent_anomaly = yes
 			set_global_flag = asari_homeworld_spawned
 			set_planet_flag = thessia_planet
@@ -117,11 +111,11 @@ sys_parnitha_init = {
 						}
 						background={
 							category="backgrounds"
-							file="00_solid.dds"
+							file="flag_BG_42.dds"
 						}
 						colors={
-							"pink"
-							"light_blue"
+							"blue"
+							"blue"
 							"null"
 							"null"
 						}
@@ -151,13 +145,43 @@ sys_parnitha_init = {
 			generate_btr_start_deposits_and_blockers = yes
 			generate_asr_thessia_capitol_buildings = yes
 			generate_asr_thessia_pops = yes
-			generate_asr_thessia_deposits = yes
 			clear_blockers = yes
+			generate_asr_thessia_deposits = yes
 			#create_archaeological_site = btr_site_prothean_beacon_asari
 			set_name = "Thessia"
 			add_modifier = {
 				modifier = temperate_world
 				days = -1
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:asari_republics
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+					set_fleet_stance = evasive
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 40
+					}	
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:asari_republics
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+					set_fleet_stance = evasive
+					set_location = {
+						target = prev
+						distance = 25
+						angle = 50
+					}	
+				}
 			}
 		}
 	}
@@ -263,6 +287,10 @@ sys_parnitha_init = {
 sys_tomaros_init = {
 	name = "Tomaros"
 	class = sc_g
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { tomaros_system asari_republics_system canon_map }
@@ -287,7 +315,9 @@ sys_tomaros_init = {
 		orbit_angle = 110
 		size = 21
 		has_ring = no
+		modifiers = none
 		entity = "coastal_planet_06_entity"
+		flags = { subclass_world }
 		init_effect = {
 			if = {
 				limit = { 
@@ -299,6 +329,10 @@ sys_tomaros_init = {
 				generate_asr_lusia_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = coastal_world
+				days = -1
 			}
 		}
 	}
@@ -355,6 +389,10 @@ sys_tomaros_init = {
 sys_ialessa_init = {
 	name = "Ialessa"
 	class = sc_g
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { ialessa_system asari_republics_system canon_map }
@@ -370,7 +408,8 @@ sys_ialessa_init = {
 		size = 30
 		flags = { ialessa_star }
 		init_effect = {
-			add_deposit = d_energy_3					
+			add_deposit = d_energy_3	
+			create_asari_republics_science_ship = yes				
 		}		
 	}
 	
@@ -393,6 +432,8 @@ sys_ialessa_init = {
 		orbit_angle = 170
 		size = 18
 		has_ring = no
+		modifiers = none
+		flags = { subclass_world }
 		entity = "retinal_planet_09_entity"
 		init_effect = {
 			if = {
@@ -406,6 +447,10 @@ sys_ialessa_init = {
 				generate_asr_sanves_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = retinal_world
+				days = -1
 			}
 		}
 	}
@@ -462,6 +507,10 @@ sys_ialessa_init = {
 sys_orisoni_init = {	
 	name = "Orisoni"
 	class = sc_g
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { orisoni_system asari_republics_system canon_map }
@@ -483,7 +532,7 @@ sys_orisoni_init = {
 		orbit_angle = 75
 		size = 15
 		has_ring = no
-		flags = { thissioni_planet btr_custom }
+		flags = { thissioni_planet subclass_world }
 		init_effect = {
 			add_deposit = d_engineering_3
 		}	
@@ -491,24 +540,34 @@ sys_orisoni_init = {
 	
 	planet = {
 		name = "Niacal"
-		class = pc_highgrav_mephitic
+		class = pc_mephitic_station
         orbit_distance = 125
 		orbit_angle = 90
 		size = 25
 		has_ring = no
+		modifiers = none
+		flags = { subclass_world }
 		init_effect = {
-			add_deposit = d_irradiated_ruins
 			if = {
 				limit = { 
 					exists = event_target:asari_republics
 				}
+				set_planet_flag = planetary_station
+				set_planet_flag = research_station				
 				set_planet_flag = niacal_planet
+				set_deposit_flags = yes
 				set_owner = event_target:asari_republics
 				generate_btr_start_deposits_and_blockers = yes
 				generate_asr_niacal_colony_buildings = yes	
 				generate_asr_niacal_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
+				add_deposit = d_mephitic_blocker
+				add_deposit = d_arborary_oasis
+			}
+			add_modifier = {
+				modifier = lush_planet
+				days = -1
 			}
 		}
 	}
@@ -520,7 +579,7 @@ sys_orisoni_init = {
 		orbit_angle = 130
 		size = 14
 		has_ring = no
-		flags = { kralla_planet btr_custom }
+		flags = { kralla_planet subclass_world }
 	}
 	
 	planet = {
@@ -530,7 +589,7 @@ sys_orisoni_init = {
 		orbit_angle = -90
 		size = 36
 		has_ring = yes
-		flags = { egalic_planet btr_custom }
+		flags = { egalic_planet subclass_world }
 		init_effect = {
 			# add_deposit = d_helium_3_3
 			add_deposit = d_exotic_gases_2
@@ -550,6 +609,10 @@ sys_orisoni_init = {
 sys_vernio_init = {
 	name = "Vernio"
 	class = sc_f
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { vernio_system asari_republics_system canon_map }
@@ -578,7 +641,7 @@ sys_vernio_init = {
 		orbit_angle = -90
 		size = 25
 		has_ring = no
-		flags = { btr_custom }
+		flags = { subclass_world }
 		init_effect = {
 			# add_deposit = d_helium_3_3
 			add_deposit = d_rare_crystals_4
@@ -708,6 +771,10 @@ sys_vernio_init = {
 sys_loropi_init = {
     name = "Loropi"
     class = sc_a
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { loropi_system asari_republics_system canon_map }
@@ -723,6 +790,9 @@ sys_loropi_init = {
         orbit_distance = 0
         size = 27
 		flags = { loropi_star }
+		init_effect = {
+			create_asari_republics_construction_ship = yes
+		}
     }
 
     planet = {
@@ -745,7 +815,8 @@ sys_loropi_init = {
         orbit_angle = 117
         size = 3
         has_ring = no
-		flags = { espota_station  }
+		modifiers = none
+		flags = { espota_station }
 		init_effect = {
 			add_deposit = d_energy_8
 			add_deposit = d_exotic_gases_4
@@ -783,6 +854,10 @@ sys_loropi_init = {
 sys_teyolia_init = {
     name = "Teyolia"
     class = sc_m
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { teyolia_system asari_republics_system canon_map }
@@ -811,6 +886,8 @@ sys_teyolia_init = {
         orbit_angle = 222
         size = 17
         has_ring = no
+		modifiers = none
+		flags = { subclass_world }
 		init_effect = {
 			if = {
 				limit = { 
@@ -823,6 +900,10 @@ sys_teyolia_init = {
 				generate_asr_nevos_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = temperate_world
+				days = -1
 			}
 		}
 		moon = {
@@ -883,6 +964,10 @@ sys_teyolia_init = {
 sys_kypladon_init = {
     name = "Kypladon"
     class = sc_k
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { kypladon_system asari_republics_system canon_map }
@@ -910,7 +995,7 @@ sys_kypladon_init = {
         orbit_angle = 198
         size = 25
         has_ring = no
-		flags = { btr_custom }
+
 		init_effect = {
 			add_deposit = d_physics_3
 		}	
@@ -923,6 +1008,8 @@ sys_kypladon_init = {
         orbit_angle = 137
         size = 15
         has_ring = no
+		modifiers = none
+		flags = { subclass_world }
 		init_effect = {
 			add_deposit = d_exotic_mountain
 			if = {
@@ -936,6 +1023,10 @@ sys_kypladon_init = {
 				generate_asr_cyone_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = atoll_world
+				days = -1
 			}
 		}
     }
@@ -1004,6 +1095,10 @@ sys_kypladon_init = {
 sys_nahuala_init = {
     name = "Nahuala"
     class = sc_k
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { nahuala_system asari_republics_system canon_map }
@@ -1028,13 +1123,14 @@ sys_nahuala_init = {
         orbit_angle = 49
         size = 15
         has_ring = no
+		modifiers = none
 		init_effect = {
 			if = {
 				limit = { 
 					exists = event_target:asari_republics
 				}
 				set_planet_flag = planetary_station
-				set_planet_flag = civil_station
+				set_planet_flag = mining_station
 				set_deposit_flags = yes
 				set_owner = event_target:asari_republics
 				generate_asr_agessia_colony_buildings = yes	
@@ -1042,7 +1138,9 @@ sys_nahuala_init = {
 				clear_blockers = yes
 				prevent_anomaly = yes
 				add_deposit = d_molten_blocker
-				add_deposit = d_fire_rivers
+				add_deposit = d_mineral_lodes
+				add_deposit = d_mineral_lodes
+				add_deposit = d_mineral_lodes
 			}
 			# add_deposit = d_palladium_5
 		}
@@ -1055,6 +1153,7 @@ sys_nahuala_init = {
         orbit_angle = 239
         size = 25
         has_ring = no
+		modifiers = none
 		entity = "tundra_planet_05_entity"
 		init_effect = {
 			add_deposit = d_cryogazers_valley
@@ -1080,7 +1179,7 @@ sys_nahuala_init = {
         orbit_angle = 297
         size = 34
         has_ring = yes
-		flags = { phoros_planet btr_custom }
+		flags = { phoros_planet subclass_world }
 		init_effect = {
 			# add_deposit = d_helium_3_3
 			add_deposit = d_exotic_gases_2
@@ -1093,6 +1192,10 @@ sys_nahuala_init = {
 sys_fotia_init = {
 	name = "Fotia"
 	class = sc_binary_a_d
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { fotia_system asari_republics_system canon_map }
@@ -1132,6 +1235,7 @@ sys_fotia_init = {
 			class = pc_swamp
 			orbit_distance = 20
 			size = 11
+			modifiers = none
 			init_effect = {
 				if = {
 					limit = { 
@@ -1144,6 +1248,10 @@ sys_fotia_init = {
 					generate_asr_malkos_pops = yes
 					clear_blockers = yes
 					prevent_anomaly = yes
+				}
+				add_modifier = {
+					modifier = lake_world
+					days = -1
 				}
 			}
 		}
@@ -1164,6 +1272,10 @@ sys_fotia_init = {
 sys_mitrios_init = {
 	name = "Mitrios"
 	class = sc_f
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { mitrios_system asari_republics_system canon_map }
@@ -1192,6 +1304,7 @@ sys_mitrios_init = {
         orbit_distance = 150
         size = 21
 		has_ring = yes
+		modifiers = none
 		init_effect = {
 			if = {
 				limit = { 
@@ -1228,12 +1341,95 @@ sys_mitrios_init = {
 	}
 }
 
+sys_myrtil_init = {
+	name = "Myrtil"
+	class = sc_a_super
+	max_instances = 1
+
+	flags = { outer_council_system andanian_sea_system myrtil_system btr_system custom_system }
+
+	planet = {
+		name = "Myrtil"	
+        class = pc_a_super_star
+        orbit_distance = 0
+        size = 20
+		flags = { myrtil_star }
+		init_effect = {
+			create_asari_republics_construction_ship = yes
+		}
+    }
+
+	planet = {
+		name = "Apogema"
+		class = pc_iron
+        orbit_distance = 50
+        size = 9
+		has_ring = no
+		flags = { apogema_planet subclass_world }
+		init_effect = {
+			add_deposit = d_minerals_10
+		}
+	}
+	
+	planet = {
+		name = "Ysperatis"
+		class = pc_savannah
+        orbit_distance = 45
+        size = 21
+		has_ring = no
+		flags = { charias_planet subclass_world }
+		entity = "medit_planet_08_entity"
+		init_effect = {
+			add_deposit = d_society_3
+			add_modifier = {
+				modifier = medit_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Sarla"
+		class = pc_iron
+        orbit_distance = 45
+        size = 13
+		flags = { sarla_planet subclass_world }
+		moon = {
+			name = "Amkzon"
+			class = pc_ammonia
+			orbit_distance = 20
+			size = 7
+			entity = "ammonia_arctic_planet_03_entity"
+			init_effect = {
+				add_deposit = d_minerals_7
+				add_modifier = {
+					modifier = glacial_world
+					days = -1
+				}
+			}
+		}
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "andaniansea_vesuviusnebula_primaryrelay" 
+			name = "Andanian 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
 
 #####SERPENT NEBULA#####
 
 sys_elensia_init = {
 	name = "Elensia"
 	class = sc_g
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { elensia_system asari_republics_system canon_map }
@@ -1262,6 +1458,7 @@ sys_elensia_init = {
 		class = pc_ocean
         orbit_distance = 80
 		size = 18
+		modifiers = none
 		init_effect = {
 			if = {
 				limit = { 
@@ -1320,11 +1517,15 @@ sys_elensia_init = {
 	}
 }
 
-#####NIMBUS CLUSTER#####
+##### NIMBUS CLUSTER #####
 
 sys_pelion_init = {
     name = "Pelion"
     class = sc_b_super
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { pelion_system asari_republics_system canon_map }
@@ -1335,6 +1536,9 @@ sys_pelion_init = {
         orbit_distance = 0
         size = 20
 		flags = { pelion_star }
+		init_effect = {
+			create_asari_republics_construction_ship = yes
+		}
     }
 
     planet = {
@@ -1365,11 +1569,13 @@ sys_pelion_init = {
 
     planet = {
         name = "Trategos"
-        class = pc_dextro_arctic
+        class = pc_arctic
         orbit_distance = 125
         orbit_angle = 229
         size = 17
         has_ring = no
+		modifiers = none
+		entity = "snow_planet_01_entity"
 		init_effect = {
 			if = {
 				limit = { 
@@ -1382,6 +1588,10 @@ sys_pelion_init = {
 				generate_asr_trategos_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = snow_world
+				days = -1
 			}
 		}
     }
@@ -1402,6 +1612,10 @@ sys_pelion_init = {
 sys_mesana_init = {
     name = "Mesana"
     class = sc_m
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { mesana_system asari_republics_system canon_map }
@@ -1416,11 +1630,12 @@ sys_mesana_init = {
 
     planet = {
         name = "Lesuss"
-        class = pc_savannah
+        class = pc_continental
         orbit_distance = 75
         orbit_angle = 35
         size = 15
         has_ring = no
+		modifiers = none
 		init_effect = {
 			if = {
 				limit = { 
@@ -1433,6 +1648,10 @@ sys_mesana_init = {
 				generate_asr_lesuss_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = bleak_planet
+				days = -1
 			}
 		}
     }

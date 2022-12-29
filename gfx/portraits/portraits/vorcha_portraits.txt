@@ -1,0 +1,181 @@
+
+portraits = {
+	# vorcha
+	vorcha = {	entity = "portrait_reptilian_14_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture" 
+		greeting_sound = "reptilian_01_greetings"
+		character_textures = {
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_default.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_default_black.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_default_blue.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_default_green.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_default_red.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_default_yellow.dds"
+		}
+	}
+	
+	vorcha_black = {	entity = "portrait_reptilian_14_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture" 
+		greeting_sound = "reptilian_01_greetings"
+		character_textures = {
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_black_default.dds"
+#			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_black_black.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_black_blue.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_black_green.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_black_red.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_black_yellow.dds"
+		}
+	}
+	
+	vorcha_blue = {	entity = "portrait_reptilian_14_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture" 
+		greeting_sound = "reptilian_01_greetings"
+		character_textures = {
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_blue_default.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_blue_black.dds"
+#			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_blue_blue.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_blue_green.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_blue_red.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_blue_yellow.dds"
+		}
+	}
+
+	vorcha_green = {	entity = "portrait_reptilian_14_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture" 
+		greeting_sound = "reptilian_01_greetings"
+		character_textures = {
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_green_default.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_green_black.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_green_blue.dds"
+#			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_green_green.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_green_red.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_green_yellow.dds"
+		}
+	}
+
+	vorcha_red = {	entity = "portrait_reptilian_14_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture" 
+		greeting_sound = "reptilian_01_greetings"
+		character_textures = {
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_red_default.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_red_black.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_red_blue.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_red_green.dds"
+#			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_red_red.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_red_yellow.dds"
+		}
+	}
+	
+	vorcha_yellow = {	entity = "portrait_reptilian_14_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture" 
+		greeting_sound = "reptilian_01_greetings"
+		character_textures = {
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_yellow_default.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_yellow_black.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_yellow_blue.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_yellow_green.dds"
+			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_yellow_red.dds"
+#			"gfx/models/portraits/vorcha/vorcha_reptilian_massive_14_yellow_yellow.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	vorcha = {
+		default = vorcha
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = {
+					vorcha
+					vorcha_black
+					vorcha_blue
+					vorcha_green
+					vorcha_red
+					vorcha_yellow
+				}
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = {
+					vorcha
+					vorcha_black
+					vorcha_blue
+					vorcha_green
+					vorcha_red
+					vorcha_yellow
+				}
+			}
+		}		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					vorcha
+					vorcha_black
+					vorcha_blue
+					vorcha_green
+					vorcha_red
+					vorcha_yellow
+				}
+			}
+		}		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					vorcha
+					vorcha_black
+					vorcha_blue
+					vorcha_green
+					vorcha_red
+					vorcha_yellow
+				}
+			}
+		}
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					vorcha
+					vorcha_black
+					vorcha_blue
+					vorcha_green
+					vorcha_red
+					vorcha_yellow
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					vorcha
+					vorcha_black
+					vorcha_blue
+					vorcha_green
+					vorcha_red
+					vorcha_yellow
+				}
+			}
+		}
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					vorcha
+					vorcha_black
+					vorcha_blue
+					vorcha_green
+					vorcha_red
+					vorcha_yellow
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					vorcha
+					vorcha_black
+					vorcha_blue
+					vorcha_green
+					vorcha_red
+					vorcha_yellow
+				}
+			}
+		}
+	}	
+}

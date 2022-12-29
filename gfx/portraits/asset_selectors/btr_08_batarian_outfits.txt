@@ -1,0 +1,85 @@
+# This is a template which multiple species can use. 
+
+btr_batarian_male_outfit = {
+	default = "gfx/models/portraits/human/human_male_clothes_ruler.dds"
+
+	game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+		default = "gfx/models/portraits/human/human_male_clothes_ruler.dds"
+	}
+
+	#species scope
+	species = { #generic portrait for a species
+		default = "gfx/models/portraits/human/human_male_clothes_ruler.dds"
+	}
+
+	#pop scope
+	pop = { #for a specific pop
+		default = "gfx/models/portraits/human/human_male_clothes_governor.dds"
+		
+		"gfx/models/portraits/human/human_male_clothes_admiral.dds" 	= { OR = { is_pop_category = worker is_pop_category = slave is_pop_category = simple_drone }  }
+		"gfx/models/portraits/human/human_male_clothes_scientist.dds" 	= { OR = { is_pop_category = specialist is_pop_category = complex_drone } }
+		"gfx/models/portraits/human/human_male_clothes_admiral.dds" 	= { is_pop_category = ruler }
+	}
+	#leader scope
+	leader = { #scientists, generals, admirals, governor
+		"gfx/models/portraits/human/human_male_clothes_scientist.dds" = { leader_class = scientist }
+		"gfx/models/portraits/human/human_male_clothes_general.dds" = { leader_class = general }
+		"gfx/models/portraits/human/human_male_clothes_admiral.dds" = { leader_class = admiral }
+		"gfx/models/portraits/human/human_male_clothes_governor.dds" = { leader_class = governor }
+	}
+
+	#leader scope 
+	ruler = { #for rulers
+		default = "gfx/models/portraits/human/human_male_clothes_ruler.dds"
+
+		"gfx/models/portraits/human/human_male_clothes_ruler2.dds" = { owner = { has_generic_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_male_clothes_general.dds" = { owner = { has_militarist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_male_clothes_ruler.dds" = { owner = { has_spiritualist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_male_clothes_governor.dds" = { owner = { has_pacifist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_male_clothes_governor.dds" = { owner = { has_primitive_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_male_clothes_scientist.dds" = { owner = { has_materialist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_male_clothes_royal.dds" = { owner = { has_authority = auth_imperial } }
+	}
+}
+
+btr_batarian_female_outfit = {
+	default = "gfx/models/portraits/human/human_female_clothes_ruler.dds"
+	
+	game_setup = {#will run with a limited country scope. species and government is set but the country does not actually exist
+		default = "gfx/models/portraits/human/human_female_clothes_admiral.dds"
+	}
+	
+	#species scope
+	species = { #generic portrait for a species
+		default = "gfx/models/portraits/human/human_female_clothes_ruler.dds"
+	}
+	
+	#pop scope
+	pop = { #for a specific pop
+		default = "gfx/models/portraits/human/human_female_clothes_governor.dds"
+		
+		"gfx/models/portraits/human/human_female_clothes_admiral.dds" 	= { OR = { is_pop_category = worker is_pop_category = slave is_pop_category = simple_drone }  }
+		"gfx/models/portraits/human/human_female_outfit_scientist.dds" 	= { OR = { is_pop_category = specialist is_pop_category = complex_drone } }
+		"gfx/models/portraits/human/human_female_clothes_admiral.dds" 	= { is_pop_category = ruler }
+	}
+	#leader scope
+	leader = { #scientists, generals, admirals, governor
+		"gfx/models/portraits/human/human_female_outfit_scientist.dds" = { leader_class = scientist }
+		"gfx/models/portraits/human/human_female_clothes_general.dds" = { leader_class = general }
+		"gfx/models/portraits/human/human_female_clothes_admiral.dds" = { leader_class = admiral }
+		"gfx/models/portraits/human/human_female_clothes_governor.dds" = { leader_class = governor }
+	}
+
+	#leader scope 
+	ruler = { #for rulers
+		default = "gfx/models/portraits/human/human_female_clothes_ruler.dds"
+
+		"gfx/models/portraits/human/human_female_clothes_ruler2.dds" = { owner = { has_generic_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_female_clothes_general.dds" = { owner = { has_militarist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_female_clothes_ruler.dds" = { owner = { has_spiritualist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_female_clothes_governor.dds" = { owner = { has_pacifist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_female_clothes_governor.dds" = { owner = { has_primitive_government = yes  NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_female_outfit_scientist.dds" = { owner = { has_materialist_government = yes NOT = { has_authority = auth_imperial } } }
+		"gfx/models/portraits/human/human_female_clothes_royal.dds" = { owner = { has_authority = auth_imperial } }
+	}
+}

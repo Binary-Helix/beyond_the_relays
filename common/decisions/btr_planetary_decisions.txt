@@ -23,13 +23,47 @@ decision_shifty_cow_extermination = {
 		has_deposit = d_shifty_cow_2
 	}
 
-
 	effect = {
 		remove_deposit = d_shifty_cow_2
 		add_modifier = { 
 			modifier = "shifty_cow_death"
 			days = 360	
 		}
+	}
+
+	ai_weight = {
+		weight = 5
+	}
+}
+
+#Rachni Nest Decision
+decision_rachni_nest_construction = {
+	owned_planets_only = yes
+	sound = event_construction
+	icon = decision_rachni_nests
+
+	enactment_time = 180
+
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 1000
+			food = 2000
+		}
+	}
+
+	potential = {
+		owner = {
+			has_country_flag = rachni_hive
+		}
+		NOT = {
+			has_deposit = d_rachni_nests			
+		}
+
+	}
+
+	effect = {
+		add_deposit = d_rachni_nests
 	}
 
 	ai_weight = {

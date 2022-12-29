@@ -8,7 +8,6 @@ sys_trebia_init = {
     name = "Trebia"
     class = sc_g
 	flags = { turian_hierarchy_homeworld turian_hierarchy_capital_system canon_map trebia_system }
-	
 	init_effect = { 
 		generate_home_system_resources = yes
 	}
@@ -22,6 +21,53 @@ sys_trebia_init = {
         orbit_distance = 0
         size = 25
 		flags = { trebia_star}
+		init_effect = {
+			create_fleet = {
+				effect = {
+					set_owner = event_target:turian_hierarchy
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+					}
+					set_fleet_stance = evasive
+					set_location = {
+						target = prev
+						distance = 80
+						angle = 30
+					}	
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:turian_hierarchy
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+					set_fleet_stance = evasive
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 40
+					}	
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = event_target:turian_hierarchy
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+					set_fleet_stance = evasive
+					set_location = {
+						target = prev
+						distance = 50
+						angle = 50
+					}	
+				}
+			}
+		}
     }
 
     planet = {
@@ -50,17 +96,11 @@ sys_trebia_init = {
         size = 22
 		has_ring = no		
 		starting_planet = yes
-		flags = { palaven_planet btr_custom turian_homeworld subclass_world }
+		flags = { palaven_planet subclass_world turian_homeworld subclass_world }
 		deposit_blockers = none		
 		modifiers = none
 		entity = "veld_planet_04_entity"
 		init_effect = {
-			random_country = {
-				limit = {
-					has_country_flag = turian_hierarchy
-				}
-				save_global_event_target_as = turian_hierarchy
-			}
 			prevent_anomaly = yes
 			set_global_flag = turian_homeworld_spawned
 			set_planet_flag = palaven_planet
@@ -111,11 +151,11 @@ sys_trebia_init = {
 						}
 						background={
 							category="backgrounds"
-							file="00_solid.dds"
+							file="flag_BG_20.dds"
 						}
 						colors={
-							"dark_blue"
-							"grey"
+							"eecolor1602"
+							"eecolor1820"
 							"null"
 							"null"
 						}
@@ -193,7 +233,7 @@ sys_trebia_init = {
 						exists = event_target:turian_hierarchy
 					}
 					set_planet_flag = planetary_station
-					set_planet_flag = military_station
+					set_planet_flag = industrial_station
 					set_deposit_flags = yes
 					set_owner = event_target:turian_hierarchy
 					generate_tur_nanus_colony_buildings = yes
@@ -247,12 +287,13 @@ sys_trebia_init = {
 sys_orachorum_init = {
 	name = "Orachorum"
 	class = sc_f
-	max_instances = 1
-
-	flags = { orachorum_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { orachorum_system turian_hierarchy_system canon_map }
 
 	planet = {
 	    name = "Orachorum"
@@ -303,8 +344,8 @@ sys_orachorum_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_chatti_pops = yes
 				generate_tur_chatti_colony_buildings = yes
+				generate_tur_chatti_pops = yes
 				clear_blockers = yes
 			}
 			add_modifier = {
@@ -318,12 +359,13 @@ sys_orachorum_init = {
 sys_navale_init = {
 	name = "Navale"
 	class = sc_f
-	max_instances = 1
-
-	flags = { navale_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { navale_system turian_hierarchy_system canon_map }
 
 	planet = {
 	    name = "Navale"
@@ -373,8 +415,8 @@ sys_navale_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_aephus_pops = yes
 				generate_tur_aephus_colony_buildings = yes	
+				generate_tur_aephus_pops = yes
 				clear_blockers = yes
 			}
 			add_modifier = {
@@ -425,12 +467,13 @@ sys_navale_init = {
 sys_castellus_init = {
     name = "Castellus"
     class = sc_g
-	max_instances = 1
-
-	flags = { castellus_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { castellus_system turian_hierarchy_system canon_map }
 		
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -490,8 +533,8 @@ sys_castellus_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_digeris_pops = yes
 				generate_tur_digeris_colony_buildings = yes	
+				generate_tur_digeris_pops = yes
 				clear_blockers = yes
 			}
 			add_modifier = {
@@ -552,12 +595,13 @@ sys_castellus_init = {
 sys_centrixaurum_init = {
 	name = "Centrix Aurum"
 	class = sc_m_giant
-	max_instances = 1
-
-	flags = { centrixaurum_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { centrixaurum_system turian_hierarchy_system canon_map }
 
 	planet = {
 	    name = "Centrix Aurum"
@@ -593,8 +637,8 @@ sys_centrixaurum_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_epyrus_pops = yes
 				generate_tur_epyrus_colony_buildings = yes
+				generate_tur_epyrus_pops = yes
 				clear_blockers = yes
 			}
 			add_modifier = {
@@ -637,6 +681,10 @@ sys_centrixaurum_init = {
 sys_gemmae_init = {
     name = "Gemmae"
     class = sc_b_super
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
 	max_instances = 1
 
 	flags = { gemmae_system turian_hierarchy_system canon_map }
@@ -666,7 +714,7 @@ sys_gemmae_init = {
 					exists = event_target:turian_hierarchy
 				}
 				set_planet_flag = planetary_station
-				set_planet_flag = military_station
+				set_planet_flag = research_station
 				set_deposit_flags = yes
 				set_owner = event_target:turian_hierarchy
 				generate_tur_pheiros_colony_buildings = yes	
@@ -688,12 +736,13 @@ sys_gemmae_init = {
 sys_caestus_init = {
     name = "Caestus"
     class = sc_g
-	max_instances = 1
-
-	flags = { caestus_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { caestus_system turian_hierarchy_system canon_map }
 
     planet = {
 	    name = "Caestus"
@@ -717,8 +766,8 @@ sys_caestus_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_invictus_pops = yes
 				generate_tur_invictus_colony_buildings = yes
+				generate_tur_invictus_pops = yes
 				clear_blockers = yes
 			}
 			add_modifier = {
@@ -740,10 +789,10 @@ sys_caestus_init = {
         has_ring = no
 		init_effect = {
 			add_deposit = d_minerals_9
-			# add_modifier = {
-			# 	modifier = btr_scorching_surface
-			# 	days = -1
-			# }
+			add_modifier = {
+				modifier = btr_scorching_surface
+				days = -1
+			}
 		}
     }	
 }
@@ -751,12 +800,13 @@ sys_caestus_init = {
 sys_arrae_init = {
     name = "Arrae"
     class = sc_a
-	max_instances = 1
-
-	flags = { arrae_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { arrae_system turian_hierarchy_system canon_map }
 
     planet = {
 	    name = "Arrae"
@@ -792,8 +842,8 @@ sys_arrae_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
+				generate_tur_gellix_colony_buildings = yes
 				generate_tur_gellix_pops = yes
-				generate_tur_gellix_colony_buildings = yes	
 				clear_blockers = yes
 			}
 		}
@@ -835,16 +885,107 @@ sys_arrae_init = {
 	}
 }
 
+sys_fortis_init = {
+    name = "Fortis"
+    class = sc_g
+	max_instances = 1
+
+	flags = { outer_council_system minos_wasteland_system fortis_system btr_system custom_system }
+
+    planet = {
+	    name = "Fortis"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 23
+		flags = { fortis_star }
+		init_effect = {
+			create_fleet = {
+				effect = {
+					set_owner = event_target:turian_hierarchy
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+					}
+					set_fleet_stance = evasive
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 40
+					}	
+				}
+			}
+		}
+    }
+
+    planet = {
+        name = "Vir"
+        class = pc_hothouse
+        orbit_distance = 150
+        orbit_angle = 6
+        size = 20
+        has_ring = no
+		flags = { vir_planet subclass_world }
+    }
+
+    planet = {
+        name = "Pietas"
+        class = pc_mephitic
+        orbit_distance = 150
+        orbit_angle = 148
+        size = 13
+        has_ring = no
+		flags = { pietas_planet subclass_world }
+		entity = "mephitic_alpine_planet_11_entity"
+		init_effect = {
+			# add_deposit = d_poor_mineral_deposits
+			# add_deposit = d_poor_iridium_deposits
+			# add_deposit = d_poor_platinum_deposits
+			# add_deposit = d_poor_palladium_deposits
+			add_deposit = d_rare_crystals_2
+			add_modifier = {
+				modifier = basalt_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Aequitas"
+        class = pc_frozen
+        orbit_distance = 150
+        orbit_angle = 74
+        size = 17
+        has_ring = no
+		flags = { aequitas_planet subclass_world }
+		init_effect = {
+			add_deposit = d_minerals_9
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_trade_value_4
+		}
+    }
+	
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "outer_council_sector_1_secondaryrelay" 
+			name = "Outer Secondary - Sector 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+
 #####AETHON CLUSTER#####
 sys_nura_init = {
     name = "Nura"
     class = sc_f
-	max_instances = 1
-
-	flags = { nura_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { nura_system turian_hierarchy_system canon_map }
 
     planet = {
 	    name = "Nura"
@@ -887,8 +1028,8 @@ sys_nura_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_omaker_pops = yes
 				generate_tur_omaker_colony_buildings = yes
+				generate_tur_omaker_pops = yes
 				clear_blockers = yes
 			}
 			add_modifier = {
@@ -931,12 +1072,13 @@ sys_nura_init = {
 sys_talava_init = {
     name = "Talava"
     class = sc_f
-	max_instances = 1
-
-	flags = { talava_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { talava_system turian_hierarchy_system canon_map }
 
     planet = {
 	    name = "Talava"
@@ -946,6 +1088,21 @@ sys_talava_init = {
 		flags = { talava_star }
 		init_effect = {
 			add_deposit = d_energy_3
+			create_fleet = {
+				effect = {
+					set_owner = event_target:turian_hierarchy
+					create_ship = {
+						name = random
+						random_existing_design = constructor
+					}
+					set_fleet_stance = evasive
+					set_location = {
+						target = prev
+						distance = 20
+						angle = 40
+					}	
+				}
+			}
 		}
     }
 
@@ -966,10 +1123,10 @@ sys_talava_init = {
 				modifier = unstable_tectonics
 				days = -1
 			}
-			# add_modifier = {
-			# 	modifier = btr_scorching_surface
-			# 	days = -1
-			# }
+			add_modifier = {
+				modifier = btr_scorching_surface
+				days = -1
+			}
 		}
 	}	
 
@@ -983,10 +1140,10 @@ sys_talava_init = {
 		init_effect = {
 			add_deposit = d_engineering_2
 			add_deposit = d_minerals_2
-			# add_modifier = {
-			# 	modifier = btr_unwise_mining_venture
-			# 	days = -1
-			# }
+			add_modifier = {
+				modifier = btr_unwise_mining_venture
+				days = -1
+			}
 			add_modifier = {
 				modifier = unstable_tectonics
 				days = -1
@@ -1016,9 +1173,9 @@ sys_talava_init = {
 				add_deposit = d_barren_blocker
 				add_deposit = d_crystal_cavities
 			}
-			# add_deposit = d_poor_mineral_deposits
-			# add_deposit = d_minerals_2
-			# add_deposit = d_rare_crystals_2
+			#add_deposit = d_poor_mineral_deposits
+			add_deposit = d_minerals_2
+			#add_deposit = d_rare_crystals_2
 		}
     }
 
@@ -1040,15 +1197,160 @@ sys_talava_init = {
 
 #####MEADE CLUSTER#####
 
+sys_cersea_init = {
+	name = "Cersea"
+	class = sc_k
+	max_instances = 1
+
+	flags = { inner_council_system meade_cluster_system cersea_system btr_system custom_system }
+
+	planet = {
+		name = "Cersea"	
+        class = pc_k_star
+        orbit_distance = 0
+        size = 20
+		flags = { cersea_star }
+		create_fleet = {
+			name = "Turian 6th Fleet"
+			set_take_point = yes
+			effect = {
+				set_owner = event_target:turian_hierarchy
+				while = {
+					count = 15
+					create_ship = {
+						name = random
+						random_existing_design = corvette
+					}
+				}
+				while = {
+					count = 5
+					create_ship = {
+						name = random
+						random_existing_design = frigate
+					}
+				}
+				while = {
+					count = 4
+					create_ship = {
+						name = random
+						random_existing_design = destroyer
+					}
+				}
+				while = {
+					count = 5
+					create_ship = {
+						name = random
+						random_existing_design = cruiser
+					}
+				}
+				while = {
+					count = 10
+					create_ship = {
+						name = random
+						random_existing_design = battleship
+					}
+				}
+				set_location = {
+					target = prev
+					distance = 150
+					angle = 50
+				}
+			}
+		}
+    }
+
+	planet = {
+		name = "Podum"
+		class = pc_hothouse
+        orbit_distance = 80
+        size = 13
+		flags = { podum_planet subclass_world }
+		init_effect = {
+			add_deposit = d_engineering_3
+		}
+	}
+
+	planet = {
+		name = "Flanadia"
+		class = pc_barren
+        orbit_distance = 80
+        size = 8
+		flags = { flanadia_planet subclass_world }	
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_minerals_2
+		}
+	}
+
+	planet = {
+		name = "Mindo"
+		class = pc_mephitic
+        orbit_distance = 80
+        size = 19
+		has_ring = no
+		flags = { mindo_planet subclass_world }
+		entity = "mephitic_desert_planet_10_entity"
+		init_effect = {
+			add_deposit = d_zro_deposit_2
+			add_deposit = d_society_3
+			add_modifier = {
+				modifier = oasis_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Erestar"
+		class = pc_iron
+        orbit_distance = 80
+        size = 13
+		flags = { erestar_planet subclass_world }
+		init_effect = {
+			add_deposit = d_minerals_6
+		}
+	}
+	
+	planet = {
+		name = "Gurcia"
+		class = pc_ice_giant
+        orbit_distance = 80
+        size = 28
+		flags = { gurcia_planet subclass_world }
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+			add_deposit = d_physics_2
+		}
+	}
+
+	planet = {
+		name = "Sorala"
+		class = pc_frozen
+        orbit_distance = 80
+        size = 10
+		flags = { doroga_planet subclass_world }
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "meadecluster_aethoncluster_primaryrelay" 
+			name = "Meade 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
 sys_mactare_init = {
     name = "Mactare"
     class = sc_k
-	max_instances = 1
-
-	flags = { mactare_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { mactare_system turian_hierarchy_system canon_map }
 
     planet = {
 	    name = "Mactare"
@@ -1085,8 +1387,8 @@ sys_mactare_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_taetrus_pops = yes
 				generate_tur_taetrus_colony_buildings = yes	
+				generate_tur_taetrus_pops = yes
 				clear_blockers = yes
 			}
 			add_deposit = d_black_soil
@@ -1163,12 +1465,13 @@ sys_mactare_init = {
 sys_narbo_init = {
     name = "Narbo"
     class = sc_k_giant
-	max_instances = 1
-
-	flags = { narbo_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { narbo_system turian_hierarchy_system canon_map }
 
     planet = {
 	    name = "Narbo"
@@ -1231,12 +1534,13 @@ sys_narbo_init = {
 sys_nedlus_init = {
     name = "Nedlus"
     class = sc_f
-	max_instances = 1
-
-	flags = { nedlus_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { nedlus_system turian_hierarchy_system canon_map }
 
     planet = {
 		name = "Nedlus"
@@ -1274,8 +1578,8 @@ sys_nedlus_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_parthia_pops = yes
 				generate_tur_parthia_colony_buildings = yes	
+				generate_tur_parthia_pops = yes
 				clear_blockers = yes
 			}
 			add_modifier = {
@@ -1332,12 +1636,13 @@ sys_nedlus_init = {
 sys_laudate_init = {
 	name = "Laudate"
 	class = sc_f
-	max_instances = 1
-
-	flags = { laudate_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { laudate_system turian_hierarchy_system canon_map }
 
 	asteroid_belt = {
 		type = icy_asteroid_belt
@@ -1386,8 +1691,8 @@ sys_laudate_init = {
 				}					
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
+				generate_tur_magna_colony_buildings = yes	
 				generate_tur_magna_pops = yes
-				generate_tur_magna_colony_buildings = yes		
 				clear_blockers = yes
 			}
 			add_modifier = {
@@ -1472,12 +1777,13 @@ sys_laudate_init = {
 sys_sabulum_init = {
 	name = "Sabulum"
 	class = sc_m
-	max_instances = 1
-
-	flags = { sabulum_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { sabulum_system turian_hierarchy_system canon_map }
 
 	planet = {
 	    name = "Sabulum"
@@ -1499,8 +1805,8 @@ sys_sabulum_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_edessan_pops = yes
 				generate_tur_edessan_colony_buildings = yes	
+				generate_tur_edessan_pops = yes
 				clear_blockers = yes
 			}
 			add_deposit = d_veiny_cliffs
@@ -1538,17 +1844,161 @@ sys_sabulum_init = {
 	}
 }
 
+sys_ursantra_init = {
+	name = "Ursantra"
+	class = sc_g
+	max_instances = 1
+
+	flags = { inner_council_system proditors_scar_system ursantra_system btr_system custom_system }
+
+	planet = {
+	    name = "Ursantra"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { ursantra_star }
+		init_effect = {
+			create_fleet = {
+				name = "Turian 3rd Fleet"
+				set_take_point = yes
+				effect = {
+					set_owner = event_target:turian_hierarchy
+					while = {
+						count = 15
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+					while = {
+						count = 5
+						create_ship = {
+							name = random
+							random_existing_design = frigate
+						}
+					}
+					while = {
+						count = 4
+						create_ship = {
+							name = random
+							random_existing_design = destroyer
+						}
+					}
+					while = {
+						count = 5
+						create_ship = {
+							name = random
+							random_existing_design = cruiser
+						}
+					}
+					while = {
+						count = 10
+						create_ship = {
+							name = random
+							random_existing_design = battleship
+						}
+					}
+					set_location = {
+						target = prev
+						distance = 150
+						angle = 50
+					}
+				}
+			}
+		}
+    }
+
+	planet = {
+		name = "Ranad"
+		class = pc_hot_giant
+        orbit_distance = 30
+        size = 36
+		flags = { ranad_planet subclass_world }
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+		}
+		moon = {
+			name = "Consulia"
+			class = pc_molten
+			orbit_distance = 8
+			size = 4			
+			init_effect = {
+				add_deposit = d_rare_crystals_2
+				add_deposit = d_minerals_4
+			}
+		}
+	}
+
+	planet = {
+		name = "Tracda"
+		class = pc_barren
+        orbit_distance = 45
+        size = 13
+		flags = { tracda_planet subclass_world }
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}
+	}
+	
+	planet = {
+		name = "Uresium"
+		class = pc_chthonian
+        orbit_distance = 30
+        size = 33
+		flags = { uresium_planet subclass_world }
+	}
+
+	planet = {
+		name = "Girallia"
+		class = pc_barren_cold
+        orbit_distance = 45
+        size = 16
+		flags = { girallia_planet subclass_world }
+		init_effect = {
+			add_deposit = d_society_5
+			add_deposit = d_physics_3
+		}
+	}
+
+	planet = {
+		name = "Yoluum"
+		class = pc_ammonia
+        orbit_distance = 45
+        size = 12
+		entity = "ammonia_alpine_planet_01_entity"
+		flags = { yoluum_planet subclass_world }
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_minerals_4
+			add_modifier = {
+				modifier = cascadian_world
+				days = -1
+			}
+		}
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "prodicatoresscar_serpentnebula_primaryrelay" 
+			name = "Prodicatore 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
 #####SERPENT NEBULA######
 
 sys_terevan_init = {
     name = "Terevan"
     class = sc_a
-	max_instances = 1
-
-	flags = { terevan_system turian_hierarchy_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
+
+	max_instances = 1
+
+	flags = { terevan_system turian_hierarchy_system canon_map }
 
     planet = {
 	    name = "Terevan"
@@ -1571,8 +2021,8 @@ sys_terevan_init = {
 				}
 				set_owner = event_target:turian_hierarchy
 				generate_btr_start_deposits_and_blockers = yes
-				generate_tur_tracmusduxes_pops = yes
 				generate_tur_tracmus_colony_buildings = yes	
+				generate_tur_tracmusduxes_pops = yes
 				clear_blockers = yes
 			}
 			add_deposit = d_veiny_cliffs

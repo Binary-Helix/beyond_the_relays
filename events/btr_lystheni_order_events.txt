@@ -1,0 +1,68 @@
+namespace = btr_lysord
+# Lystheni Order entered fully surveyed space
+fleet_event = {
+	id = btr_lysord.01
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			has_civic = lystheni_order_thirteenth_promise
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				from = {
+					is_surveyed = {
+						who = root.owner
+						status = yes
+					}
+				}
+			}
+			every_owned_ship = {
+				limit = {
+					NOT = {
+						has_modifier =lystheni_thirteenth_promise_survey
+					}
+				}
+				add_modifier = {
+					modifier = lystheni_thirteenth_promise_survey
+				}
+			}
+		}
+		else = {
+			remove_modifier = lystheni_thirteenth_promise_survey
+		}
+	}
+}
+
+# Leadered Lystheni Order army landed on surveyed planet
+planet_event = {
+	id = btr_lysord.02
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		from = {
+			random_owned_army = {
+				limit = {
+					exists = planet
+					exists = leader
+					planet = { 
+						is_same_value = root
+						solar_system = {
+							is_surveyed = {
+								who = prevprevprev
+								status = yes
+							}
+						}
+					}
+				}
+				leader = {
+					add_trait = lystheni_leader_trait_general_survey_bonus
+				}
+			}
+		}
+	}
+}

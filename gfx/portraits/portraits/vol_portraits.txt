@@ -1,0 +1,92 @@
+portraits = {
+	# volus
+	volus_male = {	entity = "portrait_reptilian_14_dontmove_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_f_male"	
+		character_textures = {
+			"gfx/models/portraits/volus/volus_reptilian_massive_14.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_blue.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_green.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_purple.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_red.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_yellow.dds"
+		}
+	}
+	
+	volus_female = {	entity = "portrait_reptilian_14_dontmove_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_f_female"	
+		character_textures = {
+			"gfx/models/portraits/volus/volus_reptilian_massive_14.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_blue.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_green.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_purple.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_red.dds"
+			"gfx/models/portraits/volus/volus_reptilian_massive_14_yellow.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	volus = {
+		default = volus_male
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = {
+					volus_male
+				}
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = {
+					volus_female
+				}
+			}
+		}		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					volus_female
+					volus_male
+				}
+			}
+		}		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					volus_female
+					volus_male
+				}
+			}
+		}
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					volus_female
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					volus_male
+				}
+			}
+		}
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					volus_female
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					volus_male
+				}
+			}
+		}
+	}	
+}

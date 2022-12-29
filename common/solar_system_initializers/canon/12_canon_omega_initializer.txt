@@ -1,0 +1,164 @@
+#################
+##### OMEGA #####
+#################
+
+##### OMEGA NEBULA #####
+
+sys_sahrabarik_init = {
+	name = "Sahrabarik"
+    class = sc_m
+	flags = { omega_capital_capital_system canon_map sahrabarik_system }
+	
+	init_effect = { 
+		generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}
+
+    planet = {
+		name = "Sahrabarik"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { sahrabarik_star }
+    }
+
+    planet = {
+        name = "Urdak"
+        class = pc_l_star
+        orbit_distance = 125
+        orbit_angle = 129
+        has_ring = no
+		size = 15
+		init_effect = {
+			add_deposit = d_trade_value_2
+			add_deposit = d_society_4
+		}	
+    }
+
+    planet = {
+        name = "Omega"
+        class = pc_omega
+        orbit_distance = 125
+        orbit_angle = 58
+        has_ring = no
+		size = 12
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { omega_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = omega_homeworld_spawned
+			set_planet_flag = omega_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = omega_empire 
+						} 
+					} 
+				}
+				create_country = {
+					name = "Omega"
+					ship_prefix = ""
+					type = default
+					origin = omega_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = omega_merc_enforcers 
+						civic = omega_common_cause 
+					}
+					authority = auth_corporate
+					name_list = "btr_asari"
+					ethos = { 
+						ethic = "ethic_authoritarian" 
+						ethic = "ethic_fanatic_materialist" 
+					}
+					species = event_target:asariSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="omega.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_40.dds"
+						}
+						colors={
+							"eecolor2003"
+							"eecolor2006"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = arthropoid_01
+						set_country_flag = omega_empire
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = omega_empire
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = omega_empire 
+				}
+				save_global_event_target_as = omega_empire
+				species = { 
+					save_global_event_target_as = asariSpecies 
+				}
+			}
+			set_owner = event_target:omega_empire
+			generate_btr_start_deposits_and_blockers = yes
+			generate_omega_buildings_and_districts = yes	
+			generate_omega_pops = yes
+			generate_omega_deposits = yes
+			set_name = "Omega"
+		}
+	}			
+
+    planet = {
+        name = "Imorkan"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 136
+        has_ring = no
+		size = 33
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+    planet = {
+        name = "Bindur"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 279
+        has_ring = no
+		size = 12
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+		}	
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "omega4relay_galacticcore_primaryrelay" 
+			name = "Omega 4 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+

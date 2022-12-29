@@ -1,0 +1,93 @@
+
+portraits = {
+	# elcor
+	elcor_male = {	entity = "portrait_reptilian_14_dontmove_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_j_male"	
+		character_textures = {
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_2.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_3.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_4.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_5.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_6.dds"
+		}
+	}
+	
+	elcor_female = {	entity = "portrait_reptilian_14_dontmove_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_j_female"	
+		character_textures = {
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_2.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_3.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_4.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_5.dds"
+			"gfx/models/portraits/elcor/elcor_reptilian_massive_14_new_6.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	elcor = {
+		default = elcor_male
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = {
+					elcor_male
+				}
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = {
+					elcor_female
+				}
+			}
+		}		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					elcor_male
+					elcor_female
+				}
+			}
+		}		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					elcor_male
+					elcor_female
+				}
+			}
+		}
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					elcor_female
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					elcor_male
+				}
+			}
+		}
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					elcor_female
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					elcor_male
+				}
+			}
+		}
+	}	
+}

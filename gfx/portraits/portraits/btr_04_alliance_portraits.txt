@@ -1,0 +1,142 @@
+portraits = {
+	btr_alliance_female_01 = {	entity = "portrait_human_female_01_entity"		clothes_selector = "btr_alliance_female_outfit" 	attachment_selector = "btr_alliance_female_hair_01"	greeting_sound = "human_female_greetings_03"}
+	btr_alliance_female_02 = {	entity = "portrait_human_female_02_entity"		clothes_selector = "btr_alliance_female_outfit" 	attachment_selector = "btr_alliance_female_hair_02"	greeting_sound = "human_female_greetings_04"}
+	btr_alliance_female_03 = {	entity = "portrait_human_female_03_entity"		clothes_selector = "btr_alliance_female_outfit" 	attachment_selector = "btr_alliance_female_hair_03"	greeting_sound = "human_female_greetings_05"}
+	btr_alliance_female_04 = {	entity = "portrait_human_female_04_entity"		clothes_selector = "btr_alliance_female_outfit" 	attachment_selector = "btr_alliance_female_hair_04"	greeting_sound = "human_female_greetings_01"}
+	btr_alliance_female_05 = {	entity = "portrait_human_female_05_entity"		clothes_selector = "btr_alliance_female_outfit" 	attachment_selector = "btr_alliance_female_hair_05"	greeting_sound = "human_female_greetings_02"}
+	btr_alliance_male_01 = {	entity = "portrait_human_male_01_entity"		clothes_selector = "btr_alliance_male_outfit" 		attachment_selector = "btr_alliance_male_hair_01"		greeting_sound = "human_male_greetings_03" }
+	btr_alliance_male_02 = {	entity = "portrait_human_male_02_entity"		clothes_selector = "btr_alliance_male_outfit"		attachment_selector = "btr_alliance_male_hair_02"		greeting_sound = "human_male_greetings_04" }
+	btr_alliance_male_03 = {	entity = "portrait_human_male_03_entity"		clothes_selector = "btr_alliance_male_outfit" 		attachment_selector = "btr_alliance_male_hair_03"		greeting_sound = "human_male_greetings_05" }
+	btr_alliance_male_04 = {	entity = "portrait_human_male_04_entity"		clothes_selector = "btr_alliance_male_outfit" 		attachment_selector = "btr_alliance_male_hair_04"		greeting_sound = "human_male_greetings_01" }
+	btr_alliance_male_05 = {	entity = "portrait_human_male_05_entity"		clothes_selector = "btr_alliance_male_outfit" 		attachment_selector = "btr_alliance_male_hair_05"		greeting_sound = "human_male_greetings_02" }
+}  
+
+portrait_groups = {
+	btr_alliance = {
+		default = btr_alliance_female_04
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = {
+					ruler = { gender = male }
+				}
+				portraits = {
+					btr_alliance_male_01
+					btr_alliance_male_02
+					btr_alliance_male_03
+					btr_alliance_male_04
+					btr_alliance_male_05
+				}
+			}
+			add = {
+				trigger = {
+					ruler = { gender = female }
+				}
+				portraits = {
+					btr_alliance_female_01
+					btr_alliance_female_02
+					btr_alliance_female_03
+					btr_alliance_female_04
+					btr_alliance_female_05
+				}
+			}
+			#set = {
+			#	trigger = { ... }
+			#	portraits = { ... }
+			#	#using "set =" instead of "add" will first clear any portraits already added
+			#}
+		}		
+		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					btr_alliance_female_01
+					btr_alliance_female_02
+					btr_alliance_female_03					
+					btr_alliance_female_04
+					btr_alliance_female_05
+					btr_alliance_male_01
+					btr_alliance_male_02
+					btr_alliance_male_03					
+					btr_alliance_male_04
+					btr_alliance_male_05
+				}
+			}
+		}		
+		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					btr_alliance_female_01
+					btr_alliance_female_02
+					btr_alliance_female_03				
+					btr_alliance_female_04
+					btr_alliance_female_05
+					btr_alliance_male_01
+					btr_alliance_male_02
+					btr_alliance_male_03					
+					btr_alliance_male_04
+					btr_alliance_male_05
+				}
+			}
+		}
+		
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					btr_alliance_female_01
+					btr_alliance_female_02
+					btr_alliance_female_03					
+					btr_alliance_female_04
+					btr_alliance_female_05
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					btr_alliance_male_01
+					btr_alliance_male_02
+					btr_alliance_male_03					
+					btr_alliance_male_04
+					btr_alliance_male_05
+				}
+			}
+		}
+
+			
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = {
+					gender = female
+				}
+				portraits = {
+					btr_alliance_female_01
+					btr_alliance_female_02
+					btr_alliance_female_03					
+					btr_alliance_female_04
+					btr_alliance_female_05
+				}
+			}
+			add = {
+				trigger = {
+					gender = male
+				}
+				portraits = {
+					btr_alliance_male_01
+					btr_alliance_male_02
+					btr_alliance_male_03					
+					btr_alliance_male_04
+					btr_alliance_male_05
+				}
+			}
+		}
+	}	
+}
