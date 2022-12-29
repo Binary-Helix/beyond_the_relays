@@ -1,0 +1,546 @@
+#############################
+##### COURTS OF DEKUUNA #####
+#############################
+
+#####SILEAN NEBULA#####
+
+sys_phontes_init = {
+    name = "Phontes"
+    class = sc_g
+	flags = { courts_of_dekuuna_homeworld courts_of_dekuuna_capital_system canon_map phontes_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+	    name = "Phontes"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { phontes_star }
+    }
+	
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 450
+	}
+
+    planet = {
+        name = "Lenuamund"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 26
+        has_ring = no
+		size = 25
+		init_effect = {
+			add_deposit = d_minerals_4
+			#create_archaeological_site = btr_site_prothean_beacon_elcor
+		}
+    }
+
+    planet = {
+        name = "Dekuuna"
+        class = pc_highgrav_continental
+        orbit_distance = 125
+        orbit_angle = 256
+        size = 25
+		has_ring = no
+		starting_planet = yes
+		deposit_blockers = none		
+		flags = { dekuuna_planet subclass_world elcor_homeworld subclass_world }	
+		entity = "prairie_planet_02_entity"
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = elcor_homeworld_spawned
+			set_planet_flag = dekuuna_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = courts_of_dekuuna 
+						} 
+					} 
+				}
+				create_species = { 
+					name = "Elcor"
+					class = ELC
+					portrait = elcor
+					namelist = btr_elcor
+					homeworld = THIS 
+					traits = { 
+						trait = elcor_trait_core
+						trait = elcor_trait_homebound
+						trait = elcor_trait_gesture_based_speech
+						trait = elcor_trait_ecologists
+					    ideal_planet_class = pc_highgrav_continental
+					}
+				  }
+				last_created_species = { save_global_event_target_as = elcorSpecies }
+				create_country = {
+					name = "Courts of Dekuuna"
+					ship_prefix = ""
+					type = default
+					origin = courts_of_dekuuna_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = elcor_elders_of_dekuuna 
+						civic = elcor_history_of_stability 
+					}
+					authority = auth_oligarchic
+					name_list = "btr_elcor"
+					ethos = { 
+						ethic = "ethic_xenophile" 
+						ethic = "ethic_fanatic_pacifist" 
+					}
+					species = event_target:elcorSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="courts_of_dekuuna.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_31.dds"
+						}
+						colors={
+							"dark_teal"
+							"beige"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = mammalian_01
+						set_country_flag = courts_of_dekuuna
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = courts_of_dekuuna
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = courts_of_dekuuna 
+				}
+				save_global_event_target_as = courts_of_dekuuna
+				species = { 
+					save_global_event_target_as = elcorSpecies 
+				}
+			}
+			set_owner = event_target:courts_of_dekuuna
+			generate_btr_start_deposits_and_blockers = yes			
+			generate_elc_dekuuna_capitol_buildings = yes
+			generate_elc_dekuuna_pops = yes
+			generate_elc_dekuuna_deposits = yes
+			clear_blockers = yes
+			set_name = "Dekuuna"
+			add_modifier = {
+				modifier = prairie_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+		}	
+		moon = {
+			name = "Oltan"
+			class = pc_barren_cold_station
+			orbit_distance = 20
+			orbit_angle = 300
+			has_ring = no
+			size = 16
+			init_effect = {
+				add_deposit = d_exotic_gases_1
+				add_deposit = d_trade_value_4
+				if = {
+					limit = { 
+						exists = event_target:courts_of_dekuuna
+					}
+					set_planet_flag = planetary_station
+					set_planet_flag = civil_station	
+					set_planet_flag = oltan_planet
+					set_deposit_flags = yes
+					set_owner = event_target:courts_of_dekuuna
+					generate_btr_start_deposits_and_blockers = yes
+					generate_elc_oltan_colony_buildings = yes
+					generate_elc_oltan_pops = yes
+					add_deposit = d_barren_cold_blocker
+					add_deposit = d_mineral_lodes
+					add_deposit = d_mineral_lodes
+					add_deposit = d_mineral_lodes
+					clear_blockers = yes
+					prevent_anomaly = yes
+				}
+			}
+		}		
+	}
+
+    planet = {
+        name = "Telluune"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 300
+        has_ring = no
+		size = 25
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_minerals_5
+		}	
+
+    }
+
+    planet = {
+        name = "Sangel"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 111
+        has_ring = no
+		size = 38
+		init_effect = {
+			add_deposit = d_exotic_gases_5
+		}	
+    }
+}
+
+
+#####DURWUULA STREAM#####
+
+sys_bisalas_init = {
+	name = "Bisalas"
+	class = sc_g
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	max_instances = 1
+
+	flags = { bisalas_system courts_of_dekuuna_system canon_map }
+
+	planet = {
+	    name = "Bisalas"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 25
+		flags = { bisalas_star }
+    }
+
+	planet = {
+        name = "Tuee"
+        class = pc_carbon
+        orbit_distance = 35
+        orbit_angle = 177
+        size = 9
+        has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_5
+			add_deposit = d_rare_crystals_1
+		}	
+    }
+
+	planet = {
+        name = "Urdaum"
+        class = pc_gas_giant
+        orbit_distance = 55
+        orbit_angle = 177
+        size = 32
+        has_ring = no
+		moon = {
+			name = "Yapolam"
+			class = pc_highgrav_swamp
+			orbit_distance = 13
+			orbit_angle = 177
+			size = 25	
+			entity = "lake_planet_03_entity"
+			init_effect = {
+				if = {
+					limit = { 
+						exists = event_target:courts_of_dekuuna
+					}
+					set_owner = event_target:courts_of_dekuuna
+					generate_btr_start_deposits_and_blockers = yes
+					generate_elc_yapolam_colony_buildings = yes	
+					generate_elc_yapolam_pops = yes
+					clear_blockers = yes
+					prevent_anomaly = yes
+				}
+				add_modifier = {
+					modifier = high_gravity
+					days = -1
+				}
+				add_modifier = {
+					modifier = lake_world
+					days = -1
+				}
+			}						
+		}
+    }
+
+	planet = {
+        name = "Gendul"
+        class = pc_highgrav_mephitic
+        orbit_distance = 35
+        orbit_angle = 177
+        size = 24
+        has_ring = no
+		entity = "mephitic_desert_planet_02_entity"
+		init_effect = {
+			add_deposit = d_society_5
+			add_modifier = {
+				modifier = cenote_world
+				days = -1
+			}
+		}
+    }
+
+	planet = {
+        name = "Funtuus"
+        class = pc_frozen
+        orbit_distance = 40
+        orbit_angle = 177
+        size = 9
+        has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_2
+		}	
+    }
+
+	planet = {
+        name = "Isdame"
+        class = pc_barren_cold
+        orbit_distance = 20
+        orbit_angle = 177
+        size = 9
+        has_ring = no
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+		}	
+    }
+}
+
+
+sys_resyadum_init = {
+	name = "Resyadum"
+	class = sc_k
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	max_instances = 1
+
+	flags = { resyadum_system courts_of_dekuuna_system canon_map }
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 50
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+
+	planet = {
+	    name = "Resyadum"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		flags = { resyadum_star }
+    }
+
+	planet = {
+        name = "Ordas"
+        class = pc_chlorine
+        orbit_distance = 150
+        orbit_angle = 177
+        size = 9
+        has_ring = no
+		init_effect = {
+			add_deposit = d_society_3
+			add_deposit = d_physics_6
+		}	
+    }
+
+	planet = {
+        name = "Sargen"
+        class = pc_gas_giant
+        orbit_distance = 150
+        orbit_angle = 177
+        size = 32
+        has_ring = no
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+	planet = {
+        name = "Jurdal"
+        class = pc_highgrav_continental
+        orbit_distance = 150
+        orbit_angle = 177
+        size = 24
+        has_ring = no
+		entity = "forest_planet_10_entity"
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:courts_of_dekuuna
+				}
+				set_owner = event_target:courts_of_dekuuna
+				generate_btr_start_deposits_and_blockers = yes
+				generate_elc_jurdal_colony_buildings = yes	
+				generate_elc_jurdal_pops = yes
+				clear_blockers = yes
+				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = forest_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+		}						
+	}
+}
+
+#####THE PHOENIX MASSING####
+sys_salahiel_init = {
+    name = "Salahiel"
+    class = sc_k
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	max_instances = 1
+
+	flags = { salahiel_system courts_of_dekuuna_system canon_map }
+
+    planet = {
+		name = "Salahiel"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		flags = { salahiel_star }
+    }
+
+    planet = {
+        name = "Ekuuna"
+        class = pc_highgrav_savannah
+        orbit_distance = 250
+        orbit_angle = 24
+        has_ring = no
+		size = 25
+		entity = "veld_planet_10_entity"
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:courts_of_dekuuna
+				}
+				set_owner = event_target:courts_of_dekuuna
+				generate_btr_start_deposits_and_blockers = yes
+				generate_elc_ekuuna_colony_buildings = yes	
+				generate_elc_ekuuna_pops = yes
+				clear_blockers = yes
+				prevent_anomaly = yes				
+			}
+			add_deposit = d_zro_deposit_1
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_modifier = {
+				modifier = veld_world
+				days = -1
+			}
+		}
+	}		
+}
+
+sys_batalla_init = {
+    name = "Batalla"
+    class = sc_k
+	init_effect = {
+		generate_home_system_resources = yes
+	}
+
+	max_instances = 1
+
+	flags = { batalla_system courts_of_dekuuna_system canon_map }
+
+    planet = {
+		name = "Batalla"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		flags = { batalla_star }
+    }
+
+    planet = {
+        name = "Logasiri"
+        class = pc_mephitic
+        orbit_distance = 150
+        orbit_angle = 143
+        has_ring = no
+		size = 12
+		entity = "mephitic_arid_planet_03_entity"
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_minerals_5
+			add_modifier = {
+				modifier = outback_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Thunawanuro"
+        class = pc_highgrav_continental
+        orbit_distance = 150
+        orbit_angle = 305
+        has_ring = no
+		size = 25
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:courts_of_dekuuna
+				}
+				set_owner = event_target:courts_of_dekuuna
+				generate_btr_start_deposits_and_blockers = yes
+				generate_elc_thunawanuro_colony_buildings = yes
+				generate_elc_thunawanuro_pops = yes
+				clear_blockers = yes
+				prevent_anomaly = yes
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_modifier = {
+				modifier = forest_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Nearog"
+        class = pc_gas_giant
+        orbit_distance = 150
+        orbit_angle = 65
+        has_ring = no
+		size = 26
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+			add_deposit = d_trade_value_3
+		}	
+    }	
+}

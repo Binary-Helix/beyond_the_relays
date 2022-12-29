@@ -4210,7 +4210,7 @@ country_event = {
 		random_country = { limit = { has_country_flag = raloi_republic } save_event_target_as = raloi_republic }		
 		random_country = { limit = { has_country_flag = geth_consensus } save_event_target_as = geth_consensus }
 		random_country = { limit = { has_country_flag = disciples_of_nazara } save_event_target_as = disciples_of_nazara }
-		# random_country = { limit = { has_country_flag = rachni_swarm } save_event_target_as = rachni_swarm }
+		# random_country = { limit = { has_country_flag = rachni_hive } save_event_target_as = rachni_hive }
 
 		# random_country = { limit = { has_country_flag = citadel_council } save_event_target_as = citadel_council }
 		# random_country = { limit = { has_country_flag = collectors_empire } save_event_target_as = collectors_empire }
@@ -4320,8 +4320,12 @@ country_event = {
 			add_resource = { minerals = 2000 }
 			add_resource = { alloys = 1500	}
 			add_resource = { influence = 100 }
-			add_resource = { food = 3500	}
+			add_resource = { food = 3500 }
 			add_resource = { consumer_goods = 1500 }
+			add_resource = { unity = 450 }
+			add_resource = { volatile_motes = 200 }
+			add_resource = { exotic_gases = 200 }	
+			add_resource = { rare_crystals = 200 }		
 		}
 		if = {
 			limit = {	
@@ -4332,8 +4336,12 @@ country_event = {
 			add_resource = { minerals = 1480 }
 			add_resource = { alloys = 1100	}
 			add_resource = { influence = 100 }
-			add_resource = { food = 3350	}
+			add_resource = { food = 3350 }
 			add_resource = { consumer_goods = 1200 }
+			add_resource = { unity = 450 }
+			add_resource = { volatile_motes = 200 }
+			add_resource = { exotic_gases = 200 }	
+			add_resource = { rare_crystals = 200 }		
 		}
 		if = {
 			limit = {
@@ -4344,8 +4352,12 @@ country_event = {
 			add_resource = { minerals = 1650 }
 			add_resource = { alloys = 1650	}
 			add_resource = { influence = 100 }
-			add_resource = { food = 2800	}
+			add_resource = { food = 2800 }
 			add_resource = { consumer_goods = 1000 }
+			add_resource = { unity = 450 }
+			add_resource = { volatile_motes = 200 }
+			add_resource = { exotic_gases = 200 }	
+			add_resource = { rare_crystals = 200 }		
 		}
 		if = {
 			limit = {
@@ -4574,7 +4586,7 @@ country_event = {
 		}
 		if = {
 			limit = {
-				has_country_flag = rachni_swarm
+				has_country_flag = rachni_hive
 				galaxy_size = btr_hybrid_600
 			}
 			add_resource = { energy = 800	}
@@ -4749,10 +4761,10 @@ event = {
 						has_star_flag = myrtil_system
 					}
 					create_starbase = {
-						size = starbase_starport
+						size = starbase_starhold
 						module = trading_hub
 						module = hangar_bay
-						building = offworld_trading_company
+						building = crew_quarters
 						owner = event_target:asari_republics
 					}
 				}
@@ -4885,6 +4897,20 @@ event = {
 				else_if = {
 					limit = {
 						has_star_flag = loropi_system
+					}
+					create_starbase = {
+						size = starbase_starhold
+						owner = event_target:asari_republics
+						module = shipyard
+						module = shipyard
+						module = hangar_bay
+						building = crew_quarters
+						building = fleet_academy
+					}
+				}
+				else_if	= {
+					limit = {
+						has_star_flag = kappaiota_system
 					}
 					create_starbase = {
 						size = starbase_outpost
@@ -5654,7 +5680,7 @@ event = {
 				#Illuminated Primacy
 				else_if = {
 					limit = {
-						has_star_flag = dark_current_system
+						has_star_flag = kanala_system
 					}
 					create_starbase = {
 						size = starbase_starport
@@ -8829,7 +8855,7 @@ country_event = {
 								has_planet_flag = military_station
 								has_planet_flag = cultural_station
 								has_planet_flag = prison_station
-								has_planet_flag = cracking_station
+								#has_planet_flag = cracking_station
 							}
 						}
 						set_planet_flag = civil_station
@@ -8898,7 +8924,7 @@ country_event = {
 								has_planet_flag = military_station
 								has_planet_flag = cultural_station
 								has_planet_flag = prison_station
-								has_planet_flag = cracking_station
+								#has_planet_flag = cracking_station
 							}
 						}
 						set_planet_flag = mining_station
@@ -9045,6 +9071,7 @@ country_event = {
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
 			give_btr_T2_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9053,6 +9080,7 @@ country_event = {
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
 			give_btr_T2_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9061,6 +9089,7 @@ country_event = {
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
 			give_btr_T2_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9068,6 +9097,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9075,6 +9105,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9082,6 +9113,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9089,6 +9121,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9096,12 +9129,15 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
 				has_country_flag = aralakh_kahmat
 			}
 			give_btr_T0_starting_tech = yes
+			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		# if = {
 		# 	limit = { 
@@ -9123,6 +9159,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9130,6 +9167,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9149,6 +9187,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9156,6 +9195,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9163,6 +9203,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9182,6 +9223,7 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
@@ -9189,13 +9231,16 @@ country_event = {
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		if = {
 			limit = { 
-				has_country_flag = rachni_swarm
+				has_country_flag = rachni_hive
 			}
 			give_btr_T0_starting_tech = yes
 			give_btr_T1_starting_tech = yes
+			give_btr_T2_starting_tech = yes
+			give_starting_ship_tech = yes
 		}
 		# if = {
 		# 	limit = { 

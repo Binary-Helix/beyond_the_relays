@@ -58,7 +58,7 @@ sys_ultio_init = {
 
 	planet = {
         name = "Vindicta"
-        class = pc_nuked
+        class = pc_tropical
         orbit_distance = 100
         orbit_angle = 313
         has_ring = no
@@ -66,7 +66,8 @@ sys_ultio_init = {
 		starting_planet = yes
 		deposit_blockers = none
 		modifiers = none
-		flags = { vindicta_planet subclass_world gothones_homeworld subclass_world }
+		entity = "biolum_planet_03_entity"
+		flags = { vindicta_planet gothones_homeworld subclass_world }
 		init_effect = {
 			prevent_anomaly = yes
 			set_global_flag = gothones_homeworld_spawned
@@ -90,7 +91,7 @@ sys_ultio_init = {
 						trait = gothones_trait_trials_of_vindicta
 						trait = gothones_trait_eco_reverence
 						trait = gothones_trait_survivalists
-					    ideal_planet_class = pc_nuked
+					    ideal_planet_class = pc_tropical
 					}
 				  }
 				  last_created_species = { save_global_event_target_as = gothonesSpecies }
@@ -118,11 +119,11 @@ sys_ultio_init = {
 						}
 						background={
 							category="backgrounds"
-							file="00_solid.dds"
+							file="flag_BG_28.dds"
 						}
 						colors={
-							"turquoise"
-							"turquoise"
+							"eecolor1891"
+							"eecolor2001"
 							"null"
 							"null"
 						}
@@ -149,7 +150,12 @@ sys_ultio_init = {
 			generate_btr_start_deposits_and_blockers = yes
 			generate_got_vindicta_buildings = yes
 			generate_got_vindicta_pops = yes
+			generate_got_vindicta_deposits = yes
 			set_name = "Vindicta"
+			add_modifier = {
+				modifier = biolum_world
+				days = -1
+			}
 		}
     }
 
