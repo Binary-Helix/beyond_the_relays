@@ -1669,6 +1669,213 @@ sys_nedlus_init = {
 	}	
 }	
 
+sys_elunia_init = {
+    name = "Elunia"
+    class = sc_k
+	max_instances = 1
+
+	flags = { inner_council_system meade_cluster_system elunia_system btr_system custom_system empire_home_system }
+
+    asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 75
+	}
+
+    planet = {
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+    }
+	
+	planet = {
+		name = "Eluveitie"
+		class = pc_hot_giant
+        orbit_distance = 50
+        size = 32
+		init_effect = {
+			add_deposit = d_exotic_gases_1
+			add_deposit = d_engineering_3
+			add_deposit = d_physics_2
+		}
+		flags = { eluveitie_planet subclass_world }
+	}	
+	
+	planet = {
+		name = "L-115"
+		class = pc_carb_asteroid
+        orbit_distance = 25
+		orbit_angle = { min = 1 max = 360 }
+		size = 2
+		has_ring = no
+		flags = { l-115_planet subclass_world }
+		init_effect = {
+			add_deposit = d_minerals_5
+		}
+	}
+	
+	planet = {
+		name = "L-812"
+		class = pc_met_asteroid
+        orbit_distance = 0
+		orbit_angle = { min = 1 max = 360 }
+		size = 1
+		has_ring = no
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}
+		flags = { l812_planet subclass_world }
+	}
+
+	planet = {
+		name = "Slania"
+		class = pc_barren
+        orbit_distance = 50
+        size = 12
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+		flags = { slania_planet subclass_world }
+	}
+
+	planet = {
+		name = "Nubia"
+		class = pc_arid
+        orbit_distance = 50
+		orbit_angle = { min = 1 max = 360 }
+		size = 12
+		has_ring = no
+		entity = "aquifer_planet_05_entity"
+
+		flags = { nubia_planet subclass_world }
+
+		init_effect = {
+			add_modifier = {
+				modifier = aquifer_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Helvetios"
+		class = pc_ammonia
+        orbit_distance = 50
+        size = 18
+		entity = "ammonia_savannah_planet_01_entity"
+
+		flags = { helvetios_planet subclass_world }
+
+		init_effect = {
+			add_modifier = {
+				modifier = medit_world
+				days = -1
+			}
+		}
+		moon = {
+			name = "Luxtos"
+			class = pc_iron
+			orbit_distance = 8
+            size = 6
+			init_effect = {
+				add_deposit = d_minerals_7
+			}
+		}
+	}	
+	
+	planet = {
+		name = "Omnos"
+		class = pc_dextro_tundra
+        orbit_distance = 50
+        size = 14
+		has_ring = no
+		entity = "mire_planet_03_entity"
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_society_4
+		}
+		flags = { omnos_planet subclass_world }
+
+		init_effect = {
+			add_modifier = {
+				modifier = mire_world
+				days = -1
+			}
+		}
+		moon = {
+			name = "Ri"
+			class = pc_iron
+			orbit_distance = 20
+			orbit_angle = { min = 1 max = 360 }
+			size = 3
+			init_effect = {
+				add_deposit = d_minerals_2
+			}
+		}
+		moon = {
+			name = "Pi"
+			class = pc_frozen
+			orbit_distance = 5
+			orbit_angle = { min = 1 max = 360 }
+			size = 2
+			init_effect = {
+				create_fleet = {
+					effect = {
+						set_owner = event_target:cat6
+						create_ship = {
+							name = random
+							design = "NAME_Void_Dwelling"
+							graphical_culture = "pirate_01"
+						}
+						set_location = {
+							target = prev
+							distance = 10
+							angle = 0
+						}				
+					}
+				}
+			}
+		}
+	}		
+	planet = {
+		name = "Jak"
+		class = pc_frozen
+        orbit_distance = 50
+		orbit_angle = { min = 1 max = 360 }
+		size = 15
+		has_ring = no
+
+		flags = { jak_planet subclass_world }
+
+		init_effect = {
+			add_deposit = d_zro_deposit_2
+		}
+	}
+	planet = {
+		name = "Valaxion"
+		class = pc_ice_giant
+        orbit_distance = 50
+		orbit_angle = { min = 1 max = 360 }
+		size = 25
+		has_ring = yes
+		change_orbit = 5
+
+		flags = { valaxion_planet subclass_world }
+
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}
+	}
+	
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "inner_council_sector_6_secondaryrelay" 
+			name = "Inner Secondary - Sector 6 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
 #####PRODICATORE'S SCAR#####
 
 sys_laudate_init = {
@@ -2088,4 +2295,344 @@ sys_terevan_init = {
 			}	
 		}
 	}	
+}
+
+
+#Civilins Cluster
+
+sys_legio_init = {
+    name = "Legio"
+    class = sc_m
+	flags = { legio_system turian_hierarchy_system canon_map }
+
+    planet = {
+		name = "Legio"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 29
+    }
+
+    planet = {
+        name = "Romandis"
+        class = pc_molten
+        orbit_distance = 70
+        orbit_angle = 304
+        size = 9
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Monotelu"
+        class = pc_molten
+        orbit_distance = 70
+        orbit_angle = 256
+        size = 13
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Statio"
+        class = pc_barren
+        orbit_distance = 70
+        orbit_angle = 238
+        size = 18
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Rocam"
+        class = pc_hothouse
+        orbit_distance = 70
+        orbit_angle = 200
+        size = 16
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Senata"
+        class = pc_barren_cold
+        orbit_distance = 70
+        orbit_angle = 249
+        size = 20
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Carthaan"
+        class = pc_ice_giant
+        orbit_distance = 70
+        orbit_angle = 229
+        size = 28
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Larens"
+        class = pc_gas_giant
+        orbit_distance = 70
+        orbit_angle = 218
+        size = 34
+        has_ring = no
+
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "inner_council_sector_7_secondaryrelay" 
+			name = "Inner Secondary - Sector 7 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_circe_init = {
+    name = "Circe"
+    class = sc_binary_g_k
+	flags = { circe_system turian_hierarchy_system canon_map }
+
+    planet = {
+		name = "Circe"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 29
+    }
+
+    planet = {
+        name = "Circe-II"
+        class = pc_k_star
+        orbit_distance = 48
+        orbit_angle = 162
+        size = 32
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Plebenes"
+        class = pc_hothouse
+        orbit_distance = 52
+        orbit_angle = 287
+        size = 18
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Bostra"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 182
+        size = 14
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Bredi"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 134
+        size = 35
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Hypocast"
+        class = pc_frozen
+        orbit_distance = 100
+        orbit_angle = 107
+        size = 18
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Gladiia"
+        class = pc_frozen
+        orbit_distance = 100
+        orbit_angle = 270
+        size = 16
+        has_ring = no
+
+    }
+}
+
+sys_tribulacio_init = {
+	name = "Tribulacio"
+    class = sc_ae
+	flags = { tribulacio_system turian_hierarchy_system canon_map }
+
+    planet = {
+		name = "Tribulacio"
+        class = pc_ae_star
+        orbit_distance = 0
+        size = 35
+    }
+
+    planet = {
+        name = "Macedyn"
+        class = pc_barren
+        orbit_distance = 250
+        orbit_angle = 167
+        size = 19
+        has_ring = no
+
+    }
+}
+
+#Xingyun Cluster
+
+sys_carrini_init = {
+    name = "Carrini"
+    class = sc_m
+	max_instances = 1
+
+	flags = { carrini_system turian_hierarchy_system canon_map }
+
+    planet = {
+	    name = "Carrini"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { carrini_star }
+    }
+
+	planet = {
+		name = "Nashira"
+		class = pc_hothouse
+        orbit_distance = 150
+        size = 16
+		flags = { nashira_planet subclass_world }
+		init_effect = {
+			add_deposit = d_physics_4
+		}
+	}
+
+	planet = {
+		name = "Astra"
+		class = pc_carbon
+        orbit_distance = 150
+        size = 13
+		flags = { astra_planet subclass_world }
+		init_effect = {
+			add_deposit = d_minerals_2
+		}
+		moon = {
+			name = "Enael"
+			class = pc_frozen
+			orbit_distance = 20
+			size = 7
+			flags = { astra_planet subclass_world }
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+			}
+		}
+	}
+	
+	planet = {
+		name = "Peras"
+		class = pc_dextro_alpine
+        orbit_distance = 150
+        size = 19
+		flags = { peras_planet subclass_world }
+		entity = "crag_planet_05_entity"
+		init_effect = {
+			add_deposit = d_society_3
+			add_modifier = {
+				modifier = crag_world
+				days = -1
+			}
+		}
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "inner_council_sector_5_secondaryrelay" 
+			name = "Inner Secondary - Sector 5 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_petralia_init = {
+	name = "Petralia"
+	class = sc_f
+	max_instances = 1
+
+	flags = { petralia_system turian_hierarchy_system canon_map }
+
+	planet = {
+		name = "Petralia"	
+        class = pc_f_star
+        orbit_distance = 0
+        size = 20
+    }
+
+	planet = {
+		name = "Turdau"
+		class = pc_hot_giant
+        orbit_distance = 125
+        size = 38
+		flags = { turdau_planet subclass_world }
+		init_effect = {
+			add_deposit = d_physics_4
+		}
+	}
+
+	planet = {
+		name = "Franela"
+		class = pc_iron
+        orbit_distance = 125
+        size = 13
+		flags = { franela_planet subclass_world }
+		init_effect = {
+			add_deposit = d_minerals_4
+		}
+	}
+	
+	planet = {
+		name = "Ursada"
+		class = pc_highgrav_ammonia
+        orbit_distance = 125
+        size = 25
+		flags = { ursada_planet subclass_world }
+		entity = "ammonia_arid_planet_08_entity"
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+			add_modifier = {
+				modifier = outback_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Oipol"
+		class = pc_frozen
+        orbit_distance = 125
+        size = 20
+		flags = { oipol_planet subclass_world }
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_minerals_2
+		}
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "xingyuncluster_meadecluster_primaryrelay" 
+			name = "Xing'Yun 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
 }
