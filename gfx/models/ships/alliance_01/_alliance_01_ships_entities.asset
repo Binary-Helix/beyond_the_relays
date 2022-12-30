@@ -1,0 +1,887 @@
+@frame_scale = 0.7
+@frame_size = 15.0
+
+entity = {
+	name = "alliance_01_turret_energy_torpedo_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 0.85
+}
+
+entity = {
+	name = "alliance_01_turret_torpedo_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 0.85
+}
+
+entity = {
+	name = "alliance_01_turret_missile_large_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 0.85
+}
+
+entity = {
+	name = "alliance_01_turret_missile_medium_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 0.85
+}
+
+entity = {
+	name = "alliance_01_turret_missile_small_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 1.0
+}
+
+entity = {
+	name = "alliance_01_large_kinetic_gun_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 0.85
+}
+
+entity = {
+	name = "alliance_01_medium_kinetic_gun_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 0.85
+}
+
+entity = {
+	name = "alliance_01_small_kinetic_gun_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 1.0
+}
+
+entity = {
+	name = "alliance_01_turret_point_defence_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 1.0
+}
+
+
+entity = {
+	name = "alliance_01_large_laser_gun_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 0.85
+}
+
+entity = {
+	name = "alliance_01_medium_laser_gun_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 0.85
+}
+
+entity = {
+	name = "alliance_01_small_laser_gun_entity"
+	pdxmesh = "empty_mesh"
+	
+	state = { name = "idle"	}
+	state = { name = "attack" looping = no next_state = "idle" }
+	locator = { name = "turret_muzzle_01" position = { 0  0  0 } }
+	scale = 1.0
+}
+
+
+
+
+
+# Corvette
+entity = {
+    name = "alliance_01_corvette_entity"
+    pdxmesh = "empty_mesh"
+
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	
+	scale = 1.0
+}
+
+entity = {
+    name = "alliance_01_corvette_S1_entity"
+	pdxmesh = "alliance_01_corvette_frame_mesh"
+
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+		
+	game_data = {
+		size = 2
+	}
+}
+entity = {
+    name = "alliance_01_corvette_S3_entity"
+	pdxmesh = "alliance_01_normandy_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+		
+	game_data = {
+		size = 2
+	}
+}
+entity = {
+    name = "alliance_01_corvette_M1S1_entity"
+	pdxmesh = "alliance_01_corvette_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+		
+	game_data = {
+		size = 2
+	}
+}
+
+# Destroyer
+entity = {
+    name = "alliance_01_destroyer_entity"
+    pdxmesh = "alliance_01_destroyer_frame_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_corvette_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_corvette } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+
+	scale = 1.0
+
+	game_data = {
+		size = 5
+	}
+
+}
+
+entity = {
+    name = "alliance_01_destroyer_bow_L1_entity"
+    pdxmesh = "alliance_01_destroyer_bow_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_destroyer_bow_M1S2_entity"
+    pdxmesh = "alliance_01_destroyer_bow_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_destroyer_bow_S3_entity"
+    pdxmesh = "alliance_01_destroyer_bow_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_destroyer_stern_M1_entity"
+    pdxmesh = "alliance_01_destroyer_stern_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_destroyer_stern_S2_entity"
+    pdxmesh = "alliance_01_destroyer_stern_mesh"
+    scale = 1.0
+}
+
+# Cruiser
+entity = {
+    name = "alliance_01_cruiser_entity"
+    pdxmesh = "alliance_01_cruiser_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	
+	scale = 1.0
+
+	game_data = {
+		size = 7
+	}
+}
+entity = {
+    name = "alliance_01_cruiser_bow_L1_entity"
+    pdxmesh = "alliance_01_cruiser_bow_1_mesh"
+	scale = 1.0
+}
+entity = {
+    name = "alliance_01_cruiser_bow_M1S2_entity"
+    pdxmesh = "alliance_01_cruiser_bow_1_mesh"
+	scale = 1.0
+}
+entity = {
+    name = "alliance_01_cruiser_bow_M2_entity"
+    pdxmesh = "alliance_01_cruiser_bow_2_mesh"
+	scale = 1.0
+}
+entity = {
+    name = "alliance_01_cruiser_mid_L1M1_entity"
+    pdxmesh = "alliance_01_cruiser_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_cruiser_mid_M2S2_entity"
+    pdxmesh = "alliance_01_cruiser_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_cruiser_mid_M3_entity"
+    pdxmesh = "alliance_01_cruiser_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_cruiser_mid_S2HB_entity"
+    pdxmesh = "alliance_01_cruiser_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_cruiser_stern_M1_entity"
+	pdxmesh = "alliance_01_cruiser_stern_mesh"
+	scale = 1.0
+}
+entity = {
+    name = "alliance_01_cruiser_stern_S2_entity"
+	pdxmesh = "alliance_01_cruiser_stern_mesh"
+	scale = 1.0
+}
+
+# Battleship
+entity = {
+    name = "alliance_01_battleship_entity"
+    pdxmesh = "alliance_01_battleship_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	scale = 1.0
+
+	game_data = {
+		size = 10
+	}
+}
+
+entity = {
+    name = "alliance_01_battleship_bow_L1M1S2_entity"
+    pdxmesh = "alliance_01_battleship_bow_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_bow_L1S4_entity"
+    pdxmesh = "alliance_01_battleship_bow_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_bow_L2_entity"
+    pdxmesh = "alliance_01_battleship_bow_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_bow_M1S2SHB_entity"
+    pdxmesh = "alliance_01_battleship_bow_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_bow_M2S4_entity"
+    pdxmesh = "alliance_01_battleship_bow_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_bow_M3S2_entity"
+    pdxmesh = "alliance_01_battleship_bow_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_bow_XL1_entity"
+    pdxmesh = "alliance_01_battleship_bow_mesh"
+    scale = 1.0
+}
+
+
+entity = {
+    name = "alliance_01_battleship_mid_L1M4_entity"
+    pdxmesh = "alliance_01_battleship_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_mid_L2M2_entity"
+    pdxmesh = "alliance_01_battleship_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_mid_L2S4_entity"
+    pdxmesh = "alliance_01_battleship_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_mid_L3_entity"
+    pdxmesh = "alliance_01_battleship_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_mid_M4SHB_entity"
+    pdxmesh = "alliance_01_battleship_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_mid_S4LHB_entity"
+    pdxmesh = "alliance_01_battleship_frame_mesh"
+	
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+    scale = 1.0
+}
+
+
+entity = {
+    name = "alliance_01_battleship_stern_L1_entity"
+    pdxmesh = "alliance_01_battleship_stern_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_stern_M1S2_entity"
+    pdxmesh = "alliance_01_battleship_stern_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_stern_M2_entity"
+    pdxmesh = "alliance_01_battleship_stern_mesh"
+    scale = 1.0
+}
+entity = {
+    name = "alliance_01_battleship_stern_S4_entity"
+    pdxmesh = "alliance_01_battleship_stern_mesh"
+    scale = 1.0
+}
+
+# Titan
+entity = {
+	name = "alliance_01_titan_entity"
+	pdxmesh = "alliance_01_titan_frame_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	
+	scale = 1.0
+
+	game_data = {
+		size = 12
+	}
+}
+
+#BOW
+entity = {
+	name = "alliance_01_titan_bow_entity"
+	pdxmesh = "alliance_01_titan_bow_mesh"
+
+	scale = 1.0
+}
+
+
+#MID
+entity = {
+	name = "alliance_01_titan_mid_entity"
+	pdxmesh = "alliance_01_titan_frame_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+
+	scale = 1.0
+}
+
+# STERN
+
+entity = {
+	name = "alliance_01_titan_stern_entity"
+	pdxmesh = "alliance_01_titan_stern_mesh"
+
+	scale = 1.0
+}
+
+
+### Civilian ###
+
+# Construction ship 
+entity = {
+	name = "alliance_01_constructor_entity"
+	pdxmesh = "alliance_01_construction_frame_mesh"
+	   
+	default_state = "idle"
+	state = { name = "idle"	 						animation = "idle" animation_blend_time = 0 }
+	state = { name = "moving"						animation = "idle" animation_blend_time = 2 }
+	state = { name = "working" 						animation = "idle" looping = no next_state = working_looping }
+	state = { name = "working_looping"				animation = "idle" }
+	state = { name = "death" animation = "death3" 	animation_blend_time = 0.0 chance = 1 looping = no 
+		event = { time = 4.63 node = "ship_main" particle = "large_ship_explosion_particle" }
+	}
+	   
+	scale = 1.0
+}
+   entity = {
+	name = "alliance_01_construction_ship_entity"
+	pdxmesh = "alliance_01_construction_frame_mesh"
+		   
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+	   	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	   	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_construction_ship_hum" } }
+	}
+	state = { name = "moving" state_time = 5
+	   	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	   	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_construction } }
+	}
+	state = { name = "working"						animation = "working"		looping = no	next_state = working_looping 
+	   	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	   	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		   
+	   	event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes sound = { soundeffect = construction_progress_loop }  }
+	  	event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+	   
+		event = { time = 4 node = "bot_1_welding" particle = "construction_bot_welding_effect" trigger_once = yes keep_particle = yes }
+		   
+		event = { time = 4.16 node = "bot_3_welding" particle = "construction_bot_welding_effect" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "working_looping"				animation = "working_looping" 
+	   	event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	   	event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		 event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	scale = 1.0
+}
+
+
+# Colony ship
+entity = {
+	name = "alliance_01_colonizer_entity"
+	pdxmesh = "alliance_01_construction_frame_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_colony_ship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_colony_ship } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	scale = 1.0
+}
+entity = {
+	name = "alliance_01_colony_ship_entity"	
+	pdxmesh = "alliance_01_construction_frame_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"	 animation = "idle" animation_blend_time = 4 }
+	state = { name = "moving"	animation = "idle" animation_blend_time = 2 }
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no 
+		event = { time = 4.63 node = "ship_main" particle = "large_ship_explosion_particle" }
+	}
+	scale = 1.0
+}
+
+# Transport ship
+entity = {
+ name = "alliance_01_transport_entity"
+	pdxmesh = "alliance_01_construction_frame_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_colony_ship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_colony_ship } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	scale = 1.0
+}
+entity = {
+ name = "alliance_01_transport_ship_entity"
+	pdxmesh = "alliance_01_construction_frame_mesh"
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_transport_ship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_colony_ship } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+}
+
+# Science ship
+entity = {
+	name = "alliance_01_science_ship_entity" 
+	   pdxmesh = "alliance_01_science_frame_mesh"
+	   
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_03" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_04" particle = "generic_015_exhaust_circle_idle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_science_ship_hum" } }
+    }
+	state = { name = "moving" state_time = 5
+		event = { time = 0 node = "engine_small_01" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_02" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_03" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine_small_04" particle = "generic_025_exhaust_circle_long_moving" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_science } }
+	}
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		 event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine_small_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	scale = 1.0
+}
