@@ -1,11 +1,16 @@
-# on_game_start = {
-# 	events = {
+on_game_start = {
+	events = {
 # 		planetarystations.1
 # 		planetarystations.2
 # 		planetarystations.4
 # 		planetarystations.5
-# 	}
-# }
+		realspace.1 # sets mod global flag has_real_space_mod
+		#realspace.102 #Create Real Space Nebula
+		realspace.103
+		realspace.105
+		realspace.107
+	}
+}
 
 # No scope, like on_game_start
 # Does not run when loading MP saves due to OOS concerns
@@ -243,5 +248,16 @@ empire_init_capital_planet = {
 	events = {
 
 		# at this point the species might have changed (because we added traits), so FROMFROM might not be the secondary species anymore
+	}
+}
+
+# A Megastructure has been built
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+# FromFromFrom = Fleet
+on_megastructure_built = {
+	events = {
+		realspace.108
 	}
 }
