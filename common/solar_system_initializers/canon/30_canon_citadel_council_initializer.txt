@@ -8,12 +8,8 @@ sys_widow_init = {
     name = "Widow"
     class = sc_b_super
 	max_instances = 1
-	flags = { outer_council_system serpent_nebula_system widow_system btr_system custom_system empire_home_system }
+	flags = { citadel_council_homeworld citadel_council_capital_system canon_map widow_system empire_home_system }
 	init_effect = { 
-		random_country = { 
-			limit = { has_country_flag = citadel_council } 
-			save_global_event_target_as = citadel_council
-		}
 		generate_home_system_resources = yes
 	}	
 
@@ -32,78 +28,89 @@ sys_widow_init = {
 	planet = {
 		name = "The Citadel"
 		class = pc_habitat
-		orbit_distance = 250
+		orbit_distance = 150
 		orbit_angle = 215
 		size = 20
 		starting_planet = yes
 		has_ring = no
-		flags = { citadel_station special_planet }
-		# init_effect = {
-		# 	random_country = {
-		# 		limit = { has_country_flag = citadel_council }
-		# 		save_global_event_target_as = citadel_council
-		# 	}			
-		# 	prevent_anomaly = yes
-		# 	set_global_flag = citadel_spawned
-
-		# 	if = { limit = { NOT = { any_country = { has_country_flag = citadel_council } } }
-		# 		create_country = {
-		# 			name = "Citadel Council"
-		# 			ship_prefix = "CSV"
-		# 			type = btr_citadel_govt 
-		# 			origin = origin_citadel_council
-		# 			civics = { civic = "civic_diplomatic_corps" civic = "civic_idealistic_foundation" }
-		# 			authority = auth_oligarchic
-		# 			name_list = btr_asari
-		# 			ethos = { ethic = "ethic_egalitarian" ethic = "ethic_xenophile" ethic = "ethic_pacifist" }
-		# 			species = event_target:asariSpecies
-		# 			flag = {
-		# 				icon={
-		# 					category="masseffectsilver"
-		# 					file="Citadel Council.dds"
-		# 				}
-		# 				background={
-		# 					category="backgrounds"
-		# 					file="00_solid.dds"
-		# 				}
-		# 				colors={
-		# 					"blue"
-		# 					"grey"
-		# 					"null"
-		# 					"null"
-		# 				}
-		# 				}
-		# 			effect = {
-		# 				set_graphical_culture = asari_01
-		# 				set_country_flag = citadel_council
-		# 				set_country_flag = init_spawned
-		# 				set_country_flag = custom_start_screen
-		# 				set_country_flag = canon_map
-		# 				set_country_flag = council_race
-		# 				save_global_event_target_as = citadel_council
-		# 			}						
-		# 		}
-		# 	}
-		# 	set_capital = yes
-		# 	random_country = {
-		# 		limit = { has_country_flag = citadel_council }
-		# 		save_global_event_target_as = citadel_council
-		# 	}
-		# 	set_owner = event_target:citadel_council
-		# 	generate_btr_start_deposits_and_blockers = yes
-		# 	generate_csec_citadel_pops = yes
-		# 	set_planet_flag = megastructure
-		# 	set_planet_flag = habitat
-		# 	clear_deposits = yes
-		# 	add_deposit = d_citadel_tower
-		# 	add_deposit = d_presidium
-		# 	add_deposit = d_wards
-		# 	add_deposit = d_citadel_csec
-		# 	add_deposit = d_keeper_workshops
-		# 	add_deposit = d_huerta_memorial_hospital
-		# 	add_deposit = d_purgatory_bar
-		# 	set_name = "The Citadel"
-		# }			
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "btr_citadel_01_entity"
+		flags = { citadel_station council_homeworld subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = citadel_station_spawned
+			set_planet_flag = citadel_station
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = citadel_council
+						}
+					}
+				}
+				create_country = {
+					name = "Citadel Council"
+					ship_prefix = "CDF"
+					type = default 
+					origin = citadel_council_origin
+					civics = { 
+						civic = citadel_center_of_galaxy
+						civic = citadel_csec_cdf
+					}
+					authority = auth_oligarchic
+					name_list = btr_asari
+					ethos = { 
+						ethic = "ethic_egalitarian" 
+						ethic = "ethic_fanatic_xenophile"  
+					}
+					species = event_target:asariSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="citadel_council.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"blue"
+							"grey"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = mec_asari_01
+						set_country_flag = citadel_council
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = council_race
+						set_country_flag = btr_empire
+						save_global_event_target_as = citadel_council
+					}						
+				}
+			}
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = citadel_council 
+				}
+				save_global_event_target_as = citadel_council
+			}
+			set_owner = event_target:citadel_council
+			generate_btr_start_deposits_and_blockers = yes
+			generate_csec_citadel_buildings = yes
+			generate_csec_citadel_pops = yes
+			set_planet_flag = megastructure
+			set_planet_flag = habitat
+			clear_deposits = yes
+			generate_csec_citadel_council_deposits = yes
+			set_name = "The Citadel"
+		}			
 	}
 
 	init_effect = { 
@@ -111,7 +118,7 @@ sys_widow_init = {
 			type = "serpentnebula_prodicatoresscar_primaryrelay" 
 			name = "Outer Primary - Serpent 1 Relay"
 			orbit_angle = 270 
-			orbit_distance = 500
+			orbit_distance = 350
 		} 
 	}
 
@@ -135,7 +142,7 @@ sys_phoenix_init = {
 		generate_home_system_resources = yes
 	}	
 
-	flags = { alliance_space_system argos_rho_system phoenix_system btr_system custom_system }	
+	flags = { phoenix_system citadel_council_system canon_map }
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -182,7 +189,6 @@ sys_phoenix_init = {
         orbit_angle = 258
         has_ring = no
 		size = 34
-		flags = { sylsalto_planet subclass_world }
 		init_effect = {
 			prevent_anomaly = yes
 			clear_deposits = yes		
@@ -198,7 +204,7 @@ sys_phoenix_init = {
         orbit_angle = 68
         has_ring = no
 		size = 14
-		flags = { intaisei_planet subclass_world }
+		flags = { subclass_world }
 		entity = "dune_planet_01_entity"
 		init_effect = {
 			add_modifier = {
@@ -217,7 +223,7 @@ sys_phoenix_init = {
         orbit_angle = 148
         has_ring = no
 		size = 25
-		flags = { tuntau_planet subclass_world }
+		flags = { subclass_world }
 		entity = "methane_continental_planet_09_entity"
 		init_effect = {
 			prevent_anomaly = yes
@@ -237,17 +243,16 @@ sys_phoenix_init = {
 		orbit_distance = 50
 		size = 2
 		flags = { pinnacle_station subclass_world }
-		# init_effect = {
-		# 	set_owner = event_target:citadel_council
-		# 	create_colony = {
-		# 		owner = event_target:citadel_council
-		# 		species = event_target:asariSpecies
-		# 		ethos = owner
-		# 	}
-		# 	generate_csec_pinnacle_pops = yes
-		# 	add_building = building_hab_capital
-		# 	set_name = "Pinnacle Station"
-		# }	
+		init_effect = {
+			if = {
+				limit = {
+					exists = event_target:citadel_council
+				}
+				set_owner = event_target:citadel_council
+				generate_csec_pinnacle_pops = yes
+			}
+			set_name = "Pinnacle Station"
+		}	
 	}
 
     planet = {
@@ -257,7 +262,6 @@ sys_phoenix_init = {
         orbit_angle = 227
         has_ring = yes
 		size = 8
-		flags = { vebinok_planet subclass_world }
 		init_effect = {
 			prevent_anomaly = yes
 			clear_deposits = yes		

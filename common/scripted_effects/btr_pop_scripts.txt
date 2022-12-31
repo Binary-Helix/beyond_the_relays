@@ -1009,21 +1009,35 @@ generate_got_vindicta_pops = {
 #####PARNACK REGIME#####
 
 generate_yah_parnack_pops = {
-	while = {
-	   count = 22
-	   generate_yahgPop = yes
+	if = {
+		limit = {
+			planet.owner = {
+				has_country_flag = parnack_regime_player
+			}
+		}
+		while = {
+			count = 22
+			generate_yahgPop = yes
+		 }
+		 every_owned_pop = { set_pop_flag = init_spawn }
 	}
-	every_owned_pop = { set_pop_flag = init_spawn }
 }
 
 #####RALOI REPUBLIC#####
 
 generate_ral_turvess_pops = {
-	while = {
-	   count = 28
-	   generate_raloiPop = yes
+	if = {
+		limit = {
+			planet.owner = {
+				has_country_flag = raloi_republic_player
+			}
+		}
+		while = {
+			count = 28
+			generate_raloiPop = yes
+		}
+		every_owned_pop = { set_pop_flag = init_spawn }
 	}
-	every_owned_pop = { set_pop_flag = init_spawn }
 }
 
 
@@ -1140,23 +1154,23 @@ generate_rac_utukku_pops = {
 # 	every_owned_pop = { set_pop_flag = init_spawn }
 # }
 
-# #####CITADEL SECURITY#####
+#####CITADEL SECURITY#####
 
-# generate_csec_citadel_pops = {
-# 	while = {
-# 	   count = 12
-# 	   generate_misc_council_race_pop = yes
-# 	}
-# 	every_owned_pop = { set_pop_flag = init_spawn }
-#  }
+generate_csec_citadel_pops = {
+	while = {
+	   count = 51
+	   generate_misc_council_race_pop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+ }
  
-#  generate_csec_pinnacle_pops = {
-# 	while = {
-# 	   count = 3
-# 	   generate_csec_pinnacle_pop = yes
-# 	}
-# 	every_owned_pop = { set_pop_flag = init_spawn }
-#  }
+ generate_csec_pinnacle_pops = {
+	while = {
+	   count = 3
+	   generate_csec_pinnacle_pop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+ }
 
 # generate_anhur_pops = {
 # 	while = {

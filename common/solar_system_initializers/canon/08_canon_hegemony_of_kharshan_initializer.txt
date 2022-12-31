@@ -636,16 +636,7 @@ sys_untrel_init = {
 			# add_deposit = d_helium_3_2
 			add_deposit = d_exotic_gases_2
 		}
-    }	
-
-	init_effect = { 
-		spawn_megastructure = { 
-			type = "kitesnest_llewynnebula_primaryrelay" 
-			name = "Bahanak Frontier Primary - Kite 1 Relay"
-			orbit_angle = 270 
-			orbit_distance = 500
-		} 
-	}
+    }
 }
 
 #####DABO'S KNOT#####
@@ -1401,7 +1392,7 @@ sys_chelae_init = {
 
 	max_instances = 1
 	
-	flags = { bahak_system hegemony_of_kharshan_system canon_map }
+	flags = { chelae_system hegemony_of_kharshan_system canon_map }
 
 
     planet = {
@@ -2753,3 +2744,36 @@ sys_karaht_init = {
 		}
 	}
 }	
+
+
+sys_cavalcante_init = {
+    name = "Cavalcante"
+    class = sc_m
+	max_instances = 1
+
+	flags = { cavalcante_system hegemony_of_kharshan_system canon_map }
+
+    planet = {
+		name = "Cavalcante"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 30
+		flags = { cavalcante_star }
+	}
+
+    planet = {
+		name = "Anansi"
+        class = pc_savannah
+        orbit_distance = 250
+        size = 30
+		entity = "biolum_planet_04_entity"
+		flags = { anansi_planet subclass_world }
+		init_effect = {
+			add_deposit = d_trade_value_4
+			add_modifier = {
+				modifier = biolum_world
+				days = -1
+			}
+		}
+	}
+}

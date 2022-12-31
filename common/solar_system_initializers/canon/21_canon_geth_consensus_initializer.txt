@@ -179,8 +179,8 @@ sys_tikkun_init = {
 					exists = event_target:geth_consensus
 				}
 				set_owner = event_target:geth_consensus
-				generate_get_adas_pops = yes
-				generate_get_adas_colony_buildings = yes	
+				generate_get_adas_colony_buildings = yes
+				generate_get_adas_pops = yes	
 				clear_blockers = yes
 				prevent_anomaly = yes
 			}
@@ -278,8 +278,8 @@ sys_caarehyosal_init = {
 					exists = event_target:geth_consensus
 				}
 				set_owner = event_target:geth_consensus
-				generate_get_naanacurrel_pops = yes
 				generate_get_naanacurrel_colony_buildings = yes	
+				generate_get_naanacurrel_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
 			}
@@ -363,8 +363,8 @@ sys_kholas_init = {
 					exists = event_target:geth_consensus
 				}
 				set_owner = event_target:geth_consensus
+				generate_get_kasdavar_colony_buildings = yes
 				generate_get_kasdavar_pops = yes
-				generate_get_kasdavar_colony_buildings = yes	
 				clear_blockers = yes
 				prevent_anomaly = yes
 			}
@@ -436,8 +436,8 @@ sys_dholen_init = {
 				set_planet_flag = research_station
 				set_deposit_flags = yes
 				set_owner = event_target:geth_consensus
-				generate_get_charoum_pops = yes
 				generate_get_charoum_colony_buildings = yes
+				generate_get_charoum_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
 				add_deposit = d_gas_giant_blocker
@@ -585,8 +585,9 @@ sys_maat_init = {
 			set_planet_flag = research_station
 			set_deposit_flags = yes
 			set_owner = event_target:geth_consensus
-			generate_get_ammut_pops = yes
 			generate_get_ammut_colony_buildings = yes	
+			generate_get_ammut_pops = yes
+
 			clear_blockers = yes
 			prevent_anomaly = yes
 			add_deposit = d_gas_giant_blocker
@@ -653,6 +654,368 @@ sys_maat_init = {
 		spawn_megastructure = { 
 			type = "terminus_sector_7_secondaryrelay" 
 			name = "Far Rim Secondary Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+
+sys_vasraal_init = {
+	name = "Vasraal"
+    class = sc_m_hyper
+	flags = { vasraal_system geth_consensus_system canon_map }
+	max_instances = 1
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 350
+	}
+
+	planet = {
+		name = "Vasraal"
+		class = pc_m_hyper_star
+		orbit_distance = 0
+		size = 30
+	}
+
+	planet = {
+		name = "Nusas"
+		class = pc_barren
+		orbit_distance = 100
+		size = 12
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_8
+		}	
+	}
+
+	planet = {
+		name = "Yalatra"
+		class = pc_barren_cold
+		orbit_distance = 100
+		size = 14
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+	}
+
+	planet = {
+		name = "Bodun"
+		class = pc_ice_giant
+		orbit_distance = 100
+		size = 29
+		has_ring = no
+		init_effect = {
+			add_deposit = d_exotic_gases_1
+		}
+	}	
+
+	planet = {
+		name = "Tradde"
+		class = pc_frozen
+		orbit_distance = 100
+		size = 14
+		init_effect = {
+			add_deposit = d_zro_deposit_1
+		}
+	}	
+
+	planet = {
+		name = "Xelestra"
+		class = pc_frozen
+		orbit_distance = 100
+		size = 7
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_8_secondaryrelay" 
+			name = "Terminus Secondary - Sector 8 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+
+sys_cosulnar_init = {
+    name = "Cosul'Nar"
+    class = sc_k
+	flags = { cosulnar_system geth_consensus_system canon_map }
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 70
+    }
+
+    planet = {
+		name = "Cosul'Nar"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 29
+    }
+
+    planet = {
+        name = "Tamor"
+        class = pc_dextro_swamp
+        orbit_distance = 150
+        orbit_angle = 309
+        size = 14
+        has_ring = no
+
+
+        moon = {
+            name = "Guca"
+            class = pc_barren_cold
+            orbit_distance = 20
+            orbit_angle = 270
+            size = 5
+            has_ring = no
+
+        }
+    }
+
+    planet = {
+        name = "Zunna'Von"
+        class = pc_ice_giant
+        orbit_distance = 150
+        orbit_angle = 282
+        size = 26
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Tapan"
+        class = pc_iron
+        orbit_distance = 150
+        orbit_angle = 184
+        size = 19
+        has_ring = no
+
+    }
+}
+
+sys_caanu_init = {
+    name = "Caannu"
+    class = sc_tt_red
+	flags = { caanu_system geth_consensus_system canon_map }
+
+    planet = {
+		name = "Caannu"
+        class = pc_tt_red_star
+        orbit_distance = 0
+        size = 30
+    }
+
+    planet = {
+        name = "Naem"
+        class = pc_gas_giant
+        orbit_distance = 250
+        orbit_angle = 178
+        size = 35
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Wila"
+        class = pc_carbon
+        orbit_distance = 250
+        orbit_angle = 134
+        size = 12
+        has_ring = no
+
+    }
+}
+
+
+sys_mawibteejinzay_init = {
+    name = "Mawib-Teeji-Nzay"
+    class = sc_m
+	flags = { mawibteejinzay_system geth_consensus_system canon_map }
+
+    planet = {
+		name = "Mawib-Teeji-Nzay"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 30
+    }
+
+    planet = {
+        name = "Teeji"
+        class = pc_k_star
+        orbit_distance = 32
+        orbit_angle = 208
+        size = 34
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Nzay"
+        class = pc_d_star
+        orbit_distance = 13
+        orbit_angle = 75
+        size = 28
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Haere"
+        class = pc_hothouse
+        orbit_distance = 35
+        orbit_angle = 245
+        size = 10
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Shaera'Shomos"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 88
+        size = 11
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Caaha"
+        class = pc_barren
+        orbit_distance = 80
+        orbit_angle = 144
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Heena"
+        class = pc_arctic
+        orbit_distance = 80
+        orbit_angle = 280
+        size = 16
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Mofis"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 167
+        size = 35
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Suma"
+        class = random
+        orbit_distance = 80
+        orbit_angle = 89
+        size = 9
+        has_ring = no
+
+    }
+}
+
+sys_shewa_init = {
+    name = "Shewa"
+    class = sc_f
+	flags = { shewa_system geth_consensus_system canon_map }
+
+    planet = {
+		name = "Shewa"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 20
+    }
+
+    planet = {
+        name = "Taejol"
+        class = pc_molten
+        orbit_distance = 70
+        orbit_angle = 176
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Lora"
+        class = pc_hothouse
+        orbit_distance = 60
+        orbit_angle = 280
+        size = 14
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Vezom"
+        class = pc_hothouse
+        orbit_distance = 60
+        orbit_angle = 228
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Hator'Helon"
+        class = pc_molten
+        orbit_distance = 60
+        orbit_angle = 272
+        size = 12
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Ronn"
+        class = pc_mephitic
+        orbit_distance = 60
+        orbit_angle = 254
+        size = 19
+        has_ring = no
+
+
+        moon = {
+            name = "Vur"
+            class = pc_molten
+            orbit_distance = 20
+            orbit_angle = 270
+            size = 50
+            has_ring = no
+
+        }
+    }
+
+    planet = {
+        name = "Tiwa"
+        class = pc_barren_cold
+        orbit_distance = 55
+        orbit_angle = 307
+        size = 11
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Lareh"
+        class = pc_frozen
+        orbit_distance = 59
+        orbit_angle = 205
+        size = 19
+        has_ring = no
+
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_7_secondaryrelay" 
+			name = "Nemma's Refuge Secondary Relay"
 			orbit_angle = 270 
 			orbit_distance = 500
 		} 

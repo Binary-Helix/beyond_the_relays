@@ -52,7 +52,7 @@ sys_nosikae_init = {
 					homeworld = THIS 
 					traits = { 
 						trait = sedriicae_trait_core
-						trait = sedriicae_trait_happiness
+						trait = sedriicae_trait_forayan_happiness
 						trait = sedriicae_trait_insectoids
 						trait = sedriicae_trait_gender_castes
 					    ideal_planet_class = "pc_dextro_arid"
@@ -446,14 +446,14 @@ sys_tiikren_init = {
 		orbit_distance = 250
 		size = 10
 		has_ring = no
-		init_effect = {
-			random_country = {
-				limit = { has_country_flag = sedriicae_collective }
-				save_global_event_target_as = sedriicae_collective
-				species = { save_global_event_target_as = forayanSpecies }
-				#create_archaeological_site = btr_site_collective_archeology
-			}
-		}
+		# init_effect = {
+		# 	# random_country = {
+		# 	# 	limit = { has_country_flag = sedriicae_collective }
+		# 	# 	save_global_event_target_as = sedriicae_collective
+		# 	# 	species = { save_global_event_target_as = forayanSpecies }
+		# 	# 	#create_archaeological_site = btr_site_collective_archeology
+		# 	# }
+		# }
 	}
 
 	planet = {
@@ -563,7 +563,7 @@ sys_lisiine_init = {
 		orbit_distance = 80
 		size = 16
 		has_ring = no
-		flags = { perix_planet subclass_world}
+		flags = { subclass_world}
 		entity = "cenote_planet_11_entity"
 		init_effect = {
 			if = {
@@ -571,8 +571,8 @@ sys_lisiine_init = {
 					exists = event_target:sedriicae_collective
 				}
 				set_owner = event_target:sedriicae_collective
-				generate_for_perix_pops = yes
 				generate_for_perix_colony_buildings = yes	
+				generate_for_perix_pops = yes
 				clear_blockers = yes
 				prevent_anomaly = yes
 			}
@@ -701,7 +701,7 @@ sys_okred_init = {
 sys_suryan_init = {
     name = "Suryan"
     class = sc_b
-	flags = { okred_system sedriicae_collective_system canon_map }
+	flags = { suryan_system sedriicae_collective_system canon_map }
 	init_effect = {
 		generate_home_system_resources = yes
 	}
@@ -770,6 +770,416 @@ sys_suryan_init = {
 		spawn_megastructure = { 
 			type = "terminus_sector_6_secondaryrelay" 
 			name = "Paraxhi Square Secondary Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+
+sys_fafito_init = {
+    name = "Fafito"
+    class = sc_w_red
+	flags = { fafito_system sedriicae_collective_system canon_map }
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 200
+    }
+
+    planet = {
+		name = "Fafito"
+        class = pc_w_red_star
+        orbit_distance = 0
+        size = 27
+    }
+
+    planet = {
+        name = "Femos"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 212
+        size = 11
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Fonos"
+        class = pc_iron
+        orbit_distance = 80
+        orbit_angle = 148
+        size = 20
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Dekyzias"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 274
+        size = 16
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Zolyian"
+        class = pc_arid
+        orbit_distance = 80
+        orbit_angle = 99
+        size = 22
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Emylia"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 110
+        size = 38
+        has_ring = yes
+
+
+        moon = {
+            name = "Deolos"
+            class = pc_barren
+            orbit_distance = 20
+            orbit_angle = 320
+            size = 4
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Peofon"
+            class = pc_barren_cold
+            orbit_distance = 5
+            orbit_angle = 106
+            size = 7
+            has_ring = no
+
+        }
+    }
+
+    planet = {
+        name = "Ninton"
+        class = pc_frozen
+        orbit_distance = 80
+        orbit_angle = 277
+        size = 18
+        has_ring = no
+
+    }
+}
+
+sys_nimivos_init = {
+    name = "Nimivos"
+    class = sc_o_hyper
+	flags = { nimivos_system sedriicae_collective_system canon_map }
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 450
+    }
+
+    planet = {
+		name = "Nimivos"
+        class = pc_o_hyper_star
+        orbit_distance = 0
+        size = 28
+    }
+
+    planet = {
+        name = "Spofos"
+        class = pc_molten
+        orbit_distance = 100
+        orbit_angle = 308
+        size = 13
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Poman"
+        class = pc_barren
+        orbit_distance = 100
+        orbit_angle = 223
+        size = 7
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Nifalvos"
+        class = pc_arctic
+        orbit_distance = 100
+        orbit_angle = 297
+        size = 16
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Spyro"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 229
+        size = 34
+        has_ring = yes
+
+    }
+
+    planet = {
+        name = "Olos"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 241
+        size = 38
+        has_ring = yes
+
+    }
+}
+
+sys_tyrelian_init = {
+    name = "Tyrelian"
+    class = sc_neutron_star
+	flags = { tyrelian_system sedriicae_collective_system canon_map }
+
+    planet = {
+        class = pc_neutron_star
+        orbit_distance = 0
+        size = 33
+    }
+
+    planet = {
+        name = "Kira"
+        class = pc_barren
+        orbit_distance = 100
+        orbit_angle = 219
+        size = 8
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Lonnila"
+        class = pc_hothouse
+        orbit_distance = 100
+        orbit_angle = 159
+        size = 23
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Xavkriya"
+        class = pc_barren_cold
+        orbit_distance = 100
+        orbit_angle = 262
+        size = 11
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Yakevi"
+        class = pc_mephitic
+        orbit_distance = 100
+        orbit_angle = 198
+        size = 24
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Yasilda"
+        class = pc_barren_cold
+        orbit_distance = 100
+        orbit_angle = 92
+        size = 15
+        has_ring = no
+
+    }
+}
+
+sys_ymyppin_init = {
+    name = "Ymyppin"
+    class = sc_g
+	flags = { ymyppin_system sedriicae_collective_system canon_map }
+
+    planet = {
+		name = "Ymyppin"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+    }
+
+    planet = {
+        name = "Choi"
+        class = pc_barren
+        orbit_distance = 50
+        orbit_angle = 344
+        size = 8
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Pyran"
+        class = pc_molten
+        orbit_distance = 50
+        orbit_angle = 229
+        size = 17
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Enos"
+        class = pc_tropical
+        orbit_distance = 50
+        orbit_angle = 196
+        size = 23
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Spyfin"
+        class = pc_ammonia
+        orbit_distance = 50
+        orbit_angle = 117
+        size = 18
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Pantizias"
+        class = pc_gas_giant
+        orbit_distance = 50
+        orbit_angle = 130
+        size = 40
+        has_ring = yes
+
+    }
+
+    planet = {
+        name = "Ilavian"
+        class = pc_ice_giant
+        orbit_distance = 50
+        orbit_angle = 59
+        size = 32
+        has_ring = yes
+
+    }
+
+    planet = {
+        name = "Zoliamon"
+        class = pc_frozen
+        orbit_distance = 50
+        orbit_angle = 136
+        size = 7
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Pylilos"
+        class = pc_iron
+        orbit_distance = 50
+        orbit_angle = 122
+        size = 14
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Kyntinos"
+        class = pc_gas_giant
+        orbit_distance = 50
+        orbit_angle = 60
+        size = 33
+        has_ring = no
+
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_5_secondaryrelay" 
+			name = "Elkras Basin Secondary Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_neoros_init = {
+    name = "Neoros"
+    class = sc_g
+	flags = { neoros_system sedriicae_collective_system canon_map }
+
+    planet = {
+		name = "Neoros"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 31
+    }
+
+    planet = {
+        name = "Zomazos"
+        class = pc_gas_giant
+        orbit_distance = 250
+        orbit_angle = 319
+        size = 38
+        has_ring = no
+
+
+        moon = {
+            name = "Zantos"
+            class = pc_barren
+            orbit_distance = 20
+            orbit_angle = 345
+            size = 3
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Choki"
+            class = pc_molten
+            orbit_distance = 5
+            orbit_angle = 301
+            size = 2
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Speona"
+            class = pc_methane
+            orbit_distance = 5
+            orbit_angle = 74
+            size = 8
+            has_ring = no
+
+        }
+    }
+
+    planet = {
+        name = "Ykas"
+        class = pc_hothouse
+        orbit_distance = 250
+        orbit_angle = 194
+        size = 25
+        has_ring = no
+
+    }
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "elkrasbasin_paraxhisquare_primaryrelay" 
+			name = "Terminus Primary - Elkras 1 Relay"
 			orbit_angle = 270 
 			orbit_distance = 500
 		} 
