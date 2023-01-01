@@ -579,20 +579,22 @@ sys_maat_init = {
         has_ring = no
 		size = 41
 		flags = { ammut_planet subclass_world }
-		if = {
-			limit = { 
-				exists = event_target:geth_consensus
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:geth_consensus
+				}
+				set_planet_flag = planetary_station
+				set_planet_flag = research_station
+				set_deposit_flags = yes
+				set_owner = event_target:geth_consensus
+				generate_get_ammut_colony_buildings = yes	
+				generate_get_ammut_pops = yes
+	
+				clear_blockers = yes
+				prevent_anomaly = yes
+				add_deposit = d_gas_giant_blocker
 			}
-			set_planet_flag = planetary_station
-			set_planet_flag = research_station
-			set_deposit_flags = yes
-			set_owner = event_target:geth_consensus
-			generate_get_ammut_colony_buildings = yes	
-			generate_get_ammut_pops = yes
-
-			clear_blockers = yes
-			prevent_anomaly = yes
-			add_deposit = d_gas_giant_blocker
 		}
         moon = {
 			name = "Ammut a"
