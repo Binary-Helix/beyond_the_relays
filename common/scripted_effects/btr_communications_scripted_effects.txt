@@ -2,6 +2,10 @@ establish_asari_republics_communication = {
 	if = {
 		limit = { exists = event_target:asari_republics }
 		event_target:asari_republics = {
+			# if = {
+			# 	limit = { exists = event_target:asari_republics }
+			# 	establish_communications_no_message = event_target:asari_republics
+			# }
 			if = {
 				limit = { exists = event_target:salarian_union  }
 				establish_communications_no_message = event_target:salarian_union
@@ -28,7 +32,6 @@ establish_asari_republics_communication = {
 				add_opinion_modifier = {
 					who = event_target:systems_alliance
 					modifier = systems_all_imperialist_tendencies
-
 				}
 			}
 			if = {
@@ -74,17 +77,21 @@ establish_asari_republics_communication = {
 					status = yes
 				}
 			}
-			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
-			# 	set_closed_borders = {
-			# 		who = THIS
-			# 		status = yes
-			# 	}
-			# }
 			if = {
 				limit = { exists = event_target:omega_empire  }
 				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
 			}
 			if = {
 				limit = { exists = event_target:sedriicae_collective  }
@@ -94,100 +101,22 @@ establish_asari_republics_communication = {
 					status = yes
 				}
 			}
-			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
-			}
-			if = {
-				limit = { exists = event_target:remnants_of_rakhana  }
-				establish_communications_no_message = event_target:remnants_of_rakhana
-			}
-			if = {
-				limit = { exists = event_target:vorcha_clandom  }
-				establish_communications_no_message = event_target:vorcha_clandom
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
-			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
 			if = {
 				limit = { exists = event_target:citadel_council  }
 				establish_communications_no_message = event_target:citadel_council
 				add_opinion_modifier = {
 					who = event_target:citadel_council
 					modifier = citadel_council_member
-				}
+				}				
 			}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:asteria_agriculture  }
-		# 		establish_communications_no_message = event_target:asteria_agriculture
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
 		}
 	}
 }	
@@ -202,8 +131,12 @@ establish_salarian_union_communication = {
 				add_opinion_modifier = {
 					who = event_target:asari_republics
 					modifier = citadel_council_member
-				}
+				}				
 			}
+			# if = {
+			# 	limit = { exists = event_target:salarian_union  }
+			# 	establish_communications_no_message = event_target:salarian_union
+			# }
 			if = {
 				limit = { exists = event_target:turian_hierarchy  }
 				establish_communications_no_message = event_target:turian_hierarchy
@@ -267,17 +200,21 @@ establish_salarian_union_communication = {
 					status = yes
 				}
 			}
-			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
-			# 	set_closed_borders = {
-			# 		who = THIS
-			# 		status = yes
-			# 	}
-			# }
 			if = {
 				limit = { exists = event_target:omega_empire  }
 				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
 			}
 			if = {
 				limit = { exists = event_target:sedriicae_collective  }
@@ -287,27 +224,14 @@ establish_salarian_union_communication = {
 					status = yes
 				}
 			}
-			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
-			}
-			if = {
-				limit = { exists = event_target:remnants_of_rakhana  }
-				establish_communications_no_message = event_target:remnants_of_rakhana
-			}
-			if = {
-				limit = { exists = event_target:vorcha_clandom  }
-				establish_communications_no_message = event_target:vorcha_clandom
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
-			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
 			if = {
 				limit = { exists = event_target:citadel_council  }
 				establish_communications_no_message = event_target:citadel_council
@@ -316,63 +240,6 @@ establish_salarian_union_communication = {
 					modifier = citadel_council_member
 				}
 			}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
 		}
 	}
 }
@@ -398,6 +265,10 @@ establish_turian_hierarchy_communication = {
 					modifier = citadel_council_member
 				}
 			}
+			# if = {
+			# 	limit = { exists = event_target:turian_hierarchy  }
+			# 	establish_communications_no_message = event_target:turian_hierarchy
+			# }
 			if = {
 				limit = { exists = event_target:systems_alliance  }
 				establish_communications_no_message = event_target:systems_alliance
@@ -408,187 +279,6 @@ establish_turian_hierarchy_communication = {
 				add_opinion_modifier = {
 					who = event_target:systems_alliance
 					modifier = systems_all_imperialist_tendencies
-				}
-			}
-			if = {
-				limit = { exists = event_target:courts_of_dekuuna  }
-				establish_communications_no_message = event_target:courts_of_dekuuna
-				guarantee_country = event_target:courts_of_dekuuna
-				add_opinion_modifier = {
-					who = event_target:courts_of_dekuuna
-					modifier = citadel_embassy_race
-				}
-			}
-			if = {
-				limit = { exists = event_target:vol_protectorate  }
-				establish_communications_no_message = event_target:vol_protectorate
-				guarantee_country = event_target:vol_protectorate
-				add_opinion_modifier = {
-					who = event_target:courts_of_dekuuna
-					modifier = citadel_embassy_race
-				}
-			}
-			if = {
-				limit = { exists = event_target:illuminated_primacy  }
-				establish_communications_no_message = event_target:illuminated_primacy
-				guarantee_country = event_target:illuminated_primacy
-				add_opinion_modifier = {
-					who = event_target:courts_of_dekuuna
-					modifier = citadel_embassy_race
-				}
-			}
-			if = {
-				limit = { exists = event_target:hegemony_of_kharshan  }
-				establish_communications_no_message = event_target:hegemony_of_kharshan
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:aralakh_kahmat  }
-				establish_communications_no_message = event_target:aralakh_kahmat
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
-			# 	set_closed_borders = {
-			# 		who = THIS
-			# 		status = yes
-			# 	}
-			# }
-			if = {
-				limit = { exists = event_target:omega_empire  }
-				establish_communications_no_message = event_target:omega_empire
-			}
-			if = {
-				limit = { exists = event_target:sedriicae_collective  }
-				establish_communications_no_message = event_target:sedriicae_collective
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
-			}
-			if = {
-				limit = { exists = event_target:remnants_of_rakhana  }
-				establish_communications_no_message = event_target:remnants_of_rakhana
-			}
-			if = {
-				limit = { exists = event_target:vorcha_clandom  }
-				establish_communications_no_message = event_target:vorcha_clandom
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
-			}
-			if = {
-				limit = { exists = event_target:citadel_council  }
-				establish_communications_no_message = event_target:citadel_council
-				add_opinion_modifier = {
-					who = event_target:citadel_council
-					modifier = citadel_council_member
-				}
-			}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
-		}
-	}
-}
-
-establish_systems_alliance_communication = {
-	if = {
-		limit = { exists = event_target:systems_alliance }
-		event_target:systems_alliance = {
-			if = {
-				limit = { exists = event_target:asari_republics }
-				establish_communications_no_message = event_target:asari_republics
-				add_opinion_modifier = {
-					who = event_target:asari_republics
-					modifier = citadel_embassy_race
-				}
-			}
-			if = {
-				limit = { exists = event_target:salarian_union  }
-				establish_communications_no_message = event_target:salarian_union
-				add_opinion_modifier = {
-					who = event_target:salarian_union
-					modifier = citadel_embassy_race
-				}
-			}
-			if = {
-				limit = { exists = event_target:turian_hierarchy  }
-				establish_communications_no_message = event_target:turian_hierarchy
-				add_opinion_modifier = {
-					who = event_target:turian_hierarchy
-					modifier = citadel_embassy_race
 				}
 			}
 			if = {
@@ -634,17 +324,21 @@ establish_systems_alliance_communication = {
 					status = yes
 				}
 			}
-			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
-			# 	set_closed_borders = {
-			# 		who = THIS
-			# 		status = yes
-			# 	}
-			# }
 			if = {
 				limit = { exists = event_target:omega_empire  }
 				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
 			}
 			if = {
 				limit = { exists = event_target:sedriicae_collective  }
@@ -654,9 +348,112 @@ establish_systems_alliance_communication = {
 					status = yes
 				}
 			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
 			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
+				limit = { exists = event_target:citadel_council  }
+				establish_communications_no_message = event_target:citadel_council
+				add_opinion_modifier = {
+					who = event_target:citadel_council
+					modifier = citadel_council_member
+				}
+			}
+		}
+	}
+}
+
+establish_systems_alliance_communication = {
+	if = {
+		limit = { exists = event_target:systems_alliance }
+		event_target:systems_alliance = {
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+				add_opinion_modifier = {
+					who = event_target:asari_republics
+					modifier = citadel_embassy_race
+				}
+			}
+			if = {
+				limit = { exists = event_target:salarian_union  }
+				establish_communications_no_message = event_target:salarian_union
+				add_opinion_modifier = {
+					who = event_target:salarian_union
+					modifier = citadel_embassy_race
+				}
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy  }
+				establish_communications_no_message = event_target:turian_hierarchy
+				add_opinion_modifier = {
+					who = event_target:turian_hierarchy
+					modifier = citadel_embassy_race
+				}
+			}
+			# if = {
+			# 	limit = { exists = event_target:systems_alliance  }
+			# 	establish_communications_no_message = event_target:systems_alliance
+			# 	add_opinion_modifier = {
+			# 		who = event_target:systems_alliance
+			# 		modifier = systems_all_imperialist_tendencies
+			# 	}
+			# }
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna  }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+				guarantee_country = event_target:courts_of_dekuuna
+				add_opinion_modifier = {
+					who = event_target:courts_of_dekuuna
+					modifier = citadel_embassy_race
+				}
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate  }
+				establish_communications_no_message = event_target:vol_protectorate
+				guarantee_country = event_target:vol_protectorate
+				add_opinion_modifier = {
+					who = event_target:vol_protectorate
+					modifier = citadel_embassy_race
+				}
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy  }
+				establish_communications_no_message = event_target:illuminated_primacy
+				guarantee_country = event_target:illuminated_primacy
+				add_opinion_modifier = {
+					who = event_target:illuminated_primacy
+					modifier = citadel_embassy_race
+				}
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan  }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:aralakh_kahmat  }
+				establish_communications_no_message = event_target:aralakh_kahmat
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:omega_empire  }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
 			}
 			if = {
 				limit = { exists = event_target:remnants_of_rakhana  }
@@ -665,16 +462,23 @@ establish_systems_alliance_communication = {
 			if = {
 				limit = { exists = event_target:vorcha_clandom  }
 				establish_communications_no_message = event_target:vorcha_clandom
+			}
+			if = {
+				limit = { exists = event_target:sedriicae_collective  }
+				establish_communications_no_message = event_target:sedriicae_collective
 				set_closed_borders = {
 					who = THIS
 					status = yes
 				}
 			}
-			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
-			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
 			if = {
 				limit = { exists = event_target:citadel_council  }
 				establish_communications_no_message = event_target:citadel_council
@@ -683,63 +487,6 @@ establish_systems_alliance_communication = {
 					modifier = citadel_embassy_race
 				}
 			}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
 		}
 	}
 }
@@ -784,6 +531,11 @@ establish_courts_of_dekuuna_communication = {
 					modifier = systems_all_imperialist_tendencies
 				}
 			}
+			# if = {
+			# 	limit = { exists = event_target:courts_of_dekuuna  }
+			# 	establish_communications_no_message = event_target:courts_of_dekuuna
+			# 	guarantee_country = event_target:courts_of_dekuuna
+			# }
 			if = {
 				limit = { exists = event_target:vol_protectorate  }
 				establish_communications_no_message = event_target:vol_protectorate
@@ -818,17 +570,21 @@ establish_courts_of_dekuuna_communication = {
 					status = yes
 				}
 			}
-			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
-			# 	set_closed_borders = {
-			# 		who = THIS
-			# 		status = yes
-			# 	}
-			# }
 			if = {
 				limit = { exists = event_target:omega_empire  }
 				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
 			}
 			if = {
 				limit = { exists = event_target:sedriicae_collective  }
@@ -838,27 +594,14 @@ establish_courts_of_dekuuna_communication = {
 					status = yes
 				}
 			}
-			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
-			}
-			if = {
-				limit = { exists = event_target:remnants_of_rakhana  }
-				establish_communications_no_message = event_target:remnants_of_rakhana
-			}
-			if = {
-				limit = { exists = event_target:vorcha_clandom  }
-				establish_communications_no_message = event_target:vorcha_clandom
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
-			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
 			if = {
 				limit = { exists = event_target:citadel_council  }
 				establish_communications_no_message = event_target:citadel_council
@@ -867,63 +610,6 @@ establish_courts_of_dekuuna_communication = {
 					modifier = citadel_embassy_race
 				}
 			}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
 		}
 	}
 }
@@ -978,6 +664,11 @@ establish_vol_protectorate_communication = {
 					modifier = citadel_embassy_race
 				}
 			}
+			# if = {
+			# 	limit = { exists = event_target:vol_protectorate  }
+			# 	establish_communications_no_message = event_target:vol_protectorate
+			# 	guarantee_country = event_target:vol_protectorate
+			# }
 			if = {
 				limit = { exists = event_target:illuminated_primacy  }
 				establish_communications_no_message = event_target:illuminated_primacy
@@ -1003,17 +694,21 @@ establish_vol_protectorate_communication = {
 					status = yes
 				}
 			}
-			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
-			# 	set_closed_borders = {
-			# 		who = THIS
-			# 		status = yes
-			# 	}
-			# }
 			if = {
 				limit = { exists = event_target:omega_empire  }
 				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
 			}
 			if = {
 				limit = { exists = event_target:sedriicae_collective  }
@@ -1023,92 +718,22 @@ establish_vol_protectorate_communication = {
 					status = yes
 				}
 			}
-			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
-			}
-			if = {
-				limit = { exists = event_target:remnants_of_rakhana  }
-				establish_communications_no_message = event_target:remnants_of_rakhana
-			}
-			if = {
-				limit = { exists = event_target:vorcha_clandom  }
-				establish_communications_no_message = event_target:vorcha_clandom
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
-			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
 			if = {
 				limit = { exists = event_target:citadel_council  }
 				establish_communications_no_message = event_target:citadel_council
 				add_opinion_modifier = {
 					who = event_target:citadel_council
 					modifier = citadel_embassy_race
-				}
+				}				
 			}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
 		}
 	}
 }
@@ -1172,6 +797,11 @@ establish_illuminated_primacy_communication = {
 					modifier = citadel_embassy_race
 				}
 			}
+			# if = {
+			# 	limit = { exists = event_target:illuminated_primacy  }
+			# 	establish_communications_no_message = event_target:illuminated_primacy
+			# 	guarantee_country = event_target:illuminated_primacy
+			# }
 			if = {
 				limit = { exists = event_target:hegemony_of_kharshan  }
 				establish_communications_no_message = event_target:hegemony_of_kharshan
@@ -1188,17 +818,21 @@ establish_illuminated_primacy_communication = {
 					status = yes
 				}
 			}
-			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
-			# 	set_closed_borders = {
-			# 		who = THIS
-			# 		status = yes
-			# 	}
-			# }
 			if = {
 				limit = { exists = event_target:omega_empire  }
 				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
 			}
 			if = {
 				limit = { exists = event_target:sedriicae_collective  }
@@ -1208,27 +842,14 @@ establish_illuminated_primacy_communication = {
 					status = yes
 				}
 			}
-			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
-			}
-			if = {
-				limit = { exists = event_target:remnants_of_rakhana  }
-				establish_communications_no_message = event_target:remnants_of_rakhana
-			}
-			if = {
-				limit = { exists = event_target:vorcha_clandom  }
-				establish_communications_no_message = event_target:vorcha_clandom
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
-			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
 			if = {
 				limit = { exists = event_target:citadel_council  }
 				establish_communications_no_message = event_target:citadel_council
@@ -1237,63 +858,6 @@ establish_illuminated_primacy_communication = {
 					modifier = citadel_embassy_race
 				}
 			}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
 		}
 	}
 }
@@ -1310,7 +874,7 @@ establish_hegemony_of_kharshan_communication = {
 					who = THIS
 					status = yes
 				}
-			}
+			}	
 			if = {
 				limit = { exists = event_target:salarian_union  }
 				establish_communications_no_message = event_target:salarian_union
@@ -1366,6 +930,14 @@ establish_hegemony_of_kharshan_communication = {
 					status = yes
 				}
 			}
+			# if = {
+			# 	limit = { exists = event_target:hegemony_of_kharshan  }
+			# 	establish_communications_no_message = event_target:hegemony_of_kharshan
+			# 	set_closed_borders = {
+			# 		who = THIS
+			# 		status = yes
+			# 	}
+			# }
 			if = {
 				limit = { exists = event_target:aralakh_kahmat  }
 				establish_communications_no_message = event_target:aralakh_kahmat
@@ -1374,17 +946,33 @@ establish_hegemony_of_kharshan_communication = {
 					status = yes
 				}
 			}
-			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
-			# 	set_closed_borders = {
-			# 		who = THIS
-			# 		status = yes
-			# 	}
-			# }
 			if = {
 				limit = { exists = event_target:omega_empire  }
 				establish_communications_no_message = event_target:omega_empire
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
 				set_closed_borders = {
 					who = THIS
 					status = yes
@@ -1398,96 +986,22 @@ establish_hegemony_of_kharshan_communication = {
 					status = yes
 				}
 			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
 			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
+				limit = { exists = event_target:citadel_council  }
+				establish_communications_no_message = event_target:citadel_council
 				set_closed_borders = {
 					who = THIS
 					status = yes
 				}
 			}
-			if = {
-				limit = { exists = event_target:remnants_of_rakhana  }
-				establish_communications_no_message = event_target:remnants_of_rakhana
-			}
-			if = {
-				limit = { exists = event_target:vorcha_clandom  }
-				establish_communications_no_message = event_target:vorcha_clandom
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-		# 	if = {
-		# 		limit = { exists = event_target:citadel_council  }
-		# 		establish_communications_no_message = event_target:citadel_council
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
 		}
 	}
 }
@@ -1503,7 +1017,7 @@ establish_aralakh_kahmat_communication = {
 					who = THIS
 					status = yes
 				}
-			}
+			}	
 			if = {
 				limit = { exists = event_target:salarian_union  }
 				establish_communications_no_message = event_target:salarian_union
@@ -1568,8 +1082,8 @@ establish_aralakh_kahmat_communication = {
 				}
 			}
 			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
+			# 	limit = { exists = event_target:aralakh_kahmat  }
+			# 	establish_communications_no_message = event_target:aralakh_kahmat
 			# 	set_closed_borders = {
 			# 		who = THIS
 			# 		status = yes
@@ -1578,18 +1092,14 @@ establish_aralakh_kahmat_communication = {
 			if = {
 				limit = { exists = event_target:omega_empire  }
 				establish_communications_no_message = event_target:omega_empire
-			}
-			if = {
-				limit = { exists = event_target:sedriicae_collective  }
-				establish_communications_no_message = event_target:sedriicae_collective
 				set_closed_borders = {
 					who = THIS
 					status = yes
 				}
 			}
 			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
 				set_closed_borders = {
 					who = THIS
 					status = yes
@@ -1612,75 +1122,29 @@ establish_aralakh_kahmat_communication = {
 				}
 			}
 			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
+				limit = { exists = event_target:sedriicae_collective  }
+				establish_communications_no_message = event_target:sedriicae_collective
 				set_closed_borders = {
 					who = THIS
 					status = yes
 				}
 			}
-		# 	if = {
-		# 		limit = { exists = event_target:citadel_council  }
-		# 		establish_communications_no_message = event_target:citadel_council
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
+			if = {
+				limit = { exists = event_target:citadel_council  }
+				establish_communications_no_message = event_target:citadel_council
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
 		}
 	}
 }
@@ -1692,34 +1156,18 @@ establish_omega_communication = {
 			if = {
 				limit = { exists = event_target:asari_republics }
 				establish_communications_no_message = event_target:asari_republics
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
 			}
 			if = {
 				limit = { exists = event_target:salarian_union  }
 				establish_communications_no_message = event_target:salarian_union
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
 			}
 			if = {
 				limit = { exists = event_target:turian_hierarchy  }
 				establish_communications_no_message = event_target:turian_hierarchy
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
 			}
 			if = {
 				limit = { exists = event_target:systems_alliance  }
 				establish_communications_no_message = event_target:systems_alliance
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
 				add_opinion_modifier = {
 					who = event_target:systems_alliance
 					modifier = systems_all_imperialist_tendencies
@@ -1729,159 +1177,64 @@ establish_omega_communication = {
 				limit = { exists = event_target:courts_of_dekuuna  }
 				establish_communications_no_message = event_target:courts_of_dekuuna
 				guarantee_country = event_target:courts_of_dekuuna
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
 			}
 			if = {
 				limit = { exists = event_target:vol_protectorate  }
 				establish_communications_no_message = event_target:vol_protectorate
 				guarantee_country = event_target:vol_protectorate
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
 			}
 			if = {
 				limit = { exists = event_target:illuminated_primacy  }
 				establish_communications_no_message = event_target:illuminated_primacy
 				guarantee_country = event_target:illuminated_primacy
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:aralakh_kahmat  }
-				establish_communications_no_message = event_target:aralakh_kahmat
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
 			}
 			if = {
 				limit = { exists = event_target:hegemony_of_kharshan  }
 				establish_communications_no_message = event_target:hegemony_of_kharshan
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
+			}
+			if = {
+				limit = { exists = event_target:aralakh_kahmat  }
+				establish_communications_no_message = event_target:aralakh_kahmat
 			}
 			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
-			# 	set_closed_borders = {
-			# 		who = THIS
-			# 		status = yes
-			# 	}
+			# 	limit = { exists = event_target:omega_empire  }
+			# 	establish_communications_no_message = event_target:omega_empire
 			# }
 			if = {
-				limit = { exists = event_target:sedriicae_collective  }
-				establish_communications_no_message = event_target:sedriicae_collective
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
-			}
-			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
 			}
 			if = {
 				limit = { exists = event_target:remnants_of_rakhana  }
 				establish_communications_no_message = event_target:remnants_of_rakhana
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
 			}
 			if = {
 				limit = { exists = event_target:vorcha_clandom  }
 				establish_communications_no_message = event_target:vorcha_clandom
-				set_closed_borders = {
-					who = THIS
-					status = yes
-				}
 			}
 			if = {
-				limit = { exists = event_target:illium_corporate_interests  }
-				establish_communications_no_message = event_target:illium_corporate_interests
-				guarantee_country = event_target:illium_corporate_interests
+				limit = { exists = event_target:sedriicae_collective  }
+				establish_communications_no_message = event_target:sedriicae_collective
+			}
+			if = {
+				limit = { exists = event_target:lystheni_order  }
+				establish_communications_no_message = event_target:lystheni_order
+			}
+			if = {
+				limit = { exists = event_target:gothones_remnant  }
+				establish_communications_no_message = event_target:gothones_remnant
+			}
+			if = {
+				limit = { exists = event_target:citadel_council  }
+				establish_communications_no_message = event_target:citadel_council
 				set_closed_borders = {
 					who = THIS
 					status = yes
 				}
 			}
-		# 	if = {
-		# 		limit = { exists = event_target:citadel_council  }
-		# 		establish_communications_no_message = event_target:citadel_council
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
 		}
 	}	
 }
-
 
 establish_illium_corporate_interests_communication = {
 	if = {
@@ -1923,8 +1276,99 @@ establish_illium_corporate_interests_communication = {
 				guarantee_country = event_target:illuminated_primacy
 			}
 			if = {
+				limit = { exists = event_target:hegemony_of_kharshan  }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
 				limit = { exists = event_target:aralakh_kahmat  }
 				establish_communications_no_message = event_target:aralakh_kahmat
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:omega_empire  }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			# if = {
+			# 	limit = { exists = event_target:illium_corporate_interests  }
+			# 	establish_communications_no_message = event_target:illium_corporate_interests
+			# }
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:sedriicae_collective  }
+				establish_communications_no_message = event_target:sedriicae_collective
+			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
+			if = {
+				limit = { exists = event_target:citadel_council  }
+				establish_communications_no_message = event_target:citadel_council
+			}
+		}
+	}	
+}
+
+establish_remnants_of_rakhana_communication = {
+	if = {
+		limit = { exists = event_target:remnants_of_rakhana }
+		event_target:remnants_of_rakhana = {
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union  }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy  }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance  }
+				establish_communications_no_message = event_target:systems_alliance
+				add_opinion_modifier = {
+					who = event_target:systems_alliance
+					modifier = systems_all_imperialist_tendencies
+				}
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna  }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+				guarantee_country = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate  }
+				establish_communications_no_message = event_target:vol_protectorate
+				guarantee_country = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy  }
+				establish_communications_no_message = event_target:illuminated_primacy
+				guarantee_country = event_target:illuminated_primacy
 			}
 			if = {
 				limit = { exists = event_target:hegemony_of_kharshan  }
@@ -1934,21 +1378,580 @@ establish_illium_corporate_interests_communication = {
 					status = yes
 				}
 			}
+			if = {
+				limit = { exists = event_target:aralakh_kahmat  }
+				establish_communications_no_message = event_target:aralakh_kahmat
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:omega_empire  }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
 			# if = {
-			# 	limit = { exists = event_target:migrant_fleet  }
-			# 	establish_communications_no_message = event_target:migrant_fleet
+			# 	limit = { exists = event_target:remnants_of_rakhana  }
+			# 	establish_communications_no_message = event_target:remnants_of_rakhana
+			# }
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
+			}
+			if = {
+				limit = { exists = event_target:sedriicae_collective  }
+				establish_communications_no_message = event_target:sedriicae_collective
+			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
+			if = {
+				limit = { exists = event_target:citadel_council  }
+				establish_communications_no_message = event_target:citadel_council
+			}
+		}
+	}	
+}
+
+establish_vorcha_clandom_communication = {
+	if = {
+		limit = { exists = event_target:vorcha_clandom }
+		event_target:vorcha_clandom = {
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union  }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy  }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance  }
+				establish_communications_no_message = event_target:systems_alliance
+				add_opinion_modifier = {
+					who = event_target:systems_alliance
+					modifier = systems_all_imperialist_tendencies
+				}
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna  }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+				guarantee_country = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate  }
+				establish_communications_no_message = event_target:vol_protectorate
+				guarantee_country = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy  }
+				establish_communications_no_message = event_target:illuminated_primacy
+				guarantee_country = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan  }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+			if = {
+				limit = { exists = event_target:aralakh_kahmat  }
+				establish_communications_no_message = event_target:aralakh_kahmat
+			}
+			if = {
+				limit = { exists = event_target:omega_empire  }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+			}
+			# if = {
+			# 	limit = { exists = event_target:vorcha_clandom  }
+			# 	establish_communications_no_message = event_target:vorcha_clandom
+			# }
+			if = {
+				limit = { exists = event_target:sedriicae_collective  }
+				establish_communications_no_message = event_target:sedriicae_collective
+			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
+			if = {
+				limit = { exists = event_target:citadel_council  }
+				establish_communications_no_message = event_target:citadel_council
+			}
+		}
+	}	
+}
+
+establish_sedriicae_collective_communication = {
+	if = {
+		limit = { exists = event_target:sedriicae_collective }
+		event_target:sedriicae_collective = {
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:salarian_union  }
+				establish_communications_no_message = event_target:salarian_union
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy  }
+				establish_communications_no_message = event_target:turian_hierarchy
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance  }
+				establish_communications_no_message = event_target:systems_alliance
+				add_opinion_modifier = {
+					who = event_target:systems_alliance
+					modifier = systems_all_imperialist_tendencies
+				}
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna  }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+				guarantee_country = event_target:courts_of_dekuuna
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate  }
+				establish_communications_no_message = event_target:vol_protectorate
+				guarantee_country = event_target:vol_protectorate
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy  }
+				establish_communications_no_message = event_target:illuminated_primacy
+				guarantee_country = event_target:illuminated_primacy
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan  }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:aralakh_kahmat  }
+				establish_communications_no_message = event_target:aralakh_kahmat
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:omega_empire  }
+				establish_communications_no_message = event_target:omega_empire
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			# if = {
+			# 	limit = { exists = event_target:sedriicae_collective  }
+			# 	establish_communications_no_message = event_target:sedriicae_collective
+			# 	set_closed_borders = {
+			# 		who = THIS
+			# 		status = yes
+			# 	}
+			# }
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# 	set_closed_borders = {
+			# 		who = THIS
+			# 		status = yes
+			# 	}
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
 			# 	set_closed_borders = {
 			# 		who = THIS
 			# 		status = yes
 			# 	}
 			# }
 			if = {
-				limit = { exists = event_target:sedriicae_collective  }
-				establish_communications_no_message = event_target:sedriicae_collective
+				limit = { exists = event_target:citadel_council  }
+				establish_communications_no_message = event_target:citadel_council
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+		}
+	}	
+}
+
+establish_lystheni_order_communication = {
+	if = {
+		limit = { exists = event_target:lystheni_order }
+		event_target:lystheni_order = {
+			# if = {
+			# 	limit = { exists = event_target:asari_republics }
+			# 	establish_communications_no_message = event_target:asari_republics
+			# }
+			# if = {
+			# 	limit = { exists = event_target:salarian_union  }
+			# 	establish_communications_no_message = event_target:salarian_union
+			# }
+			# if = {
+			# 	limit = { exists = event_target:turian_hierarchy  }
+			# 	establish_communications_no_message = event_target:turian_hierarchy
+			# }
+			# if = {
+			# 	limit = { exists = event_target:systems_alliance  }
+			# 	establish_communications_no_message = event_target:systems_alliance
+			# 	add_opinion_modifier = {
+			# 		who = event_target:systems_alliance
+			# 		modifier = systems_all_imperialist_tendencies
+			# 	}
+			# }
+			# if = {
+			# 	limit = { exists = event_target:courts_of_dekuuna  }
+			# 	establish_communications_no_message = event_target:courts_of_dekuuna
+			# 	guarantee_country = event_target:courts_of_dekuuna
+			# }
+			# if = {
+			# 	limit = { exists = event_target:vol_protectorate  }
+			# 	establish_communications_no_message = event_target:vol_protectorate
+			# 	guarantee_country = event_target:vol_protectorate
+			# }
+			# if = {
+			# 	limit = { exists = event_target:illuminated_primacy  }
+			# 	establish_communications_no_message = event_target:illuminated_primacy
+			# 	guarantee_country = event_target:illuminated_primacy
+			# }
+			# if = {
+			# 	limit = { exists = event_target:hegemony_of_kharshan  }
+			# 	establish_communications_no_message = event_target:hegemony_of_kharshan
+			# 	set_closed_borders = {
+			# 		who = THIS
+			# 		status = yes
+			# 	}
+			# }
+			# if = {
+			# 	limit = { exists = event_target:aralakh_kahmat  }
+			# 	establish_communications_no_message = event_target:aralakh_kahmat
+			# }
+			if = {
+				limit = { exists = event_target:omega_empire  }
+				establish_communications_no_message = event_target:omega_empire
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			# if = {
+			# 	limit = { exists = event_target:illium_corporate_interests  }
+			# 	establish_communications_no_message = event_target:illium_corporate_interests
+			# }
+			# if = {
+			# 	limit = { exists = event_target:remnants_of_rakhana  }
+			# 	establish_communications_no_message = event_target:remnants_of_rakhana
+			# }
+			# if = {
+			# 	limit = { exists = event_target:vorcha_clandom  }
+			# 	establish_communications_no_message = event_target:vorcha_clandom
+			# }
+			# if = {
+			# 	limit = { exists = event_target:sedriicae_collective  }
+			# 	establish_communications_no_message = event_target:sedriicae_collective
+			# }
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
+			# if = {
+			# 	limit = { exists = event_target:citadel_council  }
+			# 	establish_communications_no_message = event_target:citadel_council
+			# }
+		}
+	}	
+}
+
+establish_gothones_remnant_communication = {
+	if = {
+		limit = { exists = event_target:gothones_remnant }
+		event_target:gothones_remnant = {
+			# if = {
+			# 	limit = { exists = event_target:asari_republics }
+			# 	establish_communications_no_message = event_target:asari_republics
+			# }
+			# if = {
+			# 	limit = { exists = event_target:salarian_union  }
+			# 	establish_communications_no_message = event_target:salarian_union
+			# }
+			# if = {
+			# 	limit = { exists = event_target:turian_hierarchy  }
+			# 	establish_communications_no_message = event_target:turian_hierarchy
+			# }
+			# if = {
+			# 	limit = { exists = event_target:systems_alliance  }
+			# 	establish_communications_no_message = event_target:systems_alliance
+			# 	add_opinion_modifier = {
+			# 		who = event_target:systems_alliance
+			# 		modifier = systems_all_imperialist_tendencies
+			# 	}
+			# }
+			# if = {
+			# 	limit = { exists = event_target:courts_of_dekuuna  }
+			# 	establish_communications_no_message = event_target:courts_of_dekuuna
+			# 	guarantee_country = event_target:courts_of_dekuuna
+			# }
+			# if = {
+			# 	limit = { exists = event_target:vol_protectorate  }
+			# 	establish_communications_no_message = event_target:vol_protectorate
+			# 	guarantee_country = event_target:vol_protectorate
+			# }
+			# if = {
+			# 	limit = { exists = event_target:illuminated_primacy  }
+			# 	establish_communications_no_message = event_target:illuminated_primacy
+			# 	guarantee_country = event_target:illuminated_primacy
+			# }
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan  }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			# if = {
+			# 	limit = { exists = event_target:aralakh_kahmat  }
+			# 	establish_communications_no_message = event_target:aralakh_kahmat
+			# }
+			if = {
+				limit = { exists = event_target:omega_empire  }
+				establish_communications_no_message = event_target:omega_empire
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			# if = {
+			# 	limit = { exists = event_target:illium_corporate_interests  }
+			# 	establish_communications_no_message = event_target:illium_corporate_interests
+			# }
+			# if = {
+			# 	limit = { exists = event_target:remnants_of_rakhana  }
+			# 	establish_communications_no_message = event_target:remnants_of_rakhana
+			# }
+			# if = {
+			# 	limit = { exists = event_target:vorcha_clandom  }
+			# 	establish_communications_no_message = event_target:vorcha_clandom
+			# }
+			# if = {
+			# 	limit = { exists = event_target:sedriicae_collective  }
+			# 	establish_communications_no_message = event_target:sedriicae_collective
+			# }
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
+			# if = {
+			# 	limit = { exists = event_target:citadel_council  }
+			# 	establish_communications_no_message = event_target:citadel_council
+			# }
+		}
+	}	
+}
+
+establish_geth_consensus_communication = {
+	if = {
+		limit = { exists = event_target:geth_consensus }
+		event_target:geth_consensus = {
+			if = {
+				limit = { exists = event_target:disciples_of_nazara }
+				establish_communications_no_message = event_target:disciples_of_nazara
+			}
+		}
+	}	
+}
+
+establish_disciples_of_nazara_communication = {
+	if = {
+		limit = { exists = event_target:disciples_of_nazara }
+		event_target:disciples_of_nazara = {
+			if = {
+				limit = { exists = event_target:geth_consensus }
+				establish_communications_no_message = event_target:geth_consensus
+			}			
+		}
+	}	
+}
+
+establish_citadel_council_communication = {
+	if = {
+		limit = { exists = event_target:citadel_council }
+		event_target:citadel_council = {
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+				add_opinion_modifier = {
+					who = event_target:asari_republics
+					modifier = citadel_council_member
+				}
 			}
 			if = {
-				limit = { exists = event_target:raloi_republic  }
-				establish_communications_no_message = event_target:raloi_republic
+				limit = { exists = event_target:salarian_union  }
+				establish_communications_no_message = event_target:salarian_union
+				add_opinion_modifier = {
+					who = event_target:salarian_union
+					modifier = citadel_council_member
+				}
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy  }
+				establish_communications_no_message = event_target:turian_hierarchy
+				add_opinion_modifier = {
+					who = event_target:turian_hierarchy
+					modifier = citadel_council_member
+				}
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance  }
+				establish_communications_no_message = event_target:systems_alliance
+				add_opinion_modifier = {
+					who = event_target:systems_alliance
+					modifier = citadel_embassy_race
+				}
+				add_opinion_modifier = {
+					who = event_target:systems_alliance
+					modifier = systems_all_imperialist_tendencies
+				}
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna  }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+				guarantee_country = event_target:courts_of_dekuuna
+				add_opinion_modifier = {
+					who = event_target:courts_of_dekuuna
+					modifier = citadel_embassy_race
+				}
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate  }
+				establish_communications_no_message = event_target:vol_protectorate
+				guarantee_country = event_target:vol_protectorate
+				add_opinion_modifier = {
+					who = event_target:courts_of_dekuuna
+					modifier = citadel_embassy_race
+				}
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy  }
+				establish_communications_no_message = event_target:illuminated_primacy
+				guarantee_country = event_target:illuminated_primacy
+				add_opinion_modifier = {
+					who = event_target:courts_of_dekuuna
+					modifier = citadel_embassy_race
+				}
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan  }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:aralakh_kahmat  }
+				establish_communications_no_message = event_target:aralakh_kahmat
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:omega_empire  }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests  }
+				establish_communications_no_message = event_target:illium_corporate_interests
 			}
 			if = {
 				limit = { exists = event_target:remnants_of_rakhana  }
@@ -1959,80 +1962,29 @@ establish_illium_corporate_interests_communication = {
 				establish_communications_no_message = event_target:vorcha_clandom
 			}
 			if = {
-				limit = { exists = event_target:citadel_council  }
-				establish_communications_no_message = event_target:citadel_council
+				limit = { exists = event_target:sedriicae_collective  }
+				establish_communications_no_message = event_target:sedriicae_collective
+				set_closed_borders = {
+					who = THIS
+					status = yes
+				}
 			}
-		# 	if = {
-		# 		limit = { exists = event_target:relic_mineral_works  }
-		# 		establish_communications_no_message = event_target:relic_mineral_works
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:united_anhur_corporations  }
-		# 		establish_communications_no_message = event_target:united_anhur_corporations
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:wrill_mining_consortium  }
-		# 		establish_communications_no_message = event_target:wrill_mining_consortium
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:trident_exports_limited  }
-		# 		establish_communications_no_message = event_target:trident_exports_limited
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:altai_mining  }
-		# 		establish_communications_no_message = event_target:altai_mining
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:noveria_development_corporation  }
-		# 		establish_communications_no_message = event_target:noveria_development_corporation
-		# 		set_closed_borders = {
-		# 			who = THIS
-		# 			status = yes
-		# 		}
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blood_pack_mercs  }
-		# 		establish_communications_no_message = event_target:blood_pack_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:blue_suns_mercs  }
-		# 		establish_communications_no_message = event_target:blue_suns_mercs
-		# 	}
-		# 	if = {
-		# 		limit = { exists = event_target:eclipse_mercs  }
-		# 		establish_communications_no_message = event_target:eclipse_mercs
-		# 	}
-		# }
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
+			# if = {
+			# 	limit = { exists = event_target:citadel_council  }
+			# 	establish_communications_no_message = event_target:citadel_council
+			# 	add_opinion_modifier = {
+			# 		who = event_target:citadel_council
+			# 		modifier = citadel_council_member
+			# 	}				
+			# }
 		}
 	}	
-}
-
-
-establish_geth_consensus_communication = {
-	if = {
-		limit = { exists = event_target:geth_consensus }
-		event_target:geth_consensus = {
-			if = {
-				limit = { exists = event_target:disciples_of_nazara }
-				establish_communications_no_message = event_target:disciples_of_nazara
-				guarantee_country = yes
-			}
-		}
-	}
 }
