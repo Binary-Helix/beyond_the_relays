@@ -1,90 +1,799 @@
+### ASARI REPUBLICS
+generate_asari_rep_second_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Asari 2nd Fleet"
+			set_owner = prev
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:asariSecondFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
 
-create_asari_republics_construction_ship = {
+generate_asari_rep_third_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Asari 3rd Fleet"
+			set_owner = prev
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:asariThirdFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
+
+generate_asari_rep_fourth_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Asari 4th Fleet"
+			set_owner = prev
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:asariFourthFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
+
+generate_asari_rep_sixth_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Asari 6th Fleet"
+			set_owner = prev
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			while = {
+				count = 1
+				create_ship = {
+					name = "Destiny Ascension"
+					random_existing_design = titan
+				}
+			}
+			set_location = {
+				target = event_target:asariThirdFleet
+				distance = 150
+				angle = random
+			}	
+		}
+	}
+}
+
+generate_asari_rep_construction_ships = {
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:asariThirdFleet
+				distance = 150
+				angle = random
+			}	
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:asariFourthFleet
+				distance = 150
+				angle = random
+			}	
+		}
+	}	
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:asariConstructionShip
+				distance = 150
+				angle = random
+			}	
+		}
+	}	
+}
+
+generate_asari_rep_science_ships = {
 	create_fleet = {
 		effect = {
 			set_owner = event_target:asari_republics
 			create_ship = {
 				name = random
-				design = "NAME_Constructor"
-			}
-			set_location = {
-				target = prev
-				distance = 45
-				angle = random
+				random_existing_design = science
 			}
 			set_fleet_stance = evasive
+			set_location = {
+				target = prev
+				distance = 20
+				angle = 40
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:asari_republics
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+			set_fleet_stance = evasive
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 50
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
 		}
 	}
 }
 
-create_asari_republics_science_ship = {
-	event_target:asari_republics = {
-		create_fleet = {
-			set_owner = event_target:salarian_union
-			effect = {
+
+### SALARIAN UNION
+
+generate_salarian_uni_first_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Salarian 1st Fleet"
+			set_owner = prev
+			while = {
+				count = 6
 				create_ship = {
 					name = random
-					random_existing_design = science
+					random_existing_design = corvette
 				}
-				set_location = {
-					target = prev
-					distance = 45
-					angle = random
-				}
-				set_fleet_stance = evasive
 			}
-		}		
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:salarianSecondFleet
+				distance = 75
+				angle = random
+			}	
+		}
 	}
 }
 
-create_salarian_union_construction_ship = {
+generate_salarian_uni_second_fleet = {
 	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Salarian 2nd Fleet"
+			set_owner = prev
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:salarianSecondFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
 
+generate_salarian_uni_third_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Salarian 3rd Fleet"
+			set_owner = prev
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:salarianSecondFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
+
+generate_salarian_uni_construction_ships = {
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:salarianSecondFleet
+				distance = 150
+				angle = random
+			}	
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:salarianSecondFleet
+				distance = 150
+				angle = random
+			}	
+		}
+	}	
+}
+
+generate_salarian_uni_science_ships = {
+	create_fleet = {
 		effect = {
 			set_owner = event_target:salarian_union
 			create_ship = {
 				name = random
-				design = "NAME_Constructor"
+				random_existing_design = science
 			}
+			set_fleet_stance = evasive
 			set_location = {
 				target = prev
-				distance = 45
-				angle = random
+				distance = 20
+				angle = 40
 			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:salarian_union
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+			set_fleet_stance = evasive
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 50
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
 		}
 	}
 }
 
-create_turian_hierarchy_construction_ship = {
+#Turian Hierarchy
+generate_turian_hier_fourth_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Turian 4th Fleet"
+			set_owner = prev
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:turianFourthFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
+
+generate_turian_hier_fifth_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Turian 5th Fleet"
+			set_owner = prev
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:turianFifthFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
+
+generate_turian_hier_sixth_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Turian 6th Fleet"
+			set_owner = prev
+			while = {
+				count = 15
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:turianSixthFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
+
+generate_turian_hier_construction_ships = {
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:turianSixthFleet
+				distance = 150
+				angle = random
+			}	
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:turianFifthFleet
+				distance = 150
+				angle = random
+			}	
+		}
+	}	
+}
+
+generate_turian_hier_science_ships = {
 	create_fleet = {
 		effect = {
 			set_owner = event_target:turian_hierarchy
 			create_ship = {
 				name = random
-				design = "NAME_Constructor"
+				random_existing_design = science
 			}
+			set_fleet_stance = evasive
 			set_location = {
 				target = prev
-				distance = 45
-				angle = random
+				distance = 20
+				angle = 40
 			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:turian_hierarchy
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+			set_fleet_stance = evasive
+			set_location = {
+				target = prev
+				distance = 25
+				angle = 50
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
 		}
 	}
 }
 
-create_systems_alliance_construction_ship = {
-	create_fleet = {
-		effect = {
-			set_owner = event_target:systems_alliance
-			create_ship = {
-				name = random
-				design = "NAME_Constructor"
-			}
-			set_location = {
-				target = prev
-				distance = 45
-				angle = random
-			}
-		}
-	}
-}

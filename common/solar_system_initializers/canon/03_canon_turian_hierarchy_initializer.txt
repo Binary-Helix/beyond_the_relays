@@ -184,8 +184,9 @@ sys_trebia_init = {
 			generate_btr_start_deposits_and_blockers = yes			
 			generate_tur_palaven_capitol_buildings = yes
 			generate_tur_palaven_pops = yes
-			generate_tur_palaven_deposits = yes
 			clear_blockers = yes
+			generate_tur_palaven_deposits = yes
+			generate_turian_hier_science_ships = yes
 			set_name = "Palaven"
 			add_modifier = {
 				modifier = dextro_world
@@ -1238,6 +1239,9 @@ sys_cersea_init = {
 	name = "Cersea"
 	class = sc_k
 	max_instances = 1
+	init_effect = {
+		save_global_event_target_as = turianFifthFleet
+	}
 
 	flags = { inner_council_system meade_cluster_system cersea_system btr_system custom_system }
 
@@ -2093,6 +2097,9 @@ sys_ursantra_init = {
 	name = "Ursantra"
 	class = sc_g
 	max_instances = 1
+	init_effect = {
+		save_global_event_target_as = turianFourthFleet
+	}
 
 	flags = { inner_council_system proditors_scar_system ursantra_system btr_system custom_system }
 
@@ -2631,6 +2638,111 @@ sys_petralia_init = {
 		spawn_megastructure = { 
 			type = "xingyuncluster_meadecluster_primaryrelay" 
 			name = "Xing'Yun 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+
+sys_kasatum_init = {
+    name = "Kasatum"
+    class = sc_b_super
+	max_instances = 1
+	init_effect = {
+		save_global_event_target_as = turianSixthFleet
+	}
+
+	flags = { inner_council_system meade_cluster_system kasatum_system btr_system custom_system }
+
+    planet = {
+		name = "Kasatum"	
+        class = pc_b_super_star
+        orbit_distance = 0
+        size = 25
+		flags = { kasatum_star }
+    }
+
+	planet = {
+		name = "Kalmah"
+		class = pc_molten
+        orbit_distance = 35
+        size = 11
+		flags = { kalmah_planet subclass_world }
+	}
+
+	planet = {
+		name = "Hollo"
+		class = pc_barren
+        orbit_distance = 34
+        size = 16
+		flags = { hollo_planet subclass_world }
+		init_effect = {
+			# add_deposit = d_iridium_1
+			add_deposit = d_rare_crystals_1
+		}
+	}
+
+	planet = {
+		name = "Roija"
+		class = pc_gas_giant
+        orbit_distance = 50
+        size = 36
+		has_ring = yes
+		flags = { roija_planet subclass_world }
+		init_effect = {
+			# add_deposit = d_helium_3_3
+			add_deposit = d_exotic_gases_3
+		}
+	}
+
+	planet = {
+		name = "Vezid"
+		class = pc_frozen
+        orbit_distance = 20
+        size = 13
+		flags = { vezid_planet subclass_world }
+		moon = {
+			name = "Oroga"
+			class = pc_toxic
+			orbit_distance = 20
+            size = 4
+			flags = { oroga_planet subclass_world }
+			init_effect = {
+				# add_deposit = d_platinum_2
+				add_deposit = d_rare_crystals_1
+			}
+		}	
+	}
+	
+	planet = {
+		name = "Svieri"
+		class = pc_iron
+        orbit_distance = 50
+        size = 8
+		flags = { svieri_planet subclass_world }
+		init_effect = {
+			add_deposit = d_minerals_7
+		}
+	}
+
+	planet = {
+		name = "Doroga"
+		class = pc_iron
+        orbit_distance = 30
+        size = 10
+		flags = { doroga_planet subclass_world }
+		init_effect = {
+			# add_deposit = d_palladium_3
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_4
+		}
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "meadecluster_xingyuncluster_primaryrelay" 
+			name = "Meade 1 Relay"
 			orbit_angle = 270 
 			orbit_distance = 500
 		} 
