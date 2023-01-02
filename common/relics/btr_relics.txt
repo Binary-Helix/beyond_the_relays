@@ -1,0 +1,306 @@
+@activation_cost = 3000
+@triumph_duration = 3600
+@triumph_duration_short = 1800
+@triumph_duration_veryshort = 900
+
+#Asari Republics
+btr_r_asari_rep_library_asha = {
+	activation_duration = 2200
+	sound = relic_activation_generic
+	portrait = "GFX_relic_asari_rep_library_asha"
+	resources = {
+		category = relics
+		cost = {
+			unity = 10000
+			energy = 10000
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		army_defense_morale_mult = 0.1
+		army_defense_health_mult = 0.1
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	score = 1000
+	active_effect = {
+		custom_tooltip = asari_rep_library_asha
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = relic_activation_cooldown
+				days = 2200
+			}
+			add_modifier = {
+				modifier = asari_rep_library_asha
+				days = 2200
+			}
+		}
+	}
+	possible = { 
+		custom_tooltip = { 
+			fail_text = "requires_relic_no_cooldown" 
+			NOR = { 
+				has_modifier = relic_activation_cooldown 
+				owner = {
+					is_at_war = yes
+				}	
+			} 
+		} 
+	}
+}
+
+btr_r_asari_rep_temple_athame = {
+	activation_duration = 3600
+	sound = relic_activation_generic
+	portrait = "GFX_relic_asari_rep_temple_athame"
+	resources = {
+		category = relics
+		cost = {
+			unity = 10000
+			energy = 5000
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		planet_jobs_physics_research_produces_mult = 0.05
+		planet_jobs_society_research_produces_mult = 0.05
+		planet_jobs_engineering_research_produces_mult = 0.05
+	}
+
+	score = 1000
+	active_effect = {
+		custom_tooltip = asari_rep_library_asha
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = relic_activation_cooldown
+				days = 3600
+			}
+			add_modifier = {
+				modifier = asari_rep_temple_athame
+				days = 1200
+			}
+		}
+	}
+	possible = { 
+		custom_tooltip = { 
+			fail_text = "requires_relic_no_cooldown" 
+			NOR = { 
+				has_modifier = relic_activation_cooldown 
+				owner = {
+					is_at_war = yes
+				}	
+			} 
+		} 
+	}
+}
+
+#Salarian Union
+# btr_r_salarian_uni_ghost_ship = {
+# 	activation_duration = 3600
+# 	sound = relic_activation_generic
+# 	portrait = "GFX_relic_salarian_uni_ghost_ship"
+# 	resources = {
+# 		category = relics
+# 		cost = {
+# 			unity = 150
+# 			energy = 10000
+# 		}
+# 	}
+
+# 	ai_weight = {
+# 		weight = 100
+# 	}
+
+# 	triggered_country_modifier = {
+# 		potential = {
+# 			always = yes
+# 		}
+# 		country_base_influence_produces_add = 2
+# 		planet_jobs_physics_research_produces_mult = 0.05		
+# 	}
+
+# 	score = 1000
+# 	active_effect = {
+# 		custom_tooltip = salarian_uni_ghost_ship
+# 		custom_tooltip = relic_triumph_cooldown
+# 		hidden_effect = {
+# 			add_modifier = {
+# 				modifier = relic_activation_cooldown
+# 				days = 3600
+# 			}
+# 		}
+# 	}
+# }	
+
+btr_r_salarian_uni_mannovai_artifacts = {
+	activation_duration = 3600
+	sound = relic_activation_generic
+	portrait = "GFX_relic_salarian_mannovai_artifacts"
+	resources = {
+		category = relics
+		cost = {
+			energy = 200
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		country_unity_produces_mult = 0.05
+		army_defense_morale_mult = 0.15
+	}
+
+	score = 1000
+	active_effect = {
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = relic_activation_cooldown
+				days = 3600
+			}
+			# add_modifier = {
+			# 	modifier = btr_r_salarian_uni_mannovai_artifacts
+			# 	days = 2000
+			# }
+		}
+		add_resource = {
+			influence = 100
+		}
+	}
+	possible = { 
+		custom_tooltip = { 
+			fail_text = "requires_relic_no_cooldown" 
+			NOR = { 
+				has_modifier = relic_activation_cooldown 
+				owner = {
+					is_at_war = yes
+				}	
+			} 
+		} 
+	}
+}
+
+#Turian Hierarchy
+btr_r_turian_banner_first_regiment = {
+	activation_duration = 3600
+	sound = relic_activation_generic
+	portrait = "GFX_relic_turian_banner_first_regiment"
+	resources = {
+		category = relics
+		cost = {
+			energy = 200
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		country_war_exhaustion_mult = -0.10
+		army_morale = 0.25
+	}
+
+	score = 1000
+	active_effect = {
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = relic_activation_cooldown
+				days = 3600
+			}
+			add_modifier = {
+				modifier = turian_banner_first_regiment
+				days = 3600
+			}
+		}
+
+	}
+	possible = { 
+		custom_tooltip = { 
+			fail_text = "requires_relic_no_cooldown" 
+			NOR = { 
+				has_modifier = relic_activation_cooldown 
+				owner = {
+					is_at_war = yes
+				}	
+			} 
+		} 
+	}
+}
+
+#Systems Alliance
+btr_r_alliance_prothean_archives = {
+	activation_duration = 3600
+	sound = relic_activation_generic
+	portrait = "GFX_relic_human_prothean_archives"	
+	resources = {
+		category = relics
+		cost = {
+			energy = 2000
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		country_society_research_produces_mult = 0.1
+		country_physics_research_produces_mult = 0.1
+		country_engineering_research_produces_mult = 0.1
+	}
+
+	score = 1000
+	active_effect = {
+		custom_tooltip = relic_triumph_cooldown
+		hidden_effect = {
+			add_modifier = {
+				modifier = relic_activation_cooldown
+				days = 3600
+			}
+			add_modifier = {
+				modifier = alliance_prothean_archives
+				days = 3600
+			}
+		}
+
+	}
+	possible = { 
+		custom_tooltip = { 
+			fail_text = "requires_relic_no_cooldown" 
+			NOR = { 
+				has_modifier = relic_activation_cooldown 
+				owner = {
+					is_at_war = yes
+				}	
+			} 
+		} 
+	}
+}

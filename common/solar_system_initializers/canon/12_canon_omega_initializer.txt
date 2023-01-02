@@ -1,0 +1,776 @@
+#################
+##### OMEGA #####
+#################
+
+##### OMEGA NEBULA #####
+
+sys_sahrabarik_init = {
+	name = "Sahrabarik"
+    class = sc_m
+	flags = { omega_capital_capital_system canon_map sahrabarik_system empire_home_system }
+	
+	init_effect = { 
+		generate_home_system_resources = yes
+        save_global_event_target_as = omegaFirstFleet
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}
+
+    planet = {
+		name = "Sahrabarik"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { sahrabarik_star }
+    }
+
+    planet = {
+        name = "Urdak"
+        class = pc_l_star
+        orbit_distance = 125
+        orbit_angle = 129
+        has_ring = no
+		size = 15
+		init_effect = {
+			add_deposit = d_trade_value_2
+			add_deposit = d_society_4
+		}	
+    }
+
+    planet = {
+        name = "Omega"
+        class = pc_omega
+        orbit_distance = 125
+        orbit_angle = 58
+        has_ring = no
+		size = 12
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { omega_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = omega_homeworld_spawned
+			set_planet_flag = omega_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = omega_empire 
+						} 
+					} 
+				}
+				create_country = {
+					name = "Omega"
+					ship_prefix = ""
+					type = default
+					origin = omega_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = omega_merc_enforcers 
+						civic = omega_common_cause 
+					}
+					authority = auth_corporate
+					name_list = "btr_asari"
+					ethos = { 
+						ethic = "ethic_authoritarian" 
+						ethic = "ethic_fanatic_materialist" 
+					}
+					species = event_target:asariSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="omega.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_40.dds"
+						}
+                        colors={
+                            "eecolor2004"
+                            "eecolor1"
+                            "null"
+                            "null"
+                        }
+					}
+					effect = {
+						set_graphical_culture = arthropoid_01
+						set_country_flag = omega_empire
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = omega_empire
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = omega_empire 
+				}
+				save_global_event_target_as = omega_empire
+				species = { 
+					save_global_event_target_as = asariSpecies 
+				}
+			}
+			set_owner = event_target:omega_empire
+			generate_btr_start_deposits_and_blockers = yes
+			generate_omega_building_and_districts = yes	
+			generate_omega_pops = yes
+			clear_blockers = yes
+			generate_omega_deposits = yes
+			set_name = "Omega"
+		}
+	}			
+
+    planet = {
+        name = "Imorkan"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 136
+        has_ring = no
+		size = 33
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+    planet = {
+        name = "Bindur"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 279
+        has_ring = no
+		size = 12
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+		}	
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "omega4relay_galacticcore_primaryrelay" 
+			name = "Omega 4 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+
+sys_venoss_init = {
+    name = "Vinoss"
+    class = sc_b_super
+	max_instances = 1
+
+	flags = { vinoss_system omega_system canon_map }
+
+    planet = {
+		name = "Vinoss"
+        class = pc_b_super_star
+        orbit_distance = 0
+        size = 20
+		flags = { venoss_star }
+    }
+
+	planet = {
+		name = "Shelba"
+		class = pc_mephitic
+		orbit_distance = 250
+		size = 21
+		has_ring = yes
+		entity = "mephitic_tropical_planet_01_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = jungle_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = natural_beauty 
+				days = -1
+			}
+		}
+	}
+}
+
+
+sys_agnes_init = {
+	name = "Agnes"
+	class = sc_k
+	max_instances = 1
+
+	flags = { agnes_system omega_system canon_map }
+
+    planet = {
+	    name = "Agnes"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 20
+    }
+
+	
+    planet = {
+        name = "Plipila"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 266
+        has_ring = no
+		size = 7
+		init_effect = {
+			add_deposit = d_minerals_4
+		}	
+    }
+
+    planet = {
+        name = "Tyvor"
+        class = pc_dextro_continental
+        orbit_distance = 125
+        orbit_angle = 318
+        has_ring = no
+		size = 20
+		entity = "temperate_planet_04_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = temperate_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Trivio"
+        class = pc_molten
+        orbit_distance = 125
+        orbit_angle = 177
+        has_ring = no
+		size = 14
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}	
+    }
+
+    planet = {
+        name = "Tanania"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 93
+        has_ring = yes
+		size = 28
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_11_secondaryrelay" 
+			name = "Terminus Secondary - Sector 11 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+
+sys_zugarramurdi_init = {
+    name = "Zugarramurdi"
+    class = sc_g
+	flags = { zugarramurdi_system omega_system canon_map }
+
+    planet = {
+		name = "Zugarramurdi"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 29
+    }
+
+    planet = {
+        name = "Mari"
+        class = pc_barren_cold
+        orbit_distance = 100
+        orbit_angle = 201
+        size = 13
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Urtzi"
+        class = pc_barren_cold
+        orbit_distance = 100
+        orbit_angle = 59
+        size = 16
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Jentilak"
+        class = pc_frozen
+        orbit_distance = 100
+        orbit_angle = 10
+        size = 12
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Basajaun"
+        class = pc_frozen
+        orbit_distance = 100
+        orbit_angle = 100
+        size = 18
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Iratxoak"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 117
+        size = 19
+        has_ring = no
+
+    }
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "yomisabyssal_omeganebula_primaryrelay" 
+			name = "Abyssal 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_mecca_init = {
+    name = "Mecca"
+    class = sc_m
+	flags = { mecca_system omega_system canon_map }
+
+    planet = {
+		name = "Mecca"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 40
+    }
+
+    planet = {
+        name = "Medina"
+        class = pc_mephitic
+        orbit_distance = 150
+        orbit_angle = 227
+        size = 14
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Kasbah"
+        class = pc_barren
+        orbit_distance = 150
+        orbit_angle = 70
+        size = 9
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Mosque"
+        class = pc_ice_giant
+        orbit_distance = 150
+        orbit_angle = 153
+        size = 28
+        has_ring = no
+
+    }
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "yomisabyssal_rosettanebula_primaryrelay" 
+			name = "Abyssal 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_wend_init = {
+    name = "Wend"
+    class = sc_k
+	flags = { wend_system omega_system canon_map }
+
+    planet = {
+		name = "Wend"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+    }
+
+    planet = {
+        name = "Svetovit"
+        class = pc_iron
+        orbit_distance = 80
+        orbit_angle = 233
+        size = 8
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Trigolav"
+        class = pc_iron
+        orbit_distance = 80
+        orbit_angle = 339
+        size = 13
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Morana"
+        class = pc_barren
+        orbit_distance = 80
+        orbit_angle = 356
+        size = 14
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Radegast"
+        class = pc_frozen
+        orbit_distance = 80
+        orbit_angle = 83
+        size = 150
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Zhiva"
+        class = pc_ocean
+        orbit_distance = 80
+        orbit_angle = 96
+        size = 22
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Rugiaevit"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 99
+        size = 35
+        has_ring = no
+
+
+        moon = {
+            name = "Devana"
+            class = pc_molten
+            orbit_distance = 20
+            orbit_angle = 306
+            size = 6
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Niya"
+            class = pc_barren_cold
+            orbit_distance = 5
+            orbit_angle = 121
+            size = 7
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Porevit"
+            class = pc_molten
+            orbit_distance = 5
+            orbit_angle = 31
+            size = 4
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Porenut"
+            class = pc_barren
+            orbit_distance = 5
+            orbit_angle = 265
+            size = 6
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Podaga"
+            class = pc_ammonia
+            orbit_distance = 5
+            orbit_angle = 267
+            size = 7
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Chernobog"
+            class = pc_frozen
+            orbit_distance = 5
+            orbit_angle = 328
+            size = 5
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Chernoglav"
+            class = pc_barren_cold
+            orbit_distance = 5
+            orbit_angle = 264
+            size = 50
+            has_ring = no
+
+        }
+    }
+}
+
+
+sys_yellow_init = {
+    name = "Yellow"
+    class = sc_g_super
+	flags = { yellow_system omega_system canon_map }
+
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 175
+    }
+
+    planet = {
+		name = "Yellow"
+        class = pc_g_super_star
+        orbit_distance = 0
+        size = 40
+    }
+
+    planet = {
+        name = "Gul"
+        class = pc_g_star
+        orbit_distance = 60
+        orbit_angle = 340
+        size = 23
+        has_ring = no
+
+
+        moon = {
+            name = "Odette"
+            class = pc_barren
+            orbit_distance = 15
+            orbit_angle = 180
+            size = 17
+            has_ring = no
+
+        }
+    }
+
+    planet = {
+        name = "Zolty"
+        class = pc_g_star
+        orbit_distance = 60
+        orbit_angle = 192
+        size = 27
+        has_ring = no
+
+
+        moon = {
+            name = "Camilla"
+            class = pc_molten
+            orbit_distance = 15
+            orbit_angle = 85
+            size = 14
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Raoul"
+            class = pc_hothouse
+            orbit_distance = 15
+            orbit_angle = 213
+            size = 15
+            has_ring = no
+
+        }
+    }
+
+    planet = {
+        name = "Braith"
+        class = pc_iron
+        orbit_distance = 60
+        orbit_angle = 267
+        size = 10
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Cassilda"
+        class = pc_tundra
+        orbit_distance = 60
+        orbit_angle = 171
+        size = 20
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Pelagie"
+        class = pc_ice_giant
+        orbit_distance = 60
+        orbit_angle = 110
+        size = 28
+        has_ring = no
+
+
+        moon = {
+            name = "Sylvia"
+            class = pc_barren
+            orbit_distance = 15
+            orbit_angle = 214
+            size = 4
+            has_ring = no
+
+        }
+
+        moon = {
+            name = "Vance"
+            class = pc_methane
+            orbit_distance = 15
+            orbit_angle = 151
+            size = 6
+            has_ring = no
+
+        }
+    }
+
+    planet = {
+        name = "Laffatt"
+        class = pc_frozen
+        orbit_distance = 60
+        orbit_angle = 83
+        size = 18
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Boris"
+        class = pc_iron
+        orbit_distance = 60
+        orbit_angle = 132
+        size = 10
+        has_ring = no
+
+    }
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "qjamafnebula_omeganebula_primaryrelay" 
+			name = "Qjamaf 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+
+sys_tengri_init = {
+    name = "Tengri"
+    class = sc_f
+	flags = { tengri_system omega_system canon_map }
+
+
+    planet = {
+		name = "Tengri"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 30
+    }
+
+    planet = {
+        name = "Kayra"
+        class = pc_molten
+        orbit_distance = 70
+        orbit_angle = 89
+        size = 12
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Umay"
+        class = pc_barren
+        orbit_distance = 70
+        orbit_angle = 137
+        size = 15
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Boz"
+        class = pc_tropical
+        orbit_distance = 70
+        orbit_angle = 113
+        size = 16
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Mergen"
+        class = pc_frozen
+        orbit_distance = 70
+        orbit_angle = 188
+        size = 10
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Od"
+        class = pc_gas_giant
+        orbit_distance = 70
+        orbit_angle = 109
+        size = 36
+        has_ring = no
+
+    }
+
+    planet = {
+        name = "Erlik"
+        class = pc_barren
+        orbit_distance = 70
+        orbit_angle = 134
+        size = 18
+        has_ring = no
+
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_11_secondaryrelay" 
+			name = "Terminus Secondary - Sector 11 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}

@@ -1,0 +1,180 @@
+###################################
+##### WRILL MINING CONSORTIUM #####
+###################################
+
+sys_malgus_init = {
+    name = "Malgus"
+    class = "sc_k"
+	flags = { attican_traverse_system eagle_nebula_system malgus_system btr_system custom_system empire_home_system }
+	init_effect = { 
+		random_country = { 
+			limit = { has_country_flag = wrill_mining_consortium } 
+			save_global_event_target_as = wrill_mining_consortium
+		}	
+	generate_home_system_resources = yes
+	}
+
+	max_instances = 1
+	usage = custom_empire
+
+    planet = {
+		name = "Malgus"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		flags = { malgus_star }	
+		init_effect = {
+			prevent_anomaly = yes						
+			clear_deposits = yes
+
+			create_ambient_object = {
+				type = "nebula_3"
+				entity_offset_height = -5
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}	
+    }
+
+    planet = {
+        name = "Uzin"
+        class = pc_hot_giant
+        orbit_distance = 150
+        orbit_angle = 186
+        has_ring = no
+		size = 37
+		flags = { uzin_malgus_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			# add_deposit = d_helium_3_1
+			add_deposit = d_exotic_gases_1
+		}		
+		moon = {
+			name = "Uzin a"
+			count = 1
+			class = pc_molten
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 7
+		}
+		
+		moon = {
+			name = "Uzin b"
+			count = 1
+			class = pc_molten
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 6
+		}	
+	}
+	
+    planet = {
+        name = "Wrill"
+        class = pc_methane
+        orbit_distance = 150
+        orbit_angle = 148
+		size = 15
+        has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "methane_desert_03_entity"
+		flags = { wrill_planet subclass_world }
+		# init_effect = {
+		# 	add_modifier = {
+		# 		modifier = dune_world
+		# 		days = -1
+		# 	}
+		# 	random_country = {
+		# 		limit = { has_country_flag = wrill_mining_consortium }
+		# 		save_global_event_target_as = wrill_mining_consortium
+		# 	}
+		# 	prevent_anomaly = yes
+		# 	set_global_flag = wrill_homeworld_spawned
+
+		# 	if = {
+		# 		limit = { NOT = { any_country = { has_country_flag = wrill_mining_consortium } } }
+		# 		create_country = {
+		# 			name = "Wrill Mining Consortium"
+		# 			ship_prefix = "PRESCRIPTED_ship_prefix_wrill_mining_consortium"
+		# 			type = independent_colony
+		# 			origin = "origin_wrill_mining_consortium"
+		# 			ignore_initial_colony_error = yes
+		# 			civics = { civic = "civic_private_military_companies" civic = "civic_criminal_heritage" }
+		# 			authority = auth_corporate
+		# 			name_list = "btr_krogan"
+		# 			ethos = { ethic = "ethic_xenophobe" ethic = "ethic_materialist" ethic = "ethic_militarist" }
+		# 			species = event_target:kroganSpecies
+		# 			flag = {
+		# 				icon={
+		# 					category="domination"
+		# 					file="domination_24.dds"
+		# 				}
+		# 				background={
+		# 					category="backgrounds"
+		# 					file="circle.dds"
+		# 				}
+		# 				colors={
+		# 					"red"
+		# 					"light_orange"
+		# 					"null"
+		# 					"null"
+		# 				}
+		# 			}
+		# 			effect = {
+		# 				set_graphical_culture = industrial_01
+		# 				set_country_flag = independent_colony
+		# 				set_country_flag = wrill_mining_consortium
+		# 				set_country_flag = init_spawned
+		# 				set_country_flag = custom_start_screen
+		# 				set_country_flag = canon_map
+		# 				save_global_event_target_as = wrill_mining_consortium
+		# 			}
+		# 		}
+		# 	}	
+		# 	set_capital = yes
+		# 	random_country = {
+		# 		limit = { has_country_flag = wrill_mining_consortium }
+		# 		save_global_event_target_as = wrill_mining_consortium
+		# 		species = { save_global_event_target_as = kroganSpecies }
+		# 	}
+		# 	set_owner = event_target:wrill_mining_consortium
+		# 	generate_btr_start_deposits_and_blockers = yes
+		# 	generate_wrill_pops = yes
+		# 	add_deposit = d_rich_mineral_deposits
+
+		# 	set_name = "Wrill"
+    	# }
+	}	
+
+    planet = {
+        name = "Flett"  #NEEDS BLOOD PACK COLONY
+        class = pc_mephitic
+        orbit_distance = 150
+        orbit_angle = 184
+        has_ring = no
+		size = 14
+		flags = { flett_planet subclass_world }
+		entity = "mephitic_planet_04_entity"
+		init_effect = {
+			prevent_anomaly = yes
+			# add_deposit = d_rich_palladium_deposits
+			add_deposit = d_rare_crystals_3
+		}
+    }	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "attican_traverse_sector_3_secondaryrelay" 
+			name = "Traverse Secondary - Sector 3 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}

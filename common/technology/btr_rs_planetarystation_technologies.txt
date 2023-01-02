@@ -1,0 +1,209 @@
+
+
+#Helium-3
+tech_mine_helium = {
+	cost = 0
+	area = engineering
+	start_tech = yes
+	tier = 0
+	category = { materials }
+	prerequisites = { "tech_basic_industry" }
+}
+
+#
+tech_planetary_station_1 = {
+	cost = 0
+	area = engineering
+	start_tech = yes
+	tier = 0
+	category = { industry }
+	prerequisites = { "tech_basic_industry" }
+
+}
+
+tech_planetary_station_2 = {
+	cost = @tier1cost1
+	area = engineering
+	tier = 1
+	category = { industry }
+	prerequisites = { "tech_planetary_station_1" }
+	weight = @tier1weight1
+
+	weight_modifier = {
+		modifier = {
+			factor = value:tech_weight_likelihood
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+
+tech_extreme_mining_methods = {
+	cost = @tier1cost3
+	area = engineering
+	tier = 1
+	category = { industry }
+	prerequisites = { "tech_planetary_station_2" }
+	weight = @tier1weight3
+
+	weight_modifier = {
+		modifier = {
+			factor = value:tech_weight_likelihood
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+
+tech_planetary_station_3 = {
+	cost = @tier2cost1
+	area = engineering
+	tier = 2
+	category = { industry }
+	prerequisites = { "tech_planetary_station_2" }
+	weight = @tier2weight1
+
+	weight_modifier = {
+		modifier = {
+			factor = value:tech_weight_likelihood
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+
+tech_planetary_station_4 = {
+	cost = @tier3cost1
+	area = engineering
+	tier = 3
+	category = { industry }
+	prerequisites = { "tech_housing_2" "tech_planetary_station_3" }
+	weight = @tier2weight1
+
+	weight_modifier = {
+		modifier = {
+			factor = value:tech_weight_likelihood
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+
+#Station Capital-Complex
+tech_colonial_station_protocol = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { statecraft }
+	prerequisites = { "tech_colonial_centralization" }
+	weight = @tier3weight2
+
+	gateway = capital	# unlocks Station Capital-Complex
+
+	weight_modifier = {
+		factor = 4
+		modifier = {
+			factor = value:tech_weight_likelihood
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+
+#Planetary Reactor
+tech_planetary_reactor = {
+	cost = @tier2cost3
+	area = physics
+	tier = 2
+	category = { particles }
+	prerequisites = { "tech_planetary_station_2" "tech_colonial_centralization"}
+	weight = @tier2weight3
+
+	weight_modifier = {
+		modifier = {
+			factor = 2
+			has_tradition = tr_prosperity_adopt
+		}
+		modifier = {
+			factor = value:tech_weight_likelihood
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_particles"
+			}
+		}
+		modifier = {
+			factor = 1.5
+			is_specialist_subject_type = { TYPE = prospectorium }
+		}
+	}
+
+	ai_weight = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_particles"
+			}
+		}
+	}
+}

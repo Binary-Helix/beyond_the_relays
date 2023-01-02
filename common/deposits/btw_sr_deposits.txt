@@ -1,0 +1,80 @@
+## Possible Deposit Variables ##
+# resources, resource and amount
+# potential trigger (planet scope)
+# blocked_modifier - applied to planet only when deposit blocker has been cleared
+# constant_modifier - applied to planet always
+# blocker = <key/any/none> - default any
+# station = station class in orbit to gather
+
+#######################################
+######### STRATEGIC RESOURCES #########
+#######################################
+
+##########################
+##### RARE RESOURCES #####
+##########################
+
+rs_d_dark_matter_deposit_1 = {
+	resources = { 
+		category = orbital_mining_deposits
+		produces = {
+			sr_dark_matter = 1
+		}
+	}
+	station = shipclass_research_station 
+	is_for_colonizable = no
+	
+	drop_weight = {
+		weight = 0
+		modifier = {
+			weight = 10
+			OR = {
+				is_planet_class = pc_collapsar
+				is_planet_class = pc_microquasar_1
+				is_planet_class = pc_microquasar_2
+			}
+		}
+		modifier = {
+			factor = 0.5
+			is_inside_nebula = no
+		}		
+	}
+}
+
+rs_d_dark_matter_deposit_2 = {
+	resources = { 
+		category = orbital_research_deposits
+		produces = {
+			sr_dark_matter = 2
+		}
+	}
+	station = shipclass_research_station 
+	is_for_colonizable = no
+	
+	drop_weight = {
+		weight = 0
+		modifier = {
+			weight = 1
+			OR = {
+				is_planet_class = pc_collapsar
+				is_planet_class = pc_microquasar_1
+				is_planet_class = pc_microquasar_2
+			}
+		}
+	}
+}
+
+rs_d_dark_matter_deposit_3 = {
+	resources = { 
+		category = orbital_research_deposits
+		produces = {
+			sr_dark_matter = 3
+		}
+	}
+	station = shipclass_research_station 
+	is_for_colonizable = no
+	
+	drop_weight = {
+		weight = 0	
+	}
+}

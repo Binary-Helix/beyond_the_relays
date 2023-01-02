@@ -1,0 +1,1896 @@
+@high = 16
+@med = 8
+@low = 4
+
+@high_rare = 0.5
+@mid_rare = 0.25
+@low_rare = 0.1
+
+@planet_type_bonus = 1.5
+
+### PLANET SUBCLASS FEATURES ###
+
+#Dune - The Great Sea
+d_great_sea = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_max_districts_add = 3
+	}
+
+	potential = {
+		has_planet_flag = dune_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}
+}
+
+#Dust - The Splintered Lands
+d_splintered_lands = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_generator_max = 4
+		district_farming_max = -4
+	}
+
+	potential = {
+		has_planet_flag = dust_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}
+}
+
+#Badlands - Bountiful Valley
+d_bountiful_valley = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_max_districts_add = 2
+		pop_habitability = 0.05
+	}
+
+	potential = {
+		has_planet_flag = badlands_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}
+}
+
+#Aquifer - Subterranean Ocean
+d_subterranean_ocean = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_farming_max = 2
+		planet_jobs_food_produces_mult = 0.10
+	}
+
+	potential = {
+		has_planet_flag = aquifer_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}			
+}
+
+#Mesa - Stellarite Archway
+d_stellarite_archway = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_max_districts_add = 1
+		planet_immigration_pull_mult = 0.10
+		planet_amenities_add = 5
+	}
+
+	potential = {
+		has_planet_flag = mesa_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}			
+}
+
+#Cenote - Eezo Sinkhole
+d_eezo_sinkhole = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+
+	planet_modifier = {
+		trade_value_mult = 0.05
+		#eezo production = +2
+	}
+
+	potential = {
+		has_planet_flag = cenote_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}
+}
+
+#Outback - Fairwinds Basin
+d_fairwinds_basin = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+	
+	planet_modifier = {
+		district_generator_max = 2
+		planet_jobs_energy_produces_mult = 0.10
+	}
+
+	potential = {
+		has_planet_flag = outback_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}	
+}
+
+#Oasis - The Green Ring
+d_green_ring = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+	
+	planet_modifier = {
+		district_farming_max = 2
+	}
+
+	potential = {
+		has_planet_flag = oasis_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}	
+}
+
+#Steppe - Great Mystery Tree
+d_great_mystery_tree = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_jobs_society_research_produces_mult = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 1
+		}
+	}
+
+	potential = {
+		has_planet_flag = steppe_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}	
+}
+
+#Veld - Arborary Oasis
+d_arborary_oasis = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		district_farming_max = 4
+		pop_citizen_happiness = 0.05
+	}
+
+	potential = {
+		has_planet_flag = veld_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}
+}
+
+#Mediterrranean - Cooperative Weather
+d_cooperative_weather = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+
+	planet_modifier = {
+		district_farming_max = 3
+		planet_farmers_produces_mult = 0.15
+		planet_immigration_pull_mult = 0.10
+		pop_citizen_happiness = 0.05
+	}
+
+	potential = {
+		has_planet_flag = medit_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}
+}
+
+#Retinal - Purple Heaven Archipelago
+d_purple_heaven_arch = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+
+	planet_modifier = {
+		district_farming_max = 2
+		planet_amenities_mult = 0.05
+		pop_citizen_happiness = 0.05
+	}
+
+	potential = {
+		has_planet_flag = retinal_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_dry = yes
+		}
+	}
+}
+
+#Atoll - Majestic Reef
+d_majestic_reef = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+	
+	planet_modifier = {
+		planet_jobs_society_research_produces_mult = 0.20
+		planet_amenities_add = 5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 2
+		}
+	}
+
+	potential = {
+		has_planet_flag = atoll_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Coastal - Grand Bay
+d_grand_bay = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+	
+	planet_modifier = {
+		planet_building_build_speed_mult = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_merchant_add = 2
+		}
+	}
+
+	potential = {
+		has_planet_flag = coastal_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Jungle - Bellowing Rainforest
+d_bellowing_rainforest = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_farming_max = 2
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_farmer_add = 4
+		}
+	}
+
+	potential = {
+		has_planet_flag = jungle_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Bioluminescent - Glowing Jungle
+d_glowing_jungle = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+		planet_amenities_add = 10
+		pop_citizen_happiness = 0.05
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_culture_worker_add = 2
+		}
+	}
+
+	potential = {
+		has_planet_flag = biolum_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Marsh - Mineral Rich Delta
+d_mineral_rich_delta = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		district_mining_max = 2
+		planet_miners_minerals_produces_mult = 0.1
+		planet_districts_minerals_cost_mult = 0.2
+		planet_districts_minerals_upkeep_mult = 0.05
+	}
+
+	potential = {
+		has_planet_flag = marsh_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Mangrove - Heart of the Grove
+d_heart_of_grove = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.1
+		planet_amenities_add = 5
+	}
+
+	potential = {
+		has_planet_flag = mangrove_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Bog - The Endless Mud
+d_endless_mud = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_mining_max = -3
+		planet_miners_produces_mult = -0.05
+		district_farming_max = 3
+		planet_farmers_produces_mult = 0.05
+		planet_buildings_cost_mult = 0.1
+		planet_districts_upkeep_mult = 0.05
+	}
+
+	potential = {
+		has_planet_flag = bog_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Lake - Water Web
+d_water_web = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+
+	planet_modifier = {
+		planet_max_districts_add = -3
+		planet_jobs_food_produces_mult = 0.5
+		planet_jobs_energy_produces_mult = 0.25
+	}
+
+	potential = {
+		has_planet_flag = lake_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}	
+}
+
+#Prairie - Polarizing Seasons
+d_polarizing_seasons = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_farmers_produces_mult = 0.05
+		trade_value_mult = 0.05
+		pop_citizen_happiness = 0.05
+	}
+
+	potential = {
+		has_planet_flag = prairie_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}		
+}
+
+#Temperate - Colorful Seasons
+d_colorful_seasons = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_immigration_pull_mult = 0.1
+		planet_farmers_produces_mult = 0.05
+		pop_citizen_happiness = 0.05
+	}
+
+	potential = {
+		has_planet_flag = temperate_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}	
+}
+
+#Forest - Great Hunting Grounds
+d_great_hunting_grounds = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		trade_value_mult = 0.05
+		planet_max_districts_add = -1
+		pop_citizen_happiness = 0.05
+	}
+
+	potential = {
+		has_planet_flag = forest_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}	
+}
+
+#Supercontinent - Dead Centre
+d_dead_centre = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	potential = {
+		has_planet_flag = supercon_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Hot Ocean - Hot Currents
+d_hot_currents = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		district_generator_max = 2
+		planet_jobs_energy_produces_mult = 0.15
+		planet_districts_energy_cost_mult = 0.05
+	}
+
+	potential = {
+		has_planet_flag = hotocean_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Cold Ocean - Standing Waters
+d_standing_waters = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_buildings_cost_mult = -0.05
+		planet_districts_cost_mult = -0.05
+	}
+
+	potential = {
+		has_planet_flag = coldocean_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Storm - The Eye
+d_storm_eye = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		district_generator_max = 4
+		planet_jobs_energy_produces_mult = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 4
+		}
+	}
+
+	potential = {
+		has_planet_flag = storm_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Boreal - Megafauna
+d_boreal_megafauna = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_jobs_society_research_produces_mult = 0.05
+	}
+
+	potential = {
+		has_planet_flag = boreal_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}
+}
+
+#Highland - Northern Highlands
+d_northern_highlands = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_farming_max = -2
+		district_mining_max = 3
+		planet_miners_produces_mult = 0.05
+	}
+
+	potential = {
+		has_planet_flag = highland_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}
+}
+
+#Cascadian - Sights to Behold
+d_sights_to_behold = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_amenities_add = 15
+		planet_immigration_pull_mult = 0.05
+		pop_citizen_happiness = 0.05
+	}
+
+	potential = {
+		has_planet_flag = cascadian_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}
+}
+
+#Crag - Bleeding Volcano
+d_bleeding_volcano = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+
+	planet_modifier = {
+		planet_max_districts_add = 1
+		planet_jobs_energy_produces_mult = 0.1
+	}
+
+	potential = {
+		has_planet_flag = crag_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}
+}
+
+#Basalt - Hidden Treasures
+d_hidden_treasures = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+
+	planet_modifier = {
+		planet_jobs_minerals_produces_mult = 0.15
+	}
+
+	potential = {
+		has_planet_flag = basalt_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}
+}
+
+#Lichen - Lichen Trees
+d_lichen_trees = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare	
+
+	planet_modifier = {
+		planet_jobs_food_produces_mult = 0.1
+		planet_max_districts_add = -1
+	}
+
+	potential = {
+		has_planet_flag = lichen_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}
+}
+
+#Mire - Bottomless Mud Lakes
+d_bottomless_mud_lakes = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	planet_modifier = {
+		planet_max_districts_add = -1
+		pop_amenities_usage_add = -5
+	}
+
+	potential = {
+		has_planet_flag = mire_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}
+}
+
+#Fungal - Holy Realm
+d_holy_realm = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		pop_habitability = 0.05
+		planet_jobs_food_produces_mult = 0.05
+		planet_housing_add = 5
+	}
+
+	potential = {
+		has_planet_flag = fungal_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}
+}
+
+#Snow - Great Blue Spot 
+d_great_blue_spot = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+		pop_habitability = -0.05
+		planet_jobs_energy_produces_mult = 0.15
+	}
+
+	potential = {
+		has_planet_flag = snow_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}	
+}
+
+#Glacial - Diamond Cliff
+d_diamond_cliff = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_amenities_add = 15
+		planet_jobs_energy_produces_mult = 0.10
+	}
+
+	potential = {
+		has_planet_flag = glacial_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}	
+}
+
+#Antarctic - Mammoth Cave
+d_mammoth_cave = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_max_districts_add = -2
+		pop_habitability = 0.1
+		planet_amenities_add = 10
+	}
+
+	potential = {
+		has_planet_flag = antar_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}	
+}
+
+#Cryovolcanic-Volcanic - Empyrean Lakes
+d_empyrean_lakes = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_farming_max = 4
+		planet_jobs_food_produces_mult = 0.1
+	}
+
+	potential = {
+		has_planet_flag = cryovolcanic_world
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_cold = yes
+		}
+	}	
+}
+
+##### PLANET CLASS FEATURES #####
+
+#Swamp - Hydric Soil
+d_hydric_soil = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_building_build_speed_mult = 0.2
+		planet_buildings_cost_mult = 0.2
+		planet_orbital_bombardment_damage = -0.2
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_swamp
+			is_planet_class = pc_dextro_swamp
+			is_planet_class = pc_dextro_highgrav_swamp
+			is_planet_class = pc_highgrav_swamp
+		}
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Swamp - Organic Islands
+d_organic_islands = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_housing_add = 5
+		planet_max_buildings_add = 1
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_swamp
+			is_planet_class = pc_dextro_swamp
+			is_planet_class = pc_dextro_highgrav_swamp
+			is_planet_class = pc_highgrav_swamp
+		}
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Swamp - Disease Factory
+d_disease_factory = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		pop_growth_speed_reduction = -0.1
+		planet_jobs_society_research_produces_mult = 0.25
+		pop_happiness = -0.05
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_swamp
+			is_planet_class = pc_dextro_swamp
+			is_planet_class = pc_dextro_highgrav_swamp
+			is_planet_class = pc_highgrav_swamp
+		}
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Swamp - Rolling Mists
+d_rolling_mists = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_amenities_add = -5
+		pop_happiness = 0.05
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_swamp
+			is_planet_class = pc_dextro_swamp
+			is_planet_class = pc_dextro_highgrav_swamp
+			is_planet_class = pc_highgrav_swamp
+		}
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Swamp - Creeping Tendrils
+d_creeping_tendrils = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_structures_upkeep_mult = 0.05
+		planet_jobs_food_produces_mult = 0.1
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_swamp
+			is_planet_class = pc_dextro_swamp
+			is_planet_class = pc_dextro_highgrav_swamp
+			is_planet_class = pc_highgrav_swamp
+		}
+	}
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Ammonia - The Blue Zone
+d_blue_zone = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_jobs_society_research_produces_mult = 0.10
+		planet_jobs_physics_research_produces_mult = 0.05
+		
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_ammonia
+			is_planet_class = pc_highgrav_ammonia
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Chlorine - Thunderless
+d_thunderless = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_jobs_energy_produces_mult = -0.15
+		planet_jobs_food_produces_mult = 0.05
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_chlorine
+			is_planet_class = pc_highgrav_chlorine
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Methane - Purple Haze
+d_purple_haze = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_immigration_pull_mult = 0.15
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			pop_citizen_happiness = 0.05
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_methane
+			is_planet_class = pc_highgrav_methane
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Mephitic - Deadly Clouds
+d_deadly_clouds = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_immigration_pull_mult = -0.1
+		pop_growth_speed_reduction = 0.05
+		planet_jobs_energy_produces_mult = 0.4
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_mephitic
+			is_planet_class = pc_highgrav_mephitic
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Primal
+d_shifting_valley = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_jobs_society_research_produces_mult = 0.25
+		planet_jobs_physics_research_produces_mult = 0.25
+		planet_jobs_engineering_research_produces_mult = 0.25
+		planet_districts_upkeep_mult = 0.15
+		planet_structures_upkeep_mult = 0.15
+		planet_amenities_add = 10
+		planet_jobs_energy_produces_mult = 0.1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			pop_citizen_happiness = 0.05
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_primal
+			is_planet_class = pc_highgrav_primal
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Savannah = Acidic Sinkhole
+d_acidic_sinkhole = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_mining_max = 3
+		planet_jobs_consumer_goods_upkeep_mult = -0.10
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station
+			}
+			OR = {
+				has_planet_flag = steppe_world
+				has_planet_flag = veld_world
+				has_planet_flag = medit_world
+				has_planet_flag = retinal_world			
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Swamp - Impure Waters
+d_toxic_waters = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_farming_max = -2
+		planet_farmers_produces_mult = -0.1
+		planet_pops_consumer_goods_upkeep_mult = 0.15
+		planet_jobs_physics_research_produces_mult = 0.1
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station
+			}
+			OR = {
+				has_planet_flag = bog_world
+				has_planet_flag = marsh_world
+				has_planet_flag = mangrove_world
+				has_planet_flag = lake_world			
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Ocean - Caustic Vents
+d_caustic_vents = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_jobs_energy_produces_mult = 0.2
+		planet_jobs_society_research_produces_mult = 0.1
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station	
+			}
+			OR = {
+				has_planet_flag = hotocean_world
+				has_planet_flag = coldocean_world
+				has_planet_flag = ocean_world
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Continental - Retinal Flora
+d_retinal_flora = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_jobs_society_research_produces_mult = 0.4
+		pop_amenities_usage_add = -0.5
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station
+			}
+			OR = {
+				has_planet_flag = temperate_world
+				has_planet_flag = prairie_world
+				has_planet_flag = forest_world
+				has_planet_flag = supercon_world
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Tropical - Green Hell
+d_green_hell = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		pop_growth_speed_reduction = 0.05
+		pop_citizen_happiness = -0.1
+		planet_jobs_society_research_produces_mult = 0.5
+		planet_orbital_bombardment_damage = -0.2
+		army_defense_damage_mult = 0.8
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station
+			}
+			OR = {
+				has_planet_flag = atoll_world
+				has_planet_flag = coastal_world
+				has_planet_flag = jungle_world
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Arid - Death's Plateau
+d_deaths_plateau = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_immigration_pull_mult = -0.05
+		planet_max_districts_add = -1
+		planet_crime_mult = -0.8
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station
+			}
+			OR = {
+				has_planet_flag = mesa_world
+				has_planet_flag = cenote_world
+				has_planet_flag = outback_world
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Desert - Dune-less Sands
+d_duneless_sands = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_immigration_pull_mult = 0.2
+		planet_max_districts_add = 2
+		planet_jobs_energy_produces_mult =  0.15
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station
+			}
+			OR = {
+				has_planet_flag = dust_world
+				has_planet_flag = badlands_world
+				has_planet_flag = aquifer_world
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Tundra - Fuming Hot Springs
+d_fuming_hot_springs = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_generator_max = 2
+		pop_citizen_happiness = 0.05
+		planet_immigration_pull_mult = 0.05
+		pop_environment_tolerance = 0.05
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station
+			}
+			OR = {
+				has_planet_flag = lichen_world
+				has_planet_flag = fungal_world
+				has_planet_flag = mire_world
+				has_planet_flag = basalt_world
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Alpine - Desolate Slopes
+d_desolate_slopes = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_immigration_pull_mult = 0.1
+		pop_amenities_usage_mult = 0.05
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station
+			}
+			OR = {
+				has_planet_flag = boreal_world
+				has_planet_flag = cascadian_world
+				has_planet_flag = highland_world
+				has_planet_flag = crag_world
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Toxic Arctic - Venting Lake
+d_venting_lake = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		district_generator_max = 3
+		pop_environment_tolerance = 0.1
+		planet_immigration_pull_mult = 0.1
+	}
+
+	potential = {
+		AND = {
+			OR = {
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia	
+				is_planet_class = pc_ammonia_station	
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine	
+				is_planet_class = pc_chlorine_station
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane	
+				is_planet_class = pc_methane_station
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic	
+				is_planet_class = pc_mephitic_station
+			}
+			OR = {
+				has_planet_flag = snow_world
+				has_planet_flag = glacial_world
+				has_planet_flag = antar_world
+				has_planet_flag = cryovolcanic_world
+			}
+		}
+	}	
+
+	drop_weight = {
+		weight = @high
+		modifier = {
+			factor = @planet_type_bonus
+			is_wet = yes
+		}
+	}
+}
+
+#Shifty Looking Cow
+d_shifty_cow_2 = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	potential = {
+		always = no
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			trade_value_add = -2
+		}
+	}
+
+	planet_modifier = {
+		planet_immigration_pull_mult = 0.1
+		planet_amenities_add = 2
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}
+
+d_wild_thresher_maws = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+	
+	potential = {
+		always = no
+	}
+
+	planet_modifier = {
+		planet_researchers_society_research_produces_mult = 0.05
+		planet_immigration_pull_mult = -0.10
+	}
+
+	drop_weight = {
+		weight = 0
+	}
+}

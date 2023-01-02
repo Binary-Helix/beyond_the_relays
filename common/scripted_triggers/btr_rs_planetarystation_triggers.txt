@@ -1,0 +1,151 @@
+###Note from Puck - Annatar had is_special_colony_type changed here. I've relocated it back to the vanilla scripted trigger file. Made no sense to have the vanilla file included just to comment it out vs just adding it there. 
+
+# is_special_colony_type = {
+	# OR = {
+		# has_modifier = penal_colony
+		# has_modifier = resort_colony
+		# has_modifier = slave_colony
+		# has_planet_flag = planetary_station
+	# }
+# }
+
+is_barren_cold_station = {
+	OR = {
+		is_planet_class = pc_barren_cold_station
+		is_planet_class = pc_barren_cold_station_moon_1
+		is_planet_class = pc_barren_cold_station_moon_2
+		is_planet_class = pc_barren_cold_station_moon_3
+		is_planet_class = pc_barren_cold_station_moon_4
+		is_planet_class = pc_barren_cold_station_moon_5
+		is_planet_class = pc_barren_cold_station_moon_6
+		is_planet_class = pc_barren_cold_station_moon_7
+		is_planet_class = pc_barren_cold_station_moon_8
+		is_planet_class = pc_barren_cold_station_moon_9
+		is_planet_class = pc_barren_cold_station_moon_10
+	}
+}
+
+is_frozen_station = {
+	OR = {
+		is_planet_class = pc_frozen_station
+		is_planet_class = pc_frozen_station_moon_1
+		is_planet_class = pc_frozen_station_moon_2
+		is_planet_class = pc_frozen_station_moon_3
+		is_planet_class = pc_frozen_station_moon_4
+		is_planet_class = pc_frozen_station_moon_5
+		is_planet_class = pc_frozen_station_moon_6
+		is_planet_class = pc_frozen_station_moon_7
+		is_planet_class = pc_frozen_station_moon_8
+		is_planet_class = pc_frozen_station_moon_9
+		is_planet_class = pc_frozen_station_moon_10
+	}
+}
+
+is_asteroid_station = {
+	OR = {
+		is_planet_class = pc_asteroid_station
+		is_planet_class = pc_ice_asteroid_station
+		is_planet_class = pc_crystal_asteroid_station
+	}
+}
+
+is_gas_giant_station = {
+	OR = {
+		is_planet_class = pc_gas_giant_station
+		is_planet_class = pc_gas_giant_station_ring
+		is_planet_class = pc_gas_giant_station_green
+		is_planet_class = pc_gas_giant_station_green_ring
+		is_planet_class = pc_gas_giant_station_blue
+		is_planet_class = pc_gas_giant_station_blue_ring
+		is_planet_class = pc_gas_giant_station_bright
+		is_planet_class = pc_gas_giant_station_bright_ring
+	}
+}
+
+is_ice_giant_station = {
+	OR = {
+		is_planet_class = pc_ice_giant_station
+		is_planet_class = pc_ice_giant_station_ring
+	}
+}
+
+can_have_mineral_deposits_ps = {
+	OR = {
+		is_planet_class = pc_asteroid
+		is_planet_class = pc_molten
+		is_planet_class = pc_toxic
+		is_planet_class = pc_frozen
+		is_planet_class = pc_barren
+		is_planet_class = pc_barren_cold
+		#is_planet_class = pc_broken
+		is_planet_class = pc_shattered
+		#is_planet_class = pc_methane
+		AND = {
+			is_planet_class = pc_gas_giant
+			has_ring = yes
+		}
+		is_planet_class = pc_hothouse
+	}
+}
+
+can_have_energy_deposits_ps = {
+	OR = {
+		is_planet_class = pc_a_star
+		is_planet_class = pc_b_star
+		is_planet_class = pc_f_star
+		is_planet_class = pc_g_star
+		is_planet_class = pc_k_star
+		is_planet_class = pc_m_star
+		is_planet_class = pc_m_giant_star
+		is_planet_class = pc_t_star
+		is_planet_class = pc_gas_giant
+		is_planet_class = pc_molten
+		is_planet_class = pc_ice_asteroid
+		#is_planet_class = pc_methane
+		is_planet_class = pc_hothouse
+	}
+}
+
+can_have_society_deposits_ps = {
+	#is_planet_class = pc_toxic
+}
+
+can_have_minor_engineering_deposits_ps = {
+	OR = {
+		is_planet_class = pc_frozen
+		is_planet_class = pc_gas_giant
+		is_planet_class = pc_hothouse
+	}
+}
+
+can_have_engineering_deposits_ps = {
+	OR = {
+		is_planet_class = pc_frozen
+		is_planet_class = pc_gas_giant
+		is_planet_class = pc_hothouse
+		is_planet_class = pc_neutron_star
+		is_planet_class = pc_pulsar
+		is_planet_class = pc_black_hole
+	}
+}
+
+can_have_trade_deposits_ps = {
+	OR = {
+		is_planet_class = pc_gas_giant
+		is_planet_class = pc_molten
+		#is_planet_class = pc_toxic
+		is_asteroid = yes
+	}
+}
+
+# buildings_no_helium = {
+# 	exists = owner
+# 	owner = {
+# 		is_ai = yes
+# 		has_deficit = helium
+# 		resource_stockpile_compare = { #can buy on market
+# 			resource = energy
+# 			value < 1500
+# 		}
+# 	}
+# }#Used to destroy buildings that require the SR but lack it.

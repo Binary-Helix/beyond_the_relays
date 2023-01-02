@@ -1,0 +1,57 @@
+
+# Specimen Collection AKA "Aggressive Observation" - Salarian Style
+btr_specimen_collection = {
+	icon = "GFX_fleet_task_specimen_collection"
+	small_icon = 2
+
+	potential = {
+		has_country_flag = salarian_union
+	}
+
+	resources = {
+		category = station_observer_missions
+		produces = {
+			society_research = 20
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			society_research = 12
+		}
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+
+				OR = {
+					is_active_resolution = "resolution_commerce_underdeveloped_system_utilization"
+					is_active_resolution = "resolution_commerce_holistic_asset_coordination"
+					is_active_resolution = "resolution_commerce_profit_maximization_engines"
+				}
+			}
+			consumer_goods = 16
+		}
+	}
+
+	valid = {
+		OR = {
+			has_policy_flag = interference_active
+			has_policy_flag = interference_full
+		}
+	}
+
+	ai_weight = {
+		weight = 5	# Use if policy allows it
+	}
+}

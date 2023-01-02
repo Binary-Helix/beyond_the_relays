@@ -1,0 +1,636 @@
+#Scope layout:
+# this = the country who owns the borders we a re coloring
+# from = the country who we are coloring for, usually the player
+
+#example = {
+#	icon = "GFX_some_icon"				-- which icon to use in the main gui
+#	hardcoded_tooltip = opinion		-- override tooltip generation with a hardcoded method. Currently supported: opinion
+#	can_change_point_of_view = yes		-- can the player click on other empires to see the map mode from their point of view?
+#	enable_terra_incognita = yes		-- should terra incognita be rendered when this map mode is active?
+#	display_claims = no					-- Should claims be displayed?
+#	display_espionage_operations = no	-- Should active Espionage Operations be displayed?
+#
+#	color = {								-- the bread and butter of the map modes. A country will be colored with the first color block who's condition is met
+#		type = borders						-- Possible values: borders, country or country_and_borders. Default is country_and_borders
+#		value = hsv { 1.0 0.0 0.0 1.0 }		-- you can also use rgb { 255 0 0 255 }
+#		custom_tooltip = "SOME_STRING"		-- Tooltip to be shown if this is the selected color. suports [This.GetName] etc
+#		condition = {
+#			...							-- simple AND trigger for evaluation. Will also generate a tooltip if neither hardcoded_tooltip or custom_tooltip is defined
+#		}
+#		zoom = 1300						-- Will only be applied when zoomed out more than this value (like empire logos that are only shown at zoom > 600)
+#		filter = union						-- Will only be applied if this map filter is active. Possible values: unions, players, sectors, hyperlanes, trade_routes.
+#	}
+#}
+
+default_map_mode = {
+	icon = "GFX_map_mode_default"
+	enable_terra_incognita = no
+	can_change_point_of_view = no
+	shortcut = "CTRL+z"
+
+
+	# Color Galactic Empire members red depending on imperial authority
+	# See GALACTIC_EMPIRE_BASE_AUTHORITY and GALACTIC_EMPIRE_MAX_AUTHORITY in defines
+
+	color = {
+		type = country_and_borders
+		zoom = 1300
+		value = rgb { 235 0 18 0 }
+		condition = { is_galactic_emperor = yes }
+		hardcoded_tooltip = country
+	}
+
+	color = {
+		type = country_and_borders
+		zoom = 1300
+		filter = unions
+		value = rgb { 235 0 18 0 }
+		condition = {
+			has_galactic_emperor = yes
+			imperial_authority >= 100
+			is_part_of_galactic_council = yes
+		}
+		hardcoded_tooltip = country
+	}
+
+	color = {
+		type = borders
+		filter = unions
+		zoom = 1300
+		value = rgb { 235 0 18 0 }
+		condition = {
+			has_galactic_emperor = yes
+			imperial_authority >= 150
+			is_galactic_community_member = yes
+		}
+		hardcoded_tooltip = country
+	}
+
+	color = {
+		type = borders
+		zoom = 1300
+		value = rgb { 235 0 18 0 }
+		condition = {
+			has_galactic_emperor = yes
+			imperial_authority >= 100
+			is_part_of_galactic_council = yes
+		}
+		hardcoded_tooltip = country
+	}
+
+	color = {
+		type = borders
+		zoom = 1300
+		value = rgb { 235 0 18 0 }
+		condition = {
+			has_galactic_emperor = yes
+			imperial_authority >= 150
+			is_galactic_community_member = yes
+		}
+		hardcoded_tooltip = country
+	}
+
+	color = {
+		value = country
+		condition = { always = yes }
+		hardcoded_tooltip = country
+	}
+}
+
+diplomatic_map_mode = {
+	icon = "GFX_map_mode_diplomatic"
+	enable_terra_incognita = no
+	display_claims = yes
+	shortcut = "CTRL+x"
+
+	color = { value = hsv { 0.0 0.0 0.8 0.7 } condition = { NOT = { exists = FROM } } custom_tooltip = "MAP_MODE_OBSERVER" }
+	color = {
+		value = hsv { 0.0 0.0 0.8 0.7 }
+		custom_tooltip = "MAP_MODE_NO_CONTACT"
+		condition = {
+			NOT = { has_established_contact = FROM }
+			#always = no
+		}
+	}
+	color = {
+		value = hsv { 0.3 1.0 0.6 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_SAME_EMPIRE"
+		condition = {
+			is_same_empire = from
+		}
+	}
+
+	color = {
+		value = hsv { 0.8 0.5 0.8 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_FEDERATION"
+		condition = {
+			is_in_federation_with = FROM
+			# check that we know this
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 2 # federation_name intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 2 # federation_name intel
+					}
+				}
+			}
+		}
+	}
+
+	color = {
+		value = hsv { 0.0 1.0 0.6 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_WAR"
+		condition = {
+			OR = {
+				is_at_war_with = FROM
+				is_hostile = FROM
+			}
+			# check that we know this
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = military
+						level >= 2 # intel_casus_belli intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = military
+						level >= 2 # intel_casus_belli intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.15 1.0 0.7 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_SUBJECT"
+		condition = {
+			exists = overlord
+			overlord = {
+				is_same_empire = FROM
+			}
+			# check that we know this
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.15 1.0 0.7 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_OVERLORD"
+		condition = {
+			exists = from.overlord
+			from.overlord = {
+				is_same_empire = PREV
+			}
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.37 0.8 1.0 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_DEFENSIVE_PACT"
+		condition = {
+			has_defensive_pact = FROM
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.4 0.5 1.0 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_NON_AGGRESSION_PACT"
+		condition = {
+			has_non_aggression_pact = FROM
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.4 0.5 1.0 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_ASSOCIATION_STATUS"
+		condition = {
+			has_association_status = FROM
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.35 0.35 1.0 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_RESEARCH_AGREEMENT"
+		condition = {
+			has_research_agreement = FROM
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.3 0.48 1.0 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_COMMERCIAL_PACT"
+		condition = {
+			has_commercial_pact = FROM
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.05 0.6 0.8 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_RIVAL"
+		condition = {
+			is_rival = FROM
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 2 # rivalries intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 2 # rivalries intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.0 0.4 0.7 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_CLOSED_BORDERS"
+		condition = {
+			# This really could use a better trigger
+			any_system_within_border = { NOT = { has_access_fleet = FROM } }
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+				}
+			}
+		}
+	}
+	color = {
+		value = hsv { 0.6 0.5 1.0 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_MIGRATION_PACT"
+		condition = {
+			has_migration_access = FROM
+			FROMFROM = {
+				OR = {
+					# it's us
+					OR = {
+						is_same_empire = PREV.FROM
+						is_same_empire = PREV
+					}
+					# got the intel
+					has_intel_level = {
+						who = PREV.FROM
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+					has_intel_level = {
+						who = PREV
+						category = diplomacy
+						level >= 3 # diplomatic_pacts intel
+					}
+				}
+			}
+		}
+	}
+}
+
+intel_map_mode = {
+	icon = "GFX_map_mode_intel"
+	enable_terra_incognita = no
+	shortcut = "CTRL+n"
+	can_change_point_of_view = no
+	display_espionage_operations = yes
+
+	color = { value = hsv { 0.0 0.0 0.8 0.7 } condition = { NOT = { exists = FROM } } custom_tooltip = "MAP_MODE_OBSERVER" }
+	color = { value = hsv { 0.580 1.0 0.8 1.0 } condition = { is_same_empire = FROM } custom_tooltip = "INTEL_MAP_MODE_TIP_SELF" }
+
+	color = { value = hsv { 0.300 1.0 0.9 1.0 } condition = { intel = { who = FROM value > 85 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.300 1.0 0.9 1.0 } condition = { intel = { who = FROM value > 80 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.255 1.0 0.9 1.0 } condition = { intel = { who = FROM value > 75 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.240 1.0 0.8 1.0 } condition = { intel = { who = FROM value > 70 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.225 1.0 0.8 1.0 } condition = { intel = { who = FROM value > 65 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.210 1.0 0.8 1.0 } condition = { intel = { who = FROM value > 60 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.195 1.0 0.8 1.0 } condition = { intel = { who = FROM value > 55 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.180 1.0 0.7 1.0 } condition = { intel = { who = FROM value > 50 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.150 1.0 0.65 1.0 } condition = { intel = { who = FROM value > 45 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.120 1.0 0.7 1.0 } condition = { intel = { who = FROM value > 40 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.110 1.0 0.8 1.0 } condition = { intel = { who = FROM value > 35 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.090 1.0 0.8 1.0 } condition = { intel = { who = FROM value > 30 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.075 1.0 0.8 1.0 } condition = { intel = { who = FROM value > 25 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.060 1.0 0.8 1.0 } condition = { intel = { who = FROM value > 20 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.045 1.0 0.8 1.0 } condition = { intel = { who = FROM value > 15 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.015 1.0 0.9 1.0 } condition = { intel = { who = FROM value > 10 } } hardcoded_tooltip = intel }
+	color = { value = hsv { 0.000 1.0 0.9 1.0 } condition = { always = yes } hardcoded_tooltip = intel }
+}
+
+opinion_map_mode = {
+	icon = "GFX_map_mode_opinion"
+	enable_terra_incognita = no
+	shortcut = "CTRL+c"
+
+	color = { value = hsv { 0.0 0.0 0.8 0.7 } condition = { NOT = { exists = FROM } } custom_tooltip = "MAP_MODE_OBSERVER" }
+	color = { value = hsv { 0.580 1.0 0.8 1.0 } condition = { is_same_empire = FROM } }
+
+	color = { value = hsv { 0.300 1.0 0.9 1.0 } condition = { opinion = { who = FROM value > 140 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.300 1.0 0.9 1.0 } condition = { opinion = { who = FROM value > 100 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.255 1.0 0.9 1.0 } condition = { opinion = { who = FROM value > 080 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.240 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > 060 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.225 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > 040 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.210 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > 025 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.195 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > 015 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.180 1.0 0.7 1.0 } condition = { opinion = { who = FROM value > 005 } } hardcoded_tooltip = opinion }
+	#color = { value = hsv { 0.165 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > 10 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.150 1.0 0.65 1.0 } condition = { opinion = { who = FROM value > -005 } } hardcoded_tooltip = opinion }
+	#color = { value = hsv { 0.135 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > -020 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.120 1.0 0.7 1.0 } condition = { opinion = { who = FROM value > -015 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.110 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > -025 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.090 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > -040 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.075 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > -060 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.060 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > -080 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.045 1.0 0.8 1.0 } condition = { opinion = { who = FROM value > -100 } } hardcoded_tooltip = opinion }
+	#color = { value = hsv { 0.030 1.0 0.9 1.0 } condition = { opinion = { who = FROM value > -100 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.015 1.0 0.9 1.0 } condition = { opinion = { who = FROM value > -140 } } hardcoded_tooltip = opinion }
+	color = { value = hsv { 0.000 1.0 0.9 1.0 } condition = { always = yes } hardcoded_tooltip = opinion }
+}
+
+attitude_map_mode = {
+	#Placeholder icon
+	icon = "GFX_map_mode_attitude"
+	enable_terra_incognita = no
+	shortcut = "CTRL+v"
+
+	color = { value = hsv { 0.0 0.0 0.8 0.7 } condition = { NOT = { exists = FROM } } custom_tooltip = "MAP_MODE_OBSERVER" }
+	color = {
+		value = hsv { 0.580 1.0 0.8 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_SAME_EMPIRE"
+		condition = {
+			is_same_empire = from
+		}
+	}
+
+	color = {
+		value = hsv { 0.0 0.0 0.8 0.7 }
+		custom_tooltip = "MAP_MODE_NO_CONTACT"
+		condition = {
+			NOT = { has_established_contact = FROM }
+			#always = no
+		}
+	}
+
+	# Positive attitudes
+	color = {
+		value = hsv { 0.25 1 0.6 1.0 }
+		condition = { is_friendly_to = FROM }
+	}
+	color = {
+		value = hsv { 0.22 0.7 0.7 1.0 }
+		condition = { is_patronizing_to = FROM }
+	}
+	color = {
+		value = hsv { 0.5 0.8 0.65 1.0 }
+		condition = { is_protective_to = FROM }
+	}
+	color = {
+		value = hsv { 0.5 0.8 0.75 1.0 }
+		condition = { is_loyal_to = FROM }
+	}
+	color = {
+		value = hsv { 0.2 0.8 0.75 1.0 }
+		condition = { is_cordial_to = FROM }
+	}
+
+	# Neutral attitudes
+	color = {
+		value = hsv { 0.14 0.4 0.9 1.0 }
+		condition = { is_dismissive_to = FROM }
+	}
+
+	color = {
+		value = hsv { 0.16 0.2 0.8 1.0 }
+		condition = { is_neutral_to = FROM }
+	}
+	# Negative attitudes
+	color = {
+		value = hsv { 0.0 0.9 0.7 1.0 }
+		condition = { is_hostile_to = FROM }
+	}
+	color = {
+		value = hsv { 0.9 0.9 0.8 1.0 }
+		condition = { is_threatened_to = FROM }
+	}
+	color = {
+		value = hsv { 0.0 0.9 0.6 1.0 }
+		condition = { is_angry_to = FROM }
+	}
+	color = {
+		value = hsv { 0.03 0.6 0.8 1.0 }
+		condition = { is_unfriendly_to = FROM }
+	}
+	color = {
+		value = hsv { 0.8 0.4 0.7 1.0 }
+		condition = { is_disloyal_to = FROM }
+	}
+	color = {
+		value = hsv { 0.8 0.7 0.6 1.0 }
+		condition = { is_domineering_to = FROM }
+	}
+
+	color = {
+		value = hsv { 0.6 0.3 0.85 1.0 }
+		condition = { is_overlord_to = FROM }
+	}
+}
+
+neighbor_map_mode = {
+	icon = "GFX_map_mode_neighbours"
+	enable_terra_incognita = no
+	shortcut = "CTRL+b"
+
+	color = {
+		value = hsv { 0.580 1.0 0.8 1.0 }
+		custom_tooltip = "DIPLOMATIC_MAP_MODE_SAME_EMPIRE"
+		condition = {
+			is_same_empire = from
+		}
+	}
+	color = {
+		value = hsv { 0.0 0.0 0.8 0.7 }
+		custom_tooltip = "MAP_MODE_NOT_NEIGHBOR"
+		condition = {
+			NOT = { is_neighbor_of = from }
+		}
+	}
+	color = {
+		value = hsv { 0.3 1.0 0.6 1.0 }
+		custom_tooltip = "MAP_MODE_NEIGHBOR"
+		condition = {
+			is_neighbor_of = from
+		}
+	}
+}

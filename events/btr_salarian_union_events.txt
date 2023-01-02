@@ -1,0 +1,377 @@
+namespace = btr_saluni
+# Salarian union entered fully surveyed space
+fleet_event = {
+	id = btr_saluni.01
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			has_civic = salarian_uni_hold_the_line
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				from = {
+					is_surveyed = {
+						who = root.owner
+						status = yes
+					}
+				}
+			}
+			every_owned_ship = {
+				limit = {
+					NOT = {
+						has_modifier = salarian_uni_hold_the_line_survey
+					}
+				}
+				add_modifier = {
+					modifier = salarian_uni_hold_the_line_survey
+				}
+			}
+		}
+		else = {
+			remove_modifier = salarian_uni_hold_the_line_survey
+		}
+	}
+}
+
+# Salarian union entered full spy network territory 
+fleet_event = {
+	id = btr_saluni.02
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			has_civic = salarian_uni_hold_the_line
+		}
+	}
+
+	immediate = {
+		from = {
+			if = {
+				limit = { 
+					exists = owner
+				}
+				# Maybe always trigger from salarian union scope
+				root.owner = {
+					random_spynetwork = {
+						limit = {
+							target = {
+								is_same_value = prevprevprev.owner
+							}
+						}
+						if = {
+							limit = { is_spynetwork_level >= 100 }
+							root = {
+								every_owned_ship = {
+									limit = {
+										NOT = {
+											has_modifier = salarian_uni_hold_the_line_full_spy
+										}
+									}
+									add_modifier = {
+										modifier = salarian_uni_hold_the_line_full_spy
+									}
+								}
+							}
+						}
+						else = {
+							remove_modifier = salarian_uni_hold_the_line_full_spy
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Leadered salarian union army landed on surveyed planet
+planet_event = {
+	id = btr_saluni.03
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		from = {
+			random_owned_army = {
+				limit = {
+					exists = planet
+					exists = leader
+					planet = { 
+						is_same_value = root
+						solar_system = {
+							is_surveyed = {
+								who = prevprevprev
+								status = yes
+							}
+						}
+					}
+				}
+				leader = {
+					add_trait = salarian_leader_trait_general_survey_bonus
+				}
+			}
+		}
+	}
+}
+
+# Leadered salarian union army landed on full spy planet
+planet_event = {
+	id = btr_saluni.04
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		from = {
+			random_owned_army = {
+				limit = {
+					exists = planet
+					exists = leader
+					planet = { 
+						is_same_value = root
+					}
+				}
+				owner = {
+					random_spynetwork = {
+						limit = {
+							target = {
+								is_same_value = root.owner
+							}
+						}
+						if = {
+							limit = { is_spynetwork_level >= 30 }
+							prevprev.leader = {
+								add_trait = salarian_leader_trait_general_survey_bonus
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Salarian Enlightment
+country_event = {
+	id = btr_saluni.05
+	title = btr_saluni.05.name
+	desc = btr_saluni.05.desc
+	picture = GFX_evt_metropolis
+	show_sound = event_laboratory_sound
+	location = FROMFROM
+
+	is_triggered_only = yes
+
+	immediate = {
+		FROMFROM = {
+			owner = { save_event_target_as = primitive_country }
+			observation_outpost_owner = {
+				# Xenoist Faction Enlightenment Demand
+				set_timed_country_flag = {
+					flag = recent_enlightenment_timed
+					days = 7200 # 20 years
+				}
+				add_intel = {
+					who = event_target:primitive_country
+					amount = 100
+				}
+			}
+			observation_outpost = {
+				dismantle = yes
+			}
+			solar_system = {
+				if = {
+					limit = {
+						starbase = { owner = { is_same_value = root } }
+					}
+					starbase = {
+						set_owner = event_target:primitive_country
+						if = {
+							limit = { has_starbase_size = starbase_outpost }
+							set_starbase_size = starbase_starport
+						}
+					}
+				}
+				every_system_planet = {
+					limit = {
+						exists = owner
+						owner = { is_same_value = root }
+					}
+					set_owner = event_target:primitive_country
+				}
+			}
+			event_target:primitive_country = {
+				switch = {
+					trigger = has_country_flag
+					stone_age = {
+						remove_country_flag = stone_age
+						root = { set_country_flag = uplifted_stone }
+					}
+					bronze_age = {
+						remove_country_flag = bronze_age
+						root = { set_country_flag = uplifted_bronze }
+					}
+					iron_age = {
+						remove_country_flag = iron_age
+						if = {
+							limit = { has_country_flag = was_bronze }
+							root = { set_country_flag = uplifted_bronze }
+						}
+					}
+					late_medieval_age = { remove_country_flag = late_medieval_age }
+					renaissance_age = { remove_country_flag = renaissance_age }
+					steam_age = { remove_country_flag = steam_age }
+					industrial_age = { remove_country_flag = industrial_age }
+					machine_age = { remove_country_flag = machine_age }
+					atomic_age = { remove_country_flag = atomic_age }
+				}
+				set_country_flag = early_space_age
+				country_event = { id = primitive.16 }
+				add_opinion_modifier = { who = root modifier = opinion_enlightened_us }
+				set_subject_of = {
+					who = root
+					preset = preset_protectorate
+				}
+			}
+		}
+	}
+
+	option = {
+		name = btr_saluni.05.a
+		fromfrom = {
+			owner = {
+				shift_ethic = ethic_fanatic_militarist
+				shift_ethic = ethic_xenophobe
+			}
+		}
+	}
+
+	option = {
+		name = btr_saluni.05.b
+		fromfrom = {
+			owner = {
+				shift_ethic = ethic_fanatic_pacifist
+				shift_ethic = ethic_xenophile
+			}
+		}
+	}
+
+	option = {
+		name = btr_saluni.05.c
+		fromfrom = {
+			owner = {
+				shift_ethic = ethic_pacifist
+				shift_ethic = ethic_materialist
+				shift_ethic = ethic_xenophile
+			}
+		}
+	}
+}
+
+# Salarian ship gift
+country_event = {
+	id = btr_saluni.06
+	title = btr_saluni.06.name
+	desc = btr_saluni.06.desc
+	picture = GFX_evt_metropolis
+	is_triggered_only = yes
+
+	immediate = {
+		export_resource_stockpile_to_variable = { 
+			resource = influence
+			variable = btr_influence
+		}
+	}
+
+	option = {
+		name = btr_saluni.06.a
+		allow = {
+			check_variable = {
+				which = btr_influence
+				value > btr_saluni_ships_cost_to_gift
+			}
+		}
+		every_owned_fleet = {
+			if = {
+				limit = { exists = solar_system }
+				solar_system = {
+					root = {
+						every_subject = {
+							limit = {
+								exists = prevprev.owner
+								prevprev.owner = { is_same_value = prev }
+							}
+							prevprevprev = {
+								set_owner = prev
+							}
+						}
+					}
+				}
+			}
+		}
+		add_resource = {
+			influence = -3
+			mult = btr_saluni_ships_cost_to_gift
+		}
+	}
+	option = {
+		name = btr_saluni.06.b
+	}
+}
+
+# espionage_operation_event = {
+# 	id = btr_saluni.1000
+# 	title = btr_saluni.1000.name
+# 	espionage_operation = yes
+# 	desc = btr_saluni.1000.desc
+# 	picture = GFX_evt_spy_network
+# 	show_sound = event_default
+# 	is_triggered_only = yes
+
+# 	immediate = { }
+
+# 	option = { name = ACKNOWLEDGED }
+# }
+
+# espionage_operation_event = {
+# 	id = btr_saluni.1001
+# 	title = btr_saluni.1001.name
+# 	espionage_operation = yes
+# 	desc = btr_saluni.1001.desc
+# 	picture = GFX_evt_spy_network
+# 	show_sound = event_default
+# 	is_triggered_only = yes
+
+# 	immediate = { }
+
+# 	option = { name = ACKNOWLEDGED }
+# }
+
+# # Salarian Event Destroy Deposit
+# planet_event = {
+# 	id = btr_saluni.07
+# 	title = btr_saluni.07.name
+# 	desc = btr_saluni.07.desc
+
+# 	mean_time_to_happen = {
+# 		days = 1
+# 	}
+	
+# 	trigger = {
+# 		has_deposit = btr_d_saluni_maint_beauty
+# 		planet_devastation >= 60
+# 	}
+
+# 	immediate = {
+# 		remove_deposit = btr_d_saluni_maint_beauty
+# 		# TODO: THIS MIGHT RESULT IN WEIRD BUGS UNDER OCCUPATION
+# 		owner = {
+# 			set_country_flag = btr_saluni_maint_beauty_lost
+# 		}
+# 	}
+
+# 	option = { name = DISGUSTING }
+# }
