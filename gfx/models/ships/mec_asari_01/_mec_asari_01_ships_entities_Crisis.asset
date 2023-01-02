@@ -1,0 +1,364 @@
+@frame_scale_corvette = 0.8
+@frame_size_corvette = 6.0
+
+@frame_scale_destroyer = 0.7
+@frame_size_destroyer = 10.0
+
+@frame_scale_cruiser = 0.7
+@frame_size_cruiser = 15.0
+
+##########################
+## NEMESIS CRISIS SHIPS ##
+##########################
+
+##############
+## CORVETTE ##
+##############
+
+entity = {
+	name = "mec_asari_01_crisis_corvette_entity"
+	pdxmesh = "molluscoid_01_corvette_frame_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"	 animation = "idle" animation_blend_time = 0.25 
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_corvette_hum" } }
+	}
+	state = { name = "moving"	animation = "idle" animation_blend_time = 0.25
+	event = { trigger_once = yes sound = { soundeffect = moving_out_corvette } }
+	}
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "ship_main" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	
+		event = { time = 3.46 node = "part1" particle = "ship_explosion_particle" }
+		event = { time = 8.89 node = "part1" particle = "large_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "ship_main" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	
+		event = { time = 4.46 node = "part1" particle = "ship_explosion_particle" }
+		event = { time = 7.46 node = "part1" particle = "ship_explosion_particle" }
+		event = { time = 10.66 node = "part1" particle = "large_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "ship_main" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		
+		event = { time = 3.26 node = "ship_main" particle = "ship_explosion_particle" }
+		event = { time = 3.9 node = "ship_main" particle = "ship_explosion_particle" }
+		
+		event = { time = 4.43 node = "ship_main" particle = "large_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+	}
+	
+    scale = @frame_scale_corvette
+		
+	game_data = {
+		size = @frame_size_corvette
+	}
+}
+
+########
+# M1S1 #
+########
+entity = {
+	name = "mec_asari_01_crisis_corvette_M1S1_entity"
+	pdxmesh = "mec_asari_01_menacing_corvette_mesh"
+	
+	## NOTE: 3 locators: explosion_locator_01 ... explosion_locator_03
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "moving" state_time = 5		
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "death" state_time = 5 looping = no
+		event = { time = 0.0 node = "explosion_locator_01" particle = "ship_burn_particle" }
+		event = { time = 0.3 node = "explosion_locator_02" particle = "ship_burn_particle" }
+		event = { time = 0.75 node = "explosion_locator_03" particle = "ship_explosion_particle" }
+		event = { time = 1.6 node = "explosion_locator_02" particle = "avian_small_ship_explosion_particle" }
+		event = { time = 2.83 node = "explosion_locator_01" particle = "avian_small_ship_explosion_particle" }
+	}
+	
+	game_data = {
+		shader_type = ship
+	}
+}
+
+######
+# S3 #
+######
+entity = {
+	name = "mec_asari_01_crisis_corvette_S3_entity"
+	pdxmesh = "mec_asari_01_menacing_corvette_mesh"
+	
+	## NOTE: 3 locators: explosion_locator_01 ... explosion_locator_03
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "moving" state_time = 5		
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "death" state_time = 5 looping = no
+		event = { time = 0.0 node = "explosion_locator_01" particle = "ship_burn_particle" }
+		event = { time = 0.3 node = "explosion_locator_02" particle = "ship_burn_particle" }
+		event = { time = 0.75 node = "explosion_locator_03" particle = "ship_explosion_particle" }
+		event = { time = 1.6 node = "explosion_locator_02" particle = "avian_small_ship_explosion_particle" }
+		event = { time = 2.83 node = "explosion_locator_01" particle = "avian_small_ship_explosion_particle" }
+	}
+	
+	game_data = {
+		shader_type = ship
+	}
+}
+
+###############
+## DESTROYER ##
+###############
+
+entity = {
+	name = "mec_asari_01_crisis_destroyer_entity"
+	pdxmesh = "molluscoid_01_destroyer_frame_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"	animation = "idle" animation_blend_time = 0.25
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_fallen_empire_civilship_01" } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "ship_main" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	
+		event = { time = 8.15 node = "part1_locator" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 8.15 node = "part1_locator" particle = "ship_burn_particle" }
+		
+		event = { time = 8.15 node = "part2_locator" particle = "ship_burn_particle" }
+		event = { time = 8.15 node = "part2_locator" particle = "ship_explosion_air_vent_particle" }
+		
+		event = { time = 8.3 node = "ship_main" particle = "ship_explosion_particle" }
+		
+		event = { time = 18.30 node = "part1" particle = "small_player_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+	}
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "ship_main" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	
+		event = { time = 3.05 node = "part1_locator" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 3.05 node = "part2_locator" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 3.05 node = "ship_main" particle = "ship_explosion_particle" }
+		
+		event = { time = 4.6 node = "ship_main" particle = "ship_explosion_particle" }
+		event = { time = 4.6 node = "part1_locator" particle = "ship_burn_particle" }
+		event = { time = 4.6 node = "part2_locator" particle = "ship_burn_particle" }
+		
+		event = { time = 18.30 node = "part1" particle = "small_player_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "part1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	
+		event = { time = 1.05 node = "part1_locator" particle = "ship_explosion_particle" }
+		event = { time = 1.6 node = "part2_locator" particle = "ship_explosion_particle" }
+		event = { time = 3.4 node = "part1_locator" particle = "ship_explosion_particle" }
+		event = { time = 6.6 node = "part1_locator" particle = "ship_explosion_particle" }
+		event = { time = 6.83 node = "part2_locator" particle = "ship_explosion_particle" }
+		event = { time = 7.1 node = "part1_locator" particle = "ship_explosion_particle" }
+		event = { time = 7.5 node = "part1_locator" particle = "ship_explosion_particle" }
+		
+		event = { time = 7.93 node = "part1_locator" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		event = { time = 7.93 node = "part1_locator" particle = "ship_burn_particle" }
+		event = { time = 7.93 node = "part1_locator" particle = "ship_explosion_air_vent_particle" }
+		
+		event = { time = 12.80 node = "part1" particle = "small_player_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+	}
+	
+    scale = @frame_scale_destroyer
+		
+	game_data = {
+		size = @frame_size_destroyer
+	}
+}
+
+##########
+# 1M2S1M #
+##########
+entity = {
+	name = "mec_asari_01_crisis_destroyer_1M2S1M_entity"
+	pdxmesh = "mec_asari_01_menacing_destroyer_mesh"
+	
+	## NOTE: 3 locators: explosion_locator_01 ... explosion_locator_03
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "moving" state_time = 5
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "death" state_time = 5 looping = no
+		event = { time = 1.2 node = "explosion_locator_02" particle = "ship_burn_particle" }
+		event = { time = 3.8 node = "explosion_locator_01" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 7.35 node = "explosion_locator_03" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		event = { time = 9.3 node = "explosion_locator_03" particle = "ship_burn_particle" }
+		event = { time = 11.7 node = "explosion_locator_01" particle = "ship_burn_particle" }
+	}
+}
+
+########
+# 1L2S #
+########
+entity = {
+	name = "mec_asari_01_crisis_destroyer_1L2S_entity"
+	pdxmesh = "mec_asari_01_menacing_destroyer_mesh"
+	
+	## NOTE: 3 locators: explosion_locator_01 ... explosion_locator_03
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "moving" state_time = 5
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "death" state_time = 5 looping = no
+		event = { time = 1.2 node = "explosion_locator_02" particle = "ship_burn_particle" }
+		event = { time = 3.8 node = "explosion_locator_01" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 7.35 node = "explosion_locator_03" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		event = { time = 9.3 node = "explosion_locator_03" particle = "ship_burn_particle" }
+		event = { time = 11.7 node = "explosion_locator_01" particle = "ship_burn_particle" }
+	}
+}
+
+#############
+## CRUISER ##
+#############
+
+entity = {
+	name = "mec_asari_01_crisis_cruiser_entity"
+	pdxmesh = "mec_asari_01_cruiser_frame_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" animation_blend_time = 0.25
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_fallen_empire_warship_01" } }
+	}
+	state = { name = "moving" animation = "idle" animation_blend_time = 0.25
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "ship_main" particle = "large_ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		
+		event = { time = 5.0 node = "part3" particle = "large_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 5.0 node = "part3" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 5.0 node = "part3" particle = "ship_burn_particle" }
+		
+		event = { time = 7.26 node = "part1" particle = "ship_burn_particle" }
+		event = { time = 7.26 node = "part1" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 7.5 node = "part1" particle = "large_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		
+		event = { time = 11.5 node = "part3" particle = "ship_burn_particle" }
+		event = { time = 11.5 node = "part3" particle = "ship_explosion_air_vent_particle" }
+		
+		event = { time = 11.6 node = "part1" particle = "large_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 11.6 node = "part1" particle = "ship_burn_particle" }
+		event = { time = 11.6 node = "part1" particle = "ship_explosion_air_vent_particle" }
+		
+		event = { time = 20.35 node = "part2" particle = "large_player_ship_explosion_particle" sound = { soundeffect = ship_explosion_large } }
+		event = { time = 20.4 node = "part1" particle = "small_player_ship_explosion_particle" }
+	}
+	
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "ship_main" particle = "large_ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	
+		event = { time = 8.16 node = "part1" particle = "large_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 9.8 node = "part1" particle = "large_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 9.8 node = "part1" particle = "ship_explosion_air_vent_particle" }
+		event = { time = 9.8 node = "part1" particle = "ship_burn_particle" }
+		
+		event = { time = 16.1 node = "part3" particle = "large_ship_explosion_particle" sound = { soundeffect = "ship_explosion"} }
+		event = { time = 16.1 node = "part3" particle = "ship_burn_particle" }
+		event = { time = 16.1 node = "part3" particle = "ship_explosion_air_vent_particle" }
+		
+		event = { time = 21.75 node = "part2" particle = "large_player_ship_explosion_particle" sound = { soundeffect = ship_explosion_large } }
+		event = { time = 21.8 node = "part3" particle = "small_player_ship_explosion_particle" }
+	}
+	
+	#DISABLED! It's one of those "slowly sinking" anims that all the capitals use. Boring, uneventful and takes too long
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 0 looping = no
+		event = { time = 0.0 node = "ship_main" particle = "large_ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+		
+		event = { time = 2.16 node = "part2" particle = "ship_burn_particle" }
+		event = { time = 2.16 node = "part2" particle = "avian_small_ship_explosion_particle" }
+		
+		event = { time = 3.85 node = "part1" particle = "ship_burn_particle" }
+		event = { time = 3.85 node = "part1" particle = "avian_small_ship_explosion_particle" }
+	
+		event = { time = 4.9 node = "part3" particle = "ship_burn_particle" }
+		event = { time = 4.9 node = "part3" particle = "avian_small_ship_explosion_particle" }
+		
+		event = { time = 7.5 node = "part2" particle = "ship_burn_particle" }
+		event = { time = 7.5 node = "part2" particle = "avian_small_ship_explosion_particle" }
+	
+		event = { time = 8.9 node = "part1" particle = "ship_burn_particle" }
+		event = { time = 8.9 node = "part1" particle = "avian_small_ship_explosion_particle" }
+		
+		event = { time = 25.9 node = "part2" particle = "small_player_ship_explosion_particle" sound = { soundeffect = ship_explosion_large } }
+	}
+	
+	scale = @frame_scale_cruiser
+		
+	game_data = {
+		size = @frame_size_cruiser
+	}
+}
+
+entity = {
+	name = "mec_asari_01_crisis_cruiser_hull_entity"
+	pdxmesh = "mec_asari_01_menacing_cruiser_mesh"
+	
+	## NOTE: 5 explosion locators: explosion_locator_01 -- explosion_locator_05
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_05" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "moving" state_time = 5
+		event = { time = 0 node = "light_locator_01" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_02" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_03" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_04" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+		event = { time = 0 node = "light_locator_05" particle = "ship_light_blue_effect" keep_particle = yes trigger_once = yes }
+	}
+	state = { name = "death" state_time = 5 looping = no
+		event = { time = 9.8 node = "explosion_locator_01" particle = "ship_burn_particle" }	#front-right
+		event = { time = 16.1 node = "explosion_locator_02" particle = "ship_burn_particle" }	#back-right
+		event = { time = 16.9 node = "explosion_locator_03" particle = "ship_explosion_air_vent_particle" }	#back-left
+		event = { time = 4.0 node = "explosion_locator_04" particle = "ship_explosion_air_vent_particle" }	#tower-left
+		event = { time = 12.0 node = "explosion_locator_05" particle = "ship_explosion_air_vent_particle" }	#tower-right
+		event = { time = 14.3 node = "explosion_locator_01" particle = "ship_explosion_particle" sound = { soundeffect = ship_explosion } }	#front-right
+		event = { time = 7.0 node = "explosion_locator_02" particle = "ship_explosion_air_vent_particle" }	#back-right
+		event = { time = 18.0 node = "explosion_locator_03" particle = "large_ship_explosion_particle" }	#back-left
+		event = { time = 3.8 node = "explosion_locator_04" particle = "ship_explosion_particle" sound = { soundeffect = ship_explosion } }	#tower-left
+		event = { time = 10.0 node = "explosion_locator_05" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }	#tower-right
+	}
+}

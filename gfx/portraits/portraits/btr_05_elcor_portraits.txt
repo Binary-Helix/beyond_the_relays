@@ -1,0 +1,166 @@
+
+portraits = {
+	# Elcor
+	
+	elcor_male = { entity = "portrait_elcor_01_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_j_male"	
+		character_textures = {
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_01.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_02.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_03.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_04.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_05.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_06.dds"
+		}
+	}
+	
+	elcor_female = { entity = "portrait_elcor_01_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "humanoid_portrait_j_female"	
+		character_textures = {
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_01.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_02.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_03.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_04.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_05.dds"
+			"gfx/models/portraits/btr_05_elcor/btr_elcor_06.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	btr_elcor = {
+		default = elcor_male
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = {
+					ruler = { gender = male }
+				}
+				portraits = {
+					elcor_male
+				}
+			}
+			add = {
+				trigger = {
+					ruler = { gender = female }
+				}
+				portraits = {
+					elcor_female
+				}
+			}
+
+		}		
+		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				trigger = {
+					is_species = "Elcor"
+				}
+				portraits = {
+					elcor_male
+					elcor_female
+				}
+			}
+			add = {
+				trigger = { 
+					NOT = { 
+						is_species = "Elcor"
+					}
+				}
+				portraits = {
+					elcor_male
+					elcor_female
+				}
+			}
+		}		
+		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				trigger = {
+					is_species = "Elcor"
+				}
+				portraits = {
+					elcor_male
+					elcor_female
+				}
+			}
+			add = {
+				trigger = { 
+					NOT = { 
+						is_species = "Elcor"
+					}
+				}
+				portraits = {
+					elcor_male
+					elcor_female
+				}
+			}
+		}
+		
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = {
+					gender = male
+					is_species = "Elcor"
+				}
+				portraits = {
+					elcor_male
+				}
+			}
+			add = {
+				trigger = {
+					gender = female
+					is_species = "Elcor"
+				}
+				portraits = {
+					elcor_female
+				}
+			}
+			add = {
+				trigger = { 
+					NOT = { 
+						is_species = "Elcor"
+					}
+				}
+				portraits = {
+					elcor_male
+					elcor_female
+				}
+			}
+			
+		}
+
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = {
+					gender = male
+					is_species = "Elcor"
+				}
+				portraits = {
+					elcor_male
+				}
+			}
+			add = {
+				trigger = {
+					gender = female
+					is_species = "Elcor"
+				}
+				portraits = {
+					elcor_female
+				}
+			}
+			add = {
+				trigger = { 
+					NOT = { 
+						is_species = "Elcor"
+					}
+				}
+				portraits = {
+					elcor_male
+					elcor_female
+				}
+			}
+		}
+	}
+}

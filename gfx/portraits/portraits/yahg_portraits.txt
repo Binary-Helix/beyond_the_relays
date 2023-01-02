@@ -1,0 +1,75 @@
+
+portraits = {
+	# yahg
+	yahg = {	entity = "portrait_reptilian_14_dontmove_entity"	clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "molluscoid_01_greetings"	
+		character_textures = {
+			"gfx/models/portraits/yahg/yahg_reptilian_massive_14.dds"
+		}
+	}
+}
+
+portrait_groups = {
+	yahg = {
+		default = yahg
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = {
+					yahg
+				}
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = {
+					yahg
+				}
+			}
+		}		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					yahg
+				}
+			}
+		}		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					yahg
+				}
+			}
+		}
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					yahg
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					yahg
+				}
+			}
+		}
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					yahg
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					yahg
+				}
+			}
+		}
+	}	
+}

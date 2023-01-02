@@ -1,0 +1,695 @@
+guiTypes = {
+
+	positionType = {
+		name = "empire_list_width_min_max"
+		position = { x = 200 y = 280 }
+	}
+
+	positionType = {
+		name = "back_button_offset_x_min_max"
+		position = { x = -6 y = 26 }
+	}
+
+	positionType = {
+		name = "empire_list_margin_bottom"
+		position = { x = 0 y = 130 }
+	}
+
+	positionType = {
+		name = "empire_list_fade_width"
+		position = { x = 229 y = 303 }
+	}
+
+	containerWindowType = {
+		name = "select_empire_design_view"
+		if_resolution = {
+			max_width = 2560 # min_width or max_width
+			max_height = 1440 # min_height or max_height
+			size = { width = 100% height = 100% }
+			clipping = no
+		}
+		if_resolution = {
+			max_width = 1920 # min_width or max_width
+			max_height = 1080 # min_height or max_height
+			size = { width = 100% height = 100% }
+			clipping = no
+		}
+		if_resolution = {
+			max_width = 1366 # min_width or max_width
+			max_height = 768 # min_height or max_height
+			size = { width = 70% height = 70% }
+			clipping = no
+		}
+		if_resolution = {
+			max_width = 3440 # min_width or max_width
+			max_height = 1440 # min_height or max_height
+			size = { width = 100% height = 1000% }
+			clipping = no
+		}
+		size = { width = 100% height = 100% }
+		clipping = no
+
+		background = {
+			name = "background"
+			spriteType = "Empire_Select_Sidebar"
+		}
+
+		iconType = {
+			name = "hex_bg"
+			spriteType = "GFX_hex_bg_corner"
+			position = { x = 0 y = 0 }
+			alwaysTransparent = yes
+		}
+
+		iconType = {
+			name = "header_line"
+			spriteType = "GFX_line_short"
+			position = { x = 2 y = 26 }
+		}
+
+		instantTextBoxType = {
+			name = "select_empire_label"
+			font = "malgun_goth_24"
+			position = { x = 16 y = 3 }
+			maxWidth = 230
+			text =	 "SELECT_EMPIRE"
+			format = left
+			alwaysTransparent = yes
+		}
+
+		smoothListboxType = {
+			name = "list"
+			position = { x = 7 y = 50 }
+			size = { x = 200 y = 550 }
+			scrollbarType = "standardlistbox_slider"
+			borderSize = { x = 0 y = 0 }
+			orientation = "UPPER_LEFT"
+			#autohide_scrollbar = no
+			spacing = 5
+			defaultSelection = yes
+		}
+
+		buttonType={
+			name = "fade_top"
+			spriteType = "GFX_faded_border_top"
+			orientation = upper_left
+			size = { x = 300 y = 18 }
+			position = { x = 2 y = 30 }
+			alwaysTransparent = yes
+		}
+
+		buttonType={
+			name = "fade_bottom"
+			spriteType = "GFX_faded_border_bottom"
+			orientation = lower_left
+			size = { x = 300 y = 18 }
+			position = { x = 2 y = -80 }
+			alwaysTransparent = yes
+		}
+
+		#######################
+		# edit/select/delete/back
+		#######################
+
+		buttonType = {
+			name = "edit"
+			if_resolution = {
+				max_width = 2560 # min_width or max_width
+				max_height = 1440 # min_height or max_height
+				font = "malgun_goth_24"
+				spriteType = "empire_edit_button"
+				position = { x = -407 y = 297 }
+				orientation = CENTER
+				clicksound = confirm_click
+			}
+
+			if_resolution = {
+				max_width = 1920 # min_width or max_width
+				max_height = 1080 # min_height or max_height
+				font = "malgun_goth_24"
+				spriteType = "empire_edit_button"
+				position = { x = -407 y = 295 }
+				orientation = CENTER
+				clicksound = confirm_click
+			
+			}
+
+			if_resolution = {
+				max_width = 1366 # min_width or max_width
+				max_height = 768 # min_height or max_height
+				font = "malgun_goth_24"
+				spriteType = "empire_edit_button"
+				position = { x = -407 y = 297 }
+				orientation = CENTER
+				clicksound = confirm_click
+			}
+
+			if_resolution = {
+				max_width = 1340 # min_width or max_width
+				max_height = 1440 # min_height or max_height
+				font = "malgun_goth_24"
+				spriteType = "empire_edit_button"
+				position = { x = -407 y = 297 }
+				orientation = CENTER
+				clicksound = confirm_click
+			}
+
+		}
+
+		buttonType = {
+			name = "delete"
+			font = "cg_16b"
+			spriteType = "GFX_gamesetup_delete"
+			position = { x = -245 y = 305 }
+			orientation = CENTER
+		
+			if_resolution = {
+				max_width = 1340 # min_width or max_width
+				max_height = 1440 # min_height or max_height
+				font = "malgun_goth_24"
+				spriteType = "empire_edit_button"
+				position = { x = -245 y = 305 }
+				orientation = CENTER
+				clicksound = confirm_click
+			}
+		
+		}
+
+		buttonType = {
+			name = "edit_custom"
+			font = "malgun_goth_24"
+			spriteType = "GFX_select_button"
+			buttonText = "SELECT"
+			position = { x = 321 y = 291 }
+			orientation = CENTER
+			clicksound = "confirmation"
+		}
+
+		buttonType = {
+			name = "quick_start"
+			font = "malgun_goth_24"
+			spriteType = "GFX_standard_button_large_211_40"
+			buttonText = "START"
+			position = { x = 125 y = 100 }
+			orientation = CENTER
+			clicksound = "confirmation"
+		}
+
+		buttonType = {
+			name = "next"
+			orientation = CENTER
+			font = "malgun_goth_24"
+			spriteType = "empire_button"
+			clicksound = "confirm_click"
+			actionShortcut = "accept"
+			if_resolution = {
+				max_width = 2560 # min_width or max_width
+				max_height = 1440 # min_height or max_height
+				position = { x = 380 y = 296 }
+				scale = 0.8
+			}
+
+			if_resolution = {
+				max_width = 1920 # min_width or max_width
+				max_height = 1080 # min_height or max_height
+				position = { x = 380 y = 296 }
+				scale = 0.8
+			
+			}
+
+			if_resolution = {
+				max_width = 1366 # min_width or max_width
+				max_height = 768 # min_height or max_height
+				position = { x = 321 y = 290 }
+				orientation = CENTER
+			}
+
+			if_resolution = {
+				max_width = 1340 # min_width or max_width
+				max_height = 1440 # min_height or max_height
+				position = { x = 321 y = 290 }
+				orientation = CENTER
+			}
+		}
+
+		buttonType = {
+			name = "back"
+			font = "malgun_goth_24"
+			spriteType = "back_to_menu"
+			shortCut = "ESCAPE"
+			if_resolution = {
+				max_width = 2560 # min_width or max_width
+				max_height = 1440 # min_height or max_height
+				position = { x = -4 y = -68 }
+				scale = 0.75
+				orientation = LOWER_LEFT
+				actionShortCut = "cancel"
+				clicksound = back_click
+			}
+
+			if_resolution = {
+				max_width = 1920 # min_width or max_width
+				max_height = 1080 # min_height or max_height
+				position = { x = -4 y = -68 }
+				scale = 0.75
+				orientation = LOWER_LEFT
+				actionShortCut = "cancel"
+				clicksound = back_click
+			
+			}
+
+			if_resolution = {
+				max_width = 1366 # min_width or max_width
+				max_height = 768 # min_height or max_height
+				position = { x = -4 y = -68 }
+				scale = 0.75
+				orientation = LOWER_LEFT
+				actionShortCut = "cancel"
+				clicksound = back_click
+			}
+
+			if_resolution = {
+				max_width = 1340 # min_width or max_width
+				max_height = 1440 # min_height or max_height
+				position = { x = -4 y = -68 }
+				scale = 0.75
+				orientation = LOWER_LEFT
+				actionShortCut = "cancel"
+				clicksound = back_click
+			}
+		}
+		
+		instantTextBoxType = {
+			name = "back_button_gamepad_indicator"
+			format = center
+			position = { x = 25 y = -48 } # PositionX will be incremented by code depending on resolution
+			orientation = LOWER_LEFT
+			maxWidth = 180
+			maxHeight = 20
+			font = "malgun_goth_24"
+			text = "BACK_TO_MENU_GAMEPAD_INDICATOR"
+		}
+		
+		instantTextBoxType = {
+			name = "edit_button_gamepad_indicator"
+			format = left
+			position = { x = 305 y = -48 }
+			orientation = LOWER_LEFT
+			maxWidth = 180
+			maxHeight = 20
+			font = "malgun_goth_24"
+			text = "CUSTOMIZE_GAMEPAD_INDICATOR"
+		}
+		
+		instantTextBoxType = {
+			name = "delete_button_gamepad_indicator"
+			format = center
+			position = { x = 650 y = -48 }
+			orientation = LOWER_LEFT
+			maxWidth = 180
+			maxHeight = 20
+			font = "malgun_goth_24"
+			text = "DELETE_GAMEPAD_INDICATOR"
+		}
+		
+		instantTextBoxType = {
+			name = "next_button_gamepad_indicator"
+			format = right
+			position = { x = 1025 y = -48 }
+			orientation = LOWER_LEFT
+			maxWidth = 180
+			maxHeight = 20
+			font = "malgun_goth_24"
+			text = "SELECT_GAMEPAD_INDICATOR"
+		}
+	}
+
+	### OBSERVER MODE
+	containerWindowType = {
+		name = "observer_empire_design_entry"
+		size = { width = 200 height = 85 }
+
+		background = {
+			name = "bg"
+			spriteType = "GFX_tiles_pre_scripted"
+			clicksound = "select_click"
+		}
+		iconType = {
+			name = "select_observe"
+			quadTextureSprite = "GFX_select_observe"
+			position = { x = 0 y = 0 }
+			alwaysTransparent = yes
+		}
+
+		containerWindowType = {
+			name = "selected_overlay"
+			position = { x = -5 y = -5 }
+			size = { width = 210 height = 95 }
+			background = {
+				name = "selected_bg"
+				spriteType = "GFX_glow_tile_orange"
+				alwaysTransparent = yes
+			}
+		}
+		instantTextBoxType = {
+			name = "text"
+			font = "malgun_goth_24"
+			position = { x = 34 y = 27 }
+			maxWidth = 200
+			text =	 "OBSERVER"
+			format = center
+			alwaysTransparent = yes
+		}
+	}
+
+	### RANDOM EMPIRE
+	containerWindowType = {
+		name = "random_empire_design_entry"
+		size = { width = 0 height = 0 }
+
+		background = {
+			name = "bg"
+			spriteType = "GFX_tiles_pre_scripted"
+			clicksound = "select_click"
+		}
+		# iconType = {
+		# 	name = "select_random"
+		# 	quadTextureSprite = "GFX_select_random"
+		# 	position = { x = 9999 y = 9999 }
+		# 	alwaysTransparent = no
+		# }
+
+		containerWindowType = {
+			name = "selected_overlay"
+			position = { x = 9999 y = 9999 }
+			size = { width = 0 height = 0 }
+			background = {
+				name = "selected_bg"
+				spriteType = "GFX_glow_tile_orange"
+				alwaysTransparent = yes
+			}
+		}
+		instantTextBoxType = {
+			name = "text"
+			font = "malgun_goth_24"
+			position = { x = 9999 y = 9999 }
+			maxWidth = 0
+			text =	 "RANDOM"
+			format = center
+			alwaysTransparent = yes
+		}
+	}
+
+	### CREATE NEW EMPIRE
+	containerWindowType = {
+		name = "custom_empire_design_entry"
+		size = { width = 0 height = 0 }
+
+		background = {
+			name = "bg"
+			spriteType = "GFX_tiles_pre_scripted"
+			#clicksound = "outliner_click_tab"
+			clicksound = "select_click"
+		}
+		iconType = {
+			name = "select_create_new"
+			quadTextureSprite = "GFX_select_create_new"
+			position = { x = 9999 y = 9999 }
+			alwaysTransparent = yes
+		}
+
+		containerWindowType = {
+			name = "selected_overlay"
+			position = { x = 9999 y = 9999 }
+			size = { width = 0 height = 0 }
+			background = {
+				name = "selected_bg"
+				spriteType = "GFX_glow_tile_orange"
+				alwaysTransparent = yes
+			}
+		}
+		instantTextBoxType = {
+			name = "text"
+			font = "malgun_goth_24"
+			position = { x = 9999 y = 9999 }
+			maxWidth = 200
+			text =	 "CREATE_NEW"
+			format = center
+			alwaysTransparent = yes
+		}
+	}
+
+	### QUICK START FROM CURATED SAVE FILE
+	containerWindowType = {
+		name = "quick_start_entry"
+		size = { width = 200 height = 85 }
+
+		background = {
+			name = "bg"
+			spriteType = "GFX_tiles_pre_scripted"
+			clicksound = "select_click"
+		}
+
+		iconType = {
+			name = "select_create_new"
+			quadTextureSprite = "GFX_select_quick_start"
+			position = { x = 0 y = 0 }
+			alwaysTransparent = yes
+		}
+
+		containerWindowType = {
+			name = "selected_overlay"
+			position = { x = -5 y = -5 }
+			size = { width = 210 height = 95 }
+			background = {
+				name = "selected_bg"
+				spriteType = "GFX_glow_tile_orange"
+				alwaysTransparent = yes
+			}
+		}
+
+		instantTextBoxType = {
+			name = "text"
+			font = "malgun_goth_24"
+			position = { x = 34 y = 27 }
+			maxWidth = 200
+			text = "QUICK_START"
+			format = center
+			alwaysTransparent = yes
+		}
+	}
+
+	### PRE-SCRIPTED
+	containerWindowType = {
+		name = "prescripted_empire_design_entry"
+		size = { width = 200 height = 65 }
+
+		background = {
+			name = "bg"
+			spriteType = "GFX_tiles_pre_scripted"
+			#clicksound = "outliner_click_tab"
+			clicksound = "select_click"
+		}
+		containerWindowType = {
+			name = "selected_overlay"
+			position = { x = -5 y = -5 }
+			size = { width = 210 height = 75 }
+			background = {
+				name = "selected_bg"
+				spriteType = "GFX_glow_tile_orange"
+				alwaysTransparent = yes
+			}
+		}
+
+		iconType = {
+			name = "portrait"
+			quadTextureSprite = "GFX_portrait_character"
+			position = { x = -25 y = -8 }
+			scale = 0.19
+			alwaysTransparent = yes
+		}
+
+		instantTextBoxType = {
+			name = "name"
+			font = "cg_16b"
+			position = { x = 65 y = 6 }
+			maxWidth = 130
+			maxHeight = 16
+			fixedsize = yes
+			text =	 "NAME"
+			format = left
+			alwaysTransparent = yes
+			text_color_code = "H"
+		}
+		instantTextBoxType = {
+			name = "government"
+			font = "cg_16b"
+			position = { x = 65 y = 24 }
+			maxWidth = 130
+			maxHeight = 16
+			fixedsize = yes
+			text =	 "GOVERNMENT"
+			format = left
+			alwaysTransparent = yes
+			#text_color_code = "H"
+		}
+		instantTextBoxType = {
+			name = "species_class"
+			font = "cg_16b"
+			position = { x = 65 y = 42 }
+			maxWidth = 130
+			maxHeight = 16
+			fixedsize = yes
+			text =	 "SPECIES_CLASS"
+			format = left
+			alwaysTransparent = yes
+			text_color_code = "E"
+		}
+	}
+
+	### USER CREATED EMPIRES
+
+	containerWindowType = {
+		name = "user_empire_design_entry"
+		size = { width = 200 height = 65 }
+
+		background = {
+			name = "bg"
+			spriteType = "GFX_tiles_user_created"
+			clicksound = select_click
+		}
+		containerWindowType = {
+			name = "selected_overlay"
+			position = { x = -5 y = -5 }
+			size = { width = 210 height = 75 }
+			background = {
+				name = "selected_bg"
+				spriteType = "GFX_glow_tile_orange"
+				alwaysTransparent = yes
+			}
+		}
+
+		instantTextBoxType = {
+			name = "name"
+			font = "cg_16b"
+			position = { x = 65 y = 8 }
+			maxWidth = 130
+			maxHeight = 16
+			fixedsize = yes
+			text =	 "NAME"
+			format = left
+			alwaysTransparent = yes
+			text_color_code = "H"
+		}
+		instantTextBoxType = {
+			name = "government"
+			font = "cg_16b"
+			position = { x = 65 y = 24 }
+			maxWidth = 130
+			maxHeight = 16
+			fixedsize = yes
+			text =	 "GOVERNMENT"
+			format = left
+			alwaysTransparent = yes
+			#text_color_code = "H"
+		}
+		instantTextBoxType = {
+			name = "species_class"
+			font = "cg_16b"
+			position = { x = 65 y = 40 }
+			maxWidth = 130
+			maxHeight = 16
+			fixedsize = yes
+			text =	 "SPECIES_CLASS"
+			format = left
+			alwaysTransparent = yes
+			text_color_code = "E"
+		}
+		iconType = {
+			name = "portrait"
+			quadTextureSprite = "GFX_portrait_character_close_up"
+			position = { x = -25 y = -8 }
+			scale = 0.19
+			alwaysTransparent = yes
+		}
+		buttonType={
+			name = "spawn_setting"
+			spriteType = "GFX_button_empire_spawn_setting"
+			orientation = upper_left
+			position = { x = 212 y = 14 }
+			tooltip_mode_enabled = yes
+		}
+	}
+
+	containerWindowType = {
+		name = "user_empire_design_entry_narrow"
+		size = { width = 200 height = 65 }
+
+		background = {
+			name = "bg"
+			spriteType = "GFX_tiles_user_created"
+		}
+		containerWindowType = {
+			name = "selected_overlay"
+			position = { x = -5 y = -5 }
+			size = { width = 210 height = 75 }
+			background = {
+				name = "selected_bg"
+				spriteType = "GFX_glow_tile_orange"
+				alwaysTransparent = yes
+			}
+		}
+
+		instantTextBoxType = {
+			name = "name"
+			font = "cg_16b"
+			position = { x = 65 y = 8 }
+			maxWidth = 130
+			maxHeight = 16
+			fixedsize = yes
+			text =	 "NAME"
+			format = left
+			alwaysTransparent = yes
+			text_color_code = "H"
+		}
+		instantTextBoxType = {
+			name = "government"
+			font = "cg_16b"
+			position = { x = 65 y = 24 }
+			maxWidth = 130
+			maxHeight = 16
+			fixedsize = yes
+			text =	 "GOVERNMENT"
+			format = left
+			alwaysTransparent = yes
+			#text_color_code = "H"
+		}
+		instantTextBoxType = {
+			name = "species_class"
+			font = "cg_16b"
+			position = { x = 65 y = 40 }
+			maxWidth = 130
+			maxHeight = 16
+			fixedsize = yes
+			text =	 "SPECIES_CLASS"
+			format = left
+			alwaysTransparent = yes
+			text_color_code = "E"
+		}
+		iconType = {
+			name = "portrait"
+			quadTextureSprite = "GFX_portrait_character"
+			position = { x = -25 y = -8 }
+			scale = 0.19
+			alwaysTransparent = yes
+		}
+		buttonType={
+			name = "spawn_setting"
+			spriteType = "GFX_button_empire_spawn_setting"
+			orientation = upper_left
+			position = { x = 160 y = 35 }
+			scale = 0.6
+			tooltip_mode_enabled = yes
+		}
+	}
+}

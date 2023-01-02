@@ -1,0 +1,188 @@
+#####################################################
+#####											#####
+#####				Mass Relay					#####
+#####											#####
+#####################################################
+
+
+entity = {
+	name = "btr_mass_relay_gateway_01_entity"
+	pdxmesh = "btr_mass_relay_gateway_01_mesh"
+	
+	meshsettings = {
+		name = "MassRelayShape"
+		texture_diffuse = "btr_mass_relay_gateway_01_diffuse.dds"
+		texture_normal = "btr_mass_relay_gateway_01_normal.dds"
+		texture_specular = "btr_mass_relay_gateway_01_specular.dds"
+	}
+
+	meshsettings = {
+		name = "NewOuterRingShape"
+		texture_diffuse = "btr_mass_relay_gateway_01_diffuse.dds"
+		texture_normal = "btr_mass_relay_gateway_01_normal.dds"
+		texture_specular = "btr_mass_relay_gateway_01_specular.dds"
+	}
+	
+	meshsettings = {
+		name = "NewInnerRingShape"
+		texture_diffuse = "btr_mass_relay_gateway_01_diffuse.dds"
+		texture_normal = "btr_mass_relay_gateway_01_normal.dds"
+		texture_specular = "btr_mass_relay_gateway_01_specular.dds"
+	}
+
+	default_state = "idle"
+	state = { 
+				name = "idle" animation = "idle" state_time = 5 animation_blend_time = 0.3 animation_speed = 1.0 looping = yes
+				start_event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_station_hum" stop_on_state_change = yes } }
+				start_event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_portal_hum" stop_on_state_change = yes } }
+				
+				event = { time = 0.8 node = "light_locator_01" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3 node = "light_locator_02" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 2 node = "light_locator_03" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1 node = "light_locator_04" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 2.6 node = "light_locator_05" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0.5 node = "light_locator_06" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.2 node = "light_locator_07" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.0 node = "light_locator_08" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				
+				# LIGHTNING
+				#event = { time = 6.0 node = "spark_emitter_top" particle = "habitat_nanobot_effect" keep_particle = yes trigger_once = yes }
+				#event = { time = 9.0 node = "spark_emitter_bottom" particle = "perdition_beam_hit_effect" keep_particle = yes trigger_once = yes }
+				#NOTE: Can't find any proper chasing lightning emitters yet. May need to make my own.
+					
+				# CENTRAL EMITTER
+				event = { time = 0.0 node = "center_emitter" particle = "btr_central_relay_blue_effect" keep_particle = yes trigger_once = yes }
+				
+				# ALTERNATIVES:
+				# portal_effect_particle 							<-- Original Emitter
+				# cloud_entity_center_particle						<-- Elf emitter
+				# plantoid_01_colossus_inner_core_effect			<-- Pulsar-ish, but doesn't move right
+				# reptilian_01_colossus_inner_core_effect			<-- Lightning Effect
+				# avian_01_colossus_inner_core_effect				<-- Large blue cloud
+				# think_tank_core_effect							<-- Fairy Dust! (Or Nexus at smaller scales!)
+				# ai_01_blue_large_station_core_effect				<-- Blue Big Chunks fairy dust!
+				# energy_core_red_effect							<-- Red Fairy Dust of DOOM!
+	}
+		
+	state = { 
+				name = "death" animation = "death" looping = no
+				event = { time = 0.0 node = "center_emitter" particle = "technosphere_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }	
+				event = { time = 2.1 node = "center_emitter" particle = "gateway_portal_death_residue_effect" keep_particle = yes }
+				event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_station_death" stop_on_state_change = yes } }
+	}
+	
+	scale = 1.5
+	
+	game_data = {
+		size = 10
+	}
+}
+
+entity = {
+	name = "btr_mass_relay_gateway_02_entity"
+	pdxmesh = "btr_mass_relay_gateway_01_mesh"
+	
+	meshsettings = {
+		name = "MassRelayShape"
+		texture_diffuse = "btr_mass_relay_gateway_01_diffuse.dds"
+		texture_normal = "btr_mass_relay_gateway_01_normal.dds"
+		texture_specular = "btr_mass_relay_gateway_01_specular.dds"
+	}
+
+	meshsettings = {
+		name = "NewOuterRingShape"
+		texture_diffuse = "btr_mass_relay_gateway_01_diffuse.dds"
+		texture_normal = "btr_mass_relay_gateway_01_normal.dds"
+		texture_specular = "btr_mass_relay_gateway_01_specular.dds"
+	}
+	
+	meshsettings = {
+		name = "NewInnerRingShape"
+		texture_diffuse = "btr_mass_relay_gateway_01_diffuse.dds"
+		texture_normal = "btr_mass_relay_gateway_01_normal.dds"
+		texture_specular = "btr_mass_relay_gateway_01_specular.dds"
+	}
+
+	default_state = "idle"
+	state = { 
+				name = "idle" animation = "idle" state_time = 5 animation_blend_time = 0.3 animation_speed = 1.0 looping = yes
+				start_event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_station_hum" stop_on_state_change = yes } }
+				start_event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_portal_hum" stop_on_state_change = yes } }
+				
+				event = { time = 0.8 node = "light_locator_01" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3 node = "light_locator_02" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 2 node = "light_locator_03" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 1 node = "light_locator_04" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 2.6 node = "light_locator_05" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 0.5 node = "light_locator_06" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 3.2 node = "light_locator_07" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				event = { time = 4.0 node = "light_locator_08" particle = "btr_super_blue_blink_effect" keep_particle = yes trigger_once = yes }
+				
+				# LIGHTNING
+				#event = { time = 6.0 node = "spark_emitter_top" particle = "habitat_nanobot_effect" keep_particle = yes trigger_once = yes }
+				#event = { time = 9.0 node = "spark_emitter_bottom" particle = "perdition_beam_hit_effect" keep_particle = yes trigger_once = yes }
+				#NOTE: Can't find any proper chasing lightning emitters yet. May need to make my own.
+					
+				# CENTRAL EMITTER
+				event = { time = 0.0 node = "center_emitter" particle = "btr_central_relay_blue_effect" keep_particle = yes trigger_once = yes }
+				
+				# ALTERNATIVES:
+				# portal_effect_particle 							<-- Original Emitter
+				# cloud_entity_center_particle						<-- Elf emitter
+				# plantoid_01_colossus_inner_core_effect			<-- Pulsar-ish, but doesn't move right
+				# reptilian_01_colossus_inner_core_effect			<-- Lightning Effect
+				# avian_01_colossus_inner_core_effect				<-- Large blue cloud
+				# think_tank_core_effect							<-- Fairy Dust! (Or Nexus at smaller scales!)
+				# ai_01_blue_large_station_core_effect				<-- Blue Big Chunks fairy dust!
+				# energy_core_red_effect							<-- Red Fairy Dust of DOOM!
+	}
+		
+	state = { 
+				name = "death" animation = "death" looping = no
+				event = { time = 0.0 node = "center_emitter" particle = "technosphere_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }	
+				event = { time = 2.1 node = "center_emitter" particle = "gateway_portal_death_residue_effect" keep_particle = yes }
+				event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_station_death" stop_on_state_change = yes } }
+	}
+	
+	scale = 1.5
+	
+	game_data = {
+		size = 10
+	}
+}
+
+#######################
+## DEACTIVATED RELAY ##
+#######################
+
+entity = {
+	name = "btr_mass_relay_gateway_deactivated_01_entity"
+	pdxmesh = "btr_mass_relay_gateway_deactivated_01_mesh"
+	
+	meshsettings = {
+		name = "MassRelayShape"
+		texture_diffuse = "btr_mass_relay_gateway_01_diffuse.dds"
+		texture_normal = "btr_mass_relay_gateway_01_normal.dds"
+		texture_specular = "btr_mass_relay_gateway_01_specular.dds"
+	}
+
+	default_state = "idle"
+	state = { 
+				name = "idle"
+				#start_event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_station_hum" stop_on_state_change = yes } }
+				#start_event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_portal_hum" stop_on_state_change = yes } }
+	}
+	
+	state = { 
+				name = "death"
+				event = { time = 0.0 node = "center_emitter" particle = "technosphere_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_large" } }	
+				event = { time = 2.1 node = "center_emitter" particle = "gateway_portal_death_residue_effect" keep_particle = yes }
+				event = { trigger_once = yes sound = { soundeffect = "megastructure_gate_way_station_death" stop_on_state_change = yes } }
+	}
+	
+	scale = 1.5
+	
+	game_data = {
+		size = 10
+	}
+}

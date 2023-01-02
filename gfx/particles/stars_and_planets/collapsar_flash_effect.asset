@@ -1,0 +1,87 @@
+particle = {
+	name = "collapsar_flash_effect"	
+	subsystem={
+		name="flash"
+		max_amount=1
+		slave_particles=0
+		sort="depth"
+		emitter_type="point"
+		invert=no
+		trail=no
+		local_space=yes
+		billboard=yes
+		hide=no
+		texture={
+			file="gfx/particles/rs_lens_flare.dds"
+			x=1
+			y=1
+			shader="ParticleAdditive"
+		}
+		color={
+			x=250
+			y=255
+			z=255
+			alpha={ 230,glow_fade 15 }
+		}
+		position={
+			x=0
+			y=0
+			z=0
+		}
+		start=0.050
+		duration=0.1
+		emission=1000.000
+		emitter_yaw={ 0 0 }
+		emitter_pitch={ 0 0 }
+		velocity = { 0 }
+		velocity_pitch = { 20 0 }
+		velocity_yaw =  { 0 180 }
+		life={ 0.800 0.500 }
+		size={ 200,flash_size 0 }
+		mass={ 3.5 0.5 }
+	}
+	animation={
+		name="glow_fade"
+		start=0
+		duration=1
+		repeat=no
+		minValue=0
+		maxValue=1
+		curve={
+			0 0 0.235 0.977 0.532 0.68 0.774 0.922 1 0 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation={
+		name="glow_size"
+		start=0
+		duration=1
+		repeat=no
+		minValue=0
+		maxValue=1
+		curve={
+			0 0.617 0.212 1 0.656 0.758 1 1 
+		}
+		op="MUL"
+		time="life"
+	}
+	animation = {
+		name = "flash_size"
+		start = 0
+		duration =1
+		repeat = no
+		minValue = 0
+		maxValue = 4
+		curve = { 
+			0 0
+			0.25 0.8
+			0.75 0.9
+			1 1
+		}
+		op="MUL"
+		time = "life"
+	}
+}
+
+

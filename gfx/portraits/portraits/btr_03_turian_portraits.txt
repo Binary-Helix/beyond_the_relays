@@ -1,0 +1,163 @@
+
+portraits = {
+	# turian
+	btr_turian_1 = { entity = "portrait_turian_01_entity"   clothes_selector = "turian_clothes_01"    attachment_selector = "no_texture"   greeting_sound = "turian_hierarchy_advisor_male_greetings"
+		 character_textures = {
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_1.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_1a.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_1b.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_1c.dds"
+		}
+   }
+
+   btr_turian_2 = { entity = "portrait_turian_01_entity"   clothes_selector = "turian_clothes_01"    attachment_selector = "no_texture"   greeting_sound = "turian_hierarchy_advisor_male_greetings"
+		 character_textures = {
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_2.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_2a.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_2b.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_2c.dds"
+		}
+   } 
+   
+   btr_turian_3 = { entity = "portrait_turian_01_entity"   clothes_selector = "turian_clothes_01"    attachment_selector = "no_texture"   greeting_sound = "turian_hierarchy_advisor_male_greetings"
+		 character_textures = {
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_3.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_3a.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_3b.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_3c.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_body_3d.dds"
+		}
+   }
+
+   btr_turian_female_1 = { entity = "portrait_turian_01_entity"   clothes_selector = "turian_female_clothes_01"    attachment_selector = "no_texture"   greeting_sound = "humanoid_female_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_1.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_1a.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_1b.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_1c.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_1d.dds"
+		}
+   }
+
+   btr_turian_female_2 = { entity = "portrait_turian_01_entity"   clothes_selector = "turian_female_clothes_01"    attachment_selector = "no_texture"   greeting_sound = "humanoid_female_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_2.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_2a.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_2b.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_2c.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_2d.dds"
+		}
+   }
+
+   btr_turian_female_3 = { entity = "portrait_turian_01_entity"   clothes_selector = "turian_female_clothes_01"    attachment_selector = "no_texture"   greeting_sound = "humanoid_female_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_3.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_3a.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_3b.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_3c.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_3d.dds"
+		}
+   }  
+
+   btr_turian_female_4 = { entity = "portrait_turian_01_entity"   clothes_selector = "turian_female_clothes_01"    attachment_selector = "no_texture"   greeting_sound = "humanoid_female_greeting_a"
+		 character_textures = {
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_4.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_4a.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_4b.dds"
+			 "gfx/models/portraits/btr_03_turian/btr_turian_female_body_4c.dds"
+		}
+   }
+}
+
+portrait_groups = {
+	btr_turian = {
+		default = btr_turian_1
+		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
+			add = {
+				trigger = { ruler = { gender = male } }
+				portraits = {
+					btr_turian_1
+					btr_turian_2
+					btr_turian_3
+				}
+			}
+			add = {
+				trigger = { ruler = { gender = female } }
+				portraits = {
+					btr_turian_female_1
+					btr_turian_female_2
+					btr_turian_female_3
+					btr_turian_female_4
+				}
+			}
+		}		
+		#species scope
+		species = { #generic portrait for a species
+			add = {
+				portraits = {
+					btr_turian_1
+					btr_turian_2
+					btr_turian_3
+					btr_turian_female_1
+					btr_turian_female_2
+					btr_turian_female_3
+					btr_turian_female_4
+				}
+			}
+		}		
+		#pop scope
+		pop = { #for a specific pop
+			add = {
+				portraits = {
+					btr_turian_1
+					btr_turian_2
+					btr_turian_3
+					btr_turian_female_1
+					btr_turian_female_2
+					btr_turian_female_3
+					btr_turian_female_4
+				}
+			}
+		}
+		#leader scope
+		leader = { #scientists, generals, admirals, governor
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					btr_turian_female_1
+					btr_turian_female_2
+					btr_turian_female_3
+					btr_turian_female_4
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					btr_turian_1
+					btr_turian_2
+					btr_turian_3
+				}
+			}
+		}
+		#leader scope 
+		ruler = {
+			add = {
+				trigger = { gender = female }
+				portraits = {
+					btr_turian_female_1
+					btr_turian_female_2
+					btr_turian_female_3
+					btr_turian_female_4
+				}
+			}
+			add = {
+				trigger = { gender = male }
+				portraits = {
+					btr_turian_1
+					btr_turian_2
+					btr_turian_3
+				}
+			}
+		}
+	}	
+}
