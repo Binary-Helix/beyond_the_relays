@@ -199,7 +199,7 @@ generate_btr_start_deposits_and_blockers = {
 				is_planet_class = pc_swamp
 				is_planet_class = pc_dextro_swamp
 				is_planet_class = pc_highgrav_swamp
-				is_planet_class = pc_dextro_highgrav				
+				is_planet_class = pc_dextro_highgrav_swamp			
 			}
 		}
 		
@@ -792,6 +792,7 @@ give_btr_T2_starting_tech = {
 		give_technology = { tech = tech_holographic_rituals message = no }
 		give_technology = { tech = tech_unity_of_purpose message = no }
 		give_technology = {	tech = tech_interstellar_fleet_traditions message = no }
+		give_technology = { tech = tech_xeno_diplomacy message = no }
 		if = {
 			limit = { 
 				owner = {
@@ -880,6 +881,17 @@ give_starting_ship_tech = {
 					}
 				}
 				give_technology = {	tech = tech_battleships message = no }
+			}
+			if = {
+				limit = { 
+					owner = {
+						OR = {
+							has_country_flag = asari_republics
+							has_country_flag = turian_hierarchy
+						}
+					}
+				}
+				give_technology = {	tech = tech_titans message = no }
 			}
 		}
 	}

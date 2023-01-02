@@ -7,10 +7,11 @@
 sys_aru_init = {
     name = "Aru"
     class = sc_g
-	flags = { vol_protectorate_homeworld vol_protectorate_capital_system canon_map aru_system }
+	flags = { vol_protectorate_homeworld vol_protectorate_capital_system canon_map aru_system empire_home_system }
 
 	init_effect = { 
 		generate_home_system_resources = yes
+		save_global_event_target_as = protectorateFirstFleet
 	}
 
 	usage = custom_empire
@@ -49,7 +50,7 @@ sys_aru_init = {
 		deposit_blockers = none		
 		modifiers = none
 		entity = "ammonia_continental_planet_09_entity"
-		flags = { irune_planet subclass_world volus_homeworld subclass_world }
+		flags = { irune_planet volus_homeworld subclass_world }
 		init_effect = {
 			prevent_anomaly = yes
 			set_global_flag = volus_homeworld_spawned
@@ -118,6 +119,11 @@ sys_aru_init = {
 						set_country_flag = canon_map
 						set_country_flag = btr_empire
 						save_global_event_target_as = vol_protectorate
+						# set_subject_of = {
+						# 	who = event_target:turian_hierarchy
+						# 	preset = preset_tributary
+						# 	use_demanded_terms = yes
+						# }
 					}
 				}
 			}	
@@ -135,7 +141,9 @@ sys_aru_init = {
 			generate_btr_start_deposits_and_blockers = yes			
 			generate_vol_irune_capitol_buildings = yes
 			generate_vol_irune_pops = yes
+			clear_blockers = yes
 			generate_vol_irune_deposits = yes
+			generate_vol_pro_science_ships = yes
 			set_name = "Irune"
 			add_modifier = {
 				modifier = prairie_world
@@ -237,7 +245,7 @@ sys_aru_init = {
 					set_planet_flag = civil_station
 					set_deposit_flags = yes
 					generate_btr_start_deposits_and_blockers = yes
-					generate_vol_minor_colony_buildings = yes	
+					generate_vol_doldita_colony_buildings = yes	
 					generate_vol_doldit_pops = yes
 					clear_blockers = yes
 					prevent_anomaly = yes
@@ -285,8 +293,9 @@ sys_menarel_init = {
 				}
 				set_owner = event_target:vol_protectorate
 				generate_btr_start_deposits_and_blockers = yes
-				generate_vol_major_colony_buildings = yes
+				generate_vol_tautram_colony_buildings = yes
 				generate_vol_tautram_pops = yes
+				clear_blockers = yes
 			}
 			add_modifier = {
 				modifier = glacial_world
@@ -412,8 +421,9 @@ sys_yakawa_init = {
 				}
 				set_owner = event_target:vol_protectorate
 				generate_btr_start_deposits_and_blockers = yes
-				generate_vol_minor_colony_buildings = yes
+				generate_vol_maskawa_colony_buildings = yes
 				generate_vol_maskawa_pops = yes
+				clear_blockers = yes
 			}
 			add_modifier = {
 				modifier = crag_world
@@ -506,8 +516,9 @@ sys_cobines_init = {
 				}
 				set_owner = event_target:vol_protectorate
 				generate_btr_start_deposits_and_blockers = yes
-				generate_vol_major_colony_buildings = yes
+				generate_vol_salau_colony_buildings = yes
 				generate_vol_salau_pops = yes
+				clear_blockers = yes
 			}
 			add_modifier = {
 				modifier = dune_world
@@ -671,8 +682,9 @@ sys_omaverizh_init = {
 				}
 				set_owner = event_target:vol_protectorate
 				generate_btr_start_deposits_and_blockers = yes
-				generate_vol_major_colony_buildings = yes
+				generate_vol_walden_colony_buildings = yes
 				generate_vol_walden_pops = yes
+				clear_blockers = yes
 			}
 			add_modifier = {
 				modifier = steppe_world
@@ -729,8 +741,9 @@ sys_uba_init = {
 				}
 				set_owner = event_target:vol_protectorate
 				generate_btr_start_deposits_and_blockers = yes
-				generate_vol_minor_colony_buildings = yes	
+				generate_vol_daleon_colony_buildings = yes	
 				generate_vol_daleon_pops = yes
+				clear_blockers = yes
 			}
 			add_modifier = {
 				modifier = lichen_world
@@ -776,5 +789,166 @@ sys_uba_init = {
 			add_deposit = d_rare_crystals_1
 			add_deposit = d_minerals_5
 		}	
+	}
+}
+
+
+#Cornucopia Expanse
+
+sys_tamlox_init = {
+	name = "Tam Lox"
+    class = sc_d
+	max_instances = 1	
+
+	flags = { tam_lox_system vol_protectorate_system canon_map }
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 350
+	}
+
+	planet = {
+	    name = "Tam Lox"
+        class = pc_d_star
+        orbit_distance = 0
+        size = 34
+    }
+
+	planet = {
+	    name = "Baram"
+        class = pc_molten
+        orbit_distance = 100
+        size = 7
+    }
+
+	planet = {
+	    name = "Ta Sion"
+        class = pc_molten
+        orbit_distance = 100
+        size = 12
+	}
+
+	planet = {
+	    name = "Dep An"
+        class = pc_gas_giant	
+        orbit_distance = 100
+        size = 33
+		has_ring = yes
+    }
+
+	planet = {
+	    name = "Knepod"
+        class = pc_chlorine
+        orbit_distance = 100
+        size = 19
+	}
+
+	planet = {
+		name = "Winon"
+		class = pc_frozen
+		orbit_distance = 100
+		size = 5
+	}
+}
+
+sys_delvav_init = {
+	name = "Delvav"
+    class = sc_b
+	max_instances = 1	
+	flags = { delvav_system vol_protectorate_system canon_map }
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 350
+	}
+
+	planet = {
+	    name = "Delvav"
+        class = pc_b_star
+        orbit_distance = 0
+        size = 31
+    }
+
+	planet = {
+	    name = "Rem Dai"
+        class = pc_barren
+        orbit_distance = 125
+        size = 9
+    }
+
+	planet = {
+	    name = "Ciania"
+        class = pc_hothouse
+        orbit_distance = 125
+        size = 14
+	}
+
+	planet = {
+	    name = "Pranumi"
+        class = pc_hothouse	
+        orbit_distance = 125
+        size = 13
+   }
+
+	planet = {
+	    name = "Xio Vas"
+        class = pc_frozen
+        orbit_distance = 125
+        size = 11
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "inner_council_sector_7_secondaryrelay" 
+			name = "Inner Secondary - Sector 7 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+sys_vabto_init = {
+	name = "Vabto"
+    class = sc_ae
+	max_instances = 1	
+	flags = { vabto_system vol_protectorate_system canon_map }
+
+	planet = {
+	    name = "Vabto"
+        class = pc_ae_star
+        orbit_distance = 0
+        size = 31
+    }
+
+	planet = {
+	    name = "Ni Topa"
+        class = pc_barren_cold
+        orbit_distance = 250
+        size = 9
+    }
+
+	planet = {
+	    name = "Eoin"
+        class = pc_ice_giant
+        orbit_distance = 250
+        size = 14
+		moon = {
+			name = "Eoin"
+			class = pc_barren
+			orbit_distance = 20
+			size = 14			
+		}
+		moon = {
+			name = "Eoin"
+			class = pc_molten
+			orbit_distance = 5
+			size = 14			
+		}
+		moon = {
+			name = "Eoin"
+			class = pc_barren_cold
+			orbit_distance = 5
+			size = 14			
+		}
 	}
 }
