@@ -22,12 +22,27 @@ guiTypes = {
 
 	containerWindowType = {
 		name = "select_empire_design_view"
-		size = { width = 100% height = 100% }
-		clipping = no
-
+		if_resolution = {
+			min_width = 2560 # min_width or max_width
+			min_height = 1440 # min_height or max_height
+			size = { width = 100% height = 100% }
+			clipping = no
+		}
+		if_resolution = {
+			max_width = 1920 # min_width or max_width
+			max_height = 1080 # min_height or max_height
+			size = { width = 100% height = 100% }
+			clipping = no
+		}
+		if_resolution = {
+			max_width = 1366 # min_width or max_width
+			max_height = 768 # min_height or max_height
+			size = { width = 70% height = 70% }
+			clipping = no
+		}
 		background = {
 			name = "background"
-			spriteType = "GFX_plain_bg_tile"
+			spriteType = "Empire_Select_Sidebar"
 		}
 
 		iconType = {
@@ -46,7 +61,7 @@ guiTypes = {
 		instantTextBoxType = {
 			name = "select_empire_label"
 			font = "malgun_goth_24"
-			position = { x = 16 y = 8 }
+			position = { x = 16 y = 3 }
 			maxWidth = 230
 			text =	 "SELECT_EMPIRE"
 			format = left
@@ -69,8 +84,8 @@ guiTypes = {
 			name = "fade_top"
 			spriteType = "GFX_faded_border_top"
 			orientation = upper_left
-			size = { x = 301 y = 18 }
-			position = { x = 0 y = 32 }
+			size = { x = 300 y = 18 }
+			position = { x = 2 y = 30 }
 			alwaysTransparent = yes
 		}
 
@@ -78,8 +93,8 @@ guiTypes = {
 			name = "fade_bottom"
 			spriteType = "GFX_faded_border_bottom"
 			orientation = lower_left
-			size = { x = 301 y = 18 }
-			position = { x = 0 y = -80 }
+			size = { x = 300 y = 18 }
+			position = { x = 2 y = -80 }
 			alwaysTransparent = yes
 		}
 
@@ -89,20 +104,46 @@ guiTypes = {
 
 		buttonType = {
 			name = "edit"
-			font = "malgun_goth_24"
-			spriteType = "GFX_standard_button_142_34_button"
-			buttonText = "CUSTOMIZE"
-			position = { x = 9999 y = 9999 }
-			orientation = CENTER
-			clicksound = confirm_click
+			if_resolution = {
+				min_width = 2560 # min_width or max_width
+				min_height = 1440 # min_height or max_height
+				font = "malgun_goth_24"
+				spriteType = "empire_edit_button"
+				position = { x = -407 y = 297 }
+				orientation = CENTER
+				clicksound = confirm_click
+			}
+
+			if_resolution = {
+				max_width = 1920 # min_width or max_width
+				max_height = 1080 # min_height or max_height
+				font = "malgun_goth_24"
+				spriteType = "empire_edit_button"
+				position = { x = -407 y = 295 }
+				orientation = CENTER
+				clicksound = confirm_click
+			
+			}
+
+			if_resolution = {
+				max_width = 1366 # min_width or max_width
+				max_height = 768 # min_height or max_height
+				font = "malgun_goth_24"
+				spriteType = "empire_edit_button"
+				position = { x = -407 y = 297 }
+				orientation = CENTER
+				clicksound = confirm_click
+			}
+
 		}
 
 		buttonType = {
 			name = "delete"
 			font = "cg_16b"
 			spriteType = "GFX_gamesetup_delete"
-			position = { x = 9999 y = 9999 }
+			position = { x = -245 y = 305 }
 			orientation = CENTER
+		
 		}
 
 		buttonType = {
@@ -127,25 +168,69 @@ guiTypes = {
 
 		buttonType = {
 			name = "next"
-			font = "malgun_goth_24"
-			spriteType = "GFX_select_button"
-			buttonText = "SELECT"
-			position = { x = 321 y = 290 }
 			orientation = CENTER
+			font = "malgun_goth_24"
+			spriteType = "empire_button"
 			clicksound = "confirm_click"
 			actionShortcut = "accept"
+			if_resolution = {
+				min_width = 2560 # min_width or max_width
+				min_height = 1440 # min_height or max_height
+				position = { x = 380 y = 296 }
+				scale = 0.8
+			}
+
+			if_resolution = {
+				max_width = 1920 # min_width or max_width
+				max_height = 1080 # min_height or max_height
+				position = { x = 380 y = 296 }
+				scale = 0.8
+			
+			}
+
+			if_resolution = {
+				max_width = 1366 # min_width or max_width
+				max_height = 768 # min_height or max_height
+				position = { x = 321 y = 290 }
+				orientation = CENTER
+			}
 		}
 
 		buttonType = {
 			name = "back"
 			font = "malgun_goth_24"
-			spriteType = "GFX_standard_button_large_211_40"
-			buttonText = "BACK_TO_MENU"
+			spriteType = "back_to_menu"
 			shortCut = "ESCAPE"
-			position = { x = -4 y = -68 }
-			orientation = LOWER_LEFT
-			actionShortCut = "cancel"
-			clicksound = back_click
+			if_resolution = {
+				min_width = 2560 # min_width or max_width
+				min_height = 1440 # min_height or max_height
+				position = { x = -4 y = -68 }
+				scale = 0.75
+				orientation = LOWER_LEFT
+				actionShortCut = "cancel"
+				clicksound = back_click
+			}
+
+			if_resolution = {
+				max_width = 1920 # min_width or max_width
+				max_height = 1080 # min_height or max_height
+				position = { x = -4 y = -68 }
+				scale = 0.75
+				orientation = LOWER_LEFT
+				actionShortCut = "cancel"
+				clicksound = back_click
+			
+			}
+
+			if_resolution = {
+				max_width = 1366 # min_width or max_width
+				max_height = 768 # min_height or max_height
+				position = { x = -4 y = -68 }
+				scale = 0.75
+				orientation = LOWER_LEFT
+				actionShortCut = "cancel"
+				clicksound = back_click
+			}
 		}
 		
 		instantTextBoxType = {
@@ -241,17 +326,17 @@ guiTypes = {
 			spriteType = "GFX_tiles_pre_scripted"
 			clicksound = "select_click"
 		}
-		iconType = {
-			name = "select_random"
-			quadTextureSprite = "GFX_select_random"
-			position = { x = 9999 y = 9999 }
-			alwaysTransparent = yes
-		}
+		# iconType = {
+		# 	name = "select_random"
+		# 	quadTextureSprite = "GFX_select_random"
+		# 	position = { x = 9999 y = 9999 }
+		# 	alwaysTransparent = no
+		# }
 
 		containerWindowType = {
 			name = "selected_overlay"
 			position = { x = 9999 y = 9999 }
-			size = { width = 210 height = 95 }
+			size = { width = 0 height = 0 }
 			background = {
 				name = "selected_bg"
 				spriteType = "GFX_glow_tile_orange"
@@ -262,7 +347,7 @@ guiTypes = {
 			name = "text"
 			font = "malgun_goth_24"
 			position = { x = 9999 y = 9999 }
-			maxWidth = 200
+			maxWidth = 0
 			text =	 "RANDOM"
 			format = center
 			alwaysTransparent = yes
@@ -290,7 +375,7 @@ guiTypes = {
 		containerWindowType = {
 			name = "selected_overlay"
 			position = { x = 9999 y = 9999 }
-			size = { width = 210 height = 95 }
+			size = { width = 0 height = 0 }
 			background = {
 				name = "selected_bg"
 				spriteType = "GFX_glow_tile_orange"
