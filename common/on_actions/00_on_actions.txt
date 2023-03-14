@@ -33,6 +33,8 @@ on_game_start_country = {
 		#necroids.255 # Paid of Debt event
 		##origin.5605 # Teachers of the Shroud #origin - Shroudwalker's Contact
 		##toxoids.7000 # Knights of the Toxic God - Start Quest
+		#origin.4005 # Payback Origin
+		#origin.5081 # Broken Shackles Blockers
 	}
 }
 
@@ -75,8 +77,92 @@ on_monthly_pulse = {
 		##galactic_features.365 # Tiyanki Respawning
 		enclave.2055 #If Khan dead, merc fleets break contract
 		enclave.2065 #Unemployed mercs return to merc station
+		fircon.10 #Adds pre-FTL insights
 	}
 }
+
+
+# Via pre_ftl_tech_progress_situation / preftl.50
+# See also: on_monthly_pulse_pre_ftl_observation_broken_shackles (below)
+on_monthly_pulse_pre_ftl_observation = {
+	random_events = {
+		# Neolithic Observation Events
+		100 = fircon.1255		# Tractable and Fertile
+		100 = fircon.1260		# Famine!
+		100 = fircon.1270		# Cave Paintings
+		# Bronze and Iron Age Events
+		100 = fircon.1280		# Written in the Stars!
+		100 = fircon.1295		# Pictorial Descent!
+		100 = fircon.1305		# All Hail Us!
+		# Medieval and Renaissance Age Events
+		100 = fircon.1325		# Art Finds a Way!
+		100 = fircon.1335		# The Journey Begins
+		100 = fircon.1355		# Ignorance is Contagious
+		# Steam, Industrial, and Machine Events
+		100 = fircon.1375		# Industrial Advancement!
+		100 = fircon.1405		# Peace and Prosperity!
+		100 = fircon.1440		# Conflict! What is it Good For!
+		# Atomic and Early Space Age Events
+		100 = fircon.1465		# Seeking Spacemen
+		25 = fircon.1495		# Propulsion Proponent Proclamation
+		# Early Space Age
+		5 = preftl.1010			# Early Space Age Robot Uprising
+		20 = fircon.2600		# First Interplanetary Flight
+		# Non-era related Observation Events
+		50 = fircon.2000		# Medical Side-Effects
+		50 = fircon.2010		# It's Raining Aliens!
+		# Situation Events
+		10 = preftl.2000		# Plague Situation
+		10 = preftl.2100		# Organic Singularity Situation
+		10 = preftl.2166		# New World Order Situation
+		# Hive Observation Events
+		100 = fircon.2500		# Phagocyted
+		100 = fircon.2510		# Ecosystem Takeover
+		100 = fircon.2520		# Fires of Industry
+		100 = fircon.2530		# Requiem for a Drone
+		100 = fircon.2540		# Nascent Collective
+		100 = fircon.2550		# The Right to Leave
+		# Pre-3.7 Observation Events
+		# Non-Era Related Observation Events
+		50 = observation.0		# Incoming Asteroid
+		50 = observation.1200	# Malfunctioning Implants
+		25 = observation.1300	# Aggressive Observation causes ethics change
+		5 = observation.1400	# Nuclear War
+		# Medieval or Victorian Era Events
+		50 = observation.300	# Smuggler Outpost
+		# Pre-Industrial Events
+		50 = observation.100	# Rogue Scientist
+		# # Post-Industrial Events
+		50 = observation.1000	# Scientist Abduction
+		50 = observation.1100	# Defense Force
+		50 = observation.1500	# Research Proposal
+		# Atomic and Early Space Age Events
+		50 = observation.200	# Shuttle Intercepted
+	}
+}
+
+# The following are considered valid for "Broken Shackles" empires observing their original civilizations; see also on_monthly_pulse_pre_ftl_observation (above)
+# Via pre_ftl_tech_progress_situation / preftl.50
+on_monthly_pulse_pre_ftl_observation_broken_shackles = {
+	random_events = {
+		# "First Contact" Observation events
+		100 = fircon.1255		# Tractable and Fertile
+		100 = fircon.1280		# Written in the Stars!
+		100 = fircon.1325		# Art Finds a Way!
+		100 = fircon.1335		# The Journey Begins
+		# Pre-3.7 Observation Events
+		50 = observation.0		# Incoming Asteroid
+		50 = observation.1200	# Malfunctioning Implants
+		25 = observation.1300	# Aggressive Observation causes ethics change
+		5 = observation.1400	# Nuclear War
+		50 = observation.300	# Smuggler Outpost
+		50 = observation.100	# Rogue Scientist
+		50 = observation.1000	# Scientist Abduction
+		50 = observation.1100	# Defense Force
+		50 = observation.1500	# Research Proposal
+		50 = observation.200	# Shuttle Intercepted
+ 	}
+ }
 
 # No scope, like on_game_start
 on_yearly_pulse = {
@@ -105,6 +191,9 @@ on_yearly_pulse = {
 		#crisis.5005
 		custodian.33	# Independent GDF Reinforcements
 		custodian.34	# GDF resurrection if destroyed
+		origin.6245		# Fear of the Dark Haven Progress
+		awareness.110	# Uncloaked observation outpost awareness gain
+		awareness.175	# Branch office on pre-ftl planet awareness gain
 	}
 }
 
@@ -133,7 +222,7 @@ on_decade_pulse = {
 		#galactic_features.362
 		utopia.50
 		syndaw.10 # machine leader malfunction chance
-		syndaw.400 # machine uprising + warning events
+		syndaw.400 # machine uprising  warning events
 		galcom.14 # check if anyone's missing an invite to the Galactic Community
 		drones.100	# Ancient Mining Drone Expansion Fleet setup (unclaimed systems)
 		drones.120	# Ancient Mining Drone Expansion Fleet setup (claimed systems too)
@@ -150,6 +239,8 @@ on_mid_game_pulse = {
 		leviathans.20101 # remove too-late wraith discovery
 		#distar.2050
 		#central.2
+		origin.6140 # fotd resolution
+		origin.5045 # Broken Shackles - The Cost of Freedom
 	}
 }
 
@@ -175,11 +266,19 @@ on_monthly_pulse_country = {
 		enclave.4244 #Teachers of the Shroud #origin - Become the #crisis - Shroudwalkers departure
 		galcom.210 # Monthly Ethics Check for GalCom
 		#toxoids.8014 #Check if toxic knights lost their keep
+		origin.5048 # Broken Shackles - Diverse Design
+		origin.5094 # Broken Shackles - Resolution Proposed
+		origin.5104 # Broken Shackles - Resolution Proposed
+		origin.5114 # Broken Shackles - Resolution Proposed
+		origin.5124 # Broken Shackles - Resolution Proposed
 		utopia.2665 # Monthly covenant progress
 		utopia.2670 # Covenant Rank 1 check
 		utopia.2675 # Covenant Rank 2 check
 		utopia.2680 # Covenant Rank 3 check
 		utopia.2685 # Covenant Rank 4 check
+		enclave.2075 # Find admiralless merc fleets and give them one.
+		ancrel.9902 # Archaoetech - Zro deficit ends - enable storm casters
+		ancrel.9906 # Archaoetech - Zro deficit starts - disable storm casters
 	}
 }
 
@@ -192,13 +291,18 @@ on_yearly_pulse_country = {
 		specialist.500 # Scholarium Planetary Sensor
 		specialist.1100 # Prospectorium Resource Discovery
 		leviathans.121 # Trader Enclave Opinion gain for resource deals
+		origin.6000 # Fear of the Dark Random Events
+		origin.5047 # Broken Shackles - Complimentary Thinking
+		origin.5041 # Broken Shackles - Factions Founded
+		origin.5011 # Broken Shackles - Homesick Alternate
 	}
 }
 
 # this = country
 on_bi_yearly_pulse_country = {
 	events = {
-		espionage.2 #Random Spy Network events
+		espionage.2 # Random Spy Network events (targeting default empires)
+		preftl_espionage.2 # Random Spy Network events (targeting pre-FTL societies)
 	}
 }
 
@@ -207,7 +311,14 @@ on_five_year_pulse_country = {
 	events = {
 		action.220
 		action.420
+		action.620 # pre-FTL diplo events
+		action.630 # pre-FTL tech events		
 		#origin.5715	# Imperial Vassal - Dissolution event chain
+		preftl.10050 # In breach of Equal Standing - get a fine.
+		preftl.10150 # In breach of Non-Interference - get a fine.
+		preftl.10250 # In breach of Exploitation - get a fine.
+		fircon.5050 # Solarpunk trade ending
+		origin.4109 # Payback - meeting Broken Shackles
 	}
 	# See also: on_five_year_random_pulse_country = {}
 	random_events = {
@@ -229,7 +340,8 @@ on_five_year_random_pulse_country = {
 		5 = envoy_events.15		# Galactic Community Wildlife
 		25 = envoy_events.1		# Insulting envoy software event
 		100 = action.2211		# on_five_year_random_pulse_country_negative_list
-		25 = situation.500		# Gravity Well situation
+		25 = situation.500 		# Gravity Well situation
+		5 = fircon.1200			# Jaunting Traveler
 		2000 = 0
 	}
 }
@@ -277,6 +389,20 @@ on_decade_pulse_country = {
 		federations.10400	# Fix issues we are in breach of (GalCom)
 		action.240			# Misc error checking
 		leviathans.560		# Enclave communications spread
+		action.632			# Payback - Broken Shackles interactions
+	}
+	random_events = {
+		50 = 0
+		50 = origin.4300 # Payback Origin - Out of Warranty event chain
+	}
+}
+
+on_decade_random_pulse_country_payback_broken_shackles = {
+	random_events = {
+		70 = 0
+		10 = origin.4120	# Sharing Espionage Intel
+		10 = origin.4130	# Help on the senate floor
+		10 = origin.4140	# Help during the war
 	}
 }
 
@@ -366,7 +492,6 @@ on_custom_diplomacy = {
 # Fromfromfrom = System where contact occurred
 on_first_contact = {
 	events = {
-		story.7 #First aliens discovered
 		tutorial.59 #Tutorial: First Contact
 		leviathans.9 #Leviathans
 		##galactic_features.421 #VLUUR
@@ -381,6 +506,7 @@ on_first_contact = {
 on_first_contact_finished = {
 	events = {
 		tutorial.2004 #First Contact Established (setup)
+		origin.6044 #Fear of the Dark
 	}
 }
 
@@ -400,6 +526,9 @@ on_enforce_borders = {
 on_ground_combat_started = {
 	events = {
 		action.485 # Prevents With Great Power achievement
+		awareness.125 # Pre-ftl planet invaded, sets awareness to 100.
+		preftl.10156 # Violation of Non-Interference Act by Invasion.
+		fircon.5034 #Invading Solarpunks
 	}
 }
 
@@ -458,10 +587,11 @@ on_planet_defenders_win = {
 		colony.5
 		colony.56
 		colony.108
-		unrest.161
 		#distar.34
 		##ancrel.4057
+		preftl.1030		# Pre-FTL Robot Uprising Lost
 		colony.9885 #Negative mass, defended against rebels
+		fircon.6034		# I'm a (non) believer - pre-FTLs defeat subterraneans
 	}
 }
 
@@ -478,6 +608,8 @@ on_planet_defenders_lose = {
 		#origin.3210
 		situation.190 # living snow
 		colony.3051
+		preftl.1025		# Pre-FTL Robot Uprising Won
+		fircon.6036		# I'm a (non) believer - pre-FTLs wiped out by subterraneans
 	}
 }
 
@@ -522,6 +654,10 @@ on_entering_system_first_time = {
 		enclave.100 #First Shroud Tunnel Encounter
 		#origin.5615 #Teachers of the Shroud #origin - enter Shroudwalker system
 		#ancrel.12060 #Surveillance Supercomputer system
+		origin.6155 #Fear of the Dark entering hunter system
+		origin.4997 #Broken Shackles - Homeworld Found Gatekeeper 1
+		origin.4998 #Broken Shackles - Homeworld Found Gatekeeper 2
+		origin.4999 #Broken Shackles - Homeworld Found Gatekeeper 3
 	}
 	random_events = {
 		200 = 0
@@ -611,6 +747,12 @@ on_entering_system_fleet = {
 		#toxoids.7310 #Knights enter the Toxic God's system
 		#toxoids.7311 #Non knights enter the Toxic God's system
 		#toxoids.7312 #Knights enter empty Toxic God's system
+		origin.6255 #Fear of the Dark Seperatists attacking hostile fleet
+		awareness.100 # Fleet enters a pre-FTL system.
+		fircon.5000 #Entering Solarpunk Borders
+		fircon.5005 #Entering after Solarpunk has been discovered
+		fircon.5015 #Entering actual Solarpunk system
+		fircon.5040 #Entering angered Solarpunk System
 	}
 }
 
@@ -634,7 +776,6 @@ on_crossing_border = {
 # From = Planet
 on_survey = {
 	events = {
-		action.24
 		anomaly.2575 # #terraforming Candidates
 		#toxoids.500
 		aquatics.5
@@ -648,8 +789,8 @@ on_survey = {
 		anomaly.6660
 		anomaly.6661
 		anomaly.6662
-		action.12
-		tutorial.50
+		action.12 # Primitive planet surveyed
+		tutorial.2140
 		tutorial.55
 		leviathans.2010
 		#distar.130
@@ -662,6 +803,13 @@ on_survey = {
 		#ancrel.9999 # Spawns Archaeology Sites
 		##galactic_features.368 # Tiyanki Home System
 		##galactic_features.386 # Tiyanki Graveyard System
+		origin.6160 #Scanning Hunter Planet
+		uplift.6000 # Pre-Sapients Found
+		awareness.115	# Uncloaked science ship surveys pre-ftl planet
+		fircon.5020 # Surveying Solarpunk Planet
+		origin.5000 #Broken Shackles - Encountering Main Pop Homeworld
+		origin.5001 #Broken Shackles - 1st Encounter w/Other Pop Homeworld
+		origin.5009 #Broken Shackles - 2nd Encounter w/Other Pop Homeworld
 	}
 
 	random_events = {
@@ -686,7 +834,6 @@ on_planet_surveyed = {
 		action.46
 		#country.259
 		#distar.13050 # strategic resource alert
-		communications_spread.4
 	}
 }
 
@@ -730,6 +877,7 @@ on_colonization_started = {
 		#origin.3010 #Lithoid #origin deposit/modifier
 		#origin.3101 #Remnants colonial goodies
 		federations3.120 #Kept Grounds, if Wenkwort Artem has been colonised
+		origin.5510 #Broken Shackles - First Colony
 	}
 	random_events = {
 		190 = 0
@@ -759,6 +907,7 @@ on_colonized = {
 		#origin.84
 		clones.5 	#Clone Army (make sure pops don't migrate to die)
 		#origin.3225 #Progenitor Hive Missing
+		awareness.135 # Planet colonised in pre-ftl system
 	}
 }
 
@@ -768,6 +917,7 @@ on_colony_destroyed = {
 	events = {
 		colony.2002
 		#origin.3002 #ToL Tree death
+		colony.9895 #Remove 'Sprawling Slums' blockers
 	}
 }
 
@@ -922,6 +1072,7 @@ on_fleet_destroyed_victim = {
 		#galactic_features.422
 		#crisis.6152
 		drones.130
+		cara.945		# Check if Caravaneers are dead.
 	}
 }
 
@@ -939,7 +1090,7 @@ on_fleet_destroyed_perp = {
 		country.1020
 		country.1043
 		colony.181
-		observation.5
+		observation.6
 		story.109
 		#story.114
 		#story.209
@@ -966,6 +1117,7 @@ on_fleet_destroyed_perp = {
 		leviathans.354 # Artisan Enclave Starbase
 		leviathans.2014
 		leviathans.4
+		origin.4149	# Payback | Leviathan slain
 		pirate.13
 		pirate.24
 		akx.9318
@@ -1008,6 +1160,8 @@ on_fleet_destroyed_perp = {
 on_space_battle_won = {
 	events = {
 		achievement.1
+		awareness.105 # Ship disengaged in pre-ftl system.
+		origin.4020 #Payback debt collectors chain | won battle against the debt collectors
 	}
 }
 
@@ -1059,7 +1213,8 @@ on_fleet_contract_started = {
 # Is fired immediately after fleet contract is expired
 on_fleet_contract_expired = {
 	events = {
-		enclave.2059 #Merc fleet contract expired. Renew?
+		enclave.2058 # Delay before AIs can hire the fleet again
+		enclave.2059 # Merc fleet contract expired. Renew?
 	}
 }
 
@@ -1069,6 +1224,9 @@ on_fleet_contract_expired = {
 # FromFromFrom = country that initiated the ending (trade deal actor when the contract cancellation is a part of trade deal)
 # Is fired immediately after fleet contract is cancelled (when controller prematurely finishes the contract or when the contract cancellation is a part of trade deal)
 on_fleet_contract_cancelled = {
+	events = {
+		enclave.2058 # Delay before AIs can hire the fleet again
+	}
 }
 
 # This = fleet
@@ -1077,6 +1235,9 @@ on_fleet_contract_cancelled = {
 # FromFromFrom = country that initiated the ending (main attacker in a case of war)
 # Is fired immediately after fleet contract is broken (when country is attacked by someone of when a war is started)
 on_fleet_contract_broken = {
+	events = {
+		enclave.2058 # Delay before AIs can hire the fleet again
+	}	
 }
 
 # The game will generate one on_building_X on_action for every station ship-size
@@ -1097,6 +1258,7 @@ on_building_mining_station = {
 		anomaly.6830 #Mining for Food
 		anomaly.6880 #Sleeping Crystal
 		anomaly.6885 #Angry Crystal
+		awareness.120 # Outpost, mining or research station built in pre-ftl system
 	}
 }
 
@@ -1110,6 +1272,7 @@ on_building_research_station = {
 		tutorial.12
 		tutorial.1200
 		tutorial.56
+		awareness.120 # Outpost, mining or research station built in pre-ftl system
 	}
 	random_events = {
 		100 = 0
@@ -1149,13 +1312,27 @@ on_building_starbase_outpost = {
 		#distar.1007
 		#distar.2036
 		#origin.3505 # Slingshot to the Stars
+		origin.5010 #Broken Shackles - First Station
+		awareness.120 # Outpost, mining or research station built in pre-ftl system
 	}
 }
 
 on_building_starbase_fe_outpost = {}
 
+# This = construction ship
+# From = planet it is built on
 on_building_observation_station = {
 	events = {
+		fircon.5 #Sets a flag so that we don't iterate through countries unnecessarily
+		communications_spread.4 # establish communication with pre-ftl civilization
+		awareness.115 # Observation post built in orbit of pre-ftl planet.
+		tutorial.2145 # Observation Station Tutorial
+		preftl.40	# Sets flag to delay observation event
+		preftl.41	# Establish diplo communications if they have max awareness
+		fircon.5025 # Built Solar Punk Observation Station
+		fircon.25	# Cloak Observation Outpost if owner has Cloaking tech.
+		origin.5515 # Broken Shackles - Uplift Main Homeworld Decision
+		origin.5520 # Broken Shackles - Uplift Secondary Homeworld Decision
 	}
 }
 
@@ -1189,6 +1366,30 @@ on_building_starbase_swarm = {
 
 on_building_starbase_marauder = {
 	events = {
+	}
+}
+
+# This = station
+# From = planet it was built on
+on_destroying_station = {
+	events = {
+		communications_spread.6 # remove communication with pre-ftl civilization
+	}
+}
+	
+# This = station
+# From = planet it was built on
+on_losing_station_control = {
+	events = {
+		communications_spread.6 # remove communication with pre-ftl civilization
+	}
+}
+
+# This = station
+# From = planet it was built on
+on_gaining_station_control = {
+	events = {
+		fircon.30 # If Obs station, add communications etc
 	}
 }
 
@@ -1236,16 +1437,7 @@ on_ship_enabled = {
 # From = uplifted species (pre-modification)
 on_uplift_completion = {
 	events = {
-		uplift.6001
-		uplift.6011
-		uplift.6021
-		uplift.6031
-		uplift.6041
-		uplift.6051
-		uplift.6061
-		uplift.6071
-		uplift.6091
-		uplift.6081
+		uplift.6010
 		factions.1005
 	}
 }
@@ -1296,6 +1488,11 @@ on_planet_bombarded = {
 		#graygoo.2
 		#graygoo.555
 		#origin.3003		# Tree of Life: Tree death
+		awareness.125	# Pre-ftl world bombarded.
+		origin.4025 	# Payback debt collectors chain | lost battle against the debt collectors
+		preftl.10160	# Violation of Non-Interference Act by Bombardment.
+		fircon.5034		# Bombarding Solarpunk
+		preftl.10300	# Bombarding Pre-FTLs
 	}
 }
 
@@ -1306,7 +1503,7 @@ on_planet_zero_pops = {
 	events = {
 		action.81
 		#distar.1015
-		primitive.201
+		preftl.201
 	}
 }
 
@@ -1357,7 +1554,7 @@ on_pop_resettled = {
 	}
 }
 
-# Executed right before a country has established communications with another country
+# Executed right before a country has established communications with another country. Does not fire if comms are established with establish_communications_no_message
 # This = Country which established the communications
 # From = Country which communications were established with
 on_pre_communications_established = {
@@ -1367,7 +1564,7 @@ on_pre_communications_established = {
 	}
 }
 
-# Executed right after country has established communications with another country
+# Executed right after country has established communications with another country. Does not fire if comms are established with establish_communications_no_message
 # This = Country which established the communications
 # From = Country which communications were established with
 on_post_communications_established = {
@@ -1378,6 +1575,20 @@ on_post_communications_established = {
 		#anomaly.4092
 		factions.11
 		action.110 # get Galactic Community invitation
+	}
+}
+
+# Executed right after country has established communications with another country. Always fires, even if comms are established with establish_communications_no_message
+# This = Country which established the communications
+# From = Country which communications were established with
+on_post_communications_established_always_fire = {
+}
+
+# Serves to reveal presence to pre-ftl country
+# This = Country which is revealing its presence
+# From = Pre-ftl country
+on_presence_revealed = {
+	events = {
 	}
 }
 
@@ -1491,9 +1702,12 @@ on_policy_changed = {
 		syndaw.1305 # banning bot workers can cause Uprising
 		leader.30 # banning AI will remove AI-dependent traits from leaders
 		action.80 # banning AI will remove existing Synthetic Armies
+		preftl.55 # Changing interferance policy with pre-FTLs should remove certain actions
+		preftl.60 # Changing enlightenment policy with pre-FTLs should remove certain actions
 	}
 }
 
+# Scope: Ship Event
 # A ship has been built
 # Root = Ship
 # From = Planet
@@ -1506,6 +1720,7 @@ on_ship_built = {
 		mandate.144
 		#crisis.2056
 		fedev.9500
+		origin.5060 #Broken Shackles - Built 1st Science Ship
 	}
 }
 
@@ -1536,7 +1751,13 @@ on_war_beginning = {
 		factions.13
 		#origin.29
 		emperor.370
+		origin.6080 # Fear of the Dark
+		origin.5135 # Broken Shackles - War vs MSI
+		origin.5146 # Broken Shackles - Second War vs MSI
+		origin.5147 # Broken Shackles - War vs Slavers
 		utopia.2661
+		origin.4141 # Payback - BS joins war vs MSI
+		action.640	# Nothing to See Here achievement		
 	}
 }
 
@@ -1547,6 +1768,7 @@ on_war_ended = {
 	events = {
 		fallen_empires.14
 		utopia.2660
+		origin.6256 # Fear of the Dark Seperatists made neutral
 	}
 }
 
@@ -1583,6 +1805,15 @@ on_tech_increased = {
 		aquatics.250 #Dragon Communications Study
 		action.400 #Planetary Unification
 		enclave.7005 # Salvager Introduction
+		origin.4306 # Payback Out of Warranty chain - Genetic Healthcare
+		origin.5500 # Broken Shackles - Upgrade Research Labs
+		origin.5505 # Broken Shackles - Upgrade Admin Hub
+		origin.4936 # Payback - Upgrade flagship
+		tutorial.2500 # Tutorial - Cloaking Fields
+		tutorial.2550 # Tutorial - Cloaking Detection
+		fircon.26		# Cloak Observation Outposts upon researching cloaking.
+		ancrel.9915 # Archaeotech - faking AI building faculty of archaeostudies
+		ancrel.9920 # Archaeotech - faking AI building archaeo refinery
 	}
 }
 
@@ -1625,6 +1856,7 @@ on_emergency_ftl = {
 		leviathans.1031
 		leviathans.650
 		leviathans.654
+		awareness.130	# Fleets engages emergency FTL in pre-ftl system.
 	}
 	random_events = {
 		310 = 0
@@ -1787,6 +2019,9 @@ on_war_won = {
 		syndaw.1205
 		syndaw.2000 # exterminator achievement
 		action.475 # Fishing for Trouble achievement
+		origin.5145 # Broken Shackles - War vs Slavers
+		origin.4060 # Payback - defeated MSI
+		origin.4071 # Payback - defeated the people who defeated the MSI
 	}
 }
 
@@ -1803,6 +2038,7 @@ on_war_lost = {
 		#action.157
 		fallen_empires.2
 		fallen_empires.12
+		origin.5140 # Broken Shackles - War vs Slavers
 	}
 }
 
@@ -1816,6 +2052,7 @@ on_status_quo = {
 	events = {
 		action.39
 		action.45
+		origin.5141 #Broken Shackles vs MSI
 	}
 }
 
@@ -1828,6 +2065,7 @@ on_status_quo = {
 on_status_quo_forced = {
 	events = {
 		action.39
+		origin.5141 #Broken Shackles vs MSI
 	}
 }
 
@@ -1966,6 +2204,9 @@ on_planet_transfer = {
 		#origin.3225 #Progenitor Hive Missing
 		#origin.3240 #Removing Progenitor Hive Modifier
 		#toxoids.8024 #Recovering the keep
+		preftl.2171 # Removes modifier for Singularity planet
+		factions.15 # Remove Factions-specific modifiers
+		necroids.10 # Hive Necrophage not auto purging their pops
 	}
 }
 
@@ -1996,6 +2237,7 @@ on_capital_changed = {
 #This = Fleet scope
 on_fleet_enter_orbit = {
 	events = {
+		fircon.2610 # Pre-FTL Observation Inteplanetary Flight
 	}
 }
 
@@ -2004,6 +2246,9 @@ on_fleet_enter_orbit = {
 on_join_federation = {
 	events = {
 		fedev.499 # First Federation event
+		origin.6050 # Fear of the Dark
+		origin.5150 # Broken Shackles - Federation formed with MSI
+		origin.5151 # Broken Shackles - Federation formed with generic slavers
 	}
 }
 
@@ -2064,6 +2309,9 @@ on_federation_leader_challenge = {
 # This = created country
 # From = root of context where create_country/create_rebels happens
 on_country_created = {
+	events = {
+		preftl.30	# Add technological progression situation to pre-FTLs if the situation was not already created.
+	}
 }
 
 #This = destroyed country
@@ -2099,6 +2347,7 @@ on_megastructure_built = {
 		utopia.4100
 		utopia.80
 		utopia.4007 # alert message
+		awareness.145 # Megastructure built or upgraded in pre-ftl system
 	}
 }
 
@@ -2135,66 +2384,19 @@ on_megastructure_upgraded = {
 		utopia.85
 		action.120 # alert message for contacts
 		action.460 # Strange Mood achievement
+		awareness.145 # Megastructure built or upgraded in pre-ftl system
 	}
 }
 
 # X years has passed since a planet was colonized (won't trigger on empire homeworld)
 on_colony_1_year_old = {
 	events = {
-		### Planet Modifiers - 9
-		#colony_mod.1 # Irradiated
-		#colony_mod.2 # Titanic Life
-		#colony_mod.3 # Unstable Tectonics
-		#colony_mod.4 # Asteroid Belt
-		#colony_mod.5 # Atmospheric Hallucinogen
-		#colony_mod.12 # Asteroid Impacts
-		#colony_mod.14 # Asteroid Impacts - Good
-		#colony_mod.16 # Strong Magnetic Field - Good
-		#colony_mod.17 # Strong Magnetic Field - Bad
-		#colony_mod.121 # Gatekeeper for Asteroid Impacts
 		colony_mod.161 # Gatekeeper for modifier colony events
 	}
 
 	random_events = {
 		300 = 0
-
-		#### Colony Events & Chains - 14
-		#1 = colony.1 # Migrating Forests
-		#1 = colony.50 # Sub#terranean Aliens
-		#1 = colony.1500 # Helpful Drones
-		#1 = colony.1520 # Mharin Kharin
-
-		#2 = colony.100 # Abandoned #terraforming
-		#1 = colony.180 # Asteroid Sighted
-		#1 = colony.2001 # Trouble in Paradise
-		#2 = colony.2005 # Submerged Cruiser
-		#1 = colony.2010 # A Change of Heart
-		#2 = colony.2015 # Odd Factory
-		#2 = colony.2025 # What Separates Us
-		#2 = colony.2030 # Assassination
-		#2 = colony.2035 # Infectious Disease
-		#2 = colony.2050 # Clerical Errors
-
-		#### Planet Modifiers - 9
-		#5 = colony_mod.1 # Irradiated
-		#5 = colony_mod.2 # Titanic Life
-		#5 = colony_mod.3 # Unstable Tectonics
-		#5 = colony_mod.4 # Asteroid Belt
-		#5 = colony_mod.5 # Atmospheric Hallucinogen
-		#5 = colony_mod.12 # Asteroid Impacts
-		#5 = colony_mod.14 # Asteroid Impacts - Good
-		#5 = colony_mod.16 # Strong Magnetic Field - Good
-		#5 = colony_mod.17 # Strong Magnetic Field - Bad
-
-		#### Tomb Worlds - 8
-		#5 = colony.150 # Underground Vault
-		#5 = colony.155 # Nuclear Bomb
-		#5 = colony.160 # Particle Accelerator
-		#5 = colony.161 # Surviving Infrastructure
-		#5 = colony.162 # Space Station
-		#5 = colony.163 # Wasteland Radiation
-		#5 = colony.164 # Pacifist Movement
-		#5 = colony.170 # Orbital Debris
+		30 = factions.3000 # The Political Frontier
 	}
 }
 
@@ -2204,6 +2406,8 @@ on_colony_2_years_old = {
 	}
 	random_events = {
 		150 = 0
+
+		30 = factions.3000 # The Political Frontier
 
 		### Colony Events & Chains - 14
 		3 = colony.1 # Migrating Forests
@@ -2218,9 +2422,6 @@ on_colony_2_years_old = {
 
 		15 = colony.2015 # Odd Factory
 		15 = colony.2025 # What Separates Us
-		#15 = colony.2030 # Assassination
-		#15 = colony.2035 # Infectious Disease
-		#15 = colony.2050 # Clerical Errors
 		10 = colony.3001 # Rogue Moon
 		8 = colony.3005 # Dimensional Portal
 
@@ -2228,24 +2429,12 @@ on_colony_2_years_old = {
 		8 = colony.9050 #Crystal Kraken
 		8 = colony.9295 #Metallic Puddles
 
-
 		15 = colony.2060 # Strange Mushrooms
 		# 0 = colony.8099 # Insidious Ophidians
 
 		### Archaeology Colony Sites
 		#3 = ancrel.6049 # Blade of the Huntress
 		#3 = ancrel.15010 # Mask of Transformation
-
-		### Planet Modifiers - 9
-		#150 = colony_mod.1 # Irradiated
-		#150 = colony_mod.2 # Titanic Life
-		#150 = colony_mod.3 # Unstable Tectonics
-		#150 = colony_mod.4 # Asteroid Belt
-		#150 = colony_mod.5 # Atmospheric Hallucinogen
-		#150 = colony_mod.12 # Asteroid Impacts
-		#150 = colony_mod.14 # Asteroid Impacts - Good
-		#150 = colony_mod.16 # Strong Magnetic Field - Good
-		#150 = colony_mod.17 # Strong Magnetic Field - Bad
 
 		### Tomb Worlds - 8
 		75 = colony.150 # Underground Vault
@@ -2282,8 +2471,6 @@ on_colony_3_years_old = {
 		10 = colony.2010 # A Change of Heart
 		10 = colony.2015 # Odd Factory
 		10 = colony.2025 # What Separates Us
-		#10 = colony.2030 # Assassination
-		#10 = colony.2035 # Infectious Disease
 		10 = colony.2050 # Clerical Errors
 		10 = colony.3001 # Rogue Moon
 		5 = colony.3005 # Dimensional Portal
@@ -2291,17 +2478,6 @@ on_colony_3_years_old = {
 
 		### Archaeology Colony Sites
 		#3 = ancrel.6049 # Blade of the Huntress
-
-		### Planet Modifiers - 9
-		#300 = colony_mod.1 # Irradiated
-		#300 = colony_mod.2 # Titanic Life
-		#300 = colony_mod.3 # Unstable Tectonics
-		#300 = colony_mod.4 # Asteroid Belt
-		#300 = colony_mod.5 # Atmospheric Hallucinogen
-		#300 = colony_mod.12 # Asteroid Impacts
-		#300 = colony_mod.14 # Asteroid Impacts - Good
-		#300 = colony_mod.16 # Strong Magnetic Field - Good
-		#300 = colony_mod.17 # Strong Magnetic Field - Bad
 
 		### Tomb Worlds - 8
 		50 = colony.150 # Underground Vault
@@ -2381,6 +2557,7 @@ on_colony_yearly_pulse = {
 	events = {
 		unrest.50 	#Start of Revolt Situation
 		#toxoids.1 	#Increment pollution from Relentless Industrialists
+		awareness.140 # Colony in pre-ftl system
 	}
 }
 
@@ -2416,6 +2593,7 @@ on_leader_spawned = {
 		clones.24 # New Leaders gain Clone Army Admiral traits
 		action.405 # New Citizen Service Admirals and Generals are level 3
 		specialist.400
+		origin.6265 # Fear of the Dark Leader Spawned after Merge
 	}
 	random_events = {
 		80 = 0
@@ -2516,6 +2694,7 @@ on_fleet_quantum_catapult = {
 	events = {
 		action.425 # Yeet the Fleet
 		action.430 # Into the Unknown
+		over.30 # Quantic Ambush modifier
 	}
 }
 
@@ -2577,7 +2756,9 @@ on_system_lost = {
 		mega.100 # Lost Consecrated World
 		action.102 # Move Market Station
 		action.200	# recalc strategic war data
+		action.226 # remove mining/science/observation
 		specialist.300
+		origin.6280 # Seperatist Planet destroy themselves
 	}
 }
 
@@ -2603,6 +2784,7 @@ on_slave_sold_on_market = {
 on_relic_activated = {
 	events = {
 		achievement.5 # Unlimited Power achievement
+		action.650	# Galatron activated - unlocks CB to steal it
 	}
 }
 
@@ -2615,6 +2797,7 @@ on_arch_stage_finished = {
 on_arch_site_finished = {
 	events = {
 		achievement.6 # Archaeologist achievement
+		ancrel.15050 # Generate Minor Artifacts deposits
 	}
 	random_events = {
 		90 = 0
@@ -2632,6 +2815,11 @@ on_resolution_passed = {
 		galcom.305 #National Agenda Tradition event
 		galcom.310 #Persistent Petitioners Tradition event
 		galcom.315 #Persistent Petitioners Tradition event cleanup
+		origin.4051 # Payback - Even The Score - Passed sanction
+		origin.4053 # Payback - Even The Score - Passed Equal Standing or Non-Interference
+		origin.4057 # Payback - Even The Score - Repealed a sanction
+		origin.4058 # Payback - Even The Score - Repealed Equal Standing
+		origin.4059 # Payback - Even The Score - Repealed Non-Interference
 	}
 }
 
@@ -2647,8 +2835,8 @@ on_galactic_community_formed = {
 	events = {
 		galcom.60
 	}
-
 }
+
 on_galactic_council_established = {
 	events = {
 		galcom.50
@@ -2661,6 +2849,8 @@ on_add_community_member = {
 		galcom.60
 		#crisis.4116
 		galcom.200
+		origin.5079 #Communications between MSI and Broken Shackles through Galcom
+		origin.4050  # Payback - Make Them Pay chain - Joined the galcom
 	}
 }
 
@@ -2688,6 +2878,48 @@ on_join_alliance = {
 on_leave_alliance = {
 }
 
+# This = Country who accepted the proposal
+# From = Country who proposed the commercial pact
+on_sign_commercial_pact = {
+	events = {
+		origin.5275 # Broken Shackles and MSI
+	}
+}
+
+# This = Country who accepted the proposal
+# From = Country who proposed the defensive pact
+on_sign_defensive_pact = {
+	events = {
+		origin.5275 # Broken Shackles and MSI
+	}
+}
+
+# This = Country who accepted the proposal
+# From = Country who proposed the migration treaty
+on_sign_migration_pact = {
+	events = {
+		origin.6200 # Fear of the Dark
+		origin.5275 # Broken Shackles and MSI
+	}
+}
+
+# This = Country who accepted the proposal
+# From = Country who proposed the non-aggression pact
+on_sign_non_aggression_pact = {
+	events = {
+		origin.5275 # Broken Shackles and MSI
+	}
+}
+
+# This = Country who accepted the proposal
+# From = Country who proposed the research agreement
+on_sign_research_pact = {
+	events = {
+		origin.5275 # Broken Shackles and MSI
+	}
+}
+
+
 # This = subject
 # From = subject's overlord
 on_becoming_subject = {
@@ -2696,6 +2928,8 @@ on_becoming_subject = {
 		#crisis.5020 # Menace Objective - Vassalise Empires
 		emperor.80 # New vassal joins Imperium
 		action.441 # Force Subjects to join GalCom
+		origin.6064 # Fear of the Dark became a subject
+		origin.6070 # Fear of the Dark got a subject
 	}
 }
 
@@ -2733,6 +2967,8 @@ on_ask_to_leave_federation_declined = {
 on_spynetwork_formed = {
 	events = {
 		espionage.1 #First Spy Network founded
+		espionage.1 #First Spy Network founded - regular empires
+		espionage.20 #First Spy Network founded - pre-FTL empires		
 	}
 }
 
@@ -2744,6 +2980,9 @@ on_add_to_imperial_council = {
 # THIS = Country: Emperor
 # FROM = Country removed from council
 on_remove_from_imperial_council = {
+	events = {
+		action.635 #First aliens discovered
+	}
 }
 
 #these three are fired from script, basically for modders who want to change how first contact works or add some extra flavour stories in without overwriting things
@@ -2905,6 +3144,7 @@ on_crystalline_empire_task = {
 on_destroy_star_system = {
 	events = {
 		#crisis.220
+		awareness.155 # Neighbouring system has pre-ftls
 	}
 }
 
@@ -3040,5 +3280,67 @@ on_shroudwalker_insight_situation_finish = {
 		25 = enclave.7065 # Spy Network
 		25 = enclave.7070 # Intel
 		10 = enclave.7075 # Shroud is busy right now, come back later (Nothing)
+	}
+}
+
+
+# Fired when a fleet activates cloaking
+# This = Fleet
+on_cloaking_activated = {
+	events = {
+		fircon.15 #Predatory Tactics Activate
+	}
+}
+
+# Fired when cloaking is deactivated for a fleet (voluntarily or involuntarily)
+# This = Fleet
+on_cloaking_deactivated = {
+	events = {
+		fircon.16 #Predatory Tactics Deactivate
+		awareness.100 # Decloaked in pre-ftl system.
+	}
+}
+
+# Fired when a pre-FTL's awareness level increases (by uncloaking ships or using add/set_awareness in events)
+# This = PreFTL Country
+# From = Observing Country
+on_awareness_level_increase = {
+	events = {
+		awareness.160 # Increased awareness to next threshold, fire a notification for any observer.
+		awareness.170 # Sets observation mission to none when you reach full awareness
+		awareness.900 # Establish communications if they reach full awareness
+	}
+}
+
+# Fired when a pre-FTL's awareness level decreases (by uncloaking ships or using add/set_awareness in events)
+# This = PreFTL Country
+# From = Observing Country
+on_awareness_level_decrease = {
+	events = {
+		awareness.165 # Decreased awareness to previous threshold, fire a notification for any observer.
+	}
+}
+
+# Chance of pre-FTL civilizations to shift their ethics
+on_pre_ftl_pop_ethic_shift = {
+	random_events = {
+		500 = 0
+		5 = observation.3138	# Societal Shift towards Authoritarian
+		5 = observation.3140	# Societal Shift towards Egalitarian
+		5 = observation.3142	# Societal Shift towards Xenophobe
+		5 = observation.3144	# Societal Shift towards Xenophile
+		5 = observation.3146	# Societal Shift towards Militarist
+		5 = observation.3148	# Societal Shift towards Pacifist
+		5 = observation.3150	# Societal Shift towards Spiritualist
+		5 = observation.3152	# Societal Shift towards Materialist
+	}
+}
+
+# Fired when a country attacks another country
+#This = attacked country
+#From = attacker country
+on_country_attacked = {
+	events = {
+		observation.3200 # Clear relations with pre-ftl under observation
 	}
 }

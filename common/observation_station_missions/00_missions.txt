@@ -37,6 +37,197 @@
 
 ###Note from Puck - Removed Salarian Access to Aggressive Observation, as they have their own variant of it. 
 
+# Communication
+no_observation = {
+	icon = "GFX_fleet_order_button_ground_support_selective"
+	small_icon = 1
+
+	resources = {
+		category = station_observer_missions
+		# Unity from Diplomatic Networking Tradition
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					has_active_tradition = tr_diplomacy_diplomatic_networking
+				}
+			}
+			unity = 3
+		}
+		# Trade policy outputs
+		# Scaled by pre-FTL technological age
+		# in pre_ftl_trade_value_mult
+
+		# Default trade policy OR no trade policy (for gestalts)
+		# Only gain energy from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					NOR = {
+						has_policy_flag = trade_conversion_consumer_goods
+						has_policy_flag = trade_conversion_unity
+						has_policy_flag = trade_conversion_trade_league
+						has_policy_flag = trade_conversion_holy_covenant
+					}
+				}
+			}
+			energy = 1
+			mult = value:pre_ftl_trade_value_mult
+		}
+		# Consumer Benefits trade policy
+		# Gain energy and consumer goods from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					has_policy_flag = trade_conversion_consumer_goods
+				}
+			}
+			energy = 0.5
+			consumer_goods = 0.25
+			mult = value:pre_ftl_trade_value_mult
+		}
+		# Marketplace of Ideas trade policy
+		# Gain energy and unity from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					has_policy_flag = trade_conversion_unity
+				}
+			}
+			energy = 0.5
+			unity = 0.25
+			mult = value:pre_ftl_trade_value_mult
+		}
+		# Trade League trade policy
+		# Gain energy, consumer goods and unity from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					has_policy_flag = trade_conversion_trade_league
+				}
+			}
+			energy = 0.5
+			consumer_goods = 0.2
+			unity = 0.2
+			mult = value:pre_ftl_trade_value_mult
+		}
+		# Holy Covenant trade policy
+		# Gain energy and unity from the pact.
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					has_policy_flag = trade_conversion_holy_covenant
+				}
+			}
+			energy = 0.5
+			unity = 0.5
+			mult = value:pre_ftl_trade_value_mult
+		}
+
+		# Equal Standing GalCom resolution has passed
+		# gain a small amount of strategic resources that
+		# are present on the planet if you can mine them.
+
+		# Exotic Gases
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+					has_technology = tech_mine_exotic_gases
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+				orbit = {
+					check_modifier_value = {
+						modifier = building_gas_extractors_max
+						value >= 1
+					}
+				}
+			}
+			exotic_gases = 2
+			mult = value:pre_ftl_age_mult
+		}
+
+		# Rare crystals
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+					has_technology = tech_mine_rare_crystals
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+				orbit = {
+					check_modifier_value = {
+						modifier = building_crystal_mines_max
+						value >= 1
+					}
+				}
+			}
+			rare_crystals = 2
+			mult = value:pre_ftl_age_mult
+		}
+
+		# Volatile Motes
+		produces = {
+			trigger = {
+				has_modifier = preftl_action_trade_pact
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+					has_technology = tech_mine_volatile_motes
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_equal_standing"
+				orbit = {
+					check_modifier_value = {
+						modifier = building_mote_harvesters_max
+						value >= 1
+					}
+				}
+			}
+			volatile_motes = 2
+			mult = value:pre_ftl_age_mult
+		}
+	}
+
+	potential = {
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				current_awareness_level = full
+			}
+		}
+	}
+
+	valid = {
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				current_awareness_level = full
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+
 # Passive Observation
 passive_observation = {
 	icon = "GFX_fleet_task_passive_observation"
@@ -44,9 +235,12 @@ passive_observation = {
 
 	resources = {
 		category = station_observer_missions
+		# Base society research output.
 		produces = {
 			society_research = 8
+			mult = value:pre_ftl_spy_network_mult
 		}
+		# Increased society output from Advanced Xenostudies.
 		produces = {
 			trigger = {
 				exists = owner
@@ -60,14 +254,15 @@ passive_observation = {
 				}
 			}
 			society_research = 4
+			mult = value:pre_ftl_spy_network_mult
 		}
+		# Consumer goods output from Underdeveloped System Utilization.
 		produces = {
 			trigger = {
 				exists = owner
 				owner = {
 					is_galactic_community_member = yes
 				}
-
 				OR = {
 					is_active_resolution = "resolution_commerce_underdeveloped_system_utilization"
 					is_active_resolution = "resolution_commerce_holistic_asset_coordination"
@@ -75,12 +270,67 @@ passive_observation = {
 				}
 			}
 			consumer_goods = 2
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# Base physics and engineering output from Exploitation Act.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_exploitation"
+			}
+			physics_research = 4
+			engineering_research = 4
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# Increased physics and engineering output from Exploitation Act combined with Advanced Xenostudies.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_exploitation"
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			physics_research = 2
+			engineering_research = 2
+			mult = value:pre_ftl_spy_network_mult
+		}
+		produces = {
+			trigger = {
+				has_fleet_flag = denied_probing
+			}
+			unity = 2
 		}
 	}
 
 	potential = {
 		FROM = {
 			exists = owner
+			owner = {
+				is_primitive = yes
+				NOT = { current_awareness_level = full }
+			}
+		}
+	}
+
+	valid = {
+		NOT = {
+			has_policy_flag = interference_aggressive
+		}
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				NOT = { current_awareness_level = full }
+			}
 		}
 	}
 
@@ -102,9 +352,12 @@ specimen_collection = {
 
 	resources = {
 		category = station_observer_missions
+		# Base society research output.
 		produces = {
 			society_research = 10
+			mult = value:pre_ftl_spy_network_mult
 		}
+		# Increased society output from Advanced Xenostudies.
 		produces = {
 			trigger = {
 				exists = owner
@@ -118,7 +371,9 @@ specimen_collection = {
 				}
 			}
 			society_research = 6
+			mult = value:pre_ftl_spy_network_mult
 		}
+		# Consumer goods output from Underdeveloped System Utilization.
 		produces = {
 			trigger = {
 				exists = owner
@@ -133,659 +388,74 @@ specimen_collection = {
 				}
 			}
 			consumer_goods = 8
+			mult = value:pre_ftl_spy_network_mult
 		}
-	}
-
-	potential = {
-		FROM = {
-			exists = owner
-		}
-	}
-
-	valid = {
-		OR = {
-			has_policy_flag = interference_active
-			has_policy_flag = interference_full
-		}
-	}
-
-	ai_weight = {
-		weight = 5	# Use if policy allows it
-	}
-}
-
-# Indoctrination
-native_indoctrination = {
-	icon = "GFX_fleet_task_indoctrination"
-	small_icon = 5
-
-	potential = {
-		host_has_dlc = "Utopia"
-		FROM = {
-			exists = owner
-		}
-	}
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			energy = 3
-		}
-
-		produces = {
-			society_research = 10
-		}
-
+		# Base physics and engineering output from Exploitation Act.
 		produces = {
 			trigger = {
 				exists = owner
 				owner = {
 					is_galactic_community_member = yes
 				}
+				is_active_resolution = "resolution_pre_ftl_stances_exploitation"
+			}
+			physics_research = 5
+			engineering_research = 5
+			mult = value:pre_ftl_spy_network_mult
+		}
+		# Increased physics and engineering output from Exploitation Act combined with Advanced Xenostudies.
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				is_active_resolution = "resolution_pre_ftl_stances_exploitation"
 				OR = {
 					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
 					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
 					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
 				}
 			}
-			society_research = 4
+			physics_research = 3
+			engineering_research = 3
+			mult = value:pre_ftl_spy_network_mult
 		}
 	}
 
-	#planet_modifier = native_indoctrination
+	potential = {
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				NOT = { current_awareness_level = full }
+			}
+		}
+	}
 
 	valid = {
 		OR = {
 			has_policy_flag = interference_active
-			has_policy_flag = interference_full
+			has_policy_flag = interference_aggressive
 		}
-		NOT = { has_ethic = ethic_gestalt_consciousness }
-	}
-
-	ai_weight = {
-		weight = 20
-		modifier = {
-			factor = 0
-			NAND = {
-				has_ai_personality = democratic_crusaders
-				from = {
-					owner = {
-						NOR = {
-							has_ethic = ethic_egalitarian
-							has_ethic = ethic_fanatic_egalitarian
-						}
+		FROM = {
+			exists = owner
+			owner = {
+				is_primitive = yes
+				NOT = { current_awareness_level = full }
+			}
+			custom_tooltip = {
+				text = locked_to_passive_observation
+				observation_outpost = {
+					NOT = {
+						has_fleet_flag = denied_probing
 					}
 				}
 			}
 		}
 	}
-}
-
-@enlighten_soc_cost = 5
-@enlighten_nrg_cost = 10
-
-# Technological Enlightenment - Stone Age
-technological_enlightenment_0 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.001
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = stone_age }
-		}
-		NOR = {
-			has_valid_civic = civic_machine_terminator
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
 
 	ai_weight = {
-		weight = 0
-	}
-}
-
-# Technological Enlightenment - Bronze Age
-technological_enlightenment_1 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.002
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = bronze_age }
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 0
-	}
-}
-
-# Technological Enlightenment - Iron Age
-technological_enlightenment_2 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.003
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = iron_age }
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 0
-	}
-}
-
-# Technological Enlightenment - Late Medieval Age
-technological_enlightenment_3 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.004
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = late_medieval_age }
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 0
-	}
-}
-
-# Technological Enlightenment - Renaissance Age
-technological_enlightenment_4 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.005
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = renaissance_age }
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 0
-	}
-}
-
-# Technological Enlightenment - Steam Age
-technological_enlightenment_5 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.01
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = steam_age }
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			NOT = { has_ai_personality_behaviour = uplifter }
-		}
-		modifier = {
-			factor = 0
-			resource_stockpile_compare = { resource = energy value < 2000 }
-		}
-	}
-}
-
-# Technological Enlightenment - Industrial Age
-technological_enlightenment_6 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.015
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = industrial_age }
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			NOT = { has_ai_personality_behaviour = uplifter }
-		}
-		modifier = {
-			factor = 0
-			resource_stockpile_compare = { resource = energy value < 1500 }
-		}
-	}
-}
-
-# Technological Enlightenment - Machine Age
-technological_enlightenment_7 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.02
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = machine_age }
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			NOT = { has_ai_personality_behaviour = uplifter }
-		}
-		modifier = {
-			factor = 0
-			resource_stockpile_compare = { resource = energy value < 1000 }
-		}
-	}
-}
-
-# Technological Enlightenment - Atomic Age
-technological_enlightenment_8 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.025
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = atomic_age }
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			NOT = { has_ai_personality_behaviour = uplifter }
-		}
-		modifier = {
-			factor = 0
-			resource_stockpile_compare = { resource = energy value < 1000 }
-		}
-	}
-}
-
-# Technological Enlightenment - Early Space Age
-technological_enlightenment_9 = {
-	icon = "GFX_fleet_task_technological_enlightenment_action"
-	small_icon = 3
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-	}
-
-	monthly_progress = 0.025
-	completion_event = observation.2000
-	completion_sound = advisor_notification_primitive_enlighted
-
-	potential = {
-		FROM = {
-			exists = owner
-			owner = { has_country_flag = early_space_age }
-		}
-	}
-
-	valid = {
-		has_policy_flag = enlightenment_allowed
-		custom_tooltip = {
-			fail_text = CANNOT_ENLIGHTEN_FANATIC_XENOPHOBE
-			FROM = {
-				exists = owner
-				owner = { NOT = { has_ethic = ethic_fanatic_xenophobe } }
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			NOT = { has_ai_personality_behaviour = uplifter }
-		}
-		modifier = {
-			factor = 0
-			resource_stockpile_compare = { resource = energy value < 1000 }
-		}
-	}
-}
-
-# Covert Infiltration
-covert_infiltration = {
-	icon = "GFX_fleet_task_covert_infiltration_action"
-	small_icon = 4
-
-	resources = {
-		category = station_observer_missions
-		upkeep = {
-			society_research = @enlighten_soc_cost
-			energy = @enlighten_nrg_cost
-		}
-		produces = {
-			trigger = {
-				owner = {
-					is_galactic_community_member = yes
-				}
-
-				OR = {
-					is_active_resolution = "resolution_commerce_underdeveloped_system_utilization"
-					is_active_resolution = "resolution_commerce_holistic_asset_coordination"
-					is_active_resolution = "resolution_commerce_profit_maximization_engines"
-				}
-			}
-			consumer_goods = 4
-		}
-	}
-
-	monthly_progress = 0.02
-	completion_event = observation.3009
-
-	potential = {
-		NOT = { has_valid_civic = civic_inwards_perfection }
-	}
-
-	valid = {
-		has_technology = tech_gene_tailoring
-		OR = {
-			has_policy_flag = interference_active
-			has_policy_flag = interference_full
-		}
-		FROM = {
-			exists = owner
-			owner = {
-				OR = {
-					has_country_flag = industrial_age
-					has_country_flag = machine_age
-					has_country_flag = atomic_age
-					has_country_flag = early_space_age
-				}
-			}
-		}
-		NOR = {
-			has_valid_civic = civic_fanatic_purifiers
-			has_valid_civic = civic_hive_devouring_swarm
-			has_valid_civic = civic_machine_terminator
-		}
-	}
-
-	ai_weight = {
-		weight = 10
-		modifier = {
-			factor = 0
-			NOT = { has_ai_personality_behaviour = infiltrator }
-		}
-		modifier = {
-			factor = 0
-			resource_stockpile_compare = { resource = energy value < 1000 }
-		}
+		weight = 5	# Use if policy allows it
 	}
 }
