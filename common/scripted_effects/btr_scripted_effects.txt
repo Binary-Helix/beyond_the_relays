@@ -592,12 +592,23 @@ give_btr_T0_starting_tech = {
 		if = {
 			limit = { 
 				owner = {
+					OR = {
+						is_machine_empire = yes
+						is_mechanical_empire = yes
+						is_lithoid_empire = yes
+					}					
+				}
+			}
+			give_technology = { tech = tech_bio_reactor message = no }
+		}
+		if = {
+			limit = { 
+				owner = {
 					NOT = {
 						has_trait = trait_machine_unit
 					}
 				}
 			}
-			give_technology = { tech = tech_bio_reactor message = no }
 			give_technology = { tech = tech_industrial_farming message = no }
 		}
 		if = {
@@ -630,6 +641,13 @@ give_btr_T0_starting_tech = {
 			}
 			give_technology = { tech = tech_holo_entertainment message = no }
 			give_technology = { tech = tech_interplanetary_commerce message = no }
+		}
+		if = {
+			limit = { 
+				owner = {
+					has_ethic = ethic_gestalt_consciousness
+				}
+			}
 			give_technology = { tech = tech_solar_panel_network message = no }
 		}
 	}
@@ -728,7 +746,6 @@ give_btr_T1_starting_tech = {
 
 give_btr_T2_starting_tech = {
 	owner = {
-		#Physics
 		give_technology = { tech = tech_pd_tracking_2 message = no }
 		give_technology = { tech = tech_self_aware_logic message = no }	
 		give_technology = { tech = tech_space_science_3 message = no }
@@ -768,8 +785,7 @@ give_btr_T2_starting_tech = {
 		give_technology = { tech = tech_capital_productivity_1 message = no }				
 		give_technology = {	tech = tech_interstellar_fleet_traditions message = no }		
 		give_technology = { tech = tech_mining_2 message = no }
-		give_technology = { tech = tech_mineral_purification_2 message = no }
-		give_technology = { tech = tech_unity_of_purpose message = no }
+		give_technology = { tech = tech_mineral_purification_2 message = no }		
 		give_technology = { tech = tech_exotic_gases message = no }
 		give_technology = { tech = tech_rare_crystals message = no }
 		give_technology = { tech = tech_mine_betharian message = no }
@@ -807,6 +823,14 @@ give_btr_T2_starting_tech = {
 		if = {
 			limit = { 
 				owner = {
+					is_gestalt = yes
+				}
+			}
+			give_technology = { tech = tech_unity_of_purpose message = no }
+		}
+		if = {
+			limit = { 
+				owner = {
 					OR = {
 						has_ethic = ethic_spiritualist
 						has_ethic = ethic_fanatic_spiritualist
@@ -828,10 +852,8 @@ give_btr_T2_starting_tech = {
 				}
 			}
 			give_technology = { tech = tech_consumer_good_refinement_1 message = no }
-			give_technology = { tech = tech_subdermal_stimulation message = no }
 			give_technology = { tech = tech_artificial_moral_codes message = no }	
 			give_technology = { tech = tech_droid_workers message = no }	
-			give_technology = { tech = tech_unity_of_purpose message = no }
 		}
 		if = {
 			limit = { 
