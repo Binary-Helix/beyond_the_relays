@@ -1342,6 +1342,102 @@ establish_illium_corporate_interests_communication = {
 	}	
 }
 
+establish_caleston_directorate_communication = {
+	if = {
+		limit = { exists = event_target:caleston_directorate }
+		event_target:caleston_directorate = {
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union  }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy  }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance  }
+				establish_communications_no_message = event_target:systems_alliance
+				add_opinion_modifier = {
+					who = event_target:systems_alliance
+					modifier = systems_all_imperialist_tendencies
+				}
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna  }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+				guarantee_country = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate  }
+				establish_communications_no_message = event_target:vol_protectorate
+				guarantee_country = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy  }
+				establish_communications_no_message = event_target:illuminated_primacy
+				guarantee_country = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan  }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+				set_closed_borders = {
+					who = event_target:hegemony_of_kharshan
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:aralakh_kahmat  }
+				establish_communications_no_message = event_target:aralakh_kahmat
+				set_closed_borders = {
+					who = event_target:hegemony_of_kharshan
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:omega_empire  }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			# if = {
+			# 	limit = { exists = event_target:illium_corporate_interests  }
+			# 	establish_communications_no_message = event_target:illium_corporate_interests
+			# }
+			if = {
+				limit = { exists = event_target:remnants_of_rakhana  }
+				establish_communications_no_message = event_target:remnants_of_rakhana
+			}
+			if = {
+				limit = { exists = event_target:vorcha_clandom  }
+				establish_communications_no_message = event_target:vorcha_clandom
+				set_closed_borders = {
+					who = event_target:vorcha_clandom
+					status = yes
+				}
+			}
+			if = {
+				limit = { exists = event_target:sedriicae_collective  }
+				establish_communications_no_message = event_target:sedriicae_collective
+			}
+			# if = {
+			# 	limit = { exists = event_target:lystheni_order  }
+			# 	establish_communications_no_message = event_target:lystheni_order
+			# }
+			# if = {
+			# 	limit = { exists = event_target:gothones_remnant  }
+			# 	establish_communications_no_message = event_target:gothones_remnant
+			# }
+			if = {
+				limit = { exists = event_target:citadel_council  }
+				establish_communications_no_message = event_target:citadel_council
+			}
+			#set_all_comms_surveyed = yes
+		}
+	}	
+}
+
 establish_remnants_of_rakhana_communication = {
 	if = {
 		limit = { exists = event_target:remnants_of_rakhana }

@@ -1245,6 +1245,121 @@ building_illium_trade_center = {
 	}
 }
 
+###Caleston Directorate
+# building_advanced_element_zero_refinery = {
+# 	base_buildtime = 400
+# 	icon = building_refinery
+# 	exempt_from_ai_planet_specialization = no
+# 	category = resource	
+
+# }
+
+building_great_dome = {
+	base_buildtime = 350
+	icon = building_hydroponics_farm
+	exempt_from_ai_planet_specialization = no
+	base_cap_amount = 2
+	
+	category = government
+
+	allow = {
+		AND = {
+			planet = {
+				has_planet_flag = caleston_planet
+			}
+			has_upgraded_capital = yes 
+		}
+	}
+
+	potential = {
+		owner = {
+			has_origin = caleston_dir_origin
+		}
+	}
+	
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = caleston_dir_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = 100
+			minerals = 800
+			consumer_goods = 150
+		}
+		upkeep = {
+			energy = 10
+			alloys = 1
+			minerals = 10
+			consumer_goods = 5
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_unity_produces_mult = 0.1
+		planet_researchers_produces_mult = 0.05
+		pop_happiness = 0.15
+		planet_stability_add = 10
+		planet_max_districts_add = 2
+		planet_max_buildings_add = 1
+		job_politician_add = 1
+		job_enforcer_add = 1
+		job_bureaucrat_add = 1
+	}
+}
+
+building_eae_mining_pits = {
+	base_buildtime = 300
+	icon = building_archaeo_refinery
+	exempt_from_ai_planet_specialization = no
+	base_cap_amount = 2
+	
+	category = resource
+
+	allow = {
+		AND = {
+			planet = {
+				has_planet_flag = caleston_planet
+			}
+			has_upgraded_capital = yes 
+		}
+	}
+
+	potential = {
+		owner = {
+			has_origin = caleston_dir_origin
+		}
+	}
+	
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_origin = caleston_dir_origin } }
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 1000
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	planet_modifier = {
+		planet_jobs_minerals_produces_mult = 0.05
+		#planet_jobs_element_zero_produces_mult = 0.05
+	}	
+}
+
 ###Remnants of Rakhana
 building_drell_museum_wander = {
 	base_buildtime = 400
