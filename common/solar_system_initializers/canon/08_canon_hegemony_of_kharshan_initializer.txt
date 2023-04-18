@@ -4,224 +4,224 @@
 
 ##### KITE'S NEST #####
 
-sys_harsa_init = {
-    name = "Harsa"
-    class = sc_g
-	flags = { hegemony_kharshan_homeworld hegemony_of_kharshan_capital_system canon_map harsa_system empire_home_system }
-	init_effect = { 
-		generate_home_system_resources = yes
-		save_global_event_target_as = hegemonSecondFleet
-	}
+# sys_harsa_init = {
+#     name = "Harsa"
+#     class = sc_g
+# 	flags = { hegemony_kharshan_homeworld hegemony_of_kharshan_capital_system canon_map harsa_system empire_home_system }
+# 	init_effect = { 
+# 		generate_home_system_resources = yes
+# 		save_global_event_target_as = hegemonSecondFleet
+# 	}
 
-	usage = custom_empire
-	max_instances = 1
+# 	usage = custom_empire
+# 	max_instances = 1
 
-	asteroid_belt = {
-		type = rocky_asteroid_belt
-		radius = 80
-	}	
+# 	asteroid_belt = {
+# 		type = rocky_asteroid_belt
+# 		radius = 80
+# 	}	
 
-    planet = {
-		name = "Harsa"
-        class = pc_g_star
-        orbit_distance = 0
-        size = 15
-		flags = { harsa_star }
-    }
+#     planet = {
+# 		name = "Harsa"
+#         class = pc_g_star
+#         orbit_distance = 0
+#         size = 15
+# 		flags = { harsa_star }
+#     }
 
-    planet = {
-        name = "Dezda"
-        class = pc_barren
-        orbit_distance = 100
-        orbit_angle = 219
-        size = 3
-        has_ring = no
-		init_effect = {
-			add_deposit = d_rare_crystals_2
-			add_deposit = d_minerals_2
-		}	
-    }
+#     planet = {
+#         name = "Dezda"
+#         class = pc_barren
+#         orbit_distance = 100
+#         orbit_angle = 219
+#         size = 3
+#         has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_rare_crystals_2
+# 			add_deposit = d_minerals_2
+# 		}	
+#     }
 
-    planet = {
-        name = "Khar'shan"
-        class = pc_savannah
-        orbit_distance = 100
-        orbit_angle = 130
-        size = 13
-        has_ring = no			
-		starting_planet = yes
-		deposit_blockers = none
-		modifiers = none
-		flags = { kharshan_planet subclass_world batarian_homeworld subclass_world }
-		entity = "steppe_planet_02_entity"
-		init_effect = {
-			prevent_anomaly = yes
-			set_global_flag = batarian_homeworld_spawned
-			set_planet_flag = kharshan_planet
-			if = {
-				limit = { 
-					NOT = { 
-						any_country = { 
-							has_country_flag = hegemony_of_kharshan 
-						} 
-					} 
-				}
-				create_species = { 
-					name = "Batarian"
-					class = BAT
-					portrait = btr_batarian
-					namelist = btr_batarian
-					homeworld = THIS 
-					traits = { 
-					 trait = batarian_trait_core
-					 trait = batarian_trait_shrewd_business
-					 trait = batarian_trait_karma_chameleon
-					 trait = batarian_trait_four_eyed
-					ideal_planet_class = "pc_savannah"
-					}
-				  }
-				  last_created_species = { save_global_event_target_as = batarianSpecies }
-				create_country = {
-					name = "Hegemony of Khar'shan"
-					ship_prefix = ""
-					type = default
-					origin = hegemony_of_kharshan_origin
-					ignore_initial_colony_error = yes
-					civics = { 
-						civic = batarian_all_mighty_state 
-						civic = batarian_caste_system 
-					}
-					authority = auth_dictatorial
-					name_list = "btr_batarian"
-					ethos = { 
-						ethic = "ethic_fanatic_authoritarian" 
-						ethic = "ethic_xenophobe" 
-					}
-					species = event_target:batarianSpecies
-					flag = {
-						icon={
-							category="beyondtherelays"
-							file="hegemony_of_kharshan.dds"
-						}
-						background={
-							category="backgrounds"
-							file="flag_BG_57.dds"
-						}
-						colors={
-							"eecolor1809"
-							"eecolor1801"
-							"null"
-							"null"
-						}
-					}
-					effect = {
-						set_graphical_culture = reptilian_01
-						set_country_flag = hegemony_of_kharshan
-						set_country_flag = init_spawned
-						set_country_flag = custom_start_screen
-						set_country_flag = canon_map
-						set_country_flag = btr_empire
-						save_global_event_target_as = hegemony_of_kharshan
-					}
-				}
-			}	
-			set_capital = yes
-			random_country = {
-				limit = { 
-					has_country_flag = hegemony_of_kharshan 
-				}
-				save_global_event_target_as = hegemony_of_kharshan
-				species = { 
-					save_global_event_target_as = batarianSpecies 
-				}
-			}
-			set_owner = event_target:hegemony_of_kharshan
-			generate_btr_start_deposits_and_blockers = yes			
-			generate_bat_kharshan_capitol_buildings = yes
-			generate_bat_kharshan_pops = yes
-			clear_blockers = yes
-			generate_bat_kharshan_deposits = yes
-			generate_hegemony_khar_science_ships = yes
-			set_name = "Khar'shan"
-			add_modifier = {
-				modifier = steppe_world
-				days = -1
-			}
-		}		
-    }
+#     planet = {
+#         name = "Khar'shan"
+#         class = pc_savannah
+#         orbit_distance = 100
+#         orbit_angle = 130
+#         size = 13
+#         has_ring = no			
+# 		starting_planet = yes
+# 		deposit_blockers = none
+# 		modifiers = none
+# 		flags = { kharshan_planet subclass_world batarian_homeworld subclass_world }
+# 		entity = "steppe_planet_02_entity"
+# 		init_effect = {
+# 			prevent_anomaly = yes
+# 			set_global_flag = batarian_homeworld_spawned
+# 			set_planet_flag = kharshan_planet
+# 			if = {
+# 				limit = { 
+# 					NOT = { 
+# 						any_country = { 
+# 							has_country_flag = hegemony_of_kharshan 
+# 						} 
+# 					} 
+# 				}
+# 				create_species = { 
+# 					name = "Batarian"
+# 					class = BAT
+# 					portrait = btr_batarian
+# 					namelist = btr_batarian
+# 					homeworld = THIS 
+# 					traits = { 
+# 					 trait = batarian_trait_core
+# 					 trait = batarian_trait_shrewd_business
+# 					 trait = batarian_trait_karma_chameleon
+# 					 trait = batarian_trait_four_eyed
+# 					ideal_planet_class = "pc_savannah"
+# 					}
+# 				  }
+# 				  last_created_species = { save_global_event_target_as = batarianSpecies }
+# 				create_country = {
+# 					name = "Hegemony of Khar'shan"
+# 					ship_prefix = ""
+# 					type = default
+# 					origin = hegemony_of_kharshan_origin
+# 					ignore_initial_colony_error = yes
+# 					civics = { 
+# 						civic = batarian_all_mighty_state 
+# 						civic = batarian_caste_system 
+# 					}
+# 					authority = auth_dictatorial
+# 					name_list = "btr_batarian"
+# 					ethos = { 
+# 						ethic = "ethic_fanatic_authoritarian" 
+# 						ethic = "ethic_xenophobe" 
+# 					}
+# 					species = event_target:batarianSpecies
+# 					flag = {
+# 						icon={
+# 							category="beyondtherelays"
+# 							file="hegemony_of_kharshan.dds"
+# 						}
+# 						background={
+# 							category="backgrounds"
+# 							file="flag_BG_57.dds"
+# 						}
+# 						colors={
+# 							"eecolor1809"
+# 							"eecolor1801"
+# 							"null"
+# 							"null"
+# 						}
+# 					}
+# 					effect = {
+# 						set_graphical_culture = reptilian_01
+# 						set_country_flag = hegemony_of_kharshan
+# 						set_country_flag = init_spawned
+# 						set_country_flag = custom_start_screen
+# 						set_country_flag = canon_map
+# 						set_country_flag = btr_empire
+# 						save_global_event_target_as = hegemony_of_kharshan
+# 					}
+# 				}
+# 			}	
+# 			set_capital = yes
+# 			random_country = {
+# 				limit = { 
+# 					has_country_flag = hegemony_of_kharshan 
+# 				}
+# 				save_global_event_target_as = hegemony_of_kharshan
+# 				species = { 
+# 					save_global_event_target_as = batarianSpecies 
+# 				}
+# 			}
+# 			set_owner = event_target:hegemony_of_kharshan
+# 			generate_btr_start_deposits_and_blockers = yes			
+# 			generate_bat_kharshan_capitol_buildings = yes
+# 			generate_bat_kharshan_pops = yes
+# 			clear_blockers = yes
+# 			generate_bat_kharshan_deposits = yes
+# 			generate_hegemony_khar_science_ships = yes
+# 			set_name = "Khar'shan"
+# 			add_modifier = {
+# 				modifier = steppe_world
+# 				days = -1
+# 			}
+# 		}		
+#     }
 
-    planet = {
-        name = "Verush"
-        class = pc_gas_giant
-        orbit_distance = 100
-        orbit_angle = 223
-        has_ring = yes
-		size = 33
-		init_effect = {
-			add_deposit = d_exotic_gases_3
-			}
+#     planet = {
+#         name = "Verush"
+#         class = pc_gas_giant
+#         orbit_distance = 100
+#         orbit_angle = 223
+#         has_ring = yes
+# 		size = 33
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_3
+# 			}
 
-		moon = {
-			name = "Verush a"
-			class = pc_iron
-			orbit_distance = 20
-			size = 8
-		}
-		moon = {
-			name = "Verush b"
-			class = pc_iron
-			orbit_distance = 5
-			size = 4
-		}
-		moon = {
-			name = "Bira"
-			class = pc_frozen_station_moon_10
-			orbit_distance = 5
-			size = 10
-			init_effect = {
-				if = {
-					limit = { 
-						exists = event_target:hegemony_of_kharshan
-					}
-					set_owner = event_target:hegemony_of_kharshan
-					set_planet_flag = planetary_station
-					set_planet_flag = civil_station
-					set_deposit_flags = yes
-					generate_bat_bira_colony_buildings = yes
-					generate_bat_bira_pops = yes
-					clear_blockers = yes
-					prevent_anomaly = yes
-					add_deposit = d_frozen_blocker
-					add_deposit = d_cryogazers_valley
-				}	
-			}
-		}				
-    }
+# 		moon = {
+# 			name = "Verush a"
+# 			class = pc_iron
+# 			orbit_distance = 20
+# 			size = 8
+# 		}
+# 		moon = {
+# 			name = "Verush b"
+# 			class = pc_iron
+# 			orbit_distance = 5
+# 			size = 4
+# 		}
+# 		moon = {
+# 			name = "Bira"
+# 			class = pc_frozen_station_moon_10
+# 			orbit_distance = 5
+# 			size = 10
+# 			init_effect = {
+# 				if = {
+# 					limit = { 
+# 						exists = event_target:hegemony_of_kharshan
+# 					}
+# 					set_owner = event_target:hegemony_of_kharshan
+# 					set_planet_flag = planetary_station
+# 					set_planet_flag = civil_station
+# 					set_deposit_flags = yes
+# 					generate_bat_bira_colony_buildings = yes
+# 					generate_bat_bira_pops = yes
+# 					clear_blockers = yes
+# 					prevent_anomaly = yes
+# 					add_deposit = d_frozen_blocker
+# 					add_deposit = d_cryogazers_valley
+# 				}	
+# 			}
+# 		}				
+#     }
 
-    planet = {
-        name = "Ilem"
-        class = pc_frozen
-        orbit_distance = 100
-        orbit_angle = 157
-        size = 5
-        has_ring = no
-		init_effect = {
-			add_deposit = d_engineering_3
-		}	
-    }
+#     planet = {
+#         name = "Ilem"
+#         class = pc_frozen
+#         orbit_distance = 100
+#         orbit_angle = 157
+#         size = 5
+#         has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_engineering_3
+# 		}	
+#     }
 
-    planet = {
-        name = "Spekilas"
-        class = pc_iron
-        orbit_distance = 100
-        orbit_angle = 97
-        size = 19
-        has_ring = no
-		init_effect = {
-			add_deposit = d_physics_4
-		}	
-    }
-}
+#     planet = {
+#         name = "Spekilas"
+#         class = pc_iron
+#         orbit_distance = 100
+#         orbit_angle = 97
+#         size = 19
+#         has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_physics_4
+# 		}	
+#     }
+# }
 
 sys_indris_init = {
     name = "Indris"

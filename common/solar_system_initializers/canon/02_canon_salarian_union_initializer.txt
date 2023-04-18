@@ -4,213 +4,213 @@
 
 ##### ANNOS BASIN #####
 
-sys_pranas_init = {
-    name = "Pranas"
-    class = sc_g
-	flags = { salarian_union_homeworld salarian_union_capital_system canon_map pranas_system empire_home_system }
-	init_effect = { 
-		generate_home_system_resources = yes
-		save_global_event_target_as = salarianSecondFleet
-	}
+# sys_pranas_init = {
+#     name = "Pranas"
+#     class = sc_g
+# 	flags = { salarian_union_homeworld salarian_union_capital_system canon_map pranas_system empire_home_system }
+# 	init_effect = { 
+# 		generate_home_system_resources = yes
+# 		save_global_event_target_as = salarianSecondFleet
+# 	}
 
-	usage = custom_empire
-	max_instances = 1
+# 	usage = custom_empire
+# 	max_instances = 1
     
-    asteroid_belt = {
-		type = icy_asteroid_belt
-		radius = 450
-	}	
+#     asteroid_belt = {
+# 		type = icy_asteroid_belt
+# 		radius = 450
+# 	}	
 
-    planet = {
-		name = "Pranas"
-        class = pc_g_star
-        orbit_distance = 0
-        size = 20
-		flags = { pranas_star }
-		init_effect = {
-			add_deposit = d_energy_3
-			set_planet_flag = starting_mining_target
-		}
-	}
+#     planet = {
+# 		name = "Pranas"
+#         class = pc_g_star
+#         orbit_distance = 0
+#         size = 20
+# 		flags = { pranas_star }
+# 		init_effect = {
+# 			add_deposit = d_energy_3
+# 			set_planet_flag = starting_mining_target
+# 		}
+# 	}
 
-    planet = {
-        name = "Saradril"
-        class = pc_hothouse
-        orbit_distance = 100
-        orbit_angle = 148
-        size = 13
-        has_ring = no
-		init_effect = {
-			add_deposit = d_minerals_5
-			add_deposit = d_volatile_motes_2
-		}
-    }
+#     planet = {
+#         name = "Saradril"
+#         class = pc_hothouse
+#         orbit_distance = 100
+#         orbit_angle = 148
+#         size = 13
+#         has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_minerals_5
+# 			add_deposit = d_volatile_motes_2
+# 		}
+#     }
 
-    planet = {
-        name = "Sur'Kesh"
-        class = pc_tropical
-        orbit_distance = 100
-        orbit_angle = 179
-        size = 16
-		has_ring = no		
-		starting_planet = yes
-		deposit_blockers = none
-		modifiers = none
-		flags = { surkesh_planet salarian_homeworld subclass_world }
-		init_effect = {
-			prevent_anomaly = yes
-			set_global_flag = salarian_homeworld_spawned
-			set_planet_flag = surkesh_planet
-			if = {
-				limit = { 
-					NOT = { 
-						any_country = { 
-							has_country_flag = salarian_union 
-						} 
-					} 
-				}
-				create_species = { 
-					name = "Salarian"
-					class = SAL
-					portrait = btr_salarian
-					namelist = btr_salarian
-					homeworld = THIS 
-					traits = { 
-						trait = salarian_trait_core
-						trait = salarian_trait_impressive_minds
-						trait = salarian_trait_bleed_edge
-						trait = salarian_trait_societal_trade
-					    ideal_planet_class = pc_tropical
-					}
-				  }
-				  last_created_species = { save_global_event_target_as = salarianSpecies }
-				create_country = {
-					name = "Salarian Union"
-					ship_prefix = ""
-					type = default
-					origin = salarian_uni_origin
-					ignore_initial_colony_error = yes
-					civics = { 
-						civic = salarian_uni_hold_the_line 
-						civic = salarian_uni_qual_tech_results 
-					}
-					authority = auth_oligarchic
-					name_list = "btr_salarian"
-					ethos = { 
-						ethic = "ethic_authoritarian" 
-						ethic = "ethic_fanatic_materialist" 
-					}
-					species = event_target:salarianSpecies
-					flag = {
-						icon={
-							category="beyondtherelays"
-							file="salarian_union.dds"
-						}
-						background={
-							category="backgrounds"
-							file="ovalehorizontal.dds"
-						}
-						colors={
-							"eecolor1717"
-							"eecolor1956"
-							"null"
-							"null"
-						}
-					}
-					effect = {
-						set_graphical_culture = btr_salarian_01
-						set_country_flag = salarian_union
-						set_country_flag = init_spawned
-						set_country_flag = custom_start_screen
-						set_country_flag = canon_map
-						set_country_flag = btr_empire
-						save_global_event_target_as = salarian_union
-					}
-				}
-			}		
-			set_capital = yes
-			random_country = {
-				limit = { 
-					has_country_flag = salarian_union 
-				}
-				save_global_event_target_as = salarian_union
-				species = { 
-					save_global_event_target_as = salarianSpecies 
-				}
-			}
-			set_owner = event_target:salarian_union
-			generate_btr_start_deposits_and_blockers = yes			
-			generate_sal_surkesh_capitol_buildings = yes
-			generate_sal_surkesh_pops = yes
-			clear_blockers = yes
-			generate_sal_surkesh_deposits = yes
-			generate_salarian_uni_science_ships = yes
-			set_name = "Sur'Kesh"
-		}
-    } 
+#     planet = {
+#         name = "Sur'Kesh"
+#         class = pc_tropical
+#         orbit_distance = 100
+#         orbit_angle = 179
+#         size = 16
+# 		has_ring = no		
+# 		starting_planet = yes
+# 		deposit_blockers = none
+# 		modifiers = none
+# 		flags = { surkesh_planet salarian_homeworld subclass_world }
+# 		init_effect = {
+# 			prevent_anomaly = yes
+# 			set_global_flag = salarian_homeworld_spawned
+# 			set_planet_flag = surkesh_planet
+# 			if = {
+# 				limit = { 
+# 					NOT = { 
+# 						any_country = { 
+# 							has_country_flag = salarian_union 
+# 						} 
+# 					} 
+# 				}
+# 				create_species = { 
+# 					name = "Salarian"
+# 					class = SAL
+# 					portrait = btr_salarian
+# 					namelist = btr_salarian
+# 					homeworld = THIS 
+# 					traits = { 
+# 						trait = salarian_trait_core
+# 						trait = salarian_trait_impressive_minds
+# 						trait = salarian_trait_bleed_edge
+# 						trait = salarian_trait_societal_trade
+# 					    ideal_planet_class = pc_tropical
+# 					}
+# 				  }
+# 				  last_created_species = { save_global_event_target_as = salarianSpecies }
+# 				create_country = {
+# 					name = "Salarian Union"
+# 					ship_prefix = ""
+# 					type = default
+# 					origin = salarian_uni_origin
+# 					ignore_initial_colony_error = yes
+# 					civics = { 
+# 						civic = salarian_uni_hold_the_line 
+# 						civic = salarian_uni_qual_tech_results 
+# 					}
+# 					authority = auth_oligarchic
+# 					name_list = "btr_salarian"
+# 					ethos = { 
+# 						ethic = "ethic_authoritarian" 
+# 						ethic = "ethic_fanatic_materialist" 
+# 					}
+# 					species = event_target:salarianSpecies
+# 					flag = {
+# 						icon={
+# 							category="beyondtherelays"
+# 							file="salarian_union.dds"
+# 						}
+# 						background={
+# 							category="backgrounds"
+# 							file="ovalehorizontal.dds"
+# 						}
+# 						colors={
+# 							"eecolor1717"
+# 							"eecolor1956"
+# 							"null"
+# 							"null"
+# 						}
+# 					}
+# 					effect = {
+# 						set_graphical_culture = btr_salarian_01
+# 						set_country_flag = salarian_union
+# 						set_country_flag = init_spawned
+# 						set_country_flag = custom_start_screen
+# 						set_country_flag = canon_map
+# 						set_country_flag = btr_empire
+# 						save_global_event_target_as = salarian_union
+# 					}
+# 				}
+# 			}		
+# 			set_capital = yes
+# 			random_country = {
+# 				limit = { 
+# 					has_country_flag = salarian_union 
+# 				}
+# 				save_global_event_target_as = salarian_union
+# 				species = { 
+# 					save_global_event_target_as = salarianSpecies 
+# 				}
+# 			}
+# 			set_owner = event_target:salarian_union
+# 			generate_btr_start_deposits_and_blockers = yes			
+# 			generate_sal_surkesh_capitol_buildings = yes
+# 			generate_sal_surkesh_pops = yes
+# 			clear_blockers = yes
+# 			generate_sal_surkesh_deposits = yes
+# 			generate_salarian_uni_science_ships = yes
+# 			set_name = "Sur'Kesh"
+# 		}
+#     } 
 
-    planet = {
-        name = "Dragel"
-        class = pc_barren
-        orbit_distance = 100
-        orbit_angle = 221
-        size = 3
-        has_ring = no
-		init_effect = {
-			# add_deposit = d_platinum_2
-			# add_deposit = d_palladium_2
-			# add_deposit = d_iridium_2
-			add_deposit = d_rare_crystals_3
-		}
-    }
+#     planet = {
+#         name = "Dragel"
+#         class = pc_barren
+#         orbit_distance = 100
+#         orbit_angle = 221
+#         size = 3
+#         has_ring = no
+# 		init_effect = {
+# 			# add_deposit = d_platinum_2
+# 			# add_deposit = d_palladium_2
+# 			# add_deposit = d_iridium_2
+# 			add_deposit = d_rare_crystals_3
+# 		}
+#     }
 
-    planet = {
-        name = "Halegeuse"
-        class = pc_gas_giant
-        orbit_distance = 100
-        orbit_angle = 202
-        size = 33
-        has_ring = no
-		moon = {
-			name = "Lor'ala"
-			class = pc_barren_cold_station_moon_1
-			orbit_distance = 20
-			orbit_angle = 73
-			size = 8
-			init_effect = {
-				if = {
-					limit = { 
-						exists = event_target:salarian_union
-					}
-					set_planet_flag = planetary_station
-					set_planet_flag = research_station
-					set_deposit_flags = yes
-					set_owner = event_target:salarian_union
-					generate_sal_halegeuse_colony_buildings = yes
-					generate_sal_halegeuse_pops = yes
-					prevent_anomaly = yes	
-					clear_blockers = yes
-					add_deposit = d_barren_cold_blocker
-					add_deposit = d_mineral_lodes
-				}
-				# add_deposit = d_helium_3_4
-			}
-		}	
-    }
+#     planet = {
+#         name = "Halegeuse"
+#         class = pc_gas_giant
+#         orbit_distance = 100
+#         orbit_angle = 202
+#         size = 33
+#         has_ring = no
+# 		moon = {
+# 			name = "Lor'ala"
+# 			class = pc_barren_cold_station_moon_1
+# 			orbit_distance = 20
+# 			orbit_angle = 73
+# 			size = 8
+# 			init_effect = {
+# 				if = {
+# 					limit = { 
+# 						exists = event_target:salarian_union
+# 					}
+# 					set_planet_flag = planetary_station
+# 					set_planet_flag = research_station
+# 					set_deposit_flags = yes
+# 					set_owner = event_target:salarian_union
+# 					generate_sal_halegeuse_colony_buildings = yes
+# 					generate_sal_halegeuse_pops = yes
+# 					prevent_anomaly = yes	
+# 					clear_blockers = yes
+# 					add_deposit = d_barren_cold_blocker
+# 					add_deposit = d_mineral_lodes
+# 				}
+# 				# add_deposit = d_helium_3_4
+# 			}
+# 		}	
+#     }
 
-    planet = {
-        name = "Paeto"
-        class = pc_asteroid
-        orbit_distance = 50
-        orbit_angle = 52
-        size = 4
-        has_ring = no
-		init_effect = {
-			add_deposit = d_zro_deposit_1
-			add_deposit = d_physics_2
-		}	
-	}
-}
+#     planet = {
+#         name = "Paeto"
+#         class = pc_asteroid
+#         orbit_distance = 50
+#         orbit_angle = 52
+#         size = 4
+#         has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_zro_deposit_1
+# 			add_deposit = d_physics_2
+# 		}	
+# 	}
+# }
 
 sys_ruoshca_init = {
 	name = "Ruoshca"

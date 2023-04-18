@@ -4,257 +4,257 @@
 
 #####ATHENA NEBULA#####
 
-sys_parnitha_init = {
-	name = "Parnitha"	
-    class = sc_g
-	flags = { asari_republics_homeworld asari_republics_capital_system canon_map parnitha_system empire_home_system }
-	init_effect = { 
-		generate_home_system_resources = yes
-		save_global_event_target_as = asariSecondFleet
-	}
+# sys_parnitha_init = {
+# 	name = "Parnitha"	
+#     class = sc_g
+# 	flags = { asari_republics_homeworld asari_republics_capital_system canon_map parnitha_system empire_home_system }
+# 	init_effect = { 
+# 		generate_home_system_resources = yes
+# 		save_global_event_target_as = asariSecondFleet
+# 	}
 
-	usage = custom_empire
-	max_instances = 1
+# 	usage = custom_empire
+# 	max_instances = 1
 
-	asteroid_belt = {
-		type = rocky_asteroid_belt
-		radius = 280
-	}
+# 	asteroid_belt = {
+# 		type = rocky_asteroid_belt
+# 		radius = 280
+# 	}
 	
-	planet = {
-		name = "Parnitha"
-		class = pc_g_star
-		orbit_distance = 0
-		orbit_angle = 1
-		size = 26
-		has_ring = no
-		flags = { parnitha_star	}
-		init_effect = {
-			add_deposit = d_energy_5
-			set_planet_flag = starting_mining_target
-		}		
-	}
+# 	planet = {
+# 		name = "Parnitha"
+# 		class = pc_g_star
+# 		orbit_distance = 0
+# 		orbit_angle = 1
+# 		size = 26
+# 		has_ring = no
+# 		flags = { parnitha_star	}
+# 		init_effect = {
+# 			add_deposit = d_energy_5
+# 			set_planet_flag = starting_mining_target
+# 		}		
+# 	}
 	
-	planet = {
-		name = "Kurinth"
-		class = pc_hothouse
-		orbit_distance = 80
-		orbit_angle = 15
-		size = 10
-		has_ring = no
-		init_effect = {
-			add_deposit = d_society_3
-			add_deposit = d_minerals_2
-			set_planet_flag = starting_research_target
-		}		
-	}
+# 	planet = {
+# 		name = "Kurinth"
+# 		class = pc_hothouse
+# 		orbit_distance = 80
+# 		orbit_angle = 15
+# 		size = 10
+# 		has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_society_3
+# 			add_deposit = d_minerals_2
+# 			set_planet_flag = starting_research_target
+# 		}		
+# 	}
 	
-	planet = {
-		name = "Thessia"
-		class = pc_continental
-		orbit_distance = 80
-		orbit_angle = 80
-		size = 25
-		has_ring = no
-		starting_planet = yes
-		deposit_blockers = none
-		modifiers = none
-		entity = "temperate_planet_01_entity"
-		flags = { thessia_planet subclass_world asari_homeworld subclass_world }		
-		init_effect = {
-			prevent_anomaly = yes
-			set_global_flag = asari_homeworld_spawned
-			set_planet_flag = thessia_planet
-			if = {
-				limit = { 
-					NOT = { 
-						any_country = { 
-							has_country_flag = asari_republics 
-						} 
-					} 
-				}
-				create_species = { 
-					name = "Asari"
-					class = ASA
-					portrait = btr_asari
-					namelist = btr_asari
-					homeworld = THIS 
-					traits = { 
-						trait = asari_trait_core
-						trait = asari_trait_biotic
-						trait = asari_trait_smooth_talk
-						trait = asari_trait_sophisticated
-						ideal_planet_class = pc_continental
-					}
-				  }
-				last_created_species = { save_global_event_target_as = asariSpecies }
-				create_country = {
-					name = "Asari Republics"
-					ship_prefix = ""
-					type = default
-					origin = asari_rep_origin
-					ignore_initial_colony_error = yes
-					civics = { 
-						civic = asari_rep_civic_thes_dip_corp 
-						civic = asari_rep_civic_democracy 
-					}
-					authority = auth_democratic
-					name_list = "btr_asari"
-					ethos = { 
-						ethic = "ethic_fanatic_xenophile" 
-						ethic = "ethic_egalitarian" 
-					}
-					species = event_target:asariSpecies
-					flag = {
-						icon={
-							category="beyondtherelays"
-							file="asari_republics.dds"
-						}
-						background={
-							category="backgrounds"
-							file="flag_BG_42.dds"
-						}
-						colors={
-							"blue"
-							"blue"
-							"null"
-							"null"
-						}
-					}
-					effect = {
-						set_graphical_culture = mec_asari_01
-						set_country_flag = asari_republics
-						set_country_flag = init_spawned
-						set_country_flag = custom_start_screen
-						set_country_flag = canon_map
-						set_country_flag = btr_empire
-						save_global_event_target_as = asari_republics
-					}
-				}
-			}
-			set_capital = yes
-			random_country = {
-				limit = { 
-					has_country_flag = asari_republics 
-				}
-				save_global_event_target_as = asari_republics
-				species = { 
-					save_global_event_target_as = asariSpecies 
-				}
-			}
-			set_owner = event_target:asari_republics
-			generate_btr_start_deposits_and_blockers = yes
-			generate_asr_thessia_capitol_buildings = yes
-			generate_asr_thessia_pops = yes
-			clear_blockers = yes
-			generate_asr_thessia_deposits = yes
-			generate_asari_rep_science_ships = yes
-			#create_archaeological_site = btr_site_prothean_beacon_asari
-			set_name = "Thessia"
-			add_modifier = {
-				modifier = temperate_world
-				days = -1
-			}
-		}
-	}
+# 	planet = {
+# 		name = "Thessia"
+# 		class = pc_continental
+# 		orbit_distance = 80
+# 		orbit_angle = 80
+# 		size = 25
+# 		has_ring = no
+# 		starting_planet = yes
+# 		deposit_blockers = none
+# 		modifiers = none
+# 		entity = "temperate_planet_01_entity"
+# 		flags = { thessia_planet subclass_world asari_homeworld subclass_world }		
+# 		init_effect = {
+# 			prevent_anomaly = yes
+# 			set_global_flag = asari_homeworld_spawned
+# 			set_planet_flag = thessia_planet
+# 			if = {
+# 				limit = { 
+# 					NOT = { 
+# 						any_country = { 
+# 							has_country_flag = asari_republics 
+# 						} 
+# 					} 
+# 				}
+# 				create_species = { 
+# 					name = "Asari"
+# 					class = ASA
+# 					portrait = btr_asari
+# 					namelist = btr_asari
+# 					homeworld = THIS 
+# 					traits = { 
+# 						trait = asari_trait_core
+# 						trait = asari_trait_biotic
+# 						trait = asari_trait_smooth_talk
+# 						trait = asari_trait_sophisticated
+# 						ideal_planet_class = pc_continental
+# 					}
+# 				  }
+# 				last_created_species = { save_global_event_target_as = asariSpecies }
+# 				create_country = {
+# 					name = "Asari Republics"
+# 					ship_prefix = ""
+# 					type = default
+# 					origin = asari_rep_origin
+# 					ignore_initial_colony_error = yes
+# 					civics = { 
+# 						civic = asari_rep_civic_thes_dip_corp 
+# 						civic = asari_rep_civic_democracy 
+# 					}
+# 					authority = auth_democratic
+# 					name_list = "btr_asari"
+# 					ethos = { 
+# 						ethic = "ethic_fanatic_xenophile" 
+# 						ethic = "ethic_egalitarian" 
+# 					}
+# 					species = event_target:asariSpecies
+# 					flag = {
+# 						icon={
+# 							category="beyondtherelays"
+# 							file="asari_republics.dds"
+# 						}
+# 						background={
+# 							category="backgrounds"
+# 							file="flag_BG_42.dds"
+# 						}
+# 						colors={
+# 							"blue"
+# 							"blue"
+# 							"null"
+# 							"null"
+# 						}
+# 					}
+# 					effect = {
+# 						set_graphical_culture = mec_asari_01
+# 						set_country_flag = asari_republics
+# 						set_country_flag = init_spawned
+# 						set_country_flag = custom_start_screen
+# 						set_country_flag = canon_map
+# 						set_country_flag = btr_empire
+# 						save_global_event_target_as = asari_republics
+# 					}
+# 				}
+# 			}
+# 			set_capital = yes
+# 			random_country = {
+# 				limit = { 
+# 					has_country_flag = asari_republics 
+# 				}
+# 				save_global_event_target_as = asari_republics
+# 				species = { 
+# 					save_global_event_target_as = asariSpecies 
+# 				}
+# 			}
+# 			set_owner = event_target:asari_republics
+# 			generate_btr_start_deposits_and_blockers = yes
+# 			generate_asr_thessia_capitol_buildings = yes
+# 			generate_asr_thessia_pops = yes
+# 			clear_blockers = yes
+# 			generate_asr_thessia_deposits = yes
+# 			generate_asari_rep_science_ships = yes
+# 			#create_archaeological_site = btr_site_prothean_beacon_asari
+# 			set_name = "Thessia"
+# 			add_modifier = {
+# 				modifier = temperate_world
+# 				days = -1
+# 			}
+# 		}
+# 	}
 
-	planet = {
-		name = "Piares"
-		class = pc_mephitic
-		orbit_distance = 80
-		orbit_angle = 70
-		size = 15
-		has_ring = no
-		init_effect = {
-			add_deposit = d_minerals_3
-			add_deposit = d_trade_value_3
-			add_deposit = d_minerals_5
-			set_planet_flag = starting_mining_target
-		}		
-	}
+# 	planet = {
+# 		name = "Piares"
+# 		class = pc_mephitic
+# 		orbit_distance = 80
+# 		orbit_angle = 70
+# 		size = 15
+# 		has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_minerals_3
+# 			add_deposit = d_trade_value_3
+# 			add_deposit = d_minerals_5
+# 			set_planet_flag = starting_mining_target
+# 		}		
+# 	}
 
-	planet = {
-		name = "Lucen"
-		class = pc_asteroid
-		orbit_distance = 40
-		orbit_angle = { min = 40 max = 100 }
-		size = 1
-		init_effect = {
-			add_deposit = d_rare_crystals_2
-			set_planet_flag = starting_mining_target
-		}		
-	}
+# 	planet = {
+# 		name = "Lucen"
+# 		class = pc_asteroid
+# 		orbit_distance = 40
+# 		orbit_angle = { min = 40 max = 100 }
+# 		size = 1
+# 		init_effect = {
+# 			add_deposit = d_rare_crystals_2
+# 			set_planet_flag = starting_mining_target
+# 		}		
+# 	}
 	
-	planet = {
-		name = "Janiri"
-		class = pc_gas_giant
-		orbit_distance = 40
-		orbit_angle = -60
-		size = 33
-		has_ring = yes
-		init_effect = {
-			add_deposit = d_engineering_2
-			add_deposit = d_exotic_gases_3
-		}		
-	}
+# 	planet = {
+# 		name = "Janiri"
+# 		class = pc_gas_giant
+# 		orbit_distance = 40
+# 		orbit_angle = -60
+# 		size = 33
+# 		has_ring = yes
+# 		init_effect = {
+# 			add_deposit = d_engineering_2
+# 			add_deposit = d_exotic_gases_3
+# 		}		
+# 	}
 	
-	planet = {
-		name = "Athame"
-		class = pc_gas_giant
-		orbit_distance = 80
-		orbit_angle = -100
-		size = 35
-		has_ring = yes
-		init_effect = {
-			add_deposit = d_energy_5
-			add_deposit = d_exotic_gases_2
-			set_planet_flag = starting_mining_target
-		}		
-	}
+# 	planet = {
+# 		name = "Athame"
+# 		class = pc_gas_giant
+# 		orbit_distance = 80
+# 		orbit_angle = -100
+# 		size = 35
+# 		has_ring = yes
+# 		init_effect = {
+# 			add_deposit = d_energy_5
+# 			add_deposit = d_exotic_gases_2
+# 			set_planet_flag = starting_mining_target
+# 		}		
+# 	}
 	
-	planet = {
-		name = "Tevura"
-		class = pc_ice_giant
-		orbit_distance = 80
-		orbit_angle = -170
-		size = 25
-		has_ring = no
-		init_effect = {
-			add_deposit = d_exotic_gases_2
-		}		
-		moon = {
-			name = "Tevura I"
-			class = pc_iron
-			orbit_angle = { min = 90 max = 270 }
-			orbit_distance = 20
-			size = 2
-			init_effect = {
-				add_deposit = d_minerals_2
-			}
-		}	
-		moon = {
-			name = "Tevura II"
-			class = pc_frozen
-			orbit_angle = { min = 90 max = 270 }
-			orbit_distance = 5
-			size = 3
-			init_effect = {
-				add_deposit = d_rare_crystals_2
-			}
-		}	
-		moon = {
-			name = "Tevura III"
-			class = pc_iron
-			orbit_angle = { min = 90 max = 270 }
-			orbit_distance = 5
-			size = 4
-			init_effect = {
-				add_deposit = d_minerals_5
-				add_deposit = d_rare_crystals_1
-			}
-		}
-    }
-}
+# 	planet = {
+# 		name = "Tevura"
+# 		class = pc_ice_giant
+# 		orbit_distance = 80
+# 		orbit_angle = -170
+# 		size = 25
+# 		has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_2
+# 		}		
+# 		moon = {
+# 			name = "Tevura I"
+# 			class = pc_iron
+# 			orbit_angle = { min = 90 max = 270 }
+# 			orbit_distance = 20
+# 			size = 2
+# 			init_effect = {
+# 				add_deposit = d_minerals_2
+# 			}
+# 		}	
+# 		moon = {
+# 			name = "Tevura II"
+# 			class = pc_frozen
+# 			orbit_angle = { min = 90 max = 270 }
+# 			orbit_distance = 5
+# 			size = 3
+# 			init_effect = {
+# 				add_deposit = d_rare_crystals_2
+# 			}
+# 		}	
+# 		moon = {
+# 			name = "Tevura III"
+# 			class = pc_iron
+# 			orbit_angle = { min = 90 max = 270 }
+# 			orbit_distance = 5
+# 			size = 4
+# 			init_effect = {
+# 				add_deposit = d_minerals_5
+# 				add_deposit = d_rare_crystals_1
+# 			}
+# 		}
+#     }
+# }
 
 sys_tomaros_init = {
 	name = "Tomaros"

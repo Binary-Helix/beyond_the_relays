@@ -4,241 +4,241 @@
 
 ##### APIEN CREST #####
 
-sys_trebia_init = {
-    name = "Trebia"
-    class = sc_g
-	flags = { turian_hierarchy_homeworld turian_hierarchy_capital_system canon_map trebia_system empire_home_system }
-	init_effect = { 
-		generate_home_system_resources = yes
-	}
+# sys_trebia_init = {
+#     name = "Trebia"
+#     class = sc_g
+# 	flags = { turian_hierarchy_homeworld turian_hierarchy_capital_system canon_map trebia_system empire_home_system }
+# 	init_effect = { 
+# 		generate_home_system_resources = yes
+# 	}
 
-	usage = custom_empire
-	max_instances = 1	
+# 	usage = custom_empire
+# 	max_instances = 1	
 
-    planet = {
-		name = "Trebia"
-        class = pc_g_star
-        orbit_distance = 0
-        size = 25
-		flags = { trebia_star}
-    }
+#     planet = {
+# 		name = "Trebia"
+#         class = pc_g_star
+#         orbit_distance = 0
+#         size = 25
+# 		flags = { trebia_star}
+#     }
 
-    planet = {
-        name = "Aventen"
-        class = pc_hothouse
-        orbit_distance = 80
-        orbit_angle = 11
-        has_ring = no
-        size = 13
-    }
+#     planet = {
+#         name = "Aventen"
+#         class = pc_hothouse
+#         orbit_distance = 80
+#         orbit_angle = 11
+#         has_ring = no
+#         size = 13
+#     }
 
-    planet = {
-        name = "Caelax"
-        class = pc_barren
-        orbit_distance = 80
-        orbit_angle = 350
-        has_ring = no
-        size = 15
-    }
+#     planet = {
+#         name = "Caelax"
+#         class = pc_barren
+#         orbit_distance = 80
+#         orbit_angle = 350
+#         has_ring = no
+#         size = 15
+#     }
 
-    planet = {
-        name = "Palaven"
-        class = pc_dextro_savannah
-        orbit_distance = 80
-        orbit_angle = 156
-        size = 22
-		has_ring = no		
-		starting_planet = yes
-		flags = { palaven_planet subclass_world turian_homeworld subclass_world }
-		deposit_blockers = none		
-		modifiers = none
-		entity = "veld_planet_04_entity"
-		init_effect = {
-			prevent_anomaly = yes
-			set_global_flag = turian_homeworld_spawned
-			set_planet_flag = palaven_planet
-			if = {
-				limit = { 
-					NOT = { 
-						any_country = { 
-							has_country_flag = turian_hierarchy 
-						} 
-					} 
-				}
-				create_species = { 
-					name = "Turian"
-					class = TUR
-					portrait = btr_turian
-					namelist = btr_turian
-					homeworld = THIS 
-					traits = { 
-						trait = turian_trait_core
-						trait = turian_trait_team_player
-						trait = turian_trait_martial_nature
-						trait = turian_trait_op_discipline
-						ideal_planet_class = pc_dextro_savannah
-					}
-				  }
-				  last_created_species = { save_global_event_target_as = turianSpecies }
-				create_country = {
-					name = "Turian Hierarchy"
-					ship_prefix = ""
-					type = default
-					origin = turian_hier_origin
-					ignore_initial_colony_error = yes
-					civics = { 
-						civic = turian_hier_honor 
-						civic = turian_hier_universal_service 
-					}
-					authority = auth_oligarchic
-					name_list = "btr_turian"
-					ethos = { 
-						ethic = "ethic_egalitarian" 
-						ethic = "ethic_fanatic_militarist" 
-					}
-					species = event_target:turianSpecies
-					flag = {
-						icon={
-							category="beyondtherelays"
-							file="turian_hierarchy.dds"
-						}
-						background={
-							category="backgrounds"
-							file="flag_BG_20.dds"
-						}
-						colors={
-							"eecolor1602"
-							"eecolor1820"
-							"null"
-							"null"
-						}
-					}
-					effect = {
-						set_graphical_culture = btr_turian_01
-						set_country_flag = turian_hierarchy
-						set_country_flag = init_spawned
-						set_country_flag = custom_start_screen
-						set_country_flag = canon_map
-						set_country_flag = btr_empire
-						save_global_event_target_as = turian_hierarchy
-					}
-				}
-			}	
-			set_capital = yes
-			random_country = {
-				limit = { 
-					has_country_flag = turian_hierarchy 
-				}
-				save_global_event_target_as = turian_hierarchy
-				species = { 
-					save_global_event_target_as = turianSpecies }
-			}
-			set_owner = event_target:turian_hierarchy
-			generate_btr_start_deposits_and_blockers = yes			
-			generate_tur_palaven_capitol_buildings = yes
-			generate_tur_palaven_pops = yes
-			clear_blockers = yes
-			generate_tur_palaven_deposits = yes
-			generate_turian_hier_science_ships = yes
-			set_name = "Palaven"
-			add_modifier = {
-				modifier = dextro_world
-				days = -1
-			}
-			add_modifier = {
-				modifier = veld_world
-				days = -1
-			}
-		}		     
-        moon = {
-            name = "Menae"
-            class = pc_barren_cold_station
-            orbit_distance = 20
-            orbit_angle = 336
-            has_ring = no
-            size = 8
-            init_effect = {
-				if = {
-					limit = { 
-						exists = event_target:turian_hierarchy
-					}
-					set_planet_flag = planetary_station
-					set_planet_flag = military_station
-					set_deposit_flags = yes
-					set_owner = event_target:turian_hierarchy
-					generate_tur_menae_colony_buildings = yes
-					generate_tur_menae_pops = yes
-					prevent_anomaly = yes
-					clear_blockers = yes
-					add_deposit = d_barren_cold_blocker
-					add_deposit = d_restricted_area
-				}
-			}	
-        }
-        moon = {
-            name = "Nanus"
-            class = pc_barren_station
-            orbit_distance = 5
-            orbit_angle = 336
-            has_ring = no
-            size = 5
-            init_effect = {
-				if = {
-					limit = { 
-						exists = event_target:turian_hierarchy
-					}
-					set_planet_flag = planetary_station
-					set_planet_flag = industrial_station
-					set_deposit_flags = yes
-					set_owner = event_target:turian_hierarchy
-					generate_tur_nanus_colony_buildings = yes
-					generate_tur_nanus_pops = yes
-					prevent_anomaly = yes
-					clear_blockers = yes
-					add_deposit = d_barren_blocker
-					add_deposit = d_mineral_lodes
-				}
-            }
-        }		
-    }
+#     planet = {
+#         name = "Palaven"
+#         class = pc_dextro_savannah
+#         orbit_distance = 80
+#         orbit_angle = 156
+#         size = 22
+# 		has_ring = no		
+# 		starting_planet = yes
+# 		flags = { palaven_planet subclass_world turian_homeworld subclass_world }
+# 		deposit_blockers = none		
+# 		modifiers = none
+# 		entity = "veld_planet_04_entity"
+# 		init_effect = {
+# 			prevent_anomaly = yes
+# 			set_global_flag = turian_homeworld_spawned
+# 			set_planet_flag = palaven_planet
+# 			if = {
+# 				limit = { 
+# 					NOT = { 
+# 						any_country = { 
+# 							has_country_flag = turian_hierarchy 
+# 						} 
+# 					} 
+# 				}
+# 				create_species = { 
+# 					name = "Turian"
+# 					class = TUR
+# 					portrait = btr_turian
+# 					namelist = btr_turian
+# 					homeworld = THIS 
+# 					traits = { 
+# 						trait = turian_trait_core
+# 						trait = turian_trait_team_player
+# 						trait = turian_trait_martial_nature
+# 						trait = turian_trait_op_discipline
+# 						ideal_planet_class = pc_dextro_savannah
+# 					}
+# 				  }
+# 				  last_created_species = { save_global_event_target_as = turianSpecies }
+# 				create_country = {
+# 					name = "Turian Hierarchy"
+# 					ship_prefix = ""
+# 					type = default
+# 					origin = turian_hier_origin
+# 					ignore_initial_colony_error = yes
+# 					civics = { 
+# 						civic = turian_hier_honor 
+# 						civic = turian_hier_universal_service 
+# 					}
+# 					authority = auth_oligarchic
+# 					name_list = "btr_turian"
+# 					ethos = { 
+# 						ethic = "ethic_egalitarian" 
+# 						ethic = "ethic_fanatic_militarist" 
+# 					}
+# 					species = event_target:turianSpecies
+# 					flag = {
+# 						icon={
+# 							category="beyondtherelays"
+# 							file="turian_hierarchy.dds"
+# 						}
+# 						background={
+# 							category="backgrounds"
+# 							file="flag_BG_20.dds"
+# 						}
+# 						colors={
+# 							"eecolor1602"
+# 							"eecolor1820"
+# 							"null"
+# 							"null"
+# 						}
+# 					}
+# 					effect = {
+# 						set_graphical_culture = btr_turian_01
+# 						set_country_flag = turian_hierarchy
+# 						set_country_flag = init_spawned
+# 						set_country_flag = custom_start_screen
+# 						set_country_flag = canon_map
+# 						set_country_flag = btr_empire
+# 						save_global_event_target_as = turian_hierarchy
+# 					}
+# 				}
+# 			}	
+# 			set_capital = yes
+# 			random_country = {
+# 				limit = { 
+# 					has_country_flag = turian_hierarchy 
+# 				}
+# 				save_global_event_target_as = turian_hierarchy
+# 				species = { 
+# 					save_global_event_target_as = turianSpecies }
+# 			}
+# 			set_owner = event_target:turian_hierarchy
+# 			generate_btr_start_deposits_and_blockers = yes			
+# 			generate_tur_palaven_capitol_buildings = yes
+# 			generate_tur_palaven_pops = yes
+# 			clear_blockers = yes
+# 			generate_tur_palaven_deposits = yes
+# 			generate_turian_hier_science_ships = yes
+# 			set_name = "Palaven"
+# 			add_modifier = {
+# 				modifier = dextro_world
+# 				days = -1
+# 			}
+# 			add_modifier = {
+# 				modifier = veld_world
+# 				days = -1
+# 			}
+# 		}		     
+#         moon = {
+#             name = "Menae"
+#             class = pc_barren_cold_station
+#             orbit_distance = 20
+#             orbit_angle = 336
+#             has_ring = no
+#             size = 8
+#             init_effect = {
+# 				if = {
+# 					limit = { 
+# 						exists = event_target:turian_hierarchy
+# 					}
+# 					set_planet_flag = planetary_station
+# 					set_planet_flag = military_station
+# 					set_deposit_flags = yes
+# 					set_owner = event_target:turian_hierarchy
+# 					generate_tur_menae_colony_buildings = yes
+# 					generate_tur_menae_pops = yes
+# 					prevent_anomaly = yes
+# 					clear_blockers = yes
+# 					add_deposit = d_barren_cold_blocker
+# 					add_deposit = d_restricted_area
+# 				}
+# 			}	
+#         }
+#         moon = {
+#             name = "Nanus"
+#             class = pc_barren_station
+#             orbit_distance = 5
+#             orbit_angle = 336
+#             has_ring = no
+#             size = 5
+#             init_effect = {
+# 				if = {
+# 					limit = { 
+# 						exists = event_target:turian_hierarchy
+# 					}
+# 					set_planet_flag = planetary_station
+# 					set_planet_flag = industrial_station
+# 					set_deposit_flags = yes
+# 					set_owner = event_target:turian_hierarchy
+# 					generate_tur_nanus_colony_buildings = yes
+# 					generate_tur_nanus_pops = yes
+# 					prevent_anomaly = yes
+# 					clear_blockers = yes
+# 					add_deposit = d_barren_blocker
+# 					add_deposit = d_mineral_lodes
+# 				}
+#             }
+#         }		
+#     }
 
-    planet = {
-        name = "Impera"
-        class = pc_hothouse
-        orbit_distance = 80
-        orbit_angle = 208
-        has_ring = no
-        size = 4
-		init_effect = {
-			add_deposit = d_minerals_2
-		}	
-    }
+#     planet = {
+#         name = "Impera"
+#         class = pc_hothouse
+#         orbit_distance = 80
+#         orbit_angle = 208
+#         has_ring = no
+#         size = 4
+# 		init_effect = {
+# 			add_deposit = d_minerals_2
+# 		}	
+#     }
 
-    planet = {
-        name = "Essenus"
-        class = pc_gas_giant
-        orbit_distance = 80
-        orbit_angle = 272
-        has_ring = no
-        size = 37
-		init_effect = {
-			add_deposit = d_exotic_gases_4
-			add_deposit = d_trade_value_4
-		}	
-    }
+#     planet = {
+#         name = "Essenus"
+#         class = pc_gas_giant
+#         orbit_distance = 80
+#         orbit_angle = 272
+#         has_ring = no
+#         size = 37
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_4
+# 			add_deposit = d_trade_value_4
+# 		}	
+#     }
 
-    planet = {
-        name = "Datriux"
-        class = pc_frozen
-        orbit_distance = 80
-        orbit_angle = 209
-        has_ring = no
-        size = 18
-		init_effect = {
-			add_deposit = d_rare_crystals_1
-		}	
-    }   	
-}
+#     planet = {
+#         name = "Datriux"
+#         class = pc_frozen
+#         orbit_distance = 80
+#         orbit_angle = 209
+#         has_ring = no
+#         size = 18
+# 		init_effect = {
+# 			add_deposit = d_rare_crystals_1
+# 		}	
+#     }   	
+# }
 
 sys_orachorum_init = {
 	name = "Orachorum"

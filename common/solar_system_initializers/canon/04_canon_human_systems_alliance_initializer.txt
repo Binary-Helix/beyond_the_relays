@@ -4,541 +4,541 @@
 
 ##### LOCAL CLUSTER #####
 
-sys_sol_init = {
+# sys_sol_init = {
 
-	name = "Sol"
-	class = sc_g
-	flags = { system_alliance_homeworld system_alliance_capital_system canon_map sol_system empire_home_system }
+# 	name = "Sol"
+# 	class = sc_g
+# 	flags = { system_alliance_homeworld system_alliance_capital_system canon_map sol_system empire_home_system }
 
-	init_effect = { 
-		generate_home_system_resources = yes
-		save_global_event_target_as = allianceThirdFleet
-	}
+# 	init_effect = { 
+# 		generate_home_system_resources = yes
+# 		save_global_event_target_as = allianceThirdFleet
+# 	}
 
-	usage = custom_empire
-	max_instances = 1	
+# 	usage = custom_empire
+# 	max_instances = 1	
 
-	asteroid_belt = {
-		type = rocky_asteroid_belt
-		radius = 225
-	}
-	asteroid_belt = {
-		type = icy_asteroid_belt
-		radius = 495
-	}
+# 	asteroid_belt = {
+# 		type = rocky_asteroid_belt
+# 		radius = 225
+# 	}
+# 	asteroid_belt = {
+# 		type = icy_asteroid_belt
+# 		radius = 495
+# 	}
 
-	planet = {
-		name = "Sol"
-		class = pc_g_star
-		orbit_distance = 0
-		orbit_angle = 1
-		size = 30
-		has_ring = no
-		flags = { sol_star }
-		init_effect = {
-			add_deposit = d_energy_5
-			set_planet_flag = starting_mining_target
-		}
-	}
+# 	planet = {
+# 		name = "Sol"
+# 		class = pc_g_star
+# 		orbit_distance = 0
+# 		orbit_angle = 1
+# 		size = 30
+# 		has_ring = no
+# 		flags = { sol_star }
+# 		init_effect = {
+# 			add_deposit = d_energy_5
+# 			set_planet_flag = starting_mining_target
+# 		}
+# 	}
 	
-	planet = {
-		name = "Mercury"
-		class = pc_iron
-		orbit_distance = 50
-		orbit_angle = 15
-		size = 8
-		has_ring = no
-		entity = "iron_planet_mercury_entity"
-		init_effect = {
-			add_deposit = d_minerals_7
-			add_deposit = d_rare_crystals_2
-		}	
-	}
+# 	planet = {
+# 		name = "Mercury"
+# 		class = pc_iron
+# 		orbit_distance = 50
+# 		orbit_angle = 15
+# 		size = 8
+# 		has_ring = no
+# 		entity = "iron_planet_mercury_entity"
+# 		init_effect = {
+# 			add_deposit = d_minerals_7
+# 			add_deposit = d_rare_crystals_2
+# 		}	
+# 	}
 	
-	planet = {
-		name = "Venus"
-		class = pc_hothouse
-		orbit_distance = 50
-		orbit_angle = 125
-		size = 16
-		has_ring = no
-		flags = { venus_planet }
-		entity = "hothouse_planet_venus_entity"
-	}
+# 	planet = {
+# 		name = "Venus"
+# 		class = pc_hothouse
+# 		orbit_distance = 50
+# 		orbit_angle = 125
+# 		size = 16
+# 		has_ring = no
+# 		flags = { venus_planet }
+# 		entity = "hothouse_planet_venus_entity"
+# 	}
 	
-	planet = {
-		name = "Earth"
-		class = pc_continental
-		orbit_distance = 50
-		orbit_angle = 120
-		size = 18
-		has_ring = no
-		starting_planet = yes
-		deposit_blockers = none
-		modifiers = none
-		entity = "continental_planet_earth_entity"
-		flags = { earth_planet subclass_world human_homeworld subclass_world}
-		init_effect = {
-			prevent_anomaly = yes
-			set_global_flag = human_homeworld_spawned
-			set_planet_flag = earth_planet
-			if = {
-				limit = { 
-					NOT = { 
-						any_country = { 
-							has_country_flag = systems_alliance 
-						} 
-					} 
-				}
-				create_species = { 
-					name = "Human"
-					class = HUM
-					portrait = btr_alliance
-					namelist = btr_alliance
-					homeworld = THIS 
-					traits = {
-						trait = human_trait_core
-						trait = human_trait_biodiversity
-						trait = human_trait_frontier_spirit
-						trait = human_trait_rugged_individualism
-					  	ideal_planet_class = pc_continental
-					}
-				  }
-				  last_created_species = { save_global_event_target_as = humanSpecies }
-				create_country = {
-					name = "Systems Alliance"
-					ship_prefix = "SSV"
-					type = default
-					origin = systems_all_origin
-					ignore_initial_colony_error = yes
-					civics={ 
-						civic = systems_all_colonial_government 
-						civic = systems_all_unfettered_ai 
-					}
-					authority = auth_democratic
-					name_list = "btr_alliance"
-					ethos = { 
-						ethic = ethic_egalitarian 
-						ethic = ethic_militarist 
-						ethic = ethic_materialist 
-					}
-					species = event_target:humanSpecies
-					flag = {
-						icon={
-							category="beyondtherelays"
-							file="systems_alliance.dds"
-						}
-						background={
-							category="backgrounds"
-							file="00_solid.dds"
-						}
-						colors={
-							"eecolor1681"
-							"silver_steel"
-							"null"
-							"null"
-						}
-					}
-					effect = {
-						set_graphical_culture = btr_alliance_01
-						set_country_flag = systems_alliance
-						set_country_flag = init_spawned
-						set_country_flag = custom_start_screen
-						set_country_flag = canon_map
-						set_country_flag = btr_empire
-						save_global_event_target_as = systems_alliance
-					}
-				}
-			}	
-			set_capital = yes
-			random_country = {
-				limit = { 
-					has_country_flag = systems_alliance 
-				}
-				save_global_event_target_as = systems_alliance
-				species = { 
-					save_global_event_target_as = humanSpecies 
-				}
-			}
-			set_owner = event_target:systems_alliance
-			generate_btr_start_deposits_and_blockers = yes
-			generate_hum_earth_capitol_buildings = yes
-			generate_hum_earth_pops = yes
-			clear_blockers = yes
-			generate_hum_earth_deposits = yes
-			generate_systems_all_science_ships = yes
-			set_name = "Earth"
-			add_modifier = {
-				modifier = temperate_world
-				days = -1
-			}
-		}			
-		moon = {
-			name = "Luna"
-			class = pc_barren_cold_station
-			size = 4
-			orbit_distance = 8
-			orbit_angle = 40
-			has_ring = no
-			entity = "cold_barren_planet_luna_entity"
-            init_effect = {
-				if = {
-					limit = { 
-						exists = event_target:systems_alliance
-					}
-					set_planet_flag = planetary_station
-					set_planet_flag = military_station
-					set_deposit_flags = yes
-					set_owner = event_target:systems_alliance
-					generate_hum_luna_buildings = yes
-					generate_hum_luna_pops = yes
-					prevent_anomaly = yes
-					clear_blockers = yes
-					add_deposit = d_barren_cold_blocker
-				}
-			}
-		}
-	}
+# 	planet = {
+# 		name = "Earth"
+# 		class = pc_continental
+# 		orbit_distance = 50
+# 		orbit_angle = 120
+# 		size = 18
+# 		has_ring = no
+# 		starting_planet = yes
+# 		deposit_blockers = none
+# 		modifiers = none
+# 		entity = "continental_planet_earth_entity"
+# 		flags = { earth_planet subclass_world human_homeworld subclass_world}
+# 		init_effect = {
+# 			prevent_anomaly = yes
+# 			set_global_flag = human_homeworld_spawned
+# 			set_planet_flag = earth_planet
+# 			if = {
+# 				limit = { 
+# 					NOT = { 
+# 						any_country = { 
+# 							has_country_flag = systems_alliance 
+# 						} 
+# 					} 
+# 				}
+# 				create_species = { 
+# 					name = "Human"
+# 					class = HUM
+# 					portrait = btr_alliance
+# 					namelist = btr_alliance
+# 					homeworld = THIS 
+# 					traits = {
+# 						trait = human_trait_core
+# 						trait = human_trait_biodiversity
+# 						trait = human_trait_frontier_spirit
+# 						trait = human_trait_rugged_individualism
+# 					  	ideal_planet_class = pc_continental
+# 					}
+# 				  }
+# 				  last_created_species = { save_global_event_target_as = humanSpecies }
+# 				create_country = {
+# 					name = "Systems Alliance"
+# 					ship_prefix = "SSV"
+# 					type = default
+# 					origin = systems_all_origin
+# 					ignore_initial_colony_error = yes
+# 					civics={ 
+# 						civic = systems_all_colonial_government 
+# 						civic = systems_all_unfettered_ai 
+# 					}
+# 					authority = auth_democratic
+# 					name_list = "btr_alliance"
+# 					ethos = { 
+# 						ethic = ethic_egalitarian 
+# 						ethic = ethic_militarist 
+# 						ethic = ethic_materialist 
+# 					}
+# 					species = event_target:humanSpecies
+# 					flag = {
+# 						icon={
+# 							category="beyondtherelays"
+# 							file="systems_alliance.dds"
+# 						}
+# 						background={
+# 							category="backgrounds"
+# 							file="00_solid.dds"
+# 						}
+# 						colors={
+# 							"eecolor1681"
+# 							"silver_steel"
+# 							"null"
+# 							"null"
+# 						}
+# 					}
+# 					effect = {
+# 						set_graphical_culture = btr_alliance_01
+# 						set_country_flag = systems_alliance
+# 						set_country_flag = init_spawned
+# 						set_country_flag = custom_start_screen
+# 						set_country_flag = canon_map
+# 						set_country_flag = btr_empire
+# 						save_global_event_target_as = systems_alliance
+# 					}
+# 				}
+# 			}	
+# 			set_capital = yes
+# 			random_country = {
+# 				limit = { 
+# 					has_country_flag = systems_alliance 
+# 				}
+# 				save_global_event_target_as = systems_alliance
+# 				species = { 
+# 					save_global_event_target_as = humanSpecies 
+# 				}
+# 			}
+# 			set_owner = event_target:systems_alliance
+# 			generate_btr_start_deposits_and_blockers = yes
+# 			generate_hum_earth_capitol_buildings = yes
+# 			generate_hum_earth_pops = yes
+# 			clear_blockers = yes
+# 			generate_hum_earth_deposits = yes
+# 			generate_systems_all_science_ships = yes
+# 			set_name = "Earth"
+# 			add_modifier = {
+# 				modifier = temperate_world
+# 				days = -1
+# 			}
+# 		}			
+# 		moon = {
+# 			name = "Luna"
+# 			class = pc_barren_cold_station
+# 			size = 4
+# 			orbit_distance = 8
+# 			orbit_angle = 40
+# 			has_ring = no
+# 			entity = "cold_barren_planet_luna_entity"
+#             init_effect = {
+# 				if = {
+# 					limit = { 
+# 						exists = event_target:systems_alliance
+# 					}
+# 					set_planet_flag = planetary_station
+# 					set_planet_flag = military_station
+# 					set_deposit_flags = yes
+# 					set_owner = event_target:systems_alliance
+# 					generate_hum_luna_buildings = yes
+# 					generate_hum_luna_pops = yes
+# 					prevent_anomaly = yes
+# 					clear_blockers = yes
+# 					add_deposit = d_barren_cold_blocker
+# 				}
+# 			}
+# 		}
+# 	}
 	
-	planet = {
-		name = "Mars"
-		class = pc_mephitic_station
-		orbit_distance = 50
-		orbit_angle = 60
-		size = 13
-		has_ring = no
-		entity = "barren_planet_mars_entity"
-		init_effect = {
-			if = {
-				limit = { 
-					exists = event_target:systems_alliance
-				}
-				set_planet_flag = planetary_station
-				set_planet_flag = research_station
-				set_deposit_flags = yes
-				set_owner = event_target:systems_alliance
-				generate_hum_mars_buildings = yes
-				generate_hum_mars_pops = yes
-				prevent_anomaly = yes
-				clear_blockers = yes
-				add_deposit = d_mephitic_blocker
-				#create_archaeological_site = btr_site_prothean_beacon_human
-			}	
-		}	
-	}
+# 	planet = {
+# 		name = "Mars"
+# 		class = pc_mephitic_station
+# 		orbit_distance = 50
+# 		orbit_angle = 60
+# 		size = 13
+# 		has_ring = no
+# 		entity = "barren_planet_mars_entity"
+# 		init_effect = {
+# 			if = {
+# 				limit = { 
+# 					exists = event_target:systems_alliance
+# 				}
+# 				set_planet_flag = planetary_station
+# 				set_planet_flag = research_station
+# 				set_deposit_flags = yes
+# 				set_owner = event_target:systems_alliance
+# 				generate_hum_mars_buildings = yes
+# 				generate_hum_mars_pops = yes
+# 				prevent_anomaly = yes
+# 				clear_blockers = yes
+# 				add_deposit = d_mephitic_blocker
+# 				#create_archaeological_site = btr_site_prothean_beacon_human
+# 			}	
+# 		}	
+# 	}
 	
-	planet = {
-		name = "Ceres"
-		class = pc_frozen
-		flags = { ceres }
-		orbit_distance = 25
-		orbit_angle = -210
-		size = 1
-		has_ring = no
-		entity = "frozen_ceres_entity"
-	}
+# 	planet = {
+# 		name = "Ceres"
+# 		class = pc_frozen
+# 		flags = { ceres }
+# 		orbit_distance = 25
+# 		orbit_angle = -210
+# 		size = 1
+# 		has_ring = no
+# 		entity = "frozen_ceres_entity"
+# 	}
 	
-	planet = {
-		name = "Pallas"
-		class = pc_asteroid
-		flags = { pallas }
-		orbit_distance = 0
-		orbit_angle = -95
-		size = 1
-		has_ring = no
-		init_effect = {
-			add_deposit = d_minerals_4
-		}	
-	}
+# 	planet = {
+# 		name = "Pallas"
+# 		class = pc_asteroid
+# 		flags = { pallas }
+# 		orbit_distance = 0
+# 		orbit_angle = -95
+# 		size = 1
+# 		has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_minerals_4
+# 		}	
+# 	}
 	
-	planet = {
-		name = "Juno"
-		class = pc_asteroid
-		flags = { juno }
-		orbit_distance = 0
-		orbit_angle = 285
-		size = 5
-		has_ring = no
-		init_effect = {
-			add_deposit = d_minerals_2
-		}	
-	}
+# 	planet = {
+# 		name = "Juno"
+# 		class = pc_asteroid
+# 		flags = { juno }
+# 		orbit_distance = 0
+# 		orbit_angle = 285
+# 		size = 5
+# 		has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_minerals_2
+# 		}	
+# 	}
 	
-	planet = {
-		name = "Vesta"
-		class = pc_asteroid
-		flags = { vesta }
-		orbit_distance = 0
-		orbit_angle = -80
-		size = 1
-		has_ring = no
-		init_effect = {
-			add_deposit = d_minerals_5
-		}	
-	}
+# 	planet = {
+# 		name = "Vesta"
+# 		class = pc_asteroid
+# 		flags = { vesta }
+# 		orbit_distance = 0
+# 		orbit_angle = -80
+# 		size = 1
+# 		has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_minerals_5
+# 		}	
+# 	}
 	
-	planet = {
-		name = "Jupiter"
-		class = pc_gas_giant
-		flags = { jupiter }
-		orbit_distance = 25
-		orbit_angle = -160
-		size = 36
-		has_ring = no
-		entity = "gas_giant_jupiter_entity"
-		change_orbit = 6
-		init_effect = {
-			add_deposit = d_exotic_gases_1
-		}	
-		moon = {
-			name = "Io"
-			class = pc_molten
-			flags = { io }
-			size = 4
-			orbit_distance = 20
-			orbit_angle = 110
-			has_ring = no
-			entity = "molten_io_entity"
-			init_effect = {
-				add_deposit = d_rare_crystals_1
-			}	
-		}
-		moon = {
-			name = "Europa"
-			class = pc_frozen
-			flags = { europa }
-			size = 3
-			orbit_distance = 5
-			orbit_angle = 10
-			has_ring = no
-			entity = "frozen_europa_entity"
-			init_effect = {
-				add_deposit = d_society_3
-			}	
-		}
-		moon = {
-			name = "Ganymede"
-			class = pc_frozen
-			flags = { ganymede }
-			size = 6
-			orbit_distance = 5
-			orbit_angle = 80
-			has_ring = no
-			entity = "frozen_ganymede_entity"
-			init_effect = {
-				add_deposit = d_rare_crystals_1
-			}	
-		}
-		moon = {
-			name = "Callisto"
-			class = pc_frozen
-			flags = { callisto }
-			size = 12
-			orbit_distance = 5
-			orbit_angle = -155
-			has_ring = no
-			entity = "frozen_callisto_entity"
-			init_effect = {
-				add_deposit = d_minerals_2
-				add_deposit = d_rare_crystals_1
-			}	
-		}
-	}
+# 	planet = {
+# 		name = "Jupiter"
+# 		class = pc_gas_giant
+# 		flags = { jupiter }
+# 		orbit_distance = 25
+# 		orbit_angle = -160
+# 		size = 36
+# 		has_ring = no
+# 		entity = "gas_giant_jupiter_entity"
+# 		change_orbit = 6
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_1
+# 		}	
+# 		moon = {
+# 			name = "Io"
+# 			class = pc_molten
+# 			flags = { io }
+# 			size = 4
+# 			orbit_distance = 20
+# 			orbit_angle = 110
+# 			has_ring = no
+# 			entity = "molten_io_entity"
+# 			init_effect = {
+# 				add_deposit = d_rare_crystals_1
+# 			}	
+# 		}
+# 		moon = {
+# 			name = "Europa"
+# 			class = pc_frozen
+# 			flags = { europa }
+# 			size = 3
+# 			orbit_distance = 5
+# 			orbit_angle = 10
+# 			has_ring = no
+# 			entity = "frozen_europa_entity"
+# 			init_effect = {
+# 				add_deposit = d_society_3
+# 			}	
+# 		}
+# 		moon = {
+# 			name = "Ganymede"
+# 			class = pc_frozen
+# 			flags = { ganymede }
+# 			size = 6
+# 			orbit_distance = 5
+# 			orbit_angle = 80
+# 			has_ring = no
+# 			entity = "frozen_ganymede_entity"
+# 			init_effect = {
+# 				add_deposit = d_rare_crystals_1
+# 			}	
+# 		}
+# 		moon = {
+# 			name = "Callisto"
+# 			class = pc_frozen
+# 			flags = { callisto }
+# 			size = 12
+# 			orbit_distance = 5
+# 			orbit_angle = -155
+# 			has_ring = no
+# 			entity = "frozen_callisto_entity"
+# 			init_effect = {
+# 				add_deposit = d_minerals_2
+# 				add_deposit = d_rare_crystals_1
+# 			}	
+# 		}
+# 	}
 	
-	planet = {
-		name = "Saturn"
-		class = pc_gas_giant
-		flags = { saturn }
-		orbit_distance = 50
-		orbit_angle = 170
-		size = 34
-		has_ring = yes
-		entity = "gas_giant_saturn_entity"
-		init_effect = {
-			add_deposit = d_exotic_gases_2
-		}	
-		moon = {
-			name = "Titan"
-			class = pc_frozen
-			flags = { titan }
-			size = 6
-			orbit_distance = 20
-			orbit_angle = 320
-			has_ring = no
-			entity = "methane_titan_entity"
-			init_effect = {
-				add_deposit = d_minerals_2
-			}	
-		}
-		moon = {
-			name = "Enceladus"
-			class = pc_frozen
-			flags = { enceladus }
-			size = 2
-			orbit_distance = 5
-			orbit_angle = 320
-			has_ring = no
-			entity = "frozen_enceladus_entity"
-		}
-	}
+# 	planet = {
+# 		name = "Saturn"
+# 		class = pc_gas_giant
+# 		flags = { saturn }
+# 		orbit_distance = 50
+# 		orbit_angle = 170
+# 		size = 34
+# 		has_ring = yes
+# 		entity = "gas_giant_saturn_entity"
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_2
+# 		}	
+# 		moon = {
+# 			name = "Titan"
+# 			class = pc_frozen
+# 			flags = { titan }
+# 			size = 6
+# 			orbit_distance = 20
+# 			orbit_angle = 320
+# 			has_ring = no
+# 			entity = "methane_titan_entity"
+# 			init_effect = {
+# 				add_deposit = d_minerals_2
+# 			}	
+# 		}
+# 		moon = {
+# 			name = "Enceladus"
+# 			class = pc_frozen
+# 			flags = { enceladus }
+# 			size = 2
+# 			orbit_distance = 5
+# 			orbit_angle = 320
+# 			has_ring = no
+# 			entity = "frozen_enceladus_entity"
+# 		}
+# 	}
 	
-	planet = {
-		name = "Uranus"
-		class = pc_ice_giant
-		flags = { uranus }
-		orbit_distance = 50
-		orbit_angle = 125
-		size = 28
-		has_ring = no
-		entity = "ice_giant_uranus_entity"
-		init_effect = {
-			add_deposit = d_exotic_gases_4
-			add_deposit = d_trade_value_2
-		}	
-		moon = {
-			name = "Miranda"
-			class = pc_frozen
-			flags = { miranda }
-			size = 1
-			orbit_distance = 20
-			orbit_angle = 115
-			has_ring = no
-			entity = "frozen_miranda_entity"
-		}
-		moon = {
-			name = "Ariel"
-			class = pc_frozen
-			flags = { ariel }
-			size = 1
-			orbit_distance = 5
-			orbit_angle = 115
-			has_ring = no
-			entity = "frozen_ariel_entity"
-		}
-		moon = {
-			name = "Umbriel"
-			class = pc_frozen
-			flags = { umbriel }
-			size = 1
-			orbit_distance = 5
-			orbit_angle = 115
-			has_ring = no
-			entity = "frozen_umbriel_entity"
-		}
-		moon = {
-			name = "Titania"
-			class = pc_frozen
-			flags = { titania }
-			size = 2
-			orbit_distance = 5
-			orbit_angle = 115
-			has_ring = no
-			entity = "frozen_titania_entity"
-		}
-		moon = {
-			name = "Oberon"
-			class = pc_frozen
-			flags = { oberon }
-			size = 2
-			orbit_distance = 5
-			orbit_angle = 115
-			has_ring = no
-			entity = "frozen_oberon_entity"
-		}
-	}
+# 	planet = {
+# 		name = "Uranus"
+# 		class = pc_ice_giant
+# 		flags = { uranus }
+# 		orbit_distance = 50
+# 		orbit_angle = 125
+# 		size = 28
+# 		has_ring = no
+# 		entity = "ice_giant_uranus_entity"
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_4
+# 			add_deposit = d_trade_value_2
+# 		}	
+# 		moon = {
+# 			name = "Miranda"
+# 			class = pc_frozen
+# 			flags = { miranda }
+# 			size = 1
+# 			orbit_distance = 20
+# 			orbit_angle = 115
+# 			has_ring = no
+# 			entity = "frozen_miranda_entity"
+# 		}
+# 		moon = {
+# 			name = "Ariel"
+# 			class = pc_frozen
+# 			flags = { ariel }
+# 			size = 1
+# 			orbit_distance = 5
+# 			orbit_angle = 115
+# 			has_ring = no
+# 			entity = "frozen_ariel_entity"
+# 		}
+# 		moon = {
+# 			name = "Umbriel"
+# 			class = pc_frozen
+# 			flags = { umbriel }
+# 			size = 1
+# 			orbit_distance = 5
+# 			orbit_angle = 115
+# 			has_ring = no
+# 			entity = "frozen_umbriel_entity"
+# 		}
+# 		moon = {
+# 			name = "Titania"
+# 			class = pc_frozen
+# 			flags = { titania }
+# 			size = 2
+# 			orbit_distance = 5
+# 			orbit_angle = 115
+# 			has_ring = no
+# 			entity = "frozen_titania_entity"
+# 		}
+# 		moon = {
+# 			name = "Oberon"
+# 			class = pc_frozen
+# 			flags = { oberon }
+# 			size = 2
+# 			orbit_distance = 5
+# 			orbit_angle = 115
+# 			has_ring = no
+# 			entity = "frozen_oberon_entity"
+# 		}
+# 	}
 	
-	planet = {
-		name = "Neptune"
-		class = pc_ice_giant
-		flags = { neptune }
-		orbit_distance = 50
-		orbit_angle = -195
-		size = 27
-		has_ring = no
-		init_effect = {
-			add_deposit = d_exotic_gases_1
-		}	
-		entity = "ice_giant_neptune_entity"
-		moon = {
-			name = "Triton"
-			class = pc_frozen
-			flags = { triton }
-			size = 3
-			orbit_distance = 20
-			orbit_angle = 115
-			has_ring = no
-			entity = "frozen_triton_entity"
-		}
-	}
+# 	planet = {
+# 		name = "Neptune"
+# 		class = pc_ice_giant
+# 		flags = { neptune }
+# 		orbit_distance = 50
+# 		orbit_angle = -195
+# 		size = 27
+# 		has_ring = no
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_1
+# 		}	
+# 		entity = "ice_giant_neptune_entity"
+# 		moon = {
+# 			name = "Triton"
+# 			class = pc_frozen
+# 			flags = { triton }
+# 			size = 3
+# 			orbit_distance = 20
+# 			orbit_angle = 115
+# 			has_ring = no
+# 			entity = "frozen_triton_entity"
+# 		}
+# 	}
 
-	planet = {
-		name = "Pluto"
-		class = pc_frozen
-		flags = { pluto }
-		modifiers = none
-		orbit_distance = 25
-		orbit_angle = -210
-		size = 3
-		has_ring = no
-		entity = "frozen_pluto_entity"
-		init_effect = {
-			add_deposit = d_rare_crystals_2
-		}	
-	}
+# 	planet = {
+# 		name = "Pluto"
+# 		class = pc_frozen
+# 		flags = { pluto }
+# 		modifiers = none
+# 		orbit_distance = 25
+# 		orbit_angle = -210
+# 		size = 3
+# 		has_ring = no
+# 		entity = "frozen_pluto_entity"
+# 		init_effect = {
+# 			add_deposit = d_rare_crystals_2
+# 		}	
+# 	}
 
-	init_effect = {
-		spawn_megastructure = { 
-			type = "alliance_space_sector_1_secondaryrelay" 
-			name = "Orion Secondary - Sector 1 Relay"
-			orbit_angle = 0 
-			orbit_distance = 500
-		} 		
-	}
+# 	init_effect = {
+# 		spawn_megastructure = { 
+# 			type = "alliance_space_sector_1_secondaryrelay" 
+# 			name = "Orion Secondary - Sector 1 Relay"
+# 			orbit_angle = 0 
+# 			orbit_distance = 500
+# 		} 		
+# 	}
 
-	planet = {
-		name = "Makemake"
-		class = pc_frozen
-		flags = { makemake }
-		orbit_distance = 0
-		orbit_angle = -95
-		size = 2
-		has_ring = no
-		entity = "frozen_makemake_entity"
-	}
+# 	planet = {
+# 		name = "Makemake"
+# 		class = pc_frozen
+# 		flags = { makemake }
+# 		orbit_distance = 0
+# 		orbit_angle = -95
+# 		size = 2
+# 		has_ring = no
+# 		entity = "frozen_makemake_entity"
+# 	}
 	
-	planet = {
-		name = "Haumea"
-		class = pc_frozen
-		flags = { haumea }
-		orbit_distance = 0
-		orbit_angle = 285
-		size = 3
-		has_ring = no
-		entity = "frozen_haumea_entity"
-	}
+# 	planet = {
+# 		name = "Haumea"
+# 		class = pc_frozen
+# 		flags = { haumea }
+# 		orbit_distance = 0
+# 		orbit_angle = 285
+# 		size = 3
+# 		has_ring = no
+# 		entity = "frozen_haumea_entity"
+# 	}
 
-	planet = {
-		name = "Varuna"
-		class = pc_frozen
-		flags = { varuna }
-		orbit_distance = 0
-		orbit_angle = -80
-		size = 5
-		has_ring = no
-	}
+# 	planet = {
+# 		name = "Varuna"
+# 		class = pc_frozen
+# 		flags = { varuna }
+# 		orbit_distance = 0
+# 		orbit_angle = -80
+# 		size = 5
+# 		has_ring = no
+# 	}
 
-	planet = {
-		name = "Eris"
-		class = pc_frozen
-		flags = { eris }
-		modifiers = none
-		orbit_distance = 0
-		orbit_angle = -210
-		size = 3
-		has_ring = no
-		entity = "frozen_eris_entity"
-	}
-}
+# 	planet = {
+# 		name = "Eris"
+# 		class = pc_frozen
+# 		flags = { eris }
+# 		modifiers = none
+# 		orbit_distance = 0
+# 		orbit_angle = -210
+# 		size = 3
+# 		has_ring = no
+# 		entity = "frozen_eris_entity"
+# 	}
+# }
 
 sys_sirius_system = {
 	name = "Sirius"

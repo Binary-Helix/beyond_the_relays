@@ -4,213 +4,213 @@
 
 ##### OLYN PROTECTORATE #####
 
-sys_kanala_init = {
-    name = "Kanala"
-    class = sc_a
-	flags = { illuminated_primacy_homeworld illuminated_primacy_capital_system canon_map kanala_system empire_home_system }
-	init_effect = { 
-    	generate_home_system_resources = yes
-        save_global_event_target_as = primacyFirstFleet
-	}
+# sys_kanala_init = {
+#     name = "Kanala"
+#     class = sc_a
+# 	flags = { illuminated_primacy_homeworld illuminated_primacy_capital_system canon_map kanala_system empire_home_system }
+# 	init_effect = { 
+#     	generate_home_system_resources = yes
+#         save_global_event_target_as = primacyFirstFleet
+# 	}
 
-	usage = custom_empire
-	max_instances = 1	
+# 	usage = custom_empire
+# 	max_instances = 1	
 
-    asteroid_belt = {
-		type = rocky_asteroid_belt
-		radius = 325
-	}	
+#     asteroid_belt = {
+# 		type = rocky_asteroid_belt
+# 		radius = 325
+# 	}	
 
-    planet = {
-	    name = "Kanala"
-        class = pc_a_star
-        orbit_distance = 0
-        size = 20
-		flags = { kanala_star }
-    }
+#     planet = {
+# 	    name = "Kanala"
+#         class = pc_a_star
+#         orbit_distance = 0
+#         size = 20
+# 		flags = { kanala_star }
+#     }
 
-    planet = {
-        name = "Jenakala"
-        class = pc_barren
-        orbit_distance = 125
-        orbit_angle = 334
-        has_ring = no
-        size = 12
-        init_effect = {
-			add_deposit = d_minerals_8
-            add_deposit = d_rare_crystals_2
-		}	
-    }
+#     planet = {
+#         name = "Jenakala"
+#         class = pc_barren
+#         orbit_distance = 125
+#         orbit_angle = 334
+#         has_ring = no
+#         size = 12
+#         init_effect = {
+# 			add_deposit = d_minerals_8
+#             add_deposit = d_rare_crystals_2
+# 		}	
+#     }
 
-    planet = {
-        name = "Kahje"
-        class = pc_ocean
-        orbit_distance = 125
-        orbit_angle = 169
-        has_ring = no
-        size = 20
-		starting_planet = yes
-		deposit_blockers = none
-		modifiers = none
-		flags = { kahje_planet hanar_homeworld subclass_world }
-		init_effect = {
-			prevent_anomaly = yes
-			set_global_flag = hanar_homeworld_spawned
-            set_planet_flag = kahje_planet
-			if = {
-				limit = { 
-                    NOT = { 
-                        any_country = { 
-                            has_country_flag = illuminated_primacy 
-                        } 
-                    } 
-                }
-                create_species = { 
-                    name = "Hanar"
-                    class = HAN
-                    portrait = hanar
-                    namelist = btr_hanar
-                    homeworld = THIS 
-                    traits = { 
-                        trait = hanar_trait_core
-                        trait = hanar_trait_non_bipedal
-                        trait = hanar_trait_toxic_secretions
-                        trait = hanar_trait_water_bound
-                        ideal_planet_class = pc_ocean
-                    }
-                  }
-                last_created_species = { save_global_event_target_as = hanarSpecies }
-				create_country = {
-					name = "Illuminated Primacy"
-					ship_prefix = ""
-					type = default
-					origin = illuminated_primacy_origin
-					ignore_initial_colony_error = yes
-					civics = { 
-                        civic = hanar_first_from_the_enkindlers 
-                        civic = hanar_enkindler_zealots 
-                    }
-					authority = auth_oligarchic
-					name_list = "btr_hanar"
-					ethos = { 
-                        ethic = "ethic_pacifist" 
-                        ethic = "ethic_fanatic_spiritualist" 
-                    }
-					species = event_target:hanarSpecies
-					flag = {
-                        icon={
-                            category="beyondtherelays"
-                            file="illuminated_primacy.dds"
-                        }
-                        background={
-                            category="backgrounds"
-                            file="sinus.dds"
-                        }
-                        colors={
-                            "eecolor1777"
-                            "eecolor1830"
-                            "null"
-                            "null"
-                        }
-					}
-					effect = {
-						set_graphical_culture = aquatic_01
-						set_country_flag = illuminated_primacy
-						set_country_flag = init_spawned
-						set_country_flag = custom_start_screen
-						set_country_flag = canon_map
-                        set_country_flag = btr_empire
-						save_global_event_target_as = illuminated_primacy
-					}
-				}
-			}	
-			set_capital = yes
-			random_country = {
-				limit = { 
-                    has_country_flag = illuminated_primacy 
-                }
-				save_global_event_target_as = illuminated_primacy
-				species = { 
-                    save_global_event_target_as = hanarSpecies 
-                }
-			}
-			set_owner = event_target:illuminated_primacy
-			generate_btr_start_deposits_and_blockers = yes			
-			generate_han_kahje_capitol_buildings = yes
-			generate_han_kahje_pops = yes
-            generate_han_kahje_drell_pops = yes
-            clear_blockers = yes
-            generate_han_kahje_deposits = yes
-            generate_illuminated_pri_science_ships = yes
-			set_name = "Kahje"
-		}			
+#     planet = {
+#         name = "Kahje"
+#         class = pc_ocean
+#         orbit_distance = 125
+#         orbit_angle = 169
+#         has_ring = no
+#         size = 20
+# 		starting_planet = yes
+# 		deposit_blockers = none
+# 		modifiers = none
+# 		flags = { kahje_planet hanar_homeworld subclass_world }
+# 		init_effect = {
+# 			prevent_anomaly = yes
+# 			set_global_flag = hanar_homeworld_spawned
+#             set_planet_flag = kahje_planet
+# 			if = {
+# 				limit = { 
+#                     NOT = { 
+#                         any_country = { 
+#                             has_country_flag = illuminated_primacy 
+#                         } 
+#                     } 
+#                 }
+#                 create_species = { 
+#                     name = "Hanar"
+#                     class = HAN
+#                     portrait = hanar
+#                     namelist = btr_hanar
+#                     homeworld = THIS 
+#                     traits = { 
+#                         trait = hanar_trait_core
+#                         trait = hanar_trait_non_bipedal
+#                         trait = hanar_trait_toxic_secretions
+#                         trait = hanar_trait_water_bound
+#                         ideal_planet_class = pc_ocean
+#                     }
+#                   }
+#                 last_created_species = { save_global_event_target_as = hanarSpecies }
+# 				create_country = {
+# 					name = "Illuminated Primacy"
+# 					ship_prefix = ""
+# 					type = default
+# 					origin = illuminated_primacy_origin
+# 					ignore_initial_colony_error = yes
+# 					civics = { 
+#                         civic = hanar_first_from_the_enkindlers 
+#                         civic = hanar_enkindler_zealots 
+#                     }
+# 					authority = auth_oligarchic
+# 					name_list = "btr_hanar"
+# 					ethos = { 
+#                         ethic = "ethic_pacifist" 
+#                         ethic = "ethic_fanatic_spiritualist" 
+#                     }
+# 					species = event_target:hanarSpecies
+# 					flag = {
+#                         icon={
+#                             category="beyondtherelays"
+#                             file="illuminated_primacy.dds"
+#                         }
+#                         background={
+#                             category="backgrounds"
+#                             file="sinus.dds"
+#                         }
+#                         colors={
+#                             "eecolor1777"
+#                             "eecolor1830"
+#                             "null"
+#                             "null"
+#                         }
+# 					}
+# 					effect = {
+# 						set_graphical_culture = aquatic_01
+# 						set_country_flag = illuminated_primacy
+# 						set_country_flag = init_spawned
+# 						set_country_flag = custom_start_screen
+# 						set_country_flag = canon_map
+#                         set_country_flag = btr_empire
+# 						save_global_event_target_as = illuminated_primacy
+# 					}
+# 				}
+# 			}	
+# 			set_capital = yes
+# 			random_country = {
+# 				limit = { 
+#                     has_country_flag = illuminated_primacy 
+#                 }
+# 				save_global_event_target_as = illuminated_primacy
+# 				species = { 
+#                     save_global_event_target_as = hanarSpecies 
+#                 }
+# 			}
+# 			set_owner = event_target:illuminated_primacy
+# 			generate_btr_start_deposits_and_blockers = yes			
+# 			generate_han_kahje_capitol_buildings = yes
+# 			generate_han_kahje_pops = yes
+#             generate_han_kahje_drell_pops = yes
+#             clear_blockers = yes
+#             generate_han_kahje_deposits = yes
+#             generate_illuminated_pri_science_ships = yes
+# 			set_name = "Kahje"
+# 		}			
 
-        moon = {
-            name = "Libin"
-            class = pc_barren
-            orbit_distance = 20
-            orbit_angle = 134
-            has_ring = no
-            size = 5
-            init_effect = {
-                set_planet_flag = libin_codex
-            }
-        }
-        moon = {
-            name = "Nalynder"
-            class = pc_iron
-            orbit_distance = 5
-            orbit_angle = 81
-            has_ring = no
-            size = 7
-            init_effect = {
-                add_deposit = d_rare_crystals_1
-                add_deposit = d_zro_deposit_2
-                add_deposit = d_minerals_2
-                set_planet_flag = nalynder_codex
-                }
-        }
-        moon = {
-            name = "Iyuhum"
-            class = pc_iron
-            orbit_distance = 5
-            orbit_angle = 200
-            has_ring = no
-            size = 4
-            init_effect = {
-                add_deposit = d_minerals_5
-                set_planet_flag = iyuhum_codex
-                #create_archaeological_site = btr_site_prothean_beacon_hanar
-            }
-        }
-    }
+#         moon = {
+#             name = "Libin"
+#             class = pc_barren
+#             orbit_distance = 20
+#             orbit_angle = 134
+#             has_ring = no
+#             size = 5
+#             init_effect = {
+#                 set_planet_flag = libin_codex
+#             }
+#         }
+#         moon = {
+#             name = "Nalynder"
+#             class = pc_iron
+#             orbit_distance = 5
+#             orbit_angle = 81
+#             has_ring = no
+#             size = 7
+#             init_effect = {
+#                 add_deposit = d_rare_crystals_1
+#                 add_deposit = d_zro_deposit_2
+#                 add_deposit = d_minerals_2
+#                 set_planet_flag = nalynder_codex
+#                 }
+#         }
+#         moon = {
+#             name = "Iyuhum"
+#             class = pc_iron
+#             orbit_distance = 5
+#             orbit_angle = 200
+#             has_ring = no
+#             size = 4
+#             init_effect = {
+#                 add_deposit = d_minerals_5
+#                 set_planet_flag = iyuhum_codex
+#                 #create_archaeological_site = btr_site_prothean_beacon_hanar
+#             }
+#         }
+#     }
 
-    planet = {
-        name = "Hohnle"
-        class = pc_iron
-        orbit_distance = 125
-        orbit_angle = 80
-        has_ring = no
-        size = 8
-        init_effect = {
-            set_planet_flag = hohnle_codex
-            add_deposit = d_exotic_gases_2
-            add_deposit = d_minerals_7
-        }
-    }
+#     planet = {
+#         name = "Hohnle"
+#         class = pc_iron
+#         orbit_distance = 125
+#         orbit_angle = 80
+#         has_ring = no
+#         size = 8
+#         init_effect = {
+#             set_planet_flag = hohnle_codex
+#             add_deposit = d_exotic_gases_2
+#             add_deposit = d_minerals_7
+#         }
+#     }
 
-    planet = {
-        name = "Pohdenar"
-        class = pc_ice_giant
-        orbit_distance = 125
-        orbit_angle = 257
-        has_ring = no
-        size = 27
-        init_effect = {
-            set_planet_flag = pohdenar_codex
-        }
-    }
-}
+#     planet = {
+#         name = "Pohdenar"
+#         class = pc_ice_giant
+#         orbit_distance = 125
+#         orbit_angle = 257
+#         has_ring = no
+#         size = 27
+#         init_effect = {
+#             set_planet_flag = pohdenar_codex
+#         }
+#     }
+# }
 
 sys_obek_init = {
     name = "Obek"

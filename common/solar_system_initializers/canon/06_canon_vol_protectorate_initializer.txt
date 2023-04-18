@@ -4,262 +4,262 @@
 
 ##### AETHON CLUSTER #####
 
-sys_aru_init = {
-    name = "Aru"
-    class = sc_g
-	flags = { vol_protectorate_homeworld vol_protectorate_capital_system canon_map aru_system empire_home_system }
+# sys_aru_init = {
+#     name = "Aru"
+#     class = sc_g
+# 	flags = { vol_protectorate_homeworld vol_protectorate_capital_system canon_map aru_system empire_home_system }
 
-	init_effect = { 
-		generate_home_system_resources = yes
-		save_global_event_target_as = protectorateFirstFleet
-	}
+# 	init_effect = { 
+# 		generate_home_system_resources = yes
+# 		save_global_event_target_as = protectorateFirstFleet
+# 	}
 
-	usage = custom_empire
-	max_instances = 1	
+# 	usage = custom_empire
+# 	max_instances = 1	
 	
-	asteroid_belt = {
-		type = rocky_asteroid_belt
-		radius = 80
-	}
+# 	asteroid_belt = {
+# 		type = rocky_asteroid_belt
+# 		radius = 80
+# 	}
 
-    planet = {
-	    name = "Aru"
-        class = pc_g_star
-        orbit_distance = 0
-        size = 20
-		flags = { aru_star }
-    }
+#     planet = {
+# 	    name = "Aru"
+#         class = pc_g_star
+#         orbit_distance = 0
+#         size = 20
+# 		flags = { aru_star }
+#     }
 
-    planet = {
-        name = "Jak Ser"
-        class = pc_hothouse
-        orbit_distance = 100
-        orbit_angle = 26
-        has_ring = no
-        size = 25
-    }
+#     planet = {
+#         name = "Jak Ser"
+#         class = pc_hothouse
+#         orbit_distance = 100
+#         orbit_angle = 26
+#         has_ring = no
+#         size = 25
+#     }
 
-    planet = {
-        name = "Irune"
-        class = pc_ammonia
-        orbit_distance = 100
-        orbit_angle = 251
-        size = 25
-		has_ring = no		
-		starting_planet = yes
-		deposit_blockers = none		
-		modifiers = none
-		entity = "ammonia_continental_planet_09_entity"
-		flags = { irune_planet volus_homeworld subclass_world }
-		init_effect = {
-			prevent_anomaly = yes
-			set_global_flag = volus_homeworld_spawned
-			set_planet_flag = irune_planet
-			if = {
-				limit = { 
-					NOT = { 
-						any_country = { 
-							has_country_flag = vol_protectorate 
-						} 
-					} 
-				}
-				create_species = { 
-					name = "Volus"
-					class = VOL
-					portrait = btr_volus
-					namelist = btr_volus
-					homeworld = THIS 
-					traits = { 
-						trait = volus_trait_core
-						trait = volus_trait_clan_based
-						trait = volus_trait_economic_mindset
-						trait = volus_trait_yoqtan_survivor
-					    ideal_planet_class = pc_ammonia
-					}
-				  }
-				last_created_species = { save_global_event_target_as = volusSpecies }
-				create_country = {
-					name = "Vol Protectorate"
-					ship_prefix = ""
-					type = default
-					origin = vol_protectorate_origin
-					ignore_initial_colony_error = yes
-					civics = { 
-						civic = volus_galactic_regulators
-						civic = volus_mercantile_supremacy }
-					authority = auth_corporate
-					name_list = "btr_volus"
-					ethos = { 
-						ethic = "ethic_pacifist" 
-						ethic = "ethic_egalitarian" 
-						ethic = "ethic_materialist" 
-					}
-					species = event_target:volusSpecies
-					flag = {
-						icon={
-							category="beyondtherelays"
-							file="vol_protectorate.dds"
-						}
-						background={
-							category="backgrounds"
-							file="flag_BG_17.dds"
-						}
-						colors={
-							"eecolor1668"
-							"eecolor1"
-							"null"
-							"null"
-						}
-					}
-					effect = {
-						set_graphical_culture = mammalian_01
-						set_country_flag = vol_protectorate
-						set_country_flag = init_spawned
-						set_country_flag = custom_start_screen
-						set_country_flag = canon_map
-						set_country_flag = btr_empire
-						save_global_event_target_as = vol_protectorate
-						# set_subject_of = {
-						# 	who = event_target:turian_hierarchy
-						# 	preset = preset_tributary
-						# 	use_demanded_terms = yes
-						# }
-					}
-				}
-			}	
-			set_capital = yes
-			random_country = {
-				limit = { 
-					has_country_flag = vol_protectorate 
-				}
-				save_global_event_target_as = vol_protectorate
-				species = { 
-					save_global_event_target_as = volusSpecies 
-				}
-			}
-			set_owner = event_target:vol_protectorate
-			generate_btr_start_deposits_and_blockers = yes			
-			generate_vol_irune_capitol_buildings = yes
-			generate_vol_irune_pops = yes
-			clear_blockers = yes
-			generate_vol_irune_deposits = yes
-			generate_vol_pro_science_ships = yes
-			set_name = "Irune"
-			add_modifier = {
-				modifier = prairie_world
-				days = -1
-			}
-		}
-	}
+#     planet = {
+#         name = "Irune"
+#         class = pc_ammonia
+#         orbit_distance = 100
+#         orbit_angle = 251
+#         size = 25
+# 		has_ring = no		
+# 		starting_planet = yes
+# 		deposit_blockers = none		
+# 		modifiers = none
+# 		entity = "ammonia_continental_planet_09_entity"
+# 		flags = { irune_planet volus_homeworld subclass_world }
+# 		init_effect = {
+# 			prevent_anomaly = yes
+# 			set_global_flag = volus_homeworld_spawned
+# 			set_planet_flag = irune_planet
+# 			if = {
+# 				limit = { 
+# 					NOT = { 
+# 						any_country = { 
+# 							has_country_flag = vol_protectorate 
+# 						} 
+# 					} 
+# 				}
+# 				create_species = { 
+# 					name = "Volus"
+# 					class = VOL
+# 					portrait = btr_volus
+# 					namelist = btr_volus
+# 					homeworld = THIS 
+# 					traits = { 
+# 						trait = volus_trait_core
+# 						trait = volus_trait_clan_based
+# 						trait = volus_trait_economic_mindset
+# 						trait = volus_trait_yoqtan_survivor
+# 					    ideal_planet_class = pc_ammonia
+# 					}
+# 				  }
+# 				last_created_species = { save_global_event_target_as = volusSpecies }
+# 				create_country = {
+# 					name = "Vol Protectorate"
+# 					ship_prefix = ""
+# 					type = default
+# 					origin = vol_protectorate_origin
+# 					ignore_initial_colony_error = yes
+# 					civics = { 
+# 						civic = volus_galactic_regulators
+# 						civic = volus_mercantile_supremacy }
+# 					authority = auth_corporate
+# 					name_list = "btr_volus"
+# 					ethos = { 
+# 						ethic = "ethic_pacifist" 
+# 						ethic = "ethic_egalitarian" 
+# 						ethic = "ethic_materialist" 
+# 					}
+# 					species = event_target:volusSpecies
+# 					flag = {
+# 						icon={
+# 							category="beyondtherelays"
+# 							file="vol_protectorate.dds"
+# 						}
+# 						background={
+# 							category="backgrounds"
+# 							file="flag_BG_17.dds"
+# 						}
+# 						colors={
+# 							"eecolor1668"
+# 							"eecolor1"
+# 							"null"
+# 							"null"
+# 						}
+# 					}
+# 					effect = {
+# 						set_graphical_culture = mammalian_01
+# 						set_country_flag = vol_protectorate
+# 						set_country_flag = init_spawned
+# 						set_country_flag = custom_start_screen
+# 						set_country_flag = canon_map
+# 						set_country_flag = btr_empire
+# 						save_global_event_target_as = vol_protectorate
+# 						# set_subject_of = {
+# 						# 	who = event_target:turian_hierarchy
+# 						# 	preset = preset_tributary
+# 						# 	use_demanded_terms = yes
+# 						# }
+# 					}
+# 				}
+# 			}	
+# 			set_capital = yes
+# 			random_country = {
+# 				limit = { 
+# 					has_country_flag = vol_protectorate 
+# 				}
+# 				save_global_event_target_as = vol_protectorate
+# 				species = { 
+# 					save_global_event_target_as = volusSpecies 
+# 				}
+# 			}
+# 			set_owner = event_target:vol_protectorate
+# 			generate_btr_start_deposits_and_blockers = yes			
+# 			generate_vol_irune_capitol_buildings = yes
+# 			generate_vol_irune_pops = yes
+# 			clear_blockers = yes
+# 			generate_vol_irune_deposits = yes
+# 			generate_vol_pro_science_ships = yes
+# 			set_name = "Irune"
+# 			add_modifier = {
+# 				modifier = prairie_world
+# 				days = -1
+# 			}
+# 		}
+# 	}
 	
-    planet = {
-        name = "Locil"
-        class = pc_gas_giant
-        orbit_distance = 100
-        orbit_angle = 235
-        has_ring = no
-        size = 33
-		init_effect = {
-			add_deposit = d_exotic_gases_3
-			add_deposit = d_trade_value_6
-		}	
-        moon = {
-			name = "Locil a"
-            class = pc_barren
-            orbit_distance = 20
-            orbit_angle = 200
-            has_ring = no
-			size = 5
-			init_effect = {
-				add_deposit = d_rare_crystals_1
-			}	
-	    }
-        moon = {
-			name = "Locil b"
-            class = pc_frozen
-            orbit_distance = 5
-            orbit_angle = 239
-            has_ring = no
-			size = 5
-			init_effect = {
-				add_deposit = d_rare_crystals_1
-			}	
-        }
-        moon = {
-			name = "Locil c"
-            class = pc_barren_cold
-            orbit_distance = 5
-            orbit_angle = 106
-            has_ring = no
-			size = 4
-			init_effect = {
-				add_deposit = d_rare_crystals_1
-			}	
-        }
-		moon = {
-			name = "Locil d"
-            class = pc_iron
-            orbit_distance = 5
-            orbit_angle = 106
-            has_ring = no
-			size = 4
-			init_effect = {
-				add_deposit = d_minerals_7
-			}	
-        }
-    }
+#     planet = {
+#         name = "Locil"
+#         class = pc_gas_giant
+#         orbit_distance = 100
+#         orbit_angle = 235
+#         has_ring = no
+#         size = 33
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_3
+# 			add_deposit = d_trade_value_6
+# 		}	
+#         moon = {
+# 			name = "Locil a"
+#             class = pc_barren
+#             orbit_distance = 20
+#             orbit_angle = 200
+#             has_ring = no
+# 			size = 5
+# 			init_effect = {
+# 				add_deposit = d_rare_crystals_1
+# 			}	
+# 	    }
+#         moon = {
+# 			name = "Locil b"
+#             class = pc_frozen
+#             orbit_distance = 5
+#             orbit_angle = 239
+#             has_ring = no
+# 			size = 5
+# 			init_effect = {
+# 				add_deposit = d_rare_crystals_1
+# 			}	
+#         }
+#         moon = {
+# 			name = "Locil c"
+#             class = pc_barren_cold
+#             orbit_distance = 5
+#             orbit_angle = 106
+#             has_ring = no
+# 			size = 4
+# 			init_effect = {
+# 				add_deposit = d_rare_crystals_1
+# 			}	
+#         }
+# 		moon = {
+# 			name = "Locil d"
+#             class = pc_iron
+#             orbit_distance = 5
+#             orbit_angle = 106
+#             has_ring = no
+# 			size = 4
+# 			init_effect = {
+# 				add_deposit = d_minerals_7
+# 			}	
+#         }
+#     }
 
-    planet = {
-        name = "Cherk Sab"
-        class = pc_gas_giant
-        orbit_distance = 100
-        orbit_angle = 228
-        has_ring = no
-        size = 30
-		init_effect = {
-			add_deposit = d_exotic_gases_2
-		}	
-    }
+#     planet = {
+#         name = "Cherk Sab"
+#         class = pc_gas_giant
+#         orbit_distance = 100
+#         orbit_angle = 228
+#         has_ring = no
+#         size = 30
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_2
+# 		}	
+#     }
 
-    planet = {
-        name = "Doldit"
-        class = pc_gas_giant
-        orbit_distance = 100
-        orbit_angle = 74
-        has_ring = no
-        size = 28
-		moon = {
-			name = "Doldit a"
-            class = pc_barren_cold_station
-            orbit_distance = 5
-            orbit_angle = 106
-            has_ring = no
-			size = 4
-			init_effect = {
-				if = {
-					limit = { 
-						exists = event_target:vol_protectorate
-					}
-					set_owner = event_target:vol_protectorate
-					set_planet_flag = planetary_station
-					set_planet_flag = civil_station
-					set_deposit_flags = yes
-					generate_btr_start_deposits_and_blockers = yes
-					generate_vol_doldita_colony_buildings = yes	
-					generate_vol_doldit_pops = yes
-					clear_blockers = yes
-					prevent_anomaly = yes
-					add_deposit = d_barren_cold_blocker
-					add_deposit = d_mineral_lodes
-				}
-				# add_deposit = d_trade_value_3
-				# add_deposit = d_society_3
-				# add_deposit = d_engineering_3
-				# add_deposit = d_physics_3
-			}
-        }
-    }
-}
+#     planet = {
+#         name = "Doldit"
+#         class = pc_gas_giant
+#         orbit_distance = 100
+#         orbit_angle = 74
+#         has_ring = no
+#         size = 28
+# 		moon = {
+# 			name = "Doldit a"
+#             class = pc_barren_cold_station
+#             orbit_distance = 5
+#             orbit_angle = 106
+#             has_ring = no
+# 			size = 4
+# 			init_effect = {
+# 				if = {
+# 					limit = { 
+# 						exists = event_target:vol_protectorate
+# 					}
+# 					set_owner = event_target:vol_protectorate
+# 					set_planet_flag = planetary_station
+# 					set_planet_flag = civil_station
+# 					set_deposit_flags = yes
+# 					generate_btr_start_deposits_and_blockers = yes
+# 					generate_vol_doldita_colony_buildings = yes	
+# 					generate_vol_doldit_pops = yes
+# 					clear_blockers = yes
+# 					prevent_anomaly = yes
+# 					add_deposit = d_barren_cold_blocker
+# 					add_deposit = d_mineral_lodes
+# 				}
+# 				# add_deposit = d_trade_value_3
+# 				# add_deposit = d_society_3
+# 				# add_deposit = d_engineering_3
+# 				# add_deposit = d_physics_3
+# 			}
+#         }
+#     }
+# }
 
 sys_menarel_init = {
 	name = "Mena Rel"

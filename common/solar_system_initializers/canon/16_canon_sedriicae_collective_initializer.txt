@@ -4,172 +4,172 @@
 
 ##### EYES OF MIZHUNA #####
 
-sys_nosikae_init = {
-    name = "Nosikae"
-    class = sc_k_giant
-	flags = { sedriicae_collective_homeworld sedriicae_collective_capital_system canon_map nosikae_system empire_home_system }
-	init_effect = {
-		generate_home_system_resources = yes		
-		save_global_event_target_as = collectivefirstFleet
-	}
+# sys_nosikae_init = {
+#     name = "Nosikae"
+#     class = sc_k_giant
+# 	flags = { sedriicae_collective_homeworld sedriicae_collective_capital_system canon_map nosikae_system empire_home_system }
+# 	init_effect = {
+# 		generate_home_system_resources = yes		
+# 		save_global_event_target_as = collectivefirstFleet
+# 	}
 
 
-	usage = custom_empire
-	max_instances = 1	
+# 	usage = custom_empire
+# 	max_instances = 1	
 
-    planet = {
-		name = "Nosikae"
-        class = pc_k_giant_star
-        orbit_distance = 0
-        size = 35
-		flags = { nosikae_star }
-    }
+#     planet = {
+# 		name = "Nosikae"
+#         class = pc_k_giant_star
+#         orbit_distance = 0
+#         size = 35
+# 		flags = { nosikae_star }
+#     }
 
-	planet = {
-		name = "Sed'riicae"
-		class = pc_dextro_desert
-		orbit_distance = 125
-		size = 24
-		has_ring = no
-		starting_planet = yes
-		flags = { sedriicae_planet forayan_homeworld subclass_world }
-		init_effect = {
-			prevent_anomaly = yes
-			set_global_flag = forayan_homeworld_spawned
-			set_planet_flag = sedriicae_planet
-			if = {
-				limit = { 
-					NOT = { 
-						any_country = { 
-							has_country_flag = sedriicae_collective 
-						} 
-					} 
-				}
-				create_species = { 
-					name = "Forayan"
-					class = ART
-					portrait = art3
-					namelist = btr_sedriicae
-					homeworld = THIS 
-					traits = { 
-						trait = sedriicae_trait_core
-						trait = sedriicae_trait_forayan_happiness
-						trait = sedriicae_trait_insectoids
-						trait = sedriicae_trait_gender_castes
-					    ideal_planet_class = "pc_dextro_arid"
-					}
-				  }
-				  last_created_species = { save_global_event_target_as = forayanSpecies }
-				create_country = {
-					name = "Sed'riicae Collective"
-					ship_prefix = "PRESCRIPTED_ship_prefix_sedriicae_collective"
-					type = default
-					origin = sedriicae_collective_origin
-					ignore_initial_colony_error = yes
-					civics = { 
-						civic = sedriicae_collective_totalitarian_state 
-						civic = sedriicae_collective_status_intellectus }
-					authority = "auth_imperial"
-					name_list = btr_sedriicae
-					ethos = { 
-						ethic = "ethic_pacifist" 
-						ethic = "ethic_fanatic_authoritarian" 
-					}
-					species = event_target:forayanSpecies
-					flag = {
-						icon={
-							category="beyondtherelays"
-							file="sedriicae_collective.dds"
-						}
-						background={
-							category="backgrounds"
-							file="double_triangles.dds"
-						}
-						colors={
-							"eecolor1702"
-							"eecolor1657"
-							"null"
-							"null"
-						}
-					}
-					effect = {
-						set_graphical_culture = arthropoid_01
-						set_country_flag = sedriicae_collective
-						set_country_flag = init_spawned
-						set_country_flag = custom_start_screen
-						set_country_flag = canon_map
-						set_country_flag = btr_empire
-						save_global_event_target_as = sedriicae_collective
-					}
-				}
-			}	
-			set_capital = yes
-			random_country = {
-				limit = { 
-					has_country_flag = sedriicae_collective 
-				}
-				save_global_event_target_as = sedriicae_collective
-				species = { 
-					save_global_event_target_as = forayanSpecies 
-				}
-			}
-			set_owner = event_target:sedriicae_collective
-			generate_btr_start_deposits_and_blockers = yes			
-			generate_for_sedriicae_capitol_buildings = yes
-			generate_for_sedriicae_pops = yes
-			clear_blockers = yes
-			generate_for_sedriicae_deposits = yes
-			generate_sedriicae_col_science_ships = yes
-			set_name = "Sed'riicae"
-		}			
-	}
+# 	planet = {
+# 		name = "Sed'riicae"
+# 		class = pc_dextro_desert
+# 		orbit_distance = 125
+# 		size = 24
+# 		has_ring = no
+# 		starting_planet = yes
+# 		flags = { sedriicae_planet forayan_homeworld subclass_world }
+# 		init_effect = {
+# 			prevent_anomaly = yes
+# 			set_global_flag = forayan_homeworld_spawned
+# 			set_planet_flag = sedriicae_planet
+# 			if = {
+# 				limit = { 
+# 					NOT = { 
+# 						any_country = { 
+# 							has_country_flag = sedriicae_collective 
+# 						} 
+# 					} 
+# 				}
+# 				create_species = { 
+# 					name = "Forayan"
+# 					class = ART
+# 					portrait = art3
+# 					namelist = btr_forayan
+# 					homeworld = THIS 
+# 					traits = { 
+# 						trait = forayan_trait_core
+# 						trait = forayan_trait_forayan_happiness
+# 						trait = forayan_trait_insectoids
+# 						trait = forayan_trait_gender_castes
+# 					    ideal_planet_class = "pc_dextro_arid"
+# 					}
+# 				  }
+# 				  last_created_species = { save_global_event_target_as = forayanSpecies }
+# 				create_country = {
+# 					name = "Sed'riicae Collective"
+# 					ship_prefix = "PRESCRIPTED_ship_prefix_sedriicae_collective"
+# 					type = default
+# 					origin = sedriicae_collective_origin
+# 					ignore_initial_colony_error = yes
+# 					civics = { 
+# 						civic = sedriicae_collective_totalitarian_state 
+# 						civic = sedriicae_collective_status_intellectus }
+# 					authority = "auth_imperial"
+# 					name_list = btr_forayan
+# 					ethos = { 
+# 						ethic = "ethic_pacifist" 
+# 						ethic = "ethic_fanatic_authoritarian" 
+# 					}
+# 					species = event_target:forayanSpecies
+# 					flag = {
+# 						icon={
+# 							category="beyondtherelays"
+# 							file="sedriicae_collective.dds"
+# 						}
+# 						background={
+# 							category="backgrounds"
+# 							file="double_triangles.dds"
+# 						}
+# 						colors={
+# 							"eecolor1702"
+# 							"eecolor1657"
+# 							"null"
+# 							"null"
+# 						}
+# 					}
+# 					effect = {
+# 						set_graphical_culture = arthropoid_01
+# 						set_country_flag = sedriicae_collective
+# 						set_country_flag = init_spawned
+# 						set_country_flag = custom_start_screen
+# 						set_country_flag = canon_map
+# 						set_country_flag = btr_empire
+# 						save_global_event_target_as = sedriicae_collective
+# 					}
+# 				}
+# 			}	
+# 			set_capital = yes
+# 			random_country = {
+# 				limit = { 
+# 					has_country_flag = sedriicae_collective 
+# 				}
+# 				save_global_event_target_as = sedriicae_collective
+# 				species = { 
+# 					save_global_event_target_as = forayanSpecies 
+# 				}
+# 			}
+# 			set_owner = event_target:sedriicae_collective
+# 			generate_btr_start_deposits_and_blockers = yes			
+# 			generate_for_sedriicae_capitol_buildings = yes
+# 			generate_for_sedriicae_pops = yes
+# 			clear_blockers = yes
+# 			generate_for_sedriicae_deposits = yes
+# 			generate_sedriicae_col_science_ships = yes
+# 			set_name = "Sed'riicae"
+# 		}			
+# 	}
 	
-	planet = {
-		name = "Xhentura"
-		class = pc_barren
-		orbit_distance = 125
-		size = 10
-		has_ring = no
-		flags = { xhentura_planet subclass_world}
-		init_effect = {
-			add_deposit = d_rare_crystals_2
-		}	
-	}
+# 	planet = {
+# 		name = "Xhentura"
+# 		class = pc_barren
+# 		orbit_distance = 125
+# 		size = 10
+# 		has_ring = no
+# 		flags = { xhentura_planet subclass_world}
+# 		init_effect = {
+# 			add_deposit = d_rare_crystals_2
+# 		}	
+# 	}
 	
-	planet = {
-		name = "Iciinae"
-		class = pc_hothouse
-		orbit_distance = 125
-		size = 20
-		has_ring = yes
-		flags = { iciinae_planet subclass_world}
-		init_effect = {
-			add_deposit = d_engineering_5
-			add_deposit = d_physics_5
-		}	
-	}
+# 	planet = {
+# 		name = "Iciinae"
+# 		class = pc_hothouse
+# 		orbit_distance = 125
+# 		size = 20
+# 		has_ring = yes
+# 		flags = { iciinae_planet subclass_world}
+# 		init_effect = {
+# 			add_deposit = d_engineering_5
+# 			add_deposit = d_physics_5
+# 		}	
+# 	}
 
-	planet = {
-		name = "Lesiik"
-		class = pc_frozen
-		orbit_distance = 125
-		size = 12
-		has_ring = no
-		flags = { lesiik_planet subclass_world}
-		init_effect = {
-			add_deposit = d_rare_crystals_1
-		}	
-	}
+# 	planet = {
+# 		name = "Lesiik"
+# 		class = pc_frozen
+# 		orbit_distance = 125
+# 		size = 12
+# 		has_ring = no
+# 		flags = { lesiik_planet subclass_world}
+# 		init_effect = {
+# 			add_deposit = d_rare_crystals_1
+# 		}	
+# 	}
 
-	init_effect = { 
-		spawn_megastructure = { 
-			type = "terminus_sector_6_secondaryrelay" 
-			name = "Eyes of Mizhuna Secondary Relay"
-			orbit_angle = 270 
-			orbit_distance = 500
-		} 
-	}
-}
+# 	init_effect = { 
+# 		spawn_megastructure = { 
+# 			type = "terminus_sector_6_secondaryrelay" 
+# 			name = "Eyes of Mizhuna Secondary Relay"
+# 			orbit_angle = 270 
+# 			orbit_distance = 500
+# 		} 
+# 	}
+# }
 
 sys_brizhiine_init = {
     name = "Brizhiine"
