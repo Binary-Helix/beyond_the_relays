@@ -42,99 +42,101 @@ sys_tikkun_init = {
 		entity = "mesa_planet_09_entity"
 		flags = { rannoch_planet geth_homeworld quarian_homeworld subclass_world }	
 		init_effect = {
-			log = "init 21 firing"
-			save_global_event_target_as = tikkun_system_rannoch
-			
 			prevent_anomaly = yes
 			set_global_flag = geth_homeworld_spawned
 			set_global_flag = quarian_species_homeworld_spawned
-			
-			create_species = { 
-				name = "Geth"
-				class = GTH
-				portrait = geth
-				namelist = btr_geth
-				homeworld = THIS 
-				traits = { 
-					trait = trait_machine_unit
-					trait = geth_trait_core
-					trait = geth_trait_linked_consciousness
-					trait = geth_trait_purpose_built_models
-					trait = geth_trait_deontological_primacy
+			set_planet_flag = rannoch_planet
+			if = {
+				limit = { 
+					NOT = { 
+						any_country = { 
+							has_country_flag = geth_consensus 
+						} 
+					} 
 				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = gethSpecies 
-				event_target:gethSpecies = { log = "gethspecies = [This.GetName]" }
-				log = "Geth species created"
-			}
-			create_country = {
-				name = "NAME_Geth_Consensus"
-				adjective = "PRESCRIPTED_adjective_geth_consensus"
-				authority = auth_machine_intelligence
-				civics = { 
-					civic = geth_con_civic_nebulous_pariahs 
-					civic = geth_con_civic_collective_conscious 
-				}
-				species = event_target:gethSpecies
-				name_list = "btr_geth"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_gestalt_consciousness" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="geth_consensus.dds"
+				create_species = { 
+					name = "Geth"
+					class = GTH
+					portrait = geth
+					namelist = btr_geth
+					homeworld = THIS 
+					traits = { 
+						trait = trait_machine_unit
+						trait = geth_trait_core
+						trait = geth_trait_linked_consciousness
+						trait = geth_trait_purpose_built_models
+						trait = geth_trait_deontological_primacy
 					}
-					background={
-						category="backgrounds"
-						file="flag_BG_11.dds"
-					}
-					colors={
-						"eecolor2010"
-						"eecolor1831"
-						"null"
-						"null"
+				  }
+				  last_created_species = { save_global_event_target_as = gethSpecies }
+				  random_country = {
+					limit = { has_country_flag = disciples_of_nazara }
+					save_event_target_as = disciples_of_nazara
+					owner_species = {
+						save_global_event_target_as = gethSpecies
+						set_species_homeworld = prevprev
 					}
 				}
-				type = default
-				origin = geth_con_origin
-				effect = {
-					save_global_event_target_as = geth_consensus
-					add_resource = {
-						minerals = 1050
-						energy = 2800
-						alloys = 1450
-						influence = 100
-						volatile_motes = 100
-						exotic_gases = 100
-						rare_crystals = 100
+				create_country = {
+					name = "Geth Consensus"
+					ship_prefix = ""
+					type = default
+					origin = geth_con_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+						civic = geth_con_civic_nebulous_pariahs 
+						civic = geth_con_civic_collective_conscious 
 					}
-					add_modifier = {
-						modifier = geth_con_empire_modifier
-						days = -1
+					authority = auth_machine_intelligence
+					name_list = "btr_geth"
+					ethos = { 
+						ethic = "ethic_gestalt_consciousness" 
+					}
+					species = event_target:gethSpecies
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="geth_consensus.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_11.dds"
+						}
+						colors={
+							"eecolor2010"
+							"eecolor1831"
+							"null"
+							"null"
+						}
+					}
+					effect = {
+						set_graphical_culture = geth_01
+						set_country_flag = geth_consensus
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						save_global_event_target_as = geth_consensus
 					}
 				}
-			}
-			create_colony = {
-				owner = event_target:geth_consensus
-			}
+			}	
 			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = geth_consensus 
+				}
+				save_global_event_target_as = geth_consensus
+				species = { 
+					save_global_event_target_as = gethSpecies 
+				}
+			}
+			set_owner = event_target:geth_consensus
 			generate_btr_start_deposits_and_blockers = yes
-			generate_get_rannoch_deposits = yes
-			clear_blockers = yes
 			generate_get_rannoch_capitol_buildings = yes
 			generate_get_rannoch_pops = yes
+			clear_blockers = yes
+			generate_get_rannoch_deposits = yes
 			generate_geth_con_science_ships = yes
-			event_target:geth_consensus = {
-				set_country_flag = geth_consensus
-				set_graphical_culture = geth_01
-				create_starting_leaders = yes
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-			}
 			set_name = "Rannoch"
 			add_modifier = {
 				modifier = dextro_world

@@ -35,86 +35,81 @@ sys_theseaofstorms_init = {
         has_ring = no   
 		starting_planet = yes
 		flags = { heretic_station }
-
 		init_effect = {
-            log = "init 22 firing"
 			prevent_anomaly = yes
 			set_global_flag = heretic_station_spawned
-            event_target:gethSpecies = { log = "gethspecies = [This.GetName]" }         
-            create_country = {
-                name = "NAME_Disciples_of_Nazara"
-                adjective = "PRESCRIPTED_adjective_disciples_of_nazara"
-                authority = auth_machine_intelligence
-
-
-                civics = { 
-                    civic = nazara_gifts_of_nazara 
-                    civic = nazara_the_schism
+            set_planet_flag = heretic_station
+			if = {
+				limit = { 
+                    NOT = { 
+                        any_country = { 
+                            has_country_flag = disciples_of_nazara 
+                        } 
+                    } 
                 }
-                species = event_target:gethSpecies
-                name_list = "btr_geth"
-                ship_prefix = ""
-                ethos = { 
-                    ethic = "ethic_gestalt_consciousness" 
+				create_country = {
+					name = "Disciples of Nazara"
+					ship_prefix = ""
+					type = default
+              		origin = disciples_of_nazara_origin
+					ignore_initial_colony_error = yes
+					civics = { 
+                        civic = nazara_gifts_of_nazara 
+                        civic = nazara_the_schism
+                    }
+					authority = auth_machine_intelligence
+					name_list = "btr_geth"
+					ethos = { 
+                        ethic = "ethic_gestalt_consciousness" 
+                    }
+					species = event_target:gethSpecies
+					flag = {
+                        icon={
+                            category="beyondtherelays"
+                            file="disciples_of_nazara.dds"
+                        }
+                        background={
+                            category="backgrounds"
+                            file="raylights.dds"
+                        }
+                        colors={
+                            "eecolor1690"
+                            "eecolor2002"
+                            "null"
+                            "null"
+                        }
+					}
+					effect = {
+						set_graphical_culture = geth_01
+						set_country_flag = disciples_of_nazara
+						set_country_flag = init_spawned
+						set_country_flag = custom_start_screen
+						set_country_flag = canon_map
+                        set_country_flag = btr_empire
+						save_global_event_target_as = disciples_of_nazara
+					}
+				}
+			}	
+			set_capital = yes
+			random_country = {
+				limit = { 
+                    has_country_flag = disciples_of_nazara
+                 }
+				save_global_event_target_as = disciples_of_nazara
+				species = { 
+                    save_global_event_target_as = gethSpecies 
                 }
-                flag = {
-                    icon={
-                        category="beyondtherelays"
-                        file="disciples_of_nazara.dds"
-                    }
-                    background={
-                        category="backgrounds"
-                        file="raylights.dds"
-                    }
-                    colors={
-                        "eecolor1690"
-                        "eecolor2002"
-                        "null"
-                        "null"
-                    }
-                }
-                type = default
-                origin = disciples_of_nazara_origin
-                effect = {
-                    save_global_event_target_as = disciples_of_nazara
-                    add_resource = {
-                        energy = 2700
-                        minerals = 1050
-                        alloys = 1450
-                        influence = 100
-                        volatile_motes = 100
-                        exotic_gases = 100
-                        rare_crystals = 100
-                    }
-                    add_modifier = {
-                        modifier = nazara_alone_with_divine
-                        days = -1
-                    }
-                }
-            } 
-            create_colony = {
-                owner = event_target:disciples_of_nazara
-            }
-            generate_btr_start_deposits_and_blockers = yes
-            clear_blockers = yes	
-            generate_naz_heretic_station_capitol_buildings = yes
-            generate_naz_station_pops = yes
+			}
+			set_owner = event_target:disciples_of_nazara
+			generate_btr_start_deposits_and_blockers = yes
+			generate_naz_heretic_station_capitol_buildings = yes
+			generate_naz_station_pops = yes
+            clear_blockers = yes
             generate_disciples_naz_construction_ships = yes
-            owner_species = {
-                change_species = event_target:gethSpecies              
-            }
-            event_target:disciples_of_nazara = {
-                set_country_flag = disciples_of_nazara
-                create_starting_leaders = yes
-                set_graphical_culture = geth_01
-                set_country_flag = init_spawned
-                set_country_flag = canon_map
-                set_country_flag = btr_empire
-            }
-        set_name = "Heretic Station"
-        }    
+			set_name = "Heretic Station"
+		}    
     }
-} 
+}
 
 ##### Xosar Verge #####
 
