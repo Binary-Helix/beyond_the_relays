@@ -2,6 +2,8 @@
 ##### ASARI REPUBLICS #####
 ###########################
 
+#####ATHENA NEBULA#####
+
 sys_parnitha_init = {
 	name = "Parnitha"	
     class = sc_g
@@ -2491,9 +2493,9 @@ sys_aralakh_init = {
 	}
 }
 
-#########################
-##### DRELL COMPACT #####
-#########################
+###############################
+##### REMNANTS OF RAKHANA #####
+###############################
 
 sys_pompeii_init = {
     name = "Pompeii"
@@ -4544,3 +4546,208 @@ sys_tikkun_init = {
 		}
     }
 }
+
+##########################
+##### THE COLLECTORS #####
+##########################
+
+##### GALACTIC CORE ######
+
+sys_tartarusdebrisfield_init = {
+    name = "Tartarus Debris Field"
+    class = sc_black_hole
+	flags = { galactic_core_system tartarus_system btr_system custom_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+	}	
+
+	usage = custom_empire
+	max_instances = 1
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 250
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 300
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 350
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 400
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 450
+	}
+
+	planet = {
+		name = "Tartarus Debris Field"
+		class = pc_black_hole
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 70
+		has_ring = no
+		flags = { tartarus_star }
+
+		init_effect = {
+			solar_system = {
+			}
+			while = {
+				count = 100
+				create_ambient_object = {
+					type = large_debris_object
+					entity_offset_height = { min = -10 max = -20 }
+					entity_offset = { min = 96 max = 400 }
+					entity_offset_angle = { min = 1 max = 360 }
+					scale = 3
+				}
+			}
+			while = {
+				count = 35
+				create_ambient_object = {
+					type = ancient_battlefield_02_object
+					entity_offset_height = { min = -10 max = -20 }
+					entity_offset = { min = 96 max = 400 }
+					entity_offset_angle = { min = 1 max = 360 }
+					scale = 3
+				}
+			}
+		}
+	}
+	planet = {
+		name = "Polus"
+		class = pc_asteroid
+		orbit_distance = 35
+		orbit_angle = { min = 1 max = 360 }
+		size = 2
+		has_ring = no
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_minerals_9
+		}
+	}
+	planet = {
+		name = "Inid"
+		class = pc_asteroid
+		orbit_distance = 35
+		orbit_angle = { min = 1 max = 360 }
+		size = 1
+		has_ring = no
+		init_effect = {
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_exotic_gases_3
+			add_deposit = d_minerals_7
+		}
+	}
+	planet = {
+		name = "Collector Base"
+		class = pc_habitat
+		orbit_distance = 180
+		orbit_angle = 215
+		size = 12
+		has_ring = no
+		starting_planet = yes
+		entity = "collector_base_01_game_entity"
+		deposit_blockers = none
+		modifiers = none
+		flags = { collectors_station special_planet subclass_world }
+		# init_effect = {
+		# 	prevent_anomaly = yes
+		# 	set_global_flag = collectors_spawned
+		# 	if = { limit = { NOT = { any_country = { has_country_flag = collectors_empire } } }
+		# 	create_species = { 
+		# 		name = "Collectors"
+		# 		class = COL
+		# 		portrait = collector
+		# 		#homeworld = THIS .
+		# 		traits = {
+		# 			trait = collector_trait_core
+		# 			trait = collector_trait_drones
+		# 			trait = collector_trait_instruments
+		# 			trait = collector_trait_lovecraftian
+		# 			  # ideal_planet_class = "pc_arid"
+		# 		}
+		# 	}
+		# 	  last_created_species = { save_global_event_target_as = collectorSpecies }
+		# 		create_country = {
+		# 			name = "The Collectors"
+		# 			ship_prefix = "PRESCRIPTED_ship_prefix_collectors"
+		# 			type = default 
+		# 			civics = { civic = "civic_machine_assimilator" civic = "civic_machine_unitary_cohesion"}
+		# 			authority = auth_machine_intelligence
+		# 			name_list = btr_collectors
+		# 			origin = collectors_origin
+		# 			ethos = { ethic = "ethic_gestalt_consciousness" }
+		# 			species = event_target:collectorSpecies
+		# 			flag = {
+		# 				icon={
+		# 					category="masseffect"
+		# 					file="collector.dds"
+		# 				}
+		# 				background={
+		# 					category="backgrounds"
+		# 					file="stripe.dds"
+		# 				}
+		# 				colors={
+		# 					"black"
+		# 					"brown"
+		# 					"null"
+		# 					"null"
+		# 				}
+		# 			}
+		# 			effect = {
+		# 				set_graphical_culture = coll_01
+		# 				set_country_flag = collectors_empire
+		# 				set_country_flag = init_spawned
+		# 				set_country_flag = custom_start_screen
+		# 				set_country_flag = canon_map
+		# 				save_global_event_target_as = collectors_empire
+		# 			}						
+		# 		}
+		# 	}
+		# 	set_capital = yes
+		# 	set_planet_flag = megastructure
+		# 	set_planet_flag = habitat
+		# 	random_country = {
+		# 		limit = { has_country_flag = collectors_empire }
+		# 		save_global_event_target_as = collectors_empire
+		# 		species = { save_global_event_target_as = collectorSpecies }
+		# 	}
+		# 	set_owner = event_target:collectors_empire
+		# 	generate_btr_start_deposits_and_blockers = yes
+		# 	generate_btr_collectors_capitol_buildings = yes	
+		# 	generate_collector_base_pops = yes
+		# 	add_deposit = d_consumption_chambers
+		# 	add_deposit = d_deconstruction_bays
+		# 	add_deposit = d_btr_collector_stasis_pods
+		# 	add_deposit = d_dark_matter_deposit_10
+		# 	set_name = "Collector Base"
+		# }
+	}	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "galacticcore_omega4relay_primaryrelay" 
+			name = "Tartarus Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}	
+	

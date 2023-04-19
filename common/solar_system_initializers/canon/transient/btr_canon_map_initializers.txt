@@ -1720,107 +1720,6 @@ sys_aysur_init = {
     }
 }
 
-sys_balor_init = {
-    name = "Balor"
-    class = sc_m
-	max_instances = 1
-
-	flags = { attican_traverse_system caleston_rift_system balor_system btr_system custom_system }
-
-    planet = {
-	    name = "Balor"
-        class = pc_m_star
-        orbit_distance = 0
-        size = 15
-    }
-	
-	asteroid_belt = {
-		type = rocky_asteroid_belt
-		radius = 250
-	}
-
-    planet = {
-        name = "Cernunnos"
-        class = pc_gas_giant
-        orbit_distance = 125
-        orbit_angle = 165
-        has_ring = no
-		size = 32
-		flags = { cernunnos_planet subclass_world }
-		init_effect = {
-			#add_deposit = d_helium_3_5
-			add_deposit = d_exotic_gases_5
-		}
-        moon = {
-            name = "Caleston"
-            class = pc_molten
-            orbit_distance = 20
-            orbit_angle = 180
-            has_ring = no
-			size = 16
-			flags = { caleston_planet subclass_world }
-			init_effect = {
-				prevent_anomaly = yes
-				#add_deposit = d_rich_eezo_deposits
-				add_deposit = d_zro_deposit_3
-				#add_deposit = d_poor_mineral_deposits
-				add_deposit = d_trade_value_3
-				add_deposit = d_society_3
-				add_deposit = d_engineering_4
-	
-				add_modifier = {
-					modifier = unstable_tectonics
-					days = -1
-				}	
-			}
-        }
-	} 
-
-    planet = {
-        name = "Bres"
-        class = pc_iron
-        orbit_distance = 125
-        orbit_angle = 141
-        has_ring = no
-		size = 2
-		flags = { bres_planet subclass_world }
-		init_effect = {
-			#add_deposit = d_iridium_4
-			add_deposit = d_rare_crystals_2
-			add_deposit = d_trade_value_2
-		}
-    }
-
-    planet = {
-        name = "Elatha"
-        class = pc_barren_cold
-        orbit_distance = 125
-        orbit_angle = 102
-        has_ring = no
-        size = 4		
-		flags = { elatha_planet subclass_world }
-		init_effect = {
-			clear_deposits = yes
-		}
-    }
-
-    planet = {
-        name = "Partholon"
-        class = pc_frozen
-        orbit_distance = 125
-        orbit_angle = 154
-        has_ring = no
-		size = 25
-		flags = { partholon_planet subclass_world }
-		init_effect = {
-			#add_deposit = d_platinum_4
-			add_deposit = d_rare_crystals_3
-			#add_deposit = d_element_zero_1
-			add_deposit = d_zro_deposit_1
-			add_deposit = d_trade_value_1
-		}
-	}
-}
 
 sys_eilor_init = {
 	name = "Eilor"
@@ -26846,4 +26745,44 @@ sys_nahua_init = {
 	}
 }
 
-#Nemmas Refuge
+sys_raheelleyya_init = {
+    name = "Raheel-Leyya"
+    class = sc_binary_o_b
+	flags = { terminus_system valhallan_threshold_system raheelleyya_system btr_system custom_system empire_home_system empire_home_system }
+
+	init_effect = { 
+		generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 130
+    }
+
+    planet = {
+		name = "Raheel-Leyya_A"
+        class = pc_b_super_star
+        size = 15
+        orbit_distance = 30
+        orbit_angle = { min = 90 max = 270 }
+		init_effect = {
+			add_deposit = d_engineering_4
+			add_deposit = d_physics_4
+		}	
+    }
+
+    planet = {
+        class = pc_b_super_star
+        name = "Raheel-Leyya_B"
+        size = 25 
+        orbit_distance = 0
+        orbit_angle = 180
+		init_effect = {
+			add_deposit = d_engineering_2
+			add_deposit = d_physics_3
+		}	
+	}
+}
