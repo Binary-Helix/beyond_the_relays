@@ -1,0 +1,457 @@
+###########################
+##### CITADEL COUNCIL #####
+###########################
+
+##### SERPENT NEBULA #####
+
+sys_widow_init = {
+    name = "Widow"
+    class = sc_b_super
+	max_instances = 1
+	flags = { citadel_council_homeworld citadel_council_capital_system canon_map widow_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = citadelFirstFleet
+		log = "Citadel Council Home System Spawned"
+	}	
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+	    name = "Widow"
+        class = pc_b_star
+        size = 30
+        orbit_distance = 0
+        orbit_angle = 1
+		flags = { widow_star }
+    }
+
+	planet = {
+		name = "The Citadel"
+		class = pc_habitat
+		orbit_distance = 150
+		orbit_angle = 215
+		size = 20
+		starting_planet = yes
+		has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "btr_citadel_01_entity"
+		flags = { citadel_station council_homeworld subclass_world }
+		init_effect = {
+			log = "The Citadel Spawned"
+			save_global_event_target_as = widow_system_citadel
+
+			prevent_anomaly = yes
+			set_global_flag = citadel_station_spawned
+
+			create_country = {
+				name = "NAME_Citadel_Council"
+				adjective = "PRESCRIPTED_adjective_citadel_council"
+				authority = auth_oligarchic
+				civics = { 
+					civic = citadel_center_of_galaxy
+					civic = citadel_csec_cdf
+				}
+				species = event_target:asariSpecies
+				name_list = btr_asari
+				ship_prefix = "CDF"
+				ethos = { 
+					ethic = "ethic_egalitarian" 
+					ethic = "ethic_fanatic_xenophile"  
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="citadel_council.dds"
+					}
+					background={
+						category="backgrounds"
+						file="00_solid.dds"
+					}
+					colors={
+						"blue"
+						"grey"
+						"null"
+						"null"
+					}
+				}
+				type = default 
+				origin = citadel_council_origin
+				effect = {
+					save_global_event_target_as = citadel_council
+					add_resource = {
+						energy = 10000
+						minerals = 10000
+						alloys = 10000
+						influence = 500
+						food = 10000
+						consumer_goods = 10000
+						volatile_motes = 1000
+						exotic_gases = 1000
+						rare_crystals = 1000
+					}
+				}						
+			}
+			create_colony = {
+				owner = event_target:citadel_council
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_deposits = yes
+			generate_csec_citadel_council_deposits = yes
+			generate_csec_citadel_buildings = yes
+			generate_csec_citadel_pops = yes
+			set_planet_flag = megastructure
+			set_planet_flag = habitat
+			event_target:citadel_council = {
+				set_country_flag = citadel_council
+				set_graphical_culture = mec_asari_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Citadel Council Empire Spawned"
+			}
+			set_name = "The Citadel"
+		}			
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "serpentnebula_prodicatoresscar_primaryrelay" 
+			name = "Outer Primary - Serpent 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 350
+		} 
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "serpentnebula_krogandmz_primaryrelay" 
+			name = "Outer Primary - Serpent 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+#####ARGOS RHO#####
+
+sys_phoenix_init = {
+    name = "Phoenix"
+    class = sc_f
+	max_instances = 1  
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = citadelThirdFleet
+	}	
+
+	flags = { phoenix_system citadel_council_system canon_map }
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 450
+	}
+
+    planet = {
+		name = "Phoenix"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 30
+		flags = { phoenix_star }
+    }
+
+    planet = {
+        name = "Patashi"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 319
+        has_ring = no
+		size = 17
+		flags = { patashi_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes		
+			add_deposit = d_minerals_9
+			add_deposit = d_rare_crystals_2
+			add_modifier = {
+				modifier = tidal_locked
+				days = -1
+			}	
+	    }
+    }
+
+    planet = {
+        name = "Sylsalto"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 258
+        has_ring = no
+		size = 34
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes		
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+	    }
+    }
+
+    planet = {
+        name = "Intai'sei"
+        class = pc_desert
+        orbit_distance = 100
+        orbit_angle = 68
+        has_ring = no
+		size = 14
+		flags = { subclass_world }
+		entity = "dune_planet_01_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dune_world
+				days = -1
+			}
+			prevent_anomaly = yes
+			clear_deposits = yes		
+	    }
+    }
+
+    planet = {
+        name = "Tuntau"
+        class = pc_highgrav_methane
+        orbit_distance = 100
+        orbit_angle = 148
+        has_ring = no
+		size = 25
+		flags = { subclass_world }
+		entity = "methane_continental_planet_09_entity"
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes		
+			# add_deposit = d_iridium_1
+			# add_deposit = d_platinum_1
+			# add_deposit = d_palladium_1
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_2
+			add_deposit = d_exotic_gases_1
+	    }
+    }
+	
+	planet = {
+		name = "Pinnacle Station"
+		class = pc_habitat
+		orbit_distance = 50
+		size = 2
+		flags = { pinnacle_station subclass_world }
+		init_effect = {
+			if = {
+				limit = {
+					exists = event_target:citadel_council
+				}
+				set_owner = event_target:citadel_council
+				generate_csec_pinnacle_buildings = yes
+				generate_csec_pinnacle_pops = yes
+				log = "Citadel Station - Pinnacle Station Spawned"
+			}
+			set_name = "Pinnacle Station"
+		}	
+	}
+
+    planet = {
+        name = "Vebinok"
+        class = pc_barren_cold
+        orbit_distance = 50
+        orbit_angle = 227
+        has_ring = yes
+		size = 8
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes		
+			add_deposit = d_minerals_1
+	    }
+	}	
+	
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "argosrho_maroonsea_primaryrelay" 
+			name = "Skyllian Primary - Argos 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+###########################
+### AITE WARRING STATES ###
+###########################
+
+##### The Phoenix Massing #####
+
+sys_typhon_init = {
+    name = "Typhon"
+    class = sc_g
+	max_instances = 1
+	flags = { aite_capital_system disciples_of_nazara_system canon_map typhon_system independent_colony_system  }	
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Aite Colony System Spawned"
+	}
+
+    planet = {
+	    name = "Typhon"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 25
+    }
+
+    planet = {
+        name = "Echidna"
+        class = pc_hot_giant
+        orbit_distance = 60
+        orbit_angle = 198
+        has_ring = no
+		size = 27
+		init_effect = {
+			add_deposit = d_physics_5
+			add_deposit = d_zro_deposit_2
+    	}
+	}	
+
+    planet = {
+        name = "Aite"
+        class = pc_continental
+        orbit_distance = 190
+        orbit_angle = 204
+        has_ring = yes
+		size = 15
+		entity = "temperate_planet_04_entity"
+		deposit_blockers = none
+		modifiers = none
+		flags = { aite_planet subclass_world }
+		init_effect = {
+			log = "Aite Capital Spawned"
+			save_global_event_target_as = typhon_system_aite
+
+			prevent_anomaly = yes
+			set_global_flag = aite_capital_spawned	
+
+			create_country = {
+				name = "NAME_Aite_Warring_States"
+				adjective = "PRESCRIPTED_adjective_aite_warring_states"
+				authority = auth_dictatorial
+				civics = {
+					civic = independent_civic_fractured_domain
+					civic = independent_civic_free_autonomous
+				}
+				species = event_target:batarianSpecies
+				name_list = btr_batarian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_materialist"
+					ethic = "ethic_authoritarian"
+				}
+
+				type = independent_colony
+				origin = aite_war_origin
+				effect = {
+					save_global_event_target_as = aite_warring_states
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:aite_warring_states
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_aite_deposits = yes
+			generate_aite_capitol_buildings = yes
+			generate_aite_pops = yes
+			event_target:aite_warring_states = {
+				set_country_flag = aite_warring_states
+				set_graphical_culture = mammalian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Aite Warring States Colony Spawned"
+			}
+			add_modifier = {
+				modifier = temperate_world
+				days = -1
+			}
+		}
+        moon = {
+            name = "Litae"
+            class = pc_frozen
+            orbit_distance = 20
+            orbit_angle = 180
+            has_ring = no
+			size = 5
+        }
+        moon = {
+            name = "Andrasteia"
+            class = pc_iron
+            orbit_distance = 5
+            orbit_angle = 180
+            has_ring = no
+			size = 3
+			init_effect = {
+				add_deposit = d_minerals_3
+			}		
+		}
+	}	
+
+    planet = {
+        name = "Moros"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 249
+        has_ring = no
+		size = 10
+		init_effect = {
+			add_deposit = d_rare_crystals_4
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_trade_value_3
+		}	
+    }
+
+    planet = {
+        name = "Ponos"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 77
+        has_ring = no
+		size = 36
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+		}	
+	}	
+	
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_7_secondaryrelay" 
+			name = "Phoenix Massing Secondary Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
