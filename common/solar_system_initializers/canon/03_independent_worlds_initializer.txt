@@ -249,13 +249,15 @@ sys_phoenix_init = {
 		class = pc_habitat
 		orbit_distance = 50
 		size = 2
-		flags = { pinnacle_station subclass_world }
+		flags = { pinnacle_station subclass_world habitat }
 		init_effect = {
 			if = {
 				limit = {
 					exists = event_target:citadel_council
 				}
-				set_owner = event_target:citadel_council
+				create_colony = {
+					owner = event_target:citadel_council
+				}
 				generate_csec_pinnacle_buildings = yes
 				generate_csec_pinnacle_pops = yes
 				log = "Citadel Station - Pinnacle Station Spawned"
@@ -454,4 +456,456 @@ sys_typhon_init = {
 			orbit_distance = 500
 		} 
 	}
+}
+
+###################################
+### ALAHYAN TERRAFORMATION ZONE ###
+###################################
+
+sys_aysur_init = {
+    name = "Aysur"
+    class = sc_g
+	max_instances = 1
+    flags = { attican_traverse_system caleston_rift_system aysur_system btr_system custom_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Alahyan Terraformation Zone System Spawned"
+	}
+
+	planet = {
+	    name = "Aysur"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 25
+		flags = { aysur_star }
+		init_effect = {
+			add_deposit = d_energy_3
+		}
+    }
+	
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 270
+	}
+	
+    planet = {
+        name = "Agnin"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 316
+        has_ring = no
+		size = 12
+		flags = { agnin_planet subclass_world }
+		init_effect = {
+			#add_deposit = d_iridium_3
+			add_deposit = d_minerals_2
+			add_deposit = d_engineering_2
+		}
+    }
+
+    planet = {
+        name = "Shasu"
+        class = pc_mephitic
+        orbit_distance = 80
+        orbit_angle = 198
+        has_ring = no
+		size = 3
+		flags = { shasu_planet subclass_world }		
+		init_effect = {
+			#add_deposit = d_rich_iridium_deposits
+			#add_deposit = d_poor_platinum_deposits
+			#add_deposit = d_poor_palladium_deposits
+			#add_deposit = d_poor_mineral_deposits
+			add_deposit = d_rare_crystals_5
+			add_deposit = d_exotic_gases_1
+		}
+    }
+
+    planet = {
+        name = "Dranen"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 186
+        has_ring = no
+		size = 37
+		flags = { dranen_planet subclass_world }
+		init_effect = {
+			#add_deposit = d_helium_3_4
+			add_deposit = d_exotic_gases_4
+			add_deposit = d_physics_2
+			add_modifier = {
+				modifier = extensive_moon_system
+				days = -1
+			}
+		}
+		moon = {
+            name = "Arvuna"
+            class = pc_ocean
+            orbit_distance = 20
+            orbit_angle = 169
+            has_ring = no
+			size = 16
+			flags = { arvuna_planet subclass_world }
+			init_effect = {
+				prevent_anomaly = yes
+					
+				create_country = {
+					name = "NAME_Alahyan_Terraformation_Zone"
+					adjective = "PRESCRIPTED_adjective_alahyan_terraformation_zone"
+					authority = auth_democratic
+					civics = {
+						civic = independent_civic_industrialists
+						civic = independent_civic_citadel_setup
+					}
+					species = event_target:volusSpecies
+					name_list = btr_volus
+					ship_prefix = ""
+					ethos = {
+						ethic = "ethic_materialist"
+						ethic = "ethic_pacifist"
+						ethic = "ethic_egalitarian"
+					}
+	
+					type = independent_colony
+					origin = reign_pri_origin
+					effect = {
+						save_global_event_target_as = alahyan_terraformation_zone
+						add_resource = {
+							energy = 1000
+							minerals = 1000
+							alloys = 1000
+							influence = 100
+							food = 1000
+							consumer_goods = 1000
+							volatile_motes = 500
+							exotic_gases = 500
+							rare_crystals = 500						
+						}
+					}
+				}	
+				create_colony = {
+					owner = event_target:alahyan_terraformation_zone
+				}
+				generate_btr_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				generate_arvuna_deposits = yes
+				generate_arvuna_capitol_buildings = yes
+				generate_arvuna_pops = yes
+				event_target:alahyan_terraformation_zone = {
+					set_country_flag = alahyan_terraformation_zone
+					set_graphical_culture = mammalian_01
+					create_starting_leaders = yes
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_country_flag = btr_independent_colony
+					log = "Alahyan Terraformation Zone Colony Spawned"
+				}
+				add_modifier = {
+					modifier = dangerous_wildlife
+					days = -1
+				}
+			}
+		}	
+		moon = {
+			name = "Alahya"
+			count = 1
+			class = pc_ammonia
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 8
+			flags = { alahya_planet subclass_world }			
+			init_effect = {
+				if = {
+					limit = {
+						exists = event_target:alahyan_terraformation_zone
+					}
+					log = "Alahya Capital Spawned"
+					save_global_event_target_as = typhon_system_alahya
+					set_global_flag = alahya_capital_spawned
+
+					create_colony = {
+						owner = event_target:alahyan_terraformation_zone
+					}
+					set_capital = yes
+					generate_alahya_buildings = yes
+					generate_alahya_pops = yes
+					log = "Alahyan Terraformation Zone Capital Spawned"
+				}
+			}
+		}	
+		
+		
+		moon = {
+			name = "Dranen d"
+			count = 1
+			class = pc_barren_cold
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 6
+
+		}
+		
+		moon = {
+			name = "Dranen e"
+			count = 1
+			class = pc_molten
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 4
+
+		}		
+	}
+
+	change_orbit = 30
+	
+	planet = {
+		count = 2
+		class = pc_asteroid
+        orbit_distance = 0
+		orbit_angle = { min = 10 max = 190 }
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+		}
+	}	
+
+	planet = {
+		name = "Mahavid"
+		class = pc_asteroid
+        orbit_distance = 0
+		orbit_angle = 40
+		flags = { mahavid_planet subclass_world }
+		init_effect = {
+			add_deposit = d_minerals_3
+			add_deposit = d_rare_crystals_1
+		}
+	}
+
+    planet = {
+        name = "Alformus"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 206
+        has_ring = no
+		size = 36
+		flags = { alformus_planet subclass_world }
+		init_effect = {
+			#add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+		}
+    }
+
+    planet = {
+        name = "Shir"
+        class = pc_frozen
+        orbit_distance = 80
+        orbit_angle = 34
+        has_ring = no
+		size = 12
+		flags = { shir_planet subclass_world }
+		init_effect = {
+			add_deposit = d_minerals_6
+			add_deposit = d_trade_value_3
+		}
+    }
+
+    planet = {
+        name = "Tamgauta"
+        class = pc_frozen
+        orbit_distance = 80
+        orbit_angle = 289
+        has_ring = no
+		size = 8
+		flags = { tamgauta_planet subclass_world }
+		init_effect = {
+			#add_deposit = d_palladium_4
+			add_deposit = d_rare_crystals_2
+		}
+    }
+}
+
+#######################
+### Altakiril Union ###
+#######################
+
+sys_thal_init = {
+    name = "Thal"
+    class = sc_k
+	max_instances = 1
+
+	flags = { terminus_system shrike_abyssal_system thal_system btr_system custom_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Altakiril System Spawned"
+	}
+
+    planet = {
+	    name = "Thal"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 20
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 425
+	}
+	
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 500
+	}
+
+    planet = {
+        name = "Garan"
+        class = pc_molten
+        orbit_distance = 125
+        orbit_angle = 232
+        has_ring = no
+		size = 25
+		init_effect = {
+			add_deposit = d_minerals_3
+			add_deposit = d_engineering_2
+			add_modifier = {
+				modifier = tidal_locked
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Sarait"
+        class = pc_highgrav_methane
+        orbit_distance = 125
+        orbit_angle = 196
+        has_ring = no
+		size = 25
+		entity = "methane_swamp_planet_05_entity"
+		init_effect = {
+			add_deposit = d_society_4
+			add_modifier = {
+				modifier = marsh_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Altakiril"
+        class = pc_dextro_tundra
+        orbit_distance = 125
+        orbit_angle = 253
+        has_ring = no
+		size = 14
+		entity = "fungal_planet_01_entity"
+		init_effect = {
+			log = "Altakiril Capital Spawned"
+			save_global_event_target_as = thal_system_altakiril
+
+			prevent_anomaly = yes
+			set_global_flag = altakiril_capital_spawned	
+
+			create_country = {
+				name = "NAME_Altakiril_Union"
+				adjective = "PRESCRIPTED_adjective_altakiril_union"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_isolationist
+					civic = independent_civic_suspicious_untrusting
+				}
+				species = event_target:turianSpecies
+				name_list = btr_turian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_egalitarian"
+					ethic = "ethic_militarist"
+				}
+
+				type = independent_colony
+				origin = libertarian_fou_origin
+				effect = {
+					save_global_event_target_as = altakiril_union
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:altakiril_union
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_altakiril_deposits = yes
+			generate_altakiril_capitol_buildings = yes
+			generate_altakiril_pops = yes
+			event_target:altakiril_union = {
+				set_country_flag = altakiril_union
+				set_graphical_culture = btr_turian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Altakiril Union Colony Spawned"
+			}
+			add_modifier = {
+				modifier = fungal_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Tyrix"
+        class = pc_sil_asteroid
+        orbit_distance = 50
+        orbit_angle = 76
+        has_ring = no
+		size = 1
+		init_effect = {
+			add_deposit = d_minerals_7
+			add_deposit = d_trade_value_3
+		}
+    }
+
+    planet = {
+        name = "Xerceo"
+        class = pc_gas_giant
+        orbit_distance = 50
+        orbit_angle = 343
+        has_ring = yes
+		size = 37
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+		}
+    }
+
+    planet = {
+        name = "Virits"
+        class = pc_carb_asteroid
+        orbit_distance = 25
+        orbit_angle = 171
+        has_ring = no
+		size = 2
+		init_effect = {
+			add_deposit = d_minerals_2
+		}
+    }
 }
