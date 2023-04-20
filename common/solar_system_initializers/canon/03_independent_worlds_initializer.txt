@@ -909,3 +909,1191 @@ sys_thal_init = {
 		}
     }
 }
+
+############################
+### Anansi Manufacturing ###
+############################
+
+sys_cavalcante_init = {
+    name = "Cavalcante"
+    class = sc_m
+	max_instances = 1
+
+	flags = { cavalcante_system hegemony_of_kharshan_system canon_map }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Anansi System Spawned"
+	}
+
+    planet = {
+		name = "Cavalcante"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 30
+		flags = { cavalcante_star }
+	}
+
+    planet = {
+		name = "Anansi"
+        class = pc_savannah
+        orbit_distance = 250
+        size = 30
+		entity = "biolum_planet_04_entity"
+		flags = { anansi_planet subclass_world }
+		init_effect = {
+			log = "Anansi Capital Spawned"
+			save_global_event_target_as = calvacante_system_anansi
+
+			prevent_anomaly = yes
+			set_global_flag = anansi_capital_spawned	
+
+			create_country = {
+				name = "NAME_Anansi_Manufacturing"
+				adjective = "PRESCRIPTED_adjective_anansi_manufacturing"
+				authority = auth_oligarchic
+				civics = {
+					civic = independent_civic_industrialists
+					civic = independent_civic_citadel_setup
+				}
+				species = event_target:hanarSpecies
+				name_list = btr_hanar
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_materialist"
+					ethic = "ethic_pacifist"
+				}
+
+				type = independent_colony
+				origin = reign_pri_origin
+				effect = {
+					save_global_event_target_as = anansi_manufacturing
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:anansi_manufacturing
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_anansi_deposits = yes
+			generate_anansi_capitol_buildings = yes
+			generate_anansi_pops = yes
+			event_target:anansi_manufacturing = {
+				set_country_flag = anansi_manufacturing
+				set_graphical_culture = btr_turian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Anansi Manufacturing Colony Spawned"
+			}
+			#add_deposit = d_trade_value_4
+			add_modifier = {
+				modifier = biolum_world
+				days = -1
+			}
+		}
+	}
+}
+
+#####################################
+##### UNITED ANHUR CORPORATIONS #####
+#####################################
+
+sys_amun_init = {
+    name = "Amun"
+    class = sc_g
+    flags = { attican_traverse_system eagle_nebula_system amun_system btr_system custom_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Anhur System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+    planet = {
+		name = "Amun"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 28
+		flags = { amun_star }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+
+			create_ambient_object = {
+				type = "nebula_4"
+				entity_offset_height = -5
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+    }
+
+    planet = {
+        name = "Sekhmet"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 198
+        has_ring = yes
+		size = 30
+		flags = { sekhmet_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			# add_deposit = d_element_zero_2
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+			add_deposit = d_zro_deposit_2
+		}
+    }
+
+    planet = {
+        name = "Sobek"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 192
+        has_ring = no
+		size = 35
+		flags = { sobek_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			# add_deposit = d_helium_3_2
+			# add_deposit = d_palladium_1
+			add_deposit = d_exotic_gases_2
+			add_modifier = {
+				modifier = extensive_moon_system
+				days = -1
+			}
+		}	
+		moon = {
+			name = "Sobek a"
+			count = 1
+			class = pc_frozen
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 4
+
+		}
+		moon = {
+			name = "Sobek b"
+			count = 1
+			class = pc_barren
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 6
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_minerals_2
+	
+			}
+		}
+        moon = {
+			name = "Heqet"
+			class = pc_continental
+			orbit_distance = 5
+			orbit_angle = 250
+			has_ring = no
+			size = 6
+			entity = "forest_planet_01_entity"
+			flags = { heqet_planet subclass_world }
+			init_effect = {
+				add_modifier = {
+					modifier = forest_world
+					days = -1
+				}
+			}
+        }
+		moon = {
+			name = "Xarla"
+			count = 1
+			class = pc_mephitic
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 4
+			entity = "mephitic_lichen_planet_01_entity"
+			flags = { xarla_planet subclass_world }
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_minerals_4
+				add_deposit = d_society_4
+				add_modifier = {
+					modifier = lichen_world
+					days = -1
+				}
+			}
+		}
+		moon = {
+			name = "Turrga"
+			count = 1
+			class = pc_barren_cold
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			flags = { turrga_planet subclass_world }
+			size = 8
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_minerals_8
+			}			
+		}
+    }
+
+    planet = {
+        name = "Anhur"
+        class = pc_alpine
+        orbit_distance = 100
+        orbit_angle = 294
+		size = 17
+        has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { anhur_planet subclass_world }
+
+		entity = "boreal_planet_01_entity"
+
+		init_effect = {
+			log = "Anhur Capital Spawned"
+			save_global_event_target_as = amun_system_anhur
+
+			prevent_anomaly = yes
+			set_global_flag = anhur_capital_spawned	
+
+			create_country = {
+				name = "NAME_Polity_of_Anhur"
+				adjective = "PRESCRIPTED_adjective_polity_of_anhur"
+				authority = auth_dictatorial
+				civics = {
+					civic = independent_civic_isolationist
+					civic = independent_civic_suspicious_untrusting
+				}
+				species = event_target:batarianSpecies
+				name_list = btr_batarian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_authoritarian"
+					ethic = "ethic_materialist"
+					ethic = "ethic_militarist"
+				}
+
+				type = independent_colony
+				origin = polity_anh_origin
+				effect = {
+					save_global_event_target_as = polity_of_anhur
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:polity_of_anhur
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_anhur_deposits = yes
+			generate_anhur_capitol_buildings = yes
+			generate_anhur_pops = yes
+			event_target:polity_of_anhur = {
+				set_country_flag = polity_of_anhur
+				set_graphical_culture = reptilian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Polity of Anhur Colony Spawned"
+			}
+
+			set_name = "Anhur"
+			add_modifier = {
+				modifier = boreal_world
+				days = -1
+			}
+		}
+	}	
+
+    planet = {
+        name = "Neith"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 61
+        has_ring = no
+		size = 17
+		flags = { neith_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			# add_deposit = d_iridium_5
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_minerals_4
+			add_deposit = d_trade_value_3
+		}
+		moon = {
+			name = "Neith a"
+			count = 1
+			class = pc_frozen
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 3
+		}		
+    }
+
+    planet = {
+        name = "Bast"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 175
+        has_ring = no
+		size = 26
+		flags = { bast_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			# add_deposit = d_helium_3_1
+			add_deposit = d_exotic_gases_1
+		}
+		moon = {
+			name = "Bast a"
+			count = 1
+			class = pc_iron
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 6
+
+		}
+		moon = {
+			name = "Bast b"
+			count = 1
+			class = pc_frozen
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 8
+		}	
+    }	
+}
+
+###############################
+##### ASTERIA AGRICULTURE #####
+###############################
+
+sys_hekate_init = {
+    name = "Hekate"
+    class = sc_g
+	flags = { attican_traverse_system hades_nexus_system hekate_system btr_system custom_system empire_home_system }	
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Asteria System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+    planet = {
+		name = "Hekate"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 30
+		flags = { hekate_star }
+    }
+
+    planet = {
+        name = "Asteria"
+        class = pc_desert
+        orbit_distance = 125
+        orbit_angle = 306
+        has_ring = no
+		size = 14
+		flags = { asteria_planet subclass_world }
+		entity = "dune_planet_01_entity"
+		init_effect = {
+			log = "Asteria Capital Spawned"
+			save_global_event_target_as = hekate_system_asteria
+
+			prevent_anomaly = yes
+			set_global_flag = asteria_capital_spawned	
+
+			create_country = {
+				name = "NAME_Republic_of_Asteria"
+				adjective = "PRESCRIPTED_adjective_republic_of_asteria"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_citadel_setup
+					civic = independent_civic_fearful_alone
+				}
+				species = event_target:asariSpecies
+				name_list = btr_asari
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_pacifist"
+					ethic = "ethic_egalitarian"
+					ethic = "ethic_spiritualist"
+				}
+
+				type = independent_colony
+				origin = unchecked_rep_origin
+				effect = {
+					save_global_event_target_as = republic_of_asteria
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:republic_of_asteria
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_asteria_deposits = yes
+			generate_asteria_capitol_buildings = yes
+			generate_asteria_pops = yes
+			event_target:republic_of_asteria = {
+				set_country_flag = republic_of_asteria
+				set_graphical_culture = mec_asari_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Republic of Asteria Colony Spawned"
+			}
+			set_name = "Asteria"
+			add_modifier = {
+				modifier = dune_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Ker" 
+        class = pc_barren_cold
+        orbit_distance = 125
+        orbit_angle = 296
+        has_ring = no
+		size = 16
+		flags = { ker_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			add_deposit = d_minerals_9
+			add_deposit = d_society_5
+    	}
+	}
+
+    planet = {
+        name = "Triodia"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 293
+        has_ring = no
+		size = 27
+		flags = { triodia_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+			add_modifier = {
+				modifier = extensive_moon_system
+				days = -1
+			}
+		}
+		moon = {
+			name = "Keare"
+			class = pc_asteroid
+			orbit_distance = 20
+			orbit_angle = 96
+			size = 3
+		}
+		moon = {
+			name = "Alovau"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 128
+			size = 2
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_rare_crystals_2	
+			}
+		}	
+		moon = {
+			name = "Emgao"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 128
+			size = 1
+		}		
+		moon = {
+			name = "Phearlea"
+			class = pc_frozen
+			orbit_distance = 5
+			orbit_angle = 3
+			size = 3
+		}
+		moon = {
+			name = "Lysrynia"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 53
+			size = 1
+		}	
+		moon = {
+			name = "Janariya"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 128
+			size = 1
+		}
+		moon = {
+			name = "Se'no"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 256
+			size = 1
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_minerals_1
+	
+			}
+		}
+		moon = {
+			name = "Zeucka"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 180
+			size = 1
+		}
+		moon = {
+			name = "Falelthea"
+			class = pc_frozen
+			orbit_distance = 5
+			orbit_angle = 10
+			size = 6
+		}
+		moon = {
+			name = "Biumha"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 100
+			size = 1
+		}	
+		moon = {
+			name = "Ushilea"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 145
+			size = 1
+			init_effect = {
+				prevent_anomaly = yes
+				# add_deposit = d_platinum_1
+	
+			}
+		}	
+		moon = {
+			name = "Chaessley"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 256
+			size = 1
+		}
+		moon = {
+			name = "Alaname"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 73
+			size = 1
+		}
+		moon = {
+			name = "Telestze"
+			class = pc_asteroid
+			orbit_distance = 5
+			orbit_angle = 22
+			size = 1
+			init_effect = {
+				prevent_anomaly = yes
+				# add_deposit = d_palladium_1
+	
+			}
+		}			
+    }
+
+    planet = {
+        name = "Bothros"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 194
+        has_ring = no
+		size = 18
+		flags = { bothros_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			# add_deposit = d_element_zero_1
+			# add_deposit = d_platinum_4
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_society_3
+			add_deposit = d_engineering_6
+			add_modifier = {
+				modifier = asteroid_impacts
+				days = -1
+			}
+		}
+	}   	
+}
+
+########################
+### CHALKHOS FREEHOLD ###
+########################
+
+sys_mil_init = {
+    name = "Mil"
+    class = sc_g
+	max_instances = 1
+
+	flags = { terminus_system sigurds_cradle_system mil_system btr_system custom_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Mil System Spawned"
+	}
+
+    planet = {
+		name = "Mil"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 450
+	}
+
+    planet = {
+        name = "Akraia"
+        class = pc_barren
+        orbit_distance = 100
+        orbit_angle = 223
+        has_ring = no
+		size = 7
+		init_effect = {
+			add_deposit = d_minerals_5
+		}
+    }
+
+    planet = {
+        name = "Lisir"
+        class = pc_barren_cold
+        orbit_distance = 100
+        orbit_angle = 99
+        has_ring = no
+		size = 14
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+			add_deposit = d_society_4
+		}
+    }
+
+    planet = {
+        name = "Chalkhos"
+        class = pc_tropical
+        orbit_distance = 100
+        orbit_angle = 196
+        has_ring = no
+		size = 12
+		init_effect = {
+			log = "Chalkhos Capital Spawned"
+			save_global_event_target_as = mil_system_chalkhos
+
+			prevent_anomaly = yes
+			set_global_flag = chalkhos_capital_spawned	
+
+			create_country = {
+				name = "NAME_Chalkhos_Freehold"
+				adjective = "PRESCRIPTED_adjective_chalkhos_freehold"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_free_autonomous
+					civic = independent_civic_hedonists
+				}
+				species = event_target:asariSpecies
+				name_list = btr_asari
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_egalitarian"
+					ethic = "ethic_materialist"
+				}
+
+				type = independent_colony
+				origin = unethical_res_origin
+				effect = {
+					save_global_event_target_as = chalkhos_freehold
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:chalkhos_freehold
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_chalkhos_deposits = yes
+			generate_chalkhos_capitol_buildings = yes
+			generate_chalkhos_pops = yes
+			event_target:chalkhos_freehold = {
+				set_country_flag = chalkhos_freehold
+				set_graphical_culture = mec_asari_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Chalkhos Freehold Colony Spawned"
+			}
+			#add_deposit = d_society_4
+			#add_deposit = d_engineering_4
+			#add_deposit = d_physics_4
+		}
+    }
+
+    planet = {
+        name = "Selvos"
+        class = pc_desert
+        orbit_distance = 100
+        orbit_angle = 343
+        has_ring = no
+		size = 15
+		entity = "dune_planet_12_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = dune_world
+				days = -1
+			}
+		}
+    }
+
+	planet = {
+		name = "Mylasi"
+		class = pc_asteroid
+        orbit_distance = 50
+		size = 1
+		init_effect = {
+			add_deposit = d_minerals_7
+			add_deposit = d_trade_value_3
+		}
+	}	
+
+    planet = {
+        name = "Terapso"
+        class = pc_gas_giant
+        orbit_distance = 50
+        orbit_angle = 250
+        has_ring = no
+		size = 35
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}
+		moon = {
+			name = "Taranis"
+			class = pc_barren_cold
+			orbit_distance = 20
+			size = 8
+			init_effect = {
+				add_deposit = d_minerals_4
+				add_deposit = d_rare_crystals_2
+			}
+		}
+	}	
+}
+
+##########################
+### AUTONOMY OF CYRENE ###
+##########################
+
+sys_tkachyov_init = {
+	name = "Tkachyov"
+	class = sc_m_giant
+	max_instances = 1
+
+	flags = { terminus_system titan_nebula_system tkachyov_system btr_system custom_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Tkachyov System Spawned"
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 50
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 500
+	}
+
+    planet = {
+	    name = "Tkachyov"
+        class = pc_m_giant_star
+        orbit_distance = 0
+        size = 35
+    }
+
+    planet = {
+        name = "Ulanov"
+        class = pc_molten
+        orbit_distance = 80
+        orbit_angle = 214
+        has_ring = no
+		size = 7
+    }
+	
+	planet = {
+		name = "Idmon"
+		class = pc_gas_giant
+        orbit_distance = 80
+		size = 36
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+		}
+		moon = {
+			name = "Cyrene"
+			class = pc_dextro_savannah
+			orbit_distance = 20
+			size = 7
+			entity = steppe_world
+			init_effect = {
+				log = "Cyrene Capital Spawned"
+				save_global_event_target_as = tkachyov_system_cyrene
+	
+				prevent_anomaly = yes
+				set_global_flag = cyrene_capital_spawned	
+	
+				create_country = {
+					name = "NAME_Autonomy_of_Cyrene"
+					adjective = "PRESCRIPTED_adjective_autonomy_of_cyrene"
+					authority = auth_democratic
+					civics = {
+						civic = independent_civic_isolationist
+						civic = independent_civic_suspicious_untrusting
+					}
+					species = event_target:humanSpecies
+					name_list = btr_alliance
+					ship_prefix = ""
+					ethos = {
+						ethic = "ethic_pacifist"
+						ethic = "ethic_egalitarian"
+						ethic = "ethic_spiritualist"
+					}
+	
+					type = independent_colony
+					origin = antialliance_com_origin
+					effect = {
+						save_global_event_target_as = autonomy_cyrene
+						add_resource = {
+							energy = 1000
+							minerals = 1000
+							alloys = 1000
+							influence = 100
+							food = 1000
+							consumer_goods = 1000
+							volatile_motes = 500
+							exotic_gases = 500
+							rare_crystals = 500						
+						}
+					}
+				}	
+				create_colony = {
+					owner = event_target:autonomy_cyrene
+				}
+				set_capital = yes
+				generate_btr_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				generate_cyrene_deposits = yes
+				generate_cyrene_capitol_buildings = yes
+				generate_cyrene_pops = yes
+				event_target:autonomy_cyrene = {
+					set_country_flag = autonomy_cyrene
+					set_graphical_culture = btr_alliance_01
+					create_starting_leaders = yes
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_country_flag = btr_independent_colony
+					log = "Autonomy of Cyrene Colony Spawned"
+				}
+				add_modifier = {
+					modifier = steppe_world
+					days = -1
+				}
+			}
+		}
+	}
+
+	planet = {
+        name = "Nikishin"
+        class = pc_barren
+        orbit_distance = 80
+        orbit_angle = 214
+        has_ring = no
+		size = 12
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+    }
+
+	planet = {
+        name = "Burgos"
+        class = pc_iron
+        orbit_distance = 80
+        orbit_angle = 214
+        has_ring = no
+		size = 9
+		init_effect = {
+			add_deposit = d_minerals_2
+		}
+    }
+
+	planet = {
+        name = "Khomin"
+        class = pc_frozen
+        orbit_distance = 80
+        orbit_angle = 214
+        has_ring = no
+		size = 6
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_3_secondaryrelay" 
+			name = "Titan Nebula Secondary Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+###############################
+##### ALTAI MINERAL WORKS #####
+###############################
+
+sys_pamyat_init = {
+    name = "Pamyat"
+    class = "sc_g"
+	max_instances = 1
+
+    flags = { attican_traverse_system hades_nexus_system pamyat_system btr_system custom_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Pamyat System Spawned"
+	}
+
+    planet = {
+		name = "Pamyat"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 30
+		flags = { pamyat_star }
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 500
+	}
+
+    planet = {
+        name = "Komarov"
+        class = pc_iron
+        orbit_distance = 120
+        orbit_angle = 128
+        has_ring = no
+		size = 17
+		flags = { komarov_planet subclass_world }
+		init_effect = {
+			# add_deposit = d_iridium_4
+			add_deposit = d_rare_crystals_2
+		}
+    }
+
+    planet = {
+        name = "Dobrovolski"
+        class = pc_barren_cold
+        orbit_distance = 120
+        orbit_angle = 187
+        has_ring = no
+		size = 17
+		flags = { dobrovolski_planet subclass_world }
+		init_effect = {
+			log = "Altai Mineral Works Capital Spawned"
+			save_global_event_target_as = pamyat_system_dobrovolski
+
+			prevent_anomaly = yes
+			set_global_flag = altai_mineral_works_capital_spawned	
+
+			create_country = {
+				name = "NAME_Altai_Mineral_Works"
+				adjective = "PRESCRIPTED_adjective_altai_mineral_works"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_corporate_ownership
+					civic = independent_civic_industrialists
+				}
+				species = event_target:humanSpecies
+				name_list = btr_alliance
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_egalitarian"
+					ethic = "ethic_militarist"
+					ethic = "ethic_pacifism"
+				}
+
+				type = independent_colony
+				origin = mining_ope_origin
+				effect = {
+					save_global_event_target_as = altai_mineral_works
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:altai_mineral_works
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_dobrovolski_deposits = yes
+			generate_dobrovolski_capitol_buildings = yes
+			generate_dobrovolski_pops = yes
+			event_target:altai_mineral_works = {
+				set_country_flag = altai_mineral_works
+				set_graphical_culture = btr_alliance_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Altai Mineral Works Colony Spawned"
+			}
+			#add_deposit = d_element_zero_3
+			#add_deposit = d_zro_deposit_3
+			#add_deposit = d_minerals_6
+			#add_deposit = d_trade_value_2
+		}
+    }
+
+    planet = {
+        name = "Patsayev"
+        class = pc_arctic
+        orbit_distance = 120
+        orbit_angle = 260
+        has_ring = no
+		size = 15
+		flags = { patsayev_planet subclass_world }
+		entity = "cryovolcanic_planet_01_entity"
+		init_effect = {
+			add_deposit = d_society_4
+			add_modifier = {
+				modifier = cryovolcanic_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Volkov"
+        class = pc_mephitic
+        orbit_distance = 120
+        orbit_angle = 195
+        has_ring = no
+		size = 4
+		flags = { volkov_planet subclass_world } 
+		init_effect = {
+			# add_deposit = d_rich_iridium_deposits
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_trade_value_3
+			add_modifier = {
+				modifier = lichen_world
+				days = -1
+			}
+		}
+		moon = {
+			name = "Zenevieva"
+			class = pc_asteroid
+			size = 2
+			orbit_angle = 36
+			orbit_distance = 20
+			flags = { zenevieva_planet subclass_world }
+		}
+		
+		moon = {
+			name = "Alena"
+			class = pc_asteroid
+			size = 3
+			orbit_angle = 36
+			orbit_distance = 5
+			flags = { alena_planet subclass_world }
+		}		
+    }
+
+    planet = {
+        name = "Quiet Eddy"
+        class = pc_asteroid
+        orbit_distance = 20
+        orbit_angle = 276
+        has_ring = no
+		size = 4
+		flags = { quiet_eddy_planet subclass_world }
+    }
+}
+
