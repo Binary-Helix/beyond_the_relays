@@ -1,0 +1,4753 @@
+###########################
+##### ASARI REPUBLICS #####
+###########################
+
+#####ATHENA NEBULA#####
+
+sys_parnitha_init = {
+	name = "Parnitha"	
+    class = sc_g
+	flags = { asari_republics_homeworld asari_republics_capital_system canon_map parnitha_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = asariSecondFleet
+		log = "Asari Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 280
+	}
+	
+	planet = {
+		name = "Parnitha"
+		class = pc_g_star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 26
+		has_ring = no
+		flags = { parnitha_star	}
+		init_effect = {
+			add_deposit = d_energy_5
+			set_planet_flag = starting_mining_target
+		}		
+	}
+	
+	planet = {
+		name = "Kurinth"
+		class = pc_hothouse
+		orbit_distance = 80
+		orbit_angle = 15
+		size = 10
+		has_ring = no
+		init_effect = {
+			add_deposit = d_society_3
+			add_deposit = d_minerals_2
+			set_planet_flag = starting_research_target
+		}		
+	}
+	
+	planet = {
+		name = "Thessia"
+		class = pc_continental
+		orbit_distance = 80
+		orbit_angle = 80
+		size = 25
+		has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "temperate_planet_01_entity"
+		flags = { thessia_planet asari_homeworld subclass_world }		
+		init_effect = {
+			log = "Asari Homeworld Spawned"
+			save_global_event_target_as = parnitha_system_thessia
+
+			prevent_anomaly = yes
+			set_global_flag = asari_homeworld_spawned
+
+			create_species = { 
+				name = "Asari"
+				class = ASA
+				portrait = btr_asari
+				namelist = btr_asari
+				homeworld = THIS 
+				traits = { 
+					trait = asari_trait_core
+					trait = asari_trait_biotic
+					trait = asari_trait_smooth_talk
+					trait = asari_trait_sophisticated
+					ideal_planet_class = pc_continental
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = asariSpecies 
+				event_target:asariSpecies = { log = "asariSpecies = [This.GetName]" }
+				log = "Asari Species Created"
+			}
+			create_country = {
+				name = "NAME_Asari_Republics"
+				adjective = "PRESCRIPTED_adjective_asari_republics"
+				authority = auth_democratic
+				civics = { 
+					civic = asari_rep_civic_thes_dip_corp 
+					civic = asari_rep_civic_democracy 
+				}
+				species = event_target:asariSpecies
+				name_list = btr_asari
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_fanatic_xenophile" 
+					ethic = "ethic_egalitarian" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="asari_republics.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_42.dds"
+					}
+					colors={
+						"blue"
+						"blue"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = asari_rep_origin
+				effect = {
+					save_global_event_target_as = asari_republics
+					add_resource = {
+						energy = 3500
+						minerals = 2000
+						alloys = 1500
+						influence = 100
+						food = 3500
+						consumer_goods = 1500
+						unity = 450
+						volatile_motes = 200
+						exotic_gases = 200
+						rare_crystals = 700
+					}
+					add_modifier = {
+						modifier = asari_rep_empire_modifier
+						days = -1
+					}
+				}
+			}
+			create_colony = {
+				owner = event_target:asari_republics
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_asr_thessia_deposits = yes
+			generate_asr_thessia_capitol_buildings = yes
+			generate_asr_thessia_pops = yes
+			generate_asari_rep_science_ships = yes
+			event_target:asari_republics = {
+				set_country_flag = asari_republics
+				set_graphical_culture = mec_asari_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Asari Republics Empire Spawned"
+			}
+			set_name = "Thessia"
+			add_modifier = {
+				modifier = temperate_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Piares"
+		class = pc_mephitic
+		orbit_distance = 80
+		orbit_angle = 70
+		size = 15
+		has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_3
+			add_deposit = d_trade_value_3
+			add_deposit = d_minerals_5
+			set_planet_flag = starting_mining_target
+		}		
+	}
+
+	planet = {
+		name = "Lucen"
+		class = pc_asteroid
+		orbit_distance = 40
+		orbit_angle = { min = 40 max = 100 }
+		size = 1
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+			set_planet_flag = starting_mining_target
+		}		
+	}
+	
+	planet = {
+		name = "Janiri"
+		class = pc_gas_giant
+		orbit_distance = 40
+		orbit_angle = -60
+		size = 33
+		has_ring = yes
+		init_effect = {
+			add_deposit = d_engineering_2
+			add_deposit = d_exotic_gases_3
+		}		
+	}
+	
+	planet = {
+		name = "Athame"
+		class = pc_gas_giant
+		orbit_distance = 80
+		orbit_angle = -100
+		size = 35
+		has_ring = yes
+		init_effect = {
+			add_deposit = d_energy_5
+			add_deposit = d_exotic_gases_2
+			set_planet_flag = starting_mining_target
+		}		
+	}
+	
+	planet = {
+		name = "Tevura"
+		class = pc_ice_giant
+		orbit_distance = 80
+		orbit_angle = -170
+		size = 25
+		has_ring = no
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}		
+		moon = {
+			name = "Tevura I"
+			class = pc_iron
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 2
+			init_effect = {
+				add_deposit = d_minerals_2
+			}
+		}	
+		moon = {
+			name = "Tevura II"
+			class = pc_frozen
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 3
+			init_effect = {
+				add_deposit = d_rare_crystals_2
+			}
+		}	
+		moon = {
+			name = "Tevura III"
+			class = pc_iron
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 4
+			init_effect = {
+				add_deposit = d_minerals_5
+				add_deposit = d_rare_crystals_1
+			}
+		}
+    }
+}
+
+##########################
+##### SALARIAN UNION #####
+##########################
+
+sys_pranas_init = {
+    name = "Pranas"
+    class = sc_g
+	flags = { salarian_union_homeworld salarian_union_capital_system canon_map pranas_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = salarianSecondFleet
+		log = "Salarian Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1
+    
+    asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 450
+	}	
+
+    planet = {
+		name = "Pranas"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { pranas_star }
+		init_effect = {
+			add_deposit = d_energy_3
+			set_planet_flag = starting_mining_target
+		}
+	}
+
+    planet = {
+        name = "Saradril"
+        class = pc_hothouse
+        orbit_distance = 100
+        orbit_angle = 148
+        size = 13
+        has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_5
+			add_deposit = d_volatile_motes_2
+		}
+    }
+
+    planet = {
+        name = "Sur'Kesh"
+        class = pc_tropical
+        orbit_distance = 100
+        orbit_angle = 179
+        size = 16
+		has_ring = no		
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { surkesh_planet salarian_homeworld subclass_world }
+		init_effect = {
+			log = "Salarian Homeworld Spawned"
+			save_global_event_target_as = pranas_system_surkesh
+
+			prevent_anomaly = yes
+			set_global_flag = salarian_homeworld_spawned
+
+			create_species = { 
+				name = "Salarian"
+				class = SAL
+				portrait = btr_salarian
+				namelist = btr_salarian
+				homeworld = THIS 
+				traits = { 
+					trait = salarian_trait_core
+					trait = salarian_trait_impressive_minds
+					trait = salarian_trait_bleed_edge
+					trait = salarian_trait_societal_trade
+					ideal_planet_class = pc_tropical
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = salarianSpecies 
+				event_target:salarianSpecies = { log = "salarianSpecies = [This.GetName]" }
+				log = "Salarian Species Created"
+			}
+			create_country = {
+				name = "NAME_Salarian_Union"
+				adjective = "PRESCRIPTED_adjective_salarian_union"
+				authority = auth_oligarchic
+				civics = { 
+					civic = salarian_uni_hold_the_line 
+					civic = salarian_uni_qual_tech_results 
+				}
+				species = event_target:salarianSpecies
+				name_list = "btr_salarian"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_authoritarian" 
+					ethic = "ethic_fanatic_materialist" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="salarian_union.dds"
+					}
+					background={
+						category="backgrounds"
+						file="ovalehorizontal.dds"
+					}
+					colors={
+						"eecolor1717"
+						"eecolor1956"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = salarian_uni_origin
+				effect = {
+					save_global_event_target_as = salarian_union
+					add_resource = {
+						energy = 2600
+						minerals = 1480
+						alloys = 1100
+						influence = 100
+						food = 3350
+						consumer_goods = 1200
+						unity = 450
+						volatile_motes = 300
+						exotic_gases = 300
+						rare_crystals = 300
+					}
+					add_modifier = {
+						modifier = salarian_uni_empire_modifier
+						days = -1
+					}			
+				}
+			}				
+			create_colony = {
+				owner = event_target:salarian_union
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes	
+			clear_blockers = yes			
+			generate_sal_surkesh_deposits = yes
+			generate_sal_surkesh_capitol_buildings = yes
+			generate_sal_surkesh_pops = yes
+			generate_salarian_uni_science_ships = yes
+			event_target:salarian_union = {
+				set_country_flag = salarian_union
+				set_graphical_culture = btr_salarian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Salarian Union Empire Spawned"
+			}
+			set_name = "Sur'Kesh"
+		}
+    } 
+
+    planet = {
+        name = "Dragel"
+        class = pc_barren
+        orbit_distance = 100
+        orbit_angle = 221
+        size = 3
+        has_ring = no
+		init_effect = {
+			# add_deposit = d_platinum_2
+			# add_deposit = d_palladium_2
+			# add_deposit = d_iridium_2
+			add_deposit = d_rare_crystals_3
+		}
+    }
+
+    planet = {
+        name = "Halegeuse"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 202
+        size = 33
+        has_ring = no
+		moon = {
+			name = "Lor'ala"
+			class = pc_barren_cold_station_moon_1
+			orbit_distance = 20
+			orbit_angle = 73
+			size = 8
+			init_effect = {
+				if = {
+					limit = { 
+						exists = event_target:salarian_union
+					}
+					set_planet_flag = planetary_station
+					set_planet_flag = research_station
+					set_deposit_flags = yes
+					create_colony = {
+						owner = event_target:salarian_union
+					}
+					generate_sal_halegeuse_colony_buildings = yes
+					generate_sal_halegeuse_pops = yes
+					prevent_anomaly = yes	
+					clear_blockers = yes
+					add_deposit = d_barren_cold_blocker
+					add_deposit = d_mineral_lodes
+					log = "Salarian Union Colony - Lor'ala Spawned"
+				}
+				# add_deposit = d_helium_3_4
+			}
+		}	
+    }
+
+    planet = {
+        name = "Paeto"
+        class = pc_asteroid
+        orbit_distance = 50
+        orbit_angle = 52
+        size = 4
+        has_ring = no
+		init_effect = {
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_physics_2
+		}	
+	}
+}
+
+############################
+##### TURIAN HIERARCHY #####
+############################
+
+sys_trebia_init = {
+    name = "Trebia"
+    class = sc_g
+	flags = { turian_hierarchy_homeworld turian_hierarchy_capital_system canon_map trebia_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Turian Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+		name = "Trebia"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 25
+		flags = { trebia_star}
+    }
+
+    planet = {
+        name = "Aventen"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 11
+        has_ring = no
+        size = 13
+    }
+
+    planet = {
+        name = "Caelax"
+        class = pc_barren
+        orbit_distance = 80
+        orbit_angle = 350
+        has_ring = no
+        size = 15
+    }
+
+    planet = {
+        name = "Palaven"
+        class = pc_dextro_savannah
+        orbit_distance = 80
+        orbit_angle = 156
+        size = 22
+		has_ring = no		
+		starting_planet = yes
+		flags = { palaven_planet turian_homeworld subclass_world }
+		deposit_blockers = none		
+		modifiers = none
+		entity = "veld_planet_04_entity"
+		init_effect = {
+			log = "Turian Homeworld Spawned"
+			save_global_event_target_as = trebia_system_palaven
+
+			prevent_anomaly = yes
+			set_global_flag = turian_homeworld_spawned
+
+			create_species = { 
+				name = "Turian"
+				class = TUR
+				portrait = btr_turian
+				namelist = btr_turian
+				homeworld = THIS 
+				traits = { 
+					trait = turian_trait_core
+					trait = turian_trait_team_player
+					trait = turian_trait_martial_nature
+					trait = turian_trait_op_discipline
+					ideal_planet_class = pc_dextro_savannah
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = turianSpecies
+				event_target:turianSpecies = { log = "turianSpecies = [This.GetName]" }
+				log = "Turian Species Created"
+			}
+			create_country = {
+				name = "NAME_Turian_Hierarchy"
+				adjective = "PRESCRIPTED_adjective_turian_hierarchy"
+				authority = auth_oligarchic
+				civics = { 
+					civic = turian_hier_honor 
+					civic = turian_hier_universal_service 
+				}
+				species = event_target:turianSpecies
+				name_list = "btr_turian"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_egalitarian" 
+					ethic = "ethic_fanatic_militarist" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="turian_hierarchy.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_20.dds"
+					}
+					colors={
+						"eecolor1602"
+						"eecolor1820"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = turian_hier_origin
+				effect = {
+					save_global_event_target_as = turian_hierarchy
+					add_resource = {
+						energy = 2750
+						minerals = 1650
+						alloys = 1650
+						influence = 100
+						food = 2800
+						consumer_goods = 1000
+						unity = 450
+						volatile_motes = 200
+						exotic_gases = 200
+						rare_crystals = 200
+					}			
+					add_modifier = {
+						modifier = turian_hier_empire_modifier
+						days = -1
+					}	
+					add_modifier = {
+						modifier = turian_hier_shanxi_314
+						days = 3600
+					}		
+				}
+			}	
+			create_colony = {
+				owner = event_target:turian_hierarchy
+			}
+			set_capital = yes	
+			generate_btr_start_deposits_and_blockers = yes	
+			clear_blockers = yes
+			generate_tur_palaven_deposits = yes
+			generate_tur_palaven_capitol_buildings = yes
+			generate_tur_palaven_pops = yes
+			generate_turian_hier_science_ships = yes
+			event_target:turianSpecies = {
+				set_country_flag = turian_hierarchy
+				set_graphical_culture = btr_turian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Turian Hierarchy Empire Spawned"				
+			}
+			set_name = "Palaven"
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = veld_world
+				days = -1
+			}
+		}		     
+        moon = {
+            name = "Menae"
+            class = pc_barren_cold_station
+            orbit_distance = 20
+            orbit_angle = 336
+            has_ring = no
+            size = 8
+            init_effect = {
+				if = {
+					limit = { 
+						exists = event_target:turian_hierarchy
+					}
+					set_planet_flag = planetary_station
+					set_planet_flag = military_station
+					set_deposit_flags = yes
+					create_colony = {
+						owner = event_target:turian_hierarchy
+					}
+					generate_tur_menae_colony_buildings = yes
+					generate_tur_menae_pops = yes
+					prevent_anomaly = yes
+					clear_blockers = yes
+					add_deposit = d_barren_cold_blocker
+					add_deposit = d_restricted_area
+					log = "Turian Hierarchy Colony - Menae Spawned"
+				}
+			}	
+        }
+        moon = {
+            name = "Nanus"
+            class = pc_barren_station
+            orbit_distance = 5
+            orbit_angle = 336
+            has_ring = no
+            size = 5
+            init_effect = {
+				if = {
+					limit = { 
+						exists = event_target:turian_hierarchy
+					}
+					set_planet_flag = planetary_station
+					set_planet_flag = industrial_station
+					set_deposit_flags = yes
+					create_colony = {
+						owner = event_target:turian_hierarchy
+					}
+					generate_tur_nanus_colony_buildings = yes
+					generate_tur_nanus_pops = yes
+					prevent_anomaly = yes
+					clear_blockers = yes
+					add_deposit = d_barren_blocker
+					add_deposit = d_mineral_lodes
+					log = "Turian Hierarchy Colony - Nanus Spawned"
+				}
+            }
+        }		
+    }
+
+    planet = {
+        name = "Impera"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 208
+        has_ring = no
+        size = 4
+		init_effect = {
+			add_deposit = d_minerals_2
+		}	
+    }
+
+    planet = {
+        name = "Essenus"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 272
+        has_ring = no
+        size = 37
+		init_effect = {
+			add_deposit = d_exotic_gases_4
+			add_deposit = d_trade_value_4
+		}	
+    }
+
+    planet = {
+        name = "Datriux"
+        class = pc_frozen
+        orbit_distance = 80
+        orbit_angle = 209
+        has_ring = no
+        size = 18
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+		}	
+    }   	
+}
+
+############################
+##### Systems Alliance #####
+############################
+
+sys_sol_init = {
+
+	name = "Sol"
+	class = sc_g
+	flags = { system_alliance_homeworld system_alliance_capital_system canon_map sol_system empire_home_system }
+
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = allianceThirdFleet
+		log = "Human Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 225
+	}
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 495
+	}
+
+	planet = {
+		name = "Sol"
+		class = pc_g_star
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 30
+		has_ring = no
+		flags = { sol_star }
+		init_effect = {
+			add_deposit = d_energy_5
+			set_planet_flag = starting_mining_target
+		}
+	}
+	
+	planet = {
+		name = "Mercury"
+		class = pc_iron
+		orbit_distance = 50
+		orbit_angle = 15
+		size = 8
+		has_ring = no
+		entity = "iron_planet_mercury_entity"
+		init_effect = {
+			add_deposit = d_minerals_7
+			add_deposit = d_rare_crystals_2
+		}	
+	}
+	
+	planet = {
+		name = "Venus"
+		class = pc_hothouse
+		orbit_distance = 50
+		orbit_angle = 125
+		size = 16
+		has_ring = no
+		flags = { venus_planet }
+		entity = "hothouse_planet_venus_entity"
+	}
+	
+	planet = {
+		name = "Earth"
+		class = pc_continental
+		orbit_distance = 50
+		orbit_angle = 120
+		size = 18
+		has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "continental_planet_earth_entity"
+		flags = { earth_planet human_homeworld subclass_world}
+		init_effect = {
+			log = "Human Homeworld Spawned"
+			save_global_event_target_as = sol_system_earth
+
+			prevent_anomaly = yes
+			set_global_flag = human_homeworld_spawned
+
+			create_species = { 
+				name = "Human"
+				class = HUM
+				portrait = btr_alliance
+				namelist = btr_alliance
+				homeworld = THIS 
+				traits = {
+					trait = human_trait_core
+					trait = human_trait_biodiversity
+					trait = human_trait_frontier_spirit
+					trait = human_trait_rugged_individualism
+					ideal_planet_class = pc_continental
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = humanSpecies 
+				event_target:humanSpecies = { log = "humanSpecies = [This.GetName]" }
+				log = "Human Species Created"
+			}
+			create_country = {
+				name = "NAME_Systems_Alliance"
+				adjective = "PRESCRIPTED_adjective_systems_alliance"	
+				authority = auth_democratic
+				civics={ 
+					civic = systems_all_colonial_government 
+					civic = systems_all_unfettered_ai 
+				}
+				species = event_target:humanSpecies
+				name_list = "btr_alliance"
+				ship_prefix = "SSV"
+				ethos = { 
+					ethic = ethic_egalitarian 
+					ethic = ethic_militarist 
+					ethic = ethic_materialist 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="systems_alliance.dds"
+					}
+					background={
+						category="backgrounds"
+						file="00_solid.dds"
+					}
+					colors={
+						"eecolor1681"
+						"silver_steel"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = systems_all_origin
+				effect = {
+					save_global_event_target_as = systems_alliance
+					add_resource = {
+						energy = 800
+						minerals = 450
+						alloys = 265
+						influence = 100
+						food = 1500
+						consumer_goods = 500
+						volatile_motes = 100
+						exotic_gases = 100
+						rare_crystals = 100
+					}
+					add_modifier = {
+						modifier = systems_all_empire_modifier
+						days = -1
+					}
+					add_modifier = {
+						modifier = systems_all_shanxi_314
+						days = 9000
+					}
+					add_modifier = {
+						modifier = systems_all_skyllian_verge
+						days = -1
+					}					
+				}
+			}	
+			create_colony = {
+				owner = event_target:systems_alliance
+			}		
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_hum_earth_deposits = yes				
+			generate_hum_earth_capitol_buildings = yes
+			generate_hum_earth_pops = yes
+			generate_systems_all_science_ships = yes
+			event_target:systems_alliance = {
+				set_country_flag = systems_alliance	
+				set_graphical_culture = btr_alliance_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Systems Alliance Empire Spawned"					
+			}
+			set_name = "Earth"
+			add_modifier = {
+				modifier = temperate_world
+				days = -1
+			}
+		}			
+		moon = {
+			name = "Luna"
+			class = pc_barren_cold_station
+			size = 4
+			orbit_distance = 8
+			orbit_angle = 40
+			has_ring = no
+			entity = "cold_barren_planet_luna_entity"
+            init_effect = {
+				if = {
+					limit = { 
+						exists = event_target:systems_alliance
+					}
+					set_planet_flag = planetary_station
+					set_planet_flag = military_station
+					set_deposit_flags = yes
+					create_colony = {
+						owner = event_target:systems_alliance
+					}
+					generate_hum_luna_buildings = yes
+					generate_hum_luna_pops = yes
+					prevent_anomaly = yes
+					clear_blockers = yes
+					add_deposit = d_barren_cold_blocker
+					log = "Systems Alliance Colony - Luna Spawned"
+				}
+			}
+		}
+	}
+	
+	planet = {
+		name = "Mars"
+		class = pc_mephitic_station
+		orbit_distance = 50
+		orbit_angle = 60
+		size = 13
+		has_ring = no
+		entity = "barren_planet_mars_entity"
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:systems_alliance
+				}
+				set_planet_flag = planetary_station
+				set_planet_flag = research_station
+				set_deposit_flags = yes
+				create_colony = {
+					owner = event_target:systems_alliance
+				}
+				generate_hum_mars_buildings = yes
+				generate_hum_mars_pops = yes
+				prevent_anomaly = yes
+				clear_blockers = yes
+				add_deposit = d_mephitic_blocker
+				log = "Systems Alliance Colony - Mars Spawned"
+			}	
+		}	
+	}
+	
+	planet = {
+		name = "Ceres"
+		class = pc_frozen
+		flags = { ceres }
+		orbit_distance = 25
+		orbit_angle = -210
+		size = 1
+		has_ring = no
+		entity = "frozen_ceres_entity"
+	}
+	
+	planet = {
+		name = "Pallas"
+		class = pc_asteroid
+		flags = { pallas }
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 1
+		has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_4
+		}	
+	}
+	
+	planet = {
+		name = "Juno"
+		class = pc_asteroid
+		flags = { juno }
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 5
+		has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_2
+		}	
+	}
+	
+	planet = {
+		name = "Vesta"
+		class = pc_asteroid
+		flags = { vesta }
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 1
+		has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_5
+		}	
+	}
+	
+	planet = {
+		name = "Jupiter"
+		class = pc_gas_giant
+		flags = { jupiter }
+		orbit_distance = 25
+		orbit_angle = -160
+		size = 36
+		has_ring = no
+		entity = "gas_giant_jupiter_entity"
+		change_orbit = 6
+		init_effect = {
+			add_deposit = d_exotic_gases_1
+		}	
+		moon = {
+			name = "Io"
+			class = pc_molten
+			flags = { io }
+			size = 4
+			orbit_distance = 20
+			orbit_angle = 110
+			has_ring = no
+			entity = "molten_io_entity"
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+			}	
+		}
+		moon = {
+			name = "Europa"
+			class = pc_frozen
+			flags = { europa }
+			size = 3
+			orbit_distance = 5
+			orbit_angle = 10
+			has_ring = no
+			entity = "frozen_europa_entity"
+			init_effect = {
+				add_deposit = d_society_3
+			}	
+		}
+		moon = {
+			name = "Ganymede"
+			class = pc_frozen
+			flags = { ganymede }
+			size = 6
+			orbit_distance = 5
+			orbit_angle = 80
+			has_ring = no
+			entity = "frozen_ganymede_entity"
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+			}	
+		}
+		moon = {
+			name = "Callisto"
+			class = pc_frozen
+			flags = { callisto }
+			size = 12
+			orbit_distance = 5
+			orbit_angle = -155
+			has_ring = no
+			entity = "frozen_callisto_entity"
+			init_effect = {
+				add_deposit = d_minerals_2
+				add_deposit = d_rare_crystals_1
+			}	
+		}
+	}
+	
+	planet = {
+		name = "Saturn"
+		class = pc_gas_giant
+		flags = { saturn }
+		orbit_distance = 50
+		orbit_angle = 170
+		size = 34
+		has_ring = yes
+		entity = "gas_giant_saturn_entity"
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+		moon = {
+			name = "Titan"
+			class = pc_frozen
+			flags = { titan }
+			size = 6
+			orbit_distance = 20
+			orbit_angle = 320
+			has_ring = no
+			entity = "methane_titan_entity"
+			init_effect = {
+				add_deposit = d_minerals_2
+			}	
+		}
+		moon = {
+			name = "Enceladus"
+			class = pc_frozen
+			flags = { enceladus }
+			size = 2
+			orbit_distance = 5
+			orbit_angle = 320
+			has_ring = no
+			entity = "frozen_enceladus_entity"
+		}
+	}
+	
+	planet = {
+		name = "Uranus"
+		class = pc_ice_giant
+		flags = { uranus }
+		orbit_distance = 50
+		orbit_angle = 125
+		size = 28
+		has_ring = no
+		entity = "ice_giant_uranus_entity"
+		init_effect = {
+			add_deposit = d_exotic_gases_4
+			add_deposit = d_trade_value_2
+		}	
+		moon = {
+			name = "Miranda"
+			class = pc_frozen
+			flags = { miranda }
+			size = 1
+			orbit_distance = 20
+			orbit_angle = 115
+			has_ring = no
+			entity = "frozen_miranda_entity"
+		}
+		moon = {
+			name = "Ariel"
+			class = pc_frozen
+			flags = { ariel }
+			size = 1
+			orbit_distance = 5
+			orbit_angle = 115
+			has_ring = no
+			entity = "frozen_ariel_entity"
+		}
+		moon = {
+			name = "Umbriel"
+			class = pc_frozen
+			flags = { umbriel }
+			size = 1
+			orbit_distance = 5
+			orbit_angle = 115
+			has_ring = no
+			entity = "frozen_umbriel_entity"
+		}
+		moon = {
+			name = "Titania"
+			class = pc_frozen
+			flags = { titania }
+			size = 2
+			orbit_distance = 5
+			orbit_angle = 115
+			has_ring = no
+			entity = "frozen_titania_entity"
+		}
+		moon = {
+			name = "Oberon"
+			class = pc_frozen
+			flags = { oberon }
+			size = 2
+			orbit_distance = 5
+			orbit_angle = 115
+			has_ring = no
+			entity = "frozen_oberon_entity"
+		}
+	}
+	
+	planet = {
+		name = "Neptune"
+		class = pc_ice_giant
+		flags = { neptune }
+		orbit_distance = 50
+		orbit_angle = -195
+		size = 27
+		has_ring = no
+		init_effect = {
+			add_deposit = d_exotic_gases_1
+		}	
+		entity = "ice_giant_neptune_entity"
+		moon = {
+			name = "Triton"
+			class = pc_frozen
+			flags = { triton }
+			size = 3
+			orbit_distance = 20
+			orbit_angle = 115
+			has_ring = no
+			entity = "frozen_triton_entity"
+		}
+	}
+
+	planet = {
+		name = "Pluto"
+		class = pc_frozen
+		flags = { pluto }
+		modifiers = none
+		orbit_distance = 25
+		orbit_angle = -210
+		size = 3
+		has_ring = no
+		entity = "frozen_pluto_entity"
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}	
+	}
+
+	init_effect = {
+		spawn_megastructure = { 
+			type = "alliance_space_sector_1_secondaryrelay" 
+			name = "Orion Secondary - Sector 1 Relay"
+			orbit_angle = 0 
+			orbit_distance = 500
+		} 		
+	}
+
+	planet = {
+		name = "Makemake"
+		class = pc_frozen
+		flags = { makemake }
+		orbit_distance = 0
+		orbit_angle = -95
+		size = 2
+		has_ring = no
+		entity = "frozen_makemake_entity"
+	}
+	
+	planet = {
+		name = "Haumea"
+		class = pc_frozen
+		flags = { haumea }
+		orbit_distance = 0
+		orbit_angle = 285
+		size = 3
+		has_ring = no
+		entity = "frozen_haumea_entity"
+	}
+
+	planet = {
+		name = "Varuna"
+		class = pc_frozen
+		flags = { varuna }
+		orbit_distance = 0
+		orbit_angle = -80
+		size = 5
+		has_ring = no
+	}
+
+	planet = {
+		name = "Eris"
+		class = pc_frozen
+		flags = { eris }
+		modifiers = none
+		orbit_distance = 0
+		orbit_angle = -210
+		size = 3
+		has_ring = no
+		entity = "frozen_eris_entity"
+	}
+}
+
+#############################
+##### COURTS OF DEKUUNA #####
+#############################
+
+sys_phontes_init = {
+    name = "Phontes"
+    class = sc_g
+	flags = { courts_of_dekuuna_homeworld courts_of_dekuuna_capital_system canon_map phontes_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = courtsFirstFleet
+		log = "Elcor Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+	    name = "Phontes"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { phontes_star }
+    }
+	
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 450
+	}
+
+    planet = {
+        name = "Lenuamund"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 26
+        has_ring = no
+		size = 25
+		init_effect = {
+			add_deposit = d_minerals_4
+			#create_archaeological_site = btr_site_prothean_beacon_elcor
+		}
+    }
+
+    planet = {
+        name = "Dekuuna"
+        class = pc_highgrav_continental
+        orbit_distance = 125
+        orbit_angle = 256
+        size = 25
+		has_ring = no
+		starting_planet = yes
+		deposit_blockers = none		
+		flags = { dekuuna_planet elcor_homeworld subclass_world }	
+		entity = "prairie_planet_02_entity"
+		init_effect = {
+			log = "Elcor Homeworld Spawned"
+			save_global_event_target_as = phontes_system_dekuuna
+
+			prevent_anomaly = yes
+			set_global_flag = elcor_homeworld_spawned
+
+			create_species = { 
+				name = "Elcor"
+				class = ELC
+				portrait = btr_elcor
+				namelist = btr_elcor
+				homeworld = THIS 
+				traits = { 
+					trait = elcor_trait_core
+					trait = elcor_trait_homebound
+					trait = elcor_trait_gesture_based_speech
+					trait = elcor_trait_ecologists
+					ideal_planet_class = pc_highgrav_continental
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = elcorSpecies 
+				event_target:elcorSpecies = { log = "elcorSpecies = [This.GetName]" }
+				log = "Elcor species Created"
+			}
+			create_country = {
+				name = "NAME_Courts_of_Dekuuna"
+				adjective = "PRESCRIPTED_adjective_courts_of_dekunna"
+				authority = auth_oligarchic
+				civics = { 
+					civic = elcor_elders_of_dekuuna 
+					civic = elcor_history_of_stability 
+				}
+				species = event_target:elcorSpecies
+				name_list = "btr_elcor"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_xenophile" 
+					ethic = "ethic_fanatic_pacifist" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="courts_of_dekuuna.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_31.dds"
+					}
+					colors={
+						"eecolor609"
+						"dark_teal"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = courts_dek_origin
+				effect = {
+					save_global_event_target_as = courts_of_dekuuna
+					add_resource = {
+						energy = 1900
+						minerals = 1200
+						alloys = 450
+						influence = 100
+						food = 2500
+						consumer_goods = 1010
+						volatile_motes = 100
+						exotic_gases = 100
+						rare_crystals = 100
+					}
+					add_modifier = {
+						modifier = courts_deku_mechanized_army
+						days = -1
+					}					
+				}
+			}
+			create_colony = {
+				owner = event_target:courts_of_dekuuna
+			}	
+			generate_btr_start_deposits_and_blockers = yes		
+			clear_blockers = yes
+			generate_elc_dekuuna_deposits = yes
+			generate_elc_dekuuna_capitol_buildings = yes
+			generate_elc_dekuuna_pops = yes
+			generate_courts_dek_science_ships = yes
+			event_target:courts_of_dekuuna = {
+				set_country_flag = courts_of_dekuuna
+				set_graphical_culture = mammalian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire	
+				log = "Courts of Dekuuna Empire Spawned"								
+			}
+			set_name = "Dekuuna"
+			add_modifier = {
+				modifier = prairie_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+		}	
+		moon = {
+			name = "Oltan"
+			class = pc_barren_cold_station
+			orbit_distance = 20
+			orbit_angle = 300
+			has_ring = no
+			size = 16
+			init_effect = {
+				add_deposit = d_exotic_gases_1
+				add_deposit = d_trade_value_4
+				if = {
+					limit = { 
+						exists = event_target:courts_of_dekuuna
+					}
+					set_planet_flag = planetary_station
+					set_planet_flag = civil_station	
+					set_planet_flag = oltan_planet
+					set_deposit_flags = yes
+					create_colony = {
+						owner = event_target:courts_of_dekuuna
+					}
+					generate_btr_start_deposits_and_blockers = yes
+					generate_elc_oltan_colony_buildings = yes
+					generate_elc_oltan_pops = yes
+					clear_blockers = yes
+					add_deposit = d_barren_cold_blocker
+					add_deposit = d_mineral_lodes
+					add_deposit = d_mineral_lodes
+					add_deposit = d_mineral_lodes
+					prevent_anomaly = yes
+					log = "Courts of Dekuuna Colony - Oltan Spawned"
+				}
+			}
+		}		
+	}
+
+    planet = {
+        name = "Telluune"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 300
+        has_ring = no
+		size = 25
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_minerals_5
+		}	
+
+    }
+
+    planet = {
+        name = "Sangel"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 111
+        has_ring = no
+		size = 38
+		init_effect = {
+			add_deposit = d_exotic_gases_5
+		}	
+    }
+}
+
+
+############################
+##### VOL PROTECTORATE #####
+############################
+
+sys_aru_init = {
+    name = "Aru"
+    class = sc_g
+	flags = { vol_protectorate_homeworld vol_protectorate_capital_system canon_map aru_system empire_home_system }
+
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = protectorateFirstFleet
+		log = "Volus Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}
+
+    planet = {
+	    name = "Aru"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { aru_star }
+    }
+
+    planet = {
+        name = "Jak Ser"
+        class = pc_hothouse
+        orbit_distance = 100
+        orbit_angle = 26
+        has_ring = no
+        size = 25
+    }
+
+    planet = {
+        name = "Irune"
+        class = pc_ammonia
+        orbit_distance = 100
+        orbit_angle = 251
+        size = 25
+		has_ring = no		
+		starting_planet = yes
+		deposit_blockers = none		
+		modifiers = none
+		entity = "ammonia_continental_planet_09_entity"
+		flags = { irune_planet volus_homeworld subclass_world }
+		init_effect = {
+			log = "Volus Homeworld Spawned"
+			save_global_event_target_as = parnitha_system_thessia
+
+			prevent_anomaly = yes
+			set_global_flag = volus_homeworld_spawned
+
+			create_species = { 
+				name = "Volus"
+				class = VOL
+				portrait = btr_volus
+				namelist = btr_volus
+				homeworld = THIS 
+				traits = { 
+					trait = volus_trait_core
+					trait = volus_trait_clan_based
+					trait = volus_trait_economic_mindset
+					trait = volus_trait_yoqtan_survivor
+					ideal_planet_class = pc_ammonia
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = volusSpecies 
+				event_target:volusSpecies = { log = "volusSpecies = [This.GetName]" }
+				log = "Volus Species Created"
+			}
+			create_country = {
+				name = "NAME_Vol_Protectorate"
+				adjective = "PRESCRIPTED_adjective_vol_protectorate"
+				authority = auth_corporate
+				civics = { 
+					civic = volus_galactic_regulators
+					civic = volus_mercantile_supremacy 
+				}
+				species = event_target:volusSpecies
+				name_list = "btr_volus"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_pacifist" 
+					ethic = "ethic_egalitarian" 
+					ethic = "ethic_materialist" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="vol_protectorate.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_17.dds"
+					}
+					colors={
+						"eecolor1668"
+						"eecolor1"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = vol_protectorate_origin
+				effect = {
+					save_global_event_target_as = vol_protectorate
+					add_resource = {
+						energy = 3100
+						minerals = 1240
+						alloys = 950
+						influence = 100
+						food = 2150
+						consumer_goods = 1400
+						volatile_motes = 100
+						exotic_gases = 100
+						rare_crystals = 100
+					}	
+					add_modifier = {
+						modifier = volus_corporate_dominance
+						days = -1
+					}									
+				}
+			}
+			create_colony = {
+				owner = event_target:vol_protectorate
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes	
+			clear_blockers = yes				
+			generate_vol_irune_deposits = yes				
+			generate_vol_irune_capitol_buildings = yes
+			generate_vol_irune_pops = yes
+			generate_vol_pro_science_ships = yes
+			event_target:vol_protectorate = {
+				set_country_flag = vol_protectorate
+				set_graphical_culture = mammalian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Vol Protectorate Empire Spawned"				
+			}				
+			set_name = "Irune"
+			add_modifier = {
+				modifier = prairie_world
+				days = -1
+			}
+		}
+	}
+	
+    planet = {
+        name = "Locil"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 235
+        has_ring = no
+        size = 33
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+			add_deposit = d_trade_value_6
+		}	
+        moon = {
+			name = "Locil a"
+            class = pc_barren
+            orbit_distance = 20
+            orbit_angle = 200
+            has_ring = no
+			size = 5
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+			}	
+	    }
+        moon = {
+			name = "Locil b"
+            class = pc_frozen
+            orbit_distance = 5
+            orbit_angle = 239
+            has_ring = no
+			size = 5
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+			}	
+        }
+        moon = {
+			name = "Locil c"
+            class = pc_barren_cold
+            orbit_distance = 5
+            orbit_angle = 106
+            has_ring = no
+			size = 4
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+			}	
+        }
+		moon = {
+			name = "Locil d"
+            class = pc_iron
+            orbit_distance = 5
+            orbit_angle = 106
+            has_ring = no
+			size = 4
+			init_effect = {
+				add_deposit = d_minerals_7
+			}	
+        }
+    }
+
+    planet = {
+        name = "Cherk Sab"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 228
+        has_ring = no
+        size = 30
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+    planet = {
+        name = "Doldit"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 74
+        has_ring = no
+        size = 28
+		moon = {
+			name = "Doldit a"
+            class = pc_barren_cold_station
+            orbit_distance = 5
+            orbit_angle = 106
+            has_ring = no
+			size = 4
+			init_effect = {
+				if = {
+					limit = { 
+						exists = event_target:vol_protectorate
+					}
+					set_planet_flag = planetary_station
+					set_planet_flag = civil_station
+					set_deposit_flags = yes
+					create_colony = {
+						owner = event_target:vol_protectorate
+					}
+					generate_btr_start_deposits_and_blockers = yes
+					generate_vol_doldita_colony_buildings = yes	
+					generate_vol_doldit_pops = yes
+					clear_blockers = yes
+					prevent_anomaly = yes
+					add_deposit = d_barren_cold_blocker
+					add_deposit = d_mineral_lodes
+					log = "Vol Protectorate Colony - 'Doldit a' Spawned"
+				}
+				# add_deposit = d_trade_value_3
+				# add_deposit = d_society_3
+				# add_deposit = d_engineering_3
+				# add_deposit = d_physics_3
+			}
+        }
+    }
+}
+
+###############################
+##### ILLUMINATED PRIMACY #####
+###############################
+
+sys_kanala_init = {
+    name = "Kanala"
+    class = sc_a
+	flags = { illuminated_primacy_homeworld illuminated_primacy_capital_system canon_map kanala_system empire_home_system }
+	init_effect = { 
+    	generate_home_system_resources = yes
+        save_global_event_target_as = primacyFirstFleet
+		log = "Hanar Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 325
+	}	
+
+    planet = {
+	    name = "Kanala"
+        class = pc_a_star
+        orbit_distance = 0
+        size = 20
+		flags = { kanala_star }
+    }
+
+    planet = {
+        name = "Jenakala"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 334
+        has_ring = no
+        size = 12
+        init_effect = {
+			add_deposit = d_minerals_8
+            add_deposit = d_rare_crystals_2
+		}	
+    }
+
+    planet = {
+        name = "Kahje"
+        class = pc_ocean
+        orbit_distance = 125
+        orbit_angle = 169
+        has_ring = no
+        size = 20
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { kahje_planet hanar_homeworld subclass_world }
+		init_effect = {
+			log = "Hanar Homeworld Spawned"
+			save_global_event_target_as = kanala_system_kahje
+
+			prevent_anomaly = yes
+			set_global_flag = hanar_homeworld_spawned
+
+                create_species = { 
+                    name = "Hanar"
+                    class = HAN
+                    portrait = hanar
+                    namelist = btr_hanar
+                    homeworld = THIS 
+                    traits = { 
+                        trait = hanar_trait_core
+                        trait = hanar_trait_non_bipedal
+                        trait = hanar_trait_toxic_secretions
+                        trait = hanar_trait_water_bound
+                        ideal_planet_class = pc_ocean
+                    }
+                }
+				last_created_species = { 
+					save_global_event_target_as = hanarSpecies 
+					event_target:hanarSpecies = { log = "hanarSpecies = [This.GetName]" }
+					log = "Hanar Species Created"
+				}
+				create_country = {
+					name = "NAME_Illuminated_Primacy"
+					adjective = "PRESCRIPTED_adjective_illuminated_primacy"
+					authority = auth_oligarchic
+					civics = { 
+                        civic = hanar_first_from_the_enkindlers 
+                        civic = hanar_enkindler_zealots 
+                    }
+					species = event_target:hanarSpecies
+					name_list = "btr_hanar"
+					ship_prefix = ""
+					ethos = { 
+                        ethic = "ethic_pacifist" 
+                        ethic = "ethic_fanatic_spiritualist" 
+                    }
+					flag = {
+                        icon={
+                            category="beyondtherelays"
+                            file="illuminated_primacy.dds"
+                        }
+                        background={
+                            category="backgrounds"
+                            file="sinus.dds"
+                        }
+                        colors={
+                            "eecolor1777"
+                            "eecolor1830"
+                            "null"
+                            "null"
+                        }
+					}
+					type = default
+					origin = illuminated_primacy_origin
+					effect = {
+						save_global_event_target_as = illuminated_primacy
+						add_resource = {
+							energy = 1850
+							minerals = 1240
+							alloys = 440
+							influence = 100
+							food = 2700
+							consumer_goods = 1000
+							volatile_motes = 100
+							exotic_gases = 100
+							rare_crystals = 100
+						}
+						add_modifier = {
+							modifier = illuminated_primacy_compact
+							days = -1
+						}
+					}
+				}	
+				create_colony = {
+					owner = event_target:illuminated_primacy
+				}
+				set_capital = yes
+				generate_btr_start_deposits_and_blockers = yes						
+				clear_blockers = yes
+				generate_han_kahje_deposits = yes					
+				generate_han_kahje_capitol_buildings = yes
+				generate_han_kahje_pops = yes
+				generate_han_kahje_drell_pops = yes
+				generate_illuminated_pri_science_ships = yes
+				event_target:illuminated_primacy = {
+					set_country_flag = illuminated_primacy
+					set_graphical_culture = aquatic_01
+					create_starting_leaders = yes
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					log = "Illuminated Primacy Empire Spawned"
+				}
+			set_name = "Kahje"
+		}			
+
+        moon = {
+            name = "Libin"
+            class = pc_barren
+            orbit_distance = 20
+            orbit_angle = 134
+            has_ring = no
+            size = 5
+            init_effect = {
+                set_planet_flag = libin_codex
+            }
+        }
+        moon = {
+            name = "Nalynder"
+            class = pc_iron
+            orbit_distance = 5
+            orbit_angle = 81
+            has_ring = no
+            size = 7
+            init_effect = {
+                add_deposit = d_rare_crystals_1
+                add_deposit = d_zro_deposit_2
+                add_deposit = d_minerals_2
+                set_planet_flag = nalynder_codex
+            }
+        }
+        moon = {
+            name = "Iyuhum"
+            class = pc_iron
+            orbit_distance = 5
+            orbit_angle = 200
+            has_ring = no
+            size = 4
+            init_effect = {
+                add_deposit = d_minerals_5
+                set_planet_flag = iyuhum_codex
+                #create_archaeological_site = btr_site_prothean_beacon_hanar
+            }
+        }
+    }
+
+    planet = {
+        name = "Hohnle"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 80
+        has_ring = no
+        size = 8
+        init_effect = {
+            set_planet_flag = hohnle_codex
+            add_deposit = d_exotic_gases_2
+            add_deposit = d_minerals_7
+        }
+    }
+
+    planet = {
+        name = "Pohdenar"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 257
+        has_ring = no
+        size = 27
+        init_effect = {
+            set_planet_flag = pohdenar_codex
+        }
+    }
+}
+
+#############################
+##### BATARIAN HEGEMONY #####
+#############################
+
+sys_harsa_init = {
+    name = "Harsa"
+    class = sc_g
+	flags = { hegemony_kharshan_homeworld hegemony_of_kharshan_capital_system canon_map harsa_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = hegemonSecondFleet
+		log = "Batarian Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}	
+
+    planet = {
+		name = "Harsa"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 15
+		flags = { harsa_star }
+    }
+
+    planet = {
+        name = "Dezda"
+        class = pc_barren
+        orbit_distance = 100
+        orbit_angle = 219
+        size = 3
+        has_ring = no
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_2
+		}	
+    }
+
+    planet = {
+        name = "Khar'shan"
+        class = pc_savannah
+        orbit_distance = 100
+        orbit_angle = 130
+        size = 13
+        has_ring = no			
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { kharshan_planet batarian_homeworld subclass_world }
+		entity = "steppe_planet_02_entity"
+		init_effect = {
+			log = "Batarian Homeworld Spawned"
+			save_global_event_target_as = harsa_system_kharshan
+
+			prevent_anomaly = yes
+			set_global_flag = batarian_homeworld_spawned
+
+			create_species = { 
+				name = "Batarian"
+				class = BAT
+				portrait = btr_batarian
+				namelist = btr_batarian
+				homeworld = THIS 
+				traits = { 
+					trait = batarian_trait_core
+					trait = batarian_trait_shrewd_business
+					trait = batarian_trait_karma_chameleon
+					trait = batarian_trait_four_eyed
+				ideal_planet_class = "pc_savannah"
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = batarianSpecies 
+				event_target:batarianSpecies = { log = "batarianSpecies = [This.GetName]" }
+				log = "Batarian Species Created"
+			}
+			create_country = {
+				name = "NAME_Hegemony_of_Khar'shan"
+				adjective = "PRESCRIPTED_adjective_hegemony_of_kharshan"
+				authority = auth_dictatorial
+				civics = { 
+					civic = batarian_all_mighty_state 
+					civic = batarian_caste_system 
+				}
+				species = event_target:batarianSpecies
+				name_list = "btr_batarian"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_fanatic_authoritarian" 
+					ethic = "ethic_xenophobe" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="hegemony_of_kharshan.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_57.dds"
+					}
+					colors={
+						"eecolor1809"
+						"eecolor1801"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = hegemony_of_kharshan_origin
+				effect = {
+					save_global_event_target_as = hegemony_of_kharshan
+					add_resource = {
+						energy = 1200
+						minerals = 600
+						alloys = 340
+						influence = 100
+						food = 1700
+						consumer_goods = 450
+						unity = 450
+						volatile_motes = 100
+						exotic_gases = 100
+						rare_crystals = 100
+					}	
+					add_modifier = {
+						modifier = batarian_syllian_verge
+						days = -1
+					}	
+					add_modifier = {
+						modifier = batarian_sanctioned_astropolitics
+						days = -1
+					}					
+				}
+			}
+			create_colony = {
+				owner = event_target:hegemony_of_kharshan
+			}	
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes				
+			generate_bat_kharshan_deposits = yes
+			generate_bat_kharshan_capitol_buildings = yes
+			generate_bat_kharshan_pops = yes				
+			generate_hegemony_khar_science_ships = yes
+			event_target:hegemony_of_kharshan = {
+				set_country_flag = hegemony_of_kharshan
+				set_graphical_culture = reptilian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Hegemony of Khar'shan Empire Spawned"				
+			}
+			set_name = "Khar'shan"
+			add_modifier = {
+				modifier = steppe_world
+				days = -1
+			}
+		}		
+    }
+
+    planet = {
+        name = "Verush"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 223
+        has_ring = yes
+		size = 33
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+			}
+
+		moon = {
+			name = "Verush a"
+			class = pc_iron
+			orbit_distance = 20
+			size = 8
+		}
+		moon = {
+			name = "Verush b"
+			class = pc_iron
+			orbit_distance = 5
+			size = 4
+		}
+		moon = {
+			name = "Bira"
+			class = pc_frozen_station_moon_10
+			orbit_distance = 5
+			size = 10
+			init_effect = {
+				if = {
+					limit = { 
+						exists = event_target:hegemony_of_kharshan
+					}
+					set_planet_flag = planetary_station
+					set_planet_flag = civil_station
+					set_deposit_flags = yes
+					create_colony = {
+						owner = event_target:hegemony_of_kharshan
+					}
+					generate_bat_bira_colony_buildings = yes
+					generate_bat_bira_pops = yes
+					clear_blockers = yes
+					prevent_anomaly = yes
+					add_deposit = d_frozen_blocker
+					add_deposit = d_cryogazers_valley
+				}	
+			}
+		}				
+    }
+
+    planet = {
+        name = "Ilem"
+        class = pc_frozen
+        orbit_distance = 100
+        orbit_angle = 157
+        size = 5
+        has_ring = no
+		init_effect = {
+			add_deposit = d_engineering_3
+		}	
+    }
+
+    planet = {
+        name = "Spekilas"
+        class = pc_iron
+        orbit_distance = 100
+        orbit_angle = 97
+        size = 19
+        has_ring = no
+		init_effect = {
+			add_deposit = d_physics_4
+		}	
+    }
+}
+
+###########################
+##### KROGAN CHIEFDOM #####
+###########################
+
+sys_aralakh_init = {
+    name = "Aralakh"
+    class = sc_f
+	flags = { aralakh_kahmat_homeworld aralakh_kahmat_capital_system canon_map aralakh_system empire_home_system }
+	
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = aralakhDefenseForce
+		log = "Krogan Home System Spawned"
+	}
+	
+	usage = custom_empire
+	max_instances = 1	
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 280
+	}
+
+    planet = {
+		name = "Aralakh"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 25
+		flags = { aralakh_star }
+    }
+
+    planet = {
+        name = "Durak"
+        class = pc_barren
+        orbit_distance = 80
+        orbit_angle = 211
+        size = 4
+		has_ring = no
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_trade_value_3
+		}	
+	}
+
+    planet = {
+        name = "Kanin"
+        class = pc_barren
+        orbit_distance = 80
+        orbit_angle = 112
+        size = 8
+        has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_3
+			add_deposit = d_physics_2
+			add_deposit = d_rare_crystals_2
+		}	
+	}
+
+    planet = {
+        name = "Kruban"
+        class = pc_hothouse
+        orbit_distance = 80
+        orbit_angle = 163
+        size = 13
+        has_ring = no
+		init_effect = {
+			add_deposit = d_society_3
+			add_deposit = d_rare_crystals_1
+		}	
+	}
+
+    planet = {
+        name = "Tuchanka"
+        class = pc_nuked
+        orbit_distance = 80
+        orbit_angle = 66
+        size = 20
+		has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { tuchanka_planet krogan_homeworld subclass_world }	
+		init_effect = {
+			log = "Krogan Homeworld Spawned"
+			save_global_event_target_as = aralakh_system_tuchanka
+
+			prevent_anomaly = yes
+			set_global_flag = krogan_homeworld_spawned
+
+			create_species = { 
+				name = "Krogan"
+				class = "KRO"
+				portrait = krogan
+				namelist = btr_krogan
+				homeworld = THIS 
+				traits = { 
+					trait = krogan_trait_core
+					trait = krogan_trait_genophage
+					trait = krogan_trait_blood_rage
+					trait = krogan_trait_biological_redundancy
+					ideal_planet_class = "pc_nuked"
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = kroganSpecies
+				event_target:kroganSpecies = { log = "kroganSpecies = [This.GetName]" }
+				log = "Krogan Species Created"
+			}
+			create_country = {
+				name = "NAME_Aralakh_Kahmat"
+				adjective = "PRESCRIPTED_adjective_aralakh_kahmat"
+				authority = auth_dictatorial
+				civics = { 
+					civic = krogan_blood_and_ash 
+					civic = krogan_clans_of_tuchanka 
+				}
+				species = event_target:kroganSpecies
+				name_list = "btr_krogan"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_xenophobe" 
+					ethic = "ethic_militarist" 
+					ethic = "ethic_authoritarian" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="aralakh_kahmat.dds"
+					}
+					background={
+						category="backgrounds"
+						file="camorayure.dds"
+					}
+					colors={
+						"eecolor1853"
+						"eecolor1753"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = aralakh_kahmat_origin
+				effect = {
+					save_global_event_target_as = aralakh_kahmat
+					add_resource = {
+						add_resource = {
+							energy = 400
+							minerals = 200
+							alloys = 200
+							influence = 100
+							food = 400
+							consumer_goods = 100
+							volatile_motes = 50
+							exotic_gases = 50
+							rare_crystals = 50
+						}									
+					}
+					add_modifier = {
+						modifier = krogan_no_enemy_too_great
+						days = -1
+					}	
+				}
+			}
+			create_colony = {
+				owner = event_target:aralakh_kahmat
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes				
+			clear_blockers = yes
+			generate_kro_tuchanka_deposits = yes
+			generate_kro_tuchanka_capitol_buildings = yes
+			generate_kro_tuchanka_pops = yes				
+			event_target:aralakh_kahmat = {
+				set_country_flag = aralakh_kahmat
+				set_graphical_culture = reptilian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Aralakh Kahmat Empire Spawned"						
+			}
+			set_name = "Tuchanka"
+		}			
+	}
+
+    planet = {
+        name = "Ruam"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 44
+        size = 36
+		has_ring = no
+		flags = { ruam_planet subclass_world }
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+    planet = {
+        name = "Vaul"
+        class = pc_gas_giant
+        orbit_distance = 80
+        orbit_angle = 147
+        size = 37
+        has_ring = no
+		flags = { vaul_planet subclass_world }
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+		}	
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "inner_council_sector_4_secondaryrelay" 
+			name = "Inner Secondary - Sector 4 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+###############################
+##### REMNANTS OF RAKHANA #####
+###############################
+
+sys_pompeii_init = {
+    name = "Pompeii"
+    class = sc_g
+	flags = { remnants_of_rakhana_homeworld remnants_of_rakhana_capital_system canon_map pompeii_system empire_home_system }
+	
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Drell Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+	    name = "Pompeii"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { pompeii_star }
+    }
+	
+	planet = {
+		name = "Rakhana"
+		class = pc_desert
+		orbit_distance = 150
+		size = 18
+		entity = "mephitic_desert_planet_12_entity"
+		flags = { rakhana_planet drell_homeworld subclass_world }
+		init_effect = {
+			log = "Drell Homeworld Spawned"
+			save_global_event_target_as = pompeii_system_rakhana
+
+			prevent_anomaly = yes
+			set_global_flag = drell_homeworld_spawned
+
+			create_species = { 
+				name = "Drell"
+				class = DRE
+				portrait = drell
+				namelist = btr_drell
+				homeworld = THIS 
+				traits = { 
+					trait = drell_trait_core
+					trait = drell_trait_eidetic_memory
+					trait = drell_trait_hardened_survivors
+					trait = drell_trait_nomadic_warriors
+					ideal_planet_class = pc_desert
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = drellSpecies 
+				event_target:drellSpecies = { log = "drellSpecies = [This.GetName]" }
+				log = "Drell Species Created"
+			}
+			create_country = {
+				name = "NAME_Remnants_of_Rakhana"
+				adjective = "PRESCRIPTED_adjective_remnants_of_rakhana"
+				authority = auth_oligarchic
+				civics = { 
+					civic = remnants_rak_survival_of_the_fittest
+					civic = remnants_rak_liberty_of_the_sands
+				}
+				species = event_target:drellSpecies
+				name_list = "btr_drell"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_spiritualist" 
+					ethic = "ethic_egalitarian" 
+					ethic = "ethic_militarist" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="remnants_of_rakhana.dds"
+					}
+					background={
+						category="backgrounds"
+						file="00_solid.dds"
+					}
+					colors={
+						"dark_green"
+						"dark_green"
+						"null"
+						"null"
+					}
+				}
+				type = primitive				
+				origin = remnants_of_rakhana_origin
+				effect = {
+					save_global_event_target_as = remnants_of_rakhana
+					add_resource = {
+						energy = 300
+						minerals = 200
+						alloys = 200
+						influence = 100
+						food = 150
+						consumer_goods = 100
+					}
+					add_modifier = {
+						modifier = drell_law_of_wastes
+						days = -1
+					}	
+				}
+			}
+			create_colony = {
+				owner = event_target:remnants_of_rakhana
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_dre_rakhana_deposits = yes
+			generate_dre_rahkana_capitol_buildings = yes
+			generate_dre_rakhana_pops = yes
+			event_target:remnants_of_rakhana = {
+				set_country_flag = remnants_of_rakhana
+				set_graphical_culture = molluscoid_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Remnants of Rakhana Empire Spawned"
+			}
+			set_name = "Rakhana"
+			add_modifier = {
+				modifier = dust_world
+				days = -1
+			}
+		}			
+	}
+
+	planet = {
+		name = "Kahtack"
+		class = pc_iron
+		orbit_distance = 150
+		size = 8
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_7
+		}	
+	}
+
+	planet = {
+		name = "Erusa"
+		class = pc_gas_giant
+		orbit_distance = 150
+		size = 34
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+	}	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "inner_council_sector_1_secondaryrelay" 
+			name = "Inner Secondary - Sector 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+##########################
+##### VORCHA CLANDOM #####
+##########################
+
+sys_kyzil_init = {
+    name = "Kyzil"
+    class = sc_k
+	flags = { vorcha_clandom_homeworld vorcha_clandom_capital_system canon_map kyzil_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Vorcha Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+	    name = "Kyzil"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 15
+		flags = { kyzil_star }
+    }
+
+    planet = {
+        name = "Naskral"
+        class = pc_barren_station
+        orbit_distance = 100
+        orbit_angle = 331
+        has_ring = no
+		size = 4
+		init_effect = {
+			prevent_anomaly = yes
+
+			create_species = { 
+				name = "Vorcha"
+				class = VOR
+				portrait = vorcha
+				namelist = btr_vorcha
+				homeworld = THIS 
+				traits = { 
+					trait = vorcha_trait_core
+					trait = vorcha_trait_surreal_adaptation
+					trait = vorcha_trait_spontaneous_conception
+					trait = vorcha_trait_philistine_horde
+					ideal_planet_class = "pc_primal"
+				}
+			}			
+			last_created_species = { 
+				save_global_event_target_as = vorchaSpecies 
+				event_target:vorchaSpecies = { log = "vorchaSpecies = [This.GetName]" }
+				log = "Vorcha Species Created"
+			}
+			create_country = {
+				name = "NAME_Vorcha_Clandom"
+				adjective = "PRESCRIPTED_adjective_vorcha_clandom"
+				authority = auth_oligarchic
+				civics = { 
+					civic = vorcha_aagh 
+					civic = vorcha_we_take_now 
+				}
+				species = event_target:vorchaSpecies
+				name_list = "btr_vorcha"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_xenophobe" 
+					ethic = "ethic_fanatic_militarist" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="vorcha_clandom.dds"
+					}
+					background={
+						category="backgrounds"
+						file="bloodsplatter2.dds"
+					}
+					colors={
+						"eecolor1351"
+						"eecolor2001"
+						"null"
+						"null"
+					}
+				}
+				type = minor_empire
+				origin = vorcha_origin
+				effect = {
+					save_global_event_target_as = vorcha_clandom
+					add_resource = {
+						energy = 620
+						minerals = 250
+						alloys = 250
+						influence = 100
+						food = 750
+						consumer_goods = 300
+					}
+					add_modifier = {
+						modifier = vorcha_primitive_pests
+						days = -1
+					}
+				}
+			}
+			create_colony = {
+				owner = event_target:vorcha_clandom
+			}	
+			set_planet_flag = planetary_station
+			set_planet_flag = mining_station
+			set_deposit_flags = yes
+			generate_vor_naskral_buildings = yes
+			generate_vor_naskral_pops = yes
+			clear_blockers = yes
+			prevent_anomaly = yes
+			add_deposit = d_barren_blocker
+			add_deposit = d_mineral_lodes
+			event_target:vorcha_clandom = {
+				set_country_flag = vorcha_clandom
+				set_graphical_culture = reptilian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Vorcha Clandom Empire Spawned"
+
+			}
+			set_name = "Naskral"
+			#add_deposit = d_rare_crystals_1 - commented out for reminder to activate in sandbox mode
+			#add_deposit = d_minerals_3 - commented out for reminder to activate in sandbox mode
+		 }
+    }
+
+    planet = {
+        name = "Heshtok"
+        class = pc_primal
+        orbit_distance = 100
+        orbit_angle = 251
+        size = 9
+        has_ring = no
+		starting_planet = yes
+		modifiers = none				
+		flags = { heshtok_planet vorcha_homeworld subclass_world }
+		init_effect = {
+			log = "Vorcha Homeworld Spawned"
+			save_global_event_target_as = kyzil_system_heshtok
+
+			prevent_anomaly = yes
+			set_global_flag = vorcha_homeworld_spawned
+			create_colony = {
+				owner = event_target:vorcha_clandom
+			}
+			set_capital = yes
+			log = "Vorcha Capital Set"
+			random_country = {
+				limit = { 
+					has_country_flag = vorcha_clandom
+				}
+				owner_species = {
+					set_species_homeworld = prevprev
+				}
+				log = "Vorcha Species Homeworld Set"
+			}
+			generate_btr_start_deposits_and_blockers = yes	
+			clear_blockers = yes		
+			generate_vor_heshtok_deposits = yes
+			generate_vor_heshtok_buildings = yes
+			generate_vor_heshtok_pops = yes
+			set_name = "Heshtok"
+		}	
+    }
+
+    planet = {
+        name = "Parasc"
+        class = pc_frozen_station
+        orbit_distance = 100
+        orbit_angle = 165
+        has_ring = no
+		size = 5
+		init_effect = {
+			create_colony = {
+				owner = event_target:vorcha_clandom
+			}
+			set_planet_flag = planetary_station
+			set_planet_flag = civil_station
+			set_deposit_flags = yes	
+			generate_vor_parasc_buildings = yes			
+			generate_vor_parasc_pops = yes
+			prevent_anomaly = yes	
+			clear_blockers = yes
+			add_deposit = d_frozen_blocker
+			add_deposit = d_cryogazers_valley
+			set_name = "Parasc"
+		}
+    }
+
+    planet = {
+        name = "Lihrat"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 101
+        has_ring = no
+		size = 37
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+    planet = {
+        name = "Rustaka"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 113
+        has_ring = no
+		size = 29
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+}
+
+###############################
+#### SED'RIICAE COLLECTIVE ####
+###############################
+
+sys_nosikae_init = {
+    name = "Nosikae"
+    class = sc_k_giant
+	flags = { sedriicae_collective_homeworld sedriicae_collective_capital_system canon_map nosikae_system empire_home_system }
+	init_effect = {
+		generate_home_system_resources = yes		
+		save_global_event_target_as = collectivefirstFleet
+		log = "Forayan Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+		name = "Nosikae"
+        class = pc_k_giant_star
+        orbit_distance = 0
+        size = 35
+		flags = { nosikae_star }
+    }
+
+	planet = {
+		name = "Sed'riicae"
+		class = pc_dextro_desert
+		orbit_distance = 125
+		size = 24
+		has_ring = no
+		starting_planet = yes
+		flags = { sedriicae_planet forayan_homeworld subclass_world }
+		init_effect = {
+			log = "Forayan Homeworld Spawned"
+			save_global_event_target_as = nosikae_system_sedriicae
+
+			prevent_anomaly = yes
+			set_global_flag = forayan_homeworld_spawned
+
+			create_species = { 
+				name = "Forayan"
+				class = ART
+				portrait = art3
+				namelist = btr_forayan
+				homeworld = THIS 
+				traits = { 
+					trait = forayan_trait_core
+					trait = forayan_trait_forayan_happiness
+					trait = forayan_trait_insectoids
+					trait = forayan_trait_gender_castes
+					ideal_planet_class = "pc_dextro_arid"
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = forayanSpecies 
+				event_target:forayanSpecies = { log = "forayanSpecies = [This.GetName]" }
+				log = "Forayan Species Created"
+			}
+			create_country = {
+				name = "Sed'riicae Collective"
+				adjective = "PRESCRIPTED_adjective_sedriicae_collective"
+				authority = auth_imperial
+				civics = { 
+					civic = sedriicae_collective_totalitarian_state 
+					civic = sedriicae_collective_status_intellectus 
+				}
+				species = event_target:forayanSpecies
+				name_list = btr_forayan
+				ship_prefix = "PRESCRIPTED_ship_prefix_sedriicae_collective"
+				ethos = { 
+					ethic = "ethic_pacifist" 
+					ethic = "ethic_fanatic_authoritarian" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="sedriicae_collective.dds"
+					}
+					background={
+						category="backgrounds"
+						file="double_triangles.dds"
+					}
+					colors={
+						"eecolor1702"
+						"eecolor1657"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = sedriicae_collective_origin
+				effect = {
+					save_global_event_target_as = sedriicae_collective
+					add_resource = {
+						energy = 1150
+						minerals = 2500
+						alloys = 1350
+						influence = 100
+						food = 1350
+						consumer_goods = 800
+						volatile_motes = 100
+						exotic_gases = 100
+						rare_crystals = 100						
+					}
+					add_modifier = {
+						modifier = sedriicae_symptoms_stagnation
+						days = -1
+					}					
+				}
+			}
+			create_colony = {
+				owner = event_target:sedriicae_collective
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes				
+			clear_blockers = yes
+			generate_for_sedriicae_deposits = yes				
+			generate_for_sedriicae_capitol_buildings = yes
+			generate_for_sedriicae_pops = yes
+			generate_sedriicae_col_science_ships = yes
+			event_target:sedriicae_collective = {
+				set_country_flag = sedriicae_collective
+				set_graphical_culture = arthropoid_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Sed'riicae Collective Empire Spawned"
+			}
+			set_name = "Sed'riicae"
+		}			
+	}
+	
+	planet = {
+		name = "Xhentura"
+		class = pc_barren
+		orbit_distance = 125
+		size = 10
+		has_ring = no
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}	
+	}
+	
+	planet = {
+		name = "Iciinae"
+		class = pc_hothouse
+		orbit_distance = 125
+		size = 20
+		has_ring = yes
+		init_effect = {
+			add_deposit = d_engineering_5
+			add_deposit = d_physics_5
+		}	
+	}
+
+	planet = {
+		name = "Lesiik"
+		class = pc_frozen
+		orbit_distance = 125
+		size = 12
+		has_ring = no
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+		}	
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_6_secondaryrelay" 
+			name = "Eyes of Mizhuna Secondary Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+##########################
+##### LYSTHENI ORDER #####
+##########################
+
+sys_taesin_init = {
+    name = "Taesin"
+    class = sc_g
+	flags = { lystheni_order_homeworld lystheni_order_capital_system canon_map taesin_system empire_home_system }
+
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = lystheniFirstFleet
+		log = "Lystheni Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1	
+
+    planet = {
+	    name = "Taesin"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 20
+		flags = { taesin_star}
+    }
+
+    planet = {
+        name = "Lorel"
+        class = pc_hothouse
+        orbit_distance = 150
+        orbit_angle = 92
+        has_ring = no
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}	
+    }
+
+    planet = {
+        name = "Sepkai"
+        class = pc_tropical
+        orbit_distance = 150
+        orbit_angle = 62
+        has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { sepkai_planet lystheni_homeworld subclass_world }
+		entity = "biolum_planet_08_entity"	
+		init_effect = {
+			log = "Lystheni Homeworld Spawned"
+			save_global_event_target_as = taesin_system_sepkai
+
+			prevent_anomaly = yes
+			set_global_flag = lystheni_homeworld_spawned
+
+			create_species = { 
+				name = "Lystheni"
+				class = LYS
+				portrait = lystheni
+				namelist = btr_lystheni
+				homeworld = THIS 
+				traits = { 
+					trait = lystheni_trait_core
+					trait = lystheni_trait_divine_duty
+					trait = lystheni_trait_law_of_one
+					trait = lystheni_trait_unimpeded_minds
+					ideal_planet_class = pc_tropical
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = lystheniSpecies 
+				event_target:lystheniSpecies = { log = "lystheniSpecies = [This.GetName]" }
+				log = "Lystheni Species Created"
+			}
+			create_country = {
+				name = "NAME_Lystheni_Order"
+				adjective = "PRESCRIPTED_adjective_lystheni_order"
+				authority = "auth_oligarchic"
+				civics = { 
+					civic = lystheni_order_thirteenth_promise 
+					civic = lystheni_order_divine 
+				}
+				species = event_target:lystheniSpecies
+				name_list = "btr_salarian"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_militarist" 
+					ethic = "ethic_fanatic_spiritualist" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="lystheni_order.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_32.dds"
+					}
+					colors={
+						"eecolor1668"
+						"eecolor1868"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = lystheni_order_origin
+				effect = {
+					save_global_event_target_as = lystheni_order
+					add_resource = {
+						energy = 860
+						minerals = 400
+						alloys = 250
+						influence = 100
+						food = 1000
+						consumer_goods = 400
+						volatile_motes = 75
+						exotic_gases = 75
+						rare_crystals = 75
+					}
+					add_modifier = {
+						modifier = lystheni_twelve_promises
+						days = -1
+					}
+				}
+			}
+			create_colony = {
+				owner = event_target:lystheni_order
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_lys_sepkai_deposits = yes
+			generate_lys_sepkai_capitol_buildings = yes
+			generate_lys_sepkai_pops = yes
+			generate_lystheni_ord_science_ships = yes
+			event_target:lystheni_order = {
+				set_country_flag = lystheni_order
+				set_graphical_culture = reptilian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Lystheni Order Empire Spawned"				
+			}
+			set_name = "Sepkai"
+			add_modifier = {
+				modifier = biolum_world
+				days = -1
+			}
+		}			
+		moon = {
+			name = "Nonau"
+			class = pc_barren
+			orbit_distance = 20
+			size = 7
+			init_effect = {
+				add_deposit = d_minerals_8
+				add_deposit = d_zro_deposit_1
+			}	
+		}
+		moon = {
+			name = "Kestor"
+			class = pc_iron
+			orbit_distance = 5
+			size = 4
+			init_effect = {
+				add_deposit = d_rare_crystals_2
+			}	
+		}		
+		moon = {
+			name = "Leojin"
+			class = pc_frozen
+			orbit_distance = 5
+			size = 2
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+				add_deposit = d_minerals_3
+			}	
+		}			
+    }
+
+    planet = {
+        name = "Jorio"
+        class = pc_gas_giant
+        orbit_distance = 150
+        orbit_angle = 163
+        has_ring = yes
+		init_effect = {
+			add_deposit = d_exotic_gases_4
+		}	
+    }
+}
+
+###########################
+##### GOTHONES REMNANT#####
+###########################
+
+sys_ultio_init = {
+    name = "Ultio"
+    class = sc_o_super
+	max_instances = 1
+
+	flags = { gothones_remnant_homeworld gothones_remnant_capital_system canon_map ultio_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = gothonesFirstFleet
+		log = "Gothones Home System Spawned"
+	}
+
+	usage = custom_empire
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 125
+	}
+
+    planet = {
+		name = "Ultio"
+        class = pc_o_super_star
+        orbit_distance = 0
+        size = 25
+		flags = { ultio_star }
+		init_effect = {
+			add_deposit = d_physics_4
+		}	
+    }
+
+    planet = {
+        name = "Vis"
+        class = pc_molten
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = no
+		size = 10
+		init_effect = {
+			add_deposit = d_minerals_3
+			add_deposit = d_engineering_3
+		}	
+    }
+
+	
+    planet = {
+        name = "Mollitiam"
+        class = pc_molten
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = no
+		size = 17
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}	
+    }
+
+	planet = {
+        name = "Vindicta"
+        class = pc_tropical
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = no
+		size = 22
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "biolum_planet_03_entity"
+		flags = { vindicta_planet gothones_homeworld subclass_world }
+		init_effect = {
+			log = "Gothones Homeworld Spawned"
+			save_global_event_target_as = ultio_system_vindicta
+
+			prevent_anomaly = yes
+			set_global_flag = gothones_homeworld_spawned
+
+			create_species = { 
+				name = "Gothones"
+				class = GOT
+				portrait = gothones
+				namelist = btr_gothones
+				homeworld = THIS 
+				traits = { 
+					trait = gothones_trait_core
+					trait = gothones_trait_trials_of_vindicta
+					trait = gothones_trait_eco_reverence
+					trait = gothones_trait_survivalists
+					ideal_planet_class = pc_tropical
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = gothonesSpecies 
+				event_target:gothonesSpecies = { log = "gothonesSpecies = [This.GetName]" }
+				log = "Gothones Species Created"
+			}
+			create_country = {
+				name = "NAME_Gothones_Remnant"
+				adjective = "PRESCRIPTED_adjective_gothones_remnant"
+				authority = auth_democratic
+				civics = { 
+					civic = gothones_cooperative_reciprocity 
+					civic = gothones_braves_of_vindicta 
+				}
+				species = event_target:gothonesSpecies
+				name_list = "btr_gothones"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_militarist" 
+					ethic = "ethic_fanatic_egalitarian" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="gothones_remnant.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_28.dds"
+					}
+					colors={
+						"eecolor1821"
+						"eecolor1891"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = gothones_remnant_origin
+				effect = {
+					save_global_event_target_as = gothones_remnant
+					add_resource = {
+						energy = 950
+						minerals = 420
+						alloys = 250
+						influence = 100
+						food = 1200
+						consumer_goods = 400
+						volatile_motes = 75
+						exotic_gases = 75
+						rare_crystals = 75							
+					}
+					add_modifier = {
+						modifier = gothones_spartan_survivalism
+						days = -1
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:gothones_remnant
+			}		
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_got_vindicta_deposits = yes
+			generate_got_vindicta_buildings = yes
+			generate_got_vindicta_pops = yes					
+			generate_gothones_rem_science_ships = yes
+			event_target:gothones_remnant = {
+				set_country_flag = gothones_remnant
+				set_graphical_culture = tur_01
+				create_starting_leader = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Gothones Remnant Empire Spawned"				
+			}		
+			set_name = "Vindicta"
+			add_modifier = {
+				modifier = biolum_world
+				days = -1
+			}
+		}
+    }
+
+	planet = {
+        name = "Evol"
+        class = pc_gas_giant
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = yes
+		size = 38
+		flags = { evol_planet }
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+			add_deposit = d_society_2
+		}	
+    }
+	
+	planet = {
+        name = "Absolutus"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 313
+        has_ring = no
+		size = 30
+		flags = { absolutus_planet }
+		init_effect = {
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_minerals_7
+		}	
+    }
+}
+
+#########################
+##### MIGRANT FLEET #####
+#########################
+
+
+
+
+
+
+##########################
+##### PARNACK REGIME #####
+##########################
+
+sys_chabtan_init = {
+    name = "Chabtan"
+    class = sc_m_super
+    flags = { parnack_regime_homeworld parnack_regime_capital_system canon_map chabtan_system empire_home_system }
+	init_effect = { 
+			generate_home_system_resources = yes
+			log = "Yahg Home System Spawned"
+	}	
+
+	usage = custom_empire
+	max_instances = 1
+	
+    planet = {
+		name = "Chabtan"	
+        class = pc_m_super_star
+        orbit_distance = 0
+        size = 45
+		has_ring = no
+		flags = { chabtan_star }
+    }
+	
+	planet = {
+		name = "Moscon"
+		class = pc_iron
+		orbit_distance = 125
+		orbit_angle = { min = 1 max = 360 }
+		size = 7
+		has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_3
+			add_deposit = d_rare_crystals_2
+		}	
+
+		moon = {
+			name = "Twuiq"
+			class = pc_frozen
+			orbit_distance = 20
+			orbit_angle = { min = 90 max = 270 }
+			size = 1
+			init_effect = {
+				add_deposit = d_zro_deposit_1
+			}	
+		}
+	}
+
+    planet = {
+        name = "Parnack"
+        class = pc_desert
+        orbit_distance = 125
+		orbit_angle = { min = 40 max = 180 }
+		size = 16
+		has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "badlands_planet_07_entity"
+		flags = { parnack_planet yahg_homeworld subclass_world }
+
+		init_effect = {
+			log = "Yahg Homeworld Spawned"
+			save_global_event_target_as = chabtan_system_parnack
+
+			prevent_anomaly = yes
+			set_global_flag = yahg_homeworld_spawned
+
+			create_species = { 
+				name = "Yahg"
+				class = YAH
+				portrait = yahg
+				namelist = btr_yahg
+				homeworld = THIS 
+				traits = {
+					trait = yahg_trait_core
+					trait = yahg_trait_apex_predators
+					trait = yahg_trait_control_obsessed
+					trait = yahg_trait_truthsayers
+					ideal_planet_class = pc_desert
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = yahgSpecies 
+				event_target:yahgSpecies = { log = "yahgSpecies = [This.GetName]" }
+				log = "Yahg Species Created"
+			}
+			create_country = {
+				name = "NAME_Parnack_Regime"
+				adjective = "PRESCRIPTED_adjective_parnack_regime"
+				authority = auth_dictatorial
+				civics = { 
+					civic = yahg_pack_mentality 
+					civic = yahg_enforced_isolation 
+				}
+				species = event_target:yahgSpecies
+				name_list = btr_yahg
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_fanatic_xenophobe" 
+					ethic = "ethic_militarist" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="parnack_regime.dds"
+					}
+					background={
+						category="backgrounds"
+						file="bloodsplatter.dds"
+					}
+					colors={
+						"eecolor1"
+						"eecolor2001"
+						"null"
+						"null"
+					}
+				}
+				type = primitive 
+				origin = parnack_regime_origin
+				effect = {
+					save_global_event_target_as = parnack_regime_primitive
+					add_resource = {
+						energy = 400
+						minerals = 200
+						alloys = 250
+						influence = 100
+						food = 900
+						consumer_goods = 300
+					}
+					add_modifier = {
+						modifier = parnack_regime_violent_start
+						days = -1
+					}
+				}						
+			}
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_yah_parnack_deposits = yes
+			event_target:parnack_regime_primitive = {
+				set_country_flag = parnack_regime_primitive
+				set_graphical_culture = industrial_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Parnack Regime Primitive Empire Spawned"				
+			}
+			generate_yah_parnack_capitol_buildings = yes
+			generate_yah_parnack_pops = yes
+			create_fleet = { 
+				name = "Krekthor Station" 
+			}
+			last_created_fleet = {
+				set_owner = last_created_country
+				create_ship = {
+					name = "Krekthor Station"
+					design = "NAME_Space_Station"
+				}
+				set_location = PREV
+			}
+			set_name = "Parnack"
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
+		}	
+	}			
+	
+	planet = {
+		name = "Libel"
+		class = pc_carbon
+		orbit_distance = 125
+		orbit_angle = { min = 1 max = 360 }
+		size = 5
+		has_ring = no
+		init_effect = {
+			add_deposit = d_minerals_2
+		}
+	}
+
+    planet = {
+        name = "Noviz"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 126
+        has_ring = no
+		init_effect = {
+			# add_deposit = d_helium_3_3	
+			add_deposit = d_exotic_gases_3
+		}		
+    }	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "attican_traverse_sector_1_secondaryrelay" 
+			name = "Traverse Secondary - Sector 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+##########################
+##### RALOI REPUBLIC #####
+##########################
+
+sys_azedes_init = {
+    name = "Azedes"
+    class = sc_g
+    flags = { raloi_republic_homeworld raloi_republic_capital_system canon_map azedes_system empire_home_system }	
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Raloi Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	planet = {
+		name = "Azedes"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 33
+		flags = { azedes_star }
+    }	
+	
+	planet = {
+		name = "Vess'kur"
+		class = pc_hothouse
+		orbit_distance = 80
+        orbit_angle = 208
+        has_ring = no		
+		size = 12
+		flags = { vesskur_planet }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_minerals_4
+		}
+		moon = {
+			name = "Mass'kur"
+			class = pc_barren
+			orbit_distance = 20
+			size = 4
+			flags = { masskur_planet }
+		}
+	}
+
+	planet = {
+		name = "Turvess"
+		class = pc_dextro_alpine
+		orbit_distance = 80
+        orbit_angle = 140
+		size = 15		
+        has_ring = no		
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "highland_planet_10_entity"
+		flags = { turvess_planet raloi_homeworld subclass_world }
+
+		init_effect = {
+			log = "Raloi Homeworld Spawned"
+			save_global_event_target_as = azedes_system_turvess
+
+			prevent_anomaly = yes
+			set_global_flag = raloi_homeworld_spawned
+
+			create_species = { 
+				name = "Raloi"
+				class = AVI
+				portrait = AVI4
+				namelist = AVI4
+				homeworld = THIS 
+				traits = { 
+					trait = raloi_trait_core
+					trait = raloi_trait_pre_space_ways
+					trait = raloi_trait_weak_immune
+					trait = raloi_trait_avians
+					ideal_planet_class = pc_dextro_alpine
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = raloiSpecies 
+				event_target:raloiSpecies = { log = "raloiSpecies = [This.GetName]" }
+				log = "Raloi Species Created"
+			}
+			create_country = {
+				name = "NAME_Raloi_Republic"
+				adjective = "PRESCRIPTED_adjective_raloi_republic"
+				authority = auth_democratic
+				civics = { 
+					civic = raloi_rep_spreading_our_wings 
+					civic = raloi_rep_birds_of_a_feather 
+				}
+				species = event_target:raloiSpecies
+				name_list = "AVI4"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_fanatic_xenophobe" 
+					ethic = "ethic_militarist" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="raloi_republic.dds"
+					}
+					background={
+						category="backgrounds"
+						file="soleillevant.dds"
+					}
+					colors={
+						"eecolor1508"
+						"bright_yellow"
+						"null"
+						"null"
+					}
+				}
+				type = primitive
+				origin = raloi_rep_origin
+				effect = {
+					save_global_event_target_as = raloi_republic_primitive
+					add_resource = {
+						energy = 450
+						minerals = 200
+						alloys = 250
+						influence = 100
+						food = 1300
+						consumer_goods = 520
+					}
+					add_modifier = {
+						modifier = raloi_catching_up
+						days = -1
+					}
+				}						
+			}
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_ral_turvess_deposits = yes
+			event_target:raloi_republic_primitive = {
+				set_country_flag = raloi_republic_primitive
+				set_graphical_culture = industrial_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Raloi Republic Primitive Empire Spawned"				
+			}
+			generate_ral_turvess_capitol_buildings = yes
+			generate_ral_turvess_pops = yes	
+			set_capital = yes
+			set_name = "Turvess"
+			add_modifier = {
+				modifier = highland_world
+				days = -1
+			}
+		}
+		
+		moon = {
+			name = "Ino"
+			class = pc_barren_cold
+			orbit_distance = 20
+			size = 4
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				clear_planet_modifiers = yes 
+				add_deposit = d_minerals_6
+			}
+		}
+		moon = {
+			name = "Opi"
+			class = pc_iron
+			orbit_distance = 5
+			size = 5
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				clear_planet_modifiers = yes 
+				# add_deposit = d_iridium_3
+				# add_deposit = d_palladium_3
+				add_deposit = d_rare_crystals_3
+			}
+		}		
+	}
+
+	planet = {
+		name = "Iku'ra"
+		class = pc_iron
+		orbit_distance = 80
+        orbit_angle = 84
+        has_ring = no		
+		size = 14
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_minerals_4
+			add_deposit = d_physics_4
+		}
+		moon = {
+			name = "Iku'ra a"
+			class = pc_frozen
+			orbit_distance = 20
+			size = 4
+		}
+		moon = {
+			name = "Iku'ra b"
+			class = pc_iron
+			orbit_distance = 5
+			size = 3
+		}
+		moon = {
+			name = "Iku'ra c"
+			class = pc_asteroid
+			orbit_distance = 5
+			size = 1
+		}		
+	}
+
+	planet = {
+		name = "Vaal"
+		class = pc_gas_giant
+		orbit_distance = 80
+        orbit_angle = 280
+        has_ring = yes		
+		size = 36
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			# add_deposit = d_helium_3_2
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_exotic_gases_2
+		}
+		moon = {
+			name = "Lolp"
+			class = pc_frozen
+			orbit_distance = 20
+			size = 3
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				clear_planet_modifiers = yes 
+				#add_deposit = d_platinum_3
+				add_deposit = d_rare_crystals_4
+			}
+		}
+
+		moon = {
+			name = "Rarkas"
+			class = pc_iron
+			orbit_distance = 5
+			size = 3
+			init_effect = {
+				prevent_anomaly = yes
+				clear_deposits = yes
+				clear_planet_modifiers = yes 
+				add_deposit = d_minerals_6
+			}
+		}		
+
+		moon = {
+			name = "Vaal c"
+			class = pc_frozen
+			orbit_distance = 5
+			size = 3
+		}		
+	}	
+
+	planet = {
+		name = "Sakur"
+		class = pc_gas_giant
+		orbit_distance = 80
+        orbit_angle = 230
+        has_ring = no		
+		size = 35
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			# add_deposit = d_helium_3_4
+			add_deposit = d_exotic_gases_4
+		}
+		moon = {
+			name = "Sakur a"
+			class = pc_frozen
+			orbit_distance = 20
+			size = 3
+		}
+		moon = {
+			name = "Sakur b"
+			class = pc_iron
+			orbit_distance = 5
+			size = 5
+		}
+	}
+
+	planet = {
+		name = "Kuroi"
+		class = pc_methane
+		orbit_distance = 80
+        orbit_angle = 120
+        has_ring = no		
+		size = 5
+		flags = { subclass_world }
+		entity = "methane_ocean_planet_08_entity"
+		init_effect = {
+			add_modifier = {
+				modifier = coldocean_world
+				days = -1
+			}
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_minerals_2
+			add_deposit = d_engineering_4
+		}
+		moon = {
+			name = "Kuroi a"
+			class = pc_iron
+			orbit_distance = 20
+			size = 2
+		}
+		moon = {
+			name = "Kuroi b"
+			class = pc_arctic
+			orbit_distance = 5
+			size = 2
+		}		
+    }    
+	
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "hadesnexus_irtaratrail_primaryrelay" 
+			name = "Hades 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+	
+#######################
+##### RACHNI HIVE #####
+#######################
+
+sys_mullaxul_init = {
+    name = "Mulla Xul"
+    class = sc_k
+	max_instances = 1
+
+	flags = { mullaxul_system rachni_hive_capital_system canon_map empire_home_system }
+
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Rachni Start System Spawned"
+	}	
+
+	usage = custom_empire
+	max_instances = 1
+
+    planet = {
+		name = "Mulla Xul"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		flags = { mullaxul_star }
+    }
+    
+    asteroid_belt = {
+        type = rocky_asteroid_belt
+        radius = 375
+    }
+
+    planet = {
+        name = "Maldor"
+        class = pc_hothouse
+        orbit_distance = 150
+        orbit_angle = 202
+        has_ring = no
+		size = 21
+		init_effect = {
+			# add_deposit = d_poor_iridium_deposits
+			# add_deposit = d_poor_platinum_deposits
+			# add_deposit = d_poor_palladium_deposits
+			# add_deposit = d_poor_mineral_deposits
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_6
+			add_modifier = {
+				modifier = btr_scorching_surface
+				days = -1
+			}
+		}			
+    }
+
+    planet = {
+        name = "Utukku"
+        class = pc_arid
+        orbit_distance = 150
+        orbit_angle = 132
+        has_ring = no
+        size = 17
+		entity = "badlands_planet_06_entity"
+		flags = { utukku_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			set_global_flag = rachni_startworld_spawned
+
+			create_species = { 
+				name = "Rachni"
+				class = RAC
+				portrait = rachni
+				namelist = ART3
+				homeworld = THIS 
+				traits = { 
+					trait = rachni_trait_core
+					trait = rachni_trait_hardened_biology
+					trait = rachni_trait_collective_engineering
+					trait = rachni_trait_wrath_of_the_swarm
+					trait = trait_hive_mind
+					ideal_planet_class = "pc_mephitic"
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = rachniSpecies 
+				event_target:rachniSpecies = { log = "rachniSpecies = [This.GetName]" }
+				log = "Rachni Species Created"
+			}
+			create_country = {
+				name = "Rachni Hive"
+				adjective = "PRESCRIPTED_adjective_rachni_hive"
+				authority = auth_hive_mind
+				civics = { 
+					civic = rachni_hive_del_capo_al_fine 
+					civic = rachni_hive_crescendo 
+				}
+				species = event_target:rachniSpecies
+				name_list = "btr_collectors"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_gestalt_consciousness" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="rachni_hive.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_45.dds"
+					}
+					colors={
+						"eecolor1558"
+						"eecolor1868"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = rachni_hive_origin
+				effect = {
+					save_global_event_target_as = rachni_hive
+					add_resource = {
+						energy = 800
+						minerals = 350
+						alloys = 250
+						influence = 100
+						food = 1540
+						volatile_motes = 100
+						exotic_gases = 100
+						rare_crystals = 100	
+					}
+					add_modifier = {
+						modifier = rachni_choir_sings
+						days = -1
+					}
+				}
+			}
+			create_colony = {
+				owner = event_target:rachni_hive
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes				
+			generate_rac_utukku_deposits = yes
+			generate_rac_utukku_start_buildings = yes
+			generate_rac_utukku_pops = yes
+			event_target:rachni_hive = {
+				set_country_flag = rachni_hive
+				set_graphical_culture = molluscoid_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				log = "Rachni Hive Empire Spawned"				
+			}
+			set_name = "Utukku"
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
+		}
+    }
+	
+	planet = { 
+		name = "Inakhos"
+		class = pc_asteroid
+		orbit_angle = 136
+		orbit_distance = 75
+		size = 1
+		init_effect = {
+			add_deposit = d_minerals_8
+			add_deposit = d_trade_value_3
+		}
+	}	
+
+    planet = {
+        name = "Keph"
+        class = pc_gas_giant
+        orbit_distance = 75
+        orbit_angle = 213
+        has_ring = yes
+		size = 37
+		init_effect = {
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+		}
+    }
+}
+
+sys_maskimxul_init = {
+    name = "Maskim Xul"
+    class = "sc_m"
+	flags = { rachni_hive_homeworld canon_map maskim_xul_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Rachni Home System Spawned"
+	}
+
+    planet = {
+		name = "Maskim Xul"
+        class = "pc_m_star"
+        orbit_distance = 0
+        size = 22
+		flags = { maskim_xul_star }
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+
+    planet = {
+        name = "Suen"
+        class = pc_mephitic
+        orbit_distance = 150
+        orbit_angle = 39
+        size = 7
+        has_ring = no
+		starting_planet = yes
+		deposit_blockers = none		
+		modifiers = none
+		entity = "mephitic_desert_planet_09_entity"
+		flags = { suen_planet rachni_homeworld subclass_world }	
+		init_effect = {
+			log = "Rachni Homeworld Spawned"
+			save_global_event_target_as = maskimxul_system_suen
+
+			set_global_flag = rachni_homeworld_spawned
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = tidal_locked
+				days =-1
+			}
+		}	
+    }
+
+    planet = {
+        name = "Kashshaptu"
+        class = pc_mephitic
+        orbit_distance = 150
+        orbit_angle = 206
+        has_ring = no
+		size = 3
+		entity = "mephitic_arid_planet_10_entity"
+		flags = { subclass_world }
+		init_effect = {
+			add_modifier = {
+				modifier = dust_world
+				days = -1
+			}
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			# add_deposit = d_poor_eezo_deposits
+			# add_deposit = d_average_mineral_deposits
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_minerals_4
+			random_country = {
+				limit = { 
+					has_country_flag = rachni_hive 
+				}
+				owner_species = {
+					set_species_homeworld = prevprev
+				}
+			}
+		}
+    }
+
+    planet = {
+        name = "Damkianna"
+        class = "pc_gas_giant"
+        orbit_distance = 150
+        orbit_angle = 242
+        has_ring = no
+		size = 28
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			# add_deposit = d_helium_3_4
+			add_deposit = d_exotic_gases_3
+		}		
+    }
+}
+
+##########################
+##### GETH CONSENSUS #####
+##########################
+
+sys_tikkun_init = {
+    name = "Tikkun"
+    class = sc_k
+	flags = { geth_consensus_homeworld geth_consensus_capital_system canon_map tikkun_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		save_global_event_target_as = gethFirstFleet
+		log = "Geth/Quarian Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+    planet = {
+		name = "Tikkun"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 20
+		flags = { tikkun_star }
+    }
+	
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+
+    planet = {
+        name = "Rannoch"
+        class = pc_dextro_arid
+        orbit_distance = 100
+		orbit_angle = { min = 40 max = 180 }
+        size = 15
+		has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "mesa_planet_09_entity"
+		flags = { rannoch_planet geth_homeworld quarian_homeworld subclass_world }	
+		init_effect = {
+			log = "Geth/Quarian Homeworld Spawned"
+			save_global_event_target_as = tikkun_system_rannoch
+			
+			prevent_anomaly = yes
+			set_global_flag = geth_homeworld_spawned
+			set_global_flag = quarian_species_homeworld_spawned
+			
+			create_species = { 
+				name = "Geth"
+				class = GTH
+				portrait = geth
+				namelist = btr_geth
+				homeworld = THIS 
+				traits = { 
+					trait = trait_machine_unit
+					trait = geth_trait_core
+					trait = geth_trait_linked_consciousness
+					trait = geth_trait_purpose_built_models
+					trait = geth_trait_deontological_primacy
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = gethSpecies 
+				event_target:gethSpecies = { log = "gethspecies = [This.GetName]" }
+				log = "Geth species created"
+			}
+			create_country = {
+				name = "NAME_Geth_Consensus"
+				adjective = "PRESCRIPTED_adjective_geth_consensus"
+				authority = auth_machine_intelligence
+				civics = { 
+					civic = geth_con_civic_nebulous_pariahs 
+					civic = geth_con_civic_collective_conscious 
+				}
+				species = event_target:gethSpecies
+				name_list = "btr_geth"
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_gestalt_consciousness" 
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="geth_consensus.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_11.dds"
+					}
+					colors={
+						"eecolor2010"
+						"eecolor1831"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = geth_con_origin
+				effect = {
+					save_global_event_target_as = geth_consensus
+					add_resource = {
+						minerals = 1050
+						energy = 2800
+						alloys = 1450
+						influence = 100
+						volatile_motes = 100
+						exotic_gases = 100
+						rare_crystals = 100
+					}
+					add_modifier = {
+						modifier = geth_con_empire_modifier
+						days = -1
+					}
+				}
+			}
+			random_country = {
+				limit = { 
+					OR = {
+						has_country_flag = disciples_of_nazara
+						has_country_flag = migrant_fleet
+					}
+				}
+				owner_species = {
+					set_species_homeworld = prevprev
+				}
+			}
+			create_colony = {
+				owner = event_target:geth_consensus
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			generate_get_rannoch_deposits = yes
+			clear_blockers = yes
+			generate_get_rannoch_capitol_buildings = yes
+			generate_get_rannoch_pops = yes
+			generate_geth_con_science_ships = yes
+			event_target:geth_consensus = {
+				set_country_flag = geth_consensus
+				set_graphical_culture = geth_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+			}
+			set_name = "Rannoch"
+			add_modifier = {
+				modifier = dextro_world
+				days = -1
+			}
+			add_modifier = {
+				modifier = mesa_world
+				days = -1
+			}
+		}
+		
+		moon = {
+			name = "Jelachai"
+			class = pc_barren
+			orbit_distance = 20
+			size = 4
+			init_effect = {
+				add_deposit = d_rare_crystals_2
+			}	
+		}	
+	}
+
+	planet = {
+		name = "Uriyah"
+		class = pc_iron
+		orbit_distance = 100
+		size = 3
+		moon = {
+			name = "Etiel"
+			class = pc_sil_asteroid
+			orbit_distance = 20
+			size = 2
+			init_effect = {
+				add_deposit = d_minerals_3
+			}	
+		}
+	}	
+
+    planet = {
+        name = "Adas"
+        class = pc_methane
+        orbit_distance = 100
+        orbit_angle = 171
+        has_ring = no
+		size = 11
+		flags = { subclass_world }
+		init_effect = {
+			if = {
+				limit = { 
+					exists = event_target:geth_consensus
+				}
+				set_owner = event_target:geth_consensus
+				generate_get_adas_colony_buildings = yes
+				generate_get_adas_pops = yes	
+				clear_blockers = yes
+				prevent_anomaly = yes
+				log = "Geth Consensus Colony - Adas Spawned"
+			}
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Kaddi"
+        class = pc_barren
+        orbit_distance = 100
+        orbit_angle = 40
+        has_ring = no
+		size = 25
+		init_effect = {
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_trade_value_2
+		}	
+    }
+
+    planet = {
+        name = "Haza"
+        class = pc_ice_giant
+        orbit_distance = 100
+        orbit_angle = 281
+        has_ring = no
+		size = 26
+		moon = {
+			name = "Haza a"
+			class = pc_frozen
+			orbit_distance = 20
+			size = 4
+			init_effect = {
+				add_deposit = d_minerals_2
+			}	
+		}
+		moon = {
+			name = "Haza b"
+			class = pc_barren_cold
+			orbit_distance = 5
+			size = 5
+			init_effect = {
+				add_deposit = d_rare_crystals_2
+			}	
+		}
+    }
+}
+
+##########################
+##### THE COLLECTORS #####
+##########################
+
+##### GALACTIC CORE ######
+
+sys_tartarusdebrisfield_init = {
+    name = "Tartarus Debris Field"
+    class = sc_black_hole
+	flags = { galactic_core_system tartarus_system btr_system custom_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+	}	
+
+	usage = custom_empire
+	max_instances = 1
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 250
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 300
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 350
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 400
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 450
+	}
+
+	planet = {
+		name = "Tartarus Debris Field"
+		class = pc_black_hole
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 70
+		has_ring = no
+		flags = { tartarus_star }
+
+		init_effect = {
+			solar_system = {
+			}
+			while = {
+				count = 100
+				create_ambient_object = {
+					type = large_debris_object
+					entity_offset_height = { min = -10 max = -20 }
+					entity_offset = { min = 96 max = 400 }
+					entity_offset_angle = { min = 1 max = 360 }
+					scale = 3
+				}
+			}
+			while = {
+				count = 35
+				create_ambient_object = {
+					type = ancient_battlefield_02_object
+					entity_offset_height = { min = -10 max = -20 }
+					entity_offset = { min = 96 max = 400 }
+					entity_offset_angle = { min = 1 max = 360 }
+					scale = 3
+				}
+			}
+		}
+	}
+	planet = {
+		name = "Polus"
+		class = pc_asteroid
+		orbit_distance = 35
+		orbit_angle = { min = 1 max = 360 }
+		size = 2
+		has_ring = no
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+			add_deposit = d_minerals_9
+		}
+	}
+	planet = {
+		name = "Inid"
+		class = pc_asteroid
+		orbit_distance = 35
+		orbit_angle = { min = 1 max = 360 }
+		size = 1
+		has_ring = no
+		init_effect = {
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_exotic_gases_3
+			add_deposit = d_minerals_7
+		}
+	}
+	planet = {
+		name = "Collector Base"
+		class = pc_habitat
+		orbit_distance = 180
+		orbit_angle = 215
+		size = 12
+		has_ring = no
+		starting_planet = yes
+		entity = "collector_base_01_game_entity"
+		deposit_blockers = none
+		modifiers = none
+		flags = { collectors_station special_planet subclass_world }
+		# init_effect = {
+		# 	prevent_anomaly = yes
+		# 	set_global_flag = collectors_spawned
+		# 	if = { limit = { NOT = { any_country = { has_country_flag = collectors_empire } } }
+		# 	create_species = { 
+		# 		name = "Collectors"
+		# 		class = COL
+		# 		portrait = collector
+		# 		#homeworld = THIS .
+		# 		traits = {
+		# 			trait = collector_trait_core
+		# 			trait = collector_trait_drones
+		# 			trait = collector_trait_instruments
+		# 			trait = collector_trait_lovecraftian
+		# 			  # ideal_planet_class = "pc_arid"
+		# 		}
+		# 	}
+		# 	  last_created_species = { save_global_event_target_as = collectorSpecies }
+		# 		create_country = {
+		# 			name = "The Collectors"
+		# 			ship_prefix = "PRESCRIPTED_ship_prefix_collectors"
+		# 			type = default 
+		# 			civics = { civic = "civic_machine_assimilator" civic = "civic_machine_unitary_cohesion"}
+		# 			authority = auth_machine_intelligence
+		# 			name_list = btr_collectors
+		# 			origin = collectors_origin
+		# 			ethos = { ethic = "ethic_gestalt_consciousness" }
+		# 			species = event_target:collectorSpecies
+		# 			flag = {
+		# 				icon={
+		# 					category="masseffect"
+		# 					file="collector.dds"
+		# 				}
+		# 				background={
+		# 					category="backgrounds"
+		# 					file="stripe.dds"
+		# 				}
+		# 				colors={
+		# 					"black"
+		# 					"brown"
+		# 					"null"
+		# 					"null"
+		# 				}
+		# 			}
+		# 			effect = {
+		# 				set_graphical_culture = coll_01
+		# 				set_country_flag = collectors_empire
+		# 				set_country_flag = init_spawned
+		# 				set_country_flag = custom_start_screen
+		# 				set_country_flag = canon_map
+		# 				save_global_event_target_as = collectors_empire
+		# 			}						
+		# 		}
+		# 	}
+		# 	set_capital = yes
+		# 	set_planet_flag = megastructure
+		# 	set_planet_flag = habitat
+		# 	random_country = {
+		# 		limit = { has_country_flag = collectors_empire }
+		# 		save_global_event_target_as = collectors_empire
+		# 		species = { save_global_event_target_as = collectorSpecies }
+		# 	}
+		# 	set_owner = event_target:collectors_empire
+		# 	generate_btr_start_deposits_and_blockers = yes
+		# 	generate_btr_collectors_capitol_buildings = yes	
+		# 	generate_collector_base_pops = yes
+		# 	add_deposit = d_consumption_chambers
+		# 	add_deposit = d_deconstruction_bays
+		# 	add_deposit = d_btr_collector_stasis_pods
+		# 	add_deposit = d_dark_matter_deposit_10
+		# 	set_name = "Collector Base"
+		# }
+	}	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "galacticcore_omega4relay_primaryrelay" 
+			name = "Tartarus Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}	
+	

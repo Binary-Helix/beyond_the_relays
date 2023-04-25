@@ -1,0 +1,192 @@
+###########################
+##### GOTHONES REMNANT#####
+###########################
+
+# sys_ultio_init = {
+#     name = "Ultio"
+#     class = sc_o_super
+# 	max_instances = 1
+
+# 	flags = { gothones_remnant_homeworld gothones_remnant_capital_system canon_map ultio_system empire_home_system }
+# 	init_effect = { 
+# 		generate_home_system_resources = yes
+# 		save_global_event_target_as = gothonesFirstFleet
+# 	}
+
+# 	usage = custom_empire
+
+# 	asteroid_belt = {
+# 		type = rocky_asteroid_belt
+# 		radius = 125
+# 	}
+
+#     planet = {
+# 		name = "Ultio"
+#         class = pc_o_super_star
+#         orbit_distance = 0
+#         size = 25
+# 		flags = { ultio_star }
+# 		init_effect = {
+# 			add_deposit = d_physics_4
+# 		}	
+#     }
+
+#     planet = {
+#         name = "Vis"
+#         class = pc_molten
+#         orbit_distance = 100
+#         orbit_angle = 313
+#         has_ring = no
+# 		size = 10
+# 		init_effect = {
+# 			add_deposit = d_minerals_3
+# 			add_deposit = d_engineering_3
+# 		}	
+#     }
+
+	
+#     planet = {
+#         name = "Mollitiam"
+#         class = pc_molten
+#         orbit_distance = 100
+#         orbit_angle = 313
+#         has_ring = no
+# 		size = 17
+# 		init_effect = {
+# 			add_deposit = d_rare_crystals_2
+# 		}	
+#     }
+
+# 	planet = {
+#         name = "Vindicta"
+#         class = pc_tropical
+#         orbit_distance = 100
+#         orbit_angle = 313
+#         has_ring = no
+# 		size = 22
+# 		starting_planet = yes
+# 		deposit_blockers = none
+# 		modifiers = none
+# 		entity = "biolum_planet_03_entity"
+# 		flags = { vindicta_planet gothones_homeworld subclass_world }
+# 		init_effect = {
+# 			prevent_anomaly = yes
+# 			set_global_flag = gothones_homeworld_spawned
+# 			set_planet_flag = vindicta_planet
+# 			if = {
+# 				limit = { 
+# 					NOT = { 
+# 						any_country = { 
+# 							has_country_flag = gothones_remnant 
+# 						} 
+# 					} 
+# 				}
+# 				create_species = { 
+# 					name = "Gothones"
+# 					class = GOT
+# 					portrait = gothones
+# 					namelist = btr_gothones
+# 					homeworld = THIS 
+# 					traits = { 
+# 						trait = gothones_trait_core
+# 						trait = gothones_trait_trials_of_vindicta
+# 						trait = gothones_trait_eco_reverence
+# 						trait = gothones_trait_survivalists
+# 					    ideal_planet_class = pc_tropical
+# 					}
+# 				  }
+# 				  last_created_species = { save_global_event_target_as = gothonesSpecies }
+# 				create_country = {
+# 					name = "Gothones Remnant"
+# 					ship_prefix = ""
+# 					type = default
+# 					origin = gothones_remnant_origin
+# 					ignore_initial_colony_error = yes
+# 					civics = { 
+# 						civic = gothones_cooperative_reciprocity 
+# 						civic = gothones_braves_of_vindicta 
+# 					}
+# 					authority = auth_democratic
+# 					name_list = "btr_turian"
+# 					ethos = { 
+# 						ethic = "ethic_militarist" 
+# 						ethic = "ethic_fanatic_egalitarian" 
+# 					}
+# 					species = event_target:gothonesSpecies
+# 					flag = {
+# 						icon={
+# 							category="beyondtherelays"
+# 							file="gothones_remnant.dds"
+# 						}
+# 						background={
+# 							category="backgrounds"
+# 							file="flag_BG_28.dds"
+# 						}
+# 						colors={
+# 							"eecolor1821"
+# 							"eecolor1891"
+# 							"null"
+# 							"null"
+# 						}
+# 					}
+# 					effect = {
+# 						set_graphical_culture = tur_01
+# 						set_country_flag = gothones_remnant
+# 						set_country_flag = init_spawned
+# 						set_country_flag = custom_start_screen
+# 						set_country_flag = canon_map
+# 						set_country_flag = btr_empire
+# 						save_global_event_target_as = gothones_remnant
+# 					}
+# 				}
+# 			}	
+# 			set_capital = yes
+# 			random_country = {
+# 				limit = { 
+# 					has_country_flag = gothones_remnant 
+# 				}
+# 				save_global_event_target_as = gothones_remnant
+# 			}
+# 			set_owner = event_target:gothones_remnant
+# 			generate_btr_start_deposits_and_blockers = yes
+# 			generate_got_vindicta_buildings = yes
+# 			generate_got_vindicta_pops = yes
+# 			clear_blockers = yes
+# 			generate_got_vindicta_deposits = yes
+# 			generate_gothones_rem_science_ships = yes
+# 			set_name = "Vindicta"
+# 			add_modifier = {
+# 				modifier = biolum_world
+# 				days = -1
+# 			}
+# 		}
+#     }
+
+# 	planet = {
+#         name = "Evol"
+#         class = pc_gas_giant
+#         orbit_distance = 100
+#         orbit_angle = 313
+#         has_ring = yes
+# 		size = 38
+# 		flags = { evol_planet subclass_world }
+# 		init_effect = {
+# 			add_deposit = d_exotic_gases_3
+# 			add_deposit = d_society_2
+# 		}	
+#     }
+	
+# 	planet = {
+#         name = "Absolutus"
+#         class = pc_ice_giant
+#         orbit_distance = 100
+#         orbit_angle = 313
+#         has_ring = no
+# 		size = 30
+# 		flags = { absolutus_planet subclass_world }
+# 		init_effect = {
+# 			add_deposit = d_zro_deposit_1
+# 			add_deposit = d_minerals_7
+# 		}	
+#     }
+# }
