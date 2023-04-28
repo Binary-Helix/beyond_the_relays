@@ -1180,7 +1180,7 @@ sys_amun_init = {
 			create_country = {
 				name = "NAME_Polity_of_Anhur"
 				adjective = "PRESCRIPTED_adjective_polity_of_anhur"
-				authority = auth_dictatorial
+				authority = auth_oligarchic
 				civics = {
 					civic = independent_civic_isolationist
 					civic = independent_civic_suspicious_untrusting
@@ -1975,7 +1975,7 @@ sys_pamyat_init = {
 			create_country = {
 				name = "NAME_Altai_Mineral_Works"
 				adjective = "PRESCRIPTED_adjective_altai_mineral_works"
-				authority = auth_democratic
+				authority = auth_oligarchic
 				civics = {
 					civic = independent_civic_corporate_ownership
 					civic = independent_civic_industrialists
@@ -1986,7 +1986,7 @@ sys_pamyat_init = {
 				ethos = {
 					ethic = "ethic_egalitarian"
 					ethic = "ethic_militarist"
-					ethic = "ethic_pacifism"
+					ethic = "ethic_pacifist"
 				}
 
 				type = independent_colony
@@ -2097,3 +2097,781 @@ sys_pamyat_init = {
     }
 }
 
+##############################
+##### Erinle Conservancy #####
+##############################
+
+sys_osun_init = {
+    name = "Osun"
+    class = sc_f
+	max_instances = 1
+
+	flags = { terminus_system hourglass_nebula_system osun_system btr_system custom_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Osun System Spawned"
+	}
+
+    planet = {
+		name = "Osun"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 30
+    }
+
+    planet = {
+        name = "Orunmila"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 334
+        has_ring = no
+		size = 29
+		init_effect = {
+			add_deposit = d_physics_3
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+    planet = {
+        name = "Erinle"
+        class = pc_swamp
+        orbit_distance = 125
+        orbit_angle = 202
+        has_ring = no
+		size = 16
+		entity = "bog_planet_02_entity"
+		init_effect = {
+			log = "Erinle Capital Spawned"
+			save_global_event_target_as = osun_system_erinle
+
+			prevent_anomaly = yes
+			set_global_flag = erinle_capital_spawned	
+
+			create_country = {
+				name = "NAME_Erinle_Conservancy"
+				adjective = "PRESCRIPTED_adjective_erinle_conservancy"
+				authority = auth_dictatorial
+				civics = {
+					civic = independent_civic_research_outpost
+					civic = independent_civic_isolationist
+				}
+				species = event_target:salarianSpecies
+				name_list = btr_salarian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_materialist"
+					ethic = "ethic_pacifist"
+				}
+
+				type = independent_colony
+				origin = sovereign_blo_origin
+				effect = {
+					save_global_event_target_as = erinle_conservancy
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:erinle_conservancy
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_erinle_deposits = yes
+			generate_erinle_capitol_buildings = yes
+			generate_erinle_pops = yes
+			event_target:erinle_conservancy = {
+				set_country_flag = erinle_conservancy
+				set_graphical_culture = reptilian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Erinle Conservancy Colony Spawned"
+			}
+			set_name = "Erinle"
+			add_modifier = {
+				modifier = bog_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Aganju"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 297
+        has_ring = no
+		size = 25
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_minerals_2
+		}	
+    }
+
+    planet = {
+        name = "Olokun"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 66
+        has_ring = yes
+		size = 35
+		init_effect = {
+			add_deposit = d_exotic_gases_1
+		}	
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "hourglassnebula_basillaeflare_primaryrelay" 
+			name = "Hourglass 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+##############################
+### UNION OF FERRIS FIELDS ###
+##############################
+
+sys_jintanei_init = {
+    name = "Jinta'nei"
+    class = sc_g
+	max_instances = 1
+
+	flags = { terminus_system radana_burst_system jintanei_system btr_system custom_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Jinta'nei System Spawned"
+	}
+
+	planet = {
+    name = "Jinta'nei"
+		class = pc_g_star
+        orbit_distance = 0
+		size = 25
+	}
+	
+	planet = {
+		name = "Esse"
+		class = pc_hothouse
+        orbit_distance = 150
+		size = 13
+		init_effect = {
+			add_deposit = d_minerals_6
+		}	
+		moon = { 
+			name = "Esse a"
+			class = pc_molten
+			orbit_angle = 270
+			orbit_distance = 20
+			size = 8
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+			}	
+		}		
+	}
+
+	planet = {
+		name = "Ferris Fields"
+		class = pc_desert
+        orbit_distance = 150
+		size = 14
+		entity = "outback_planet_01_entity"
+		init_effect = {
+			log = "Ferris Fields Capital Spawned"
+			save_global_event_target_as = jintanei_system_ferris_fields
+
+			prevent_anomaly = yes
+			set_global_flag = ferris_fields_capital_spawned	
+
+			create_country = {
+				name = "NAME_Union_of_Ferris_Fields"
+				adjective = "PRESCRIPTED_adjective_union_of_ferris_fields"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_suspicious_untrusting
+					civic = independent_civic_research_outpost
+				}
+				species = event_target:humanSpecies
+				name_list = btr_alliance
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_spiritualist"
+					ethic = "ethic_xenophobe"
+					ethic = "ethic_egalitarian"
+				}
+
+				type = independent_colony
+				origin = antialliance_com_origin
+				effect = {
+					save_global_event_target_as = union_of_ferris_fields
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:union_of_ferris_fields
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_ferris_fields_deposits = yes
+			generate_ferris_fields_capitol_buildings = yes
+			generate_ferris_fields_pops = yes
+			event_target:union_of_ferris_fields = {
+				set_country_flag = union_of_ferris_fields
+				set_graphical_culture = reptilian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Union of Ferris Fields Colony Spawned"
+			}
+
+			add_modifier = {
+				modifier = outback_world
+				days = -1
+			}
+		}
+	}
+
+	planet = {
+		name = "Angom"
+		class = pc_gas_giant
+        orbit_distance = 150
+		size = 38
+		has_ring = yes
+		init_effect = {
+			add_deposit = d_exotic_gases_4
+		}	
+		moon = {
+			name = "Pella"
+			class = pc_primal
+			orbit_distance = 20
+			size = 15
+			init_effect = {
+				add_modifier = {
+					modifier = dextro_world
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+###########################
+### RELIC MINERAL WORKS ###
+###########################
+
+###############################
+##### RELIC MINERAL WORKS #####
+###############################
+
+sys_relic_init = {
+    name = "Relic"
+    class = sc_g
+    flags = { attican_traverse_system eagle_nebula_system relic_system btr_system custom_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Relic System Spawned"
+	}
+
+	max_instances = 1
+
+	asteroid_belt = {
+		type = icy_asteroid_belt
+		radius = 290
+	}	
+
+    planet = {
+		name = "Relic"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 26
+		flags = { relic_star }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			create_ambient_object = {
+				type = "nebula_4"
+				entity_offset_height = -5
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+    }
+
+    planet = {
+        name = "Murky Water"
+        class = pc_hothouse
+        orbit_distance = 70
+        orbit_angle = 243
+        has_ring = no
+		size = 25
+		flags = { murky_water_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_minerals_2
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Fitful Current"
+        class = pc_chthonian
+        orbit_distance = 70
+        orbit_angle = 284
+        has_ring = no
+		size = 23
+		flags = { fitful_current_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_modifier = {
+				modifier = high_gravity
+				days = -1
+			}
+			add_deposit = d_minerals_5
+		}
+    }
+
+    planet = {
+        name = "First Land"
+        class = pc_gas_giant
+        orbit_distance = 70
+        orbit_angle = 58
+        has_ring = yes
+		size = 33
+		flags = { first_land_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			# add_deposit = d_helium_3_5
+			add_deposit = d_exotic_gases_5
+		}
+		moon = {
+			name = "Drifting Skies"
+			count = 1
+			class = pc_habitat
+			orbit_distance = 20
+			size = 8
+			flags = { drifting_skies_habitat subclass_world }
+			init_effect = {
+				log = "Ferris Fields Capital Spawned"
+				save_global_event_target_as = relic_system_drifting_skies
+	
+				prevent_anomaly = yes
+				set_global_flag = relic_mineral_works_capital_spawned	
+	
+				create_country = {
+					name = "NAME_Relic_Mineral_Works"
+					adjective = "PRESCRIPTED_adjective_relic_mineral_works"
+					authority = auth_oligarchic
+					civics = {
+						civic = independent_civic_corporate_ownership
+						civic = independent_civic_industrialists
+					}
+					species = event_target:hanarSpecies
+					name_list = btr_hanar
+					ship_prefix = ""
+					ethos = {
+						ethic = "ethic_materialist"
+						ethic = "ethic_xenophobe"
+						ethic = "ethic_egalitarian"
+					}
+	
+					type = independent_colony
+					origin = mining_ope_origin
+					effect = {
+						save_global_event_target_as = relic_mineral_works
+						add_resource = {
+							energy = 1000
+							minerals = 1000
+							alloys = 1000
+							influence = 100
+							food = 1000
+							consumer_goods = 1000
+							volatile_motes = 500
+							exotic_gases = 500
+							rare_crystals = 500						
+						}
+					}
+				}	
+				create_colony = {
+					owner = event_target:relic_mineral_works
+				}
+				set_capital = yes
+				generate_btr_start_deposits_and_blockers = yes
+				clear_blockers = yes
+				generate_drifting_skies_deposits = yes
+				generate_drifting_skies_capitol_buildings = yes
+				generate_drifting_skies_pops = yes
+				event_target:relic_mineral_works = {
+					set_country_flag = relic_mineral_works
+					set_graphical_culture = aquatic_01
+					create_starting_leaders = yes
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_country_flag = btr_independent_colony
+					log = "Relic Mineral Works Colony Spawned"
+				}
+				set_name = "Drifting Skies"				
+			}
+		}
+    }
+
+    planet = {
+        name = "Island Wind"
+        class = pc_gas_giant
+        orbit_distance = 70
+        orbit_angle = 86
+        has_ring = no
+		size = 37
+		flags = { island_wind_planet subclass_world }
+		init_effect = {
+			add_deposit = d_exotic_gases_1
+		}
+	}
+
+    planet = {
+		name = "Rough Tide"
+        class = pc_mephitic
+        orbit_distance = 70
+        orbit_angle = 192
+        has_ring = no
+		size = 5
+		flags = { rough_tide_planet subclass_world }
+		entity = "mephitic_desert_planet_01_entity"
+		init_effect = {
+			if = {
+				limit = {
+					exists = event_target:relic_mineral_works
+				}
+				create_colony = {
+					owner = event_target:relic_mineral_works
+				}
+				generate_rough_tide_buildings = yes
+				generate_rough_tide_pops = yes
+				log = "Relic Mineral Works Colony Spawned"
+			}
+
+			add_modifier = {
+				modifier = mesa_world
+				days = -1
+			}
+			set_name = "Rough Tide"
+		}
+	}	
+
+    planet = {
+        name = "Preying Mouth"
+        class = pc_gas_giant
+        orbit_distance = 70
+        orbit_angle = 351
+        has_ring = yes
+		size = 31
+		flags = { preying_mouth_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes				
+			add_deposit = d_zro_deposit_2
+			clear_planet_modifiers = yes 
+		}		
+    }
+
+    planet = {
+        name = "Beach Thunder"
+        class = pc_arctic
+        orbit_distance = 70
+        orbit_angle = 39
+        has_ring = no
+		size = 18
+		flags = { beach_thunder_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			if = {
+				limit = {
+					exists = event_target:relic_mineral_works
+				}
+				create_colony = {
+					owner = event_target:relic_mineral_works
+				}
+				generate_beach_thunder_buildings = yes
+				generate_beach_thunder_pops = yes
+				log = "Relic Mineral Works Colony Spawned"
+			}
+		}		
+    }
+}
+
+#######################################################
+### FLETT TRANSPORT UNION / WRILL MINING CONSORTIUM ###
+#######################################################
+
+
+sys_malgus_init = {
+    name = "Malgus"
+    class = "sc_k"
+	flags = { attican_traverse_system eagle_nebula_system malgus_system btr_system custom_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Malgus System Spawned"
+	}
+
+	max_instances = 1
+
+    planet = {
+		name = "Malgus"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 25
+		flags = { malgus_star }	
+		init_effect = {
+			prevent_anomaly = yes						
+			clear_deposits = yes
+
+			create_ambient_object = {
+				type = "nebula_3"
+				entity_offset_height = -5
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}	
+    }
+
+    planet = {
+        name = "Uzin"
+        class = pc_hot_giant
+        orbit_distance = 150
+        orbit_angle = 186
+        has_ring = no
+		size = 37
+		flags = { uzin_malgus_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			# add_deposit = d_helium_3_1
+			add_deposit = d_exotic_gases_1
+		}		
+		moon = {
+			name = "Uzin a"
+			count = 1
+			class = pc_molten
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 20
+			size = 7
+		}
+		
+		moon = {
+			name = "Uzin b"
+			count = 1
+			class = pc_molten
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 6
+		}	
+	}
+	
+    planet = {
+        name = "Wrill"
+        class = pc_methane
+        orbit_distance = 150
+        orbit_angle = 148
+		size = 15
+        has_ring = no
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		entity = "methane_desert_03_entity"
+		flags = { wrill_planet subclass_world }
+		init_effect = {
+			log = "Wrill Capital Spawned"
+			save_global_event_target_as = malgus_system_wrill
+
+			prevent_anomaly = yes
+			set_global_flag = wrill_mining_consortium_capital_spawned	
+
+			create_country = {
+				name = "NAME_Wrill_Mining_Consortium"
+				adjective = "PRESCRIPTED_adjective_wrill_mining_consortium"
+				authority = auth_oligarchic
+				civics = {
+					civic = independent_civic_fractured_domain
+					civic = independent_civic_isolationist
+				}
+				species = event_target:kroganSpecies
+				name_list = btr_krogan
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_xenophobe"
+					ethic = "ethic_materialist"
+				}
+
+				type = independent_colony
+				origin = mining_ope_origin
+				effect = {
+					save_global_event_target_as = wrill_mining_consortium
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:wrill_mining_consortium
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_wrill_deposits = yes
+			generate_wrill_capitol_buildings = yes
+			generate_wrill_pops = yes
+			event_target:wrill_mining_consortium = {
+				set_country_flag = wrill_mining_consortium
+				set_graphical_culture = reptilian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Relic Mineral Works Colony Spawned"
+			}
+
+			set_name = "Wrill"				
+			add_modifier = {
+				modifier = dune_world
+				days = -1
+			}
+    	}
+	}	
+
+    planet = {
+        name = "Flett"  
+        class = pc_mephitic
+        orbit_distance = 150
+        orbit_angle = 184
+        has_ring = no
+		size = 14
+		flags = { flett_planet subclass_world }
+		entity = "mephitic_planet_04_entity"
+		init_effect = {
+			log = "Flett Capital Spawned"
+			save_global_event_target_as = malgus_system_flett
+
+			prevent_anomaly = yes
+			set_global_flag = flett_transport_union_capital_spawned	
+
+			create_country = {
+				name = "NAME_Flett_Transport_Union"
+				adjective = "PRESCRIPTED_adjective_flett_transport_union"
+				authority = auth_dictatorial
+				civics = {
+					civic = independent_civic_labor_camp
+					civic = independent_civic_suspicious_untrusting
+				}
+				species = event_target:kroganSpecies
+				name_list = btr_krogan
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_militarist"
+					ethic = "ethic_xenophobe"
+				}
+
+				type = independent_colony
+				origin = flett_tra_origin
+				effect = {
+					save_global_event_target_as = flett_transport_union
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:flett_transport_union
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_flett_deposits = yes
+			generate_flett_capitol_buildings = yes
+			generate_flett_pops = yes
+			event_target:flett_transport_union = {
+				set_country_flag = flett_transport_union
+				set_graphical_culture = reptilian_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Flett Transport Union Colony Spawned"
+			}
+		}
+    }	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "attican_traverse_sector_3_secondaryrelay" 
+			name = "Traverse Secondary - Sector 3 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
