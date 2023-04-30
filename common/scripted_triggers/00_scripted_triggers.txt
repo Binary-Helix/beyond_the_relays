@@ -1,4 +1,7 @@
-###NOTE FROM PUCK - Only change is added Planetary Station to is_special_colony_type.
+###NOTE FROM PUCK - 
+# - Planetary Station to is_special_colony_type.
+# - Added BTR classes to Planetary Gen Triggers
+# - Disabled a few Vanilla planet classes in Gen Triggers
 
 #	Example:
 #
@@ -1765,6 +1768,17 @@ is_barren = {
 		is_planet_class = pc_barren
 		is_planet_class = pc_barren_cold
 		is_planet_class = pc_asteroid
+		# BTR Added Planet Classes
+		is_planet_class = pc_carbon
+		is_planet_class = pc_iron
+		is_planet_class = pc_chthonian
+		is_planet_class = pc_hothouse
+		is_planet_class = pc_vulcanoid
+		is_planet_class = pc_sil_asteroid
+		is_planet_class = pc_met_asteroid
+		is_planet_class = pc_carb_asteroid
+		is_planet_class = pc_gel_asteroid
+		is_planet_class = pc_eezo_asteroid
 	}
 }
 
@@ -1774,12 +1788,22 @@ is_cold = {
 
 can_have_mineral_deposits = {
 	OR = {
-		is_planet_class = pc_asteroid
+		is_planet_class = pc_carbon
+		is_planet_class = pc_iron
+		is_planet_class = pc_chthonian
+		is_planet_class = pc_hothouse
+		is_planet_class = pc_vulcanoid # No resources at all
+		is_planet_class = pc_met_asteroid # Minerals and Metals Only
+		is_planet_class = pc_sil_asteroid # Minerals Only
+		is_planet_class = pc_carb_asteroid # Light Metals, Minerals, and rare Eezo 
+		is_planet_class = pc_asteroid 
+		is_planet_class = pc_gel_asteroid # Minerals and Hydrogen Only
+		is_planet_class = pc_eezo_asteroid # Minerals and Eezo Only
 		is_planet_class = pc_molten
-		is_planet_class = pc_toxic
-		is_planet_class = pc_frozen
 		is_planet_class = pc_barren
 		is_planet_class = pc_barren_cold
+		is_planet_class = pc_toxic # Disabled in BTR
+		is_planet_class = pc_frozen
 		is_planet_class = pc_broken
 		is_planet_class = pc_shattered
 	}
@@ -1787,22 +1811,41 @@ can_have_mineral_deposits = {
 
 can_have_energy_deposits = {
 	OR = {
-		is_planet_class = pc_a_star
+		is_planet_class = pc_o_star # BTR Addition
+		is_planet_class = pc_o_super_star # BTR Addition
+		is_planet_class = pc_o_hyper_star # BTR Addition
 		is_planet_class = pc_b_star
+		is_planet_class = pc_b_super_star # BTR Addition
+		is_planet_class = pc_a_star
+		is_planet_class = pc_a_super_star # BTR Addition
 		is_planet_class = pc_f_star
+		is_planet_class = pc_f_super_star # BTR Addition
 		is_planet_class = pc_g_star
+		is_planet_class = pc_g_giant_star	
+		is_planet_class = pc_g_super_star # BTR Addition
 		is_planet_class = pc_k_star
+		is_planet_class = pc_k_super_star # BTR Addition
 		is_planet_class = pc_m_star
 		is_planet_class = pc_m_giant_star
+		is_planet_class = pc_m_super_star # BTR Addition
+		is_planet_class = pc_m_hyper_star # BTR Addition
 		is_planet_class = pc_t_star
-		is_planet_class = pc_gas_giant
-		is_planet_class = pc_molten
-		is_planet_class = pc_ice_asteroid
+		is_planet_class = pc_l_star	# BTR Addition
+		is_planet_class = pc_y_star	# BTR Addition		
+		is_planet_class = pc_d_star	# BTR Addition
+		is_planet_class = pc_neutron_star	# BTR Addition
+		is_planet_class = pc_pulsar	# BTR Addition
+		is_planet_class = pc_magnetar	# BTR Addition
+		is_planet_class = pc_fu_star	# BTR Addition
+		# is_planet_class = pc_gas_giant # BTR Removal
+		# is_planet_class = pc_molten # BTR Removal
+		# is_planet_class = pc_ice_asteroid # BTR Removal
 	}
 }
 
 can_have_society_deposits = {
 	is_planet_class = pc_toxic
+	is_planet_class = pc_hothouse # BTR Addition
 }
 
 can_have_minor_physics_deposits = {
