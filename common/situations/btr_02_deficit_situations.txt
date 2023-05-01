@@ -2731,44 +2731,7 @@ situation_heavy_metals_deficit = {
 
 #TODO: Finish Deficits for BTR SRs, starting at Helium-3, and check on deficit events for need to create BTR specific ones. Additionally check for proper localization on deficits' white text. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-situation_exotic_gases_deficit = {
+situation_helium_3_deficit = {
 	picture = GFX_evt_deficit
 	category = negative
 	fail_icon = GFX_situation_outcome_meh
@@ -2782,7 +2745,7 @@ situation_exotic_gases_deficit = {
 	on_abort = {
 		owner = {
 			add_resource = {
-				exotic_gases = @bailout_strategic_base_amount
+				helium_3 = @bailout_strategic_base_amount
 				mult = value:bailout_scaling_factor
 			}
 		}
@@ -2848,25 +2811,25 @@ situation_exotic_gases_deficit = {
 	monthly_progress = {
 		base = 0
 		modifier = {
-			add = value:deficit_situation_progress_value|RESOURCE|exotic_gases|
-			desc = string_expenditures_greater_than_income_exotic_gases
-			owner = { has_actual_deficit = { RESOURCE = exotic_gases } }
+			add = value:deficit_situation_progress_value|RESOURCE|helium_3|
+			desc = string_expenditures_greater_than_income_helium_3
+			owner = { has_actual_deficit = { RESOURCE = helium_3 } }
 		}
 		modifier = {
 			subtract = 5
-			desc = string_not_in_deficit_exotic_gases
+			desc = string_not_in_deficit_helium_3
 			owner = {
 				resource_income_compare = {
-					resource = exotic_gases
+					resource = helium_3
 					value >= 0
 				}
 			}
 		}
 		modifier = {
 			subtract = 1
-			desc = string_resource_reserves_exotic_gases
+			desc = string_resource_reserves_helium_3
 			owner = {
-				has_negative_income_with_stockpile = { RESOURCE = exotic_gases }
+				has_negative_income_with_stockpile = { RESOURCE = helium_3 }
 			}
 		}
 	}
@@ -2887,7 +2850,7 @@ situation_exotic_gases_deficit = {
 		icon = GFX_situation_approach_balance_sheet
 		icon_background = GFX_situation_approach_bg_yellow
 		modifier = {
-			planet_structures_exotic_gases_upkeep_mult = -0.25
+			planet_structures_helium_3_upkeep_mult = -0.25
 			planet_building_refund_mult = 0.5
 			planet_structures_cost_mult = 0.5
 		}
@@ -2900,9 +2863,465 @@ situation_exotic_gases_deficit = {
 		icon = GFX_situation_approach_energy_credits
 		icon_background = GFX_situation_approach_bg_green
 		modifier = {
-			planet_refiners_exotic_gases_produces_mult = 0.25
+			planet_refiners_helium_3_produces_mult = 0.25
 			planet_refiners_upkeep_mult = 0.25
-			planet_sr_miners_exotic_gases_produces_mult = 0.25
+			planet_sr_miners_helium_3_produces_mult = 0.25
+			#No upkeep increase for gas extractors because it'd also target mote farmers etc too
+		}
+
+		ai_weight = {
+			base = 0
+			modifier = {
+				add = 2
+				current_stage = deficit_third
+			}
+			modifier = {
+				add = 2
+				current_stage = deficit_fourth
+			}
+		}
+	}
+}
+
+situation_hydrogen_deficit = {
+	picture = GFX_evt_deficit
+	category = negative
+	fail_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_bankrupcy
+	complete_icon_frame = GFX_situation_outcome_frame_red
+
+	on_start = {
+		set_situation_flag = deficit_situation
+	}
+	on_abort = {
+		owner = {
+			add_resource = {
+				hydrogen = @bailout_strategic_base_amount
+				mult = value:bailout_scaling_factor
+			}
+		}
+	}
+
+	start_value = 15
+	stages = {
+		deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 25
+			modifier = {
+				planet_jobs_produces_mult = -0.05
+				ship_speed_mult = -0.2
+				terraform_speed_mult = -0.2
+			}
+		}
+		deficit_second = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 50
+			modifier = {
+				planet_jobs_produces_mult = -0.1
+				ship_speed_mult = -0.4
+				terraform_speed_mult = -0.4
+			}
+		}
+		deficit_third = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_red
+			end = 75
+			modifier = {
+				planet_jobs_produces_mult = -0.15
+				ship_speed_mult = -0.6
+				terraform_speed_mult = -0.6
+			}
+		}
+		deficit_fourth = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_red
+			end = 100
+			modifier = {
+				planet_jobs_produces_mult = -0.2
+				ship_speed_mult = -0.8
+				terraform_speed_mult = -0.8
+			}
+			on_first_enter = {
+				situation_event = { id = deficit.215 }
+			}
+		}
+	}
+
+	on_progress_complete = {
+		country_defaulted_in_situation_tooltip = yes
+		hidden_effect = {
+			situation_event = { id = deficit.220 }
+		}
+	}
+	on_fail = {
+		custom_tooltip = deficit_situation_finish_tooltip
+		hidden_effect = { destroy_situation = this }
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = value:deficit_situation_progress_value|RESOURCE|hydrogen|
+			desc = string_expenditures_greater_than_income_hydrogen
+			owner = { has_actual_deficit = { RESOURCE = hydrogen } }
+		}
+		modifier = {
+			subtract = 5
+			desc = string_not_in_deficit_hydrogen
+			owner = {
+				resource_income_compare = {
+					resource = hydrogen
+					value >= 0
+				}
+			}
+		}
+		modifier = {
+			subtract = 1
+			desc = string_resource_reserves_hydrogen
+			owner = {
+				has_negative_income_with_stockpile = { RESOURCE = hydrogen }
+			}
+		}
+	}
+	approach = {
+		name = deficit_approach_do_nothing
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+		ai_weight = {
+			base = 1
+		}
+	}
+	approach = {
+		name = deficit_approach_recycling
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		modifier = {
+			planet_structures_hydrogen_upkeep_mult = -0.25
+			planet_building_refund_mult = 0.5
+			planet_structures_cost_mult = 0.5
+		}
+		ai_weight = {
+			base = 0
+		}
+	}
+	approach = {
+		name = deficit_approach_invest_in_gas_producers
+		icon = GFX_situation_approach_energy_credits
+		icon_background = GFX_situation_approach_bg_green
+		modifier = {
+			planet_refiners_hydrogen_produces_mult = 0.25
+			planet_refiners_upkeep_mult = 0.25
+			planet_sr_miners_hydrogen_produces_mult = 0.25
+			#No upkeep increase for gas extractors because it'd also target mote farmers etc too
+		}
+
+		ai_weight = {
+			base = 0
+			modifier = {
+				add = 2
+				current_stage = deficit_third
+			}
+			modifier = {
+				add = 2
+				current_stage = deficit_fourth
+			}
+		}
+	}
+}
+
+situation_antimatter_fuel_deficit = {
+	picture = GFX_evt_deficit
+	category = negative
+	fail_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_bankrupcy
+	complete_icon_frame = GFX_situation_outcome_frame_red
+
+	on_start = {
+		set_situation_flag = deficit_situation
+	}
+	on_abort = {
+		owner = {
+			add_resource = {
+				antimatter_fuel = @bailout_strategic_base_amount
+				mult = value:bailout_scaling_factor
+			}
+		}
+	}
+
+	start_value = 15
+	stages = {
+		deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 25
+			modifier = {
+				planet_jobs_produces_mult = -0.05
+				ship_speed_mult = -0.2
+				terraform_speed_mult = -0.2
+			}
+		}
+		deficit_second = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 50
+			modifier = {
+				planet_jobs_produces_mult = -0.1
+				ship_speed_mult = -0.4
+				terraform_speed_mult = -0.4
+			}
+		}
+		deficit_third = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_red
+			end = 75
+			modifier = {
+				planet_jobs_produces_mult = -0.15
+				ship_speed_mult = -0.6
+				terraform_speed_mult = -0.6
+			}
+		}
+		deficit_fourth = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_red
+			end = 100
+			modifier = {
+				planet_jobs_produces_mult = -0.2
+				ship_speed_mult = -0.8
+				terraform_speed_mult = -0.8
+			}
+			on_first_enter = {
+				situation_event = { id = deficit.215 }
+			}
+		}
+	}
+
+	on_progress_complete = {
+		country_defaulted_in_situation_tooltip = yes
+		hidden_effect = {
+			situation_event = { id = deficit.220 }
+		}
+	}
+	on_fail = {
+		custom_tooltip = deficit_situation_finish_tooltip
+		hidden_effect = { destroy_situation = this }
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = value:deficit_situation_progress_value|RESOURCE|antimatter_fuel|
+			desc = string_expenditures_greater_than_income_antimatter_fuel
+			owner = { has_actual_deficit = { RESOURCE = antimatter_fuel } }
+		}
+		modifier = {
+			subtract = 5
+			desc = string_not_in_deficit_antimatter_fuel
+			owner = {
+				resource_income_compare = {
+					resource = antimatter_fuel
+					value >= 0
+				}
+			}
+		}
+		modifier = {
+			subtract = 1
+			desc = string_resource_reserves_antimatter_fuel
+			owner = {
+				has_negative_income_with_stockpile = { RESOURCE = antimatter_fuel }
+			}
+		}
+	}
+	approach = {
+		name = deficit_approach_do_nothing
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+		ai_weight = {
+			base = 1
+		}
+	}
+	approach = {
+		name = deficit_approach_recycling
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		modifier = {
+			planet_structures_antimatter_fuel_upkeep_mult = -0.25
+			planet_building_refund_mult = 0.5
+			planet_structures_cost_mult = 0.5
+		}
+		ai_weight = {
+			base = 0
+		}
+	}
+	approach = {
+		name = deficit_approach_invest_in_gas_producers
+		icon = GFX_situation_approach_energy_credits
+		icon_background = GFX_situation_approach_bg_green
+		modifier = {
+			planet_refiners_antimatter_fuel_produces_mult = 0.25
+			planet_refiners_upkeep_mult = 0.25
+			planet_sr_miners_antimatter_fuel_produces_mult = 0.25
+			#No upkeep increase for gas extractors because it'd also target mote farmers etc too
+		}
+
+		ai_weight = {
+			base = 0
+			modifier = {
+				add = 2
+				current_stage = deficit_third
+			}
+			modifier = {
+				add = 2
+				current_stage = deficit_fourth
+			}
+		}
+	}
+}
+
+situation_eezo_deficit = {
+	picture = GFX_evt_deficit
+	category = negative
+	fail_icon = GFX_situation_outcome_meh
+	fail_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_bankrupcy
+	complete_icon_frame = GFX_situation_outcome_frame_red
+
+	on_start = {
+		set_situation_flag = deficit_situation
+	}
+	on_abort = {
+		owner = {
+			add_resource = {
+				eezo = @bailout_strategic_base_amount
+				mult = value:bailout_scaling_factor
+			}
+		}
+	}
+
+	start_value = 15
+	stages = {
+		deficit_first = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_red
+			end = 25
+			modifier = {
+				planet_jobs_produces_mult = -0.05
+				ship_speed_mult = -0.2
+				terraform_speed_mult = -0.2
+			}
+		}
+		deficit_second = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 50
+			modifier = {
+				planet_jobs_produces_mult = -0.1
+				ship_speed_mult = -0.4
+				terraform_speed_mult = -0.4
+			}
+		}
+		deficit_third = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_red
+			end = 75
+			modifier = {
+				planet_jobs_produces_mult = -0.15
+				ship_speed_mult = -0.6
+				terraform_speed_mult = -0.6
+			}
+		}
+		deficit_fourth = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_red
+			end = 100
+			modifier = {
+				planet_jobs_produces_mult = -0.2
+				ship_speed_mult = -0.8
+				terraform_speed_mult = -0.8
+			}
+			on_first_enter = {
+				situation_event = { id = deficit.215 }
+			}
+		}
+	}
+
+	on_progress_complete = {
+		country_defaulted_in_situation_tooltip = yes
+		hidden_effect = {
+			situation_event = { id = deficit.220 }
+		}
+	}
+	on_fail = {
+		custom_tooltip = deficit_situation_finish_tooltip
+		hidden_effect = { destroy_situation = this }
+	}
+	monthly_progress = {
+		base = 0
+		modifier = {
+			add = value:deficit_situation_progress_value|RESOURCE|eezo|
+			desc = string_expenditures_greater_than_income_eezo
+			owner = { has_actual_deficit = { RESOURCE = eezo } }
+		}
+		modifier = {
+			subtract = 5
+			desc = string_not_in_deficit_eezo
+			owner = {
+				resource_income_compare = {
+					resource = eezo
+					value >= 0
+				}
+			}
+		}
+		modifier = {
+			subtract = 1
+			desc = string_resource_reserves_eezo
+			owner = {
+				has_negative_income_with_stockpile = { RESOURCE = eezo }
+			}
+		}
+	}
+	approach = {
+		name = deficit_approach_do_nothing
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+		ai_weight = {
+			base = 1
+		}
+	}
+	approach = {
+		name = deficit_approach_recycling
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		modifier = {
+			planet_structures_eezo_upkeep_mult = -0.25
+			planet_building_refund_mult = 0.5
+			planet_structures_cost_mult = 0.5
+		}
+		ai_weight = {
+			base = 0
+		}
+	}
+	approach = {
+		name = deficit_approach_invest_in_gas_producers
+		icon = GFX_situation_approach_energy_credits
+		icon_background = GFX_situation_approach_bg_green
+		modifier = {
+			planet_refiners_eezo_produces_mult = 0.25
+			planet_refiners_upkeep_mult = 0.25
+			planet_sr_miners_eezo_produces_mult = 0.25
 			#No upkeep increase for gas extractors because it'd also target mote farmers etc too
 		}
 

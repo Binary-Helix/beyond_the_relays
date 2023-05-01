@@ -5,7 +5,9 @@
 # constant_modifier - applied to planet always
 # station = station class in orbit to gather
 
-###Note from Puck - Only changes as of BTR 1.0 are adding hothouse planet class to mineral deposits.
+###Note from Puck - 
+# - Added hothouse planet class to mineral deposits. 
+# - Set Alloy Dropweight to 0 and no potential.
 
 ##################################
 ############ MINERALS ############
@@ -1341,20 +1343,24 @@ d_alloys_1 = {
 			alloys = 1
 		}
 	}
-	potential = {
-		OR = {
-			is_planet_class = pc_asteroid
-			is_planet_class = pc_molten
-		}
-	}
 
-	drop_weight = {
-		weight = 2
-		modifier = {
-			factor = 1.5
-			is_inside_nebula = yes
-		}
-	}
+	potential = { always = no }
+	drop_weight = { weight = 0 }
+
+	# potential = {
+	# 	OR = {
+	# 		is_planet_class = pc_asteroid
+	# 		is_planet_class = pc_molten
+	# 	}
+	# }
+
+	# drop_weight = {
+	# 	weight = 2
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		is_inside_nebula = yes
+	# 	}
+	# }
 }
 
 d_alloys_2 = {
@@ -1368,17 +1374,20 @@ d_alloys_2 = {
 		}
 	}
 
-	potential = {
-		is_planet_class = pc_asteroid
-	}
+	potential = { always = no }
+	drop_weight = { weight = 0 }
 
-	drop_weight = {
-		weight = 0.50
-		modifier = {
-			factor = 1.5
-			is_inside_nebula = yes
-		}
-	}
+	# potential = {
+	# 	is_planet_class = pc_asteroid
+	# }
+
+	# drop_weight = {
+	# 	weight = 0.50
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		is_inside_nebula = yes
+	# 	}
+	# }
 }
 
 d_alloys_3 = {
