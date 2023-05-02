@@ -73,7 +73,7 @@ sys_tasale_init = {
 			set_global_flag = illium_homeworld_spawned	
 
 			create_country = {
-				name = "NAME_Illium_Corporate_Interests"
+				name = "Illium Corporate Interests"
 				adjective = "PRESCRIPTED_adjective_illium_corporate_interests"
 				authority = auth_corporate
 				civics = { 
@@ -128,6 +128,12 @@ sys_tasale_init = {
 				owner = event_target:illium_corporate_interests
 			}
 			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = illium_corporate_interests
+				}
+				save_global_event_target_as = illium_corporate_interests
+			}
 			generate_btr_start_deposits_and_blockers = yes
 			clear_blockers = yes
 			generate_illium_deposits = yes
@@ -365,6 +371,12 @@ sys_sahrabarik_init = {
 				owner = event_target:omega_empire
 			}
 			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = omega_empire
+				}
+				save_global_event_target_as = omega_empire
+			}
 			generate_btr_start_deposits_and_blockers = yes
 			clear_blockers = yes
 			generate_omega_deposits = yes
@@ -474,7 +486,7 @@ sys_balor_init = {
 				prevent_anomaly = yes
 				set_global_flag = caleston_homeworld_spawned
 				create_country = {
-					name = "NAME_Caleston_Directorate"
+					name = "Caleston Directorate"
 					adjective = "PRESCRIPTED_adjective_caleston_directorate"
 					authority = auth_corporate
 					civics = { 
@@ -529,6 +541,12 @@ sys_balor_init = {
 					owner = event_target:caleston_directorate
 				}
 				set_capital = yes
+				random_country = {
+					limit = { 
+						has_country_flag = caleston_directorate
+					}
+					save_global_event_target_as = caleston_directorate
+				}
 				generate_btr_start_deposits_and_blockers = yes
 				clear_blockers = yes
 				generate_caleston_deposits = yes
@@ -649,7 +667,7 @@ sys_theseaofstorms_init = {
 			set_global_flag = heretic_station_spawned
 
             create_country = {
-                name = "NAME_Disciples_of_Nazara"
+                name = "Disciples of Nazara"
                 adjective = "PRESCRIPTED_adjective_disciples_of_nazara"
                 authority = auth_machine_intelligence
                 civics = { 
@@ -700,6 +718,13 @@ sys_theseaofstorms_init = {
             create_colony = {
                 owner = event_target:disciples_of_nazara
             }
+			set_capital = yes
+			random_country = {
+				limit = { 
+					has_country_flag = disciples_of_nazara
+				}
+				save_global_event_target_as = disciples_of_nazara
+			}
             generate_btr_start_deposits_and_blockers = yes
             clear_blockers = yes	
             generate_naz_heretic_station_capitol_buildings = yes
