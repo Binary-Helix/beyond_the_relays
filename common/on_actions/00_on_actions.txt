@@ -35,6 +35,14 @@ on_game_start_country = {
 		##toxoids.7000 # Knights of the Toxic God - Start Quest
 		#origin.4005 # Payback Origin
 		#origin.5081 # Broken Shackles Blockers
+		game_start.60 # Misc Paragon
+		game_start.61 # Gestalt Empire Council Generation
+		game_start.62 # Place Vaults of Knowledge on planet when starting with civic
+		game_start.63 # Change Ethic of first Ruler to empire's fanatic ethic.
+		game_start.64 # Place Clinics on the Big Pharma Empire
+		game_start.65 # Place additional Police House with Dystopian Society
+		game_start.66
+		paragon_2.2115 # Distrubute Traits from traits giving civics
 	}
 }
 
@@ -67,6 +75,9 @@ on_monthly_pulse = {
 		#graygoo.510
 		#distar.10955
 		action.116 # enable resources for galactic market
+		paragon_2.1115 # Repair Crew trait effect
+		paragon_2.1135 # Knowledge for the Masses trait effect
+		paragon_2.1145 # Aptitude - Champions of the Empire Tradition effect
 		pirate.48
 		pirate.4
 		crime.1000
@@ -127,7 +138,7 @@ on_monthly_pulse_pre_ftl_observation = {
 		50 = observation.0		# Incoming Asteroid
 		50 = observation.1200	# Malfunctioning Implants
 		25 = observation.1300	# Aggressive Observation causes ethics change
-		5 = observation.1400	# Nuclear War
+		5 = observation.1400	# Nuclear War Warning
 		# Medieval or Victorian Era Events
 		50 = observation.300	# Smuggler Outpost
 		# Pre-Industrial Events
@@ -227,6 +238,7 @@ on_decade_pulse = {
 		drones.100	# Ancient Mining Drone Expansion Fleet setup (unclaimed systems)
 		drones.120	# Ancient Mining Drone Expansion Fleet setup (claimed systems too)
 		drones.200	# triggers a possible Space Crystal Splitter expansion (any system)
+		paragon_2.1140	# Shroud Preacher trait effect
 		pirate.100 # assorted late-game pirates
 		fedev.600	# Federation Joint Operation - Trade League
 	}
@@ -271,6 +283,8 @@ on_monthly_pulse_country = {
 		origin.5104 # Broken Shackles - Resolution Proposed
 		origin.5114 # Broken Shackles - Resolution Proposed
 		origin.5124 # Broken Shackles - Resolution Proposed
+		paragon.5034
+		paragon.5037
 		utopia.2665 # Monthly covenant progress
 		utopia.2670 # Covenant Rank 1 check
 		utopia.2675 # Covenant Rank 2 check
@@ -295,6 +309,7 @@ on_yearly_pulse_country = {
 		origin.5047 # Broken Shackles - Complimentary Thinking
 		origin.5041 # Broken Shackles - Factions Founded
 		origin.5011 # Broken Shackles - Homesick Alternate
+		paragon_2.1020 # Paragon negative leader trait event.
 	}
 }
 
@@ -314,11 +329,13 @@ on_five_year_pulse_country = {
 		action.620 # pre-FTL diplo events
 		action.630 # pre-FTL tech events		
 		#origin.5715	# Imperial Vassal - Dissolution event chain
+		paragon.5203
 		preftl.10050 # In breach of Equal Standing - get a fine.
 		preftl.10150 # In breach of Non-Interference - get a fine.
 		preftl.10250 # In breach of Exploitation - get a fine.
 		fircon.5050 # Solarpunk trade ending
 		origin.4109 # Payback - meeting Broken Shackles
+		paragon.200	# Astrocreator Azaryn encounter chance
 	}
 	# See also: on_five_year_random_pulse_country = {}
 	random_events = {
@@ -389,11 +406,28 @@ on_decade_pulse_country = {
 		federations.10400	# Fix issues we are in breach of (GalCom)
 		action.240			# Misc error checking
 		leviathans.560		# Enclave communications spread
+		paragon.5905 		# Upkeep for Ascended Leader
 		action.632			# Payback - Broken Shackles interactions
+		paragon.998			# Random leader events
+		paragon.41234		# Renowned leader events
+		paragon.40000		# Paragon related pulses - check possibility to hire an ethic leader
 	}
 	random_events = {
 		50 = 0
 		50 = origin.4300 # Payback Origin - Out of Warranty event chain
+	}
+}
+
+on_decade_pulse_country = {
+	random_events = {
+		1 = paragon.3010
+		3 = paragon.3020
+		1 = paragon.3030
+		1 = paragon.3040
+		1 = paragon.3050
+		1 = paragon.3060
+		1 = paragon.3080
+		1 = paragon.3090
 	}
 }
 
@@ -408,8 +442,6 @@ on_decade_random_pulse_country_payback_broken_shackles = {
 
 # this = country
 on_mid_game_pulse_country = {
-	events = {
-	}
 }
 
 # this = country
@@ -497,6 +529,7 @@ on_first_contact = {
 		##galactic_features.421 #VLUUR
 		pirate.155 #Thalassocracy pirates
 		first_contact_critters.1000 #Establish comms for most cases
+		fircon.3515 #The Chosen (you breached the wormhole)
 	}
 }
 
@@ -507,6 +540,7 @@ on_first_contact_finished = {
 	events = {
 		tutorial.2004 #First Contact Established (setup)
 		origin.6044 #Fear of the Dark
+		paragon_2.2100 #Gives progress to Xenolinguistics
 	}
 }
 
@@ -526,9 +560,11 @@ on_enforce_borders = {
 on_ground_combat_started = {
 	events = {
 		action.485 # Prevents With Great Power achievement
+		paragon_2.1105 # Supreme Warrior trait effect
 		awareness.125 # Pre-ftl planet invaded, sets awareness to 100.
 		preftl.10156 # Violation of Non-Interference Act by Invasion.
 		fircon.5034 #Invading Solarpunks
+		paragon_2.2085
 	}
 }
 
@@ -565,6 +601,7 @@ on_planet_attackers_win = {
 		##ancrel.2068
 		##ancrel.6499
 		##ancrel.4064
+		paragon_2.1015
 		colony.9889 #Negative Mass, lost to rebels
 	}
 }
@@ -655,9 +692,12 @@ on_entering_system_first_time = {
 		#origin.5615 #Teachers of the Shroud #origin - enter Shroudwalker system
 		#ancrel.12060 #Surveillance Supercomputer system
 		origin.6155 #Fear of the Dark entering hunter system
+		paragon.3100 # Legendary Paragon - Exakeides
+		paragon.3144
 		origin.4997 #Broken Shackles - Homeworld Found Gatekeeper 1
 		origin.4998 #Broken Shackles - Homeworld Found Gatekeeper 2
 		origin.4999 #Broken Shackles - Homeworld Found Gatekeeper 3
+		unique.130 #Lone Defender system
 	}
 	random_events = {
 		200 = 0
@@ -671,6 +711,9 @@ on_entering_system_first_time = {
 # FromFrom = Country
 on_entering_system = {
 	events = {
+		paragon.3120
+		paragon.3125
+		paragon.3130
 	}
 	random_events = {
 	}
@@ -681,6 +724,7 @@ on_entering_system = {
 # From = System
 on_entering_system_fleet = {
 	events = {
+		paragon.3901
 		action.40
 		country.211
 		country.1002
@@ -805,8 +849,12 @@ on_survey = {
 		##galactic_features.386 # Tiyanki Graveyard System
 		origin.6160 #Scanning Hunter Planet
 		uplift.6000 # Pre-Sapients Found
+		paragon_2.2000 # Scientist traits survey events - Gatekeeper
 		awareness.115	# Uncloaked science ship surveys pre-ftl planet
 		fircon.5020 # Surveying Solarpunk Planet
+		paragon_2.2070
+		paragon_2.2075
+		paragon_2.2080
 		origin.5000 #Broken Shackles - Encountering Main Pop Homeworld
 		origin.5001 #Broken Shackles - 1st Encounter w/Other Pop Homeworld
 		origin.5009 #Broken Shackles - 2nd Encounter w/Other Pop Homeworld
@@ -872,12 +920,14 @@ on_colonization_started = {
 		advisor.17
 		progress.3
 		progress.7
+		paragon.5005 # First planet start colonization
 		#distar.300 # Change junkheap planetview image
 		mega.110 # Colonization unconsecration
 		#origin.3010 #Lithoid #origin deposit/modifier
 		#origin.3101 #Remnants colonial goodies
 		federations3.120 #Kept Grounds, if Wenkwort Artem has been colonised
 		origin.5510 #Broken Shackles - First Colony
+		action.655	# Reset colony type upon colonization if this was a former pre-ftl world.
 	}
 	random_events = {
 		190 = 0
@@ -907,7 +957,10 @@ on_colonized = {
 		#origin.84
 		clones.5 	#Clone Army (make sure pops don't migrate to die)
 		#origin.3225 #Progenitor Hive Missing
+		paragon.5010	# First planet finished colonization
+		paragon.403		# Give boost if "Superior Colonies" Agenda
 		awareness.135 # Planet colonised in pre-ftl system
+		paragon.100 # Potentially abort Beholder chain
 	}
 }
 
@@ -915,6 +968,7 @@ on_colonized = {
 # Scope = Planet
 on_colony_destroyed = {
 	events = {
+		paragon.3900
 		colony.2002
 		#origin.3002 #ToL Tree death
 		colony.9895 #Remove 'Sprawling Slums' blockers
@@ -945,8 +999,8 @@ on_entering_battle = {
 # FromFromFrom = ship 2
 on_ship_destroyed_victim = {
 	events = {
+		paragon.3903
 		syndaw.30
-		mandate.143
 		nomad.95
 		leviathans.3002
 		leviathans.3101
@@ -977,6 +1031,8 @@ on_ship_destroyed_victim = {
 		enclave.370		# destroy Salvager Enclave
 		enclave.430		# destroy Shroudwalker Enclave
 		#origin.3260		# destroy Offspring ships
+		paragon.3070
+		paragon.285
 	}
 }
 
@@ -1002,6 +1058,7 @@ on_ship_destroyed_perp = {
 		necroids.300 # Cordyceptic Drones killing space fauna
 		necroids.310 # Cordyceptic Drones killing Prethoryn
 		#toxoids.7315 # Fate of the Toxic Entity
+		paragon_2.1005 # On ship destroyed leader traits.
 	}
 	random_events = {
 	}
@@ -1140,6 +1197,8 @@ on_fleet_destroyed_perp = {
 		#ancrel.13000 #Destroyed Polaris fleet
 		colony.9820 #Negative Mass defeated fleet
 		#ancrel.12065 #Destroyed Surveillance Bot fleet
+		paragon.3149 # Exakeides drones manually destroyed
+		unique.135 # Destroyed Lone Defender fleet
 	}
 	random_events = {
 		300 = 0
@@ -1160,6 +1219,7 @@ on_fleet_destroyed_perp = {
 on_space_battle_won = {
 	events = {
 		achievement.1
+		paragon_2.1010
 		awareness.105 # Ship disengaged in pre-ftl system.
 		origin.4020 #Payback debt collectors chain | won battle against the debt collectors
 	}
@@ -1178,7 +1238,6 @@ on_space_battle_lost = {
 # From = disbanded fleet
 on_fleet_disbanded = {
 	events = {
-		mandate.3 #removes mandate progress if you disband a related station
 	}
 }
 
@@ -1249,7 +1308,6 @@ on_fleet_contract_broken = {
 # immediately before station is created
 on_building_mining_station = {
 	events = {
-		mandate.110
 		tutorial.10
 		tutorial.1000
 		tutorial.56
@@ -1268,7 +1326,6 @@ on_building_mining_station = {
 # immediately before station is created
 on_building_research_station = {
 	events = {
-		mandate.120
 		tutorial.12
 		tutorial.1200
 		tutorial.56
@@ -1288,8 +1345,6 @@ on_building_outpost_station = {
 	events = {
 		tutorial.750
 		tutorial.56
-		mandate.110
-		mandate.120
 		#factions.220
 	}
 }
@@ -1439,6 +1494,7 @@ on_uplift_completion = {
 	events = {
 		uplift.6010
 		factions.1005
+		paragon.101 # Potentially abort Beholder chain
 	}
 }
 
@@ -1461,6 +1517,8 @@ on_terraforming_complete = {
 		#distar.197
 		#terra.10 # #terraforming random events
 		#toxoids.50
+		paragon.253 # Astrocreator Azaryn's terraformation
+		awareness.150 # Planet cracker used OR planet terraformed, chance to gain 20 awareness.
 	}
 }
 
@@ -1470,6 +1528,7 @@ on_planet_class_changed = {
 	events = {
 		aquatics.1005
 		action.490
+		terra.0
 	}
 }
 
@@ -1487,6 +1546,7 @@ on_planet_bombarded = {
 		marauder.103	# Marauder raid
 		#graygoo.2
 		#graygoo.555
+		action.601 #Orbital bombardment surrender policy
 		#origin.3003		# Tree of Life: Tree death
 		awareness.125	# Pre-ftl world bombarded.
 		origin.4025 	# Payback debt collectors chain | lost battle against the debt collectors
@@ -1597,7 +1657,54 @@ on_presence_revealed = {
 # From = Country which is raining down fire and brimstone
 on_pop_bombed_to_death = {
 	events = {
+		action.100
 	}
+}
+
+# Executed when a new heir is appointed
+# This = Heir
+on_new_heir = {
+	events = {
+		action.504
+		paragon.5003
+		paragon_2.2072 # Technocracy Expertise Trait
+		paragon_2.2091 # Heroic Tales Random Trait
+		paragon_2.2056 # Zealot and Crusader from Crusader Spirit
+		paragon_2.2051 # One additional level from Vaults
+	}
+}
+
+# Executed when an heir is promoted to ruler
+# This = Heir
+on_heir_promoted_to_ruler = {
+	events = {
+		action.501
+	}
+}
+
+# Executed when a ruler is created. Called after the leader is set as ruler of the country
+# This = Country
+# FROM = Leader
+on_ruler_created = {
+	events = {
+		utopia.6000 # hive mind ruler gets hive mind trait to make them immortal
+		syndaw.1050 # Machine Intelligence ruler gets trait
+	}
+}
+
+# Executed just before on_leader_death if show_notification = yes (default)
+# This = Country
+# From = Leader
+on_leader_death_notify = {
+	events = {
+		paragon.549 # Leader Funeral Events
+	}
+}
+
+# Executed just before on_leader_death if show_notification = no (explicitly set)
+# This = Country
+# From = Leader
+on_leader_death_no_notify = {
 }
 
 # Executed as a leader has died
@@ -1606,10 +1713,24 @@ on_pop_bombed_to_death = {
 on_leader_death = {
 	events = {
 		pretender.1
-		mandate.21
 		akx.9330
 		marauder.70
 		marauder.711
+		paragon.590 # Randomize if leader retires or dies by default
+		paragon.3904
+		paragon.2
+		paragon.5900
+		paragon.3906
+		distar.168 # Remove Event Node Traits
+		paragon.600	# Generate new nodes for a gestalt empire if a node dies.
+	}
+}
+
+# Executed as a leader is hired 
+# This = Leader
+on_leader_hired = {
+	events = {
+		paragon.450 # On leader hired toast
 	}
 }
 
@@ -1619,6 +1740,11 @@ on_leader_death = {
 on_leader_fired = {
 	events = {
 		marauder.70
+		paragon.3904
+		paragon.2
+		paragon.290
+		paragon.3906
+		distar.168 # Remove Event Node Traits
 	}
 }
 
@@ -1627,7 +1753,9 @@ on_leader_fired = {
 # From = Leader
 on_leader_level_up = {
 	events = {
-		leader.20 #gatekeeper for various events
+		paragon_2.2045
+		paragon_2.2095
+		paragon_2.2096	# Update Gestalt node portraits.
 	}
 }
 
@@ -1648,7 +1776,6 @@ on_leader_unassigned = {
 on_ruler_set = {
 	events = {
 		action.47	# Remove election-filler leaders when ruler is set
-		mandate.1	# "ruler X elected, check situation log for their mandate"=
 	}
 }
 
@@ -1660,18 +1787,6 @@ on_ruler_removed = {
 	}
 }
 
-# Executed when the ruler is ousted and goes back to their pre-ruler class
-# From = Previous Ruler, already has the new class
-# This = Country
-on_ruler_back_to_pre_ruler_class = {
-	events = {
-		utopia.2511	# leader gets cyborg trait for their normal leader class
-		utopia.2561	# leader gets synthetic trait for their normal leader class
-		utopia.2653	# leader gets psionic trait for their normal leader class
-		utopia.2654	# chosen leader gets chosen trait for their normal leader class
-	}
-}
-
 # This = Planet
 on_blocker_cleared = {
 	events = {
@@ -1680,6 +1795,7 @@ on_blocker_cleared = {
 		#ancrel.4030
 		#terra.30 # Clear the #terraforming Blocker form #terra.25
 		action.495 # Sets flag if blockers have been cleared on Wenkwort Artem.
+		paragon_2.2120
 	}
 }
 
@@ -1717,7 +1833,6 @@ on_ship_built = {
 		tutorial.8
 		tutorial.21
 		tutorial.25
-		mandate.144
 		#crisis.2056
 		fedev.9500
 		origin.5060 #Broken Shackles - Built 1st Science Ship
@@ -1769,6 +1884,8 @@ on_war_ended = {
 		fallen_empires.14
 		utopia.2660
 		origin.6256 # Fear of the Dark Seperatists made neutral
+		paragon.5213
+		paragon.5223
 	}
 }
 
@@ -1808,12 +1925,17 @@ on_tech_increased = {
 		origin.4306 # Payback Out of Warranty chain - Genetic Healthcare
 		origin.5500 # Broken Shackles - Upgrade Research Labs
 		origin.5505 # Broken Shackles - Upgrade Admin Hub
+		#paragon.5920
+		#paragon.5921
+		#paragon.5922
+		#paragon.5923
 		origin.4936 # Payback - Upgrade flagship
 		tutorial.2500 # Tutorial - Cloaking Fields
 		tutorial.2550 # Tutorial - Cloaking Detection
 		fircon.26		# Cloak Observation Outposts upon researching cloaking.
 		ancrel.9915 # Archaeotech - faking AI building faculty of archaeostudies
 		ancrel.9920 # Archaeotech - faking AI building archaeo refinery
+		paragon_2.2105
 	}
 }
 
@@ -1839,6 +1961,16 @@ on_planet_occupied = {
 		##crisis.2005
 		##crisis.2215
 		colony.9095
+		paragon.5930
+	}
+}
+
+# A planets controller becomes the owner of the planet.
+# Root = Planet
+# From = Planet Owner
+# FromFrom = Previous Planet Controller (the one who was occupying)
+on_planet_returned = {
+	events = {
 	}
 }
 
@@ -1886,6 +2018,7 @@ on_army_killed_in_combat = {
 		emperor.450
 		necroids.15
 		colony.9080
+		paragon_2.1040
 	}
 }
 
@@ -1946,7 +2079,6 @@ on_building_demolished = {
 # This = Planet
 on_district_complete = {
 	events = {
-		mandate.180 # Districts built counter
 	}
 }
 
@@ -1984,7 +2116,6 @@ on_district_unqueued = {
 # This = Planet
 on_district_demolished = {
 	events = {
-		mandate.181
 	}
 }
 
@@ -2020,6 +2151,9 @@ on_war_won = {
 		syndaw.2000 # exterminator achievement
 		action.475 # Fishing for Trouble achievement
 		origin.5145 # Broken Shackles - War vs Slavers
+		paragon.5026
+		paragon.5213
+		paragon.5223		
 		origin.4060 # Payback - defeated MSI
 		origin.4071 # Payback - defeated the people who defeated the MSI
 	}
@@ -2039,6 +2173,7 @@ on_war_lost = {
 		fallen_empires.2
 		fallen_empires.12
 		origin.5140 # Broken Shackles - War vs Slavers
+		paragon.5028
 	}
 }
 
@@ -2116,7 +2251,6 @@ on_pop_purged = {
 	events = {
 		#crisis.202
 		#crisis.2044
-		# mandate.131
 		action.21 # Opinion effect on other empires
 		action.22 # Resources from Forced Labor/Processing/Chemical Processing
 		action.95 # Purging the last Primitive Pop removes Culture Shock from the planet
@@ -2191,6 +2325,7 @@ on_planet_ownerless = {
 #be it after a war or through a trade
 #FromFrom = Former Owner (if any)
 #From = Country scope (new owner)
+#FromFrom = Country scope (previous owner, if any)
 #This = Planet scope
 on_planet_transfer = {
 	events = {
@@ -2207,6 +2342,7 @@ on_planet_transfer = {
 		preftl.2171 # Removes modifier for Singularity planet
 		factions.15 # Remove Factions-specific modifiers
 		necroids.10 # Hive Necrophage not auto purging their pops
+		paragon.5930
 	}
 }
 
@@ -2310,6 +2446,7 @@ on_federation_leader_challenge = {
 # From = root of context where create_country/create_rebels happens
 on_country_created = {
 	events = {
+		game_start.60
 		preftl.30	# Add technological progression situation to pre-FTLs if the situation was not already created.
 	}
 }
@@ -2332,6 +2469,7 @@ on_country_destroyed = {
 		action.465 # Directive 67 achievement
 		action.470 # Destroy People of Earth achievement
 		action.480 # Zombie on my Lawn achievement
+		paragon.5935
 	}
 }
 
@@ -2579,7 +2717,7 @@ on_colony_10_year_pulse = {
 	}
 }
 
-# a new leader is generated for an empire, to be available for recruitment
+# a new leader is created
 # scope: country, from: leader
 on_leader_spawned = {
 	events = {
@@ -2587,17 +2725,32 @@ on_leader_spawned = {
 		utopia.2510	# New Leaders Get Cyborg Trait
 		utopia.2560	# New Leaders Get Synthetic Trait
 		utopia.2651	# New Leaders Get Psionic Trait
-		utopia.6000 # hive mind ruler gets hive mind trait to make them immortal
-		syndaw.1050 # Machine Intelligence ruler gets trait
 		#distar.173 # New Leaders Get Brainslug Trait
 		clones.24 # New Leaders gain Clone Army Admiral traits
 		action.405 # New Citizen Service Admirals and Generals are level 3
+		paragon_2.1120 # Science Communicator levels up scientists
 		specialist.400
+		paragon_2.2065 # Change admiral/general background class.
 		origin.6265 # Fear of the Dark Leader Spawned after Merge
+		paragon_2.2200 # Randomize "leader_pending_negative_traits" for new Leader.
 	}
 	random_events = {
 		80 = 0
 		20 = utopia.2601
+	}
+}
+
+# A leader is added to the leader pool, available for recruitment
+# scope: country, from: leader
+on_added_to_leader_pool = {
+	events = {
+		action.406 # Randomize Leader Pool Variations of skill and age
+		paragon_2.2090 #Heroic Tales Random Trait
+		paragon_2.2071 #Giving Trait from Technocracy
+		paragon_2.2055 #Zealot and Crusader from Crusader Spirit
+		paragon_2.2050 #One additional level from Vaults
+		paragon_2.2110 #Letters of Marque
+		paragon_2.2060 # +1 level if Aptitude tradition tree finished
 	}
 }
 
@@ -2632,11 +2785,17 @@ empire_init_create_ships = {
 # Called when an election starts
 # scope: country
 on_election_started = {
+	events = {
+		paragon.500 # Flags Leaders that are on the Council.
+	}
 }
 
 # Called when an election ends
 # scope: country
 on_election_ended = {
+	events = {
+		paragon.501 # Clean up Flags about being on Council at Election start.
+	}
 }
 
 # Called upon entering FTL (on-action name scripted on the Bypass type)
@@ -2654,6 +2813,7 @@ on_entering_gateway = {
 on_entering_wormhole = {
 	events = {
 		achievement.4
+		fircon.3505
 	}
 }
 
@@ -2930,6 +3090,8 @@ on_becoming_subject = {
 		action.441 # Force Subjects to join GalCom
 		origin.6064 # Fear of the Dark became a subject
 		origin.6070 # Fear of the Dark got a subject
+		paragon.5024 # Leader speech about getting subject
+		paragon.5032 # Leader speech on becoming a vassal
 	}
 }
 
@@ -2952,6 +3114,7 @@ on_released_as_vassal = {
 		action.230 # Convert released megacorps into oligarchies
 		specialist.700
 		#origin.3270 # Progenitor hive
+		paragon.5940
 	}
 }
 
@@ -3062,6 +3225,8 @@ on_operation_chapter_finished = {
 # THIS = Espionage operation
 # FROM = Operation target
 on_operation_finished = {
+	events = {
+	}
 }
 
 # THIS = Espionage operation
@@ -3102,6 +3267,7 @@ on_custodian_term_ends = {
 on_tradition_picked = {
 	events = {
 		specialist.800
+		paragon.405
 	}
 }
 
@@ -3170,8 +3336,11 @@ on_establish_mercenary_enclave = {
 # this = country
 # from = debris
 # fromfrom = controller of destroyed ship
+# fromfromfrom = science ship
 on_debris_researched = {
 	events = {
+		paragon_2.1110 # Salvager trait
+		paragon_2.1125 # Collective Wisdom Trait
 	}
 }
 
@@ -3179,8 +3348,11 @@ on_debris_researched = {
 # this = country
 # from = debris
 # fromfrom = controller of destroyed ship
+# fromfromfrom = science ship
 on_debris_scavenged = {
 	events = {
+		paragon_2.1110 # Salvager trait
+		paragon_2.1125 # Collective Wisdom Trait
 	}
 }
 
@@ -3191,6 +3363,25 @@ on_debris_scavenged = {
 on_debris_scavenged_and_researched = {
 	events = {
 		#toxoids.700
+				paragon_2.1125 # Collective Wisdom Trait
+	}
+}
+
+# Fired when a ship completes a special project.
+# this = country
+# fromfromfrom = ship
+special_project_success = {
+	events = {
+		paragon_2.1125 # Collective Wisdom Trait
+	}
+}
+
+# Fired when a ship finishes researching an anomaly.
+# this = ship
+# from = planet
+anomaly_success = {
+	events = {
+		paragon_2.1130 # Insightful Trait.
 	}
 }
 
@@ -3283,6 +3474,42 @@ on_shroudwalker_insight_situation_finish = {
 	}
 }
 
+#############################
+### CUSTOM SCRIPT ACTIONS ###
+#############################
+# Fired by scripted_action_possible in utility_component_template on a ship,
+# when the ship reaches its target planet, in this case.
+# Reference to this on_action is set by its scripted_action_name.
+# This = planet
+# From = planet
+
+# Beholder Leader's Planetfall action
+on_beholder_target_planet_reached = {
+	events = {
+		paragon.99
+	}
+}
+
+on_azaryn_target_planet_reached = {
+	events = {
+		paragon.250
+	}
+}
+
+on_azaryn_action_cancel = {
+	events = {
+		paragon.251
+	}
+}
+
+# Executed when a country activates an agenda
+# THIS = country
+on_agenda_finished = {
+	events = {
+		paragon.402	# Tradition tr_statecraft_amongst_peers XP bonus.
+		paragon.404	# Give boost to young colonies if "Superior Colonies" Agenda is finished.
+	}
+}
 
 # Fired when a fleet activates cloaking
 # This = Fleet
