@@ -2583,11 +2583,10 @@ sys_relic_init = {
 				create_colony = {
 					owner = event_target:relic_mineral_works
 				}
-				generate_rough_tide_buildings = yes
-				generate_rough_tide_pops = yes
-				log = "Relic Mineral Works Colony Spawned"
 			}
-
+			generate_rough_tide_buildings = yes
+			generate_rough_tide_pops = yes
+			log = "Relic Mineral Works Colony Spawned"
 			add_modifier = {
 				modifier = mesa_world
 				days = -1
@@ -2630,10 +2629,10 @@ sys_relic_init = {
 				create_colony = {
 					owner = event_target:relic_mineral_works
 				}
-				generate_beach_thunder_buildings = yes
-				generate_beach_thunder_pops = yes
-				log = "Relic Mineral Works Colony Spawned"
 			}
+			generate_beach_thunder_buildings = yes
+			generate_beach_thunder_pops = yes
+			log = "Relic Mineral Works Colony Spawned"
 		}		
     }
 }
@@ -3144,7 +3143,7 @@ sys_iera_init = {
 	flags = { attican_traverse_system shadow_sea_system iera_system btr_system custom_system }
 	init_effect = { 
 		generate_home_system_resources = yes
-		log = "Paz System Spawned"
+		log = "Iera System Spawned"
 	}
 
 	max_instances = 1
@@ -3236,10 +3235,65 @@ sys_iera_init = {
 		modifiers = none
 		flags = { horizon_planet subclass_world }	
 		init_effect = {
+			log = "Horizon Capital Spawned"
+			save_global_event_target_as = iera_system_horizon
+
 			prevent_anomaly = yes
-			clear_planet_modifiers = yes
-			# add_deposit = d_average_mineral_deposits
-			add_deposit = d_minerals_4
+			set_global_flag = commune_of_horizon_capital_spawned	
+			create_country = {
+				name = "Commune of Horizon"
+				adjective = "PRESCRIPTED_adjective_commune_of_horizon"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_suspicious_untrusting
+					civic = independent_civic_isolationist
+				}
+				species = event_target:kroganSpecies
+				name_list = btr_alliance
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_militarist"
+					ethic = "ethic_authoritarian"
+				}
+
+				type = independent_colony
+				origin = antialliance_com_origin
+				effect = {
+					save_global_event_target_as = commune_of_horizon
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:commune_of_horizon
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_horizon_deposits = yes
+			generate_horizon_capitol_buildings = yes
+			generate_horizon_pops = yes
+			event_target:commune_of_horizon = {
+				set_country_flag = commune_of_horizon
+				set_graphical_culture = alliance_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Commune of Horizon Colony Spawned"
+			}
+
+			set_name = "Horizon"
 			add_modifier = {
 				modifier = lush_planet
 				days = -1
@@ -3284,6 +3338,666 @@ sys_iera_init = {
 		spawn_megastructure = { 
 			type = "shadowsea_styxtheta_primaryrelay" 
 			name = "Traverse Primary - Shadow Sea 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+#######################
+### ISHTAR EMPORIUM ###
+#######################
+
+sys_crete_init = { 
+	name = "Crete"
+	class = sc_m
+	max_instances = 1
+
+	flags = { alliance_space_system artemis_tau_system knossos_system btr_system custom_system }	
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Crete System Spawned"
+	}
+
+    planet = {
+		name = "Crete"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { crete_star }
+    }	
+
+    planet = {
+        name = "Ponto"
+        class = pc_mephitic
+        orbit_distance = 45
+        orbit_angle = 182
+        has_ring = no
+		size = 10
+		flags = { ponto_planet subclass_world }
+		entity = "mephitic_ocean_01_entity"
+		init_effect = {
+			clear_deposits = yes
+			add_modifier = {
+				modifier = coldocean_world
+			}
+		}
+    }
+	
+	planet = {
+        name = "Ishtar"
+        class = pc_arid
+        orbit_distance = 35
+        orbit_angle = 182
+        has_ring = no
+		size = 16
+		flags = { ishtar_planet subclass_world }
+		entity = "mesa_planet_01_entity"
+		init_effect = {
+			log = "Ishtar Capital Spawned"
+			save_global_event_target_as = crete_system_ishtar
+
+			prevent_anomaly = yes
+			set_global_flag = ishtar_emporium_capital_spawned	
+			create_country = {
+				name = "Ishtar Emporium"
+				adjective = "PRESCRIPTED_adjective_ishtar_emporium"
+				authority = auth_oligarchic
+				civics = {
+					civic = independent_civic_research_outpost
+					civic = independent_civic_citadel_setup
+				}
+				species = event_target:salarianSpecies
+				name_list = btr_salarian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_materialist"
+					ethic = "ethic_pacifist"
+				}
+
+				type = independent_colony
+				origin = reign_pri_origin
+				effect = {
+					save_global_event_target_as = ishtar_emporium
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:ishtar_emporium
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_ishtar_deposits = yes
+			generate_ishtar_capitol_buildings = yes
+			generate_ishtar_pops = yes
+			event_target:ishtar_emporium = {
+				set_country_flag = ishtar_emporium
+				set_graphical_culture = humanoid_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Ishtar Emporium Colony Spawned"
+			}
+			add_modifier = {
+				modifier = mesa_world
+				days = -1
+			}
+		}
+    }
+
+	planet = {
+        name = "Elephontus"
+        class = pc_gas_giant
+        orbit_distance = 35
+        orbit_angle = 182
+        has_ring = no
+		size = 35
+		flags = { elephontus_planet subclass_world }
+		init_effect = {
+			# add_deposit = d_helium_3_4
+			add_deposit = d_exotic_gases_2
+		}
+    }
+
+	planet = {
+        name = "Thracedon"
+        class = pc_frozen
+        orbit_distance = 35
+        orbit_angle = 182
+        has_ring = no
+		size = 10
+		flags = { thracedon_planet subclass_world }
+		init_effect = {
+			clear_deposits = yes
+		}
+    }
+}
+
+##########################
+### Jenera Corporation ###
+##########################
+
+sys_cheng_init = {
+	name = "Cheng"
+	class = sc_m_hyper
+	max_instances = 1
+
+	flags = { terminus_system nemean_alpha_system cheng_system btr_system custom_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Cheng System Spawned"
+	}
+
+
+	planet = {
+		name = "Cheng"
+		class = pc_m_hyper_star
+		size = 35
+	}
+
+	planet = {
+		name = "Jenera"
+		class = pc_dextro_savannah
+        orbit_distance = 250
+		size = 17
+		entity = "aquifer_planet_03_entity"
+		flags = { jenera_planet subclass_world }
+		init_effect = {
+			log = "Jenera Capital Spawned"
+			save_global_event_target_as = cheng_system_jenera
+
+			prevent_anomaly = yes
+			set_global_flag = jenera_corporation_capital_spawned	
+			create_country = {
+				name = "Jenera Corporation"
+				adjective = "PRESCRIPTED_adjective_jenera_corporation"
+				authority = auth_oligarchic
+				civics = {
+					civic = independent_civic_corporate_ownership
+					civic = independent_civic_industrialists
+				}
+				species = event_target:batarianSpecies
+				name_list = btr_batarian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_xenophobe"
+					ethic = "ethic_materialist"
+					ethic = "ethic_authoritarian"
+				}
+
+				type = independent_colony
+				origin = reign_pri_origin
+				effect = {
+					save_global_event_target_as = jenera_corporation
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:jenera_corporation
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_jenera_deposits = yes
+			generate_jenera_capitol_buildings = yes
+			generate_jenera_pops = yes
+			event_target:jenera_corporation = {
+				set_country_flag = jenera_corporation
+				set_graphical_culture = humanoid_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Jenera Corporation Colony Spawned"
+			}
+			add_modifier = {
+				modifier = aquifer_world
+				days = -1
+			}
+		}
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "nemeanalpha_mouthoffandrar_primaryrelay" 
+			name = "Nemean Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}	
+
+############################
+### Commonwealth of Joab ###
+############################
+
+sys_enoch_init = {
+    name = "Enoch"
+    class = sc_g
+	max_instances = 1
+
+	flags = { terminus_system rosetta_nebula_system _system btr_system custom_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Enoch System Spawned"
+	}
+
+    planet = {
+		name = "Enoch"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 25
+    }
+
+    planet = {
+        name = "Laban"
+        class = pc_hothouse
+        orbit_distance = 40
+        orbit_angle = 334
+        has_ring = no
+		size = 19
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_zro_deposit_1
+   	 	}
+	}	
+
+    planet = {
+        name = "Mizraim"
+        class = pc_ice_giant
+        orbit_distance = 25
+        orbit_angle = 247
+        has_ring = yes
+		size = 26
+		init_effect = {
+			add_deposit = d_zro_deposit_1
+			add_deposit = d_exotic_gases_3
+    	}
+	}	
+
+    planet = {
+        name = "Joab"
+        class = pc_tundra
+        orbit_distance = 40
+        orbit_angle = 174
+        has_ring = no
+		size = 16
+		flags = { joab_planet subclass_world }
+		entity = "mire_planet_06_entity"
+		init_effect = {
+			log = "Joab Capital Spawned"
+			save_global_event_target_as = enoch_system_joab
+
+			prevent_anomaly = yes
+			set_global_flag = commonwealth_of_joab_capital_spawned	
+			create_country = {
+				name = "Commonwealth of Joab"
+				adjective = "PRESCRIPTED_adjective_commonwealth_of_joab"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_research_outpost
+					civic = independent_civic_fearful_alone
+				}
+				species = event_target:humanSpecies
+				name_list = btr_alliance
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_materialist"
+					ethic = "ethic_egalitarian"
+				}
+
+				type = independent_colony
+				origin = reign_pri_origin
+				effect = {
+					save_global_event_target_as = commonwealth_of_joab
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:commonwealth_of_joab
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_joab_deposits = yes
+			generate_joab_capitol_buildings = yes
+			generate_joab_pops = yes
+			event_target:commonwealth_of_joab = {
+				set_country_flag = commonwealth_of_joab
+				set_graphical_culture = humanoid_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Commonwealth of Joab Colony Spawned"
+			}
+
+			add_modifier = {
+				modifier = mire_world
+				days = -1
+			}
+		}
+		moon = {
+			name = "Esther"
+			class = pc_barren
+			orbit_distance = 20
+			size = 4
+			init_effect = {
+				add_deposit = d_rare_crystals_2
+			}
+		}	
+		moon = {
+			name = "Yuka"
+			class = pc_barren_cold
+			orbit_distance = 5
+			size = 8
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+				add_deposit = d_minerals_3
+			}
+   		}
+	}	
+
+    planet = {
+        name = "Goliath"
+        class = pc_gas_giant
+        orbit_distance = 20
+        orbit_angle = 240
+        has_ring = yes
+		size = 37
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+   		}
+	}	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "rosettanebula_yomisabyssal_primaryrelay" 
+			name = "Rosetta 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+##############################
+### Korlus Recycling Union ###
+##############################
+
+sys_imir_init = {
+    name = "Imir"
+    class = "sc_g"
+	max_instances = 1
+
+	flags = { attican_traverse_system eagle_nebula_system imir_system btr_system custom_system }	
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Imir System Spawned"
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 145
+	}
+	
+    planet = {
+		name = "Imir"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 29
+		flags = { imir_star }	
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_3
+			create_ambient_object = {
+				type = "nebula_3"
+				entity_offset_height = -5
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}			
+    }
+
+    planet = {
+        name = "Osalri"
+        class = pc_hothouse
+        orbit_distance = 125
+        orbit_angle = 324
+        has_ring = no
+		size = 6
+		flags = { osalri_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_physics_7
+		}
+    }
+
+    planet = {
+        name = "Korlus"
+        class = pc_mephitic
+        orbit_distance = 125
+        orbit_angle = 217
+        has_ring = no
+		size = 17
+		entity = "mephitic_arid_planet_02_entity"
+		flags = { korlus_planet subclass_world }
+		init_effect = {
+			log = "Korlus Capital Spawned"
+			save_global_event_target_as = imir_system_korlus
+
+			prevent_anomaly = yes
+			set_global_flag = korlus_recycling_union_capital_spawned	
+			create_country = {
+				name = "Korlus Recycling Union"
+				adjective = "PRESCRIPTED_adjective_korlus_recycling_union"
+				authority = auth_dictatorial
+				civics = {
+					civic = independent_civic_industrialists
+					civic = independent_civic_free_autonomous
+				}
+				species = event_target:kroganSpecies
+				name_list = btr_krogan
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_fanatic_materialist"
+					ethic = "ethic_authoritarian"
+				}
+
+				type = independent_colony
+				origin = korlus_rec_origin
+				effect = {
+					save_global_event_target_as = korlus_recycling_union
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:korlus_recycling_union
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_korlus_deposits = yes
+			generate_korlus_capitol_buildings = yes
+			generate_korlus_pops = yes
+			event_target:korlus_recycling_union = {
+				set_country_flag = korlus_recycling_union
+				set_graphical_culture = humanoid_01
+				create_starting_leaders = yes
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				log = "Korlus Recycling Union Colony Spawned"
+			}
+			add_modifier = {
+				modifier = dust_world
+				days = -1
+			}
+    	}
+	}
+
+	change_orbit = 50
+
+	planet = {
+		count = 2
+		class = pc_asteroid
+		orbit_distance = 0
+		orbit_angle = { min = 10 max = 190 }
+	}
+
+    planet = {
+        name = "Quodis"
+        class = pc_gas_giant
+        orbit_distance = 75
+        orbit_angle = 203
+        has_ring = no
+		size = 32
+		flags = { quodis_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			# add_deposit = d_helium_3_2
+			add_deposit = d_exotic_gases_2
+		}
+    }
+
+    planet = {
+        name = "Gregas"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 191
+        has_ring = no
+		size = 13
+		flags = { gregas_planet subclass_world }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			clear_planet_modifiers = yes 
+			add_deposit = d_engineering_4
+		}
+    }
+	
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "eaglenebula_alturnonebula_primaryrelay" 
+			name = "Eagle 1 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+####################################
+### Kosh Development Corporation ###
+####################################
+
+sys_webel_init = {
+	name = "Webel"
+	class = sc_m_hyper
+	max_instances = 1
+
+	flags = { attican_traverse_system oshibka_cliff_system webel_system btr_system custom_system }
+
+	planet = {
+		name = "Webel"
+        class = pc_m_hyper_star
+        orbit_distance = 0
+        size = 38
+		flags = { klin_star }	
+    }
+
+	planet = {
+        name = "Tifta"
+        class = pc_barren
+        orbit_distance = 150
+        orbit_angle = 142
+        has_ring = yes
+		size = 10
+		flags = { tifta_planet subclass_world }		
+    }
+
+	planet = {
+        name = "kosh"
+        class = pc_continental
+        orbit_distance = 150
+        orbit_angle = 142
+        has_ring = yes
+		size = 19
+		flags = { kosh_planet }	
+		init_effect = {
+			add_deposit = d_trade_value_8	
+    	}
+	}	
+
+	planet = {
+        name = "Fasulei"
+        class = pc_iron
+        orbit_distance = 150
+        orbit_angle = 142
+        has_ring = yes
+		size = 12
+		flags = { fasulei_planet subclass_world }		
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "attican_traverse_sector_4_secondaryrelay" 
+			name = "Traverse Secondary - Sector 4 Relay"
 			orbit_angle = 270 
 			orbit_distance = 500
 		} 
