@@ -1,8 +1,13 @@
 on_game_start = {
 	events = {
-		btr_start.1
-		btr_start.2
-		btr_start.3
+		btr_map_start.1
+		btr_map_start.102
+		btr_map_start.103
+		btr_map_start.105
+		btr_map_start.107
+		btr_map_start.109
+		btr_map_start.110
+		btr_map_start.111
 		#btr_start.4
 		btr_start.6
 		btr_start.8
@@ -23,6 +28,9 @@ on_game_start = {
 
 on_game_start_country = {
 	events = {
+		btr_game_start.1
+		btr_game_start.2
+		btr_game_start.3
 		btr_start.5
 		btr_start.7
 		btr_start.9
@@ -36,5 +44,94 @@ on_game_start_country = {
 empire_init_create_ships = {
 	events = {
 		
+	}
+}
+
+# No scope, like on_game_start
+on_five_year_pulse = {
+	events = {
+		planetarystations_action.8
+	}
+}
+
+# Triggers country_event for the defender upon victory
+# Root = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+on_planet_defenders_win = {
+	events = {
+		planetarystations_colony_event.14
+		planetarystations_colony_event.18
+		planetarystations_colony_event.38
+	}
+}
+
+# Planet has taken damage from orbital bombardment - Damage is applied daily
+# This = Planet
+# From = Bombarder
+on_planet_bombarded = {
+	events = {
+		planetarystations_action.1
+	}
+}
+
+# A planet has been colonized.
+# Scope = Planet
+on_colonized = {
+	events = {
+		planetarystations_action.10
+	}
+}
+
+# Fires for each planet every 5 years (counting up from colonisation date, includes home planet)
+on_colony_5_year_pulse = {
+	events = {
+		planetarystations_action.3 # Transferring prisoners
+	}
+}
+
+on_colony_10_year_pulse = {
+	events = {
+		planetarystations_colony_event.1
+		planetarystations_action.7 #Apotheosis for non-necrophage pops to necrophage
+	}
+}
+
+#Fired whenever a new owner is set for a planet,
+#be it after a war or through a trade
+#From = Country scope (new owner)
+#This = Planet scope
+on_planet_transfer = {
+	events = {
+		planetarystations_action.5
+	}
+}
+
+# A planets controller becomes a country not the same as the owner.
+# Root = Planet
+# From = Planet Owner
+# FromFrom = Planet Controller (the one occupying)
+on_planet_occupied = {
+	events = {
+		planetarystations_colony_event.36
+	}
+}
+
+# A Megastructure has been built
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+# FromFromFrom = Fleet
+on_megastructure_built = {
+	events = {
+		btr_map_start.108
+	}
+}
+
+#A building construction has been completed.
+# This = Planet
+on_building_complete = {
+	events = {
+		btr_arlkah.01
 	}
 }
