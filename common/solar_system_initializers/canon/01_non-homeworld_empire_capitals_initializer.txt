@@ -106,7 +106,11 @@ sys_tasale_init = {
 				type = default
 				origin = illium_origin
 				effect = {
-					save_global_event_target_as = illium_corporate_interests
+					set_country_flag = illium_corporate_interests_ai
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_graphical_culture = mec_asari_01
 					add_resource = {
 						energy = 1900
 						minerals = 710
@@ -124,30 +128,29 @@ sys_tasale_init = {
 					}	
 				}
 			}
-			create_colony = {
-				owner = event_target:illium_corporate_interests
-			}
-			set_capital = yes
 			random_country = {
 				limit = { 
-					has_country_flag = illium_corporate_interests
+					OR = {
+						has_country_flag = illium_corporate_interests_ai
+						has_country_flag = illium_corporate_interests_player
+					}					
 				}
 				save_global_event_target_as = illium_corporate_interests
 			}
+			create_colony = {
+				owner = event_target:illium_corporate_interests
+			}
+			event_target:illium_corporate_interests = {
+				set_country_flag = illium_corporate_interests
+				create_starting_leaders = yes
+				log = "Illium Corporate Interests Empire Spawned"
+			}
+			set_capital = yes
 			generate_btr_start_deposits_and_blockers = yes
 			clear_blockers = yes
 			generate_illium_deposits = yes
 			generate_illium_capitol_buildings = yes
 			generate_illium_pops = yes
-			event_target:illium_corporate_interests = {
-				set_country_flag = illium_corporate_interests
-				set_graphical_culture = mec_asari_01
-				create_starting_leaders = yes
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				log = "Illium Corporate Interests Empire Spawned"
-			}
 			set_name = "Illium"
 			add_modifier = {
 				modifier = temperate_world
@@ -349,7 +352,11 @@ sys_sahrabarik_init = {
 				type = default
 				origin = omega_origin
 				effect = {
-					save_global_event_target_as = omega_empire
+					set_country_flag = omega_empire_ai
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_graphical_culture = arthropoid_01
 					add_resource = {
 						energy = 800
 						minerals = 600
@@ -367,30 +374,29 @@ sys_sahrabarik_init = {
 					}
 				}
 			}
-			create_colony = {
-				owner = event_target:omega_empire
-			}
-			set_capital = yes
 			random_country = {
 				limit = { 
-					has_country_flag = omega_empire
+					OR = {
+						has_country_flag = omega_empire_ai
+						has_country_flag = omega_empire_player
+					}
 				}
 				save_global_event_target_as = omega_empire
 			}
+			create_colony = {
+				owner = event_target:omega_empire
+			}
+			event_target:omega_empire = {
+				set_country_flag = omega_empire
+				create_starting_leaders = yes
+				log = "Omega Empire Spawned"
+			}
+			set_capital = yes
 			generate_btr_start_deposits_and_blockers = yes
 			clear_blockers = yes
 			generate_omega_deposits = yes
 			generate_omega_building_and_districts = yes	
 			generate_omega_pops = yes
-			event_target:omega_empire = {
-				set_country_flag = omega_empire
-				set_graphical_culture = arthropoid_01
-				create_starting_leaders = yes
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				log = "Omega Empire Spawned"
-			}
 			set_name = "Omega"
 		}
 	}			
@@ -519,7 +525,11 @@ sys_balor_init = {
 					type = default
 					origin = caleston_dir_origin
 					effect = {
-						save_global_event_target_as = caleston_directorate
+						set_country_flag = caleston_directorate_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = btr_turian_01
 						add_resource = {
 							energy = 1900
 							minerals = 710
@@ -537,30 +547,29 @@ sys_balor_init = {
 						}	
 					}
 				}
-				create_colony = {
-					owner = event_target:caleston_directorate
-				}
-				set_capital = yes
 				random_country = {
 					limit = { 
-						has_country_flag = caleston_directorate
+						OR = {
+							has_country_flag = caleston_directorate_ai
+							has_country_flag = caleston_directorate_player
+						}
 					}
 					save_global_event_target_as = caleston_directorate
 				}
+				create_colony = {
+					owner = event_target:caleston_directorate
+				}
+				event_target:caleston_directorate = {
+					set_country_flag = caleston_directorate
+					create_starting_leaders = yes
+					log = "Caleston Directorate Empire Spawned"
+				}
+				set_capital = yes
 				generate_btr_start_deposits_and_blockers = yes
 				clear_blockers = yes
 				generate_caleston_deposits = yes
 				generate_caleston_capitol_buildings = yes
 				generate_caleston_pops = yes
-				event_target:caleston_directorate = {
-					set_country_flag = caleston_directorate
-					set_graphical_culture = btr_turian_01
-					create_starting_leaders = yes
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					log = "Caleston Directorate Empire Spawned"
-				}
 				set_name = "Caleston"
 				#add_deposit = d_rich_eezo_deposits
 				#add_deposit = d_zro_deposit_3
@@ -699,7 +708,11 @@ sys_theseaofstorms_init = {
                 type = default
                 origin = disciples_of_nazara_origin
                 effect = {
-                    save_global_event_target_as = disciples_of_nazara
+                    set_country_flag = disciples_of_nazara_ai
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_graphical_culture = geth_01
                     add_resource = {
                         energy = 2700
                         minerals = 1050
@@ -715,31 +728,31 @@ sys_theseaofstorms_init = {
                     }
                 }
             } 
-            create_colony = {
-                owner = event_target:disciples_of_nazara
-            }
-			set_capital = yes
 			random_country = {
 				limit = { 
-					has_country_flag = disciples_of_nazara
+					OR = {
+						has_country_flag = disciples_of_nazara_ai
+						has_country_flag = disciples_of_nazara_player
+					}
+					
 				}
 				save_global_event_target_as = disciples_of_nazara
 			}
+            create_colony = {
+                owner = event_target:disciples_of_nazara
+            }
+            event_target:disciples_of_nazara = {
+                set_country_flag = disciples_of_nazara
+				create_starting_leaders = yes
+				log = "Disciples of Nazara Empire Spawned"
+            }			
+			set_capital = yes
             generate_btr_start_deposits_and_blockers = yes
             clear_blockers = yes	
             generate_naz_heretic_station_capitol_buildings = yes
             generate_naz_station_pops = yes
             generate_disciples_naz_construction_ships = yes
-            event_target:disciples_of_nazara = {
-                set_country_flag = disciples_of_nazara
-				set_graphical_culture = geth_01
-				create_starting_leaders = yes
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				log = "Disciples of Nazara Empire Spawned"
-            }
-        set_name = "Heretic Station"
+        	set_name = "Heretic Station"
         }    
     }
 } 
