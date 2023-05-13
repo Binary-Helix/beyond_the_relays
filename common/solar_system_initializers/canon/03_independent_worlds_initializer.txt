@@ -5097,7 +5097,7 @@ sys_brikhaun_init = {
 				authority = auth_democratic
 				civics = {
 					civic = independent_civic_labor_camp
-					civic = independent_civic_citadel_setup
+					civic = independent_civic_suspicious_untrusting
 				}
 				species = event_target:batarianSpecies
 				name_list = btr_batarian
@@ -5160,3 +5160,613 @@ sys_brikhaun_init = {
 	}
 }
 
+############################
+### Free Port of Tortuga ###
+############################
+
+sys_olonnais_init = {
+	name = "Olonnais"
+	class = sc_f
+	max_instances = 1
+
+	flags = { terminus_system nemean_alpha_system_system olannais_system btr_system custom_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Olonnais System Spawned"
+	}
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 375
+	}	
+	
+	planet = {
+		name = "Olonnais"
+		class = pc_f_star
+		size = 30
+	}
+	
+    planet = {
+        name = "Tortuga"
+        class = pc_tundra
+        orbit_distance = 250
+        orbit_angle = 223
+        has_ring = no
+		size = 16
+		flags = { tortuga_planet subclass_world }
+		entity = "basalt_planet_06_entity"
+		init_effect = {
+			log = "Tortuga Capital Spawned"
+			save_global_event_target_as = olonnais_system_tortuga
+
+			prevent_anomaly = yes
+			set_global_flag = free_port_of_tortuga_capital_spawned	
+			create_country = {
+				name = "Free Port of Tortuga"
+				adjective = "PRESCRIPTED_adjective_free_port_of_tortuga"
+				authority = auth_dictatorial
+				civics = {
+					civic = independent_civic_fractured_domain
+					civic = independent_civic_suspicious_untrusting
+				}
+				species = event_target:batarianSpecies
+				name_list = btr_batarian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_materialist"
+					ethic = "ethic_militarist"
+					ethic = "ethic_authoritarian"
+				}
+
+				type = independent_colony
+				origin = free_port_origin
+				effect = {
+					set_country_flag = free_port_of_tortuga
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_country_flag = btr_independent_colony
+					set_graphical_culture = mammalian_01
+					save_global_event_target_as = free_port_of_tortuga
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:free_port_of_tortuga
+			}
+			event_target:free_port_of_tortuga = {							
+				create_starting_leaders = yes
+				log = "Free Port of Tortuga Colony Spawned"
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			#generate_sanctum_deposits = yes
+			generate_btr_independent_world_capitol_buildings = yes
+			generate_tortuga_pops = yes
+			add_modifier = {
+				modifier = basalt_world
+				days = -1
+			}
+		}
+        moon = {
+			name = "Batsch"
+            class = pc_iron
+            orbit_distance = 20
+            orbit_angle = 116
+            has_ring = no
+			size = 7
+        }
+    }
+	
+	planet = {
+		name = "Hayti"
+		class = pc_ice_giant
+        orbit_distance = 250
+		size = 28
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "nemeanalpha_oshbikacliff_primaryrelay" 
+			name = "Traverse Primary - Oshbika 2 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+###############################
+### Trident Exports Limited ###
+###############################
+
+sys_hoplos_init = {
+    name = "Hoplos"
+    class = "sc_g"
+	max_instances = 1
+
+    flags = { attican_traverse_system hades_nexus_system hoplos_system btr_system custom_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Hoplos System Spawned"
+	}
+
+    planet = {
+		name = "Hoplos"
+        class = pc_g_star
+        orbit_distance = 0
+        size = 30
+		flags = { hoplos_star }
+		init_effect = {
+			prevent_anomaly = yes
+			clear_deposits = yes
+			add_deposit = d_energy_3
+		}
+    }
+
+    planet = {
+        name = "Talaria"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 126
+        has_ring = no
+		size = 8
+		flags = { talaria_planet subclass_world }
+		init_effect = {
+			# add_deposit = d_platinum_1
+			# add_deposit = d_palladium_1
+			add_deposit = d_rare_crystals_2
+			add_deposit = d_minerals_3
+			add_modifier = {
+				modifier = tidal_locked
+				days = -1
+			}
+			add_modifier = {
+				modifier = btr_scorching_surface
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Makhaira"
+        class = pc_barren
+        orbit_distance = 125
+        orbit_angle = 83
+        has_ring = no
+		size = 11
+		flags = { makhaira_planet subclass_world }
+		init_effect = {
+			# add_deposit = d_platinum_3
+			add_modifier = {
+				modifier = btr_scorching_surface
+				days = -1
+			}
+		}
+		moon = {
+			name = "Makhaira a"
+			class = pc_barren
+			orbit_distance = 20
+			orbit_angle = 96
+			has_ring = no
+			size = 3
+		}
+        moon = {
+            name = "Kopis"
+            class = pc_iron
+            orbit_distance = 5
+            orbit_angle = 180
+            has_ring = no
+			size = 4
+			flags = { kopis_planet subclass_world }
+			init_effect = {
+				prevent_anomaly = yes
+				add_deposit = d_minerals_2
+	
+				add_modifier = {
+					modifier = low_gravity
+					days = -1
+				}				
+			}
+		}
+    }
+
+    planet = {
+        name = "Trident"
+        class = pc_ocean
+        orbit_distance = 125
+        orbit_angle = 99
+        has_ring = no
+		size = 15
+		entity = "ocean_planet_01_entity"
+		flags = { trident_planet subclass_world }
+		init_effect = {
+			log = "Trident Capital Spawned"
+			save_global_event_target_as = hoplos_system_trident
+
+			prevent_anomaly = yes
+			set_global_flag = trident_exports_limited_capital_spawned	
+			create_country = {
+				name = "Trident Exports Limited"
+				adjective = "PRESCRIPTED_adjective_trident_exports_limited"
+				authority = auth_oligarchic
+				civics = {
+					civic = independent_civic_corporate_ownership
+					civic = independent_civic_fractured_domain
+				}
+				species = event_target:humanSpecies
+				name_list = btr_alliance
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_materialist"
+					ethic = "ethic_pacifist"
+					ethic = "ethic_egalitarian"
+				}
+
+				type = independent_colony
+				origin = trident_exp_origin
+				effect = {
+					set_country_flag = trident_exports_limited
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_country_flag = btr_independent_colony
+					set_graphical_culture = mammalian_01
+					save_global_event_target_as = trident_exports_limited
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:trident_exports_limited
+			}
+			event_target:trident_exports_limited = {							
+				create_starting_leaders = yes
+				log = "Trident Exports Limited Colony Spawned"
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			#generate_sanctum_deposits = yes
+			generate_btr_independent_world_capitol_buildings = yes
+			generate_tortuga_pops = yes
+			add_modifier = {
+				modifier = hazardous_weather
+				days = -1
+			}
+			add_modifier = {
+				modifier = mineral_rich
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Aegis"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 221
+        has_ring = yes
+		size = 33
+		flags = { aegis_planet subclass_world }
+		init_effect = {
+			# add_deposit = d_helium_3_3
+			add_deposit = d_exotic_gases_3
+		}
+    }
+}
+
+########################
+### Trigintan League ###
+########################
+
+sys_lenal_init = {
+    name = "Lenal"
+    class = sc_f
+	max_instances = 1
+
+	flags = { terminus_system sigurds_cradle_system lenal_system btr_system custom_system }
+
+    planet = {
+	    name = "Lenal"
+        class = pc_f_star
+        orbit_distance = 0
+        size = 22
+    }
+
+    planet = {
+        name = "Laconix"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 129
+        has_ring = no
+		size = 25
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+			add_deposit = d_minerals_4
+			add_deposit = d_trade_value_3
+		}
+    }
+
+    planet = {
+        name = "Triginta Petra"
+        class = pc_dextro_arid
+        orbit_distance = 125
+        orbit_angle = 238
+        size = 20
+        has_ring = no
+		flags = { triginta_petra_planet subclass_world }
+		entity = "badlands_planet_08_entity"
+		init_effect = {
+			log = "Lenal Capital Spawned"
+			save_global_event_target_as = lenal_system_triginta_petra
+
+			prevent_anomaly = yes
+			set_global_flag = free_port_of_tortuga_capital_spawned	
+			create_country = {
+				name = "Trigintan League"
+				adjective = "PRESCRIPTED_adjective_trigintan_league"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_isolationist
+					civic = independent_civic_free_autonomous
+				}
+				species = event_target:turianSpecies
+				name_list = btr_turian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_egalitarian"
+					ethic = "ethic_xenophobe"
+					ethic = "ethic_pacifist"
+				}
+
+				type = independent_colony
+				origin = libertarian_fou_origin
+				effect = {
+					set_country_flag = trigintan_league
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_country_flag = btr_independent_colony
+					set_graphical_culture = mammalian_01
+					save_global_event_target_as = trigintan_league
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:trigintan_league
+			}
+			event_target:trigintan_league = {							
+				create_starting_leaders = yes
+				log = "Trigintan League Colony Spawned"
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			#generate_sanctum_deposits = yes
+			generate_btr_independent_world_capitol_buildings = yes
+			generate_triginta_petra_pops = yes
+			add_modifier = {
+				modifier = badlands_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Choitadix"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 266
+        has_ring = no
+		size = 3
+		init_effect = {
+			add_deposit = d_minerals_4
+		}
+    }
+
+    planet = {
+        name = "Nutus"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 284
+        has_ring = yes
+		size = 33
+		init_effect = {
+			add_deposit = d_exotic_gases_3
+		}
+		moon = {
+			name = "Urdus"
+			class = pc_barren
+			orbit_distance = 20
+			size = 10
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+			}
+		}
+		moon = {
+			name = "Etrat"
+			class = pc_frozen
+			orbit_distance = 5
+			size = 6
+			init_effect = {
+				add_deposit = d_rare_crystals_1
+			}
+		}	
+    }
+}
+
+###################################
+### People's Authority of Tyvor ###
+###################################
+
+sys_agnes_init = {
+	name = "Agnes"
+	class = sc_k
+	max_instances = 1
+
+	flags = { agnes_system omega_system canon_map }
+	init_effect = { 
+		generate_home_system_resources = yes
+		log = "Agnes System Spawned"
+	}
+
+    planet = {
+	    name = "Agnes"
+        class = pc_k_star
+        orbit_distance = 0
+        size = 20
+    }
+
+	
+    planet = {
+        name = "Plipila"
+        class = pc_iron
+        orbit_distance = 125
+        orbit_angle = 266
+        has_ring = no
+		size = 7
+		init_effect = {
+			add_deposit = d_minerals_4
+		}	
+    }
+
+    planet = {
+        name = "Tyvor"
+        class = pc_dextro_continental
+        orbit_distance = 125
+        orbit_angle = 318
+        has_ring = no
+		size = 20
+		flags = { tyvor_planet subclass_world }
+		entity = "temperate_planet_04_entity"
+		init_effect = {
+			log = "Tyvor Capital Spawned"
+			save_global_event_target_as = agnes_system_tyvor
+
+			prevent_anomaly = yes
+			set_global_flag = peoples_authority_of_tyvor_capital_spawned	
+			create_country = {
+				name = "People's Authority of Tyvor"
+				adjective = "PRESCRIPTED_adjective_peoples_authority_of_tyvor"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_isolationist
+					civic = independent_civic_suspicious_untrusting
+				}
+				species = event_target:turianSpecies
+				name_list = btr_turian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_egalitarian"
+					ethic = "ethic_fanatic_xenophobe"
+				}
+
+				type = independent_colony
+				origin = libertarian_fou_origin
+				effect = {
+					set_country_flag = peoples_authority_of_tyvor
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_country_flag = btr_independent_colony
+					set_graphical_culture = mammalian_01
+					save_global_event_target_as = peoples_authority_of_tyvor
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:peoples_authority_of_tyvor
+			}
+			event_target:peoples_authority_of_tyvor = {							
+				create_starting_leaders = yes
+				log = "People's Authority of Tyvor Colony Spawned"
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			#generate_sanctum_deposits = yes
+			generate_btr_independent_world_capitol_buildings = yes
+			generate_tyvor_pops = yes
+			add_modifier = {
+				modifier = temperate_world
+				days = -1
+			}
+		}
+    }
+
+    planet = {
+        name = "Trivio"
+        class = pc_molten
+        orbit_distance = 125
+        orbit_angle = 177
+        has_ring = no
+		size = 14
+		init_effect = {
+			add_deposit = d_rare_crystals_2
+		}	
+    }
+
+    planet = {
+        name = "Tanania"
+        class = pc_ice_giant
+        orbit_distance = 125
+        orbit_angle = 93
+        has_ring = yes
+		size = 28
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "terminus_sector_11_secondaryrelay" 
+			name = "Terminus Secondary - Sector 11 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
