@@ -68,81 +68,90 @@ sys_parnitha_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = asari_homeworld_spawned
-
-			create_species = { 
-				name = "Asari"
-				class = ASA
-				portrait = btr_asari
-				namelist = btr_asari
-				homeworld = THIS 
-				traits = { 
-					trait = asari_trait_core
-					trait = asari_trait_biotic
-					trait = asari_trait_smooth_talk
-					trait = asari_trait_sophisticated
-					ideal_planet_class = pc_continental
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = asariSpecies 
-				event_target:asariSpecies = { log = "asariSpecies = [This.GetName]" }
-				log = "Asari Species Created"
-			}
-			create_country = {
-				name = "Asari Republics"
-				adjective = "PRESCRIPTED_adjective_asari_republics"
-				authority = auth_democratic
-				civics = { 
-					civic = asari_rep_civic_thes_dip_corp 
-					civic = asari_rep_civic_democracy 
-				}
-				species = event_target:asariSpecies
-				name_list = btr_asari
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_fanatic_xenophile" 
-					ethic = "ethic_egalitarian" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="asari_republics.dds"
+			if = {
+				limit = {
+					NOT = {
+						any_country = {
+							has_country_flag = asari_republics_player
+						}
 					}
-					background={
-						category="backgrounds"
-						file="flag_BG_42.dds"
-					}
-					colors={
-						"blue"
-						"blue"
-						"null"
-						"null"
+				 }
+				create_species = { 
+					name = "Asari"
+					class = ASA
+					portrait = btr_asari
+					namelist = btr_asari
+					homeworld = THIS 
+					traits = { 
+						trait = asari_trait_core
+						trait = asari_trait_biotic
+						trait = asari_trait_smooth_talk
+						trait = asari_trait_sophisticated
+						ideal_planet_class = pc_continental
 					}
 				}
-				type = default
-				origin = asari_rep_origin
-				effect = {
-					set_country_flag = asari_republcs_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = mec_asari_01
-					add_resource = {
-						energy = 3500
-						minerals = 2000
-						alloys = 1500
-						influence = 100
-						food = 3500
-						consumer_goods = 1500
-						unity = 450
-						volatile_motes = 200
-						exotic_gases = 200
-						rare_crystals = 700
+				last_created_species = { 
+					save_global_event_target_as = asariSpecies 
+					event_target:asariSpecies = { log = "asariSpecies = [This.GetName]" }
+					log = "Asari Species Created"
+				}
+				create_country = {
+					name = "Asari Republics"
+					adjective = "PRESCRIPTED_adjective_asari_republics"
+					authority = auth_democratic
+					civics = { 
+						civic = asari_rep_civic_thes_dip_corp 
+						civic = asari_rep_civic_democracy 
 					}
-					add_modifier = {
-						modifier = asari_rep_empire_modifier
-						days = -1
+					species = event_target:asariSpecies
+					name_list = btr_asari
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_fanatic_xenophile" 
+						ethic = "ethic_egalitarian" 
 					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="asari_republics.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_42.dds"
+						}
+						colors={
+							"blue"
+							"blue"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = asari_rep_origin
+					effect = {
+						set_country_flag = asari_republics_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = mec_asari_01
+						add_resource = {
+							energy = 3500
+							minerals = 2000
+							alloys = 1500
+							influence = 100
+							food = 3500
+							consumer_goods = 1500
+							unity = 450
+							volatile_motes = 200
+							exotic_gases = 200
+							rare_crystals = 700
+						}
+						add_modifier = {
+							modifier = asari_rep_empire_modifier
+							days = -1
+						}
+					}
+					log = "Asari Republics AI Empire Created"
 				}
 			}
 			random_country = {
@@ -153,6 +162,7 @@ sys_parnitha_init = {
 					}
 				}
 				save_global_event_target_as = asari_republics
+				log = "Asari Republics Global Event Target Set via Initializer"
 			}
 			create_colony = {
 				owner = event_target:asari_republics
@@ -339,83 +349,92 @@ sys_pranas_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = salarian_homeworld_spawned
-
-			create_species = { 
-				name = "Salarian"
-				class = SAL
-				portrait = btr_salarian
-				namelist = btr_salarian
-				homeworld = THIS 
-				traits = { 
-					trait = salarian_trait_core
-					trait = salarian_trait_impressive_minds
-					trait = salarian_trait_bleed_edge
-					trait = salarian_trait_societal_trade
-					ideal_planet_class = pc_tropical
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = salarian_union_player
+						}
+					}
 				}
+				create_species = { 
+					name = "Salarian"
+					class = SAL
+					portrait = btr_salarian
+					namelist = btr_salarian
+					homeworld = THIS 
+					traits = { 
+						trait = salarian_trait_core
+						trait = salarian_trait_impressive_minds
+						trait = salarian_trait_bleed_edge
+						trait = salarian_trait_societal_trade
+						ideal_planet_class = pc_tropical
+					}
+				}
+				last_created_species = { 
+					save_global_event_target_as = salarianSpecies 
+					event_target:salarianSpecies = { log = "salarianSpecies = [This.GetName]" }
+					log = "Salarian Species Created"
+				}
+				create_country = {
+					name = "Salarian Union"
+					adjective = "PRESCRIPTED_adjective_salarian_union"
+					authority = auth_oligarchic
+					civics = { 
+						civic = salarian_uni_hold_the_line 
+						civic = salarian_uni_qual_tech_results 
+					}
+					species = event_target:salarianSpecies
+					name_list = "btr_salarian"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_authoritarian" 
+						ethic = "ethic_fanatic_materialist" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="salarian_union.dds"
+						}
+						background={
+							category="backgrounds"
+							file="ovalehorizontal.dds"
+						}
+						colors={
+							"eecolor1717"
+							"eecolor1956"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = salarian_uni_origin
+					effect = {
+						set_country_flag = salarian_union_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = btr_salarian_01
+						add_resource = {
+							energy = 2600
+							minerals = 1480
+							alloys = 1100
+							influence = 100
+							food = 3350
+							consumer_goods = 1200
+							unity = 450
+							volatile_motes = 300
+							exotic_gases = 300
+							rare_crystals = 300
+						}
+						add_modifier = {
+							modifier = salarian_uni_empire_modifier
+							days = -1
+						}			
+					}
+				}	
 			}
-			last_created_species = { 
-				save_global_event_target_as = salarianSpecies 
-				event_target:salarianSpecies = { log = "salarianSpecies = [This.GetName]" }
-				log = "Salarian Species Created"
-			}
-			create_country = {
-				name = "Salarian Union"
-				adjective = "PRESCRIPTED_adjective_salarian_union"
-				authority = auth_oligarchic
-				civics = { 
-					civic = salarian_uni_hold_the_line 
-					civic = salarian_uni_qual_tech_results 
-				}
-				species = event_target:salarianSpecies
-				name_list = "btr_salarian"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_authoritarian" 
-					ethic = "ethic_fanatic_materialist" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="salarian_union.dds"
-					}
-					background={
-						category="backgrounds"
-						file="ovalehorizontal.dds"
-					}
-					colors={
-						"eecolor1717"
-						"eecolor1956"
-						"null"
-						"null"
-					}
-				}
-				type = default
-				origin = salarian_uni_origin
-				effect = {
-					set_country_flag = salarian_union_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = btr_salarian_01
-					add_resource = {
-						energy = 2600
-						minerals = 1480
-						alloys = 1100
-						influence = 100
-						food = 3350
-						consumer_goods = 1200
-						unity = 450
-						volatile_motes = 300
-						exotic_gases = 300
-						rare_crystals = 300
-					}
-					add_modifier = {
-						modifier = salarian_uni_empire_modifier
-						days = -1
-					}			
-				}
-			}	
+			
 			random_country = {
 				limit = { 
 					OR = {
@@ -571,87 +590,95 @@ sys_trebia_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = turian_homeworld_spawned
-
-			create_species = { 
-				name = "Turian"
-				class = TUR
-				portrait = btr_turian
-				namelist = btr_turian
-				homeworld = THIS 
-				traits = { 
-					trait = turian_trait_core
-					trait = turian_trait_team_player
-					trait = turian_trait_martial_nature
-					trait = turian_trait_op_discipline
-					ideal_planet_class = pc_dextro_savannah
+			if = {
+				limit = {
+					NOT = {
+						any_country = {
+							has_country_flag = turian_hierarchy_player
+						}
+					}
+				 }
+				 create_species = { 
+					name = "Turian"
+					class = TUR
+					portrait = btr_turian
+					namelist = btr_turian
+					homeworld = THIS 
+					traits = { 
+						trait = turian_trait_core
+						trait = turian_trait_team_player
+						trait = turian_trait_martial_nature
+						trait = turian_trait_op_discipline
+						ideal_planet_class = pc_dextro_savannah
+					}
 				}
+				last_created_species = { 
+					save_global_event_target_as = turianSpecies
+					event_target:turianSpecies = { log = "turianSpecies = [This.GetName]" }
+					log = "Turian Species Created"
+				}
+				create_country = {
+					name = "Turian Hierarchy"
+					adjective = "PRESCRIPTED_adjective_turian_hierarchy"
+					authority = auth_oligarchic
+					civics = { 
+						civic = turian_hier_honor 
+						civic = turian_hier_universal_service 
+					}
+					species = event_target:turianSpecies
+					name_list = "btr_turian"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_egalitarian" 
+						ethic = "ethic_fanatic_militarist" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="turian_hierarchy.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_20.dds"
+						}
+						colors={
+							"eecolor1602"
+							"eecolor1820"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = turian_hier_origin
+					effect = {
+						set_country_flag = turian_hierarchy_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = btr_turian_01
+						add_resource = {
+							energy = 2750
+							minerals = 1650
+							alloys = 1650
+							influence = 100
+							food = 2800
+							consumer_goods = 1000
+							unity = 450
+							volatile_motes = 200
+							exotic_gases = 200
+							rare_crystals = 200
+						}			
+						add_modifier = {
+							modifier = turian_hier_empire_modifier
+							days = -1
+						}	
+						add_modifier = {
+							modifier = turian_hier_shanxi_314
+							days = 3600
+						}		
+					}
+				}	
 			}
-			last_created_species = { 
-				save_global_event_target_as = turianSpecies
-				event_target:turianSpecies = { log = "turianSpecies = [This.GetName]" }
-				log = "Turian Species Created"
-			}
-			create_country = {
-				name = "Turian Hierarchy"
-				adjective = "PRESCRIPTED_adjective_turian_hierarchy"
-				authority = auth_oligarchic
-				civics = { 
-					civic = turian_hier_honor 
-					civic = turian_hier_universal_service 
-				}
-				species = event_target:turianSpecies
-				name_list = "btr_turian"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_egalitarian" 
-					ethic = "ethic_fanatic_militarist" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="turian_hierarchy.dds"
-					}
-					background={
-						category="backgrounds"
-						file="flag_BG_20.dds"
-					}
-					colors={
-						"eecolor1602"
-						"eecolor1820"
-						"null"
-						"null"
-					}
-				}
-				type = default
-				origin = turian_hier_origin
-				effect = {
-					set_country_flag = turian_hierarchy_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = btr_turian_01
-					add_resource = {
-						energy = 2750
-						minerals = 1650
-						alloys = 1650
-						influence = 100
-						food = 2800
-						consumer_goods = 1000
-						unity = 450
-						volatile_motes = 200
-						exotic_gases = 200
-						rare_crystals = 200
-					}			
-					add_modifier = {
-						modifier = turian_hier_empire_modifier
-						days = -1
-					}	
-					add_modifier = {
-						modifier = turian_hier_shanxi_314
-						days = 3600
-					}		
-				}
-			}	
 			random_country = {
 				limit = { 
 					OR = {
@@ -867,89 +894,97 @@ sys_sol_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = human_homeworld_spawned
-
-			create_species = { 
-				name = "Human"
-				class = HUM
-				portrait = btr_alliance
-				namelist = btr_alliance
-				homeworld = THIS 
-				traits = {
-					trait = human_trait_core
-					trait = human_trait_biodiversity
-					trait = human_trait_frontier_spirit
-					trait = human_trait_rugged_individualism
-					ideal_planet_class = pc_continental
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = humanSpecies 
-				event_target:humanSpecies = { log = "humanSpecies = [This.GetName]" }
-				log = "Human Species Created"
-			}
-			create_country = {
-				name = "Systems Alliance"
-				adjective = "PRESCRIPTED_adjective_systems_alliance"	
-				authority = auth_democratic
-				civics={ 
-					civic = systems_all_colonial_government 
-					civic = systems_all_unfettered_ai 
-				}
-				species = event_target:humanSpecies
-				name_list = "btr_alliance"
-				ship_prefix = "SSV"
-				ethos = { 
-					ethic = ethic_egalitarian 
-					ethic = ethic_militarist 
-					ethic = ethic_materialist 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="systems_alliance.dds"
+			if = {
+				limit = {
+					NOT = {
+						any_country = {
+							has_country_flag = systems_alliance_player
+						}
 					}
-					background={
-						category="backgrounds"
-						file="00_solid.dds"
-					}
-					colors={
-						"eecolor1681"
-						"silver_steel"
-						"null"
-						"null"
+				 }
+				 create_species = { 
+					name = "Human"
+					class = HUM
+					portrait = btr_alliance
+					namelist = btr_alliance
+					homeworld = THIS 
+					traits = {
+						trait = human_trait_core
+						trait = human_trait_biodiversity
+						trait = human_trait_frontier_spirit
+						trait = human_trait_rugged_individualism
+						ideal_planet_class = pc_continental
 					}
 				}
-				type = default
-				origin = systems_all_origin
-				effect = {
-					set_country_flag = systems_alliance_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = btr_alliance_01
-					add_resource = {
-						energy = 800
-						minerals = 450
-						alloys = 265
-						influence = 100
-						food = 1500
-						consumer_goods = 500
-						volatile_motes = 100
-						exotic_gases = 100
-						rare_crystals = 100
+				last_created_species = { 
+					save_global_event_target_as = humanSpecies 
+					event_target:humanSpecies = { log = "humanSpecies = [This.GetName]" }
+					log = "Human Species Created"
+				}
+				create_country = {
+					name = "Systems Alliance"
+					adjective = "PRESCRIPTED_adjective_systems_alliance"	
+					authority = auth_democratic
+					civics={ 
+						civic = systems_all_colonial_government 
+						civic = systems_all_unfettered_ai 
 					}
-					add_modifier = {
-						modifier = systems_all_empire_modifier
-						days = -1
+					species = event_target:humanSpecies
+					name_list = "btr_alliance"
+					ship_prefix = "SSV"
+					ethos = { 
+						ethic = ethic_egalitarian 
+						ethic = ethic_militarist 
+						ethic = ethic_materialist 
 					}
-					add_modifier = {
-						modifier = systems_all_shanxi_314
-						days = 9000
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="systems_alliance.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"eecolor1681"
+							"silver_steel"
+							"null"
+							"null"
+						}
 					}
-					add_modifier = {
-						modifier = systems_all_skyllian_verge
-						days = -1
-					}					
+					type = default
+					origin = systems_all_origin
+					effect = {
+						set_country_flag = systems_alliance_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = btr_alliance_01
+						add_resource = {
+							energy = 800
+							minerals = 450
+							alloys = 265
+							influence = 100
+							food = 1500
+							consumer_goods = 500
+							volatile_motes = 100
+							exotic_gases = 100
+							rare_crystals = 100
+						}
+						add_modifier = {
+							modifier = systems_all_empire_modifier
+							days = -1
+						}
+						add_modifier = {
+							modifier = systems_all_shanxi_314
+							days = 9000
+						}
+						add_modifier = {
+							modifier = systems_all_skyllian_verge
+							days = -1
+						}					
+					}
 				}
 			}
 			random_country = {
@@ -1414,81 +1449,89 @@ sys_phontes_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = elcor_homeworld_spawned
-
-			create_species = { 
-				name = "elcor"
-				class = ELC
-				portrait = btr_elcor
-				namelist = btr_elcor
-				homeworld = THIS 
-				traits = { 
-					trait = elcor_trait_core
-					trait = elcor_trait_homebound
-					trait = elcor_trait_gesture_based_speech
-					trait = elcor_trait_ecologists
-					ideal_planet_class = pc_highgrav_continental
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = elcorSpecies 
-				event_target:elcorSpecies = { log = "elcorSpecies = [This.GetName]" }
-				log = "Elcor species Created"
-			}
-			create_country = {
-				name = "Courts of Dekuuna"
-				adjective = "PRESCRIPTED_adjective_courts_of_dekunna"
-				authority = auth_oligarchic
-				civics = { 
-					civic = elcor_elders_of_dekuuna 
-					civic = elcor_history_of_stability 
-				}
-				species = event_target:elcorSpecies
-				name_list = "btr_elcor"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_xenophile" 
-					ethic = "ethic_fanatic_pacifist" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="courts_of_dekuuna.dds"
-					}
-					background={
-						category="backgrounds"
-						file="flag_BG_31.dds"
-					}
-					colors={
-						"eecolor609"
-						"dark_teal"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = courts_of_dekuuna_player
+						}
 					}
 				}
-				type = default
-				origin = courts_dek_origin
-				effect = {
-					set_country_flag = courts_of_dekuuna_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire	
-					set_graphical_culture = mammalian_01
-					add_resource = {
-						energy = 1900
-						minerals = 1200
-						alloys = 450
-						influence = 100
-						food = 2500
-						consumer_goods = 1010
-						volatile_motes = 100
-						exotic_gases = 100
-						rare_crystals = 100
+				create_species = { 
+					name = "elcor"
+					class = ELC
+					portrait = btr_elcor
+					namelist = btr_elcor
+					homeworld = THIS 
+					traits = { 
+						trait = elcor_trait_core
+						trait = elcor_trait_homebound
+						trait = elcor_trait_gesture_based_speech
+						trait = elcor_trait_ecologists
+						ideal_planet_class = pc_highgrav_continental
 					}
-					add_modifier = {
-						modifier = courts_deku_mechanized_army
-						days = -1
-					}					
 				}
+				last_created_species = { 
+					save_global_event_target_as = elcorSpecies 
+					event_target:elcorSpecies = { log = "elcorSpecies = [This.GetName]" }
+					log = "Elcor species Created"
+				}
+				create_country = {
+					name = "Courts of Dekuuna"
+					adjective = "PRESCRIPTED_adjective_courts_of_dekunna"
+					authority = auth_oligarchic
+					civics = { 
+						civic = elcor_elders_of_dekuuna 
+						civic = elcor_history_of_stability 
+					}
+					species = event_target:elcorSpecies
+					name_list = "btr_elcor"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_xenophile" 
+						ethic = "ethic_fanatic_pacifist" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="courts_of_dekuuna.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_31.dds"
+						}
+						colors={
+							"eecolor609"
+							"dark_teal"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = courts_dek_origin
+					effect = {
+						set_country_flag = courts_of_dekuuna_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire	
+						set_graphical_culture = mammalian_01
+						add_resource = {
+							energy = 1900
+							minerals = 1200
+							alloys = 450
+							influence = 100
+							food = 2500
+							consumer_goods = 1010
+							volatile_motes = 100
+							exotic_gases = 100
+							rare_crystals = 100
+						}
+						add_modifier = {
+							modifier = courts_deku_mechanized_army
+							days = -1
+						}					
+					}
+				}	
 			}
 			random_country = {
 				limit = { 
@@ -1498,7 +1541,7 @@ sys_phontes_init = {
 					}
 				}
 				save_global_event_target_as = courts_of_dekuuna
-			}	
+			}
 			create_colony = {
 				owner = event_target:courts_of_dekuuna
 			}
@@ -1646,81 +1689,89 @@ sys_aru_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = volus_homeworld_spawned
-
-			create_species = { 
-				name = "volus"
-				class = VOL
-				portrait = btr_volus
-				namelist = btr_volus
-				homeworld = THIS 
-				traits = { 
-					trait = volus_trait_core
-					trait = volus_trait_clan_based
-					trait = volus_trait_economic_mindset
-					trait = volus_trait_yoqtan_survivor
-					ideal_planet_class = pc_ammonia
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = volusSpecies 
-				event_target:volusSpecies = { log = "volusSpecies = [This.GetName]" }
-				log = "Volus Species Created"
-			}
-			create_country = {
-				name = "Vol Protectorate"
-				adjective = "PRESCRIPTED_adjective_vol_protectorate"
-				authority = auth_corporate
-				civics = { 
-					civic = volus_galactic_regulators
-					civic = volus_mercantile_supremacy 
-				}
-				species = event_target:volusSpecies
-				name_list = "btr_volus"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_pacifist" 
-					ethic = "ethic_egalitarian" 
-					ethic = "ethic_materialist" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="vol_protectorate.dds"
-					}
-					background={
-						category="backgrounds"
-						file="flag_BG_17.dds"
-					}
-					colors={
-						"eecolor1668"
-						"eecolor1"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = vol_protectorate_player
+						}
 					}
 				}
-				type = default
-				origin = vol_protectorate_origin
-				effect = {
-					set_country_flag = vol_protectorate_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = mammalian_01
-					add_resource = {
-						energy = 3100
-						minerals = 1240
-						alloys = 950
-						influence = 100
-						food = 2150
-						consumer_goods = 1400
-						volatile_motes = 100
-						exotic_gases = 100
-						rare_crystals = 100
-					}	
-					add_modifier = {
-						modifier = volus_corporate_dominance
-						days = -1
-					}									
+				create_species = { 
+					name = "volus"
+					class = VOL
+					portrait = btr_volus
+					namelist = btr_volus
+					homeworld = THIS 
+					traits = { 
+						trait = volus_trait_core
+						trait = volus_trait_clan_based
+						trait = volus_trait_economic_mindset
+						trait = volus_trait_yoqtan_survivor
+						ideal_planet_class = pc_ammonia
+					}
+				}
+				last_created_species = { 
+					save_global_event_target_as = volusSpecies 
+					event_target:volusSpecies = { log = "volusSpecies = [This.GetName]" }
+					log = "Volus Species Created"
+				}
+				create_country = {
+					name = "Vol Protectorate"
+					adjective = "PRESCRIPTED_adjective_vol_protectorate"
+					authority = auth_corporate
+					civics = { 
+						civic = volus_galactic_regulators
+						civic = volus_mercantile_supremacy 
+					}
+					species = event_target:volusSpecies
+					name_list = "btr_volus"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_pacifist" 
+						ethic = "ethic_egalitarian" 
+						ethic = "ethic_materialist" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="vol_protectorate.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_17.dds"
+						}
+						colors={
+							"eecolor1668"
+							"eecolor1"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = vol_protectorate_origin
+					effect = {
+						set_country_flag = vol_protectorate_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = mammalian_01
+						add_resource = {
+							energy = 3100
+							minerals = 1240
+							alloys = 950
+							influence = 100
+							food = 2150
+							consumer_goods = 1400
+							volatile_motes = 100
+							exotic_gases = 100
+							rare_crystals = 100
+						}	
+						add_modifier = {
+							modifier = volus_corporate_dominance
+							days = -1
+						}									
+					}
 				}
 			}
 			random_country = {
@@ -1927,7 +1978,14 @@ sys_kanala_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = hanar_homeworld_spawned
-
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = illuminated_primacy_player
+						}
+					}
+				}
                 create_species = { 
                     name = "hanar"
                     class = HAN
@@ -2003,31 +2061,32 @@ sys_kanala_init = {
 						}
 					}
 				}
-				random_country = {
-					limit = { 
-						OR = {
-							has_country_flag = illuminated_primacy_ai
-							has_country_flag = illuminated_primacy_player
-						}
+			}
+			random_country = {
+				limit = { 
+					OR = {
+						has_country_flag = illuminated_primacy_ai
+						has_country_flag = illuminated_primacy_player
 					}
-					save_global_event_target_as = illuminated_primacy
-				}	
-				create_colony = {
-					owner = event_target:illuminated_primacy
 				}
-				event_target:illuminated_primacy = {
-					set_country_flag = illuminated_primacy
-					create_starting_leaders = yes
-					log = "Illuminated Primacy Empire Spawned"
-				}
-				set_capital = yes
-				generate_btr_start_deposits_and_blockers = yes						
-				clear_blockers = yes
-				generate_han_kahje_deposits = yes					
-				generate_han_kahje_capitol_buildings = yes
-				generate_han_kahje_pops = yes
-				generate_han_kahje_drell_pops = yes
-				generate_illuminated_pri_science_ships = yes
+				save_global_event_target_as = illuminated_primacy
+			}	
+			create_colony = {
+				owner = event_target:illuminated_primacy
+			}
+			event_target:illuminated_primacy = {
+				set_country_flag = illuminated_primacy
+				create_starting_leaders = yes
+				log = "Illuminated Primacy Empire Spawned"
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes						
+			clear_blockers = yes
+			generate_han_kahje_deposits = yes					
+			generate_han_kahje_capitol_buildings = yes
+			generate_han_kahje_pops = yes
+			generate_han_kahje_drell_pops = yes
+			generate_illuminated_pri_science_ships = yes
 			set_name = "Kahje"
 		}			
 
@@ -2159,85 +2218,93 @@ sys_harsa_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = batarian_homeworld_spawned
-
-			create_species = { 
-				name = "batarian"
-				class = BAT
-				portrait = btr_batarian
-				namelist = btr_batarian
-				homeworld = THIS 
-				traits = { 
-					trait = batarian_trait_core
-					trait = batarian_trait_shrewd_business
-					trait = batarian_trait_karma_chameleon
-					trait = batarian_trait_four_eyed
-				ideal_planet_class = "pc_savannah"
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = batarianSpecies 
-				event_target:batarianSpecies = { log = "batarianSpecies = [This.GetName]" }
-				log = "Batarian Species Created"
-			}
-			create_country = {
-				name = "Hegemony of Khar'shan"
-				adjective = "PRESCRIPTED_adjective_hegemony_of_kharshan"
-				authority = auth_dictatorial
-				civics = { 
-					civic = batarian_all_mighty_state 
-					civic = batarian_caste_system 
-				}
-				species = event_target:batarianSpecies
-				name_list = "btr_batarian"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_fanatic_authoritarian" 
-					ethic = "ethic_xenophobe" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="hegemony_of_kharshan.dds"
-					}
-					background={
-						category="backgrounds"
-						file="flag_BG_57.dds"
-					}
-					colors={
-						"eecolor1809"
-						"eecolor1801"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = hegemony_of_kharshan_player
+						}
 					}
 				}
-				type = default
-				origin = hegemony_of_kharshan_origin
-				effect = {
-					set_country_flag = hegemony_of_kharshan_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = reptilian_01
-					add_resource = {
-						energy = 1200
-						minerals = 600
-						alloys = 340
-						influence = 100
-						food = 1700
-						consumer_goods = 450
-						unity = 450
-						volatile_motes = 100
-						exotic_gases = 100
-						rare_crystals = 100
-					}	
-					add_modifier = {
-						modifier = batarian_syllian_verge
-						days = -1
-					}	
-					add_modifier = {
-						modifier = batarian_sanctioned_astropolitics
-						days = -1
-					}					
+				create_species = { 
+					name = "batarian"
+					class = BAT
+					portrait = btr_batarian
+					namelist = btr_batarian
+					homeworld = THIS 
+					traits = { 
+						trait = batarian_trait_core
+						trait = batarian_trait_shrewd_business
+						trait = batarian_trait_karma_chameleon
+						trait = batarian_trait_four_eyed
+					ideal_planet_class = "pc_savannah"
+					}
+				}
+				last_created_species = { 
+					save_global_event_target_as = batarianSpecies 
+					event_target:batarianSpecies = { log = "batarianSpecies = [This.GetName]" }
+					log = "Batarian Species Created"
+				}
+				create_country = {
+					name = "Hegemony of Khar'shan"
+					adjective = "PRESCRIPTED_adjective_hegemony_of_kharshan"
+					authority = auth_dictatorial
+					civics = { 
+						civic = batarian_all_mighty_state 
+						civic = batarian_caste_system 
+					}
+					species = event_target:batarianSpecies
+					name_list = "btr_batarian"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_fanatic_authoritarian" 
+						ethic = "ethic_xenophobe" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="hegemony_of_kharshan.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_57.dds"
+						}
+						colors={
+							"eecolor1809"
+							"eecolor1801"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = hegemony_of_kharshan_origin
+					effect = {
+						set_country_flag = hegemony_of_kharshan_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = reptilian_01
+						add_resource = {
+							energy = 1200
+							minerals = 600
+							alloys = 340
+							influence = 100
+							food = 1700
+							consumer_goods = 450
+							unity = 450
+							volatile_motes = 100
+							exotic_gases = 100
+							rare_crystals = 100
+						}	
+						add_modifier = {
+							modifier = batarian_syllian_verge
+							days = -1
+						}	
+						add_modifier = {
+							modifier = batarian_sanctioned_astropolitics
+							days = -1
+						}					
+					}
 				}
 			}
 			random_country = {
@@ -2435,76 +2502,83 @@ sys_aralakh_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = krogan_homeworld_spawned
-
-			create_species = { 
-				name = "krogan"
-				class = "KRO"
-				portrait = krogan
-				namelist = btr_krogan
-				homeworld = THIS 
-				traits = { 
-					trait = krogan_trait_core
-					trait = krogan_trait_genophage
-					trait = krogan_trait_blood_rage
-					trait = krogan_trait_biological_redundancy
-					ideal_planet_class = "pc_nuked"
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = kroganSpecies
-				event_target:kroganSpecies = { log = "kroganSpecies = [This.GetName]" }
-				log = "Krogan Species Created"
-			}
-			create_country = {
-				name = "Aralakh Kahmat"
-				adjective = "PRESCRIPTED_adjective_aralakh_kahmat"
-				authority = auth_dictatorial
-				civics = { 
-					civic = krogan_blood_and_ash 
-					civic = krogan_clans_of_tuchanka 
-				}
-				species = event_target:kroganSpecies
-				name_list = "btr_krogan"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_xenophobe" 
-					ethic = "ethic_militarist" 
-					ethic = "ethic_authoritarian" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="aralakh_kahmat.dds"
-					}
-					background={
-						category="backgrounds"
-						file="camorayure.dds"
-					}
-					colors={
-						"eecolor1853"
-						"eecolor1753"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = aralakh_kahmat_player
+						}
 					}
 				}
-				type = default
-				origin = aralakh_kahmat_origin
-				effect = {
-					set_country_flag = aralakh_kahmat_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = reptilian_01
-					add_resource = {
-						energy = 400
-						minerals = 200
-						alloys = 200
-						influence = 100
-						food = 400
-						consumer_goods = 100
-						volatile_motes = 50
-						exotic_gases = 50
-						rare_crystals = 50
+				create_species = { 
+					name = "krogan"
+					class = "KRO"
+					portrait = krogan
+					namelist = btr_krogan
+					homeworld = THIS 
+					traits = { 
+						trait = krogan_trait_core
+						trait = krogan_trait_genophage
+						trait = krogan_trait_blood_rage
+						trait = krogan_trait_biological_redundancy
+						ideal_planet_class = "pc_nuked"
+					}
+				}
+				last_created_species = { 
+					save_global_event_target_as = kroganSpecies
+					event_target:kroganSpecies = { log = "kroganSpecies = [This.GetName]" }
+					log = "Krogan Species Created"
+				}
+				create_country = {
+					name = "Aralakh Kahmat"
+					adjective = "PRESCRIPTED_adjective_aralakh_kahmat"
+					authority = auth_dictatorial
+					civics = { 
+						civic = krogan_blood_and_ash 
+						civic = krogan_clans_of_tuchanka 
+					}
+					species = event_target:kroganSpecies
+					name_list = "btr_krogan"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_xenophobe" 
+						ethic = "ethic_militarist" 
+						ethic = "ethic_authoritarian" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="aralakh_kahmat.dds"
+						}
+						background={
+							category="backgrounds"
+							file="camorayure.dds"
+						}
+						colors={
+							"eecolor1853"
+							"eecolor1753"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = aralakh_kahmat_origin
+					effect = {
+						set_country_flag = aralakh_kahmat_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = reptilian_01
+						add_resource = {
+							energy = 400
+							minerals = 200
+							alloys = 200
+							influence = 100
+							food = 400
+							consumer_goods = 100
+							volatile_motes = 50
+							exotic_gases = 50
+							rare_crystals = 50
 						}			
 						add_modifier = {
 							modifier = krogan_no_enemy_too_great
@@ -2512,15 +2586,16 @@ sys_aralakh_init = {
 						}							
 					}
 				}
-				random_country = {
-					limit = { 
-						OR = {
-							has_country_flag = aralakh_kahmat_ai
-							has_country_flag = aralakh_kahmat_player
-						}
+			}
+			random_country = {
+				limit = { 
+					OR = {
+						has_country_flag = aralakh_kahmat_ai
+						has_country_flag = aralakh_kahmat_player
 					}
-					save_global_event_target_as = aralakh_kahmat
 				}
+				save_global_event_target_as = aralakh_kahmat
+			}
 			create_colony = {
 				owner = event_target:aralakh_kahmat
 			}
@@ -2614,78 +2689,86 @@ sys_pompeii_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = drell_homeworld_spawned
-
-			create_species = { 
-				name = "drell"
-				class = DRE
-				portrait = drell
-				namelist = btr_drell
-				homeworld = THIS 
-				traits = { 
-					trait = drell_trait_core
-					trait = drell_trait_eidetic_memory
-					trait = drell_trait_hardened_survivors
-					trait = drell_trait_nomadic_warriors
-					ideal_planet_class = pc_desert
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = drellSpecies 
-				event_target:drellSpecies = { log = "drellSpecies = [This.GetName]" }
-				log = "Drell Species Created"
-			}
-			create_country = {
-				name = "Remnants of Rakhana"
-				adjective = "PRESCRIPTED_adjective_remnants_of_rakhana"
-				authority = auth_oligarchic
-				civics = { 
-					civic = remnants_rak_survival_of_the_fittest
-					civic = remnants_rak_liberty_of_the_sands
-				}
-				species = event_target:drellSpecies
-				name_list = "btr_drell"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_spiritualist" 
-					ethic = "ethic_egalitarian" 
-					ethic = "ethic_militarist" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="remnants_of_rakhana.dds"
-					}
-					background={
-						category="backgrounds"
-						file="00_solid.dds"
-					}
-					colors={
-						"dark_green"
-						"dark_green"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = remnants_of_rakhana_player
+						}
 					}
 				}
-				type = primitive				
-				origin = remnants_of_rakhana_origin
-				effect = {
-					set_country_flag = remnants_of_rakhana_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = molluscoid_01
-					add_resource = {
-						energy = 300
-						minerals = 200
-						alloys = 200
-						influence = 100
-						food = 150
-						consumer_goods = 100
+				create_species = { 
+					name = "drell"
+					class = DRE
+					portrait = drell
+					namelist = btr_drell
+					homeworld = THIS 
+					traits = { 
+						trait = drell_trait_core
+						trait = drell_trait_eidetic_memory
+						trait = drell_trait_hardened_survivors
+						trait = drell_trait_nomadic_warriors
+						ideal_planet_class = pc_desert
 					}
-					add_modifier = {
-						modifier = drell_law_of_wastes
-						days = -1
-					}	
+				}
+				last_created_species = { 
+					save_global_event_target_as = drellSpecies 
+					event_target:drellSpecies = { log = "drellSpecies = [This.GetName]" }
+					log = "Drell Species Created"
+				}
+				create_country = {
+					name = "Remnants of Rakhana"
+					adjective = "PRESCRIPTED_adjective_remnants_of_rakhana"
+					authority = auth_oligarchic
+					civics = { 
+						civic = remnants_rak_survival_of_the_fittest
+						civic = remnants_rak_liberty_of_the_sands
+					}
+					species = event_target:drellSpecies
+					name_list = "btr_drell"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_spiritualist" 
+						ethic = "ethic_egalitarian" 
+						ethic = "ethic_militarist" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="remnants_of_rakhana.dds"
+						}
+						background={
+							category="backgrounds"
+							file="00_solid.dds"
+						}
+						colors={
+							"dark_green"
+							"dark_green"
+							"null"
+							"null"
+						}
+					}
+					type = primitive				
+					origin = remnants_of_rakhana_origin
+					effect = {
+						set_country_flag = remnants_of_rakhana_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = molluscoid_01
+						add_resource = {
+							energy = 300
+							minerals = 200
+							alloys = 200
+							influence = 100
+							food = 150
+							consumer_goods = 100
+						}
+						add_modifier = {
+							modifier = drell_law_of_wastes
+							days = -1
+						}	
+					}
 				}
 			}
 			random_country = {
@@ -2784,75 +2867,85 @@ sys_kyzil_init = {
 		init_effect = {
 			prevent_anomaly = yes
 
-			create_species = { 
-				name = "vorcha"
-				class = VOR
-				portrait = vorcha
-				namelist = btr_vorcha
-				homeworld = THIS 
-				traits = { 
-					trait = vorcha_trait_core
-					trait = vorcha_trait_surreal_adaptation
-					trait = vorcha_trait_spontaneous_conception
-					trait = vorcha_trait_philistine_horde
-					ideal_planet_class = "pc_primal"
-				}
-			}			
-			last_created_species = { 
-				save_global_event_target_as = vorchaSpecies 
-				event_target:vorchaSpecies = { log = "vorchaSpecies = [This.GetName]" }
-				log = "Vorcha Species Created"
-			}
-			create_country = {
-				name = "Vorcha Clandom"
-				adjective = "PRESCRIPTED_adjective_vorcha_clandom"
-				authority = auth_oligarchic
-				civics = { 
-					civic = vorcha_aagh 
-					civic = vorcha_we_take_now 
-				}
-				species = event_target:vorchaSpecies
-				name_list = "btr_vorcha"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_xenophobe" 
-					ethic = "ethic_fanatic_militarist" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="vorcha_clandom.dds"
-					}
-					background={
-						category="backgrounds"
-						file="bloodsplatter2.dds"
-					}
-					colors={
-						"eecolor1351"
-						"eecolor2001"
-						"null"
-						"null"
+
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = vorcha_clandom_player
+						}
 					}
 				}
-				type = minor_empire
-				origin = vorcha_origin
-				effect = {
-					set_country_flag = vorcha_clandom_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = reptilian_01
-					add_resource = {
-						energy = 620
-						minerals = 250
-						alloys = 250
-						influence = 100
-						food = 750
-						consumer_goods = 300
+				create_species = { 
+					name = "vorcha"
+					class = VOR
+					portrait = vorcha
+					namelist = btr_vorcha
+					homeworld = THIS 
+					traits = { 
+						trait = vorcha_trait_core
+						trait = vorcha_trait_surreal_adaptation
+						trait = vorcha_trait_spontaneous_conception
+						trait = vorcha_trait_philistine_horde
+						ideal_planet_class = "pc_primal"
 					}
-					add_modifier = {
-						modifier = vorcha_primitive_pests
-						days = -1
+				}			
+				last_created_species = { 
+					save_global_event_target_as = vorchaSpecies 
+					event_target:vorchaSpecies = { log = "vorchaSpecies = [This.GetName]" }
+					log = "Vorcha Species Created"
+				}
+				create_country = {
+					name = "Vorcha Clandom"
+					adjective = "PRESCRIPTED_adjective_vorcha_clandom"
+					authority = auth_oligarchic
+					civics = { 
+						civic = vorcha_aagh 
+						civic = vorcha_we_take_now 
+					}
+					species = event_target:vorchaSpecies
+					name_list = "btr_vorcha"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_xenophobe" 
+						ethic = "ethic_fanatic_militarist" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="vorcha_clandom.dds"
+						}
+						background={
+							category="backgrounds"
+							file="bloodsplatter2.dds"
+						}
+						colors={
+							"eecolor1351"
+							"eecolor2001"
+							"null"
+							"null"
+						}
+					}
+					type = minor_empire
+					origin = vorcha_origin
+					effect = {
+						set_country_flag = vorcha_clandom_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = reptilian_01
+						add_resource = {
+							energy = 620
+							minerals = 250
+							alloys = 250
+							influence = 100
+							food = 750
+							consumer_goods = 300
+						}
+						add_modifier = {
+							modifier = vorcha_primitive_pests
+							days = -1
+						}
 					}
 				}
 			}
@@ -3016,80 +3109,88 @@ sys_nosikae_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = forayan_homeworld_spawned
-
-			create_species = { 
-				name = "Forayan"
-				class = ART
-				portrait = art3
-				namelist = btr_forayan
-				homeworld = THIS 
-				traits = { 
-					trait = forayan_trait_core
-					trait = forayan_trait_forayan_happiness
-					trait = forayan_trait_insectoids
-					trait = forayan_trait_gender_castes
-					ideal_planet_class = "pc_dextro_arid"
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = forayanSpecies 
-				event_target:forayanSpecies = { log = "forayanSpecies = [This.GetName]" }
-				log = "Forayan Species Created"
-			}
-			create_country = {
-				name = "Sed'riicae Collective"
-				adjective = "PRESCRIPTED_adjective_sedriicae_collective"
-				authority = auth_imperial
-				civics = { 
-					civic = sedriicae_collective_totalitarian_state 
-					civic = sedriicae_collective_status_intellectus 
-				}
-				species = event_target:forayanSpecies
-				name_list = btr_forayan
-				ship_prefix = "PRESCRIPTED_ship_prefix_sedriicae_collective"
-				ethos = { 
-					ethic = "ethic_pacifist" 
-					ethic = "ethic_fanatic_authoritarian" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="sedriicae_collective.dds"
-					}
-					background={
-						category="backgrounds"
-						file="double_triangles.dds"
-					}
-					colors={
-						"eecolor1702"
-						"eecolor1657"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = sedriicae_collective_player
+						}
 					}
 				}
-				type = default
-				origin = sedriicae_collective_origin
-				effect = {
-					set_country_flag = sedriicae_collective_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = arthropoid_01
-					add_resource = {
-						energy = 1150
-						minerals = 2500
-						alloys = 1350
-						influence = 100
-						food = 1350
-						consumer_goods = 800
-						volatile_motes = 100
-						exotic_gases = 100
-						rare_crystals = 100						
+				create_species = { 
+					name = "Forayan"
+					class = ART
+					portrait = art3
+					namelist = btr_forayan
+					homeworld = THIS 
+					traits = { 
+						trait = forayan_trait_core
+						trait = forayan_trait_forayan_happiness
+						trait = forayan_trait_insectoids
+						trait = forayan_trait_gender_castes
+						ideal_planet_class = "pc_dextro_arid"
 					}
-					add_modifier = {
-						modifier = sedriicae_symptoms_stagnation
-						days = -1
-					}					
+				}
+				last_created_species = { 
+					save_global_event_target_as = forayanSpecies 
+					event_target:forayanSpecies = { log = "forayanSpecies = [This.GetName]" }
+					log = "Forayan Species Created"
+				}
+				create_country = {
+					name = "Sed'riicae Collective"
+					adjective = "PRESCRIPTED_adjective_sedriicae_collective"
+					authority = auth_imperial
+					civics = { 
+						civic = sedriicae_collective_totalitarian_state 
+						civic = sedriicae_collective_status_intellectus 
+					}
+					species = event_target:forayanSpecies
+					name_list = btr_forayan
+					ship_prefix = "PRESCRIPTED_ship_prefix_sedriicae_collective"
+					ethos = { 
+						ethic = "ethic_pacifist" 
+						ethic = "ethic_fanatic_authoritarian" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="sedriicae_collective.dds"
+						}
+						background={
+							category="backgrounds"
+							file="double_triangles.dds"
+						}
+						colors={
+							"eecolor1702"
+							"eecolor1657"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = sedriicae_collective_origin
+					effect = {
+						set_country_flag = sedriicae_collective_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = arthropoid_01
+						add_resource = {
+							energy = 1150
+							minerals = 2500
+							alloys = 1350
+							influence = 100
+							food = 1350
+							consumer_goods = 800
+							volatile_motes = 100
+							exotic_gases = 100
+							rare_crystals = 100						
+						}
+						add_modifier = {
+							modifier = sedriicae_symptoms_stagnation
+							days = -1
+						}					
+					}
 				}
 			}
 			random_country = {
@@ -3218,79 +3319,87 @@ sys_taesin_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = lystheni_homeworld_spawned
-
-			create_species = { 
-				name = "Lystheni"
-				class = LYS
-				portrait = lystheni
-				namelist = btr_lystheni
-				homeworld = THIS 
-				traits = { 
-					trait = lystheni_trait_core
-					trait = lystheni_trait_divine_duty
-					trait = lystheni_trait_law_of_one
-					trait = lystheni_trait_unimpeded_minds
-					ideal_planet_class = pc_tropical
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = lystheniSpecies 
-				event_target:lystheniSpecies = { log = "lystheniSpecies = [This.GetName]" }
-				log = "Lystheni Species Created"
-			}
-			create_country = {
-				name = "Lystheni Order"
-				adjective = "PRESCRIPTED_adjective_lystheni_order"
-				authority = "auth_oligarchic"
-				civics = { 
-					civic = lystheni_order_thirteenth_promise 
-					civic = lystheni_order_divine 
-				}
-				species = event_target:lystheniSpecies
-				name_list = "btr_salarian"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_militarist" 
-					ethic = "ethic_fanatic_spiritualist" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="lystheni_order.dds"
-					}
-					background={
-						category="backgrounds"
-						file="flag_BG_32.dds"
-					}
-					colors={
-						"eecolor1668"
-						"eecolor1868"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = lystheni_order_player
+						}
 					}
 				}
-				type = default
-				origin = lystheni_order_origin
-				effect = {
-					set_country_flag = lystheni_order_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = reptilian_01
-					add_resource = {
-						energy = 860
-						minerals = 400
-						alloys = 250
-						influence = 100
-						food = 1000
-						consumer_goods = 400
-						volatile_motes = 75
-						exotic_gases = 75
-						rare_crystals = 75
+				create_species = { 
+					name = "Lystheni"
+					class = LYS
+					portrait = lystheni
+					namelist = btr_lystheni
+					homeworld = THIS 
+					traits = { 
+						trait = lystheni_trait_core
+						trait = lystheni_trait_divine_duty
+						trait = lystheni_trait_law_of_one
+						trait = lystheni_trait_unimpeded_minds
+						ideal_planet_class = pc_tropical
 					}
-					add_modifier = {
-						modifier = lystheni_twelve_promises
-						days = -1
+				}
+				last_created_species = { 
+					save_global_event_target_as = lystheniSpecies 
+					event_target:lystheniSpecies = { log = "lystheniSpecies = [This.GetName]" }
+					log = "Lystheni Species Created"
+				}
+				create_country = {
+					name = "Lystheni Order"
+					adjective = "PRESCRIPTED_adjective_lystheni_order"
+					authority = "auth_oligarchic"
+					civics = { 
+						civic = lystheni_order_thirteenth_promise 
+						civic = lystheni_order_divine 
+					}
+					species = event_target:lystheniSpecies
+					name_list = "btr_salarian"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_militarist" 
+						ethic = "ethic_fanatic_spiritualist" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="lystheni_order.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_32.dds"
+						}
+						colors={
+							"eecolor1668"
+							"eecolor1868"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = lystheni_order_origin
+					effect = {
+						set_country_flag = lystheni_order_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = reptilian_01
+						add_resource = {
+							energy = 860
+							minerals = 400
+							alloys = 250
+							influence = 100
+							food = 1000
+							consumer_goods = 400
+							volatile_motes = 75
+							exotic_gases = 75
+							rare_crystals = 75
+						}
+						add_modifier = {
+							modifier = lystheni_twelve_promises
+							days = -1
+						}
 					}
 				}
 			}
@@ -3445,79 +3554,87 @@ sys_ultio_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = gothones_homeworld_spawned
-
-			create_species = { 
-				name = "gothones"
-				class = GOT
-				portrait = gothones
-				namelist = btr_gothones
-				homeworld = THIS 
-				traits = { 
-					trait = gothones_trait_core
-					trait = gothones_trait_trials_of_vindicta
-					trait = gothones_trait_eco_reverence
-					trait = gothones_trait_survivalists
-					ideal_planet_class = pc_tropical
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = gothonesSpecies 
-				event_target:gothonesSpecies = { log = "gothonesSpecies = [This.GetName]" }
-				log = "Gothones Species Created"
-			}
-			create_country = {
-				name = "Gothones Remnant"
-				adjective = "PRESCRIPTED_adjective_gothones_remnant"
-				authority = auth_democratic
-				civics = { 
-					civic = gothones_cooperative_reciprocity 
-					civic = gothones_braves_of_vindicta 
-				}
-				species = event_target:gothonesSpecies
-				name_list = "btr_gothones"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_militarist" 
-					ethic = "ethic_fanatic_egalitarian" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="gothones_remnant.dds"
-					}
-					background={
-						category="backgrounds"
-						file="flag_BG_28.dds"
-					}
-					colors={
-						"eecolor1821"
-						"eecolor1891"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = gothones_remnant_player
+						}
 					}
 				}
-				type = default
-				origin = gothones_remnant_origin
-				effect = {
-					set_country_flag = gothones_remnant_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = tur_01
-					add_resource = {
-						energy = 950
-						minerals = 420
-						alloys = 250
-						influence = 100
-						food = 1200
-						consumer_goods = 400
-						volatile_motes = 75
-						exotic_gases = 75
-						rare_crystals = 75							
+				create_species = { 
+					name = "gothones"
+					class = GOT
+					portrait = gothones
+					namelist = btr_gothones
+					homeworld = THIS 
+					traits = { 
+						trait = gothones_trait_core
+						trait = gothones_trait_trials_of_vindicta
+						trait = gothones_trait_eco_reverence
+						trait = gothones_trait_survivalists
+						ideal_planet_class = pc_dextro_tropical
 					}
-					add_modifier = {
-						modifier = gothones_spartan_survivalism
-						days = -1
+				}
+				last_created_species = { 
+					save_global_event_target_as = gothonesSpecies 
+					event_target:gothonesSpecies = { log = "gothonesSpecies = [This.GetName]" }
+					log = "Gothones Species Created"
+				}
+				create_country = {
+					name = "Gothones Remnant"
+					adjective = "PRESCRIPTED_adjective_gothones_remnant"
+					authority = auth_democratic
+					civics = { 
+						civic = gothones_cooperative_reciprocity 
+						civic = gothones_braves_of_vindicta 
+					}
+					species = event_target:gothonesSpecies
+					name_list = "btr_gothones"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_militarist" 
+						ethic = "ethic_fanatic_egalitarian" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="gothones_remnant.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_28.dds"
+						}
+						colors={
+							"eecolor1821"
+							"eecolor1891"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = gothones_remnant_origin
+					effect = {
+						set_country_flag = gothones_remnant_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = tur_01
+						add_resource = {
+							energy = 950
+							minerals = 420
+							alloys = 250
+							influence = 100
+							food = 1200
+							consumer_goods = 400
+							volatile_motes = 75
+							exotic_gases = 75
+							rare_crystals = 75							
+						}
+						add_modifier = {
+							modifier = gothones_spartan_survivalism
+							days = -1
+						}
 					}
 				}
 			}
@@ -3586,7 +3703,190 @@ sys_ultio_init = {
 ##### MIGRANT FLEET #####
 #########################
 
+sys_migrant_fleet_init = {
+	name = "The Migrant Fleet"
+    class = sc_deep_space
+    flags = { migrant_fleet_capital_system canon_map empire_home_system }
+	init_effect = { 
+			log = "Quarian Migrant Fleet System Spawned"
+	}	
 
+	max_instances = 1
+
+    planet = {
+        name = "Civilian Fleet"
+        class = "pc_quarian_civilian_fleet"
+        orbit_distance = 62
+        orbit_angle = 25
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Special Projects"
+        class = "pc_quarian_special_projects"
+        orbit_distance = 0
+        orbit_angle = 185
+        has_ring = no
+		size = 4
+    }
+
+    planet = {
+        name = "Chayym"
+        class = "pc_quarian_liveship"
+        orbit_distance = 37
+        orbit_angle = 84
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Shellen"
+        class = "pc_quarian_liveship"
+        orbit_distance = 1
+        orbit_angle = 179
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Rayya"
+        class = "pc_quarian_liveship"
+        orbit_distance = 48
+        orbit_angle = 274
+        has_ring = no
+		size = 16
+		init_effect = {
+			log = "Rayya Liveship Spawned"
+			save_global_event_target_as = migrant_fleet_system_rayya
+
+			prevent_anomaly = yes
+			set_global_flag = quarian_capital_spawned
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = migrant_fleet_player
+						}
+					}
+				}
+				create_species = { 
+					name = "Quarian"
+					class = QUA
+					portrait = quarian
+					namelist = btr_quarian
+					homeworld = THIS 
+					traits = { 
+						trait = quarian_trait_core
+						trait = quarian_trait_suit_entombment
+						trait = quarian_trait_quarian_traditionalism
+						trait = quarian_trait_social_precedent
+						ideal_planet_class = pc_dextro_savannah
+					}
+				}
+				last_created_species = { 
+					save_global_event_target_as = quarianSpecies 
+					event_target:quarianSpecies = { log = "quarianSpecies = [This.GetName]" }
+					log = "Quarian Species Created"
+				}
+				create_country = {
+					name = "The Migrant Fleet"
+					adjective = "PRESCRIPTED_adjective_migrant_fleet"
+					authority = auth_democratic
+					civics = { 
+						civic = migrant_fleet_memories_of_the_homeworld 
+						civic = migrant_fleet_efficiency_or_death 
+					}
+					species = event_target:quarianSpecies
+					name_list = btr_quarian
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_egalitarian" 
+						ethic = "ethic_militarist" 
+						ethic = "ethic_spiritualist"
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="migrant_fleet.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_28.dds"
+						}
+						colors={
+							"eecolor1821"
+							"eecolor1891"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = migrant_fle_origin
+					effect = {
+						set_country_flag = migrant_fleet_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = quar_01
+						add_resource = {
+							energy = 950
+							minerals = 420
+							alloys = 250
+							influence = 100
+							food = 1200
+							consumer_goods = 400
+							volatile_motes = 75
+							exotic_gases = 75
+							rare_crystals = 75							
+						}
+						add_modifier = {
+							modifier = migrant_fleet_betrayed_forgotten_abandoned
+							days = -1
+						}
+					}
+				}
+			}
+			random_country = {
+				limit = { 
+					OR = {
+						has_country_flag = migrant_fleet_ai
+						has_country_flag = migrant_fleet_ai_player	
+					}				
+				}
+				save_global_event_target_as = migrant_fleet
+			}	
+			create_colony = {
+				owner = event_target:migrant_fleet
+			}	
+			event_target:migrant_fleet = {
+				set_country_flag = migrant_fleet
+				create_starting_leaders = yes
+				log = "The Migrant Fleet Empire Spawned"				
+			}		
+			set_capital = yes
+			set_name = "Rayya"
+		}
+    }
+
+    planet = {
+        name = "Heavy Fleet"
+        class = "pc_quarian_heavy_fleet"
+        orbit_distance = 68
+        orbit_angle = 181
+        has_ring = no
+		size = 8
+    }
+
+    planet = {
+        name = "Patrol Fleet"
+        class = "pc_quarian_patrol_fleet"
+        orbit_distance = 0
+        orbit_angle = 176
+        has_ring = no
+		size = 6
+    }
+}
 
 
 
@@ -3659,78 +3959,86 @@ sys_chabtan_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = yahg_homeworld_spawned
-
-			create_species = { 
-				name = "Yahg"
-				class = YAH
-				portrait = yahg
-				namelist = btr_yahg
-				homeworld = THIS 
-				traits = {
-					trait = yahg_trait_core
-					trait = yahg_trait_apex_predators
-					trait = yahg_trait_control_obsessed
-					trait = yahg_trait_truthsayers
-					ideal_planet_class = pc_desert
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = yahgSpecies 
-				event_target:yahgSpecies = { log = "yahgSpecies = [This.GetName]" }
-				log = "Yahg Species Created"
-			}
-			create_country = {
-				name = "Parnack Regime"
-				adjective = "PRESCRIPTED_adjective_parnack_regime"
-				authority = auth_dictatorial
-				civics = { 
-					civic = yahg_pack_mentality 
-					civic = yahg_enforced_isolation 
-				}
-				species = event_target:yahgSpecies
-				name_list = btr_yahg
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_fanatic_xenophobe" 
-					ethic = "ethic_militarist" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="parnack_regime.dds"
-					}
-					background={
-						category="backgrounds"
-						file="bloodsplatter.dds"
-					}
-					colors={
-						"eecolor1"
-						"eecolor2001"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = parnack_regime_player
+						}
 					}
 				}
-				type = primitive 
-				origin = parnack_regime_origin
-				effect = {
-					set_country_flag = parnack_regime_primitive
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = industrial_01
-					add_resource = {
-						energy = 400
-						minerals = 200
-						alloys = 250
-						influence = 100
-						food = 900
-						consumer_goods = 300
+				create_species = { 
+					name = "Yahg"
+					class = YAH
+					portrait = yahg
+					namelist = btr_yahg
+					homeworld = THIS 
+					traits = {
+						trait = yahg_trait_core
+						trait = yahg_trait_apex_predators
+						trait = yahg_trait_control_obsessed
+						trait = yahg_trait_truthsayers
+						ideal_planet_class = pc_desert
 					}
-					add_modifier = {
-						modifier = parnack_regime_violent_start
-						days = -1
+				}
+				last_created_species = { 
+					save_global_event_target_as = yahgSpecies 
+					event_target:yahgSpecies = { log = "yahgSpecies = [This.GetName]" }
+					log = "Yahg Species Created"
+				}
+				create_country = {
+					name = "Parnack Regime"
+					adjective = "PRESCRIPTED_adjective_parnack_regime"
+					authority = auth_dictatorial
+					civics = { 
+						civic = yahg_pack_mentality 
+						civic = yahg_enforced_isolation 
 					}
-				}						
+					species = event_target:yahgSpecies
+					name_list = btr_yahg
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_fanatic_xenophobe" 
+						ethic = "ethic_militarist" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="parnack_regime.dds"
+						}
+						background={
+							category="backgrounds"
+							file="bloodsplatter.dds"
+						}
+						colors={
+							"eecolor1"
+							"eecolor2001"
+							"null"
+							"null"
+						}
+					}
+					type = primitive 
+					origin = parnack_regime_origin
+					effect = {
+						set_country_flag = parnack_regime_primitive
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = industrial_01
+						add_resource = {
+							energy = 400
+							minerals = 200
+							alloys = 250
+							influence = 100
+							food = 900
+							consumer_goods = 300
+						}
+						add_modifier = {
+							modifier = parnack_regime_violent_start
+							days = -1
+						}
+					}						
+				}
 			}
 			random_country = {
 				limit = { 
@@ -3871,78 +4179,86 @@ sys_azedes_init = {
 
 			prevent_anomaly = yes
 			set_global_flag = raloi_homeworld_spawned
-
-			create_species = { 
-				name = "Raloi"
-				class = AVI
-				portrait = AVI4
-				namelist = AVI4
-				homeworld = THIS 
-				traits = { 
-					trait = raloi_trait_core
-					trait = raloi_trait_pre_space_ways
-					trait = raloi_trait_weak_immune
-					trait = raloi_trait_avians
-					ideal_planet_class = pc_dextro_alpine
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = raloiSpecies 
-				event_target:raloiSpecies = { log = "raloiSpecies = [This.GetName]" }
-				log = "Raloi Species Created"
-			}
-			create_country = {
-				name = "Raloi Republic"
-				adjective = "PRESCRIPTED_adjective_raloi_republic"
-				authority = auth_democratic
-				civics = { 
-					civic = raloi_rep_spreading_our_wings 
-					civic = raloi_rep_birds_of_a_feather 
-				}
-				species = event_target:raloiSpecies
-				name_list = "AVI4"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_fanatic_xenophobe" 
-					ethic = "ethic_militarist" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="raloi_republic.dds"
-					}
-					background={
-						category="backgrounds"
-						file="soleillevant.dds"
-					}
-					colors={
-						"eecolor1508"
-						"bright_yellow"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = raloi_republic_player
+						}
 					}
 				}
-				type = primitive
-				origin = raloi_rep_origin
-				effect = {
-					set_country_flag = raloi_republic_primitive
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = industrial_01
-					add_resource = {
-						energy = 450
-						minerals = 200
-						alloys = 250
-						influence = 100
-						food = 1300
-						consumer_goods = 520
+				create_species = { 
+					name = "Raloi"
+					class = AVI
+					portrait = AVI4
+					namelist = AVI4
+					homeworld = THIS 
+					traits = { 
+						trait = raloi_trait_core
+						trait = raloi_trait_pre_space_ways
+						trait = raloi_trait_weak_immune
+						trait = raloi_trait_avians
+						ideal_planet_class = pc_dextro_alpine
 					}
-					add_modifier = {
-						modifier = raloi_catching_up
-						days = -1
+				}
+				last_created_species = { 
+					save_global_event_target_as = raloiSpecies 
+					event_target:raloiSpecies = { log = "raloiSpecies = [This.GetName]" }
+					log = "Raloi Species Created"
+				}
+				create_country = {
+					name = "Raloi Republic"
+					adjective = "PRESCRIPTED_adjective_raloi_republic"
+					authority = auth_democratic
+					civics = { 
+						civic = raloi_rep_spreading_our_wings 
+						civic = raloi_rep_birds_of_a_feather 
 					}
-				}						
+					species = event_target:raloiSpecies
+					name_list = "AVI4"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_fanatic_xenophobe" 
+						ethic = "ethic_militarist" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="raloi_republic.dds"
+						}
+						background={
+							category="backgrounds"
+							file="soleillevant.dds"
+						}
+						colors={
+							"eecolor1508"
+							"bright_yellow"
+							"null"
+							"null"
+						}
+					}
+					type = primitive
+					origin = raloi_rep_origin
+					effect = {
+						set_country_flag = raloi_republic_primitive
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = industrial_01
+						add_resource = {
+							energy = 450
+							minerals = 200
+							alloys = 250
+							influence = 100
+							food = 1300
+							consumer_goods = 520
+						}
+						add_modifier = {
+							modifier = raloi_catching_up
+							days = -1
+						}
+					}						
+				}
 			}
 			random_country = {
 				limit = { 
@@ -4219,77 +4535,86 @@ sys_mullaxul_init = {
 			prevent_anomaly = yes
 			set_global_flag = rachni_startworld_spawned
 
-			create_species = { 
-				name = "Rachni"
-				class = RAC
-				portrait = rachni
-				namelist = ART3
-				homeworld = THIS 
-				traits = { 
-					trait = rachni_trait_core
-					trait = rachni_trait_hardened_biology
-					trait = rachni_trait_collective_engineering
-					trait = rachni_trait_wrath_of_the_swarm
-					trait = trait_hive_mind
-					ideal_planet_class = "pc_mephitic"
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = rachniSpecies 
-				event_target:rachniSpecies = { log = "rachniSpecies = [This.GetName]" }
-				log = "Rachni Species Created"
-			}
-			create_country = {
-				name = "Rachni Hive"
-				adjective = "PRESCRIPTED_adjective_rachni_hive"
-				authority = auth_hive_mind
-				civics = { 
-					civic = rachni_hive_del_capo_al_fine 
-					civic = rachni_hive_crescendo 
-				}
-				species = event_target:rachniSpecies
-				name_list = "btr_collectors"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_gestalt_consciousness" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="rachni_hive.dds"
-					}
-					background={
-						category="backgrounds"
-						file="flag_BG_45.dds"
-					}
-					colors={
-						"eecolor1558"
-						"eecolor1868"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = rachni_hive_player
+						}
 					}
 				}
-				type = default
-				origin = rachni_hive_origin
-				effect = {
-					set_country_flag = rachni_hive
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = molluscoid_01
-					add_resource = {
-						energy = 800
-						minerals = 350
-						alloys = 250
-						influence = 100
-						food = 1540
-						volatile_motes = 100
-						exotic_gases = 100
-						rare_crystals = 100	
+				create_species = { 
+					name = "Rachni"
+					class = RAC
+					portrait = rachni
+					namelist = ART3
+					homeworld = THIS 
+					traits = { 
+						trait = rachni_trait_core
+						trait = rachni_trait_hardened_biology
+						trait = rachni_trait_collective_engineering
+						trait = rachni_trait_wrath_of_the_swarm
+						trait = trait_hive_mind
+						ideal_planet_class = "pc_mephitic"
 					}
-					add_modifier = {
-						modifier = rachni_choir_sings
-						days = -1
+				}
+				last_created_species = { 
+					save_global_event_target_as = rachniSpecies 
+					event_target:rachniSpecies = { log = "rachniSpecies = [This.GetName]" }
+					log = "Rachni Species Created"
+				}
+				create_country = {
+					name = "Rachni Hive"
+					adjective = "PRESCRIPTED_adjective_rachni_hive"
+					authority = auth_hive_mind
+					civics = { 
+						civic = rachni_hive_del_capo_al_fine 
+						civic = rachni_hive_crescendo 
+					}
+					species = event_target:rachniSpecies
+					name_list = "btr_collectors"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_gestalt_consciousness" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="rachni_hive.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_45.dds"
+						}
+						colors={
+							"eecolor1558"
+							"eecolor1868"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = rachni_hive_origin
+					effect = {
+						set_country_flag = rachni_hive_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = molluscoid_01
+						add_resource = {
+							energy = 800
+							minerals = 350
+							alloys = 250
+							influence = 100
+							food = 1540
+							volatile_motes = 100
+							exotic_gases = 100
+							rare_crystals = 100	
+						}
+						add_modifier = {
+							modifier = rachni_choir_sings
+							days = -1
+						}
 					}
 				}
 			}
@@ -4389,6 +4714,14 @@ sys_maskimxul_init = {
 			save_global_event_target_as = maskimxul_system_suen
 
 			set_global_flag = rachni_homeworld_spawned
+			random_country = {
+				limit = { 
+					has_country_flag = rachni_hive 
+				}
+				owner_species = {
+					set_species_homeworld = prevprev
+				}
+			}
 			add_modifier = {
 				modifier = badlands_world
 				days = -1
@@ -4421,14 +4754,6 @@ sys_maskimxul_init = {
 			# add_deposit = d_average_mineral_deposits
 			add_deposit = d_zro_deposit_1
 			add_deposit = d_minerals_4
-			random_country = {
-				limit = { 
-					has_country_flag = rachni_hive 
-				}
-				owner_species = {
-					set_species_homeworld = prevprev
-				}
-			}
 		}
     }
 
@@ -4499,75 +4824,84 @@ sys_tikkun_init = {
 			set_global_flag = geth_homeworld_spawned
 			set_global_flag = quarian_species_homeworld_spawned
 			
-			create_species = { 
-				name = "Geth"
-				class = GTH
-				portrait = geth
-				namelist = btr_geth
-				homeworld = THIS 
-				traits = { 
-					trait = trait_machine_unit
-					trait = geth_trait_core
-					trait = geth_trait_linked_consciousness
-					trait = geth_trait_purpose_built_models
-					trait = geth_trait_deontological_primacy
-				}
-			}
-			last_created_species = { 
-				save_global_event_target_as = gethSpecies 
-				event_target:gethSpecies = { log = "gethspecies = [This.GetName]" }
-				log = "Geth species created"
-			}
-			create_country = {
-				name = "Geth Consensus"
-				adjective = "PRESCRIPTED_adjective_geth_consensus"
-				authority = auth_machine_intelligence
-				civics = { 
-					civic = geth_con_civic_nebulous_pariahs 
-					civic = geth_con_civic_collective_conscious 
-				}
-				species = event_target:gethSpecies
-				name_list = "btr_geth"
-				ship_prefix = ""
-				ethos = { 
-					ethic = "ethic_gestalt_consciousness" 
-				}
-				flag = {
-					icon={
-						category="beyondtherelays"
-						file="geth_consensus.dds"
-					}
-					background={
-						category="backgrounds"
-						file="flag_BG_11.dds"
-					}
-					colors={
-						"eecolor2010"
-						"eecolor1831"
-						"null"
-						"null"
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = geth_consensus_player
+						}
 					}
 				}
-				type = default
-				origin = geth_con_origin
-				effect = {
-					set_country_flag = geth_consensus_ai
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_graphical_culture = geth_01
-					add_resource = {
-						minerals = 1050
-						energy = 2800
-						alloys = 1450
-						influence = 100
-						volatile_motes = 100
-						exotic_gases = 100
-						rare_crystals = 100
+				create_species = { 
+					name = "Geth"
+					class = GTH
+					portrait = geth
+					namelist = btr_geth
+					homeworld = THIS 
+					traits = { 
+						trait = trait_machine_unit
+						trait = geth_trait_core
+						trait = geth_trait_linked_consciousness
+						trait = geth_trait_purpose_built_models
+						trait = geth_trait_deontological_primacy
 					}
-					add_modifier = {
-						modifier = geth_con_empire_modifier
-						days = -1
+				}
+				last_created_species = { 
+					save_global_event_target_as = gethSpecies 
+					event_target:gethSpecies = { log = "gethspecies = [This.GetName]" }
+					log = "Geth species created"
+				}
+				create_country = {
+					name = "Geth Consensus"
+					adjective = "PRESCRIPTED_adjective_geth_consensus"
+					authority = auth_machine_intelligence
+					civics = { 
+						civic = geth_con_civic_nebulous_pariahs 
+						civic = geth_con_civic_collective_conscious 
+					}
+					species = event_target:gethSpecies
+					name_list = "btr_geth"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_gestalt_consciousness" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="geth_consensus.dds"
+						}
+						background={
+							category="backgrounds"
+							file="flag_BG_11.dds"
+						}
+						colors={
+							"eecolor2010"
+							"eecolor1831"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = geth_con_origin
+					effect = {
+						set_country_flag = geth_consensus_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = geth_01
+						add_resource = {
+							minerals = 1050
+							energy = 2800
+							alloys = 1450
+							influence = 100
+							volatile_motes = 100
+							exotic_gases = 100
+							rare_crystals = 100
+						}
+						add_modifier = {
+							modifier = geth_con_empire_modifier
+							days = -1
+						}
 					}
 				}
 			}
