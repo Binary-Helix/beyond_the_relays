@@ -12,6 +12,10 @@ country_event = {
 			has_country_flag = btr_empire
 		}
 	}
+
+	immediate = {
+		log = "btr_game_start.1 - Custom Country Check"
+	}
 	option = {
 		name = OK
 	}
@@ -23,13 +27,17 @@ event = {
 	title = btr_game_start.2.name
 	desc = btr_game_start.2.desc
 	picture = BTR_GFX_evt_btr_integrated
-	fire_only_once = yes
+	is_triggered_only = yes
 	trigger = {
 		OR = {
 			has_global_flag = beyond_the_advisors_installed
 			has_global_flag = beyond_the_worlds_installed
 			has_global_flag = has_real_space_mod
 		}
+	}
+
+	immediate = {
+		log = "btr_game_start.2 - Integrated Mod Check"
 	}
 	option = {
 		name = OK
@@ -42,13 +50,18 @@ event = {
 	title = btr_game_start.3.name
 	desc = btr_game_start.3.desc
 	picture = BTR_GFX_evt_btr_incompatible
-	fire_only_once = yes
+	is_triggered_only = yes
 	trigger = {
 		has_global_flag = planetarydiversity
 	}
+
+	immediate = {
+		log = "btr_game_start.3 - Incompatible Mod Check"
+	}
+
 	option = {
 		name = OK
-	}
+	}	
 }
 
 ### Pregame Genocide
@@ -164,6 +177,8 @@ event = {
 				}
 			}
 		}
+
+		log = "btr_game_start.4 - Pregame Genocide Committed"
 	}
 }
 
@@ -174,44 +189,85 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
-		# random_country = { limit = { has_country_flag = asari_republics } save_event_target_as = asari_republics }
-		# random_country = { limit = { has_country_flag = salarian_union } save_event_target_as = salarian_union }
-		# random_country = { limit = { has_country_flag = turian_hierarchy } save_event_target_as = turian_hierarchy }
-		# random_country = { limit = { has_country_flag = systems_alliance } save_event_target_as = systems_alliance }
-		# random_country = { limit = { has_country_flag = courts_of_dekuuna } save_event_target_as = courts_of_dekuuna }
-		# random_country = { limit = { has_country_flag = vol_protectorate } save_event_target_as = vol_protectorate }
-		# random_country = { limit = { has_country_flag = illuminated_primacy } save_event_target_as = illuminated_primacy }
-		# random_country = { limit = { has_country_flag = hegemony_of_kharshan } save_event_target_as = hegemony_of_kharshan }
-		# random_country = { limit = { has_country_flag = aralakh_kahmat } save_event_target_as = aralakh_kahmat }
-		# # random_country = { limit = { has_country_flag = migrant_fleet } save_event_target_as = migrant_fleet }
-		# # random_country = { limit = { has_country_flag = ceberus_empire } save_event_target_as = ceberus_empire }
-		# random_country = { limit = { has_country_flag = omega_empire } save_event_target_as = omega_empire }	
-		# random_country = { limit = { has_country_flag = illium_corporate_interests } save_event_target_as = illium_corporate_interests }
-		# random_country = { limit = { has_country_flag = caleston_directorate } save_event_target_as = caleston_directorate }	
-		# random_country = { limit = { has_country_flag = remnants_of_rakhana } save_event_target_as = remnants_of_rakhana }		
-		# random_country = { limit = { has_country_flag = vorcha_clandom } save_event_target_as = vorcha_clandom }
-		# random_country = { limit = { has_country_flag = sedriicae_collective } save_event_target_as = sedriicae_collective }		
-		# random_country = { limit = { has_country_flag = lystheni_order } save_event_target_as = lystheni_order }
-		# random_country = { limit = { has_country_flag = gothones_remnant } save_event_target_as = gothones_remnant }		
-		# random_country = { limit = { has_country_flag = parnack_regime_player } save_event_target_as = parnack_regime }
-		# random_country = { limit = { has_country_flag = raloi_republic } save_event_target_as = raloi_republic }		
-		# random_country = { limit = { has_country_flag = geth_consensus } save_event_target_as = geth_consensus }
-		# random_country = { limit = { has_country_flag = disciples_of_nazara } save_event_target_as = disciples_of_nazara }
-		# # random_country = { limit = { has_country_flag = rachni_hive } save_event_target_as = rachni_hive }
+		random_country = { limit = { has_country_flag = asari_republics_player } save_event_target_as = asari_republics }
+		random_country = { limit = { has_country_flag = salarian_union_player } save_event_target_as = salarian_union }
+		random_country = { limit = { has_country_flag = turian_hierarchy_player } save_event_target_as = turian_hierarchy }
+		random_country = { limit = { has_country_flag = systems_alliance_player } save_event_target_as = systems_alliance }
+		random_country = { limit = { has_country_flag = courts_of_dekuuna_player } save_event_target_as = courts_of_dekuuna }
+		random_country = { limit = { has_country_flag = vol_protectorate_player } save_event_target_as = vol_protectorate }
+		random_country = { limit = { has_country_flag = illuminated_primacy_player } save_event_target_as = illuminated_primacy }
+		random_country = { limit = { has_country_flag = hegemony_of_kharshan_player } save_event_target_as = hegemony_of_kharshan }
+		random_country = { limit = { has_country_flag = aralakh_kahmat_player } save_event_target_as = aralakh_kahmat }
+		# random_country = { limit = { has_country_flag = migrant_fleet_player } save_event_target_as = migrant_fleet }
+		# random_country = { limit = { has_country_flag = ceberus_empire_player } save_event_target_as = ceberus_empire }
+		random_country = { limit = { has_country_flag = caleston_directorate_player } save_event_target_as = caleston_directorate }
+		random_country = { limit = { has_country_flag = omega_empire_player } save_event_target_as = omega_empire }	
+		random_country = { limit = { has_country_flag = illium_corporate_interests_player } save_event_target_as = illium_corporate_interests }
+		random_country = { limit = { has_country_flag = caleston_directorate_player } save_event_target_as = caleston_directorate }	
+		random_country = { limit = { has_country_flag = remnants_of_rakhana_player } save_event_target_as = remnants_of_rakhana }		
+		random_country = { limit = { has_country_flag = vorcha_clandom_player } save_event_target_as = vorcha_clandom }
+		random_country = { limit = { has_country_flag = sedriicae_collective_player } save_event_target_as = sedriicae_collective }		
+		random_country = { limit = { has_country_flag = lystheni_order_player } save_event_target_as = lystheni_order }
+		random_country = { limit = { has_country_flag = gothones_remnant_player } save_event_target_as = gothones_remnant }		
+		random_country = { limit = { has_country_flag = parnack_regime_player } save_event_target_as = parnack_regime }
+		random_country = { limit = { has_country_flag = raloi_republic_player } save_event_target_as = raloi_republic }		
+		random_country = { limit = { has_country_flag = geth_consensus_player } save_event_target_as = geth_consensus }
+		random_country = { limit = { has_country_flag = disciples_of_nazara_player } save_event_target_as = disciples_of_nazara }
+		random_country = { limit = { has_country_flag = rachni_hive_player } save_event_target_as = rachni_hive }
 
-		# random_country = { limit = { has_country_flag = citadel_council } save_event_target_as = citadel_council }
-		# # random_country = { limit = { has_country_flag = collectors_empire } save_event_target_as = collectors_empire }
-		# # random_country = { limit = { has_country_flag = relic_mineral_works } save_event_target_as = relic_mineral_works }
-		# # random_country = { limit = { has_country_flag = asteria_agriculture } save_event_target_as = asteria_agriculture }
-		# # random_country = { limit = { has_country_flag = united_anhur_corporations } save_event_target_as = united_anhur_corporations }
-		# # random_country = { limit = { has_country_flag = wrill_mining_consortium } save_event_target_as = wrill_mining_consortium }
-		# # random_country = { limit = { has_country_flag = trident_exports_limited } save_event_target_as = trident_exports_limited }
-		# # random_country = { limit = { has_country_flag = altai_mining } save_event_target_as = altai_mining }
-		# # random_country = { limit = { has_country_flag = noveria_development_corporation } save_event_target_as = noveria_development_corporation }
-		# # random_country = { limit = { has_country_flag = blood_pack_mercs } save_event_target_as = blood_pack_mercs }
-		# # random_country = { limit = { has_country_flag = blue_suns_mercs } save_event_target_as = blue_suns_mercs }
-		# # random_country = { limit = { has_country_flag = eclipse_mercs } save_event_target_as = eclipse_mercs }
-		# # random_country = { limit = { has_country_flag = cat6_mercs } save_event_target_as = cat6_mercs }
+		random_country = { limit = { has_country_flag = asari_republics_ai } save_event_target_as = asari_republics }
+		random_country = { limit = { has_country_flag = salarian_union_ai } save_event_target_as = salarian_union }
+		random_country = { limit = { has_country_flag = turian_hierarchy_ai } save_event_target_as = turian_hierarchy }
+		random_country = { limit = { has_country_flag = systems_alliance_ai } save_event_target_as = systems_alliance }
+		random_country = { limit = { has_country_flag = courts_of_dekuuna_ai } save_event_target_as = courts_of_dekuuna }
+		random_country = { limit = { has_country_flag = vol_protectorate_ai } save_event_target_as = vol_protectorate }
+		random_country = { limit = { has_country_flag = illuminated_primacy_ai } save_event_target_as = illuminated_primacy }
+		random_country = { limit = { has_country_flag = hegemony_of_kharshan_ai } save_event_target_as = hegemony_of_kharshan }
+		random_country = { limit = { has_country_flag = aralakh_kahmat_ai } save_event_target_as = aralakh_kahmat }
+		# random_country = { limit = { has_country_flag = migrant_fleet_ai } save_event_target_as = migrant_fleet }
+		# random_country = { limit = { has_country_flag = ceberus_empire_ai } save_event_target_as = ceberus_empire }
+		random_country = { limit = { has_country_flag = caleston_directorate_ai } save_event_target_as = caleston_directorate }
+		random_country = { limit = { has_country_flag = omega_empire_ai } save_event_target_as = omega_empire }	
+		random_country = { limit = { has_country_flag = illium_corporate_interests_ai } save_event_target_as = illium_corporate_interests }
+		random_country = { limit = { has_country_flag = caleston_directorate_ai } save_event_target_as = caleston_directorate }	
+		random_country = { limit = { has_country_flag = remnants_of_rakhana_ai } save_event_target_as = remnants_of_rakhana }		
+		random_country = { limit = { has_country_flag = vorcha_clandom_ai } save_event_target_as = vorcha_clandom }
+		random_country = { limit = { has_country_flag = sedriicae_collective_ai } save_event_target_as = sedriicae_collective }		
+		random_country = { limit = { has_country_flag = lystheni_order_ai } save_event_target_as = lystheni_order }
+		random_country = { limit = { has_country_flag = gothones_remnant_ai } save_event_target_as = gothones_remnant }		
+		random_country = { limit = { has_country_flag = parnack_regime_ai } save_event_target_as = parnack_regime }
+		random_country = { limit = { has_country_flag = raloi_republic_ai } save_event_target_as = raloi_republic }		
+		random_country = { limit = { has_country_flag = geth_consensus_ai } save_event_target_as = geth_consensus }
+		random_country = { limit = { has_country_flag = disciples_of_nazara_ai } save_event_target_as = disciples_of_nazara }
+		random_country = { limit = { has_country_flag = rachni_hive_ai } save_event_target_as = rachni_hive }
+
+		random_country = { limit = { has_country_flag = asari_republics } save_event_target_as = asari_republics }
+		random_country = { limit = { has_country_flag = salarian_union } save_event_target_as = salarian_union }
+		random_country = { limit = { has_country_flag = turian_hierarchy } save_event_target_as = turian_hierarchy }
+		random_country = { limit = { has_country_flag = systems_alliance } save_event_target_as = systems_alliance }
+		random_country = { limit = { has_country_flag = courts_of_dekuuna } save_event_target_as = courts_of_dekuuna }
+		random_country = { limit = { has_country_flag = vol_protectorate } save_event_target_as = vol_protectorate }
+		random_country = { limit = { has_country_flag = illuminated_primacy } save_event_target_as = illuminated_primacy }
+		random_country = { limit = { has_country_flag = hegemony_of_kharshan } save_event_target_as = hegemony_of_kharshan }
+		random_country = { limit = { has_country_flag = aralakh_kahmat } save_event_target_as = aralakh_kahmat }
+		# random_country = { limit = { has_country_flag = migrant_fleet } save_event_target_as = migrant_fleet }
+		# random_country = { limit = { has_country_flag = ceberus_empire } save_event_target_as = ceberus_empire }
+		random_country = { limit = { has_country_flag = caleston_directorate } save_event_target_as = caleston_directorate }
+		random_country = { limit = { has_country_flag = omega_empire } save_event_target_as = omega_empire }	
+		random_country = { limit = { has_country_flag = illium_corporate_interests } save_event_target_as = illium_corporate_interests }
+		random_country = { limit = { has_country_flag = caleston_directorate } save_event_target_as = caleston_directorate }	
+		random_country = { limit = { has_country_flag = remnants_of_rakhana } save_event_target_as = remnants_of_rakhana }		
+		random_country = { limit = { has_country_flag = vorcha_clandom } save_event_target_as = vorcha_clandom }
+		random_country = { limit = { has_country_flag = sedriicae_collective } save_event_target_as = sedriicae_collective }		
+		random_country = { limit = { has_country_flag = lystheni_order } save_event_target_as = lystheni_order }
+		random_country = { limit = { has_country_flag = gothones_remnant } save_event_target_as = gothones_remnant }		
+		random_country = { limit = { has_country_flag = parnack_regime } save_event_target_as = parnack_regime }
+		random_country = { limit = { has_country_flag = raloi_republic } save_event_target_as = raloi_republic }		
+		random_country = { limit = { has_country_flag = geth_consensus } save_event_target_as = geth_consensus }
+		random_country = { limit = { has_country_flag = disciples_of_nazara } save_event_target_as = disciples_of_nazara }
+		random_country = { limit = { has_country_flag = rachni_hive } save_event_target_as = rachni_hive }
+
+		log = "btr_game_start.5 - Set Empire Event Targets - btr_game_start.5"
 
 		if = {
 			limit = { 
@@ -238,7 +294,9 @@ country_event = {
 			establish_geth_consensus_communication = yes
 			establish_disciples_of_nazara_communication = yes
 			establish_citadel_council_communication = yes
-		}		
+		}	
+		
+		log = "btr_game_start.5 - Established Empire Communications"
 	}
 }
 
@@ -803,6 +861,8 @@ country_event = {
 		# 	add_resource = { influence = 100 }
 		# 	add_resource = { food = 2050	}
 		# }
+
+		log = "btr_game_start.7 - Added Player Starting Resources"
 	}
 }
 
@@ -4364,6 +4424,8 @@ country_event = {
 			generate_citadel_con_third_fleet = yes
 			generate_citadel_con_construction_ships = yes
 		}		
+
+		log = "btr_game_start.9 - Generate Fleets"
 	}
 }
 
@@ -4380,8 +4442,11 @@ country_event = {
 		every_owned_planet = {
 			check_planet_employment = yes
 		}
+
+		log = "btr_game_start.10 - Fix pop unemployment"
 	}
 }
+
 
 country_event = {
 	id = btr_game_start.11
@@ -4646,8 +4711,11 @@ country_event = {
 				}
 			}
 		}
+
+		log = "btr_game_start.11 - Generate Planetary Station Districts"
 	}
 }
+
 
 #Starting Technologies 
 country_event = {
@@ -4854,5 +4922,7 @@ country_event = {
 			give_btr_T2_starting_tech = yes
 			give_starting_ship_tech = yes
 		}
+
+		log = "btr_game_start.12 - Generate Starting Techs"
 	}
 }
