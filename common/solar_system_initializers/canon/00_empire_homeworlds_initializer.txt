@@ -3457,7 +3457,7 @@ sys_ultio_init = {
 					trait = gothones_trait_trials_of_vindicta
 					trait = gothones_trait_eco_reverence
 					trait = gothones_trait_survivalists
-					ideal_planet_class = pc_tropical
+					ideal_planet_class = pc_dextro_tropical
 				}
 			}
 			last_created_species = { 
@@ -3586,7 +3586,182 @@ sys_ultio_init = {
 ##### MIGRANT FLEET #####
 #########################
 
+sys_migrant_fleet_init = {
+	name = "The Migrant Fleet"
+    class = sc_deep_space
+    flags = { migrant_fleet_capital_system canon_map empire_home_system }
+	init_effect = { 
+			log = "Quarian Migrant Fleet System Spawned"
+	}	
 
+	max_instances = 1
+
+    planet = {
+        name = "Civilian Fleet"
+        class = "pc_quarian_civilian_fleet"
+        orbit_distance = 62
+        orbit_angle = 25
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Special Projects"
+        class = "pc_quarian_special_projects"
+        orbit_distance = 0
+        orbit_angle = 185
+        has_ring = no
+		size = 4
+    }
+
+    planet = {
+        name = "Chayym"
+        class = "pc_quarian_liveship"
+        orbit_distance = 37
+        orbit_angle = 84
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Shellen"
+        class = "pc_quarian_liveship"
+        orbit_distance = 1
+        orbit_angle = 179
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Rayya"
+        class = "pc_quarian_liveship"
+        orbit_distance = 48
+        orbit_angle = 274
+        has_ring = no
+		size = 16
+		init_effect = {
+			log = "Rayya Liveship Spawned"
+			save_global_event_target_as = migrant_fleet_system_rayya
+
+			prevent_anomaly = yes
+			set_global_flag = quarian_capital_spawned
+
+			create_species = { 
+				name = "Quarian"
+				class = QUA
+				portrait = quarian
+				namelist = btr_quarian
+				homeworld = THIS 
+				traits = { 
+					trait = quarian_trait_core
+					trait = quarian_trait_suit_entombment
+					trait = quarian_trait_quarian_traditionalism
+					trait = quarian_trait_social_precedent
+					ideal_planet_class = pc_dextro_savannah
+				}
+			}
+			last_created_species = { 
+				save_global_event_target_as = quarianSpecies 
+				event_target:quarianSpecies = { log = "quarianSpecies = [This.GetName]" }
+				log = "Quarian Species Created"
+			}
+			create_country = {
+				name = "Quarian Conclave"
+				adjective = "PRESCRIPTED_adjective_quarian_conclave"
+				authority = auth_democratic
+				civics = { 
+					civic = quarian_conclave_memories_of_the_homeworld 
+					civic = quarian_conclave_efficiency_or_death 
+				}
+				species = event_target:quarianSpecies
+				name_list = btr_quarian
+				ship_prefix = ""
+				ethos = { 
+					ethic = "ethic_egalitarian" 
+					ethic = "ethic_militarist" 
+					ethic = "ethic_spiritualist"
+				}
+				flag = {
+					icon={
+						category="beyondtherelays"
+						file="quarian_conclave.dds"
+					}
+					background={
+						category="backgrounds"
+						file="flag_BG_28.dds"
+					}
+					colors={
+						"eecolor1821"
+						"eecolor1891"
+						"null"
+						"null"
+					}
+				}
+				type = default
+				origin = quarian_con_origin
+				effect = {
+					set_country_flag = quarian_conclave_ai
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_graphical_culture = quar_01
+					add_resource = {
+						energy = 950
+						minerals = 420
+						alloys = 250
+						influence = 100
+						food = 1200
+						consumer_goods = 400
+						volatile_motes = 75
+						exotic_gases = 75
+						rare_crystals = 75							
+					}
+					add_modifier = {
+						modifier = quarian_conclave_betrayed_forgotten_abandoned
+						days = -1
+					}
+				}
+			}
+			random_country = {
+				limit = { 
+					OR = {
+						has_country_flag = quarian_conclave_ai
+						has_country_flag = quarian_conclave_ai_player	
+					}				
+				}
+				save_global_event_target_as = quarian_conclave
+			}	
+			create_colony = {
+				owner = event_target:quarian_conclave
+			}	
+			event_target:quarian_conclave = {
+				set_country_flag = quarian_conclave
+				create_starting_leaders = yes
+				log = "Quarian Conclave Empire Spawned"				
+			}		
+			set_capital = yes
+			set_name = "Rayya"
+		}
+    }
+
+    planet = {
+        name = "Heavy Fleet"
+        class = "pc_quarian_heavy_fleet"
+        orbit_distance = 68
+        orbit_angle = 181
+        has_ring = no
+		size = 8
+    }
+
+    planet = {
+        name = "Patrol Fleet"
+        class = "pc_quarian_patrol_fleet"
+        orbit_distance = 0
+        orbit_angle = 176
+        has_ring = no
+		size = 6
+    }
+}
 
 
 
