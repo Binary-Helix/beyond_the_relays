@@ -3666,12 +3666,12 @@ sys_migrant_fleet_init = {
 				log = "Quarian Species Created"
 			}
 			create_country = {
-				name = "Quarian Conclave"
-				adjective = "PRESCRIPTED_adjective_quarian_conclave"
+				name = "The Migrant Fleet"
+				adjective = "PRESCRIPTED_adjective_migrant_fleet"
 				authority = auth_democratic
 				civics = { 
-					civic = quarian_conclave_memories_of_the_homeworld 
-					civic = quarian_conclave_efficiency_or_death 
+					civic = migrant_fleet_memories_of_the_homeworld 
+					civic = migrant_fleet_efficiency_or_death 
 				}
 				species = event_target:quarianSpecies
 				name_list = btr_quarian
@@ -3684,7 +3684,7 @@ sys_migrant_fleet_init = {
 				flag = {
 					icon={
 						category="beyondtherelays"
-						file="quarian_conclave.dds"
+						file="migrant_fleet.dds"
 					}
 					background={
 						category="backgrounds"
@@ -3698,9 +3698,9 @@ sys_migrant_fleet_init = {
 					}
 				}
 				type = default
-				origin = quarian_con_origin
+				origin = migrant_fle_origin
 				effect = {
-					set_country_flag = quarian_conclave_ai
+					set_country_flag = migrant_fleet_ai
 					set_country_flag = init_spawned
 					set_country_flag = canon_map
 					set_country_flag = btr_empire
@@ -3717,7 +3717,7 @@ sys_migrant_fleet_init = {
 						rare_crystals = 75							
 					}
 					add_modifier = {
-						modifier = quarian_conclave_betrayed_forgotten_abandoned
+						modifier = migrant_fleet_betrayed_forgotten_abandoned
 						days = -1
 					}
 				}
@@ -3725,19 +3725,19 @@ sys_migrant_fleet_init = {
 			random_country = {
 				limit = { 
 					OR = {
-						has_country_flag = quarian_conclave_ai
-						has_country_flag = quarian_conclave_ai_player	
+						has_country_flag = migrant_fleet_ai
+						has_country_flag = migrant_fleet_ai_player	
 					}				
 				}
-				save_global_event_target_as = quarian_conclave
+				save_global_event_target_as = migrant_fleet
 			}	
 			create_colony = {
-				owner = event_target:quarian_conclave
+				owner = event_target:migrant_fleet
 			}	
-			event_target:quarian_conclave = {
-				set_country_flag = quarian_conclave
+			event_target:migrant_fleet = {
+				set_country_flag = migrant_fleet
 				create_starting_leaders = yes
-				log = "Quarian Conclave Empire Spawned"				
+				log = "The Migrant Fleet Empire Spawned"				
 			}		
 			set_capital = yes
 			set_name = "Rayya"
