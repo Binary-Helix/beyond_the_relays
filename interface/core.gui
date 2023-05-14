@@ -29,14 +29,26 @@ guiTypes = {
 
 	containerWindowType = {
 		name = "ToolTipWindow"
+		position = { x = 0 y = 0 }
+		orientation = upper_left
+		size = { width = 0 height = 0 }
+
 		background = {
 			name = "background"
 			spriteType = "GFX_tooltip_bg"
 		}
 
-		position = { x= 0 y= 0 }
-		orientation = upper_left
-		size = { width = 100 height = 100 }
+		containerWindowType = {
+			name = "locked_indicator_window"
+			position = { x = 0 y = 0 }
+			orientation = upper_left
+			size = { width = 100% height = 100% }
+		
+			background = {
+				name = "background"
+				spriteType = "GFX_bg_area_light"
+			}
+		}
 
 		instantTextBoxType ={
 			name = "text"
@@ -44,9 +56,83 @@ guiTypes = {
 			borderSize = { x=35 y=15 }
 			position = { x=0 y=0 }
 			maxWidth = 500
-			alwaystransparent = yes
-		}		
-	}	
+		}
+		
+		containerWindowType = {
+			name = "timer_window"
+			position = { x = -28 y = 8 }
+			orientation = upper_right
+			
+			iconType = {
+				name = "timer_icon"
+				spriteType = "GFX_chapter_progress_bar"
+				frame = 12
+				alwaystransparent = yes
+				scale = 0.5
+			}
+		}
+	}
+			
+	containerWindowType = {
+		name = "ToolTipConceptWindow"
+		position = { x = 0 y = 0 }
+		orientation = upper_left
+		size = { width = 0 height = 20 }
+		
+		background = {
+			name = "background"
+			spriteType = "GFX_tooltip_bg"
+		}
+		
+		containerWindowType = {
+			name = "locked_indicator_window"
+			position = { x = 0 y = 0 }
+			orientation = upper_left
+			size = { width = 100% height = 100% }
+		
+			background = {
+				name = "background"
+				spriteType = "GFX_bg_area_light"
+			}
+		}
+		
+		iconType = {
+			name = "icon"
+			spriteType = "GFX_traits"
+			position = { x = 8 y = 8 }
+		}
+		
+		instantTextBoxType = {
+			name = "header"
+			font = "cg_16b"
+			borderSize = { x = 35 y = 15 }
+			position = { x = 10 y = 0 }
+			maxWidth = 400
+			text_color_code = "K"
+		}
+		
+		instantTextBoxType = {
+			name = "text"
+			font = "cg_16b"
+			borderSize = { x = 35 y = 15 }
+			position = { x = 10 y = 20 }
+			maxWidth = 400
+		}
+		
+		containerWindowType = {
+			name = "timer_window"
+			position = { x = -28 y = 8 }
+			orientation = upper_right
+		
+			iconType = {
+				name = "timer_icon"
+				spriteType = "GFX_chapter_progress_bar"
+				frame = 12
+				alwaystransparent = yes
+				scale = 0.5
+			}
+		}
+	}
 
 	textboxType ={
 		name = "GuiBounds"

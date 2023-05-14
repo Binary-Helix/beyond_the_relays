@@ -134,8 +134,8 @@ guiTypes = {
 				scale = 0.75
 			}
 			if_resolution = {
-				max_width = 1920 # min_width or max_width
-				max_height = 1080 # min_height or max_height
+				min_width = 1920 # min_width or max_width
+				min_height = 1080 # min_height or max_height
 			   position = { x = 15 y = 15 }
 			   quadTextureSprite = "gfx_game_logo"
 			   Orientation = "UPPER_LEFT"
@@ -197,8 +197,8 @@ guiTypes = {
       				position = { x=-200 y=-605 }
   				}   
  					if_resolution = {
-						max_width = 1920 # min_width or max_width
-	 					max_height = 1080 # min_height or max_height
+						min_width = 1920 # min_width or max_width
+	 					min_height = 1080 # min_height or max_height
 	### code only applies if game is running at 1920 width and 1080 height or higher
 						position = { x=-200 y=-375 }
 					}   
@@ -237,7 +237,7 @@ guiTypes = {
 					id = "start"
 					name = "start"
 					quadTextureSprite = "GFX_btr_main_menu_stripe_button"
-					position = { x= -285  y = -260  }
+					position = { x= -285  y = -320  }
 					#shortCut = "n"
 					oversound = mouse_over
 					navRight = "multiplayer"
@@ -250,11 +250,36 @@ guiTypes = {
 					name = "start_new_game"
 					font = "korataki_30"
 					text = "BTR_FRONT_START"
-					position = { x= -325 y = -240 }
+					position = { x= -195 y = -300 }
+					maxWidth = 400
+					maxHeight = 35
+					fixedSize = yes
+					format = left
+					alwaysTransparent = yes
+				}
+
+				buttonType =	{
+					id = "coop"
+					name = "coop"
+					quadTextureSprite = "GFX_btr_main_menu_stripe_button"
+					position = { x= -285 y = -260 }
+					#shortCut = "c"
+					oversound = mouse_over
+					navLeft = "multiplayer"
+					navRight = "load"
+					clicksound = menu_sting_bloop
+					#pdx_tooltip = NAME_Beta
+				}
+
+				instantTextBoxType = {
+					name = "coop_player_text"
+					font = "korataki_30"
+					text = "BTR_FRONT_COOP"
+					position = { x= -225 y = -240 }
 					maxWidth = 500
 					maxHeight = 35
 					fixedSize = yes
-					format = right
+					format = left
 					alwaysTransparent = yes
 				}
 
@@ -482,7 +507,12 @@ guiTypes = {
 			position = { x= -500 y= -350 }
 		}	
 
-		
+		buttonType = {
+			name ="portrait_character_large"
+			spriteType = "GFX_portrait_character_large"
+			Orientation = "CENTER"
+			position = { x= -500 y= -350 }
+		}		
 
 		containerWindowType = {
 			name = "blocker"

@@ -123,15 +123,8 @@ building_precinct_house = {
 			OR = {
 				owner = { is_ai = no }
 				AND = {
-					planet_crime > 15
-					NOR = {
-						AND = {
-							has_building = building_precinct_house
-							owner = { has_technology = tech_colonial_centralization }
-						}
-						has_building = building_hall_judgment
-						num_buildings = { type = building_precinct_house value = 3 }
-					}
+					NOT = { has_forbidden_jobs = enforcer }
+					NOT = { has_available_jobs = enforcer }
 				}
 			}
 		}
@@ -189,6 +182,13 @@ building_hall_judgment = {
 		owner = { is_regular_empire = yes }
 		NOT = { has_modifier = slave_colony }
 		NOT = { has_planet_flag = planetary_station }
+		if = {
+			limit = {
+				owner = { is_ai = yes }
+			}
+			NOT = { has_forbidden_jobs = enforcer }
+			NOT = { has_available_jobs = enforcer }
+		}
 	}
 
 	destroy_trigger = {
@@ -242,6 +242,8 @@ building_sentinel_posts = {
 				owner = { is_ai = no }
 				AND = {
 					NOT = { has_building = building_sentinel_posts }
+					NOT = { has_forbidden_jobs = patrol_drone }
+					NOT = { has_available_jobs = patrol_drone }					
 				}
 			}
 		}
@@ -633,6 +635,7 @@ building_gaiaseeders_1 = {
 		category = planet_buildings
 		cost = {
 			energy = 1500
+			multiplier = value:gaiaseeder_cost_mult
 		}
 		upkeep = {
 			energy = 20

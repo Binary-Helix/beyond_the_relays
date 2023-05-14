@@ -185,7 +185,7 @@ generate_home_system_resources = {
 # This is called after game start
 generate_start_deposits_and_blockers = {
 	optimize_memory
-	clear_deposits = yes
+	#clear_deposits = yes
 
 	# blockers
 	if = {
@@ -4257,6 +4257,12 @@ fear_of_the_dark_binary_planets = {
 		set_planet_flag = fotd_seperatist_planet@prev
 		create_fear_of_the_dark_country = yes
 		setup_fear_of_the_dark_pre_ftl = yes
+		if = {
+			limit = {
+				has_planet_flag = planet_mars
+			}
+			set_mars_entity = yes
+		}
 	}
 	random_planet_within_border = {
 		limit = {

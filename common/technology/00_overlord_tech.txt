@@ -27,23 +27,17 @@ tech_quantum_catapult = {
 		}
 		modifier = {
 			factor = 2
-				research_leader = {
-					area = physics
-					has_trait = "leader_trait_maniacal"
-				}
+			OR = {
+				has_trait_in_council = { TRAIT = leader_trait_maniacal }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_2 }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_3 }
+			}
 		}
 		modifier = {
 			factor = 2
-				research_leader = {
-					area = physics
-					has_trait = "leader_trait_spark_of_genius"
-				}
-		}
-		modifier = {
-			factor = value:tech_weight_likelihood
-			research_leader = {
-				area = physics
-				has_trait = "leader_trait_expertise_particles"
+			OR = {
+				has_trait_in_council = { TRAIT = leader_trait_spark_of_genius }
+				has_trait_in_council = { TRAIT = leader_trait_spark_of_genius_2 }
 			}
 		}
 		modifier = {
@@ -93,13 +87,6 @@ tech_quantum_catapult = {
 
 	ai_weight = {
 		factor = 10
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_particles"
-			}
-		}
 	}
 }
 
@@ -156,20 +143,6 @@ tech_orbital_ring_tier_1 = {
 			factor = 1.25
 			has_tradition = tr_expansion_finish
 		}
-		modifier = {
-			factor = value:tech_weight_likelihood
-			research_leader = {
-				area = engineering
-				has_trait = "leader_trait_expertise_voidcraft"
-			}
-		}
-		modifier = {
-			factor = value:tech_weight_likelihood
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_new_worlds"
-			}
-		}
 	}
 
 	prereqfor_desc = {
@@ -181,20 +154,6 @@ tech_orbital_ring_tier_1 = {
 
 	ai_weight = {
 		factor = 1
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = engineering
-				has_trait = "leader_trait_expertise_voidcraft"
-			}
-		}
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = society
-				has_trait = "leader_trait_expertise_new_worlds"
-			}
-		}
 	}
 }
 
@@ -230,22 +189,13 @@ tech_hyper_relays = {
 		modifier = {
 			factor = 0.2
 			NOR = {
-				research_leader = {
-					area = physics
-					has_trait = "leader_trait_expertise_particles"
-				}
-				research_leader = {
-					area = physics
-					has_trait = "leader_trait_curator"
-				}
-				research_leader = {
-					area = physics
-					has_trait = "leader_trait_spark_of_genius"
-				}
-				research_leader = {
-					area = physics
-					has_trait = "leader_trait_maniacal"
-				}
+				has_trait_in_council = { TRAIT = leader_trait_expertise_particles }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+				has_trait_in_council = { TRAIT = leader_trait_spark_of_genius }
+				has_trait_in_council = { TRAIT = leader_trait_spark_of_genius_2 }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_2 }
+				has_trait_in_council = { TRAIT = leader_trait_maniacal_3 }
 				has_seen_any_bypass = relay_bypass
 			}
 		}
@@ -260,13 +210,6 @@ tech_hyper_relays = {
 		modifier = {
 			factor = 1.25
 			has_tradition = tr_expansion_finish
-		}
-		modifier = {
-			factor = value:tech_weight_likelihood
-			research_leader = {
-				area = physics
-				has_trait = "leader_trait_expertise_particles"
-			}
 		}
 		modifier = {
 			factor = 1.5
@@ -300,13 +243,6 @@ tech_hyper_relays = {
 
 	ai_weight = {
 		factor = 4 #FTL techs are good
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = physics
-				has_trait = "leader_trait_expertise_particles"
-			}
-		}
 		modifier = {
 			factor = 2
 			is_ai = no #auto-research
