@@ -661,7 +661,7 @@ sys_theseaofstorms_init = {
     init_effect = { 
 		generate_home_system_resources = yes
         save_global_event_target_as = nazaraFirstFleet
-		log = "Asari Home System Spawned"
+		log = "Heretic Home System Spawned"
 	}
 
 	usage = custom_empire
@@ -694,8 +694,10 @@ sys_theseaofstorms_init = {
 			set_global_flag = heretic_station_spawned
 			if = {
 				limit = { 
-					any_country = {
-						has_country_flag = disciples_of_nazara_player
+					NOT = {
+						any_country = {
+							has_country_flag = disciples_of_nazara_player
+						}	
 					}
 				}
 				create_country = {
