@@ -1836,6 +1836,70 @@ generate_illium_construction_ships = {
 	}	
 }
 
+###Caleston Directorate
+generate_caleston_corpsec_fleet = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Caleston Corporate Security"
+			set_owner = prev
+			while = {
+				count = 10
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 5
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 1
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			set_location = {
+				target = event_target:calestonCorpSec
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
+
+generate_caleston_construction_ships = {
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:calestonCorpSec
+				distance = 150
+				angle = random
+			}	
+		}
+	}	
+}
+
 ###Sed'riicae Collective
 
 generate_sedriicae_col_first_fleet = {
