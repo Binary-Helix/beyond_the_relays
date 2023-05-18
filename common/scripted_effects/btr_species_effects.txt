@@ -1,0 +1,92 @@
+generate_asari_start_pops = {
+	optimize_memory
+	if = {
+		limit = {
+			owner = {
+				has_country_flag = asari_republics_player
+			}
+		}
+		if = { 
+			limit = { 
+				last_created_species = { 
+					is_species_class = ASA 
+				} 
+				log = "Last Created Species \\[Prev.GetName}: "
+			}
+			last_created_species = { 
+				#set_species_homeworld = event_target:asariHomeworld
+				save_event_target_as = last_created_species 
+				set_citizenship_type = {
+					type = citizenship_full
+				}
+			}
+			while = {
+				count = 52
+				create_pop = {
+					species = last_created_species
+					ethos = owner
+				}
+			}
+		}
+	}	
+}
+
+check_for_asari_player = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:asariSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = asari_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = asari_empire
+				}
+				log = "\\[Prev.GetName]: check_for_asari_player - \\[This.GetName] is a player with asari species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = asariSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_asari_player - no player with asari species"
+			create_asari_species = yes
+		}
+	}
+}
+
+create_asari_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:asariSpecies
+			}
+		}
+		create_species = {
+			class = ASA
+			portrait = btr_asari
+			name = PRESCRIPTED_species_name_asari_republics
+			plural = PRESCRIPTED_species_plural_asari_republics
+			adjective = PRESCRIPTED_species_adjective_asari_republics
+			name_list = btr_asari
+			#homeworld = event_target:asariHomeworld
+			species_bio = PRESCRIPTED_species_bio_asari_republics
+			traits = {
+				trait = asari_trait_core
+				trait = asari_trait_biotic
+				trait = asari_trait_smooth_talk
+				trait = asari_trait_sophisticated
+				ideal_planet_class = pc_continental
+			}
+			effect = {
+				save_global_event_target_as = asariSpecies
+			}
+		}
+	}
+}

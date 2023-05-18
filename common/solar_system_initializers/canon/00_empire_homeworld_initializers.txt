@@ -63,122 +63,84 @@ sys_parnitha_init = {
 		entity = "temperate_planet_01_entity"
 		flags = { thessia_planet asari_homeworld subclass_world }		
 		init_effect = {
-			log = "Asari Homeworld Spawned"
-			save_global_event_target_as = parnitha_system_thessia
+			save_global_event_target_as = asariHomeworld
+			if = {
+				limit = {
+					exists = event_target:asariHomeworld
+				}
+				log = "Asari Homeworld Event Target Set"
+			}
 
 			prevent_anomaly = yes
 			set_global_flag = asari_homeworld_spawned
-			if = {
+			random_country = {
 				limit = {
-					NOT = {
-						any_country = {
-							has_country_flag = asari_republics_player
-						}
-					}
-				 }
-				create_species = { 
-					name = "Asari"
-					class = ASA
-					portrait = btr_asari
-					namelist = btr_asari
-					homeworld = THIS 
-					traits = { 
-						trait = asari_trait_core
-						trait = asari_trait_biotic
-						trait = asari_trait_smooth_talk
-						trait = asari_trait_sophisticated
-						ideal_planet_class = pc_continental
-					}
+					has_country_flag = omega_empire_player
 				}
-				last_created_species = { 
-					save_global_event_target_as = asariSpecies 
-					event_target:asariSpecies = { log = "asariSpecies = [This.GetName]" }
-					log = "Asari Species Created"
+				save_event_target_as = omega_empire
+				owner_species = {
+					save_event_target_as = asariSpecies
+					set_species_homeworld = prevprev
 				}
-				create_country = {
-					name = "Asari Republics"
-					adjective = "PRESCRIPTED_adjective_asari_republics"
-					authority = auth_democratic
-					civics = { 
-						civic = asari_rep_civic_thes_dip_corp 
-						civic = asari_rep_civic_democracy 
-					}
-					species = event_target:asariSpecies
-					name_list = btr_asari
-					ship_prefix = ""
-					ethos = { 
-						ethic = "ethic_fanatic_xenophile" 
-						ethic = "ethic_egalitarian" 
-					}
-					flag = {
-						icon={
-							category="beyondtherelays"
-							file="asari_republics.dds"
-						}
-						background={
-							category="backgrounds"
-							file="flag_BG_42.dds"
-						}
-						colors={
-							"blue"
-							"blue"
-							"null"
-							"null"
-						}
-					}
-					type = default
-					origin = asari_rep_origin
-					effect = {
-						set_country_flag = asari_republics_ai
-						set_country_flag = init_spawned
-						set_country_flag = canon_map
-						set_country_flag = btr_empire
-						set_graphical_culture = mec_asari_01
-						add_resource = {
-							energy = 3500
-							minerals = 2000
-							alloys = 1500
-							influence = 100
-							food = 3500
-							consumer_goods = 1500
-							unity = 450
-							volatile_motes = 200
-							exotic_gases = 200
-							rare_crystals = 700
-						}
-						add_modifier = {
-							modifier = asari_rep_empire_modifier
-							days = -1
-						}
-					}
-					log = "Asari Republics AI Empire Created"
-				}
+				log = "Asari Species set based on Omega Player"
 			}
 			random_country = {
+				limit = {
+					has_country_flag = illium_corporate_interests_player
+				}
+				save_event_target_as = illium_corporate_interests
+				owner_species = {
+					save_event_target_as = asariSpecies
+					set_species_homeworld = prevprev
+				}
+				log = "Asari Species set based on Illium Player"
+			}
+
+			check_for_asari_player = yes
+			if = {
 				limit = { 
-					OR = {
-						has_country_flag = asari_republics_ai						
+					any_country = {
 						has_country_flag = asari_republics_player
 					}
 				}
-				save_global_event_target_as = asari_republics
-				log = "Asari Republics Global Event Target Set via Initializer"
+				random_country = {
+					limit = {
+						has_country_flag = asari_republics_player
+					}
+					save_global_event_target_as = asari_republics
+				}
 			}
+			else = {
+				generate_asari_republics_country = yes
+			}
+
+			set_capital = yes
+			set_owner = event_target:asari_republics
 			create_colony = {
 				owner = event_target:asari_republics
-			}
-			event_target:asari_republics = {
-				set_country_flag = asari_republics
-				create_starting_leaders = yes
-				log = "Asari Republics Empire Spawned"
-			}
-			set_capital = yes
+				species = event_target:asariSpecies
+				ethos = owner
+			}			
 			generate_btr_start_deposits_and_blockers = yes
 			clear_blockers = yes
 			generate_asr_thessia_deposits = yes
 			generate_asr_thessia_capitol_buildings = yes
-			generate_asr_thessia_pops = yes
+			#generate_asr_thessia_pops = yes
 			generate_asari_rep_science_ships = yes
+			# event_target:omega_empire = {
+			# 	owner_species = {
+			# 		change_species = event_target:asariSpecies
+			# 		set_species_homeworld = prevprev
+			# 	}
+			# 	log = "Omega Empire species changed and homeworld set via event target in Thessia Init"
+			# }
+			# event_target:illium_corporate_interests = {
+			# 	owner_species = {
+			# 		change_species = event_target:asariSpecies
+			# 		set_species_homeworld = prevprev
+			# 	}
+			# 	log = "Illium Empire species changed and homeworld set via event target in Thessia Init"
+			# }
 			set_name = "Thessia"
 			add_modifier = {
 				modifier = temperate_world

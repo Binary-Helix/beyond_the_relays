@@ -1,31 +1,21 @@
-generate_asariPop = {
-	# Asari pops
-	if = {
-		limit = {
-			NOT = {
-				exists = event_target:asariSpecies
-			}
-		}
-		create_species = {
-			name = "Asari"
-			class = ASA
-			portrait = btr_asari
-			#homeworld = THIS 
-			traits = {
-				trait = asari_trait_core
-				trait = asari_trait_biotic
-				trait = asari_trait_smooth_talk
-				trait = asari_trait_sophisticated
-				ideal_planet_class = "pc_continental"
-			}
-		}
-		last_created_species = {
-			save_global_event_target_as = asariSpecies
+generate_homeworldPop = {
+	while = {
+		count = 1
+		create_pop = {
+			species = owner_main_species
+			ethos = owner
 		}
 	}
-	create_pop = {
-		species = event_target:asariSpecies
-		ethos = owner
+}
+
+generate_asariPop = {
+	create_asari_species = yes
+	while = {
+		count = 1
+		create_pop = {
+			species = event_target:asariSpecies
+			ethos = owner
+		}
 	}
 }
 
