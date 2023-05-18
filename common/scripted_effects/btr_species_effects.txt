@@ -1,36 +1,3 @@
-generate_asari_start_pops = {
-	optimize_memory
-	if = {
-		limit = {
-			owner = {
-				has_country_flag = asari_republics_player
-			}
-		}
-		if = { 
-			limit = { 
-				last_created_species = { 
-					is_species_class = ASA 
-				} 
-				log = "Last Created Species \\[Prev.GetName}: "
-			}
-			last_created_species = { 
-				#set_species_homeworld = event_target:asariHomeworld
-				save_event_target_as = last_created_species 
-				set_citizenship_type = {
-					type = citizenship_full
-				}
-			}
-			while = {
-				count = 52
-				create_pop = {
-					species = last_created_species
-					ethos = owner
-				}
-			}
-		}
-	}	
-}
-
 check_for_asari_player = {
 	if = {
 		limit = { 
@@ -75,7 +42,7 @@ create_asari_species = {
 			plural = PRESCRIPTED_species_plural_asari_republics
 			adjective = PRESCRIPTED_species_adjective_asari_republics
 			name_list = btr_asari
-			#homeworld = event_target:asariHomeworld
+			homeworld = event_target:asariHomeworld
 			species_bio = PRESCRIPTED_species_bio_asari_republics
 			traits = {
 				trait = asari_trait_core
