@@ -38,7 +38,6 @@ generate_asari_republics_country = {
 			set_city_graphical_culture = mec_asari_01
 			set_country_flag = asari_republics_ai
 			set_country_flag = asari_republics
-			set_country_flag = asari_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
@@ -62,12 +61,94 @@ generate_asari_republics_country = {
 			}
 		}
 	}
-	owner_species = {
-		set_species_homeworld = event_target:asariHomeworld
-		save_global_event_target_as = asariSpecies
+	random_country = {
+		limit = { 
+			OR = {
+				has_country_flag = illium_corporate_interests_player
+				has_country_flag = omega_empire_player
+				has_country_flag = illium_corporate_interests_ai
+				has_country_flag = omega_empire_ai
+				has_country_flag = asari_republics_ai
+				has_country_flag = asari_republics_player
+			}
+		}
+		every_owned_pop_species = {
+			limit = {
+				is_species_class = ASA
+			}
+			set_species_homeworld = prevprev
+		}
 	}
 	log = "Asari Republics AI Empire Created"
 }
+
+generate_salarian_union_country = {
+	create_country = {
+		type = default
+		ignore_initial_colony_error = yes
+		name = "Salarian Union"
+		adjective = "PRESCRIPTED_adjective_salarian_union"
+		name_list = "btr_salarian"
+		species = event_target:salarianSpecies
+		authority = auth_oligarchic
+		ship_prefix = "SUV"
+		origin = salarian_uni_origin
+		ethos = { 
+			ethic = "ethic_authoritarian" 
+			ethic = "ethic_fanatic_materialist" 
+		}
+		civics = { 
+			civic = salarian_uni_hold_the_line 
+			civic = salarian_uni_qual_tech_results 
+		}
+		flag = {
+			icon={
+				category="beyondtherelays"
+				file="salarian_union.dds"
+			}
+			background={
+				category="backgrounds"
+				file="ovalehorizontal.dds"
+			}
+			colors={
+				"eecolor1717"
+				"eecolor1956"
+				"null"
+				"null"
+			}
+		}
+		effect = {
+			set_graphical_culture = btr_salarian_01
+			set_country_flag = salarian_union_ai
+			set_country_flag = salarian_union
+			set_country_flag = salarian_empire
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			save_global_event_target_as = salarian_union
+			add_resource = {
+				energy = 2600
+				minerals = 1480
+				alloys = 1100
+				influence = 100
+				food = 3350
+				consumer_goods = 1200
+				unity = 450
+				volatile_motes = 300
+				exotic_gases = 300
+				rare_crystals = 300
+			}
+			add_modifier = {
+				modifier = salarian_uni_empire_modifier
+				days = -1
+			}			
+		}
+	}	
+}
+
+
+
+
 
 
 generate_omega_empire = {
@@ -109,7 +190,6 @@ generate_omega_empire = {
 			set_graphical_culture = arthropoid_01
 			set_country_flag = omega_empire_ai
 			set_country_flag = omega_empire
-			set_country_flag = asari_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
@@ -131,10 +211,6 @@ generate_omega_empire = {
 				days = -1
 			}
 		}
-	}
-	owner_species = {
-		set_species_homeworld = event_target:asariHomeworld
-		save_global_event_target_as = asariSpecies
 	}
 	log = "Omega AI Empire Created"
 }
@@ -158,16 +234,16 @@ generate_illium_corporate_interests_country = {
 			civic = illium_defense_force 
 			civic = illium_indentured_servitude 
 		}
-		flag = {
-			icon={
-				category="beyondtherelays"
-				file="illium_corporate_interests.dds"
+		flag  =  {
+			icon = {
+				category = "beyondtherelays"
+				file = "illium_corporate_interests.dds"
 			}
-			background={
-				category="backgrounds"
-				file="double_hemispheres.dds"
+			background = {
+				category = "backgrounds"
+				file = "double_hemispheres.dds"
 			}
-			colors={
+			colors = {
 				"eecolor1846"
 				"eecolor1594"
 				"null"
@@ -179,7 +255,6 @@ generate_illium_corporate_interests_country = {
 			set_graphical_culture = mec_asari_01
 			set_country_flag = illium_corporate_interests_ai
 			set_country_flag = illium_corporate_interests
-			set_country_flag = asari_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
@@ -201,9 +276,1011 @@ generate_illium_corporate_interests_country = {
 			}	
 		}
 	}
-	owner_species = {
-		set_species_homeworld = event_target:asariHomeworld
-		save_global_event_target_as = asariSpecies
-	}
 	log = "Illium Corporate Interests AI Empire Created"
+}
+
+generate_caleston_directorate_country = {
+	create_country = {
+		name = "Caleston Directorate"
+		adjective = "PRESCRIPTED_adjective_caleston_directorate"
+		authority = auth_corporate
+		civics = { 
+			civic = caleston_dir_miners_union 
+			civic = caleston_dir_segmented_society 
+		}
+		species = event_target:turianSpecies
+		name_list = "btr_turian"
+		ship_prefix = ""
+		ethos = { 
+			ethic = "ethic_authoritarian"	
+			ethic = "ethic_fanatic_materialist" 
+		}
+		flag = {
+			icon={
+				category="beyondtherelays"
+				file="caleston_directorate.dds"
+			}
+			background={
+				category="backgrounds"
+				file="double_hemispheres.dds"
+			}
+			colors={
+				"eecolor1846"
+				"eecolor1594"
+				"null"
+				"null"
+			}
+		}
+		type = default
+		origin = caleston_dir_origin
+		effect = {
+			set_country_flag = caleston_directorate_ai
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_graphical_culture = btr_turian_01
+			add_resource = {
+				energy = 1900
+				minerals = 710
+				alloys = 400
+				influence = 100
+				food = 1100
+				consumer_goods = 800
+				volatile_motes = 125
+				exotic_gases = 125
+				rare_crystals = 125
+			}
+			add_modifier = {
+				modifier = caleston_dir_civility_among_savages
+				days = -1
+			}	
+		}
+	}
+	log = "Caleston Directorate AI Empire Created"
+}
+
+generate_gothones_remnant_country = {
+	create_country = {
+		name = "Gothones Remnant"
+		adjective = "PRESCRIPTED_adjective_gothones_remnant"
+		authority = auth_democratic
+		civics = { 
+			civic = gothones_cooperative_reciprocity 
+			civic = gothones_braves_of_vindicta 
+		}
+		species = event_target:gothonesSpecies
+		name_list = "btr_gothones"
+		ship_prefix = ""
+		ethos = { 
+			ethic = "ethic_militarist" 
+			ethic = "ethic_fanatic_egalitarian" 
+		}
+		flag = {
+			icon={
+				category="beyondtherelays"
+				file="gothones_remnant.dds"
+			}
+			background={
+				category="backgrounds"
+				file="flag_BG_28.dds"
+			}
+			colors={
+				"eecolor1821"
+				"eecolor1891"
+				"null"
+				"null"
+			}
+		}
+		type = default
+		origin = gothones_remnant_origin
+		effect = {
+			set_country_flag = gothones_remnant_ai
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_graphical_culture = tur_01
+			add_resource = {
+				energy = 950
+				minerals = 420
+				alloys = 250
+				influence = 100
+				food = 1200
+				consumer_goods = 400
+				volatile_motes = 75
+				exotic_gases = 75
+				rare_crystals = 75							
+			}
+			add_modifier = {
+				modifier = gothones_spartan_survivalism
+				days = -1
+			}
+		}
+	}
+	log = "Gothones Remnant AI Empire Created"
+}
+
+generate_rachni_hive_country = {
+	create_country = {
+		name = "Rachni Hive"
+		adjective = "PRESCRIPTED_adjective_rachni_hive"
+		authority = auth_hive_mind
+		civics = { 
+			civic = rachni_hive_del_capo_al_fine 
+			civic = rachni_hive_crescendo 
+		}
+		species = event_target:rachniSpecies
+		name_list = "btr_collectors"
+		ship_prefix = ""
+		ethos = { 
+			ethic = "ethic_gestalt_consciousness" 
+		}
+		flag = {
+			icon={
+				category="beyondtherelays"
+				file="rachni_hive.dds"
+			}
+			background={
+				category="backgrounds"
+				file="flag_BG_45.dds"
+			}
+			colors={
+				"eecolor1558"
+				"eecolor1868"
+				"null"
+				"null"
+			}
+		}
+		type = default
+		origin = rachni_hive_origin
+		effect = {
+			set_country_flag = rachni_hive_ai
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_graphical_culture = molluscoid_01
+			add_resource = {
+				energy = 800
+				minerals = 350
+				alloys = 250
+				influence = 100
+				food = 1540
+				volatile_motes = 100
+				exotic_gases = 100
+				rare_crystals = 100	
+			}
+			add_modifier = {
+				modifier = rachni_choir_sings
+				days = -1
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+##### INDEPENDENT WORLDS #####
+
+generate_alahyan_terraformation_zone_country = {
+	create_country = {
+		name = "Alahyan Terraformation Zone"
+		adjective = "PRESCRIPTED_adjective_alahyan_terraformation_zone"
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_citadel_setup
+		}
+		species = event_target:volusSpecies
+		name_list = btr_volus
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_materialist"
+			ethic = "ethic_pacifist"
+			ethic = "ethic_egalitarian"
+		}
+
+		type = independent_colony
+		origin = reign_pri_origin
+		effect = {
+			set_country_flag = alahyan_terraformation_zone
+			set_graphical_culture = mammalian_01
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			save_global_event_target_as = alahyan_terraformation_zone
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_altai_mineral_works_country = {
+	create_country = {
+	name = "Altai Mineral Works"
+	adjective = "PRESCRIPTED_adjective_altai_mineral_works"
+	authority = auth_oligarchic
+	civics = {
+		civic = independent_civic_corporate_ownership
+		civic = independent_civic_industrialists
+	}
+	species = event_target:humanSpecies
+	name_list = btr_alliance
+	ship_prefix = ""
+	ethos = {
+		ethic = "ethic_egalitarian"
+		ethic = "ethic_militarist"
+		ethic = "ethic_pacifist"
+	}
+
+	type = independent_colony
+	origin = mining_ope_origin
+	effect = {
+		set_country_flag = altai_mineral_works
+		set_country_flag = init_spawned
+		set_country_flag = canon_map
+		set_country_flag = btr_empire
+		set_country_flag = btr_independent_colony
+		set_graphical_culture = btr_alliance_01
+		save_global_event_target_as = altai_mineral_works
+		add_resource = {
+			energy = 1000
+			minerals = 1000
+			alloys = 1000
+			influence = 100
+			food = 1000
+			consumer_goods = 1000
+			volatile_motes = 500
+			exotic_gases = 500
+			rare_crystals = 500						
+		}
+	}
+}
+
+generate_commune_of_horizon_country = {
+	create_country = {
+		name = "Commune of Horizon"
+		adjective = "PRESCRIPTED_adjective_commune_of_horizon"
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_suspicious_untrusting
+			civic = independent_civic_isolationist
+		}
+		species = event_target:kroganSpecies
+		name_list = btr_alliance
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_militarist"
+			ethic = "ethic_authoritarian"
+		}
+
+		type = independent_colony
+		origin = antialliance_com_origin
+		effect = {
+			set_country_flag = commune_of_horizon
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = alliance_01
+			save_global_event_target_as = commune_of_horizon
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}
+}
+
+
+generate_flett_transport_union_country = {
+	create_country = {
+		name = "Flett Transport Union"
+		adjective = "PRESCRIPTED_adjective_flett_transport_union"
+		authority = auth_dictatorial
+		civics = {
+			civic = independent_civic_labor_camp
+			civic = independent_civic_suspicious_untrusting
+		}
+		species = event_target:kroganSpecies
+		name_list = btr_krogan
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_militarist"
+			ethic = "ethic_xenophobe"
+		}
+
+		type = independent_colony
+		origin = flett_tra_origin
+		effect = {
+			set_country_flag = flett_transport_union
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = reptilian_01
+			save_global_event_target_as = flett_transport_union
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_korlus_recycling_union_country = {
+	create_country = {
+		name = "Korlus Recycling Union"
+		adjective = "PRESCRIPTED_adjective_korlus_recycling_union"
+		authority = auth_dictatorial
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_free_autonomous
+		}
+		species = event_target:kroganSpecies
+		name_list = btr_krogan
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_authoritarian"
+		}
+
+		type = independent_colony
+		origin = korlus_rec_origin
+		effect = {
+			set_country_flag = korlus_recycling_union
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = korlus_recycling_union
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_kosh_development_corporation_country = {
+	create_country = {
+		name = "Kosh Development Corporation"
+		adjective = "PRESCRIPTED_adjective_kosh_development_corporation"
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_corporate_ownership
+			civic = independent_civic_industrialists
+		}
+		species = event_target:asariSpecies
+		name_list = btr_asari
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_pacifist"
+		}
+
+		type = independent_colony
+		origin = reign_pri_origin
+		effect = {
+			set_country_flag = kosh_development_corporation
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = kosh_development_corporation
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_peoples_authority_of_tyvor_country = {
+	create_country = {
+		name = "People's Authority of Tyvor"
+		adjective = "PRESCRIPTED_adjective_peoples_authority_of_tyvor"
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_isolationist
+			civic = independent_civic_suspicious_untrusting
+		}
+		species = event_target:turianSpecies
+		name_list = btr_turian
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_egalitarian"
+			ethic = "ethic_fanatic_xenophobe"
+		}
+
+		type = independent_colony
+		origin = libertarian_fou_origin
+		effect = {
+			set_country_flag = peoples_authority_of_tyvor
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = peoples_authority_of_tyvor
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_polity_of_anhur_country = {
+	create_country = {
+		name = "Polity of Anhur"
+		adjective = "PRESCRIPTED_adjective_polity_of_anhur"
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_isolationist
+			civic = independent_civic_suspicious_untrusting
+		}
+		species = event_target:batarianSpecies
+		name_list = btr_batarian
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_authoritarian"
+			ethic = "ethic_materialist"
+			ethic = "ethic_militarist"
+		}
+
+		type = independent_colony
+		origin = polity_anh_origin
+		effect = {
+			set_country_flag = polity_of_anhur
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = reptilian_01
+			save_global_event_target_as = polity_of_anhur
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_relic_mineral_works_country = {
+	create_country = {
+		name = "Relic Mineral Works"
+		adjective = "PRESCRIPTED_adjective_relic_mineral_works"
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_corporate_ownership
+			civic = independent_civic_industrialists
+		}
+		species = event_target:hanarSpecies
+		name_list = btr_hanar
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_materialist"
+			ethic = "ethic_xenophobe"
+			ethic = "ethic_egalitarian"
+		}
+
+		type = independent_colony
+		origin = mining_ope_origin
+		effect = {
+			set_country_flag = relic_mineral_works
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = aquatic_01
+			save_global_event_target_as = relic_mineral_works
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_republic_of_asteria_country = {
+	create_country = {
+		name = "Republic of Asteria"
+		adjective = "PRESCRIPTED_adjective_republic_of_asteria"
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_citadel_setup
+			civic = independent_civic_fearful_alone
+		}
+		species = event_target:asariSpecies
+		name_list = btr_asari
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_pacifist"
+			ethic = "ethic_egalitarian"
+			ethic = "ethic_spiritualist"
+		}
+
+		type = independent_colony
+		origin = unchecked_rep_origin
+		effect = {
+			set_country_flag = republic_of_asteria
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mec_asari_01
+			save_global_event_target_as = republic_of_asteria
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_trident_exports_limited_country = {
+	create_country = {
+		name = "Trident Exports Limited"
+		adjective = "PRESCRIPTED_adjective_trident_exports_limited"
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_corporate_ownership
+			civic = independent_civic_fractured_domain
+		}
+		species = event_target:humanSpecies
+		name_list = btr_alliance
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_materialist"
+			ethic = "ethic_pacifist"
+			ethic = "ethic_egalitarian"
+		}
+
+		type = independent_colony
+		origin = trident_exp_origin
+		effect = {
+			set_country_flag = trident_exports_limited
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = trident_exports_limited
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_wrill_mining_consortium_country = {
+	create_country = {
+		name = "Wrill Mining Consortium"
+		adjective = "PRESCRIPTED_adjective_wrill_mining_consortium"
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_fractured_domain
+			civic = independent_civic_isolationist
+		}
+		species = event_target:kroganSpecies
+		name_list = btr_krogan
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_xenophobe"
+			ethic = "ethic_materialist"
+		}
+
+		type = independent_colony
+		origin = mining_ope_origin
+		effect = {
+			set_country_flag = wrill_mining_consortium
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = reptilian_01
+			save_global_event_target_as = wrill_mining_consortium
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_yamm_free_trade_zone_country = {
+	create_country = {
+		name = "Yamm Trade Zone"
+		adjective = "PRESCRIPTED_adjective_peoples_yamm_trade_zone"
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_corporate_ownership
+		}
+		species = event_target:hanarSpecies
+		name_list = btr_hanar
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_egalitarian"
+			ethic = "ethic_fanatic_xenophobe"
+		}
+
+		type = independent_colony
+		origin = reign_pri_origin
+		effect = {
+			set_country_flag = yamm_trade_zone
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = yamm_trade_zone
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
+generate_zoryan_sovereignty_country = {
+				log = "Zorya Capital Spawned"
+			save_global_event_target_as = faia_system_zorya
+
+			prevent_anomaly = yes
+			set_global_flag = zoryan_sovereignty_capital_spawned	
+			create_country = {
+				name = "Zoryan Sovereignty"
+				adjective = "PRESCRIPTED_adjective_zoryan_sovereignty"
+				authority = auth_democratic
+				civics = {
+					civic = independent_civic_industrialists
+					civic = independent_civic_free_autonomous
+				}
+				species = event_target:batarianSpecies
+				name_list = btr_batarian
+				ship_prefix = ""
+				ethos = {
+					ethic = "ethic_militarist"
+					ethic = "ethic_authoritarian"
+					ethic = "ethic_materialist"
+				}
+
+				type = independent_colony
+				origin = zorya_sov_origin
+				effect = {
+					set_country_flag = zoryan_sovereignty
+					set_country_flag = init_spawned
+					set_country_flag = canon_map
+					set_country_flag = btr_empire
+					set_country_flag = btr_independent_colony
+					set_graphical_culture = mammalian_01
+					save_global_event_target_as = zoryan_sovereignty
+					add_resource = {
+						energy = 1000
+						minerals = 1000
+						alloys = 1000
+						influence = 100
+						food = 1000
+						consumer_goods = 1000
+						volatile_motes = 500
+						exotic_gases = 500
+						rare_crystals = 500						
+					}
+				}
+			}	
+			create_colony = {
+				owner = event_target:zoryan_sovereignty
+			}
+			event_target:zoryan_sovereignty = {							
+				create_starting_leaders = yes
+				log = "Zoryan Sovereignty Colony Spawned"
+			}
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			#generate_sanctum_deposits = yes
+			generate_btr_independent_world_capitol_buildings = yes
+			generate_zorya_pops = yes
+}
+
+
+
+
+
+
+
+
+##### PRIMITIVE EMPIRES #####
+
+generate_paranack_regime_primitive = {
+	create_country = {
+		name = "Parnack Regime"
+		adjective = "PRESCRIPTED_adjective_parnack_regime"
+		authority = auth_dictatorial
+		civics = { 
+			civic = yahg_pack_mentality 
+			civic = yahg_enforced_isolation 
+		}
+		species = event_target:yahgSpecies
+		name_list = btr_yahg
+		ship_prefix = ""
+		ethos = { 
+			ethic = "ethic_fanatic_xenophobe" 
+			ethic = "ethic_militarist" 
+		}
+		flag = {
+			icon={
+				category="beyondtherelays"
+				file="parnack_regime.dds"
+			}
+			background={
+				category="backgrounds"
+				file="bloodsplatter.dds"
+			}
+			colors={
+				"eecolor1"
+				"eecolor2001"
+				"null"
+				"null"
+			}
+		}
+		type = primitive 
+		origin = parnack_regime_origin
+		effect = {
+			set_country_flag = parnack_regime_primitive
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_graphical_culture = industrial_01
+			add_resource = {
+				energy = 400
+				minerals = 200
+				alloys = 250
+				influence = 100
+				food = 900
+				consumer_goods = 300
+			}
+			add_modifier = {
+				modifier = parnack_regime_violent_start
+				days = -1
+			}
+		}						
+	}
+}
+
+generate_raloi_republic_primitive = {
+	create_country = {
+		name = "Raloi Republic"
+		adjective = "PRESCRIPTED_adjective_raloi_republic"
+		authority = auth_democratic
+		civics = { 
+			civic = raloi_rep_spreading_our_wings 
+			civic = raloi_rep_birds_of_a_feather 
+		}
+		species = event_target:raloiSpecies
+		name_list = "AVI4"
+		ship_prefix = ""
+		ethos = { 
+			ethic = "ethic_fanatic_xenophobe" 
+			ethic = "ethic_militarist" 
+		}
+		flag = {
+			icon={
+				category="beyondtherelays"
+				file="raloi_republic.dds"
+			}
+			background={
+				category="backgrounds"
+				file="soleillevant.dds"
+			}
+			colors={
+				"eecolor1508"
+				"bright_yellow"
+				"null"
+				"null"
+			}
+		}
+		type = primitive
+		origin = raloi_rep_origin
+		effect = {
+			set_country_flag = raloi_republic_primitive
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_graphical_culture = industrial_01
+			add_resource = {
+				energy = 450
+				minerals = 200
+				alloys = 250
+				influence = 100
+				food = 1300
+				consumer_goods = 520
+			}
+			add_modifier = {
+				modifier = raloi_catching_up
+				days = -1
+			}
+		}						
+	}
+}
+
+
+
+
+##### SMALL PIRATE FLEETS #####
+
+generate_reds_raiders_pirates = {
+	create_pirate_country = yes
+	event_target:pirate_country = {
+		create_leader = {
+			class = admiral
+			species = event_target:batarianSpecies
+			name = "Red Qorayk"
+			skill = 1
+			traits = {
+				trait = random_trait
+			}
+		}				
+		if = {
+			limit = {
+				NOT = {
+					has_modifier = pirate_power
+				}
+			}
+			add_modifier = {
+				modifier = pirate_power
+				days = -1
+			}
+		}
+	}
+	every_country = {
+		establish_communications_no_message = event_target:pirate_country
+	}
+	create_fleet = {
+		name = "Pirate Station"
+		effect = {
+			set_owner = event_target:pirate_country
+			create_ship = {
+				name = random
+				design = "NAME_Pirate_Nest"
+				graphical_culture = "pirate_01"
+			}
+			set_location = {
+				target = prev
+				distance = 6
+				angle = 120
+			}
+		}
+	}			
+	create_fleet = {
+		name = "Red's Raiders"
+		effect = {
+			set_owner = event_target:pirate_country
+			set_fleet_flag = pirate_home_system_fleet
+			while = {
+				count = 1
+				create_ship = {
+					name = "Khi'shar"
+					design = "NAME_Brigand"
+					graphical_culture = "pirate_01"
+				}
+			}
+			while = {
+				count = 6
+				create_ship = {
+					name = random
+					design = "NAME_Reaver"
+					graphical_culture = "pirate_01"
+				}
+			}
+			assign_leader = last_created_leader					
+			set_fleet_flag = pirate_home_system_fleet
+			set_formation_scale = 2
+			set_fleet_stance = aggressive
+			set_aggro_range_measure_from = self
+			set_aggro_range = 150
+			set_location = {
+				target = prev
+				distance = 10
+				angle = 120
+			}
+		}
+	}			
+}	
 }

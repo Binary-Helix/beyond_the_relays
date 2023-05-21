@@ -1,6 +1,12 @@
 check_for_asari_player = {
 	if = {
 		limit = { 
+			exists = event_target:asariSpecies
+		}
+		log = "asariSpecies already exists"
+	}
+	if = {
+		limit = { 
 			NOT = {
 				exists = event_target:asariSpecies
 			}
@@ -16,7 +22,7 @@ check_for_asari_player = {
 					has_country_flag = asari_empire
 				}
 				log = "\\[Prev.GetName]: check_for_asari_player - \\[This.GetName] is a player with asari species - \\[This.owner_species.GetName]"
-				owner_species = {
+				owner_main_species = {
 					save_global_event_target_as = asariSpecies
 				}
 			}
@@ -53,6 +59,1262 @@ create_asari_species = {
 			}
 			effect = {
 				save_global_event_target_as = asariSpecies
+				log = "create_asari_species - asariSpecies Created"
+			}
+		}
+	}
+}
+
+check_for_salarian_player = {
+	if = {
+		limit = { 
+			exists = event_target:salarianSpecies
+		}
+		log = "salarianSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:salarianSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = salarian_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = salarian_empire
+				}
+				log = "\\[Prev.GetName]: check_for_salarian_player - \\[This.GetName] is a player with salarian species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = salarianSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_salarian_player - no player with salarian species"
+			create_salarian_species = yes
+		}
+	}
+}
+
+create_salarian_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:salarianSpecies
+			}
+		}
+		create_species = {
+			class = SAL
+			portrait = btr_salarian
+			name = PRESCRIPTED_species_name_salarian_union
+			plural = PRESCRIPTED_species_plural_salarian_union
+			adjective = PRESCRIPTED_species_adjective_salarian_union
+			name_list = btr_salarian
+			homeworld = event_target:salarianHomeworld
+			species_bio = PRESCRIPTED_species_bio_salarian_union
+			traits = {
+				trait = salarian_trait_core
+				trait = salarian_trait_impressive_minds
+				trait = salarian_trait_bleed_edge
+				trait = salarian_trait_societal_trade
+				ideal_planet_class = pc_tropical
+			}
+			effect = {
+				save_global_event_target_as = salarianSpecies
+			}
+		}
+	}
+}
+
+check_for_turian_player = {
+	if = {
+		limit = { 
+			exists = event_target:turianSpecies
+		}
+		log = "turianSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:turianSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = turian_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = turian_empire
+				}
+				log = "\\[Prev.GetName]: check_for_turian_player - \\[This.GetName] is a player with turian species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = turianSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_turian_player - no player with turian species"
+			create_turian_species = yes
+		}
+	}
+}
+
+create_turian_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:turianSpecies
+			}
+		}
+		create_species = {
+			class = TUR
+			portrait = btr_turian
+			name = PRESCRIPTED_species_name_turian_hierarchy
+			plural = PRESCRIPTED_species_plural_turian_hierarchy
+			adjective = PRESCRIPTED_species_adjective_turian_hierarchy
+			name_list = btr_turian
+			homeworld = event_target:turianHomeworld
+			species_bio = PRESCRIPTED_species_bio_turian_hierarchy
+			traits = {
+				trait = turian_trait_core
+				trait = turian_trait_team_player
+				trait = turian_trait_martial_nature
+				trait = turian_trait_op_discipline
+				ideal_planet_class = pc_dextro_savannah
+			}
+			effect = {
+				save_global_event_target_as = turianSpecies
+			}
+		}
+	}
+}
+
+check_for_human_player = {
+	if = {
+		limit = { 
+			exists = event_target:humanSpecies
+		}
+		log = "humanSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:humanSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = human_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = human_empire
+				}
+				log = "\\[Prev.GetName]: check_for_human_player - \\[This.GetName] is a player with human species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = humanSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_human_player - no player with human species"
+			create_human_species = yes
+		}
+	}
+}
+
+create_human_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:humanSpecies
+			}
+		}
+		create_species = {
+			class = HUM
+			portrait = btr_alliance
+			name = PRESCRIPTED_species_name_systems_alliance
+			plural = PRESCRIPTED_species_plural_systems_alliance
+			adjective = PRESCRIPTED_species_adjective_systems_alliance
+			name_list = btr_alliance
+			homeworld = event_target:humanHomeworld
+			species_bio = PRESCRIPTED_species_bio_systems_alliance
+			traits = {
+				trait = human_trait_core
+				trait = human_trait_biodiversity
+				trait = human_trait_frontier_spirit
+				trait = human_trait_rugged_individualism
+				ideal_planet_class = pc_continental
+			}
+			effect = {
+				save_global_event_target_as = humanSpecies
+			}
+		}
+	}
+}
+
+check_for_elcor_player = {
+	if = {
+		limit = { 
+			exists = event_target:elcorSpecies
+		}
+		log = "elcorSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:elcorSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = elcor_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = elcor_empire
+				}
+				log = "\\[Prev.GetName]: check_for_elcor_player - \\[This.GetName] is a player with elcor species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = elcorSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_elcor_player - no player with elcor species"
+			create_elcor_species = yes
+		}
+	}
+}
+
+create_elcor_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:elcorSpecies
+			}
+		}
+		create_species = {
+			class = ELC
+			portrait = btr_elcor
+			name = PRESCRIPTED_species_name_courts_of_dekunna
+			plural = PRESCRIPTED_species_plural_courts_of_dekunna
+			adjective = PRESCRIPTED_species_adjective_courts_of_dekunna
+			name_list = btr_elcor
+			homeworld = event_target:elcorHomeworld
+			species_bio = PRESCRIPTED_species_bio_courts_of_dekuuna
+			traits = {
+				trait = elcor_trait_core
+				trait = elcor_trait_homebound
+				trait = elcor_trait_gesture_based_speech
+				trait = elcor_trait_ecologists
+				ideal_planet_class = pc_highgrav_continental
+			}
+			effect = {
+				save_global_event_target_as = elcorSpecies
+			}
+		}
+	}
+}
+
+check_for_volus_player = {
+	if = {
+		limit = { 
+			exists = event_target:volusSpecies
+		}
+		log = "volusSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:volusSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = volus_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = volus_empire
+				}
+				log = "\\[Prev.GetName]: check_for_volus_player - \\[This.GetName] is a player with volus species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = volusSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_volus_player - no player with volus species"
+			create_volus_species = yes
+		}
+	}
+}
+
+create_volus_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:volusSpecies
+			}
+		}
+		create_species = {
+			class = VOL
+			portrait = btr_volus
+			name = PRESCRIPTED_species_name_vol_protectorate
+			plural = PRESCRIPTED_species_plural_vol_protectorate
+			adjective = PRESCRIPTED_species_adjective_vol_protectorate
+			name_list = btr_volus
+			homeworld = event_target:volusHomeworld
+			species_bio = PRESCRIPTED_species_bio_vol_protectorate
+			traits = {
+				trait = volus_trait_core
+				trait = volus_trait_clan_based
+				trait = volus_trait_economic_mindset
+				trait = volus_trait_yoqtan_survivor
+				ideal_planet_class = pc_ammonia
+			}
+			effect = {
+				save_global_event_target_as = volusSpecies
+			}
+		}
+	}
+}
+
+check_for_hanar_player = {
+	if = {
+		limit = { 
+			exists = event_target:hanarSpecies
+		}
+		log = "hanarSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:hanarSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = hanar_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = hanar_empire
+				}
+				log = "\\[Prev.GetName]: check_for_hanar_player - \\[This.GetName] is a player with hanar species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = hanarSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_hanar_player - no player with hanar species"
+			create_hanar_species = yes
+		}
+	}
+}
+
+create_hanar_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:hanarSpecies
+			}
+		}
+		create_species = {
+			class = HAN
+			portrait = btr_hanar
+			name = PRESCRIPTED_species_name_illuminated_primacy
+			plural = PRESCRIPTED_species_plural_illuminated_primacy
+			adjective = PRESCRIPTED_species_adjective_illuminated_primacy
+			name_list = btr_hanar
+			homeworld = event_target:hanarHomeworld
+			species_bio = PRESCRIPTED_species_bio_illuminated_primacy
+			traits = {
+				trait = hanar_trait_core
+				trait = hanar_trait_non_bipedal
+				trait = hanar_trait_toxic_secretions
+				trait = hanar_trait_water_bound
+				ideal_planet_class = pc_ocean
+			}
+			effect = {
+				save_global_event_target_as = hanarSpecies
+			}
+		}
+	}
+}
+
+check_for_batarian_player = {
+	if = {
+		limit = { 
+			exists = event_target:batarianSpecies
+		}
+		log = "batarianSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:batarianSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = batarian_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = batarian_empire
+				}
+				log = "\\[Prev.GetName]: check_for_batarian_player - \\[This.GetName] is a player with batarian species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = batarianSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_batarian_player - no player with batarian species"
+			create_batarian_species = yes
+		}
+	}
+}
+
+create_batarian_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:batarianSpecies
+			}
+		}
+		create_species = {
+			class = BAT
+			portrait = btr_batarian
+			name = PRESCRIPTED_species_name_hegemony_of_kharshan
+			plural = PRESCRIPTED_species_plural_hegemony_of_kharshan
+			adjective = PRESCRIPTED_species_adjective_hegemony_of_kharshan
+			name_list = btr_batarian
+			homeworld = event_target:batarianHomeworld
+			species_bio = PRESCRIPTED_species_bio_hegemony_of_kharshan
+			traits = {
+				trait = batarian_trait_core
+				trait = batarian_trait_shrewd_business
+				trait = batarian_trait_karma_chameleon
+				trait = batarian_trait_four_eyed
+				ideal_planet_class = pc_savannah
+			}
+			effect = {
+				save_global_event_target_as = batarianSpecies
+			}
+		}
+	}
+}
+
+check_for_krogan_player = {
+	if = {
+		limit = { 
+			exists = event_target:kroganSpecies
+		}
+		log = "kroganSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:kroganSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = krogan_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = krogan_empire
+				}
+				log = "\\[Prev.GetName]: check_for_krogan_player - \\[This.GetName] is a player with krogan species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = kroganSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_krogan_player - no player with krogan species"
+			create_krogan_species = yes
+		}
+	}
+}
+
+create_krogan_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:kroganSpecies
+			}
+		}
+		create_species = {
+			class = KRO
+			portrait = krogan
+			name = PRESCRIPTED_species_name_aralakh_kahmat
+			plural = PRESCRIPTED_species_plural_aralakh_kahmat
+			adjective = PRESCRIPTED_species_adjective_aralakh_kahmat
+			name_list = btr_krogan
+			homeworld = event_target:kroganHomeworld
+			species_bio = PRESCRIPTED_species_bio_aralakh_kahmat
+			traits = {
+				trait = krogan_trait_core
+				trait = krogan_trait_genophage
+				trait = krogan_trait_blood_rage
+				trait = krogan_trait_biological_redundancy
+				ideal_planet_class = pc_nuked
+			}
+			effect = {
+				save_global_event_target_as = kroganSpecies
+			}
+		}
+	}
+}
+
+check_for_drell_player = {
+	if = {
+		limit = { 
+			exists = event_target:drellSpecies
+		}
+		log = "drellSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:drellSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = drell_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = drell_empire
+				}
+				log = "\\[Prev.GetName]: check_for_drell_player - \\[This.GetName] is a player with drell species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = drellSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_drell_player - no player with drell species"
+			create_drell_species = yes
+		}
+	}
+}
+
+create_drell_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:drellSpecies
+			}
+		}
+		create_species = {
+			class = DRE
+			portrait = drell
+			name = PRESCRIPTED_species_name_remnants_of_rakhana
+			plural = PRESCRIPTED_species_plural_remnants_of_rakhana
+			adjective = PRESCRIPTED_species_adjective_remnants_of_rakhana
+			name_list = btr_drell
+			homeworld = event_target:drellHomeworld
+			species_bio = PRESCRIPTED_species_bio_remnants_of_rakhana
+			traits = {
+				trait = drell_trait_core
+				trait = drell_trait_eidetic_memory
+				trait = drell_trait_hardened_survivors
+				trait = drell_trait_nomadic_warriors
+				ideal_planet_class = pc_desert
+			}
+			effect = {
+				save_global_event_target_as = drellSpecies
+			}
+		}
+	}
+}
+
+check_for_vorcha_player = {
+	if = {
+		limit = { 
+			exists = event_target:vorchaSpecies
+		}
+		log = "vorchaSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:vorchaSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = vorcha_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = vorcha_empire
+				}
+				log = "\\[Prev.GetName]: check_for_vorcha_player - \\[This.GetName] is a player with vorcha species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = vorchaSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_vorcha_player - no player with vorcha species"
+			create_vorcha_species = yes
+		}
+	}
+}
+
+create_vorcha_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:vorchaSpecies
+			}
+		}
+		create_species = {
+			class = VOR
+			portrait = vorcha
+			name = PRESCRIPTED_species_name_vorcha_clandom
+			plural = PRESCRIPTED_species_plural_vorcha_clandom
+			adjective = PRESCRIPTED_species_adjective_vorcha_clandom
+			name_list = btr_vorcha
+			homeworld = event_target:vorchaHomeworld
+			species_bio = PRESCRIPTED_species_bio_vorcha_clandom
+			traits = {
+				trait = vorcha_trait_core
+				trait = vorcha_trait_surreal_adaptation
+				trait = vorcha_trait_spontaneous_conception
+				trait = vorcha_trait_philistine_horde
+				ideal_planet_class = pc_primal
+			}
+			effect = {
+				save_global_event_target_as = vorchaSpecies
+			}
+		}
+	}
+}
+
+check_for_forayan_player = {
+	if = {
+		limit = { 
+			exists = event_target:forayanSpecies
+		}
+		log = "forayanSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:forayanSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = forayan_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = forayan_empire
+				}
+				log = "\\[Prev.GetName]: check_for_forayan_player - \\[This.GetName] is a player with forayan species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = forayanSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_forayan_player - no player with forayan species"
+			create_forayan_species = yes
+		}
+	}
+}
+
+create_forayan_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:forayanSpecies
+			}
+		}
+		create_species = {
+			class = ART
+			portrait = art3
+			name = PRESCRIPTED_species_name_sedriicae_collective
+			plural = PRESCRIPTED_species_plural_sedriicae_collective
+			adjective = PRESCRIPTED_species_adjective_sedriicae_collective
+			name_list = btr_forayan
+			homeworld = event_target:forayanHomeworld
+			species_bio = PRESCRIPTED_species_bio_sedriicae_collective
+			traits = {
+				trait = forayan_trait_core
+				trait = forayan_trait_forayan_happiness
+				trait = forayan_trait_insectoids
+				trait = forayan_trait_gender_castes
+				ideal_planet_class = pc_dextro_desert
+			}
+			effect = {
+				save_global_event_target_as = forayanSpecies
+			}
+		}
+	}
+}
+
+check_for_lystheni_player = {
+	if = {
+		limit = { 
+			exists = event_target:lystheniSpecies
+		}
+		log = "lystheniSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:lystheniSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = lystheni_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = lystheni_empire
+				}
+				log = "\\[Prev.GetName]: check_for_lystheni_player - \\[This.GetName] is a player with lystheni species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = lystheniSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_lystheni_player - no player with lystheni species"
+			create_lystheni_species = yes
+		}
+	}
+}
+
+create_lystheni_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:lystheniSpecies
+			}
+		}
+		create_species = {
+			class = LYS
+			portrait = lystheni
+			name = PRESCRIPTED_species_name_lystheni_order
+			plural = PRESCRIPTED_species_plural_lystheni_order
+			adjective = PRESCRIPTED_species_adjective_lystheni_order
+			name_list = btr_lystheni
+			homeworld = event_target:lystheniHomeworld
+			species_bio = PRESCRIPTED_species_bio_lystheni_order
+			traits = {
+				trait = lystheni_trait_core
+				trait = lystheni_trait_unimpeded_minds
+				trait = lystheni_trait_divine_duty
+				trait = lystheni_trait_law_of_one
+				ideal_planet_class = pc_tropical
+			}
+			effect = {
+				save_global_event_target_as = lystheniSpecies
+			}
+		}
+	}
+}
+
+check_for_gothones_player = {
+	if = {
+		limit = { 
+			exists = event_target:gothonesSpecies
+		}
+		log = "gothonesSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:gothonesSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = gothones_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = gothones_empire
+				}
+				log = "\\[Prev.GetName]: check_for_gothones_player - \\[This.GetName] is a player with gothones species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = gothonesSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_gothones_player - no player with gothones species"
+			create_gothones_species = yes
+		}
+	}
+}
+
+create_gothones_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:gothonesSpecies
+			}
+		}
+		create_species = {
+			class = GOT
+			portrait = gothones
+			name = PRESCRIPTED_species_name_gothones_remnant
+			plural = PRESCRIPTED_species_plural_gothones_remnant
+			adjective = PRESCRIPTED_species_adjective_gothones_remnant
+			name_list = btr_gothones
+			homeworld = event_target:gothonesHomeworld
+			species_bio = PRESCRIPTED_species_bio_gothones_remnant
+			traits = {
+				trait = gothones_trait_core
+				trait = gothones_trait_trials_of_vindicta
+				trait = gothones_trait_eco_reverence
+				trait = gothones_trait_survivalists
+				ideal_planet_class = pc_tropical
+			}
+			effect = {
+				save_global_event_target_as = gothonesSpecies
+			}
+		}
+	}
+}
+
+check_for_quarian_player = {
+	if = {
+		limit = { 
+			exists = event_target:quarianSpecies
+		}
+		log = "quarianSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:quarianSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = quarian_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = quarian_empire
+				}
+				log = "\\[Prev.GetName]: check_for_quarian_player - \\[This.GetName] is a player with quarian species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = quarianSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_quarian_player - no player with quarian species"
+			create_quarian_species = yes
+		}
+	}
+}
+
+create_quarian_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:quarianSpecies
+			}
+		}
+		create_species = {
+			class = QUA
+			portrait = btr_quarian
+			name = PRESCRIPTED_species_name_migrant_fleet
+			plural = PRESCRIPTED_species_plural_migrant_fleet
+			adjective = PRESCRIPTED_species_adjective_migrant_fleet
+			name_list = btr_quarian
+			homeworld = event_target:quarianHomeworld
+			species_bio = PRESCRIPTED_species_bio_migrant_fleet
+			traits = {
+				trait = quarian_trait_core
+				trait = quarian_trait_suit_entombment
+				trait = quarian_trait_quarian_traditionalism
+				trait = quarian_trait_social_precedent
+				ideal_planet_class = pc_quarian_liveship
+			}
+			effect = {
+				save_global_event_target_as = quarianSpecies
+			}
+		}
+	}
+}
+
+check_for_yahg_player = {
+	if = {
+		limit = { 
+			exists = event_target:yahgSpecies
+		}
+		log = "yahgSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:yahgSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = yahg_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = yahg_empire
+				}
+				log = "\\[Prev.GetName]: check_for_yahg_player - \\[This.GetName] is a player with yahg species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = yahgSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_yahg_player - no player with yahg species"
+			create_yahg_species = yes
+		}
+	}
+}
+
+create_yahg_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:yahgSpecies
+			}
+		}
+		create_species = {
+			class = YAH
+			portrait = yahg
+			name = PRESCRIPTED_species_name_parnack_regime
+			plural = PRESCRIPTED_species_plural_parnack_regime
+			adjective = PRESCRIPTED_species_adjective_parnack_regime
+			name_list = btr_yahg
+			homeworld = event_target:yahgHomeworld
+			species_bio = PRESCRIPTED_species_bio_parnack_regime
+			traits = {
+				trait = yahg_trait_core
+				trait = yahg_trait_apex_predators
+				trait = yahg_trait_control_obsessed
+				trait = yahg_trait_truthsayers
+				ideal_planet_class = pc_desert
+			}
+			effect = {
+				save_global_event_target_as = yahgSpecies
+			}
+		}
+	}
+}
+
+check_for_raloi_player = {
+	if = {
+		limit = { 
+			exists = event_target:raloiSpecies
+		}
+		log = "raloiSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:raloiSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = raloi_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = raloi_empire
+				}
+				log = "\\[Prev.GetName]: check_for_raloi_player - \\[This.GetName] is a player with raloi species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = raloiSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_raloi_player - no player with raloi species"
+			create_raloi_species = yes
+		}
+	}
+}
+
+create_raloi_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:raloiSpecies
+			}
+		}
+		create_species = {
+			class = RAL
+			portrait = avi17
+			name = PRESCRIPTED_species_plural_raloi_republic
+			plural = PRESCRIPTED_species_plural_raloi_republic
+			adjective = PRESCRIPTED_species_adjective_raloi_republic
+			name_list = AVI4
+			homeworld = event_target:raloiHomeworld
+			species_bio = PRESCRIPTED_species_bio_raloi_republic
+			traits = {
+				trait = raloi_trait_core
+				trait = raloi_trait_pre_space_ways
+				trait = raloi_trait_weak_immune
+				trait = raloi_trait_avians
+				ideal_planet_class = pc_dextro_alpine
+			}
+			effect = {
+				save_global_event_target_as = raloiSpecies
+			}
+		}
+	}
+}
+
+check_for_rachni_player = {
+	if = {
+		limit = { 
+			exists = event_target:rachniSpecies
+		}
+		log = "rachniSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:rachniSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = rachni_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = rachni_empire
+				}
+				log = "\\[Prev.GetName]: check_for_rachni_player - \\[This.GetName] is a player with rachni species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = rachniSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_rachni_player - no player with rachni species"
+			create_rachni_species = yes
+		}
+	}
+}
+
+create_rachni_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:rachniSpecies
+			}
+		}
+		create_species = {
+			class = RAC
+			portrait = rachni
+			name = PRESCRIPTED_species_name_rachni_hive
+			plural = PRESCRIPTED_species_plural_rachni_hive
+			adjective = PRESCRIPTED_species_adjective_rachni_hive
+			name_list = ART3
+			homeworld = event_target:rachniHomeworld
+			species_bio = PRESCRIPTED_species_bio_rachni_hive
+			traits = {
+				trait = rachni_trait_core
+				trait = rachni_trait_hardened_biology
+				trait = rachni_trait_collective_engineering
+				trait = rachni_trait_wrath_of_the_swarm
+				trait = trait_hive_mind
+				ideal_planet_class = pc_arid
+			}
+			effect = {
+				save_global_event_target_as = rachniSpecies
+			}
+		}
+	}
+}
+
+check_for_geth_player = {
+	if = {
+		limit = { 
+			exists = event_target:gethSpecies
+		}
+		log = "gethSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:gethSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = geth_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = geth_empire
+				}
+				log = "\\[Prev.GetName]: check_for_geth_player - \\[This.GetName] is a player with geth species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = gethSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_geth_player - no player with geth species"
+			create_geth_species = yes
+		}
+	}
+}
+
+create_geth_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:gethSpecies
+			}
+		}
+		create_species = {
+			class = GTH
+			portrait = geth
+			name = PRESCRIPTED_species_name_geth_consensus
+			plural = PRESCRIPTED_species_plural_geth_consensus
+			adjective = PRESCRIPTED_species_adjective_geth_consensus
+			name_list = btr_geth
+			homeworld = event_target:gethHomeworld
+			species_bio = PRESCRIPTED_species_bio_geth_consensus
+			traits = {
+				trait = geth_trait_core
+				trait = geth_trait_linked_consciousness
+				trait = geth_trait_purpose_built_models
+				trait = geth_trait_deontological_primacy
+				trait = trait_machine_unit
+			}
+			effect = {
+				save_global_event_target_as = gethSpecies
+			}
+		}
+	}
+}
+
+check_for_collectors_player = {
+	if = {
+		limit = { 
+			exists = event_target:collectorsSpecies
+		}
+		log = "collectorsSpecies already exists"
+	}
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:collectorsSpecies
+			}
+		}
+		if = {
+			limit = { 
+				any_country = {
+					has_country_flag = collectors_empire
+				}
+			}
+			random_country = {
+				limit = {
+					has_country_flag = collectors_empire
+				}
+				log = "\\[Prev.GetName]: check_for_collectors_player - \\[This.GetName] is a player with collectors species - \\[This.owner_species.GetName]"
+				owner_species = {
+					save_global_event_target_as = collectorsSpecies
+				}
+			}
+		}
+		else = {
+			log = "\\[This.GetName]: check_for_collectors_player - no player with collectors species"
+			create_collectors_species = yes
+		}
+	}
+}
+
+create_collectors_species = {
+	if = {
+		limit = { 
+			NOT = {
+				exists = event_target:collectorsSpecies
+			}
+		}
+		create_species = {
+			class = GTH
+			portrait = collectors
+			name = PRESCRIPTED_species_name_collectors_consensus
+			plural = PRESCRIPTED_species_plural_collectors_consensus
+			adjective = PRESCRIPTED_species_adjective_collectors_consensus
+			name_list = btr_collectors
+			homeworld = event_target:collectorsHomeworld
+			species_bio = PRESCRIPTED_species_bio_collectors_consensus
+			traits = {
+				trait = collectors_trait_core
+				trait = collectors_trait_linked_consciousness
+				trait = collectors_trait_purpose_built_models
+				trait = collectors_trait_deontological_primacy
+				trait = trait_machine_unit
+			}
+			effect = {
+				save_global_event_target_as = collectorsSpecies
 			}
 		}
 	}
