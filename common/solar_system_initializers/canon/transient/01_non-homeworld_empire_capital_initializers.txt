@@ -1,0 +1,414 @@
+######################################
+##### ILLIUM CORPORATE INTERESTS #####
+######################################
+
+
+
+#################
+##### OMEGA #####
+#################
+
+sys_sahrabarik_init = {
+	name = "Sahrabarik"
+    class = sc_m
+	flags = { omega_capital_capital_system canon_map sahrabarik_system empire_home_system }
+	
+	init_effect = { 
+		generate_home_system_resources = yes
+        save_global_event_target_as = omegaFirstFleet
+		log = "Omega Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 80
+	}
+
+    planet = {
+		name = "Sahrabarik"
+        class = pc_m_star
+        orbit_distance = 0
+        size = 20
+		flags = { sahrabarik_star }
+    }
+
+    planet = {
+        name = "Urdak"
+        class = pc_l_star
+        orbit_distance = 125
+        orbit_angle = 129
+        has_ring = no
+		size = 15
+		init_effect = {
+			add_deposit = d_trade_value_2
+			add_deposit = d_society_4
+		}	
+    }
+
+    planet = {
+        name = "Omega"
+        class = pc_omega
+        orbit_distance = 125
+        orbit_angle = 58
+        has_ring = no
+		size = 12
+		starting_planet = yes
+		deposit_blockers = none
+		modifiers = none
+		flags = { omega_planet subclass_world }
+		init_effect = {
+			log = "Omega Homeworld Spawned"
+			save_global_event_target_as = sahrabarik_system_omega
+
+			prevent_anomaly = yes
+			set_global_flag = omega_homeworld_spawned
+
+			log = "Omega Checking for Asari Player"
+			check_for_asari_player = yes
+			if = {
+				limit = { 
+					any_country = {
+						has_country_flag = omega_empire_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = omega_empire_player
+					}
+					save_global_event_target_as = omega_empire
+				}
+			}
+			else = {
+				generate_omega_empire = yes
+			}
+			create_colony = {
+				owner = event_target:omega_empire
+				species = event_target:asariSpecies
+				ethos = owner
+			}	
+			set_capital = yes
+			generate_btr_start_deposits_and_blockers = yes
+			clear_blockers = yes
+			generate_omega_deposits = yes
+			generate_omega_building_and_districts = yes	
+			generate_omega_pops = yes
+			set_name = "Omega"
+		}
+	}			
+
+    planet = {
+        name = "Imorkan"
+        class = pc_gas_giant
+        orbit_distance = 125
+        orbit_angle = 136
+        has_ring = no
+		size = 33
+		init_effect = {
+			add_deposit = d_exotic_gases_2
+		}	
+    }
+
+    planet = {
+        name = "Bindur"
+        class = pc_frozen
+        orbit_distance = 125
+        orbit_angle = 279
+        has_ring = no
+		size = 12
+		init_effect = {
+			add_deposit = d_rare_crystals_3
+		}	
+    }
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "omega4relay_galacticcore_primaryrelay" 
+			name = "Omega 4 Relay"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}
+
+#################################
+##### CALESTON DIRECTORATE ######
+#################################
+
+
+###############################
+##### DISCIPLES OF NAZARA #####
+###############################
+
+sys_theseaofstorms_init = {
+    name = "The Sea of Storms"
+    class = sc_deep_space
+	flags = { disciples_of_nazara_homeworld disciples_of_nazara_capital_system canon_map theseaofstorms_system }
+
+    init_effect = { 
+		generate_home_system_resources = yes
+        save_global_event_target_as = nazaraFirstFleet
+		log = "Heretic Home System Spawned"
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	planet = {
+		class = pc_invisible_star
+		size = 30
+		init_effect = {
+		}
+	}
+
+	change_orbit = 90
+
+    planet = {
+        name = "Heretic Station"
+        class = pc_habitat
+        orbit_distance = 0
+        orbit_angle = 144
+        size = 22
+        has_ring = no   
+		starting_planet = yes
+		flags = { heretic_station }
+
+		init_effect = {
+			log = "Heretic Station Spawned"
+			save_global_event_target_as = theseaofstorms_system_hereticstation
+
+			prevent_anomaly = yes
+			set_global_flag = heretic_station_spawned
+			if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = disciples_of_nazara_player
+						}	
+					}
+				}
+				create_country = {
+					name = "Disciples of Nazara"
+					adjective = "PRESCRIPTED_adjective_disciples_of_nazara"
+					authority = auth_machine_intelligence
+					civics = { 
+						civic = nazara_gifts_of_nazara 
+						civic = nazara_the_schism
+					}
+					species = event_target:gethSpecies
+					name_list = "btr_geth"
+					ship_prefix = ""
+					ethos = { 
+						ethic = "ethic_gestalt_consciousness" 
+					}
+					flag = {
+						icon={
+							category="beyondtherelays"
+							file="disciples_of_nazara.dds"
+						}
+						background={
+							category="backgrounds"
+							file="raylights.dds"
+						}
+						colors={
+							"eecolor1690"
+							"eecolor2002"
+							"null"
+							"null"
+						}
+					}
+					type = default
+					origin = disciples_of_nazara_origin
+					effect = {
+						set_country_flag = disciples_of_nazara_ai
+						set_country_flag = init_spawned
+						set_country_flag = canon_map
+						set_country_flag = btr_empire
+						set_graphical_culture = geth_01
+						add_resource = {
+							energy = 2700
+							minerals = 1050
+							alloys = 1450
+							influence = 100
+							volatile_motes = 100
+							exotic_gases = 100
+							rare_crystals = 100
+						}
+						add_modifier = {
+							modifier = nazara_alone_with_divine
+							days = -1
+						}
+					}
+				} 
+			}
+			random_country = {
+				limit = { 
+					OR = {
+						has_country_flag = disciples_of_nazara_ai
+						has_country_flag = disciples_of_nazara_player
+					}
+					
+				}
+				save_global_event_target_as = disciples_of_nazara
+			}
+            create_colony = {
+                owner = event_target:disciples_of_nazara
+            }
+            event_target:disciples_of_nazara = {
+                set_country_flag = disciples_of_nazara
+				create_starting_leaders = yes
+				log = "Disciples of Nazara Empire Spawned"
+            }			
+			set_capital = yes
+            generate_btr_start_deposits_and_blockers = yes
+            clear_blockers = yes	
+            generate_naz_heretic_station_capitol_buildings = yes
+            generate_naz_station_pops = yes
+            generate_disciples_naz_construction_ships = yes
+        	set_name = "Heretic Station"
+        }    
+    }
+} 
+
+####################
+##### CERBERUS #####
+####################
+
+#####HORSE HEAD NEBULA#####
+
+sys_anadius_init = {
+    name = "Anadius"
+    class = "sc_m_giant"
+	flags = { attican_traverse horse_head_nebula_system anadius_system empire_home_system btr_cerberus_system empire_home_system }
+	init_effect = { 
+		generate_home_system_resources = yes
+	}
+
+	usage = custom_empire
+	max_instances = 1
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 300
+	}
+
+	planet = {
+		name = "Anadius"
+        class = "pc_m_giant_star"
+        orbit_distance = 0
+        size = 50
+    }
+
+	# planet = {
+	# 	name = "Cronos Station"
+	# 	class = pc_habitat
+	# 	orbit_distance = 250
+	# 	orbit_angle = 215
+	# 	size = 12
+	# 	has_ring = no
+	# 	entity = cerberus_cronos_01_game_entity
+	# 	starting_planet = yes
+	# 	deposit_blockers = none
+	# 	modifiers = none
+	# 	flags = { cronos_station subclass_world } 
+
+	# 	# init_effect = {
+	# 	# 	prevent_anomaly = yes
+	# 	# 	set_global_flag = cronos_station_spawned
+	# 	# 	if = {
+	# 	# 		limit = { NOT = { any_country = { has_country_flag = cerberus_empire } } }
+	# 	# 		create_country = {
+	# 	# 			name = "Cerberus"
+	# 	# 			ship_prefix = "PRESCRIPTED_ship_prefix_cerberus"
+	# 	# 			type = default
+	# 	# 			origin = "origin_cerberus"
+	# 	# 			ignore_initial_colony_error = yes
+	# 	# 			civics = { civic = "civic_criminal_heritage" civic = "civic_ruthless_competition" }
+	# 	# 			authority = auth_corporate
+	# 	# 			name_list = "btr_cerberus"
+	# 	# 			ethos = { ethic = "ethic_fanatic_xenophobe" ethic = "ethic_militarist" }
+	# 	# 			species = event_target:humanSpecies
+	# 	# 			flag = {
+	# 	# 				icon={
+	# 	# 					category="masseffect"
+	# 	# 					file="Cerberus 2.dds"
+	# 	# 				}
+	# 	# 				background={
+	# 	# 					category="backgrounds"
+	# 	# 					file="v.dds"
+	# 	# 				}
+	# 	# 				colors={
+	# 	# 					"orange"
+	# 	# 					"black"
+	# 	# 					"null"
+	# 	# 					"null"
+	# 	# 				}
+	# 	# 			}
+	# 	# 			effect = {
+	# 	# 				set_graphical_culture = cerb_01
+	# 	# 				set_country_flag = cerberus_empire
+	# 	# 				set_country_flag = init_spawned
+	# 	# 				set_country_flag = custom_start_screen
+	# 	# 				set_country_flag = canon_map
+	# 	# 				save_global_event_target_as = cerberus_empire
+	# 	# 			}
+	# 	# 		}
+	# 	# 	}	
+	# 	# 	set_capital = yes
+	# 	# 	random_country = {
+	# 	# 		limit = { has_country_flag = cerberus_empire }
+	# 	# 		save_global_event_target_as = cerberus_empire
+	# 	# 		species = { save_global_event_target_as = humanSpecies }
+	# 	# 	}
+	# 	# 	give_technology = {
+	# 	# 		tech = tech_hydroponics
+	# 	# 		message = no
+	# 	# 	}
+	# 	# 	set_planet_flag = megastructure
+	# 	# 	set_planet_flag = habitat
+	# 	# 	set_owner = event_target:cerberus_empire
+	# 	# 	generate_btr_start_deposits_and_blockers = yes
+	# 	# 	generate_cerberus_cronos_buildings_and_districts = yes
+	# 	# 	generate_cerb_cronos_pops = yes
+	# 	# 	add_deposit = d_hydroponics_bays
+	# 	# 	add_deposit = d_cronos_science_labs
+	# 	# 	add_deposit = d_cronos_reactor
+	# 	# 	set_name = "Cronos Station"
+	# 	# }
+	# }	
+
+	planet = {
+        class = pc_met_asteroid
+        orbit_distance = 50
+        orbit_angle = 64
+        has_ring = no
+		size = 3
+		init_effect = {
+			add_deposit = d_rare_crystals_1
+		}
+    }
+
+	planet = {
+        class = pc_carb_asteroid
+        orbit_distance = 0
+        orbit_angle = 64
+        has_ring = no
+		size = 3
+		init_effect = {
+			add_deposit = d_minerals_7
+		}
+    }
+
+	planet = {
+        class = pc_eezo_asteroid
+        orbit_distance = 0
+        orbit_angle = 64
+        has_ring = no
+		size = 3
+		init_effect = {
+			add_deposit = d_zro_deposit_1
+		}
+    }
+}
