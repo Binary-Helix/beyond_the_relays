@@ -581,7 +581,67 @@ generate_aralak_kahmat_country = {
 	}
 }
 
-generate_omega_empire = {
+generate_migrant_fleet_country = {
+	create_country = {
+		name = "The Migrant Fleet"
+		adjective = "PRESCRIPTED_adjective_migrant_fleet"
+		authority = auth_democratic
+		civics = { 
+			civic = migrant_fleet_memories_of_the_homeworld 
+			civic = migrant_fleet_efficiency_or_death 
+		}
+		species = event_target:quarianSpecies
+		name_list = btr_quarian
+		ship_prefix = ""
+		ethos = { 
+			ethic = "ethic_egalitarian" 
+			ethic = "ethic_militarist" 
+			ethic = "ethic_spiritualist"
+		}
+		flag = {
+			icon={
+				category="beyondtherelays"
+				file="migrant_fleet.dds"
+			}
+			background={
+				category="backgrounds"
+				file="flag_BG_28.dds"
+			}
+			colors={
+				"eecolor1821"
+				"eecolor1891"
+				"null"
+				"null"
+			}
+		}
+		type = default
+		origin = migrant_fle_origin
+		effect = {
+			set_country_flag = migrant_fleet_ai
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_graphical_culture = quar_01
+			add_resource = {
+				energy = 950
+				minerals = 420
+				alloys = 250
+				influence = 100
+				food = 1200
+				consumer_goods = 400
+				volatile_motes = 75
+				exotic_gases = 75
+				rare_crystals = 75							
+			}
+			add_modifier = {
+				modifier = migrant_fleet_betrayed_forgotten_abandoned
+				days = -1
+			}
+		}
+	}
+}
+
+generate_omega_country = {
 	create_country = {
 		type = default
 		ignore_initial_colony_error = yes
@@ -1172,7 +1232,9 @@ generate_disciples_of_nazara_country = {
 	} 
 }
 
+generate_the_collectors_country = {
 
+}
 
 
 
@@ -1535,6 +1597,48 @@ generate_autonomy_of_cyrene_country = {
 	}	
 }
 
+generate_chalkos_freehold_country = {
+	create_country = {
+		name = "Chalkhos Freehold"
+		adjective = "PRESCRIPTED_adjective_chalkhos_freehold"
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_free_autonomous
+			civic = independent_civic_hedonists
+		}
+		species = event_target:asariSpecies
+		name_list = btr_asari
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_egalitarian"
+			ethic = "ethic_materialist"
+		}
+
+		type = independent_colony
+		origin = unethical_res_origin
+		effect = {
+			set_country_flag = chalkhos_freehold
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mec_asari_01
+			save_global_event_target_as = chalkhos_freehold
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
 generate_commune_of_horizon_country = {
 	create_country = {
 		name = "Commune of Horizon"
@@ -1617,6 +1721,49 @@ generate_commonwealth_of_joab_country = {
 			}
 		}
 	}	
+}
+
+generate_confederation_of_thunawanuro_country = {
+	create_country = {
+		name = "Confederation of Thunawanuro"
+		adjective = "PRESCRIPTED_adjective_confederation_of_thunawanuro"
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_citadel_setup
+		}
+		species = event_target:elcorSpecies
+		name_list = btr_elcor
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_materialist"
+			ethic = "ethic_pacifist"
+			ethic = "ethic_egalitarian"
+		}
+
+		type = independent_colony
+		origin = haven_pea_origin
+		effect = {
+			set_country_flag = confederation_of_thunawanuro
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = confederation_of_thunawanuro
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}		
 }
 
 generate_erinle_conservancy_country = {
@@ -2041,6 +2188,48 @@ generate_league_of_sahi_dau_country = {
 	}	
 }
 
+generate_logarisi_development_corporation_country = {
+	create_country = {
+		name = "Logarisi Development Corporation"
+		adjective = "PRESCRIPTED_adjective_logarisi_development_corporation"
+		authority = auth_dictatorial
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_free_autonomous
+		}
+		species = event_target:batarianSpecies
+		name_list = btr_batarian
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_authoritarian"
+			ethic = "ethic_xenophobe"
+		}
+
+		type = independent_colony
+		origin = criminal_den_origin
+		effect = {
+			set_country_flag = logarisi_development_corporation
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = logarisi_development_corporation
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
 generate_monrini_syndicate_country = {
 	create_country = {
 		name = "Monrini Syndicate"
@@ -2296,6 +2485,48 @@ generate_republic_of_asteria_country = {
 	}	
 }
 
+generate_sanctum_metals_group_country = {
+	create_country = {
+		name = "Sanctum Metals Group"
+		adjective = "PRESCRIPTED_adjective_sanctum_metals_group"
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_corporate_ownership
+			civic = independent_civic_fractured_domain
+		}
+		species = event_target:turianSpecies
+		name_list = btr_turian
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_militarist"
+		}
+
+		type = independent_colony
+		origin = mining_ope_origin
+		effect = {
+			set_country_flag = sanctum_metals_group
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = sanctum_metals_group
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}	
+}
+
 generate_state_of_garvug_country = {
 	create_country = {
 		name = "State of Garvug"
@@ -2464,6 +2695,49 @@ generate_trident_exports_limited_country = {
 			}
 		}
 	}	
+}
+
+generate_trigintan_league_country = {
+	create_country = {
+		name = "Trigintan League"
+		adjective = "PRESCRIPTED_adjective_trigintan_league"
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_isolationist
+			civic = independent_civic_free_autonomous
+		}
+		species = event_target:turianSpecies
+		name_list = btr_turian
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_egalitarian"
+			ethic = "ethic_xenophobe"
+			ethic = "ethic_pacifist"
+		}
+
+		type = independent_colony
+		origin = libertarian_fou_origin
+		effect = {
+			set_country_flag = trigintan_league
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = trigintan_league
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
+			}
+		}
+	}
 }
 
 generate_union_of_ferris_fields_country = {
