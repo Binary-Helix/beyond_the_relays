@@ -1,0 +1,190 @@
+#################################
+### GALACTIC CORE INITIALIZER ###
+#################################
+
+sys_tartarusdebrisfield_init = {
+    name = "Tartarus Debris Field"
+    class = sc_black_hole
+    max_instances = 1
+
+	flags = { terminus_systems sector_t13 galactic_core tartarus_debris_field primary_relay_system }	
+
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 100
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 150
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 200
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 250
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 300
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 350
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 400
+	}
+	asteroid_belt = {
+		type = rocky_asteroid_belt
+		radius = 450
+	}
+
+	planet = {
+		name = "Tartarus Debris Field"
+		class = pc_black_hole
+		orbit_distance = 0
+		orbit_angle = 1
+		size = 70
+		has_ring = no
+		init_effect = {
+			solar_system = {
+			}
+			while = {
+				count = 100
+				create_ambient_object = {
+					type = large_debris_object
+					entity_offset_height = { min = -10 max = -20 }
+					entity_offset = { min = 96 max = 400 }
+					entity_offset_angle = { min = 1 max = 360 }
+					scale = 3
+				}
+			}
+			while = {
+				count = 35
+				create_ambient_object = {
+					type = ancient_battlefield_02_object
+					entity_offset_height = { min = -10 max = -20 }
+					entity_offset = { min = 96 max = 400 }
+					entity_offset_angle = { min = 1 max = 360 }
+					scale = 3
+				}
+			}
+		}
+	}
+
+	planet = {
+		name = "Polus"
+		class = pc_asteroid
+		orbit_distance = 35
+		orbit_angle = { min = 1 max = 360 }
+		size = 2
+		has_ring = no
+	}
+	
+	planet = {
+		name = "Inid"
+		class = pc_asteroid
+		orbit_distance = 35
+		orbit_angle = { min = 1 max = 360 }
+		size = 1
+		has_ring = no
+	}
+
+	planet = {
+		name = "Collector Base"
+		class = pc_habitat
+		orbit_distance = 180
+		orbit_angle = 215
+		size = 12
+		has_ring = no
+		entity = "collector_base_01_game_entity"
+	}	
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "galacticcore_omega4relay_primaryrelay" 
+			name = "Sector GC1 - Primary Relay 1"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
+}	
+	
+
+################################################
+### MIGRANT FLEET REPRESENTATIVE INITIALIZER ###
+################################################
+
+sys_migrant_fleet_init = {
+	name = "The Migrant Fleet"
+    class = sc_deep_space
+    max_instances = 1
+
+	flags = { migrant_fleet_system }
+
+    planet = {
+        name = "Civilian Fleet"
+        class = "pc_quarian_civilian_fleet"
+        orbit_distance = 62
+        orbit_angle = 25
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Special Projects"
+        class = "pc_quarian_special_projects"
+        orbit_distance = 0
+        orbit_angle = 185
+        has_ring = no
+		size = 4
+    }
+
+    planet = {
+        name = "Chayym"
+        class = "pc_quarian_liveship"
+        orbit_distance = 37
+        orbit_angle = 84
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Shellen"
+        class = "pc_quarian_liveship"
+        orbit_distance = 1
+        orbit_angle = 179
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Rayya"
+        class = "pc_quarian_liveship"
+        orbit_distance = 48
+        orbit_angle = 274
+        has_ring = no
+		size = 16
+    }
+
+    planet = {
+        name = "Heavy Fleet"
+        class = "pc_quarian_heavy_fleet"
+        orbit_distance = 68
+        orbit_angle = 181
+        has_ring = no
+		size = 8
+    }
+
+    planet = {
+        name = "Patrol Fleet"
+        class = "pc_quarian_patrol_fleet"
+        orbit_distance = 0
+        orbit_angle = 176
+        has_ring = no
+		size = 6
+    }
+}
