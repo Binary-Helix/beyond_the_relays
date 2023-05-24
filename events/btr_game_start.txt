@@ -1,4331 +1,484 @@
+### - NOTE FROM PUCK - HEAVILY MODIFIED VERSION OF VANILLA game_start.txt
 namespace = btr_game_start
 
-# Custom Country Check
-country_event = {
+### Hidden Game Start Event
+event = {
 	id = btr_game_start.1
-	title = btr_game_start.1.name
-	desc = btr_game_start.1.desc
-	picture = BTR_GFX_evt_btr_custom
-	is_triggered_only = yes
-	trigger = {
-		NOT = {
-			has_country_flag = btr_empire
-		}
-	}
-
-	immediate = {
-		log = "btr_game_start.1 - Custom Country Check"
-	}
-	option = {
-		name = OK
-	}
-}
-
-# Integrated Mod Installation Check
-event = {
-	id = btr_game_start.2
-	title = btr_game_start.2.name
-	desc = btr_game_start.2.desc
-	picture = BTR_GFX_evt_btr_integrated
-	is_triggered_only = yes
-	trigger = {
-		OR = {
-			has_global_flag = beyond_the_advisors_installed
-			has_global_flag = beyond_the_worlds_installed
-			has_global_flag = has_real_space_mod
-		}
-	}
-
-	immediate = {
-		log = "btr_game_start.2 - Integrated Mod Check"
-	}
-	option = {
-		name = OK
-	}
-}
-
-# Incompatible Mod Installation Check
-event = {
-	id = btr_game_start.3
-	title = btr_game_start.3.name
-	desc = btr_game_start.3.desc
-	picture = BTR_GFX_evt_btr_incompatible
-	is_triggered_only = yes
-	trigger = {
-		has_global_flag = planetarydiversity
-	}
-
-	immediate = {
-		log = "btr_game_start.3 - Incompatible Mod Check"
-	}
-
-	option = {
-		name = OK
-	}	
-}
-
-### Pregame Genocide
-event = {
-	id = btr_game_start.4
 	hide_window = yes
 	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = game_started
+
+		#TODO: REVIEW country.900
+		every_country = {
+			limit = { is_ai = no }
+			country_event = { id = country.900 days = 460 random = 60 }
+		}
+
+
+		### SPAWN INVISIBLE GLOBAL EVENT COUNTRY
+		create_country = {
+			name = "global_event_country"
+			type = global_event
+			effect = {
+				save_global_event_target_as = global_event_country
+			}
+		}
+
+		### MARAUDER FLAGS
+		every_country = {
+			limit = { is_country_type = dormant_marauders }
+			randomize_flag_symbol = "pirate"
+		}
+
+		### MARAUDERS SHOULD NOT ATTACK ENCLAVES OR INDEPENDENT WORLDS
+			
+		every_country = {
+			limit = { 
+				OR = {
+					is_country_type = enclave 
+					is_country_type = independent_colony
+				}
+			}
+			every_country = {
+				limit = { is_country_type = dormant_marauders }
+				set_faction_hostility = {
+					target = prev
+					set_hostile = no
+					set_neutral = no
+					set_friendly = yes
+				}
+			}
+		}
+
+		### SLOW DOWN PRE-FTL EVENTS
+		set_timed_global_flag = {
+			flag = asteroid_sighted_pre_ftl_global
+			years = 10
+		}
+		set_timed_global_flag = {
+			flag = nuclear_war_pre_ftl_global
+			years = 10
+		}
+
+		### ORIGINS
+
+		#TODO: ORIGIN EVENTS
+	}
+}
+
+event = {
+	id = game_start.2
+	hide_window = yes
+	is_triggered_only = yes
+
 	immediate = {
 		every_country = {
-			if = {
-				limit = {
-					is_country_type = default
-					is_country_type = neutral_faction
-					is_country_type = rebel
-					is_country_type = enclave
-					is_country_type = tiyanki
-					is_country_type = tiyanki_garrison
-					is_country_type = amoeba
-					is_country_type = amoeba_borderless
-					is_country_type = amoeba_garrison
-					is_country_type = crystal
-					is_country_type = drone
-					NOT = { has_country_flag = btr_empire }
-					is_ai = yes
-				}
-				destroy_country = yes
-				every_owned_pop = {	
-					limit = { 
-						NOT = { 
-							 has_pop_flag = init_spawn 
+			limit = { exists = capital_scope }
+			capital_scope = {
+				solar_system = {
+					every_system_planet = {
+						if = {
+							limit = { has_modifier = hazardous_weather }
+							remove_modifier = hazardous_weather
 						}
-					}
-					kill_pop = yes
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = btr_empire
-				}
-				every_owned_pop = {
-					limit = { NOT = { has_pop_flag = init_spawn } }
-					kill_pop = yes
-				}
-				every_country = {
-					every_owned_planet = {
-						check_planet_employment = yes				
-					}
-				}
-			}
-			if = {
-				limit = {
-					OR = {
-						has_country_flag = geth_consensus
-						has_country_flag = disciples_of_nazara
-					}
-				}
-				every_owned_pop = {
-					change_species = event_target:gethSpecies
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = omega_empire
-				}
-				every_owned_pop = {
-					if = {
-						limit = { 
-							NOR = {
-								is_species_class = ASA
-								is_species_class = TUR
-								is_species_class = SAL
-								is_species_class = HUM
-								is_species_class = ELC
-								is_species_class = VOL
-								is_species_class = HAN
-								is_species_class = BAT
-								is_species_class = KRO
-								is_species_class = QUA
-								is_species_class = DRE
-								is_species_class = VOR
-								is_species_class = LYS
-								is_species_class = GOT
-							}
+						if = {
+							limit = { has_modifier = dangerous_wildlife }
+							remove_modifier = dangerous_wildlife
 						}
-						kill_pop = yes
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = citadel_council
-				}
-				every_owned_pop = {
-					if = {
-						limit = { 
-							NOR = {
-								is_species_class = ASA
-								is_species_class = TUR
-								is_species_class = SAL
-								is_species_class = HUM
-								is_species_class = ELC
-								is_species_class = VOL
-								is_species_class = HAN
-								is_species_class = BAT
-								is_species_class = KRO
-								is_species_class = QUA
-								is_species_class = DRE
-								is_species_class = VOR
-							}
+						if = {
+							limit = { has_modifier = weak_magnetic_field }
+							remove_modifier = weak_magnetic_field
 						}
-						kill_pop = yes
+						if = {
+							limit = { has_modifier = strong_magnetic_field }
+							remove_modifier = strong_magnetic_field
+						}
+						if = {
+							limit = { has_modifier = unstable_tectonics }
+							remove_modifier = unstable_tectonics
+						}
+						if = {
+							limit = { has_modifier = tidal_locked }
+							remove_modifier = tidal_locked
+						}
+						if = {
+							limit = { has_modifier = chthonian_planet }
+							remove_modifier = chthonian_planet
+						}
+						if = {
+							limit = { has_modifier = asteroid_impacts }
+							remove_modifier = asteroid_impacts
+						}
+						if = {
+							limit = { has_modifier = extensive_moon_system }
+							remove_modifier = extensive_moon_system
+						}
+						if = {
+							limit = { has_modifier = carbon_world }
+							remove_modifier = carbon_world
+						}
+						if = {
+							limit = { has_modifier = wild_storms }
+							remove_modifier = wild_storms
+						}
+						if = {
+							limit = { has_modifier = low_gravity }
+							remove_modifier = low_gravity
+						}
+						if = {
+							limit = { has_modifier = high_gravity }
+							remove_modifier = high_gravity
+						}
+						#if = {
+						#	limit = { has_modifier = hollow_planet }
+						#	remove_modifier = hollow_planet
+						#}
+						if = {
+							limit = { has_modifier = mineral_rich }
+							remove_modifier = mineral_rich
+						}
+						if = {
+							limit = { has_modifier = ultra_rich }
+							remove_modifier = ultra_rich
+						}
+						if = {
+							limit = { has_modifier = mineral_poor }
+							remove_modifier = mineral_poor
+						}
+						if = {
+							limit = { has_modifier = titanic_life }
+							remove_modifier = titanic_life
+						}
+						if = {
+							limit = { has_modifier = mineral_poor }
+							remove_modifier = mineral_poor
+						}
+						if = {
+							limit = { has_modifier = asteroid_belt }
+							remove_modifier = asteroid_belt
+						}
+						if = {
+							limit = { has_modifier = natural_beauty }
+							remove_modifier = natural_beauty
+						}
+						if = {
+							limit = { has_modifier = atmospheric_aphrodisiac }
+							remove_modifier = atmospheric_aphrodisiac
+						}
+						if = {
+							limit = { has_modifier = atmospheric_hallucinogen }
+							remove_modifier = atmospheric_hallucinogen
+						}
+						if = {
+							limit = { has_modifier = lush_planet }
+							remove_modifier = lush_planet
+						}
+						if = {
+							limit = { has_modifier = bleak_planet }
+							remove_modifier = bleak_planet
+						}
+						if = {
+							limit = { has_modifier = irradiated_planet }
+							remove_modifier = irradiated_planet
+						}
+						if = {
+							limit = { has_modifier = terraforming_candidate }
+							remove_modifier = terraforming_candidate
+						}
 					}
 				}
 			}
 		}
-
-		log = "btr_game_start.4 - Pregame Genocide Committed"
 	}
 }
 
-###Set Empire Flags and Communications
-country_event = {
-	id = btr_game_start.5
+### Hidden Game Start Event that resets tutorial for advisor trigger purposes
+event = {
+	id = game_start.3
 	hide_window = yes
 	is_triggered_only = yes
-	fire_only_once = yes
+
 	immediate = {
-		random_country = { limit = { has_country_flag = asari_republics_player } save_event_target_as = asari_republics }
-		random_country = { limit = { has_country_flag = salarian_union_player } save_event_target_as = salarian_union }
-		random_country = { limit = { has_country_flag = turian_hierarchy_player } save_event_target_as = turian_hierarchy }
-		random_country = { limit = { has_country_flag = systems_alliance_player } save_event_target_as = systems_alliance }
-		random_country = { limit = { has_country_flag = courts_of_dekuuna_player } save_event_target_as = courts_of_dekuuna }
-		random_country = { limit = { has_country_flag = vol_protectorate_player } save_event_target_as = vol_protectorate }
-		random_country = { limit = { has_country_flag = illuminated_primacy_player } save_event_target_as = illuminated_primacy }
-		random_country = { limit = { has_country_flag = hegemony_of_kharshan_player } save_event_target_as = hegemony_of_kharshan }
-		random_country = { limit = { has_country_flag = aralakh_kahmat_player } save_event_target_as = aralakh_kahmat }
-		# random_country = { limit = { has_country_flag = migrant_fleet_player } save_event_target_as = migrant_fleet }
-		# random_country = { limit = { has_country_flag = ceberus_empire_player } save_event_target_as = ceberus_empire }
-		random_country = { limit = { has_country_flag = caleston_directorate_player } save_event_target_as = caleston_directorate }
-		random_country = { limit = { has_country_flag = omega_empire_player } save_event_target_as = omega_empire }	
-		random_country = { limit = { has_country_flag = illium_corporate_interests_player } save_event_target_as = illium_corporate_interests }
-		random_country = { limit = { has_country_flag = caleston_directorate_player } save_event_target_as = caleston_directorate }	
-		random_country = { limit = { has_country_flag = remnants_of_rakhana_player } save_event_target_as = remnants_of_rakhana }		
-		random_country = { limit = { has_country_flag = vorcha_clandom_player } save_event_target_as = vorcha_clandom }
-		random_country = { limit = { has_country_flag = sedriicae_collective_player } save_event_target_as = sedriicae_collective }		
-		random_country = { limit = { has_country_flag = lystheni_order_player } save_event_target_as = lystheni_order }
-		random_country = { limit = { has_country_flag = gothones_remnant_player } save_event_target_as = gothones_remnant }		
-		random_country = { limit = { has_country_flag = parnack_regime_player } save_event_target_as = parnack_regime }
-		random_country = { limit = { has_country_flag = raloi_republic_player } save_event_target_as = raloi_republic }		
-		random_country = { limit = { has_country_flag = geth_consensus_player } save_event_target_as = geth_consensus }
-		random_country = { limit = { has_country_flag = disciples_of_nazara_player } save_event_target_as = disciples_of_nazara }
-		random_country = { limit = { has_country_flag = rachni_hive_player } save_event_target_as = rachni_hive }
-
-		random_country = { limit = { has_country_flag = asari_republics_ai } save_event_target_as = asari_republics }
-		random_country = { limit = { has_country_flag = salarian_union_ai } save_event_target_as = salarian_union }
-		random_country = { limit = { has_country_flag = turian_hierarchy_ai } save_event_target_as = turian_hierarchy }
-		random_country = { limit = { has_country_flag = systems_alliance_ai } save_event_target_as = systems_alliance }
-		random_country = { limit = { has_country_flag = courts_of_dekuuna_ai } save_event_target_as = courts_of_dekuuna }
-		random_country = { limit = { has_country_flag = vol_protectorate_ai } save_event_target_as = vol_protectorate }
-		random_country = { limit = { has_country_flag = illuminated_primacy_ai } save_event_target_as = illuminated_primacy }
-		random_country = { limit = { has_country_flag = hegemony_of_kharshan_ai } save_event_target_as = hegemony_of_kharshan }
-		random_country = { limit = { has_country_flag = aralakh_kahmat_ai } save_event_target_as = aralakh_kahmat }
-		# random_country = { limit = { has_country_flag = migrant_fleet_ai } save_event_target_as = migrant_fleet }
-		# random_country = { limit = { has_country_flag = ceberus_empire_ai } save_event_target_as = ceberus_empire }
-		random_country = { limit = { has_country_flag = caleston_directorate_ai } save_event_target_as = caleston_directorate }
-		random_country = { limit = { has_country_flag = omega_empire_ai } save_event_target_as = omega_empire }	
-		random_country = { limit = { has_country_flag = illium_corporate_interests_ai } save_event_target_as = illium_corporate_interests }
-		random_country = { limit = { has_country_flag = caleston_directorate_ai } save_event_target_as = caleston_directorate }	
-		random_country = { limit = { has_country_flag = remnants_of_rakhana_ai } save_event_target_as = remnants_of_rakhana }		
-		random_country = { limit = { has_country_flag = vorcha_clandom_ai } save_event_target_as = vorcha_clandom }
-		random_country = { limit = { has_country_flag = sedriicae_collective_ai } save_event_target_as = sedriicae_collective }		
-		random_country = { limit = { has_country_flag = lystheni_order_ai } save_event_target_as = lystheni_order }
-		random_country = { limit = { has_country_flag = gothones_remnant_ai } save_event_target_as = gothones_remnant }		
-		random_country = { limit = { has_country_flag = parnack_regime_ai } save_event_target_as = parnack_regime }
-		random_country = { limit = { has_country_flag = raloi_republic_ai } save_event_target_as = raloi_republic }		
-		random_country = { limit = { has_country_flag = geth_consensus_ai } save_event_target_as = geth_consensus }
-		random_country = { limit = { has_country_flag = disciples_of_nazara_ai } save_event_target_as = disciples_of_nazara }
-		random_country = { limit = { has_country_flag = rachni_hive_ai } save_event_target_as = rachni_hive }
-
-		random_country = { limit = { has_country_flag = asari_republics } save_event_target_as = asari_republics }
-		random_country = { limit = { has_country_flag = salarian_union } save_event_target_as = salarian_union }
-		random_country = { limit = { has_country_flag = turian_hierarchy } save_event_target_as = turian_hierarchy }
-		random_country = { limit = { has_country_flag = systems_alliance } save_event_target_as = systems_alliance }
-		random_country = { limit = { has_country_flag = courts_of_dekuuna } save_event_target_as = courts_of_dekuuna }
-		random_country = { limit = { has_country_flag = vol_protectorate } save_event_target_as = vol_protectorate }
-		random_country = { limit = { has_country_flag = illuminated_primacy } save_event_target_as = illuminated_primacy }
-		random_country = { limit = { has_country_flag = hegemony_of_kharshan } save_event_target_as = hegemony_of_kharshan }
-		random_country = { limit = { has_country_flag = aralakh_kahmat } save_event_target_as = aralakh_kahmat }
-		# random_country = { limit = { has_country_flag = migrant_fleet } save_event_target_as = migrant_fleet }
-		# random_country = { limit = { has_country_flag = ceberus_empire } save_event_target_as = ceberus_empire }
-		random_country = { limit = { has_country_flag = caleston_directorate } save_event_target_as = caleston_directorate }
-		random_country = { limit = { has_country_flag = omega_empire } save_event_target_as = omega_empire }	
-		random_country = { limit = { has_country_flag = illium_corporate_interests } save_event_target_as = illium_corporate_interests }
-		random_country = { limit = { has_country_flag = caleston_directorate } save_event_target_as = caleston_directorate }	
-		random_country = { limit = { has_country_flag = remnants_of_rakhana } save_event_target_as = remnants_of_rakhana }		
-		random_country = { limit = { has_country_flag = vorcha_clandom } save_event_target_as = vorcha_clandom }
-		random_country = { limit = { has_country_flag = sedriicae_collective } save_event_target_as = sedriicae_collective }		
-		random_country = { limit = { has_country_flag = lystheni_order } save_event_target_as = lystheni_order }
-		random_country = { limit = { has_country_flag = gothones_remnant } save_event_target_as = gothones_remnant }		
-		random_country = { limit = { has_country_flag = parnack_regime } save_event_target_as = parnack_regime }
-		random_country = { limit = { has_country_flag = raloi_republic } save_event_target_as = raloi_republic }		
-		random_country = { limit = { has_country_flag = geth_consensus } save_event_target_as = geth_consensus }
-		random_country = { limit = { has_country_flag = disciples_of_nazara } save_event_target_as = disciples_of_nazara }
-		random_country = { limit = { has_country_flag = rachni_hive } save_event_target_as = rachni_hive }
-
-		log = "btr_game_start.5 - Set Empire Event Targets - btr_game_start.5"
-
-		if = {
-			limit = { 
-				galaxy_size = btr_hybrid_600
-			}
-			#Set Contacts
-			establish_asari_republics_communication = yes
-			establish_salarian_union_communication = yes
-			establish_turian_hierarchy_communication = yes
-			establish_systems_alliance_communication = yes	
-			establish_courts_of_dekuuna_communication = yes
-			establish_vol_protectorate_communication = yes
-			establish_illuminated_primacy_communication = yes
-			establish_hegemony_of_kharshan_communication = yes
-			establish_aralakh_kahmat_communication = yes
-			establish_omega_communication = yes
-			establish_illium_corporate_interests_communication = yes
-			establish_caleston_directorate_communication = yes
-			establish_remnants_of_rakhana_communication = yes
-			establish_vorcha_clandom_communication = yes
-			establish_sedriicae_collective_communication = yes
-			establish_lystheni_order_communication = yes
-			establish_gothones_remnant_communication = yes
-			establish_geth_consensus_communication = yes
-			establish_disciples_of_nazara_communication = yes
-			establish_citadel_council_communication = yes
-		}	
-		
-		log = "btr_game_start.5 - Established Empire Communications"
+		every_country = {
+			limit = { is_ai = no }
+			country_event = { id = tutorial.104 }
+		}
 	}
 }
 
-country_event = { #Courtesy of MEC Asari Civilizations
-    id = btr_game_start.6
-    hide_window = yes
-    #fire_only_once = yes
+### Empire init - add resources, empire modifiers, and technologies
+country_event = {
+	id = game_start.8
+	hide_window = yes
 	is_triggered_only = yes
-	
-    immediate = {
-		# If any "canon" asari planets exist, save their owners
-		random_country = {
+
+	immediate = {
+
+		if = {
 			limit = {
 				has_origin = asari_rep_origin
 			}
-			save_event_target_as = asari_thessia_country
-			species = { save_event_target_as = asari_thessia_species }
+			generate_asari_republic_starting_setup = yes
 		}
-		random_country = {
+		if = {
 			limit = {
-				has_origin = omega_origin
+				has_origin = salarian_uni_origin
 			}
-			save_event_target_as = asari_omega_country
-			species = { save_event_target_as = asari_omega_species }
+			generate_salarian_union_starting_setup = yes
 		}
-		random_country = {
+		if = {
+			limit = {
+				has_origin = turian_hier_origin
+			}
+			generate_turian_hierarchy_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_origin = systems_all_origin
+			}
+			generate_systems_alliance_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_origin = courts_dek_origin
+			}
+			generate_courts_of_dekuuna_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_origin = vol_protectorate_origin
+			}
+			generate_vol_protectorate_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_origin = illuminated_primacy_origin
+			}
+			generate_illuminated_primacy_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_origin = hegemony_of_kharshan_origin
+			}
+			generate_hegemony_of_kharshan_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_origin = aralakh_kahmat_origin
+			}
+			generate_aralakh_kahmat_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_origin = migrant_fle_origin
+			}
+			generate_migrant_fleet_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_origin = cerberus_empire_origin
+			}
+			generate_cerberus_empire_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_origin = omega_empire_origin
+			}
+			generate_omega_empire_starting_setup = yes
+		}
+		if = {
 			limit = {
 				has_origin = illium_origin
 			}
-			save_event_target_as = asari_illium_country
-			species = { save_event_target_as = asari_illium_species }
-		}
-		# Check for the first "canon" asari species generated by the game.
-		# This is to make sure it's folded into the main species on the list instead of being shown in the drop-down.
-		every_country = {
-			limit = {
-				OR = {
-					is_same_value = event_target:asari_thessia_country
-					is_same_value = event_target:asari_omega_country
-					is_same_value = event_target:asari_illium_country
-				}
-			}
-			if = {
-				limit = {
-					NOT = { exists = event_target:asari_main_country }
-				}
-				save_global_event_target_as = asari_main_country
-				species = { save_global_event_target_as = asari_main_species }
-				# If Thessia exists, set it as the main asari species homeworld
-				if = {
-					limit = {
-						exists = event_target:parnitha_system_thessia
-					}
-					event_target:asari_main_species = {
-						set_species_homeworld = event_target:parnitha_system_thessia
-					}
-				}
-			}
-		}
-		# Check for duplicate asari offshots and merge them all into one species
-		every_country = {
-			if = {
-				limit = {
-					exists = event_target:asari_main_country
-					OR = {
-						species = { is_same_value = event_target:asari_thessia_species }
-						species = { is_same_value = event_target:asari_omega_species }
-						species = { is_same_value = event_target:asari_illium_species }
-					}
-				}
-				change_dominant_species = {
-					species = event_target:asari_main_species
-					change_all = yes
-				}
-			}
-		}
-    }
-}
-
-### Add Starting Resources
-country_event = {
-	id = btr_game_start.7
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		if = {
-			limit = {
-				has_country_flag = asari_republics_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 3500	}
-			add_resource = { minerals = 2000 }
-			add_resource = { alloys = 1500	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 3500 }
-			add_resource = { consumer_goods = 1500 }
-			add_resource = { unity = 450 }
-			add_resource = { volatile_motes = 200 }
-			add_resource = { exotic_gases = 200 }	
-			add_resource = { rare_crystals = 700 }		
-			add_modifier = {
-				modifier = asari_rep_empire_modifier
-				days = -1
-			}
-		}
-		if = {
-			limit = {	
-				has_country_flag = salarian_union_player
-				galaxy_size = btr_hybrid_600
-			}	
-			add_resource = { energy = 2600	}
-			add_resource = { minerals = 1480 }
-			add_resource = { alloys = 1100	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 3350 }
-			add_resource = { consumer_goods = 1200 }
-			add_resource = { unity = 450 }
-			add_resource = { volatile_motes = 300 }
-			add_resource = { exotic_gases = 300 }	
-			add_resource = { rare_crystals = 300 }		
-			add_modifier = {
-				modifier = salarian_uni_empire_modifier
-				days = -1
-			}
+			generate_illium_corporate_interests_starting_setup = yes
 		}
 		if = {
 			limit = {
-				has_country_flag = turian_hierarchy_player
-				galaxy_size = btr_hybrid_600
+				has_origin = caleston_dir_origin
 			}
-			add_resource = { energy = 2750	}
-			add_resource = { minerals = 1650 }
-			add_resource = { alloys = 1650	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 2800 }
-			add_resource = { consumer_goods = 1000 }
-			add_resource = { unity = 450 }
-			add_resource = { volatile_motes = 200 }
-			add_resource = { exotic_gases = 200 }	
-			add_resource = { rare_crystals = 200 }	
-			add_modifier = {
-				modifier = turian_hier_empire_modifier
-				days = -1
-			}	
-			add_modifier = {
-				modifier = turian_hier_shanxi_314
-				days = 3600
-			}
+			generate_caleston_directorate_starting_setup = yes
 		}
 		if = {
 			limit = {
-				has_country_flag = systems_alliance_player
-				galaxy_size = btr_hybrid_600
+				has_origin = remnants_of_rakhana_origin
 			}
-			add_resource = { energy = 800	}
-			add_resource = { minerals = 450 }
-			add_resource = { alloys = 265	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 1500	}
-			add_resource = { consumer_goods = 500 }
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = systems_all_empire_modifier
-				days = -1
-			}
-			add_modifier = {
-				modifier = systems_all_shanxi_314
-				days = 9000
-			}
-			add_modifier = {
-				modifier = systems_all_skyllian_verge
-				days = -1
-			}
+			generate_remnants_of_rakhana_starting_setup = yes
 		}
 		if = {
 			limit = {
-				has_country_flag = courts_of_dekuuna_player
-				galaxy_size = btr_hybrid_600
+				has_origin = vorcha_origin
 			}
-			add_resource = { energy = 1900	}
-			add_resource = { minerals = 1200 }
-			add_resource = { alloys = 450	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 2500 }
-			add_resource = { consumer_goods = 1010 }
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = courts_deku_mechanized_army
-				days = -1
-			}
-		}
+			generate_vorcha_clandom_starting_setup = yes
+		}	
 		if = {
 			limit = {
-				has_country_flag = vol_protectorate_player
-				galaxy_size = btr_hybrid_600
+				has_origin = sedriicae_collective_origin
 			}
-			add_resource = { energy = 3100	}
-			add_resource = { minerals = 1240 }
-			add_resource = { alloys = 950	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 2150	}
-			add_resource = { consumer_goods = 1400 }
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = volus_corporate_dominance
-				days = -1
-			}	
-		}
-		if = {
-			limit = {	
-				has_country_flag = illuminated_primacy_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 1850	}
-			add_resource = { minerals = 1240 }
-			add_resource = { alloys = 440	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 2700	}
-			add_resource = { consumer_goods = 1000 }
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = illuminated_primacy_compact
-				days = -1
-			}			
-		}
+			generate_sedriicae_collective_starting_setup = yes
+		}	
 		if = {
 			limit = {
-				has_country_flag = hegemony_of_kharshan_player
-				galaxy_size = btr_hybrid_600
+				has_origin = lystheni_order_origin
 			}
-			add_resource = { energy = 1200	}
-			add_resource = { minerals = 600 }
-			add_resource = { alloys = 340	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 1700	}
-			add_resource = { consumer_goods = 450 }
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = batarian_syllian_verge
-				days = -1
-			}	
-			add_modifier = {
-				modifier = batarian_sanctioned_astropolitics
-				days = -1
-			}	
-		}
+			generate_lystheni_order_starting_setup = yes
+		}				
 		if = {
 			limit = {
-				has_country_flag = aralakh_kahmat_player
-				galaxy_size = btr_hybrid_600
+				has_origin = parnack_regime_origin
 			}
-			add_resource = { energy = 400	}
-			add_resource = { minerals = 200 }
-			add_resource = { alloys = 200	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 400	}
-			add_resource = { consumer_goods = 100 }
-			add_resource = { volatile_motes = 50 }
-			add_resource = { exotic_gases = 50 }	
-			add_resource = { rare_crystals = 50 }	
-			add_modifier = {
-				modifier = krogan_no_enemy_too_great
-				days = -1
-			}	
-		}
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = migrant_fleet_player
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 700	}
-		# 	add_resource = { minerals = 320 }
-		# 	add_resource = { alloys = 370	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 1450	}
-		# 	add_resource = { consumer_goods = 250 }
-		# add_modifier = {
-		# 	modifier = migrant_fleet_betrayed_forgotten_abandoned
-		# 	days = -1
-		# }	
-		# }
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = cerberus_empire_player
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 800	}
-		# 	add_resource = { minerals = 350 }
-		# 	add_resource = { alloys = 350	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 900	}
-		# 	add_resource = { consumer_goods = 400 }
-		# add_modifier = {
-		# 	modifier = cerberus_no_price_to_great
-		# 	days = -1
-		# }	
-		# }
+			generate_parnack_regime_starting_setup = yes
+		}		
 		if = {
 			limit = {
-				has_country_flag = omega_empire_player
-				galaxy_size = btr_hybrid_600
+				has_origin = raloi_rep_origin
 			}
-			add_resource = { energy = 800	}
-			add_resource = { minerals = 600 }
-			add_resource = { alloys = 250	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 1400	}
-			add_resource = { consumer_goods = 400 }
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = omega_never_ending_party
-				days = -1
-			}	
-		}
+			generate_raloi_republic_starting_setup = yes
+		}			
 		if = {
 			limit = {
-				has_country_flag = illium_corporate_interests_player
-				galaxy_size = btr_hybrid_600
+				has_origin = geth_con_origin
 			}
-			add_resource = { energy = 1900	}
-			add_resource = { minerals = 710 }
-			add_resource = { alloys = 400	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 1100	}
-			add_resource = { consumer_goods = 800 }
-			add_resource = { volatile_motes = 125 }
-			add_resource = { exotic_gases = 125 }	
-			add_resource = { rare_crystals = 125 }	
-			add_modifier = {
-				modifier = illium_corporate_emporium
-				days = -1
-			}	
-		}
+			generate_geth_consensus_starting_setup = yes
+		}			
 		if = {
 			limit = {
-				has_country_flag = caleston_directorate_player
-				galaxy_size = btr_hybrid_600
+				has_origin = disciples_of_nazara_origin
 			}
-			add_resource = { energy = 1900	}
-			add_resource = { minerals = 710 }
-			add_resource = { alloys = 400	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 1100	}
-			add_resource = { consumer_goods = 800 }
-			add_resource = { volatile_motes = 125 }
-			add_resource = { exotic_gases = 125 }	
-			add_resource = { rare_crystals = 125 }	
-			add_modifier = {
-				modifier = caleston_dir_civility_among_savages
-				days = -1
-			}	
-		}
+			generate_disciples_of_nazara_starting_setup = yes
+		}					
 		if = {
 			limit = {
-				has_country_flag = remnants_of_rakhana_player
-				galaxy_size = btr_hybrid_600
+				has_origin = rachni_hive_origin
 			}
-			add_resource = { energy = 300	}
-			add_resource = { minerals = 200 }
-			add_resource = { alloys = 200	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 150	}
-			add_resource = { consumer_goods = 100 }
-			add_modifier = {
-				modifier = drell_law_of_wastes
-				days = -1
-			}	
-		}
+			generate_rachni_hive_starting_setup = yes
+		}	
 		if = {
 			limit = {
-				has_country_flag = vorcha_clandom_player
-				galaxy_size = btr_hybrid_600
+				has_origin = collectors_empire_origin
 			}
-			add_resource = { energy = 620	}
-			add_resource = { minerals = 250 }
-			add_resource = { alloys = 250	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 750	}
-			add_resource = { consumer_goods = 300 }
-			add_modifier = {
-				modifier = vorcha_primitive_pests
-				days = -1
-			}
-		}
-		if = {
-			limit = {
-				has_country_flag = sedriicae_collective_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 1150	}
-			add_resource = { minerals = 2500 }
-			add_resource = { alloys = 1350 }
-			add_resource = { influence = 100 }
-			add_resource = { food = 1350	}
-			add_resource = { consumer_goods = 800}
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = sedriicae_symptoms_stagnation
-				days = -1
-			}
-		}
-		if = {
-			limit = { 
-				has_country_flag = lystheni_order_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 860	}
-			add_resource = { minerals = 400 }
-			add_resource = { alloys = 250	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 1000	}
-			add_resource = { consumer_goods = 400 }
-			add_resource = { volatile_motes = 75 }
-			add_resource = { exotic_gases = 75 }	
-			add_resource = { rare_crystals = 75 }	
-			add_modifier = {
-				modifier = lystheni_twelve_promises
-				days = -1
-			}
-		}
-		if = {
-			limit = {
-				has_country_flag = gothones_remnant_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 950	}
-			add_resource = { minerals = 420 }
-			add_resource = { alloys = 250	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 1200	}
-			add_resource = { consumer_goods = 400 }
-			add_resource = { volatile_motes = 75 }
-			add_resource = { exotic_gases = 75 }	
-			add_resource = { rare_crystals = 75 }	
-		}
-		if = {
-			limit = {	
-				has_country_flag = parnack_regime_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 400	}
-			add_resource = { minerals = 200 }
-			add_resource = { alloys = 250	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 900	}
-			add_resource = { consumer_goods = 300 }
-			add_modifier = {
-				modifier = parnack_regime_violent_start
-				days = -1
-			}
-		}
-		if = {
-			limit = {	
-				has_country_flag = parnack_regime_primitive
-				galaxy_size = btr_hybrid_600
-			}
-			add_modifier = {
-				modifier = parnack_regime_violent_start
-				days = -1
-			}
-		}
-		if = {
-			limit = {
-				has_country_flag = raloi_republic_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 450	}
-			add_resource = { minerals = 200 }
-			add_resource = { alloys = 250	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 1300	}
-			add_resource = { consumer_goods = 520 }
-			add_modifier = {
-				modifier = raloi_catching_up
-				days = -1
-			}
-		}
-		if = {
-			limit = {	
-				has_country_flag = raloi_republic_primitive
-				galaxy_size = btr_hybrid_600
-			}
-			add_modifier = {
-				modifier = raloi_catching_up
-				days = -1
-			}
-		}
-		if = {
-			limit = {
-				has_country_flag = geth_consensus_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 2800	}
-			add_resource = { minerals = 1050 }
-			add_resource = { alloys = 1450	}
-			add_resource = { influence = 100 }
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = geth_con_empire_modifier
-				days = -1
-			}
-		}
-		if = {
-			limit = {
-				has_country_flag = disciples_of_nazara_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 2700	}
-			add_resource = { minerals = 1050 }
-			add_resource = { alloys = 1450	}
-			add_resource = { influence = 100 }
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = nazara_alone_with_divine
-				days = -1
-			}
-		}
-		if = {
-			limit = {
-				has_country_flag = rachni_hive_player
-				galaxy_size = btr_hybrid_600
-			}
-			add_resource = { energy = 800	}
-			add_resource = { minerals = 350 }
-			add_resource = { alloys = 250	}
-			add_resource = { influence = 100 }
-			add_resource = { food = 1540	}
-			add_resource = { volatile_motes = 100 }
-			add_resource = { exotic_gases = 100 }	
-			add_resource = { rare_crystals = 100 }	
-			add_modifier = {
-				modifier = rachni_choir_sings
-				days = -1
-			}
-		}
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = citadel_council_player
-		# 	}
-		# 	add_resource = { energy = 10000	}
-		# 	add_resource = { minerals = 10000 }
-		# 	add_resource = { alloys = 10000	}
-		# 	add_resource = { influence = 250 }
-		# 	add_resource = { food = 10000	}
-		# 	add_resource = { consumer_goods = 10000 }
-		# 	add_resource = { volatile_motes = 1000 }
-		# 	add_resource = { exotic_gases = 1000 }	
-		# 	add_resource = { rare_crystals = 1000 }	
-		# }
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = noveria_development_corporation
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 1150	}
-		# 	add_resource = { minerals = 500 }
-		# 	add_resource = { alloys = 350	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 1350	}
-		# 	add_resource = { consumer_goods = 800 }
-		# }
-
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = relic_mineral_works
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 1150	}
-		# 	add_resource = { minerals = 2500 }
-		# 	add_resource = { alloys = 1350	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 1350	}
-		# 	add_resource = { consumer_goods = 800 }
-		# }
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = asteria_agriculture
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 1150	}
-		# 	add_resource = { minerals = 500 }
-		# 	add_resource = { alloys = 350	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 3500	}
-		# 	add_resource = { consumer_goods = 800 }
-		# }
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = united_anhur_corporations
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 1150	}
-		# 	add_resource = { minerals = 2500 }
-		# 	add_resource = { alloys = 1350	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 1350	}
-		# 	add_resource = { consumer_goods = 800 }
-		# }
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = wrill_mining_consortium
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 1150	}
-		# 	add_resource = { minerals = 2500 }
-		# 	add_resource = { alloys = 1350	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 1350	}
-		# 	add_resource = { consumer_goods = 800 }
-		# }
-		# if = {
-		# 	limit = {
-		# 		has_country_flag = collectors_empire
-		# 		galaxy_size = btr_hybrid_600
-		# 	}
-		# 	add_resource = { energy = 4000	}
-		# 	add_resource = { minerals = 1330 }
-		# 	add_resource = { alloys = 1250	}
-		# 	add_resource = { influence = 100 }
-		# 	add_resource = { food = 2050	}
-		# }
-
-		log = "btr_game_start.7 - Added Player Starting Resources"
+			generate_collectors_empire_starting_setup = yes
+		}	
 	}
 }
-
-### Assign Colony Ownership
-event = {
-	id = btr_game_start.8
-	hide_window = yes
-	is_triggered_only = yes
-	immediate = {
-		every_system = {
-			limit = {
-				galaxy_size = btr_hybrid_600
-			}
-			if = {
-				limit = {
-					NOT = {
-						exists = starbase
-					}
-				}
-				if = {
-					limit = {
-						has_star_flag = parnitha_system
-					}
-					create_starbase = {
-						size = starbase_starhold
-						module = shipyard
-						module = shipyard
-						module = trading_hub
-						module = hangar_bay
-						building = crew_quarters
-						building = fleet_academy
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = nahuala_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = elensia_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = pelion_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = resource_silo
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = myrtil_system
-					}
-					create_starbase = {
-						size = starbase_starhold
-						module = trading_hub
-						module = hangar_bay
-						building = crew_quarters
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tomaros_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ialessa_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = orisoni_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vernio_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = teyolia_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kypladon_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = fotia_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = mitrios_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = mesana_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = agaiou_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kallini_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = aspoda_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vrastir_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = statheta_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = agalama_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kalinios_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = phernas_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = allaesyn_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = treone_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = calaheantaa_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = paentekonta_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = loropi_system
-					}
-					create_starbase = {
-						size = starbase_starhold
-						owner = event_target:asari_republics
-						module = shipyard
-						module = shipyard
-						module = hangar_bay
-						building = crew_quarters
-						building = fleet_academy
-					}
-				}
-				else_if	= {
-					limit = {
-						has_star_flag = kappaiota_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:asari_republics
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = trebia_system
-					}
-					create_starbase = {
-						size = starbase_starhold
-						module = shipyard
-						module = shipyard
-						module = trading_hub
-						module = hangar_bay
-						building = crew_quarters
-						building = fleet_academy
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = cersea_system
-					}
-					create_starbase = {
-						size = starbase_starhold
-						module = shipyard
-						module = shipyard
-						module = trading_hub
-						module = hangar_bay
-						building = crew_quarters
-						building = fleet_academy
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kasatum_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = terevan_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = crew_quarters
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ursantra_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = resource_silo
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = orachorum_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = navale_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = castellus_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = centrixaurum_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = gemmae_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = caestus_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = buitre_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = arrae_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = nura_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = talava_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = mactare_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = narbo_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = laudate_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = sabulum_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = nedlus_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = cete_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = cameram_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = spinam_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = gramen_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = pistrix_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = fortis_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = elunia_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = legio_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tribulacio_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = circe_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = carrini_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = petralia_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:turian_hierarchy
-					}
-				}
-				#Salarian Union
-				else_if = {
-					limit = {
-						has_star_flag = pranas_system
-					}
-					create_starbase = {
-						size = starbase_starhold
-						module = shipyard
-						module = shipyard
-						module = trading_hub
-						module = hangar_bay
-						building = crew_quarters
-						building = fleet_academy
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = fortuna_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = limron_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = offworld_trading_company
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ostelo_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = totau_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = resource_silo
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ruoshca_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vothi_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = rothila_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = maceddei_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = gorot_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = sovak_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = antillin_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vildisa_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = anunilibse_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = bedi_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = strabo_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = bowani_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ardot_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ilhani_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = aezeni_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = endera_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = reslom_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = turix_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = judor_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = zaebant_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = dartiz_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = maekran_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vallun_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = padtin_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = mindil_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tizdon_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = pekiss_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:salarian_union
-					}
-				}
-				#Systems Alliance
-				else_if = {
-					limit = {
-						has_star_flag = sol_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = fleet_academy
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = arcturus_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = fleet_academy
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = iota_persei_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = fleet_academy
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vetus_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = utopia_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = sirius_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = 61ursaemajoris_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-
-				else_if = {
-					limit = {
-						has_star_flag = euler_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = asgard_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = baldr_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = selvandia_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = boltzmann_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = yuan_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = carrini_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = petralia_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = 42518p_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = sm2183_rua_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = svarga_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = asramas_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = alpha_centauri_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = roch_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = stluke_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = quentin_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = akili_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = izanami_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = berendi_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kisu_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = upanga_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = czarnobog_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = athens_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = knossos_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = macedon_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = sparta_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = farinata_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = plutus_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = antaeus_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = gorgon_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = matano_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = cacus_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:systems_alliance
-					}
-				}
-				# Courts of Dekuuna
-				else_if = {
-					limit = {
-						has_star_flag = phontes_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = hydroponics_bay
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = bisalas_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = resyadum_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = offworld_trading_company
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = salahiel_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = batalla_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = wadoa_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = nasdora_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = aquila_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tassrah_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ziaada_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = daquie_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = piaas_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vorjuun_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = barayie_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:courts_of_dekuuna
-					}
-				}
-				#Illuminated Primacy
-				else_if = {
-					limit = {
-						has_star_flag = kanala_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = hydroponics_bay
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = dark_current_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = herculaneum_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = offworld_trading_company
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = obek_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = stabiae_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = thundering_trench_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = warmest_shoal_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = rheic_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = valais_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = mirovia_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = anuyi_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illuminated_primacy
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = khanty_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illuminated_primacy
-					}
-				}
-				#Vol Protectorate
-				else_if = {
-					limit = {
-						has_star_flag = aru_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = crew_quarters
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = menarel_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = yakawa_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = offworld_trading_company
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = cobines_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = burun_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = offworld_trading_company
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = unok_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = offworld_trading_company
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = veskyur_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = offworld_trading_company
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = uba_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = omaverizh_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = esori_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = satuaard_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = lebnatch_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = lobu_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = sanu_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vabto_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tam_lox_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vol_protectorate
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = delvav_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vol_protectorate
-					}
-				}
-				#Hegemony of Khar'shan
-				else_if = {
-					limit = {
-						has_star_flag = harsa_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = fleet_academy
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = koshlanhk_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = crew_quarters
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = untrel_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = gravnaz_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = indris_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-
-				else_if = {
-					limit = {
-						has_star_flag = vular_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = shuoma_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = foillavas_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ruotht_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = fathar_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = urdupos_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = bahak_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = chelae_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kesd_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = hadassah_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = elam_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = drakhar_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = urdupos_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = urk_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ab113_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kentin_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kormas_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = lugorisi_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = sen_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = barva_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ushopak_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = docbeg_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kheprork_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = brapor_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kralo_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = grensanak_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kheprk_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = foillan_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = cosmas_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = dis_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = fen_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = hedek_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = karaht_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = cavalcante_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:hegemony_of_kharshan
-					}
-				}
-				#Aralakh Kahmat
-				else_if = {
-					limit = {
-						has_star_flag = aralakh_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = hydroponics_bay
-						owner = event_target:aralakh_kahmat
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = dranek_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:aralakh_kahmat
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = nith_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:aralakh_kahmat
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tomdak_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:aralakh_kahmat
-					}
-				}
-				#Omega
-				else_if = {
-					limit = {
-						has_star_flag = sahrabarik_system
-					}
-					create_starbase = {
-						size = starbase_starhold
-						module = shipyard
-						module = trading_hub
-						building = offworld_trading_company
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = arinlarkan_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = offworld_trading_company
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = arinlarkan_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kairavamori_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = crew_quarters
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = amada_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = agnes_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vinoss_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = zugarramurdi_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = mecca_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = wend_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = yellow_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:omega_empire
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tengri_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:omega_empire
-					}
-				}
-				#Illium Corporate Interests
-				else_if = {
-					limit = {
-						has_star_flag = tasale_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = crew_quarters
-						owner = event_target:illium_corporate_interests
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = zelene_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = offworld_trading_company
-						owner = event_target:illium_corporate_interests
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = lusarn_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = offworld_trading_company
-						owner = event_target:illium_corporate_interests
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ondeste_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illium_corporate_interests
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = dalal_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illium_corporate_interests
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = andril_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illium_corporate_interests
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = saleste_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illium_corporate_interests
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = teleukria_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illium_corporate_interests
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = patriae_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:illium_corporate_interests
-					}
-				}
-				#Remnants of Rakhana
-				else_if = {
-					limit = {
-						has_star_flag = pompeii_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:remnants_of_rakhana
-					}
-				}
-				#Vorcha Clandom
-				else_if = {
-					limit = {
-						has_star_flag = kyzil_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:vorcha_clandom
-					}
-				}
-				#Sed'riicae Collective
-				else_if = {
-					limit = {
-						has_star_flag = nosikae_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = crew_quarters
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = serdicina_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = cedinae_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = brizhiine_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = onricidae_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tiikren_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = lisiine_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = okred_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = suryan_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = fafito_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = nimivos_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = neoros_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tyrelian_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ymyppin_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:sedriicae_collective
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = taesin_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = fleet_academy
-						owner = event_target:lystheni_order
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = zuzel_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:lystheni_order
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = saderina_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:lystheni_order
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = opiquol_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:lystheni_order
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ursed_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:lystheni_order
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = azen_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:lystheni_order
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kiss_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:lystheni_order
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = sute_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:lystheni_order
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = honuth_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:lystheni_order
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ultio_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = crew_quarters
-						owner = event_target:gothones_remnant
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = nalu_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = trading_hub
-						building = fleet_academy
-						owner = event_target:gothones_remnant
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = guc_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = trading_hub
-						module = hangar_bay
-						building = hydroponics_bay
-						owner = event_target:gothones_remnant
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = mer_gor_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:gothones_remnant
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = thuva_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:gothones_remnant
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tikkun_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = hangar_bay
-						building = fleet_academy
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = dholen_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = hangar_bay
-						building = fleet_academy
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = maat_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = hangar_bay
-						building = fleet_academy
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = raadarum_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = hangar_bay
-						building = crew_quarters
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = kholas_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = caarehyosal_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-
-				else_if = {
-					limit = {
-						has_star_flag = disul_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}	
-				else_if = {
-					limit = {
-						has_star_flag = vasraal_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = shewa_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = caanu_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = cosulnar_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = mawibteejinzay_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = keelulon_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = gaalozozh_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ruvum_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vasraal_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:geth_consensus
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = theseaofstorms_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = hangar_bay
-						building = fleet_academy
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = haelazi_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = hangar_bay
-						building = fleet_academy
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = xelazi_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = hangar_bay
-						building = crew_quarters
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = yeelixeeme_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = jaavo_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = yassu_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = seefisgaca_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = sesost_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = hong_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = vamshi_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = grissom_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tereshkova_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = gagarin_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = ekarii_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = tydeous_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = avas_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = zoca_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = geeder_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = typhon_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = chomos_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:disciples_of_nazara
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = mullaxul_system
-					}
-					create_starbase = {
-						size = starbase_starport
-						module = shipyard
-						module = hangar_bay
-						building = crew_quarters
-						owner = event_target:rachni_hive
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = widow_system
-					}
-					create_starbase = {
-						size = starbase_starhold
-						module = trading_hub
-						module = trading_hub
-						module = trading_hub
-						module = hangar_bay
-						building = crew_quarters
-						building = offworld_trading_company
-						owner = event_target:citadel_council
-					}
-				}
-				else_if = {
-					limit = {
-						has_star_flag = phoenix_system
-					}
-					create_starbase = {
-						size = starbase_outpost
-						owner = event_target:citadel_council
-					}
-				}
-			# if = {
-			# 	limit = {
-			# 		has_country_flag = cat6
-			# 		any_system_within_border = {
-			# 			has_star_flag = elunia_system
-			# 		}
-			# 	}	
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = elunia_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			owner = event_target:cat6
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = noveria_development_corporation
-			# 		any_system_within_border = {
-			# 			has_star_flag = pax_system
-			# 		}
-			# 	}	
-			# 	random_owned_planet = {
-			# 		limit = {
-			# 			has_planet_flag = noveria_planet
-			# 		}
-			# 		set_capital = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = pax_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = offworld_trading_company
-			# 			owner = event_target:noveria_development_corporation
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = wrill_mining_consortium
-			# 		any_system_within_border = {
-			# 			has_star_flag = malgus_system
-			# 		}
-			# 	}	
-			# 	random_owned_planet = {
-			# 		limit = {
-			# 			has_planet_flag = wrill_planet
-			# 		}
-			# 		set_capital = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = malgus_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = offworld_trading_company
-			# 			owner = event_target:wrill_mining_consortium
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = relic_mineral_works
-			# 		any_system_within_border = {
-			# 			has_star_flag = relic_system
-			# 		}
-			# 	}	
-			# 	random_owned_planet = {
-			# 		limit = {
-			# 			has_planet_flag = drifting_skies_habitat
-			# 		}
-			# 		set_capital = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = relic_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = offworld_trading_company
-			# 			owner = event_target:relic_mineral_works
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }	
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = united_anhur_corporations
-			# 		any_system_within_border = {
-			# 			has_star_flag = amun_system
-			# 		}
-			# 	}	
-			# 	random_owned_planet = {
-			# 		limit = {
-			# 			has_planet_flag = anhur_planet
-			# 		}
-			# 		set_capital = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = amun_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = offworld_trading_company
-			# 			owner = event_target:united_anhur_corporations
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }	
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = asteria_agriculture
-			# 		any_system_within_border = {
-			# 			has_star_flag = hekate_system
-			# 		}
-			# 	}	
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = hekate_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = offworld_trading_company
-			# 			owner = event_target:asteria_agriculture
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
-
-
-
-
-			# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = collectors_empire
-			# 		any_system_within_border = {
-			# 			has_star_flag = tartarus_system
-			# 		}
-			# 	}	
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = tartarus_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starhold
-			# 			module = hangar_bay
-			# 			module = hangar_bay
-			# 			module = hangar_bay
-			# 			module = solar_panel_network
-			# 			module = shipyard
-			# 			module = shipyard
-			# 			building = fleet_academy
-			# 			building = resource_silo
-			# 			building = target_uplink_computer
-			# 			owner = event_target:collectors_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-						# if = {
-			# 	limit = {
-			# 		galaxy_size = btr_hybrid_400
-			# 		has_country_flag = cerberus_empire
-			# 		any_system_within_border = {
-			# 			has_star_flag = anadius_system
-			# 		}
-			# 	}
-			# 	random_owned_planet = {
-			# 		limit = {
-			# 			has_planet_flag = cronos_station
-			# 		}
-			# 		set_capital = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = anadius_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = shipyard
-			# 			module = trading_hub
-			# 			building = fleet_academy
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = lv426_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = hangar_bay
-			# 			module = trading_hub
-			# 			building = hydroponics_bay
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = patella_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = hangar_bay
-			# 			module = trading_hub
-			# 			building = hydroponics_bay
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = amazon_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_starport
-			# 			module = hangar_bay
-			# 			module = trading_hub
-			# 			building = crew_quarters
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = strenuus_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = columbia_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = yangtze_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = lazarus_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = 41275l_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = netheril_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# 	else_if = {
-			# 		limit = {
-			# 			has_star_flag = dakka_system
-			# 		}
-			# 		create_starbase = {
-			# 			size = starbase_outpost
-			# 			owner = event_target:cerberus_empire
-			# 		}
-			# 		btr_generate_stations = yes
-			# 	}
-			# }
-			}	
-		}
-	}
-}		
 
 ### Empire init - add ships
 country_event = {
-	id = btr_game_start.9
+	id = game_start.9
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
 		#science
-		# create_fleet = {
-		# 	effect = {
-		# 		set_owner = prev
+		if = {
+			limit = { 
+				OR = {
+					is_btr_major_empire = no					
+					is_btr_standard_empire = no
+					is_low_tech_start = no
+				}
+			}
+			create_fleet = {
+				effect = {
+					set_owner = prev
 
-		# 		create_ship = {
-		# 			name = random
-		# 			random_existing_design = science
-		# 		}
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
 
-		# 		set_fleet_stance = evasive
-		# 		#set_location = prev.capital_star
-		# 		set_location = prev.capital_scope.star
+					set_fleet_stance = evasive
+					#set_location = prev.capital_star
+					set_location = prev.capital_scope.star
 
-		# 		owner = {
-		# 			create_leader = {
-		# 				class = scientist
-		# 				sub_type = survey
-		# 				name = random
-		# 				species = owner_main_species
-		# 			}
-		# 		}
-		# 		set_leader = last_created_leader
-		# 	}
-		# }
+					owner = {
+						create_leader = {
+							class = scientist
+							sub_type = survey
+							name = random
+							species = owner_main_species
+						}
+					}
+					set_leader = last_created_leader
+				}
+			}
+		}
+		if = {
+			limit = { 
+				is_btr_standard_empire = yes
+			}
 
-		# #constructor
-		# create_fleet = {
-		# 	effect = {
-		# 		set_owner = prev
+			while = {
+				count = 2
+				create_fleet = {
+					effect = {
+						set_owner = prev
+	
+						create_ship = {
+							name = random
+							random_existing_design = science
+						}
+	
+						set_fleet_stance = evasive
+						#set_location = prev.capital_star
+						set_location = prev.capital_scope.star
+	
+						owner = {
+							create_leader = {
+								class = scientist
+								sub_type = survey
+								name = random
+								species = owner_main_species
+							}
+						}
+						set_leader = last_created_leader
+					}
+				}
+			}
+		}
+		if = {
+			limit = { 
+				OR = {
+					is_btr_major_empire = yes
+				}
+			}
 
-		# 		create_ship = {
-		# 			name = random
-		# 			random_existing_design = constructor
-		# 		}
+			while = {
+				count = 3
+				create_fleet = {
+					effect = {
+						set_owner = prev
+	
+						create_ship = {
+							name = random
+							random_existing_design = science
+						}
+	
+						set_fleet_stance = evasive
+						#set_location = prev.capital_star
+						set_location = prev.capital_scope.star
+	
+						owner = {
+							create_leader = {
+								class = scientist
+								sub_type = survey
+								name = random
+								species = owner_main_species
+							}
+						}
+						set_leader = last_created_leader
+					}
+				}
+			}
+		}
 
-		# 		set_fleet_stance = evasive
-		# 		set_location = prev.capital_star
-		# 	}
-		# }
 
 		#Asari Republics
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = asari_republics_ai
-						has_country_flag = asari_republics_player						
-					}
+					has_country_flag = asari_republics
 				}
 			}
 			generate_asari_rep_construction_ships = yes
@@ -4338,10 +491,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = salarian_union_ai
-						has_country_flag = salarian_union_player						
-					}
+					has_country_flag = salarian_union
 				}
 			}
 			generate_salarian_uni_first_fleet = yes
@@ -4353,10 +503,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = turian_hierarchy_ai
-						has_country_flag = turian_hierarchy_player						
-					}
+					has_country_flag = turian_hierarchy
 				}
 			}
 			generate_turian_hier_fourth_fleet = yes
@@ -4368,10 +515,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = systems_alliance_ai
-						has_country_flag = systems_alliance_player						
-					}
+					has_country_flag = systems_alliance
 				}
 			}
 			generate_systems_all_third_fleet = yes
@@ -4382,10 +526,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = courts_of_dekuuna_ai
-						has_country_flag = courts_of_dekuuna_player
-					}
+					has_country_flag = courts_of_dekuuna
 				}
 			}
 			generate_courts_dek_first_fleet = yes
@@ -4395,10 +536,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = illuminated_primacy_ai
-						has_country_flag = illuminated_primacy_player
-					}
+					has_country_flag = illuminated_primacy
 				}
 			}
 			generate_illuminated_pri_first_fleet = yes
@@ -4408,10 +546,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = vol_protectorate_ai
-						has_country_flag = vol_protectorate_player
-					}
+					has_country_flag = vol_protectorate
 				}
 			}
 			generate_vol_pro_first_fleet = yes
@@ -4421,10 +556,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = hegemony_of_kharshan_ai
-						has_country_flag = hegemony_of_kharshan_player
-					}
+					has_country_flag = hegemony_of_kharshan
 				}
 			}
 			generate_hegemony_khar_second_fleet = yes
@@ -4435,10 +567,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = aralakh_kahmat_ai
-						has_country_flag = aralakh_kahmat_player
-					}
+					has_country_flag = aralakh_kahmat
 				}
 			}
 			generate_aralakh_kah_third_fleet = yes
@@ -4448,10 +577,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = omega_empire_ai
-						has_country_flag = omega_empire_player
-					}
+					has_country_flag = omega_empire
 				}
 			}
 			generate_omega_first_fleet = yes
@@ -4462,10 +588,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = illium_corporate_interests_ai
-						has_country_flag = illium_corporate_interests_player
-					}
+					has_country_flag = illium_corporate_interests
 				}
 			}
 			generate_illium_corpsec_fleet = yes
@@ -4475,10 +598,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = caleston_directorate_ai
-						has_country_flag = caleston_directorate_player
-					}
+					has_country_flag = caleston_directorate
 				}
 			}
 			generate_caleston_corpsec_fleet = yes
@@ -4488,10 +608,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = sedriicae_collective_ai
-						has_country_flag = sedriicae_collective_player
-					}
+					has_country_flag = sedriicae_collective
 				}
 			}
 			generate_sedriicae_col_first_fleet = yes
@@ -4501,10 +618,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = lystheni_order_ai
-						has_country_flag = lystheni_order_player
-					}
+					has_country_flag = lystheni_order
 				}
 			}
 			generate_sedriicae_col_first_fleet = yes
@@ -4514,10 +628,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = gothones_remnant_ai
-						has_country_flag = gothones_remnant_player
-					}
+					has_country_flag = gothones_remnant
 				}
 			}
 			generate_gothones_rem_first_fleet = yes
@@ -4527,10 +638,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = geth_consensus_ai
-						has_country_flag = geth_consensus_player
-					}
+					has_country_flag = geth_consensus
 				}
 			}
 			generate_geth_con_first_fleet = yes
@@ -4540,10 +648,7 @@ country_event = {
 		if = {
 			limit = { 
 				root = {
-					OR = {
-						has_country_flag = disciples_of_nazara_ai
-						has_country_flag = disciples_of_nazara_player
-					}
+					has_country_flag = disciples_of_nazara
 				}
 			}
 			generate_disciples_naz_first_fleet = yes
@@ -4560,506 +665,1341 @@ country_event = {
 			generate_citadel_con_second_fleet = yes
 			generate_citadel_con_third_fleet = yes
 			generate_citadel_con_construction_ships = yes
-		}		
-
-		log = "btr_game_start.9 - Fleets Generated"
-	}
-}
-
-
-#Fix pop unemployment
-country_event = {
-	id = btr_game_start.10
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		has_country_flag = btr_empire
-	}
-	immediate = {
-		every_owned_planet = {
-			check_planet_employment = yes
 		}
-
-		log = "btr_game_start.10 - Fix pop unemployment"
-	}
-}
-
-
-country_event = {
-	id = btr_game_start.11
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		galaxy_size = btr_hybrid_600
-	}
-
-	immediate = {
-		every_owned_planet = {
-			if = {
-				limit = { 
-					has_planet_flag = civil_station
-				}
-				hidden_effect = {
-					if = {
-						limit = {
-							exists = owner
-							owner = {
-								is_megacorp = yes
-								is_spiritualist = no
-							}
-						}
-						custom_tooltip = district_corporate_complex_add
-					}
-				}
-				custom_tooltip = district_commercial_wards_add
-				hidden_effect = {
-					if = {
-						limit = {
-							exists = owner
-							owner = {
-								has_origin = origin_necrophage
-								has_trait = trait_necrophage
-								NOT = { has_valid_civic = civic_fanatic_purifiers }
-							}
-						}
-						custom_tooltip = district_elevation_center_add
-					}
-					if = {
-						limit = {
-							NOR = {
-								is_planet_class = pc_asteroid_station
-								is_planet_class = pc_ice_asteroid_station
-								is_planet_class = pc_crystal_asteroid_station
-							}
-						}
-						custom_tooltip = district_storage_yards_add
-					}
-					else = {
-						custom_tooltip = district_docking_bay_add
-					}
-					if = {
-						limit = { has_deposit = d_trading_route }
-						custom_tooltip = district_free_port_add
-					}
-					
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = civil_station
-						validate_planet_buildings_and_districts = yes
-					}
-				}
-			}
-			if = {
-				limit = { 
-					has_planet_flag = research_station
-				}
-				hidden_effect = {
-					if = {
-						limit = { has_deposit = d_mineral_lodes }
-						custom_tooltip = district_mining_complex_add
-					}
-					if = {
-						limit = { has_deposit = d_ore_rich_rings }
-						custom_tooltip = district_ore_processing_complex_add
-					}
-					if = {
-						limit = { has_deposit = d_rich_regolith_formations }
-						custom_tooltip = district_helium_extractor_add
-					}
-					if = {
-						limit = { has_deposit = d_helium_clouds }
-						custom_tooltip = district_helium_mining_facility_add
-					}
-					if = {
-						limit = { 
-							owner = { has_technology = tech_mine_volatile_motes }
-							has_deposit = d_dust_cavities
-						}
-						custom_tooltip = district_mote_mine_add
-					}
-					if = {
-						limit = { 
-							owner = { has_technology = tech_mine_exotic_gases }
-							has_deposit = d_exotic_gases_vent
-						}
-						custom_tooltip = district_gas_refinery_add
-					}
-					if = {
-						limit = { 
-							owner = { has_technology = tech_mine_rare_crystals }
-							has_deposit = d_crystal_cavities
-						}
-						custom_tooltip = district_crystal_mining_add
-					}
-					if = {
-						limit = { 
-							owner = { has_technology = tech_mine_zro }
-							has_deposit = d_zro_source
-						}
-						custom_tooltip = district_zro_harvesting_add
-					}
 		
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = mining_station
-						validate_planet_buildings_and_districts = yes
-					}
+		else_if = {
+			limit = {
+				NOT = {
+					has_origin = origin_broken_shackles
+					# Assigned in origin.110 instead
 				}
 			}
-			if = {
-				limit = { 
-					has_planet_flag = military_station
-				}
-				custom_tooltip = district_barracks_add
-				custom_tooltip = district_fortified_bunkers_add
-				hidden_effect = {
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = military_station
-						validate_planet_buildings_and_districts = yes
-					}
-				}	
-			}
-			if = {
-				limit = { 
-					has_planet_flag = prison_station
-				}
-				hidden_effect = {
-					custom_tooltip = decision_prison_station_effect_desc
-					if = {
-						limit = { owner = { is_authoritarian = yes } }
-						custom_tooltip = add_political_persecution
-					}
-					if = {
-						limit = { owner = { is_spiritualist = yes } }
-						custom_tooltip = add_hunting_heretics
-					}
-					custom_tooltip = add_detention_operation
-					
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = prison_station
-						validate_planet_buildings_and_districts = yes
-					}
-				}
-			}
-			if = {
-				limit = { 
-					has_planet_flag = industrial_station
-				}
-				custom_tooltip = district_foundry_plant_add
-				hidden_effect = {
-					if = {
-						limit = { 
-							owner = {
-								country_uses_consumer_goods = yes
-							}
-						}
-						custom_tooltip = district_manufacturing_complex_add
-					}
-					if = {
-						limit = { 
-							owner = {
-								OR = {
-									AND = {
-										is_regular_empire = yes
-										NOT = { has_policy_flag = robots_outlawed }
-										has_technology = tech_robotic_workers
-									}
-									is_machine_empire = yes
-								}
-							}
-						}
-						custom_tooltip = district_assembly_factory_add
-					}
-					if = {
-						limit = { 
-							owner = { has_technology = tech_mine_living_metal }
-							has_deposit = d_living_metal_deposit
-						}
-						custom_tooltip = district_living_metal_processing_add
-					}
-					
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = industrial_station
-						validate_planet_buildings_and_districts = yes
-					}
-				}
+			create_leader = {
+				class = admiral
+				name = random
+				species = owner_main_species
 			}
 		}
-
-		log = "btr_game_start.11 - Generate Planetary Station Districts"
 	}
 }
 
+# this: capital planet
+# from: founder species
+planet_event = {
+	id = game_start.12
+	hide_window = yes
+	is_triggered_only = yes
 
-#Starting Technologies 
+	immediate = {
+		generate_start_deposits_and_blockers = yes
+		generate_start_buildings_and_districts = yes
+		generate_start_pops = yes
+		generate_home_planet_final_pass = yes
+	}
+}
+
+# on_initialize_advanced_colony: remove tile blockers on capital
+planet_event = {
+	id = game_start.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	pre_triggers = {
+		is_capital = yes
+	}
+
+	trigger = {
+		owner = { NOT = { has_origin = origin_shattered_ring } }
+	}
+
+	immediate = {
+		clear_blockers = yes
+	}
+}
+
+# on_initialize_advanced_colony: upgrade colony shelter
+planet_event = {
+	id = game_start.21
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_building = building_colony_shelter }
+			remove_building = building_colony_shelter
+			add_building = building_capital
+			break = yes
+		}
+		if = {
+			limit = { has_building = building_deployment_post }
+			remove_building = building_deployment_post
+			add_building = building_machine_capital
+		}
+	}
+}
+
+@advanced_empire_capital_num_power_plants = 4
+@advanced_empire_colony_num_power_plants = 2
+@advanced_empire_num_mines = 1
+@advanced_empire_num_farms = 1
+
+# on_initialize_advanced_colony: set up additional buildings (mines, farms, power plants)
+planet_event = {
+	id = game_start.22
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				is_capital = yes
+				NOT = { owner = { has_origin = origin_shattered_ring } }
+			}
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+
+			if = {
+				limit = { owner = { has_authority = auth_machine_intelligence } }
+				add_district_and_planet_size_if_needed_effect = { district = district_nexus }
+				add_district_and_planet_size_if_needed_effect = { district = district_nexus }
+			}
+			else_if = {
+				limit = { owner = { has_authority = auth_hive_mind } }
+				add_district_and_planet_size_if_needed_effect = { district = district_hive }
+				add_district_and_planet_size_if_needed_effect = { district = district_hive }
+			}
+			else = {
+				add_district_and_planet_size_if_needed_effect = { district = district_city }
+				add_district_and_planet_size_if_needed_effect = { district = district_city }
+			}
+
+			if = {
+				limit = {
+					owner = {
+						NOT = { has_authority = auth_machine_intelligence }
+						is_anglers_empire = yes
+					}
+					is_planet_class = pc_ocean
+				}
+				add_district_and_planet_size_if_needed_effect = { district = district_farming_uncapped }
+				add_district_and_planet_size_if_needed_effect = { district = district_farming_uncapped }
+			}
+			else_if = {
+				limit = {
+					owner = { NOT = { has_authority = auth_machine_intelligence } }
+				}
+				add_district_and_planet_size_if_needed_effect = { district = district_farming }
+				add_district_and_planet_size_if_needed_effect = { district = district_farming }
+			}
+			if = {
+				limit = {
+					owner = { has_authority = auth_machine_intelligence }
+				}
+				add_district_and_planet_size_if_needed_effect = { district = district_generator }
+				add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			}
+
+			if = {
+				limit = { owner = { is_gestalt = no } }
+				add_building = building_factory_1
+				add_building = building_commercial_zone
+			}
+			if = {
+				limit = {
+					owner = { is_subterranean_empire = yes }
+				}
+				add_district_and_planet_size_if_needed_effect = { district = district_mining_uncapped }
+				add_district_and_planet_size_if_needed_effect = { district = district_mining_uncapped }
+			}
+		}
+		else_if = {
+			limit = {
+				is_capital = yes
+				owner = { has_origin = origin_shattered_ring }
+			}
+
+			random_deposit = {
+				limit = { is_deposit_type = d_decrepit_tunnels_2 }
+				clear_blocker = yes
+			}
+			random_deposit = {
+				limit = { is_deposit_type = d_decrepit_tunnels_3 }
+				clear_blocker = yes
+			}
+			random_deposit = {
+				limit = { is_deposit_type = d_segment_rubble_4 }
+				clear_blocker = yes
+			}
+			while = {
+				count = 2
+				add_district_if_possible_effect = {
+					district = district_industrial
+				}
+			}
+			while = {
+				count = 2
+				add_district_if_possible_effect = {
+					district = district_mining_uncapped
+				}
+			}
+			if = {
+				limit = {
+					owner = { is_gestalt = no }
+				}
+				while = {
+					count = 2
+					add_district_if_possible_effect = {
+						district = district_city
+					}
+				}
+				if = {
+					limit = {
+						owner = { 
+							is_lithoid_empire = yes
+						}
+					}
+					add_district_if_possible_effect = {
+						district = district_srw_commercial
+					}
+				}
+				else = {
+					add_district_if_possible_effect = {
+						district = district_farming_uncapped
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					owner = { is_hive_empire = yes }
+				}
+				while = {
+					count = 2
+					add_district_if_possible_effect = {
+						district = district_hive
+					}
+				}
+				if = {
+					limit = {
+						owner = { is_lithoid_empire = yes }
+					}
+					add_district_if_possible_effect = {
+						district = district_hive
+					}
+				}
+				else = {
+					add_district_if_possible_effect = {
+						district = district_farming_uncapped
+					}
+				}
+			}
+			else = {
+				while = {
+					count = 3
+					add_district_if_possible_effect = {
+						district = district_nexus
+					}
+				}
+			}
+
+			add_building = building_foundry_1
+			add_building = building_factory_1
+			if = {
+				limit = {
+					owner = {
+						is_megacorp = no
+						is_spiritualist = no
+						is_gestalt = no
+					}
+				}
+				add_building = building_bureaucratic_1
+			}
+			else_if = {
+				limit = {
+					owner = { is_spiritualist = yes }
+				}
+				add_building = building_temple
+			}
+			else_if = {
+				limit = {
+					owner = { is_megacorp = yes }
+				}
+				add_building = building_corporate_monument
+			}
+			else_if = {
+				limit = {
+					owner = { is_hive_empire = yes }
+				}
+				add_building = building_hive_node
+			}
+			else_if = {
+				limit = {
+					owner = {
+						is_machine_empire = yes
+						NOT = { has_valid_civic = civic_machine_servitor }
+					}
+				}
+				add_building = building_simulation_1
+			}
+			if = {
+				limit = {
+					owner = { is_gestalt = no }
+				}
+				add_building = building_holo_theatres
+			}
+		}
+		else = {
+			add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			add_district_and_planet_size_if_needed_effect = { district = district_mining }
+
+			if = {
+				limit = { owner = { has_authority = auth_machine_intelligence } }
+				add_district_and_planet_size_if_needed_effect = { district = district_nexus }
+				add_district_and_planet_size_if_needed_effect = { district = district_generator }
+				add_district_and_planet_size_if_needed_effect = { district = district_generator }
+			}
+			else_if = {
+				limit = { owner = { has_authority = auth_hive_mind } }
+				add_district_and_planet_size_if_needed_effect = { district = district_hive }
+				add_district_and_planet_size_if_needed_effect = { district = district_farming }
+			}
+			else = {
+				add_district_and_planet_size_if_needed_effect = { district = district_city }
+				if = {
+					limit = {
+						owner = { is_anglers_empire = yes }
+						is_planet_class = pc_ocean
+					}
+					add_district_and_planet_size_if_needed_effect = { district = district_farming_uncapped }
+				}
+				else = {
+					add_district_and_planet_size_if_needed_effect = { district = district_farming }
+				}
+			}
+
+			if = {
+				limit = { owner = { has_origin = origin_mechanists } }
+				add_building = building_robot_assembly_plant
+			}
+			if = {
+				limit = {
+					owner = {
+						has_origin = origin_necrophage
+						NOT = { has_civic = civic_fanatic_purifiers } #purges them instead
+						NOT = { has_ai_personality_behaviour = purger }
+					}
+				}
+				add_building = building_necrophage_elevation_chamber
+			}
+		}
+	}
+}
+
+# on_initialize_advanced_colony: add additional pops
+planet_event = {
+	id = game_start.23
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { is_capital = yes }
+
+			if = {
+				limit = { owner = { has_authority = auth_machine_intelligence } }
+				while = {
+					count = 13
+					create_pop = { species = owner_main_species }
+				}
+			}
+			else_if = {
+				limit = { owner = { has_authority = auth_hive_mind } }
+				while = {
+					count = 16
+					create_pop = { species = owner_main_species }
+				}
+			}
+			else_if = {
+				limit = { owner = { has_origin = origin_mechanists } }
+				random_galaxy_species = {
+					limit = {
+						has_species_flag = mechanical_species@root.owner
+					}
+					save_event_target_as = mechanical_species
+				}
+				while = {
+					count = 6
+					create_pop = {
+						species = event_target:mechanical_species
+					}
+				}
+				while = {
+					count = 12
+					create_pop = { species = owner_main_species }
+				}
+			}
+			else_if = {
+				limit = {
+					owner = {
+						OR = {
+							has_origin = origin_syncretic_evolution
+							has_origin = origin_necrophage
+						}
+					}
+				}
+				random_galaxy_species = {
+					limit = {
+						has_species_flag = syncretic_species@root.owner
+					}
+					save_event_target_as = syncretic_species
+				}
+				while = {
+					count = 8
+					create_pop = { species = event_target:syncretic_species }
+				}
+				while = {
+					count = 10
+					create_pop = { species = owner_main_species }
+				}
+			}
+			else = {
+				while = {
+					count = 18
+					create_pop = { species = owner_main_species }
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = { owner = { has_authority = auth_machine_intelligence } }
+				while = {
+					count = 15
+					create_pop = { species = owner_main_species }
+				}
+			}
+			else_if = {
+				limit = { owner = { has_authority = auth_hive_mind } }
+				while = {
+					count = 18
+					create_pop = { species = owner_main_species }
+				}
+			}
+			else_if = {
+				limit = { owner = { has_origin = origin_mechanists } }
+				random_galaxy_species = {
+					limit = {
+						has_species_flag = mechanical_species@root.owner
+					}
+					save_event_target_as = mechanical_species
+				}
+				while = {
+					count = 4
+					create_pop = {
+						species = event_target:mechanical_species
+					}
+				}
+				while = {
+					count = 7
+					create_pop = { species = owner_main_species }
+				}
+			}
+			else_if = {
+				limit = {
+					owner = {
+						OR = {
+							has_origin = origin_syncretic_evolution
+							has_origin = origin_necrophage
+						}
+					}
+				}
+				random_galaxy_species = {
+					limit = {
+						has_species_flag = syncretic_species@root.owner
+					}
+					save_event_target_as = syncretic_species
+				}
+				while = {
+					count = 4
+					create_pop = { species = event_target:syncretic_species }
+				}
+				while = {
+					count = 6
+					create_pop = { species = owner_main_species }
+				}
+			}
+			else = {
+				while = {
+					count = 10
+					create_pop = { species = owner_main_species }
+				}
+			}
+		}
+	}
+}
+
+### Create wormhole pairs
+event = {
+	id = game_start.31
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		get_galaxy_setup_value = {
+			setting = num_wormhole_pairs
+			which = local_wormholes_num
+			scale_by = 5
+		}
+		while = {
+			count = local_wormholes_num
+			random_system = {
+				limit = {
+					NOR = {
+						has_natural_wormhole = yes
+						starting_system = yes
+						has_star_flag = empire_cluster
+					}
+				}
+				random_system = {
+					limit = {
+						NOR = {
+							has_natural_wormhole = yes
+							starting_system = yes
+							has_star_flag = empire_cluster
+						}
+						distance = {
+							source = prev
+							min_distance >= 500
+						}
+					}
+					prev = { # done this way to ensure we don't spawn "orphan" wormholes (wormholes that aren't linked to anything)
+						spawn_natural_wormhole = {
+							bypass_type = wormhole
+							random_pos = yes
+							orbit_angle = 360
+						}
+					}
+					spawn_natural_wormhole = {
+						bypass_type = wormhole
+						random_pos = yes
+						orbit_angle = 360
+					}
+					link_wormholes = prev
+				}
+			}
+		}
+	}
+}
+
+### Empire init - populate home system
 country_event = {
-	id = btr_game_start.12
+	id = game_start.33
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-		galaxy_size = btr_hybrid_600
+		is_country_type = default
 	}
 
 	immediate = {
 		if = {
-			limit = { 
-				has_country_flag = asari_republics
+			limit = { #Make sure you are unlikely to be boxed in completely
+				OR = {
+					has_origin = origin_hegemon
+					has_origin = origin_common_ground
+				}
+				capital_scope = {
+					solar_system = {
+						NOT = {
+							any_neighbor_system = {
+								NOT = { exists = owner }
+							}
+						}
+					}
+				}
 			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_btr_T2_starting_tech = yes
-			give_starting_ship_tech = yes
+			if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 1
+							max_distance <= 15
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 1
+							max_distance <= 15
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 15
+							max_distance <= 20
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 15
+							max_distance <= 20
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 20
+							max_distance <= 25
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 20
+							max_distance <= 25
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 25
+							max_distance <= 40
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 25
+							max_distance <= 40
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 40
+							max_distance <= 60
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+				}
+				random_system = {
+					limit = {
+						distance = {
+							source = root.capital_scope.solar_system
+							type = euclidean
+							min_distance >= 40
+							max_distance <= 60
+						}
+						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+						NOT = { exists = owner }
+					}
+					save_event_target_as = hyperlane_system
+					add_hyperlane = {
+						from = this
+						to = root.capital_scope.solar_system
+					}
+				}
+			}
+			if = {
+				limit = {
+					exists = event_target:hyperlane_system
+					event_target:hyperlane_system = {
+						NOT = {
+							any_neighbor_system = {
+								NOT = { exists = owner }
+							}
+						}
+					}
+				}
+				event_target:hyperlane_system = {
+					random_system = {
+						limit = {
+							distance = {
+								source = prev
+								type = euclidean
+								min_distance >= 1
+								max_distance <= 25
+							}
+							NOT = { has_hyperlane_to = prev }
+							NOT = { exists = owner }
+						}
+						add_hyperlane = {
+							from = this
+							to = prev
+						}
+					}
+				}
+			}
 		}
 		if = {
-			limit = { 
-				has_country_flag = turian_hierarchy
+			limit = {
+				has_origin = origin_default
+				NOT = { has_technology = tech_planetary_unification }
 			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_btr_T2_starting_tech = yes
-			give_starting_ship_tech = yes
+			add_research_option = tech_planetary_unification
 		}
 		if = {
-			limit = { 
-				has_country_flag = salarian_union
+			every_planet_within_border = {
+				limit = {
+					has_deposit_for = shipclass_mining_station
+					has_planet_flag = starting_mining_target
+					has_mining_station = no
+					root = {
+						is_low_tech_start = no
+					}
+				}
+				create_mining_station = {
+					owner = ROOT
+				}
 			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_btr_T2_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = courts_of_dekuuna
+			every_planet_within_border = {
+				limit = {
+					has_deposit_for = shipclass_research_station
+					has_planet_flag = starting_research_target
+					has_research_station = no
+					root = {
+						is_low_tech_start = no
+					}
+				}
+				create_research_station = {
+					owner = ROOT
+				}
 			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = systems_alliance
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = vol_protectorate
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = illuminated_primacy
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = hegemony_of_kharshan
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = aralakh_kahmat
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		# if = {
-		# 	limit = { 
-		# 		has_country_flag = migrant_fleet
-		# 	}
-		# 	give_btr_T0_starting_tech = yes
-		# 	give_btr_T1_starting_tech = yes
-		# }
-		# if = {
-		# 	limit = { 
-		# 		has_country_flag = cerberus_empire
-		# 	}
-		# 	give_btr_T0_starting_tech = yes
-		# 	give_btr_T1_starting_tech = yes
-		# }
-		if = {
-			limit = { 
-				has_country_flag = omega_empire
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = illium_corporate_interests
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = remnants_of_rakhana
-			}
-			give_btr_T0_starting_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = vorcha_clandom
-			}
-			give_btr_vorcha_starting_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = sedriicae_collective
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = lystheni_order
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = gothones_remnant
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = parnack_regime_player
-			}
-			give_btr_T0_starting_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = raloi_republic_player
-			}
-			give_btr_T0_starting_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = geth_consensus
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = disciples_of_nazara
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		if = {
-			limit = { 
-				has_country_flag = rachni_hive
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_btr_T2_starting_tech = yes
-			give_starting_ship_tech = yes
-		}
-		# if = {
-		# 	limit = { 
-		# 		has_country_flag = collectors_empire
-		# 	}
-		# 	give_btr_T0_starting_tech = yes
-		# 	give_btr_T1_starting_tech = yes
-		# }
-		if = {
-			limit = { 
-				has_country_flag = citadel_council
-			}
-			give_btr_T0_starting_tech = yes
-			give_btr_T1_starting_tech = yes
-			give_btr_T2_starting_tech = yes
-			give_starting_ship_tech = yes
 		}
 
-		log = "btr_game_start.12 - Generate Starting Techs"
+		if = {
+			limit = {
+				has_origin = origin_necrophage
+				NOT = { has_civic = civic_fanatic_purifiers }
+				NOT = { has_ai_personality_behaviour = purger }
+			}
+			country_event = { id = necroids.2 days = 3420 } #tell them about the necrophage mechanic
+		}
+		if = {
+			limit = {
+				has_origin = origin_necrophage
+				is_ai = yes
+			}
+			country_event = { id = necroids.6 days = 1800 }
+			country_event = { id = necroids.6 days = 3600 }
+			country_event = { id = necroids.6 days = 5400 }
+			country_event = { id = necroids.6 days = 7200 }
+		}
+		if = {
+			limit = {
+				has_origin = origin_necrophage
+				OR = {
+					has_country_flag = necrophage_commonwealth
+					has_country_flag = necrophage_une
+				}
+			}
+			random_country = {
+				limit = {
+					OR = {
+						AND = {
+							has_country_flag = human_1
+							prev = { has_country_flag = necrophage_commonwealth }
+						}
+						AND = {
+							has_country_flag = human_2
+							prev = { has_country_flag = necrophage_une }
+						}
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						NOT = { is_same_species = prev }
+					}
+					species = { save_event_target_as = correct_prepatent_species }
+				}
+			}
+			every_owned_pop = {
+				limit = {
+					NOT = { is_same_species = owner_species }
+				}
+				planet = {
+					create_pop = {
+						species = event_target:correct_prepatent_species
+					}
+				}
+				kill_pop = yes
+			}
+			remove_country_flag = necrophage_une
+			remove_country_flag = necrophage_commonwealth
+		}
+		if = {
+			limit = {
+				has_origin = origin_slavers
+			}
+			capital_scope = { generate_slaver_bonus = yes }
+		}
+		if = {
+			limit = {
+				has_valid_civic = civic_hive_stargazers
+			}
+			every_system = {
+				limit = {
+					distance = {
+						source = root.capital_scope
+						use_bypasses = no
+						max_jumps = 3
+					}
+				}
+				root = { set_visited = prev }
+			}
+		}
+	}
+}
+
+### Nebula System Art
+event = {
+	id = game_start.50
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_system = {
+			limit = { is_inside_nebula = yes }
+			nebula_cloaking_effect = yes
+			# Class B
+			if = {
+				limit = {
+					OR = {
+						is_star_class = sc_b
+						is_star_class = sc_binary_2
+						is_star_class = sc_binary_5
+						is_star_class = sc_trinary_2
+						is_star_class = sc_trinary_4
+					}
+				}
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+				}
+			}
+			# Class A
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_a
+						is_star_class = sc_binary_1
+						is_star_class = sc_binary_9
+						is_star_class = sc_binary_10
+					}
+				}
+				if = {
+					limit = { has_star_flag = ocean_paradise_nebula }
+					create_rare_nebula_1 = yes
+				}
+				else = {
+					random_list = {
+						20 = { create_nebula_3 = yes }
+						20 = { create_nebula_4 = yes }
+						10 = { create_rare_nebula_1 = yes }
+						10 = { create_rare_nebula_2 = yes }
+						4 = {
+							modifier = {
+								factor = 0
+								has_star_flag = empire_home_system
+							}
+							create_turbulent_nebula_1 = yes
+						}
+						4 = {
+							modifier = {
+								factor = 0
+								has_star_flag = empire_home_system
+							}
+							create_turbulent_nebula_2 = yes
+						}
+					}
+				}
+			}
+			# Class F
+			else_if = {
+				limit = { is_star_class = sc_f }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+				}
+			}
+			# Class G
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_g
+						is_star_class = sc_binary_8
+						is_star_class = sc_trinary_1
+					}
+				}
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class K
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_k
+						is_star_class = sc_binary_7
+						is_star_class = sc_trinary_3
+					}
+				}
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class M
+			else_if = {
+				limit = {
+					OR = {
+						is_star_class = sc_m
+						is_star_class = sc_m_giant
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_4
+						is_star_class = sc_binary_6
+					}
+				}
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Class T
+			else_if = {
+				limit = { is_star_class = sc_t }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+				}
+			}
+			# Black Hole
+			else_if = {
+				limit = { is_star_class = sc_black_hole }
+				random_list = {
+					20 = { create_nebula_1 = yes }
+					20 = { create_nebula_2 = yes }
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Neutron Star
+			else_if = {
+				limit = { is_star_class = sc_neutron_star }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+			# Pulsar
+			else_if = {
+				limit = { is_star_class = sc_pulsar }
+				random_list = {
+					20 = { create_nebula_3 = yes }
+					20 = { create_nebula_4 = yes }
+					10 = { create_rare_nebula_1 = yes }
+					10 = { create_rare_nebula_2 = yes }
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_1 = yes
+					}
+					4 = {
+						modifier = {
+							factor = 0
+							has_star_flag = empire_home_system
+						}
+						create_turbulent_nebula_2 = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = game_start.60
+	hide_window = yes
+	trigger = {
+		is_country_type = default
+		#selectable = { host_has_dlc = "Galactic Paragons" }
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_variable = {
+			which = paragon_chance_negative
+			value = 0
+		}
+
+		# Give Empire the starting Council Agenda, and progress it to about 1-2 years from finishing.
+		if = {
+			limit = { is_gestalt = yes }
+			set_council_agenda = agenda_infinite_opportunities_gestalt
+		}
+		else = {
+			set_council_agenda = agenda_infinite_opportunities
+
+			# Prefer a Scientist as Head of Research (otherwise picks your Home planet Governor).
+			random_owned_leader = {
+				limit = {
+					leader_class = scientist
+					is_ruler = no
+				}
+				set_council_position = councilor_research
+			}
+		}
+		add_council_agenda_progress = 6000
+	}
+}
+
+# Create Gestalt Council.
+country_event = {
+	id = game_start.61
+	hide_window = yes
+	trigger = {
+		OR = {
+			is_country_type = default
+			is_country_type = fallen_empire
+		}
+		is_gestalt = yes
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		country_create_gestalt_councilor = {
+			CLASS = governor
+			COUNCIL_POS = councilor_gestalt_governor
+			DESC = councilor_gestalt_governor_desc
+		}
+		country_create_gestalt_councilor = {
+			CLASS = scientist
+			COUNCIL_POS = councilor_gestalt_scientist
+			DESC = councilor_gestalt_scientist_desc
+		}
+		country_create_gestalt_councilor = {
+			CLASS = admiral
+			COUNCIL_POS = councilor_gestalt_admiral
+			DESC = councilor_gestalt_admiral_desc
+		}
+		country_create_gestalt_councilor = {
+			CLASS = general
+			COUNCIL_POS = councilor_gestalt_general
+			DESC = councilor_gestalt_general_desc
+		}
+		if = {
+			limit = {
+				is_country_type = fallen_empire
+			}
+			every_owned_leader = {
+				limit = {
+					is_councilor = yes
+					is_ruler = no
+				}
+				add_skill = 9
+				set_gestalt_node_protrait_effect = yes
+			}
+		}
+	}
+}
+
+#Place Memory Vault building if you have the civic at game start
+country_event = {
+	id = game_start.62
+	hide_window = yes
+	trigger = {
+		is_country_type = default
+		is_memory_vault_empire = yes
+		NOR = {
+			has_origin = origin_broken_shackles
+			has_origin = origin_payback
+			has_origin = origin_void_dwellers
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		capital_scope = {
+			set_variable = {
+				which = paragon_memory_vault
+				value = 0
+			}
+			add_building = building_paragon_memory_vaults
+		}
+	}
+}
+
+# Change Ethic of first Ruler to empire's fanatic ethic.
+# More likely they would've been elected, and easier to re-elect them.
+country_event = {
+	id = game_start.63
+	hide_window = yes
+	trigger = {
+		is_country_type = default
+		is_gestalt = no
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		switch = {
+			trigger = has_ethic
+			ethic_fanatic_pacifist = {
+				ruler = { change_background_ethic = ethic_pacifist }
+			}
+			ethic_fanatic_militarist = {
+				ruler = { change_background_ethic = ethic_militarist }
+			}
+			ethic_fanatic_xenophile = {
+				ruler = { change_background_ethic = ethic_xenophile }
+			}
+			ethic_fanatic_xenophobe = {
+				ruler = { change_background_ethic = ethic_xenophobe }
+			}
+			ethic_fanatic_egalitarian = {
+				ruler = { change_background_ethic = ethic_egalitarian }
+			}
+			ethic_fanatic_authoritarian = {
+				ruler = { change_background_ethic = ethic_authoritarian }
+			}
+			ethic_fanatic_spiritualist = {
+				ruler = { change_background_ethic = ethic_spiritualist }
+			}
+			ethic_fanatic_materialist = {
+				ruler = { change_background_ethic = ethic_materialist }
+			}
+		}
+	}
+}
+
+#Place Clinic building if you have the Pharma civic at game start
+country_event = {
+	id = game_start.64
+	hide_window = yes
+	trigger = {
+		exists = owner
+		has_civic = civic_private_healthcare_corporate
+		is_country_type = default
+		NOR = {
+			has_origin = origin_broken_shackles
+			has_origin = origin_payback
+			has_origin = origin_void_dwellers
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		capital_scope = { add_building = building_clinic }
+		give_technology = { message = no tech = tech_frontier_health }
+		add_research_option = tech_subdermal_stimulation
+	}
+}
+
+#Place additional cop building, if you have Dystopian Society
+country_event = {
+	id = game_start.65
+	hide_window = yes
+	trigger = {
+		exists = owner
+		has_civic = civic_dystopian_society
+		is_country_type = default
+		NOR = {
+			has_origin = origin_broken_shackles
+			has_origin = origin_payback
+			has_origin = origin_void_dwellers
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		capital_scope = { add_building = building_precinct_house }
+	}
+}
+
+#Xenolinguistic tech for some Origins
+country_event = {
+	id = game_start.66
+	hide_window = yes
+	trigger = {
+		has_paragon_dlc = yes
+		exists = owner
+		is_country_type = default
+		OR = {
+			has_origin = origin_broken_shackles
+			has_origin = origin_payback
+			has_origin = origin_scion
+			has_origin = origin_common_ground
+			has_origin = origin_hegemon
+			has_origin = origin_imperial_vassal
+		}
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		add_research_option = tech_xeno_linguistics
+		add_tech_progress = {
+			tech = tech_xeno_linguistics
+			progress = 0.50
+		}
 	}
 }

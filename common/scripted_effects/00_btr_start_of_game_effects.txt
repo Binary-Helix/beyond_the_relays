@@ -1,0 +1,1119 @@
+# This is called after game start
+generate_btr_home_system_resources = {
+	optimize_memory
+	every_system_planet = {
+		limit = {
+			colonizable_planet = no
+			NOT = { has_planet_flag = ignore_startup_effect }
+		}
+		prevent_anomaly = yes
+		#clear_deposits = yes
+	}
+
+	# ENERGY
+	system_star = {
+		set_planet_flag = starting_mining_target
+		set_planet_flag = starting_deposit
+		set_deposit = d_energy_5
+		if = {
+			limit = { 
+				is_planet_class = pc_m_giant_star		
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_6
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_g_giant_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_m_super_star		
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_7
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_o_super_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_b_super_star
+				is_planet_class = pc_f_super_star
+				is_planet_class = pc_g_super_star
+				is_planet_class = pc_k_super_star	
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_8
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_o_hyper_star
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_10
+		}
+	}
+	random_system_planet = {
+		limit = {
+			NOT = { has_planet_flag = starting_deposit }
+			NOT = { has_planet_flag = ignore_startup_effect }
+			OR = {
+				is_planet_class = pc_o_star
+				is_planet_class = pc_o_super_star
+				is_planet_class = pc_o_hyper_star	
+				is_planet_class = pc_a_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_b_star
+				is_planet_class = pc_b_super_star
+				is_planet_class = pc_f_star
+				is_planet_class = pc_f_super_star
+				is_planet_class = pc_g_star
+				is_planet_class = pc_g_giant_star
+				is_planet_class = pc_g_super_star
+				is_planet_class = pc_k_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_k_super_star	
+				is_planet_class = pc_m_star
+				is_planet_class = pc_m_giant_star
+				is_planet_class = pc_m_super_star
+				is_planet_class = pc_m_hyper_star
+				is_planet_class = pc_gas_giant
+				is_planet_class = pc_hot_giant
+				is_planet_class = pc_t_star
+				is_planet_class = pc_l_star
+				is_planet_class = pc_y_star	
+				is_planet_class = pc_d_star	
+			}
+		}
+		set_planet_flag = starting_mining_target
+		set_planet_flag = starting_deposit
+		set_deposit = d_energy_5
+		if = {
+			limit = { 
+				is_planet_class = pc_m_giant_star		
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_6
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_g_giant_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_m_super_star		
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_7
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_o_super_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_b_super_star
+				is_planet_class = pc_f_super_star
+				is_planet_class = pc_g_super_star
+				is_planet_class = pc_k_super_star	
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_8
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_o_hyper_star
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_10
+		}
+	}
+}
+
+# This is called after game start
+generate_btr_start_deposits_and_blockers = {
+	optimize_memory
+	clear_deposits = yes
+
+	#Asari Republics
+	if = {
+		limit = { 
+			has_planet_flag = thessia_planet
+		}
+		generate_asr_thessia_deposits = yes
+	}
+	#Salarian Union
+	if = {
+		limit = { 
+			has_planet_flag = surkesh_planet
+		}
+		generate_sal_surkesh_deposits = yes
+	}
+	#Turian Hierarchy
+	if = {
+		limit = { 
+			has_planet_flag = palavan_planet
+		}
+		generate_tur_palaven_deposits = yes
+	}
+	#Systems Alliance
+	if = {
+		limit = { 
+			has_planet_flag = earth_planet
+		}
+		generate_hum_earth_deposits = yes
+	}
+	#Courts of Dekuuna
+	if = {
+		limit = { 
+			has_planet_flag = dekuuna_planet
+		}
+		generate_elc_dekuuna_deposits = yes
+	}
+	#Vol Protectorate
+	if = {
+		limit = { 
+			has_planet_flag = irune_planet
+		}
+		generate_vol_irune_deposits = yes
+	}
+	#Illuminated Primacy
+	if = {
+		limit = { 
+			has_planet_flag = kahje_planet
+		}
+		generate_han_kahje_deposits = yes
+	}
+	#Hegemony of Khar'shan
+	if = {
+		limit = { 
+			has_planet_flag = kharshan_planet
+		}
+		generate_bat_kharshan_deposits = yes
+	}
+	#Aralakh Kahmat
+	if = {
+		limit = { 
+			has_planet_flag = tuchanka_planet
+		}
+		generate_kro_tuchanka_deposits = yes
+	}
+	#Migrant Fleet
+	if = {
+		limit = { 
+			has_planet_flag = chayym_ship_planet
+		}
+		generate_qua_chayym_deposits = yes
+	}
+	if = {
+		limit = { 
+			has_planet_flag = shellen_ship_planet
+		}
+		generate_qua_shellen_deposits = yes
+	}
+	if = {
+		limit = { 
+			has_planet_flag = rayya_ship_planet
+		}
+		generate_qua_rayya_deposits = yes
+	}
+	if = {
+		limit = { 
+			has_planet_flag = civilian_fleet_planet
+		}
+		generate_qua_civilian_fleet_deposits = yes
+	}
+	if = {
+		limit = { 
+			has_planet_flag = special_projects_fleet_planet
+		}
+		generate_qua_special_projects_fleet_deposits = yes
+	}
+	if = {
+		limit = { 
+			has_planet_flag = heavy_fleet_planet
+		}
+		generate_qua_heavy_fleet_deposits = yes
+	}
+	if = {
+		limit = { 
+			has_planet_flag = patrol_fleet_planet
+		}
+		generate_qua_patrol_fleet_deposits = yes
+	}
+	#Cerberus
+	if = {
+		limit = { 
+			has_planet_flag = cronos_station
+		}
+		generate_cer_cronos_deposits = yes
+	}	
+	#Omega
+	if = {
+		limit = { 
+			has_planet_flag = omega_station
+		}
+		generate_omega_deposits = yes
+	}		
+	#Illum Corporate Interests
+	if = {
+		limit = { 
+			has_planet_flag = illium_planet
+		}
+		generate_illium_deposits = yes
+	}	
+	#Caleston Directorate
+	if = {
+		limit = { 
+			has_planet_flag = caleston_planet
+		}
+		generate_caleston_deposits = yes
+	}	
+	#Remnants of Rakhana
+	if = {
+		limit = { 
+			has_planet_flag = rakhana_planet
+		}
+		generate_dre_rakhana_deposits = yes
+	}	
+	#Vorcha Clandom
+	if = {
+		limit = { 
+			has_planet_flag = heshtok_planet
+		}
+		generate_vor_heshtok_deposits = yes
+	}		
+	#Sed'riicae Collective
+	if = {
+		limit = { 
+			has_planet_flag = sedriicae_planet
+		}
+		generate_for_sedriicae_deposits = yes
+	}	
+	#Lystheni Order
+	if = {
+		limit = { 
+			has_planet_flag = sepkai_planet
+		}
+		generate_lys_sepkai_deposits = yes
+	}		
+	#Gothones Remnant
+	if = {
+		limit = { 
+			has_planet_flag = vindicta_planet
+		}
+		generate_got_vindicta_deposits = yes
+	}			
+	#Parnack Regime
+	if = {
+		limit = { 
+			has_planet_flag = parnack_planet
+		}
+		generate_yah_parnack_deposits = yes
+	}		
+	#Raloi Republic
+	if = {
+		limit = { 
+			has_planet_flag = turvess_planet
+		}
+		generate_ral_turvess_deposits = yes
+	}		
+	#Geth Consensus
+	if = {
+		limit = { 
+			has_planet_flag = rannoch_planet
+		}
+		generate_get_rannoch_deposits = yes
+	}		
+	#Disciples of Nazara
+	if = {
+		limit = { 
+			has_planet_flag = heretic_station
+		}
+		generate_naz_heretic_station_deposits = yes
+	}	
+	#Rachni Hive
+	if = {
+		limit = { 
+			has_planet_flag = utukku_planet
+		}
+		generate_rac_utukku_deposits = yes
+	}	
+	#The Collectors
+	if = {
+		limit = { 
+			has_planet_flag = collector_base
+		}
+		generate_col_collector_base_deposits = yes
+	}	
+	if = { 
+		limit = {
+			has_planet_flag = citadel_station
+		}
+		generate_citadel_deposits = yes
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_continental
+				is_planet_class = pc_dextro_continental
+				is_planet_class = pc_highgrav_continental
+				is_planet_class = pc_dextro_highgrav_continental
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_tempestous_mountain
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_rushing_waterfalls
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_rugged_woods
+		add_deposit = d_fertile_lands
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_rugged_woods
+			add_deposit = d_black_soil
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_tropical
+				is_planet_class = pc_dextro_tropical
+				is_planet_class = pc_highgrav_tropical
+				is_planet_class = pc_dextro_highgrav_tropical
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_tempestous_mountain
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_rushing_waterfalls
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming (lithoids swap 3 for minerals)
+		add_deposit = d_green_hills
+		add_deposit = d_lush_jungle
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_green_hills
+			add_deposit = d_tropical_island
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_ocean
+				is_planet_class = pc_dextro_ocean
+				is_planet_class = pc_highgrav_ocean
+				is_planet_class = pc_dextro_highgrav_ocean
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_underwater_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_rushing_waterfalls
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming
+		add_deposit = d_green_hills
+		add_deposit = d_lush_jungle
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_green_hills
+			add_deposit = d_teeming_reef
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_arctic
+				is_planet_class = pc_dextro_arctic
+				is_planet_class = pc_highgrav_arctic
+				is_planet_class = pc_dextro_highgrav_arctic
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_frozen_gas_lake
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_frozen_gas_lake
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_lichen_fields
+		add_deposit = d_fungal_caves
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no
+				} 
+			}
+			add_deposit = d_lichen_fields
+			add_deposit = d_fungal_forest
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_tundra
+				is_planet_class = pc_dextro_tundra
+				is_planet_class = pc_highgrav_tundra
+				is_planet_class = pc_dextro_highgrav_tundra
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_frozen_gas_lake
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_frozen_gas_lake
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_forgiving_tundra
+		add_deposit = d_fungal_caves
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_forgiving_tundra
+			add_deposit = d_fungal_forest
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_alpine
+				is_planet_class = pc_dextro_alpine
+				is_planet_class = pc_highgrav_alpine
+				is_planet_class = pc_dextro_highgrav_alpine
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_frozen_gas_lake
+		add_deposit = d_tempestous_mountain
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_frozen_gas_lake
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_forgiving_tundra
+		add_deposit = d_fungal_caves
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_forgiving_tundra
+			add_deposit = d_fungal_forest
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_desert
+				is_planet_class = pc_dextro_desert
+				is_planet_class = pc_highgrav_desert
+				is_planet_class = pc_dextro_highgrav_desert
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_arid_highlands
+		add_deposit = d_searing_desert
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_searing_desert
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_nutritious_mudland
+		add_deposit = d_great_river
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_nutritious_mudland
+			add_deposit = d_marvelous_oasis
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_arid
+				is_planet_class = pc_dextro_arid
+				is_planet_class = pc_highgrav_arid
+				is_planet_class = pc_dextro_highgrav_arid
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_arid_highlands
+		add_deposit = d_searing_desert
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_searing_desert
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_bountiful_plains
+		add_deposit = d_great_river
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_bountiful_plains
+			add_deposit = d_tropical_island
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_savannah
+				is_planet_class = pc_dextro_savannah
+				is_planet_class = pc_highgrav_savannah
+				is_planet_class = pc_dextro_highgrav_savannah
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_arid_highlands
+		add_deposit = d_searing_desert
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_searing_desert
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming
+		add_deposit = d_bountiful_plains
+		add_deposit = d_fertile_lands
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_bountiful_plains
+			add_deposit = d_black_soil
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_swamp
+				is_planet_class = pc_dextro_swamp
+				is_planet_class = pc_highgrav_swamp
+				is_planet_class = pc_dextro_highgrav_swamp
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_tempestous_mountain
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_rushing_waterfalls
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming (lithoids swap 3 for minerals)
+		add_deposit = d_green_hills
+		add_deposit = d_lush_jungle
+
+		random_list = {
+				10 = { add_deposit = d_hydric_soil }
+				10 = { add_deposit = d_organic_islands }
+				10 = { add_deposit = d_disease_factory }
+				10 = { add_deposit = d_rolling_mists }
+				10 = { add_deposit = d_creeping_tendrils }
+		}
+		
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+				add_deposit = d_green_hills
+				add_deposit = d_tropical_island
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_chlorine
+				is_planet_class = pc_highgrav_chlorine
+				is_planet_class = pc_ammonia
+				is_planet_class = pc_highgrav_ammonia
+				is_planet_class = pc_methane
+				is_planet_class = pc_highgrav_methane
+				is_planet_class = pc_mephitic
+				is_planet_class = pc_highgrav_mephitic
+				is_planet_class = pc_primal
+				is_planet_class = pc_highgrav_primal
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_tempestous_mountain
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_rushing_waterfalls
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_rugged_woods
+		add_deposit = d_fertile_lands
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_rugged_woods
+			add_deposit = d_black_soil
+		}
+	}
+
+	if = {
+		limit = {
+			is_planet_class = pc_relic
+			owner = {
+				has_origin = origin_remnants
+				OR = {
+					has_origin = origin_remnants
+					has_origin = origin_slavers
+				}
+			}
+		}
+
+		set_planet_size = 22
+
+		# 6 blockers
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+
+		# 3 + 3 energy
+		add_deposit = d_arid_highlands
+		add_deposit = d_searing_desert
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { owner = { is_machine_empire = yes } }
+			add_deposit = d_searing_desert
+		}
+		if = {
+			limit = { owner = { has_valid_civic = civic_machine_servitor } }
+			add_deposit = d_arid_highlands
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming
+		add_deposit = d_bountiful_plains
+		add_deposit = d_fertile_lands
+		if = {
+			limit = { owner = { is_machine_empire = no } }
+			add_deposit = d_bountiful_plains
+			add_deposit = d_black_soil
+		}
+	}
+}
+
+generate_btr_start_buildings_and_districts = {
+	optimize_memory
+	if = {
+		limit = {
+			NOT = {
+				owner = {
+					is_country_type = primitive
+				}
+			}
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = asari_rep_origin
+				}
+			}
+			generate_asr_thessia_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = salarian_uni_origin
+				}
+			}
+			generate_sal_surkesh_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = turian_hier_origin
+				}
+			}
+			generate_tur_palaven_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = systems_all_origin
+				}
+			}
+			generate_hum_earth_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = courts_dek_origin
+				}
+			}
+			generate_elc_dekuuna_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = vol_protectorate_origin
+				}
+			}
+			generate_vol_irune_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = illuminated_primacy_origin
+				}
+			}
+			generate_han_kahje_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = hegemony_of_kharshan_origin
+				}
+			}
+			generate_bat_kharshan_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = aralakh_kahmat_origin
+				}
+			}
+			generate_kro_tuchanka_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = migrant_fle_origin
+				}
+			}
+			generate_qua_rayya_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = cerberus_empire_origin
+				}
+			}
+			generate_cer_cronos_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = omega_empire_origin
+				}
+			}
+			generate_omega_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = illium_origin
+				}
+			}
+			generate_illium_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = caleston_dir_origin
+				}
+			}
+			generate_caleston_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = remnants_of_rakhana_origin
+				}
+			}
+			generate_dre_rahkana_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = vorcha_origin
+				}
+			}
+			generate_vor_heshtok_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = sedriicae_collective_origin
+				}
+			}
+			generate_for_sedriicae_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = lystheni_order_origin
+				}
+			}
+			generate_lys_sepkai_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = gothones_remnant_origin
+				}
+			}
+			generate_got_vindicta_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = cerberus_empire_origin
+				}
+			}
+			generate_yah_parnack_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = cerberus_empire_origin
+				}
+			}
+			generate_ral_turvess_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = cerberus_empire_origin
+				}
+			}
+			generate_get_rannoch_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = disciples_of_nazara_origin
+				}
+			}
+			generate_naz_heretic_station_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = rachni_hive_origin
+				}
+			}
+			generate_rac_utukku_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = collectors_empire_origin
+				}
+			}
+			generate_collectors_capitol_buildings = yes
+		}
+
+		if = {
+			limit = {
+				owner = {
+					NOT = {
+						has_country_flag = citadel_council
+					}
+					is_country_type = independent_colony
+				}
+			}
+			generate_independent_world_starting_buildings = yes
+		}
+
+		# Replace mining districts with uncapped ones for subterranean origin
+		if = {
+			limit = {
+				owner = { is_subterranean_empire = yes }
+			}
+			while = {
+				limit = { num_districts = { type = district_mining value > 0 } }
+				remove_district = district_mining
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_mining_uncapped
+				}
+			}
+		}
+	}
+}
