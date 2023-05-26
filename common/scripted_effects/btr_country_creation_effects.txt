@@ -1,21 +1,18 @@
 generate_asari_republics_country = {
 	create_country = {
-		type = default
-		ignore_initial_colony_error = yes
 		name = "Asari Republics"
 		adjective = "PRESCRIPTED_adjective_asari_republics"
-		species = event_target:asariSpecies
-		name_list = btr_asari
 		authority = auth_democratic
-		ship_prefix = "ASV"
-		origin = asari_rep_origin
-		ethos = { 
-			ethic = "ethic_fanatic_xenophile" 
-			ethic = "ethic_egalitarian" 
-		}
 		civics = { 
 			civic = asari_rep_civic_thes_dip_corp 
 			civic = asari_rep_civic_democracy 
+		}
+		species = event_target:asariSpecies
+		name_list = btr_asari
+		ship_prefix = "ASV"
+		ethos = { 
+			ethic = "ethic_fanatic_xenophile" 
+			ethic = "ethic_egalitarian" 
 		}
 		flag = {
 			icon={
@@ -33,6 +30,9 @@ generate_asari_republics_country = {
 				"null"
 			}
 		}
+		type = default
+		ignore_initial_colony_error = yes
+		origin = asari_rep_origin
 		effect = {
 			set_graphical_culture = mec_asari_01
 			set_city_graphical_culture = mec_asari_01
@@ -61,24 +61,24 @@ generate_asari_republics_country = {
 			}
 		}
 	}
-	random_country = {
-		limit = { 
-			OR = {
-				has_country_flag = illium_corporate_interests_player
-				has_country_flag = omega_empire_player
-				has_country_flag = illium_corporate_interests_ai
-				has_country_flag = omega_empire_ai
-				has_country_flag = asari_republics_ai
-				has_country_flag = asari_republics_player
-			}
-		}
-		every_owned_pop_species = {
-			limit = {
-				is_species_class = ASA
-			}
-			set_species_homeworld = prevprev
-		}
-	}
+	# random_country = {
+	# 	limit = { 
+	# 		OR = {
+	# 			has_country_flag = illium_corporate_interests_player
+	# 			has_country_flag = omega_empire_player
+	# 			has_country_flag = illium_corporate_interests_ai
+	# 			has_country_flag = omega_empire_ai
+	# 			has_country_flag = asari_republics_ai
+	# 			has_country_flag = asari_republics_player
+	# 		}
+	# 	}
+	# 	every_owned_pop_species = {
+	# 		limit = {
+	# 			is_species_class = ASA
+	# 		}
+	# 		set_species_homeworld = prevprev
+	# 	}
+	# }
 	log = "Asari Republics AI Empire Created"
 }
 
