@@ -214,6 +214,188 @@ event = {
 	}
 }
 
+# Custom Country Check
+country_event = {
+	id = btr_game_start.4
+	title = btr_game_start.4.name
+	desc = btr_game_start.4.desc
+	picture = BTR_GFX_evt_btr_custom
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = btr_empire
+		}
+	}
+
+	immediate = {
+		log = "btr_game_start.4 - Custom Country Check"
+	}
+	option = {
+		name = OK
+	}
+}
+
+# Integrated Mod Installation Check
+event = {
+	id = btr_game_start.5
+	title = btr_game_start.5.name
+	desc = btr_game_start.5.desc
+	picture = BTR_GFX_evt_btr_integrated
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			has_global_flag = beyond_the_advisors_installed
+			has_global_flag = beyond_the_worlds_installed
+			has_global_flag = has_real_space_mod
+		}
+	}
+
+	immediate = {
+		log = "btr_game_start.5 - Integrated Mod Check"
+	}
+	option = {
+		name = OK
+	}
+}
+
+# Incompatible Mod Installation Check
+event = {
+	id = btr_game_start.6
+	title = btr_game_start.6.name
+	desc = btr_game_start.6.desc
+	picture = BTR_GFX_evt_btr_incompatible
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = planetarydiversity
+	}
+
+	immediate = {
+		log = "btr_game_start.6 - Incompatible Mod Check"
+	}
+
+	option = {
+		name = OK
+	}	
+}
+
+### Pregame Genocide
+event = {
+	id = btr_game_start.7
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_country = {
+			if = {
+				limit = {
+					is_country_type = default
+					is_country_type = neutral_faction
+					is_country_type = rebel
+					is_country_type = enclave
+					is_country_type = tiyanki
+					is_country_type = tiyanki_garrison
+					is_country_type = amoeba
+					is_country_type = amoeba_borderless
+					is_country_type = amoeba_garrison
+					is_country_type = crystal
+					is_country_type = drone
+					NOT = { has_country_flag = btr_empire }
+					is_ai = yes
+				}
+				destroy_country = yes
+				every_owned_pop = {	
+					limit = { 
+						NOT = { 
+							 has_pop_flag = init_spawn 
+						}
+					}
+					kill_pop = yes
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = btr_empire
+				}
+				every_owned_pop = {
+					limit = { NOT = { has_pop_flag = init_spawn } }
+					kill_pop = yes
+				}
+				every_country = {
+					every_owned_planet = {
+						check_planet_employment = yes				
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = geth_consensus
+						has_country_flag = disciples_of_nazara
+					}
+				}
+				every_owned_pop = {
+					change_species = event_target:gethSpecies
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = omega_empire
+				}
+				every_owned_pop = {
+					if = {
+						limit = { 
+							NOR = {
+								is_species_class = ASA
+								is_species_class = TUR
+								is_species_class = SAL
+								is_species_class = HUM
+								is_species_class = ELC
+								is_species_class = VOL
+								is_species_class = HAN
+								is_species_class = BAT
+								is_species_class = KRO
+								is_species_class = QUA
+								is_species_class = DRE
+								is_species_class = VOR
+								is_species_class = LYS
+								is_species_class = GOT
+							}
+						}
+						kill_pop = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = citadel_council
+				}
+				every_owned_pop = {
+					if = {
+						limit = { 
+							NOR = {
+								is_species_class = ASA
+								is_species_class = TUR
+								is_species_class = SAL
+								is_species_class = HUM
+								is_species_class = ELC
+								is_species_class = VOL
+								is_species_class = HAN
+								is_species_class = BAT
+								is_species_class = KRO
+								is_species_class = QUA
+								is_species_class = DRE
+								is_species_class = VOR
+							}
+						}
+						kill_pop = yes
+					}
+				}
+			}
+		}
+
+		log = "btr_game_start.7 - Pregame Genocide Committed"
+	}
+}
+
 ### Empire init - add resources, empire modifiers, and technologies
 country_event = {
 	id = btr_game_start.8
@@ -254,25 +436,25 @@ country_event = {
 		}
 		if = {
 			limit = {
-				has_origin = vol_protectorate_origin
+				has_origin = vol_pro_origin
 			}
 			generate_vol_protectorate_starting_setup = yes
 		}
 		if = {
 			limit = {
-				has_origin = illuminated_primacy_origin
+				has_origin = illuminated_pri_origin
 			}
 			generate_illuminated_primacy_starting_setup = yes
 		}
 		if = {
 			limit = {
-				has_origin = hegemony_of_kharshan_origin
+				has_origin = hegemony_kha_origin
 			}
 			generate_hegemony_of_kharshan_starting_setup = yes
 		}
 		if = {
 			limit = {
-				has_origin = aralakh_kahmat_origin
+				has_origin = aralakh_kah_origin
 			}
 			generate_aralakh_kahmat_starting_setup = yes
 		}
@@ -284,19 +466,19 @@ country_event = {
 		}
 		if = {
 			limit = {
-				has_origin = cerberus_empire_origin
+				has_origin = cerberus_emp_origin
 			}
 			generate_cerberus_empire_starting_setup = yes
 		}
 		if = {
 			limit = {
-				has_origin = omega_empire_origin
+				has_origin = omega_emp_origin
 			}
 			generate_omega_empire_starting_setup = yes
 		}
 		if = {
 			limit = {
-				has_origin = illium_origin
+				has_origin = illium_cor_origin
 			}
 			generate_illium_corporate_interests_starting_setup = yes
 		}
@@ -308,31 +490,31 @@ country_event = {
 		}
 		if = {
 			limit = {
-				has_origin = remnants_of_rakhana_origin
+				has_origin = remnants_rak_origin
 			}
 			generate_remnants_of_rakhana_starting_setup = yes
 		}
 		if = {
 			limit = {
-				has_origin = vorcha_origin
+				has_origin = vorcha_cla_origin
 			}
 			generate_vorcha_clandom_starting_setup = yes
 		}	
 		if = {
 			limit = {
-				has_origin = sedriicae_collective_origin
+				has_origin = sedriicae_col_origin
 			}
 			generate_sedriicae_collective_starting_setup = yes
 		}	
 		if = {
 			limit = {
-				has_origin = lystheni_order_origin
+				has_origin = lystheni_ord_origin
 			}
 			generate_lystheni_order_starting_setup = yes
 		}				
 		if = {
 			limit = {
-				has_origin = parnack_regime_origin
+				has_origin = parnack_reg_origin
 			}
 			generate_parnack_regime_starting_setup = yes
 		}		
@@ -350,19 +532,19 @@ country_event = {
 		}			
 		if = {
 			limit = {
-				has_origin = disciples_of_nazara_origin
+				has_origin = disciples_naz_origin
 			}
 			generate_disciples_of_nazara_starting_setup = yes
 		}					
 		if = {
 			limit = {
-				has_origin = rachni_hive_origin
+				has_origin = rachni_hiv_origin
 			}
 			generate_rachni_hive_starting_setup = yes
 		}	
 		if = {
 			limit = {
-				has_origin = collectors_empire_origin
+				has_origin = collectors_emp_origin
 			}
 			generate_collectors_empire_starting_setup = yes
 		}	
@@ -727,19 +909,85 @@ country_event = {
 # this: capital planet
 # from: founder species
 planet_event = {
+	id = btr_game_start.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		log = "btr_game_start.11 Started"
+
+		generate_btr_start_deposits_and_blockers = yes
+		generate_btr_start_buildings_and_districts = yes
+		#generate_home_planet_final_pass = yes
+
+		log = "btr_game_start.11 - Completed"
+	}
+}
+
+event = {
 	id = btr_game_start.12
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		log = "btr_game_start.12 Started"
-		
-		generate_btr_start_deposits_and_blockers = yes
-		generate_btr_start_buildings_and_districts = yes
-		generate_btr_start_pops = yes
-		#generate_home_planet_final_pass = yes
+		every_country = {
+			if = {
+				limit = {
+					is_country_type = default
+					is_country_type = neutral_faction
+					is_country_type = rebel
+					is_country_type = enclave
+					is_country_type = tiyanki
+					is_country_type = tiyanki_garrison
+					is_country_type = amoeba
+					is_country_type = amoeba_borderless
+					is_country_type = amoeba_garrison
+					is_country_type = crystal
+					is_country_type = drone
+					NOT = { has_country_flag = btr_empire }
+					is_ai = yes
+				}
+				destroy_country = yes
+				every_owned_pop = {	
+					kill_pop = yes
+				}
+			}
 
-		log = "btr_game_start.12 - Completed"
+			generate_btr_start_pops = yes
+
+			if = {
+				limit = {
+					has_country_flag = btr_empire
+					NOR = {
+						#is_species_class = ASA			
+						is_species_class = SAL			
+						is_species_class = TUR
+						is_species_class = HUM
+						is_species_class = ELC
+						is_species_class = VOL
+						is_species_class = HAN
+						is_species_class = BAT
+						is_species_class = KRO
+						is_species_class = QUA
+						is_species_class = DRE
+						is_species_class = VOR
+						is_species_class = LYS
+						is_species_class = GOT
+						is_species_class = YAH
+						is_species_class = RAL
+						is_species_class = GTH
+						is_species_class = RAC
+						is_species_class = COL
+					}
+				}
+				every_owned_pop = {
+					change_dominant_species = {
+						species = event_target:asariSpecies
+					}
+					set_species_homeworld = event_target:parnitha_system_thessia
+				}
+			}
+		}
 	}
 }
 

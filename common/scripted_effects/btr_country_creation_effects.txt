@@ -61,24 +61,10 @@ generate_asari_republics_country = {
 			}
 		}
 	}
-	# random_country = {
-	# 	limit = { 
-	# 		OR = {
-	# 			has_country_flag = illium_corporate_interests_player
-	# 			has_country_flag = omega_empire_player
-	# 			has_country_flag = illium_corporate_interests_ai
-	# 			has_country_flag = omega_empire_ai
-	# 			has_country_flag = asari_republics_ai
-	# 			has_country_flag = asari_republics_player
-	# 		}
-	# 	}
-	# 	every_owned_pop_species = {
-	# 		limit = {
-	# 			is_species_class = ASA
-	# 		}
-	# 		set_species_homeworld = prevprev
-	# 	}
-	# }
+	owner_species = {
+		set_species_homeworld = event_target:asariHomeworld
+		save_global_event_target_as = asariSpecies
+	}
 	log = "Asari Republics AI Empire Created"
 }
 
@@ -372,7 +358,7 @@ generate_vol_protectorate_country = {
 			}
 		}
 		type = default
-		origin = vol_protectorate_origin
+		origin = vol_pro_origin
 		effect = {
 			set_country_flag = vol_protectorate_ai
 			set_country_flag = init_spawned
@@ -431,7 +417,7 @@ generate_illuminated_primacy_country = {
 			}
 		}
 		type = default
-		origin = illuminated_primacy_origin
+		origin = illuminated_pri_origin
 		effect = {
 			set_country_flag = illuminated_primacy_ai
 			set_country_flag = init_spawned
@@ -490,7 +476,7 @@ generate_hegemony_of_kharshan_country = {
 			}
 		}
 		type = default
-		origin = hegemony_of_kharshan_origin
+		origin = hegemony_kha_origin
 		effect = {
 			set_country_flag = hegemony_of_kharshan_ai
 			set_country_flag = init_spawned
@@ -555,7 +541,7 @@ generate_aralak_kahmat_country = {
 			}
 		}
 		type = default
-		origin = aralakh_kahmat_origin
+		origin = aralakh_kah_origin
 		effect = {
 			set_country_flag = aralakh_kahmat_ai
 			set_country_flag = init_spawned
@@ -651,7 +637,7 @@ generate_omega_country = {
 		name_list = "btr_asari"
 		authority = auth_corporate
 		ship_prefix = "ODV"
-		origin = omega_empire_origin
+		origin = omega_emp_origin
 		ethos = { 
 			ethic = "ethic_authoritarian" 
 			ethic = "ethic_fanatic_materialist" 
@@ -715,7 +701,7 @@ generate_illium_corporate_interests_country = {
 		name_list = "btr_asari"
 		authority = auth_corporate
 		ship_prefix = "IDF"
-		origin = illium_origin
+		origin = illium_cor_origin
 		ethos = { 
 			ethic = "ethic_egalitarian"	
 			ethic = "ethic_fanatic_materialist" 
@@ -862,7 +848,7 @@ generate_sedriiace_collective_country = {
 			}
 		}
 		type = default
-		origin = sedriicae_collective_origin
+		origin = sedriicae_col_origin
 		effect = {
 			set_country_flag = sedriicae_collective_ai
 			set_country_flag = init_spawned
@@ -921,7 +907,7 @@ generate_vorcha_clandom_country = {
 			}
 		}
 		type = default
-		origin = vorcha_origin
+		origin = vorcha_cla_origin
 		effect = {
 			set_country_flag = vorcha_clandom_ai
 			set_country_flag = init_spawned
@@ -977,7 +963,7 @@ generate_lystheni_order_country = {
 			}
 		}
 		type = default
-		origin = lystheni_order_origin
+		origin = lystheni_ord_origin
 		effect = {
 			set_country_flag = lystheni_order_ai
 			set_country_flag = init_spawned
@@ -1036,7 +1022,7 @@ generate_gothones_remnant_country = {
 			}
 		}
 		type = default
-		origin = gothones_remnant_origin
+		origin = gothones_rem_origin
 		effect = {
 			set_country_flag = gothones_remnant_ai
 			set_country_flag = init_spawned
@@ -1095,7 +1081,7 @@ generate_rachni_hive_country = {
 			}
 		}
 		type = default
-		origin = rachni_hive_origin
+		origin = rachni_hiv_origin
 		effect = {
 			set_country_flag = rachni_hive_ai
 			set_country_flag = init_spawned
@@ -1208,7 +1194,7 @@ generate_disciples_of_nazara_country = {
 			}
 		}
 		type = default
-		origin = disciples_of_nazara_origin
+		origin = disciples_naz_origin
 		effect = {
 			set_country_flag = disciples_of_nazara_ai
 			set_country_flag = init_spawned
@@ -2290,7 +2276,7 @@ generate_noveria_development_corporation_country = {
 		}
 
 		type = independent_colony
-		origin = 
+		origin = noveria_development_corporation
 		effect = {
 			set_country_flag = noveria_development_corporation
 			set_country_flag = init_spawned
@@ -2971,7 +2957,7 @@ generate_remnants_of_rakhana_primitive = {
 			}
 		}
 		type = primitive				
-		origin = remnants_of_rakhana_origin
+		origin = remnants_rak_origin
 		effect = {
 			set_country_flag = remnants_of_rakhana_ai
 			set_country_flag = init_spawned
@@ -3027,7 +3013,7 @@ generate_paranack_regime_primitive = {
 			}
 		}
 		type = primitive 
-		origin = parnack_regime_origin
+		origin = parnack_reg_origin
 		effect = {
 			set_country_flag = parnack_regime_primitive
 			set_country_flag = init_spawned

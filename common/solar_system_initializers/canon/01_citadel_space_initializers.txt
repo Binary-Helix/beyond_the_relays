@@ -9038,14 +9038,14 @@ sys_orisoni_init = {
 	}
 }
 
-#Used if Asari Republics not played by player
 sys_parnitha_init = {
 	name = "Parnitha"	
     class = sc_g
 	max_instances = 1
+    usage = empire_init
     usage = custom_empire
 
-    flags = { outer_council sector_oc2 athena_nebula parnitha_system }
+    flags = { outer_council sector_oc2 athena_nebula parnitha_system empire_home_system }
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -9076,12 +9076,48 @@ sys_parnitha_init = {
 		orbit_distance = 80
 		orbit_angle = 80
 		size = 25
-        home_planet = yes
+        starting_planet = yes
 		has_ring = no
 		entity = "temperate_planet_01_entity"
 		flags = { thessia_planet subclass_world }	
-
+        deposit_blockers = none
+        modifiers = none
 		init_effect = {
+			save_global_event_target_as = asariHomeworld
+			if = {
+				limit = {
+					exists = event_target:asariHomeworld
+				}
+				log = "Asari Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_asari_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = asari_republics_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = asari_republics_player
+					}
+					save_global_event_target_as = asari_republics
+				}
+			}
+			else = {
+				generate_asari_republics_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:asari_republics
+			create_colony = {
+				owner = event_target:asari_republics
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+            generate_asr_thessia_pops = yes
             add_modifier = {
 				modifier = temperate_world
 				days = -1
