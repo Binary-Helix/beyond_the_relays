@@ -909,8 +909,47 @@ sys_kyzil_init = {
         orbit_angle = 251
         size = 9
         has_ring = no		
-        home_planet = yes
-        flags = { heshtok_planet }            
+        starting_planet = yes
+        flags = { heshtok_planet }  
+        deposit_blockers = none
+        modifiers = none
+        init_effect = {
+			save_global_event_target_as = vorchaHomeworld
+			if = {
+				limit = {
+					exists = event_target:vorchaHomeworld
+				}
+				log = "Vorcha Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_vorcha_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = vorcha_clandom_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = vorcha_clandom_player
+					}
+					save_global_event_target_as = vorcha_clandom
+				}
+			}
+			else = {
+				generate_vorcha_clandom_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:vorcha_clandom
+			create_colony = {
+				owner = event_target:vorcha_clandom
+				species = event_target:vorchaSpecies
+				ethos = owner
+			}
+            generate_vor_heshtok_pops = yes
+		}  
     }	
 
     planet = {
@@ -5546,9 +5585,46 @@ sys_nosikae_init = {
 		orbit_distance = 125
 		size = 24
 		has_ring = no
-        home_planet = yes
+        starting_planet = yes
         flags = { sedriicae_planet subclass_world }
+        deposit_blockers = none
+        modifiers = none
 		init_effect = {
+            save_global_event_target_as = forayanHomeworld
+			if = {
+				limit = {
+					exists = event_target:forayanHomeworld
+				}
+				log = "Forayan Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_forayan_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = sedriicae_collective_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = sedriicae_collective_player
+					}
+					save_global_event_target_as = sedriicae_collective
+				}
+			}
+			else = {
+				generate_sedriicae_collective_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:sedriicae_collective
+			create_colony = {
+				owner = event_target:sedriicae_collective
+				species = event_target:forayanSpecies
+				ethos = owner
+			}
+            generate_for_sedriicae_pops = yes
 			add_modifier = {
 				modifier = dextro_world
 				days = -1
@@ -6869,6 +6945,40 @@ sys_theseaofstorms_init = {
         has_ring = no   
         starting_planet = yes
         flags = { heretic_station }
+        deposit_blockers = none
+        modifiers = none
+        init_effect = {
+			save_global_event_target_as = disciplesHomeStation
+
+            prevent_anomaly = yes
+
+            check_for_geth_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = disciples_of_nazara_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = disciples_of_nazara_player
+					}
+					save_global_event_target_as = disciples_of_nazara
+				}
+			}
+			else = {
+				generate_disciples_of_nazara_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:disciples_of_nazara
+			create_colony = {
+				owner = event_target:disciples_of_nazara
+				species = event_target:gethSpecies
+				ethos = owner
+			}
+            generate_naz_station_pops = yes
+		} 
     }
 }
 
@@ -7455,10 +7565,47 @@ sys_tikkun_init = {
 		orbit_angle = { min = 40 max = 180 }
         size = 15
 		has_ring = no
-        home_planet = yes
+        starting_planet = yes
 		entity = "mesa_planet_09_entity"
 		flags = { rannoch_planet subclass_world }	
+        deposit_blockers = none
+        modifiers = none
 		init_effect = {
+            save_global_event_target_as = gethHomeworld
+			if = {
+				limit = {
+					exists = event_target:gethHomeworld
+				}
+				log = "Geth Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_geth_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = geth_consensus_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = geth_consensus_player
+					}
+					save_global_event_target_as = geth_consensus
+				}
+			}
+			else = {
+				generate_geth_consensus_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:geth_consensus
+			create_colony = {
+				owner = event_target:geth_consensus
+				species = event_target:gethSpecies
+				ethos = owner
+			}
+            generate_get_rannoch_pops = yes
 			add_modifier = {
 				modifier = dextro_world
 				days = -1
@@ -8850,10 +8997,47 @@ sys_taesin_init = {
         orbit_distance = 150
         orbit_angle = 62
         has_ring = no
-        home_planet = yes
+        starting_planet = yes
 		flags = { sepkai_planet subclass_world }
 		entity = "biolum_planet_08_entity"	
+        deposit_blockers = none
+        modifiers = none
 		init_effect = {
+            save_global_event_target_as = lystheniHomeworld
+			if = {
+				limit = {
+					exists = event_target:lystheniHomeworld
+				}
+				log = "Lystheni Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_lystheni_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = lystheni_order_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = lystheni_order_player
+					}
+					save_global_event_target_as = lystheni_order
+				}
+			}
+			else = {
+				generate_lystheni_order_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:lystheni_order
+			create_colony = {
+				owner = event_target:lystheni_order
+				species = event_target:lystheniSpecies
+				ethos = owner
+			}
+            generate_lys_sepkai_pops = yes
 			add_modifier = {
 				modifier = biolum_world
 				days = -1
@@ -10940,6 +11124,38 @@ sys_sahrabarik_init = {
 		size = 12
         starting_planet = yes
         flags = { omega_station }
+        deposit_blockers = none
+        modifiers = none
+        init_effect = {
+            prevent_anomaly = yes
+
+            check_for_asari_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = omega_empire_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = omega_empire_player
+					}
+					save_global_event_target_as = omega_empire
+				}
+			}
+			else = {
+				generate_omega_empire_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:omega_empire
+			create_colony = {
+				owner = event_target:omega_empire
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+            generate_omega_pops = yes            
+        }
 	}			
 
     planet = {

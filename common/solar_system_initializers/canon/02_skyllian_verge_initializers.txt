@@ -820,10 +820,47 @@ sys_sol_init = {
 		orbit_angle = 120
 		size = 18
 		has_ring = no
-		home_planet = yes
+		starting_planet = yes
 		entity = "continental_planet_earth_entity"
 		flags = { earth_planet subclass_world }
+		deposit_blockers = none
+        modifiers = none
 		init_effect = {
+			save_global_event_target_as = humanHomeworld
+			if = {
+				limit = {
+					exists = event_target:humanHomeworld
+				}
+				log = "Human Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_human_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = systems_alliance_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = systems_alliance_player
+					}
+					save_global_event_target_as = systems_alliance
+				}
+			}
+			else = {
+				generate_systems_alliance_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:systems_alliance
+			create_colony = {
+				owner = event_target:systems_alliance
+				species = event_target:humanSpecies
+				ethos = owner
+			}
+            generate_hum_earth_pops = yes
 			add_modifier = {
 				modifier = temperate_world
 				days = -1
@@ -1251,6 +1288,40 @@ sys_anadius_init = {
 		starting_planet = yes
 		flags = { cronos_station }
 		entity = "cerberus_cronos_01_game_entity"
+		deposit_blockers = none
+        modifiers = none
+		init_effect = {
+			save_global_event_target_as = cerberusHomeStation
+
+            prevent_anomaly = yes
+
+            check_for_human_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = cerberus_empire_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = cerberus_empire_player
+					}
+					save_global_event_target_as = cerberus_empire
+				}
+			}
+			else = {
+				generate_cerberus_empire_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:cerberus_empire
+			create_colony = {
+				owner = event_target:cerberus_empire
+				species = event_target:humanSpecies
+				ethos = owner
+			}
+            generate_cerb_cronos_pops = yes
+		}
 	}	
 
 	planet = {
@@ -2583,10 +2654,47 @@ sys_harsa_init = {
         orbit_angle = 130
         size = 13
         has_ring = no			
-		home_planet = yes
+		starting_planet = yes
 		flags = { kharshan_planet subclass_world }
 		entity = "steppe_planet_02_entity"
+		deposit_blockers = none
+        modifiers = none
 		init_effect = {
+			save_global_event_target_as = batarianHomeworld
+			if = {
+				limit = {
+					exists = event_target:batarianHomeworld
+				}
+				log = "Batarian Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_batarian_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = hegemony_of_kharshan_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = hegemony_of_kharshan_player
+					}
+					save_global_event_target_as = hegemony_of_kharshan
+				}
+			}
+			else = {
+				generate_hegemony_of_kharshan_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:hegemony_of_kharshan
+			create_colony = {
+				owner = event_target:hegemony_of_kharshan
+				species = event_target:batarianSpecies
+				ethos = owner
+			}
+            generate_bat_kharshan_pops = yes
 			add_modifier = {
 				modifier = steppe_world
 				days = -1

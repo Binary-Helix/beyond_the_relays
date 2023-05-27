@@ -345,10 +345,47 @@ sys_chabtan_init = {
 		orbit_angle = { min = 40 max = 180 }
 		size = 16
 		has_ring = no
-		home_planet = yes
+		starting_planet = yes
 		entity = "badlands_planet_07_entity"
 		flags = { parnack_planet subclass_world }
+		deposit_blockers = none
+        modifiers = none
 		init_effect = {
+			save_global_event_target_as = yahgHomeworld
+			if = {
+				limit = {
+					exists = event_target:yahgHomeworld
+				}
+				log = "Yahg Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_yahg_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = parnack_regime_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = parnack_regime_player
+					}
+					save_global_event_target_as = parnack_regime
+				}
+			}
+			else = {
+				generate_parnack_regime_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:parnack_regime
+			create_colony = {
+				owner = event_target:parnack_regime
+				species = event_target:yahgSpecies
+				ethos = owner
+			}
+            generate_yah_parnack_pops = yes
 			add_modifier = {
 				modifier = badlands_world
 				days = -1
@@ -1226,7 +1263,37 @@ sys_tasale_init = {
 		starting_planet = yes	
 		flags = { illium_planet subclass_world }		
 		entity = "temperate_planet_09_entity"
+		deposit_blockers = none
+        modifiers = none
 		init_effect = {
+            prevent_anomaly = yes
+
+            check_for_asari_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = illium_corporate_interests_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = illium_corporate_interests_player
+					}
+					save_global_event_target_as = illium_corporate_interests
+				}
+			}
+			else = {
+				generate_illium_corporate_interests_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:illium_corporate_interests
+			create_colony = {
+				owner = event_target:illium_corporate_interests
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+            generate_illium_pops = yes
 			add_modifier = {
 				modifier = temperate_world
 				days = -1
@@ -6427,7 +6494,39 @@ sys_balor_init = {
 			size = 16
 			starting_planet = yes
 			flags = { caleston_planet subclass_world }
+			deposit_blockers = none
+			modifiers = none
 			init_effect = {
+				save_global_event_target_as = calestonHomePlanet
+
+				prevent_anomaly = yes
+	
+				check_for_turian_player = yes
+				
+				if = {
+					limit = { 
+						any_country = {
+							has_country_flag = caleston_directorate_player
+						}
+					}
+					random_country = {
+						limit = {
+							has_country_flag = caleston_directorate_player
+						}
+						save_global_event_target_as = caleston_directorate
+					}
+				}
+				else = {
+					generate_caleston_directorate_country = yes
+				}
+				set_capital = yes
+				set_owner = event_target:caleston_directorate
+				create_colony = {
+					owner = event_target:caleston_directorate
+					species = event_target:turianSpecies
+					ethos = owner
+				}
+				generate_caleston_pops = yes
 				add_modifier = {
 					modifier = unstable_tectonics
 					days = -1
@@ -7409,10 +7508,47 @@ sys_azedes_init = {
         orbit_angle = 140
 		size = 15		
         has_ring = no		
-		home_planet = yes
+		starting_planet = yes
 		entity = "highland_planet_10_entity"
 		flags = { turvess_planet subclass_world }
+		deposit_blockers = none
+        modifiers = none
 		init_effect = {
+			save_global_event_target_as = raloiHomeworld
+			if = {
+				limit = {
+					exists = event_target:raloiHomeworld
+				}
+				log = "Raloi Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_raloi_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = raloi_republic_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = raloi_republic_player
+					}
+					save_global_event_target_as = raloi_republic
+				}
+			}
+			else = {
+				generate_raloi_republic_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:raloi_republic
+			create_colony = {
+				owner = event_target:raloi_republic
+				species = event_target:raloiSpecies
+				ethos = owner
+			}
+            generate_ral_turvess_pops = yes
 			add_modifier = {
 				modifier = highland_world
 				days = -1
@@ -9289,7 +9425,44 @@ sys_mullaxul_init = {
 		starting_planet = yes
 		entity = "badlands_planet_06_entity"
 		flags = { utukku_planet subclass_world }
+		deposit_blockers = none
+        modifiers = none
 		init_effect = {
+			save_global_event_target_as = rachniHomeworld
+			if = {
+				limit = {
+					exists = event_target:rachniHomeworld
+				}
+				log = "Rachni Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_rachni_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = rachni_hive_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = rachni_hive_player
+					}
+					save_global_event_target_as = rachni_hive
+				}
+			}
+			else = {
+				generate_rachni_hive_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:rachni_hive
+			create_colony = {
+				owner = event_target:rachni_hive
+				species = event_target:rachniSpecies
+				ethos = owner
+			}
+            generate_rac_utukku_pops = yes
 			add_modifier = {
 				modifier = badlands_world
 				days = -1
@@ -10574,10 +10747,47 @@ sys_ultio_init = {
         orbit_angle = 313
         has_ring = no
 		size = 22
-		home_planet = yes
+		starting_planet = yes
 		entity = "biolum_planet_03_entity"
 		flags = { vindicta_planet subclass_world }
+		deposit_blockers = none
+        modifiers = none
 		init_effect = {
+			save_global_event_target_as = gothonesHomeworld
+			if = {
+				limit = {
+					exists = event_target:gothonesHomeworld
+				}
+				log = "Gothones Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_gothones_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = gothones_remnant_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = gothones_remnant_player
+					}
+					save_global_event_target_as = gothones_remnant
+				}
+			}
+			else = {
+				generate_gothones_remnant_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:gothones_remnant
+			create_colony = {
+				owner = event_target:gothones_remnant
+				species = event_target:gothonesSpecies
+				ethos = owner
+			}
+            generate_got_vindicta_pops = yes
 			add_modifier = {
 				modifier = biolum_world
 				days = -1

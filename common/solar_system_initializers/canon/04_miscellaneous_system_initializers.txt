@@ -100,9 +100,48 @@ sys_tartarusdebrisfield_init = {
 		orbit_angle = 215
 		size = 12
 		has_ring = no
-		home_planet = yes
+		starting_planet = yes
 		entity = "collector_base_01_game_entity"
 		flags = { collector_base }
+		deposit_blockers = none
+        modifiers = none
+		init_effect = {
+			save_global_event_target_as = collectorsHomeworld
+			if = {
+				limit = {
+					exists = event_target:collectorsHomeworld
+				}
+				log = "Collectors Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_collectors_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = collectors_empire_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = collectors_empire_player
+					}
+					save_global_event_target_as = collectors_empire
+				}
+			}
+			else = {
+				generate_collectors_empire_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:collectors_empire
+			create_colony = {
+				owner = event_target:collectors_empire
+				species = event_target:collectorsSpecies
+				ethos = owner
+			}
+            generate_collector_base_pops = yes
+		}		
 	}	
 
 	init_effect = { 
@@ -177,6 +216,45 @@ sys_migrant_fleet_init = {
 		size = 16
 		starting_planet = yes
 		flags = { rayya_ship_planet }
+		deposit_blockers = none
+        modifiers = none
+		init_effect = {
+			save_global_event_target_as = quarianHomeworld
+			if = {
+				limit = {
+					exists = event_target:quarianHomeworld
+				}
+				log = "Quarian Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_quarian_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = migrant_fleet_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = migrant_fleet_player
+					}
+					save_global_event_target_as = migrant_fleet
+				}
+			}
+			else = {
+				generate_migrant_fleet_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:migrant_fleet
+			create_colony = {
+				owner = event_target:migrant_fleet
+				species = event_target:quarianSpecies
+				ethos = owner
+			}
+            generate_qua_rayya_pops = yes
+		}
     }
 
     planet = {

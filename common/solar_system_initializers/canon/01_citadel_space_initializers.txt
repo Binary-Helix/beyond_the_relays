@@ -445,10 +445,47 @@ sys_pompeii_init = {
 		class = pc_desert
 		orbit_distance = 150
 		size = 18
-        home_planet = yes
+        starting_planet = yes
 		entity = "mephitic_desert_planet_12_entity"
 		flags = { rakhana_planet subclass_world }
+        deposit_blockers = none
+        modifiers = none
 		init_effect = {
+            save_global_event_target_as = drellHomeworld
+			if = {
+				limit = {
+					exists = event_target:drellHomeworld
+				}
+				log = "Drell Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_drell_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = remnants_of_rakhana_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = remnants_of_rakhana_player
+					}
+					save_global_event_target_as = remnants_of_rakhana
+				}
+			}
+			else = {
+				generate_remnants_of_rakhana_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:remnants_of_rakhana
+			create_colony = {
+				owner = event_target:remnants_of_rakhana
+				species = event_target:drellSpecies
+				ethos = owner
+			}
+            generate_dre_rakhana_pops = yes
 			add_modifier = {
 				modifier = dust_world
 				days = -1
@@ -1048,8 +1085,47 @@ sys_kanala_init = {
         orbit_angle = 169
         has_ring = no
         size = 20
-        home_planet = yes
+        starting_planet = yes
         flags = { kahje_planet subclass_world }
+        deposit_blockers = none
+        modifiers = none
+		init_effect = {
+			save_global_event_target_as = hanarHomeworld
+			if = {
+				limit = {
+					exists = event_target:hanarHomeworld
+				}
+				log = "Hanar Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_hanar_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = illuminated_primacy_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = illuminated_primacy_player
+					}
+					save_global_event_target_as = illuminated_primacy
+				}
+			}
+			else = {
+				generate_illuminated_primacy_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:illuminated_primacy
+			create_colony = {
+				owner = event_target:illuminated_primacy
+				species = event_target:hanarSpecies
+				ethos = owner
+			}
+            generate_han_kahje_pops = yes
+		}
 
         moon = {
             name = "Libin"
@@ -2151,8 +2227,47 @@ sys_aralakh_init = {
         orbit_angle = 66
         size = 20
 		has_ring = no
-        home_planet = yes
+        starting_planet = yes
         flags = { tuchanka_planet }
+        deposit_blockers = none
+        modifiers = none
+        init_effect = {
+			save_global_event_target_as = kroganHomeworld
+			if = {
+				limit = {
+					exists = event_target:kroganHomeworld
+				}
+				log = "Krogan Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_krogan_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = aralakh_kahmat_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = aralakh_kahmat_player
+					}
+					save_global_event_target_as = aralakh_kahmat
+				}
+			}
+			else = {
+				generate_aralakh_kahmat_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:aralakh_kahmat
+			create_colony = {
+				owner = event_target:aralakh_kahmat
+				species = event_target:kroganSpecies
+				ethos = owner
+			}
+            generate_kro_tuchanka_pops = yes
+		}
 	}			
 
 
@@ -3027,9 +3142,48 @@ sys_pranas_init = {
         orbit_distance = 100
         orbit_angle = 179
         size = 16
-        home_planet = yes
+        starting_planet = yes
+        has_ring = no	
         flags = { surkesh_planet subclass_world }
-		has_ring = no		
+        deposit_blockers = none
+        modifiers = none
+        init_effect = {
+			save_global_event_target_as = salarianHomeworld
+			if = {
+				limit = {
+					exists = event_target:salarianHomeworld
+				}
+				log = "Salarian Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_salarian_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = salarian_union_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = salarian_union_player
+					}
+					save_global_event_target_as = salarian_union
+				}
+			}
+			else = {
+				generate_salarian_union_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:salarian_union
+			create_colony = {
+				owner = event_target:salarian_union
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+            generate_sal_surkesh_pops = yes
+		}	
     } 
 
     planet = {
@@ -4151,10 +4305,48 @@ sys_trebia_init = {
         orbit_angle = 156
         size = 22
 		has_ring = no		
-        home_planet = yes
+        starting_planet = yes
 		flags = { palaven_planet subclass_world }
 		entity = "veld_planet_04_entity"
+        deposit_blockers = none
+        modifiers = none
 		init_effect = {
+			save_global_event_target_as = turianHomeworld
+			if = {
+				limit = {
+					exists = event_target:turianHomeworld
+				}
+				log = "Turian Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_turian_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = turian_hierarchy_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = turian_hierarchy_player
+					}
+					save_global_event_target_as = turian_hierarchy
+				}
+			}
+			else = {
+				generate_turian_hierarchy_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:turian_hierarchy
+			create_colony = {
+				owner = event_target:turian_hierarchy
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+            generate_tur_palaven_pops = yes
+
 			add_modifier = {
 				modifier = dextro_world
 				days = -1
@@ -5235,10 +5427,47 @@ sys_aru_init = {
         orbit_angle = 251
         size = 25
 		has_ring = no		
-        home_planet = yes
+        starting_planet = yes
 		entity = "ammonia_continental_planet_09_entity"
 		flags = { irune_planet subclass_world }
+        deposit_blockers = none
+        modifiers = none
 		init_effect = {
+            save_global_event_target_as = volusHomeworld
+			if = {
+				limit = {
+					exists = event_target:volusHomeworld
+				}
+				log = "Volus Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_volus_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = vol_protectorate_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = vol_protectorate_player
+					}
+					save_global_event_target_as = vol_protectorate
+				}
+			}
+			else = {
+				generate_vol_protectorate_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:vol_protectorate
+			create_colony = {
+				owner = event_target:vol_protectorate
+				species = event_target:volusSpecies
+				ethos = owner
+			}
+            generate_vol_irune_pops = yes
 			add_modifier = {
 				modifier = prairie_world
 				days = -1
@@ -10111,10 +10340,47 @@ sys_phontes_init = {
         orbit_angle = 256
         size = 25
 		has_ring = no		
-        home_planet = yes
+        starting_planet = yes
 		flags = { dekuuna_planet subclass_world }	
 		entity = "prairie_planet_02_entity"
+        deposit_blockers = none
+        modifiers = none
 		init_effect = {
+            save_global_event_target_as = elcorHomeworld
+			if = {
+				limit = {
+					exists = event_target:elcorHomeworld
+				}
+				log = "Elcor Homeworld Event Target Set"
+			}
+            prevent_anomaly = yes
+
+            check_for_elcor_player = yes
+            
+            if = {
+				limit = { 
+					any_country = {
+						has_country_flag = courts_of_dekuuna_player
+					}
+				}
+				random_country = {
+					limit = {
+						has_country_flag = courts_of_dekuuna_player
+					}
+					save_global_event_target_as = courts_of_dekuuna
+				}
+			}
+			else = {
+				generate_courts_of_dekuuna_country = yes
+			}
+            set_capital = yes
+			set_owner = event_target:courts_of_dekuuna
+			create_colony = {
+				owner = event_target:courts_of_dekuuna
+				species = event_target:elcorSpecies
+				ethos = owner
+			}
+            generate_elc_dekuuna_pops = yes
 			add_modifier = {
 				modifier = prairie_world
 				days = -1
