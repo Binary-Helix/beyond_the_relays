@@ -850,7 +850,14 @@ sys_sol_init = {
 					save_global_event_target_as = systems_alliance
 				}
 			}
-			else = {
+			else_if = {
+				limit = { 
+					NOT = {
+						any_country = {
+							has_country_flag = systems_alliance_player
+						}
+					}
+				}
 				generate_systems_alliance_country = yes
 			}
             set_capital = yes
@@ -1392,7 +1399,7 @@ sys_fortuna_init = {
     class = sc_m
 	max_instances = 1
 
-    flags = { orion_spur sector_os2 horse_head_nebula anadius_system primary_relay_system }
+    flags = { orion_spur sector_os2 horse_head_nebula fortuna_system primary_relay_system }
 
     planet = {
 		name = "Fortuna"
@@ -2119,7 +2126,7 @@ sys_crete_init = {
 	class = sc_m
 	max_instances = 1
 
-    flags = { bahanak_frontier sector_bf1 artemis_tau athens_system }
+    flags = { bahanak_frontier sector_bf1 artemis_tau crete_system }
 
     planet = {
 		name = "Crete"
@@ -2923,7 +2930,7 @@ sys_untrel_init = {
     class = sc_f
 	max_instances = 1
 
-    flags = { bahanak_frontier sector_bf1 kites_nest koshlanhk_system }
+    flags = { bahanak_frontier sector_bf1 kites_nest untrel_system }
 	
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -2987,7 +2994,7 @@ sys_vular_init = {
     class = sc_g
 	max_instances = 1
 
-    flags = { bahanak_frontier sector_bf1 kites_nest koshlanhk_system primary_relay_system }
+    flags = { bahanak_frontier sector_bf1 kites_nest vular_system primary_relay_system }
 	
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -3549,6 +3556,15 @@ sys_cavalcante_init = {
 			}
 		}
 	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "alliance_space_sector_7_secondaryrelay" 
+			name = "Sector SV5 - Secondary Relay 3"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
+	}
 }
 
 sys_dis_init = {
@@ -3796,7 +3812,7 @@ sys_amazon_init = {
     class = sc_m_giant
 	max_instances = 1
 
-    flags = { bahanak_frontier sector_bf2 voyager_cluster plutus_system primary_relay_system }
+    flags = { bahanak_frontier sector_bf2 voyager_cluster amazon_system primary_relay_system }
 
     planet = {
 		name = "Amazon"
@@ -4519,12 +4535,12 @@ sys_selvandia_init = {
     }
 }
 
-sys_urdupos_init = {
+sys_urdu_pos_init = {
     name = "Urdu'pos" 
     class = sc_k
 	max_instances = 1
 
-    flags = { skyllian_verge sector_sv1 petra_nebula selvandia_system primary_relay_system }
+    flags = { skyllian_verge sector_sv1 petra_nebula urdu_pos_system primary_relay_system }
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -5559,7 +5575,7 @@ sys_kormas_init = {
     class = sc_b_super
 	max_instances = 1
 
-    flags = { skyllian_verge sector_sv2 lobarter_cluster kentin_system secondary_relay_system }
+    flags = { skyllian_verge sector_sv2 lobarter_cluster kormas_system secondary_relay_system }
 
 	asteroid_belt = {
 		type = icy_asteroid_belt
@@ -6544,7 +6560,7 @@ sys_baldr_init = {
     class = sc_y
 	max_instances = 1
 
-    flags = { skyllian_verge sector_sv4 yggdrasil_nebula baldr_system primary_relay_system }
+    flags = { skyllian_verge sector_sv4 yggdrasil_nebula baldr_system secondary_relay_system }
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -6579,8 +6595,8 @@ sys_baldr_init = {
 
 	init_effect = { 
 		spawn_megastructure = { 
-			type = "yggdrasilnebula_atticanbeta_primaryrelay" 
-			name = "Sector SV4 - Primary Relay 3"
+			type = "alliance_space_sector_4_secondaryrelay" 
+			name = "Sector SV4 - Secondary Relay 2"
 			orbit_angle = 270 
 			orbit_distance = 500
 		} 
@@ -6626,7 +6642,7 @@ sys_fen_init = {
     class = sc_k
 	max_instances = 1
 
-    flags = { skyllian_verge sector_sv4 yggdrasil_nebula fen_system }
+    flags = { skyllian_verge sector_sv4 yggdrasil_nebula fen_system primary_relay_system }
 
     planet = {
 		name = "Fen"
@@ -6670,6 +6686,15 @@ sys_fen_init = {
 		orbit_angle = random
 		orbit_distance = 150
 		size = 12
+	}
+
+	init_effect = { 
+		spawn_megastructure = { 
+			type = "yggdrasilnebula_atticanbeta_primaryrelay" 
+			name = "Sector SV4 - Primary Relay 3"
+			orbit_angle = 270 
+			orbit_distance = 500
+		} 
 	}
 }
 
@@ -6742,7 +6767,7 @@ sys_vali_init = {
     class = sc_black_hole
 	max_instances = 1
 
-    flags = { skyllian_verge sector_sv4 yggdrasil_nebula vali_system secondary_relay_system }
+    flags = { skyllian_verge sector_sv4 yggdrasil_nebula vali_system }
 	
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -6755,15 +6780,6 @@ sys_vali_init = {
         orbit_distance = 0
         size = 30
 	}	
-
-	init_effect = { 
-		spawn_megastructure = { 
-			type = "alliance_space_sector_4_secondaryrelay" 
-			name = "Sector SV4 - Secondary Relay 2"
-			orbit_angle = 270 
-			orbit_distance = 500
-		} 
-	}
 }
 
 #######################################

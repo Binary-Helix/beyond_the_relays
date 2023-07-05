@@ -36,8 +36,8 @@ generate_asari_republics_country = {
 		effect = {
 			set_graphical_culture = mec_asari_01
 			set_city_graphical_culture = mec_asari_01
-			set_country_flag = asari_republics_ai
 			set_country_flag = asari_republics
+			set_country_flag = asari_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
@@ -105,7 +105,6 @@ generate_salarian_union_country = {
 		}
 		effect = {
 			set_graphical_culture = btr_salarian_01
-			set_country_flag = salarian_union_ai
 			set_country_flag = salarian_union
 			set_country_flag = salarian_empire
 			set_country_flag = init_spawned
@@ -167,11 +166,13 @@ generate_turian_hierarchy_country = {
 		type = default
 		origin = turian_hier_origin
 		effect = {
-			set_country_flag = turian_hierarchy_ai
+			set_country_flag = turian_hierarchy
+			set_country_flag = turian_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = btr_turian_01
+			save_global_event_target_as = turian_hierarchy
 			add_resource = {
 				energy = 2750
 				minerals = 1650
@@ -198,70 +199,72 @@ generate_turian_hierarchy_country = {
 
 generate_systems_alliance_country = {
 	create_country = {
-					name = "Systems Alliance"
-					adjective = "PRESCRIPTED_adjective_systems_alliance"	
-					authority = auth_democratic
-					civics={ 
-						civic = systems_all_colonial_government 
-						civic = systems_all_unfettered_ai 
-					}
-					species = event_target:humanSpecies
-					name_list = "btr_alliance"
-					ship_prefix = "SSV"
-					ethos = { 
-						ethic = ethic_egalitarian 
-						ethic = ethic_militarist 
-						ethic = ethic_materialist 
-					}
-					flag = {
-						icon={
-							category="beyondtherelays"
-							file="systems_alliance.dds"
-						}
-						background={
-							category="backgrounds"
-							file="00_solid.dds"
-						}
-						colors={
-							"eecolor1681"
-							"silver_steel"
-							"null"
-							"null"
-						}
-					}
-					type = default
-					origin = systems_all_origin
-					effect = {
-						set_country_flag = systems_alliance_ai
-						set_country_flag = init_spawned
-						set_country_flag = canon_map
-						set_country_flag = btr_empire
-						set_graphical_culture = btr_alliance_01
-						add_resource = {
-							energy = 800
-							minerals = 450
-							alloys = 265
-							influence = 100
-							food = 1500
-							consumer_goods = 500
-							volatile_motes = 100
-							exotic_gases = 100
-							rare_crystals = 100
-						}
-						add_modifier = {
-							modifier = systems_all_empire_modifier
-							days = -1
-						}
-						add_modifier = {
-							modifier = systems_all_shanxi_314
-							days = 9000
-						}
-						add_modifier = {
-							modifier = systems_all_skyllian_verge
-							days = -1
-						}					
-					}
-				}
+		name = "Systems Alliance"
+		adjective = "PRESCRIPTED_adjective_systems_alliance"	
+		authority = auth_democratic
+		civics={ 
+			civic = systems_all_colonial_government 
+			civic = systems_all_unfettered_ai 
+		}
+		species = event_target:humanSpecies
+		name_list = "btr_alliance"
+		ship_prefix = "SSV"
+		ethos = { 
+			ethic = ethic_egalitarian 
+			ethic = ethic_militarist 
+			ethic = ethic_materialist 
+		}
+		flag = {
+			icon={
+				category="beyondtherelays"
+				file="systems_alliance.dds"
+			}
+			background={
+				category="backgrounds"
+				file="00_solid.dds"
+			}
+			colors={
+				"eecolor1681"
+				"silver_steel"
+				"null"
+				"null"
+			}
+		}
+		type = default
+		origin = systems_all_origin
+		effect = {
+			set_country_flag = systems_alliance
+			set_country_flag = human_empire
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_graphical_culture = btr_alliance_01
+			save_global_event_target_as = systems_alliance
+			add_resource = {
+				energy = 800
+				minerals = 450
+				alloys = 265
+				influence = 100
+				food = 1500
+				consumer_goods = 500
+				volatile_motes = 100
+				exotic_gases = 100
+				rare_crystals = 100
+			}
+			add_modifier = {
+				modifier = systems_all_empire_modifier
+				days = -1
+			}
+			add_modifier = {
+				modifier = systems_all_shanxi_314
+				days = 9000
+			}
+			add_modifier = {
+				modifier = systems_all_skyllian_verge
+				days = -1
+			}					
+		}
+	}
 }
 
 
@@ -300,11 +303,13 @@ generate_courts_of_dekuuna_country = {
 		type = default
 		origin = courts_dek_origin
 		effect = {
-			set_country_flag = courts_of_dekuuna_ai
+			set_country_flag = courts_of_dekuuna
+			set_country_flag = elcor_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire	
 			set_graphical_culture = mammalian_01
+			save_global_event_target_as = courts_of_dekuuna
 			add_resource = {
 				energy = 1900
 				minerals = 1200
@@ -360,11 +365,13 @@ generate_vol_protectorate_country = {
 		type = default
 		origin = vol_pro_origin
 		effect = {
-			set_country_flag = vol_protectorate_ai
+			set_country_flag = vol_protectorate
+			set_country_flag = volus_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = mammalian_01
+			save_global_event_target_as = vol_protectorate
 			add_resource = {
 				energy = 3100
 				minerals = 1240
@@ -419,11 +426,13 @@ generate_illuminated_primacy_country = {
 		type = default
 		origin = illuminated_pri_origin
 		effect = {
-			set_country_flag = illuminated_primacy_ai
+			set_country_flag = illuminated_primacy
+			set_country_flag = hanar_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = aquatic_01
+			save_global_event_target_as = illuminated_primacy
 			add_resource = {
 				energy = 1850
 				minerals = 1240
@@ -478,11 +487,13 @@ generate_hegemony_of_kharshan_country = {
 		type = default
 		origin = hegemony_kha_origin
 		effect = {
-			set_country_flag = hegemony_of_kharshan_ai
+			set_country_flag = hegemony_of_kharshan
+			set_country_flag = batarian_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = reptilian_01
+			save_global_event_target_as = hegemony_of_kharshan
 			add_resource = {
 				energy = 1200
 				minerals = 600
@@ -507,7 +518,7 @@ generate_hegemony_of_kharshan_country = {
 	}
 }
 
-generate_aralak_kahmat_country = {
+generate_aralakh_kahmat_country = {
 	create_country = {
 		name = "Aralakh Kahmat"
 		adjective = "PRESCRIPTED_adjective_aralakh_kahmat"
@@ -543,11 +554,13 @@ generate_aralak_kahmat_country = {
 		type = default
 		origin = aralakh_kah_origin
 		effect = {
-			set_country_flag = aralakh_kahmat_ai
+			set_country_flag = aralakh_kahmat
+			set_country_flag = krogan_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = reptilian_01
+			save_global_event_target_as = aralakh_kahmat
 			add_resource = {
 				energy = 400
 				minerals = 200
@@ -603,11 +616,13 @@ generate_migrant_fleet_country = {
 		type = default
 		origin = migrant_fle_origin
 		effect = {
-			set_country_flag = migrant_fleet_ai
+			set_country_flag = migrant_fleet
+			set_country_flag = quarian_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = quar_01
+			save_global_event_target_as = migrant_fleet
 			add_resource = {
 				energy = 950
 				minerals = 420
@@ -627,7 +642,7 @@ generate_migrant_fleet_country = {
 	}
 }
 
-generate_omega_country = {
+generate_omega_empire_country = {
 	create_country = {
 		type = default
 		ignore_initial_colony_error = yes
@@ -664,8 +679,8 @@ generate_omega_country = {
 		}
 		effect = {
 			set_graphical_culture = arthropoid_01
-			set_country_flag = omega_empire_ai
 			set_country_flag = omega_empire
+			set_country_flag = asari_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
@@ -729,8 +744,8 @@ generate_illium_corporate_interests_country = {
 
 		effect = {
 			set_graphical_culture = mec_asari_01
-			set_country_flag = illium_corporate_interests_ai
 			set_country_flag = illium_corporate_interests
+			set_country_flag = asari_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
@@ -790,11 +805,13 @@ generate_caleston_directorate_country = {
 		type = default
 		origin = caleston_dir_origin
 		effect = {
-			set_country_flag = caleston_directorate_ai
+			set_country_flag = caleston_directorate
+			set_country_flag = turian_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = btr_turian_01
+			save_global_event_target_as = caleston_directorate
 			add_resource = {
 				energy = 1900
 				minerals = 710
@@ -815,7 +832,7 @@ generate_caleston_directorate_country = {
 	log = "Caleston Directorate AI Empire Created"
 }
 
-generate_sedriiace_collective_country = {
+generate_sedriicae_collective_country = {
 	create_country = {
 		name = "Sed'riicae Collective"
 		adjective = "PRESCRIPTED_adjective_sedriicae_collective"
@@ -850,11 +867,13 @@ generate_sedriiace_collective_country = {
 		type = default
 		origin = sedriicae_col_origin
 		effect = {
-			set_country_flag = sedriicae_collective_ai
+			set_country_flag = sedriicae_collective
+			set_country_flag = forayan_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = arthropoid_01
+			save_global_event_target_as = sedriicae_collective
 			add_resource = {
 				energy = 1150
 				minerals = 2500
@@ -909,11 +928,13 @@ generate_vorcha_clandom_country = {
 		type = default
 		origin = vorcha_cla_origin
 		effect = {
-			set_country_flag = vorcha_clandom_ai
+			set_country_flag = vorcha_clandom
+			set_country_flag = vorcha_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = reptilian_01
+			save_global_event_target_as = vorcha_clandom
 			add_resource = {
 				energy = 620
 				minerals = 250
@@ -965,11 +986,13 @@ generate_lystheni_order_country = {
 		type = default
 		origin = lystheni_ord_origin
 		effect = {
-			set_country_flag = lystheni_order_ai
+			set_country_flag = lystheni_order
+			set_country_flag = lystheni_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = reptilian_01
+			save_global_event_target_as = lystheni_order
 			add_resource = {
 				energy = 860
 				minerals = 400
@@ -1024,11 +1047,13 @@ generate_gothones_remnant_country = {
 		type = default
 		origin = gothones_rem_origin
 		effect = {
-			set_country_flag = gothones_remnant_ai
+			set_country_flag = gothones_remnant
+			set_country_flag = gothones_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = tur_01
+			save_global_event_target_as = gothones_remnant
 			add_resource = {
 				energy = 950
 				minerals = 420
@@ -1083,11 +1108,13 @@ generate_rachni_hive_country = {
 		type = default
 		origin = rachni_hiv_origin
 		effect = {
-			set_country_flag = rachni_hive_ai
+			set_country_flag = rachni_hive
+			set_country_flag = rachni_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = molluscoid_01
+			save_global_event_target_as = rachni_hive
 			add_resource = {
 				energy = 800
 				minerals = 350
@@ -1140,11 +1167,13 @@ generate_geth_consensus_country = {
 		type = default
 		origin = geth_con_origin
 		effect = {
-			set_country_flag = geth_consensus_ai
+			set_country_flag = geth_consensu
+			set_country_flag = geth_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = geth_01
+			save_global_event_target_as = geth_consensus
 			add_resource = {
 				minerals = 1050
 				energy = 2800
@@ -1196,11 +1225,13 @@ generate_disciples_of_nazara_country = {
 		type = default
 		origin = disciples_naz_origin
 		effect = {
-			set_country_flag = disciples_of_nazara_ai
+			set_country_flag = disciples_of_nazara
+			set_country_flag = geth_empire
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
 			set_country_flag = btr_empire
 			set_graphical_culture = geth_01
+			save_global_event_target_as = disciples_of_nazara
 			add_resource = {
 				energy = 2700
 				minerals = 1050
@@ -1218,7 +1249,7 @@ generate_disciples_of_nazara_country = {
 	} 
 }
 
-generate_the_collectors_country = {
+generate_collectors_empire_country = {
 
 }
 
@@ -3175,4 +3206,3 @@ generate_reds_raiders_pirates = {
 		}
 	}			
 }	
-}
