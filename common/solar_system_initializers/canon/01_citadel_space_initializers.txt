@@ -10869,8 +10869,30 @@ sys_widow_init = {
 		orbit_angle = 215
 		size = 20
 		has_ring = no
-		flags = { megastructure habitat }
+		flags = { megastructure habitat citadel_station }
+        deposit_blockers = none
+        modifiers = none
 		entity = "btr_citadel_01_entity"		
+        init_effect = {
+            save_global_event_target_as = citadelHomeworld
+            if = {
+                limit = {
+                    exists = event_target:citadelHomeworld
+                }
+                log = "Citadel Station Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_citadel_council_country = yes
+            set_capital = yes
+            set_owner = event_tarvget:citadel_council
+            create_colony = {
+                owner = event_target:citadel_council
+                species = event_target:asariSpecies
+                ethos = owner
+            }
+            generate_citadel_station_pops = yes
+        }
 	}
 
 	init_effect = { 

@@ -1560,6 +1560,24 @@ sys_pax_init = {
 		entity = "antarctic_planet_01_entity"
 		flags = { subclass_world }		
 		init_effect = {	
+			save_global_event_target_as = noveriaHomeworld
+            if = {
+                limit = {
+                    exists = event_target:noveriaHomeworld
+                }
+                log = "Noveria Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_noveria_development_corporation_country = yes
+            set_capital = yes
+            set_owner = event_tarvget:noveria_development_corporation
+            create_colony = {
+                owner = event_target:noveria_development_corporation
+                species = event_target:salarianSpecies
+                ethos = owner
+            }
+            generate_new_canton_pops = yes
 			add_modifier = {
 				modifier = antar_world
 				days = -1
@@ -2159,8 +2177,28 @@ sys_crete_init = {
         has_ring = no
 		size = 16
 		flags = { subclass_world }
+		deposit_blockers = none
+        modifiers = none
 		entity = "mesa_planet_01_entity"
 		init_effect = {
+			save_global_event_target_as = ishtarHomeworld
+            if = {
+                limit = {
+                    exists = event_target:ishtarHomeworld
+                }
+                log = "Ishtar Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_ishtar_emporium_country = yes
+            set_capital = yes
+            set_owner = event_tarvget:ishtar_emporium
+            create_colony = {
+                owner = event_target:ishtar_emporium
+                species = event_target:salarianSpecies
+                ethos = owner
+            }
+            generate_ishtar_pops = yes
 			add_modifier = {
 				modifier = mesa_world
 				days = -1
@@ -3549,7 +3587,27 @@ sys_cavalcante_init = {
         size = 30
 		entity = "biolum_planet_04_entity"
 		flags = { subclass_world }
+		deposit_blockers = none
+        modifiers = none
 		init_effect = {
+			save_global_event_target_as = anansiHomeworld
+            if = {
+                limit = {
+                    exists = event_target:anansiHomeworld
+                }
+                log = "Anansi Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_anansi_manufacturing_country = yes
+            set_capital = yes
+            set_owner = event_tarvget:anansi_manufacturing
+            create_colony = {
+                owner = event_target:anansi_manufacturing
+                species = event_target:hanarSpecies
+                ethos = owner
+            }
+            generate_anansi_pops = yes
 			add_modifier = {
 				modifier = biolum_world
 				days = -1
