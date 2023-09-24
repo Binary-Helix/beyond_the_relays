@@ -1,0 +1,309 @@
+############################
+#
+# Skyllian Blitz 
+# Written by Risker & Arrenius
+# Coded by Puck and Max
+#
+############################
+
+namespace = btr_skyblitz_1
+
+##### Skyllian Blitz Act 1 #####
+
+country_event = {
+	id = btr_skyblitz_1.1
+	title = "btr_skyblitz_1.1.name"
+	desc = "btr_skyblitz_1.1.desc"
+	picture = TODO:
+	sound = TODO:
+	hide_window = yes
+	location = event_target:omega_station
+	is_triggered_only = yes
+
+	trigger = {
+		AND = {
+			mid_game_years_passed >= 10
+			end_game_years_passed < 0
+		}
+		has_origin = caleston_dir_origin
+		NOT = {
+			has_global_flag = caleston_coup_attempted
+		}
+	}
+
+	immediate = {
+		hidden_effect = {
+			create_country = {
+				name = "NAME_Elanos_Haliat"
+				type = paragon_event_country
+				auto_delete = yes
+				flag = {
+					TODO:
+				}
+				effect = {
+					save_global_event_target_as = haliat_country
+				}
+			}
+			event_target:haliat_country = {
+				set_country_flag = TODO:
+				set_faction_hostility = {
+					target = root.owner
+					set_hostile = no
+					set_neutral = yes
+					set_friendly = no
+				}
+				create_leader = {
+					class = admiral
+					species = event_target:turianSpecies
+					name = "NAME_Elanos_Haliat"
+					skill = 9
+					gender = male
+					event_leader = yes
+					skip_background_generation = yes
+					background_ethic = ethic_fanatic_militarist
+					custom_catch_phrase = haliat_catch_phrase
+					custom_description = haliat_desc
+					randomize_traits = no
+					effect = {
+						set_leader = legendary_leader
+					}
+				}
+				last_created_leader = {
+					set_leader_flag = haliat
+					set_leader_flag = immune_to_negative_traits
+					save_global_event_target_as = admiral_haliat
+					set_owner = event_target:haliat_country
+					add_trait = TODO: #Generic
+					add_trait = TODO: #Generic
+					add_trait = TODO: #Generic
+					add_trait = TODO: #Generic
+					add_trait = TODO: #Custom
+					add_trait = TODO: #Custom
+				}
+				create_fleet = {
+					name = "NAME_Haliat_Fleet"
+					effect = {
+						set_owner = event_target:haliat_country
+						create_ship = {
+							name = "NAME_Haliat_Ship"
+							design = "NAME_" TODO:
+							graphical_culture = tur_01
+							upgradable = no
+						}
+						last_created_ship = {
+							set_ship_flag = haliat_shipname TODO:
+							save_global_event_target_as = haliat_ship
+						}
+						set_location = {
+							target = event_target:omega_station
+							distance = 30
+							angle = random
+						}
+						set_fleet_stance = passive
+						assign_leader = event_target:admiral_haliat
+						save_global_event_target_as = haliat_fleet
+					}
+					settings = {
+						can_upgrade = no
+						can_change_composition = no
+						can_change_leader = no
+						spawn_debris = no
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = "btr_skyllian_blitz_1.1.a"
+		hidden_effect = {
+			country_event = {
+				id = btr_skyllian_blitz_1.4 
+				days = 30
+				random = 5
+			}
+		}
+	}
+	option = {
+		name = "btr_skyllian_blitz_1.1.b"
+		hidden_effect = {
+			country_event = {
+				id = btr_skyllian_blitz_1.100 
+				days = 7
+				random = 3
+			}
+		}
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.100
+	title = "btr_skyblitz_1.100.name"
+	desc = "btr_skyblitz_1.100.desc"
+	picture = TODO:
+	show_sound = event_air_raid_siren
+	hide_window = yes
+	location = ROOT
+
+	auto_opens = yes
+
+	pretriggers = {
+		has_owner = yes
+		has_ground_combat = no
+		original_owner = yes
+	}
+
+	trigger = {
+		NOT = {
+			has_planet_flag = haliat_coup_attempted
+		}
+		has_planet_flag = caleston_planet
+		num_pops > 0
+	}
+
+	immediate = {
+		set_planet_flag = haliat_coup_attempted
+		set_planet_flag = haliat_coup_planet
+		owner = {
+			set_country_flag = caleston_coup_empire
+		}
+		create_country = {
+			name = "Caleston Sovereignty"
+			type = faction
+			effect = {
+				establish_communications_no_message = root.owner
+				establish_contact = { who = root.owner location = root.solar_system }
+			}
+		}
+		create_army = {
+			name = "NAME_Eclipse_Merc_Company"
+			owner = last_created_country
+			species	= "event_target:asariSpecies"
+			type = assault_army
+		}
+		create_army = {
+			name = "NAME_Eclipse_Merc_Company"
+			owner = last_created_country
+			species	= "event_target:asariSpecies"
+			type = assault_army
+		}
+		create_army = {
+			name = "NAME_Eclipse_Merc_Company"
+			owner = last_created_country
+			species	= "event_target:salarianSpecies"
+			type = assault_army
+		}
+		create_army = {
+			name = "NAME_Eclipse_Merc_Company"
+			owner = last_created_country
+			species	= "event_target:salarianSpecies"
+			type = assault_army
+		}
+	}
+
+	option = {
+		name = btr_skyblitz_1.100.a
+		custom_tooltip = haliat_coup
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
+
+
+country_event = {
+	id = btr_skyblitz_1.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.6
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.7
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.8
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.9
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
+
+country_event = {
+	id = btr_skyblitz_1.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		
+	}
+}
