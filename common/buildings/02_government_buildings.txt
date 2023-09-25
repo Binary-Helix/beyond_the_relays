@@ -23,6 +23,20 @@ building_noble_estates = {
 
 	allow = {
 		has_upgraded_capital = yes
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			orbital_defence = {
+				exists = starbase
+				starbase = {
+					NOR = {
+						has_starbase_building = ring_noble_estates
+						is_starbase_building_building = ring_noble_estates
+					}
+				}
+			}
+		}	
 	}
 
 	destroy_trigger = {
@@ -67,6 +81,20 @@ building_slave_processing = {
 
 	allow = {
 		has_upgraded_capital = yes
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			orbital_defence = {
+				exists = starbase
+				starbase = {
+					NOR = {
+						has_starbase_building = ring_slave_processing_facility
+						is_starbase_building_building = ring_slave_processing_facility
+					}
+				}
+			}
+		}	
 	}
 
 	destroy_trigger = { # destroys if true
@@ -243,7 +271,7 @@ building_sentinel_posts = {
 				AND = {
 					NOT = { has_building = building_sentinel_posts }
 					NOT = { has_forbidden_jobs = patrol_drone }
-					NOT = { has_available_jobs = patrol_drone }					
+					NOT = { has_available_jobs = patrol_drone }
 				}
 			}
 		}
@@ -289,7 +317,7 @@ building_order_keep = {
 	can_be_disabled = no
 
 	empire_limit = {
-	 	base = 1
+		base = 1
 	}
 
 	category = government
@@ -309,7 +337,7 @@ building_order_keep = {
 	}
 
 	planet_modifier = {
-		job_squire_add = 1
+		job_squire_add = 2
 		job_knight_add = 1
 		job_knight_per_pop = 0.05 # 1 for every 10 pop while quest active. 1 for 20 after quest.
 
@@ -334,6 +362,12 @@ building_order_keep = {
 		}
 	}
 
+	triggered_planet_modifier = {
+		potential = {
+			owner = { has_country_flag = toxoids_7090_a }
+		}
+		planet_stability_add = 15
+	}	
 
 	resources = {
 		cost = {
@@ -372,7 +406,7 @@ building_order_castle = {
 	}
 
 	planet_modifier = {
-		job_squire_add = 1
+		job_squire_add = 2
 		job_knight_add = 1
 
 		planet_immigration_pull_add = 1
@@ -419,12 +453,7 @@ building_psi_corps = {
 
 	potential = {
 		host_has_dlc = "Utopia"
-		owner = {
-			OR = {
-				has_ascension_perk = ap_mind_over_matter
-				has_origin = origin_shroudwalker_apprentice
-			}
-		}
+		owner = { has_tradition = tr_psionics_psi_corps }
 		NOT = { has_modifier = resort_colony }
 		NOT = { has_modifier = slave_colony }
 		NOT = { has_planet_flag = planetary_station }
@@ -432,17 +461,26 @@ building_psi_corps = {
 
 	allow = {
 		has_major_upgraded_capital = yes
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			orbital_defence = {
+				exists = starbase
+				starbase = {
+					NOR = {
+						has_starbase_building = ring_psi_corps
+						is_starbase_building_building = ring_psi_corps
+					}
+				}
+			}
+		}	
 	}
 
 	destroy_trigger = {
 		exists = owner
 		NOT = {
-			owner = {
-				OR = {
-					has_ascension_perk = ap_mind_over_matter
-					has_origin = origin_shroudwalker_apprentice
-				}
-			}
+			owner = { has_tradition = tr_psionics_psi_corps }
 		}
 	}
 
@@ -490,6 +528,20 @@ building_embassy = {
 
 	allow = {
 		has_upgraded_capital = yes
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			orbital_defence = {
+				exists = starbase
+				starbase = {
+					NOR = {
+						has_starbase_building = ring_embassy_complex
+						is_starbase_building_building = ring_embassy_complex
+					}
+				}
+			}
+		}
 	}
 
 	destroy_trigger = {
@@ -504,6 +556,14 @@ building_embassy = {
 
 	country_modifier = {
 		envoys_add = 1
+	}
+
+	planet_modifier = {
+		job_politician_add = 1
+	}
+
+	triggered_desc = {
+		text = job_politician_effect_desc
 	}
 
 	resources = {
@@ -545,6 +605,20 @@ building_grand_embassy = {
 
 	allow = {
 		has_major_upgraded_capital = yes
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			orbital_defence = {
+				exists = starbase
+				starbase = {
+					NOR = {
+						has_starbase_building = ring_embassy_complex
+						is_starbase_building_building = ring_embassy_complex
+					}
+				}
+			}
+		}
 	}
 
 	destroy_trigger = {
@@ -559,6 +633,14 @@ building_grand_embassy = {
 
 	country_modifier = {
 		envoys_add = 2
+	}
+
+	planet_modifier = {
+		job_politician_add = 2
+	}
+
+	triggered_desc = {
+		text = job_politician_effect_desc
 	}
 
 	resources = {
@@ -593,10 +675,6 @@ building_gaiaseeders_1 = {
 		exists = owner
 		owner = {
 			is_country_type = default
-			OR = {
-				has_valid_civic = civic_idyllic_bloom
-				has_valid_civic = civic_hive_idyllic_bloom
-			}
 			is_idyllic_bloom_empire = yes
 		}
 		NOR = {
@@ -622,10 +700,6 @@ building_gaiaseeders_1 = {
 			is_planet_class = pc_relic
 			NOT = { exists = owner }
 			owner = {
-				NOR = {
-					has_valid_civic = civic_idyllic_bloom
-					has_valid_civic = civic_hive_idyllic_bloom
-				}
 				is_idyllic_bloom_empire = no
 			}
 		}
@@ -676,10 +750,6 @@ building_gaiaseeders_2 = {
 			is_planet_class = pc_machine
 			NOT = { exists = owner }
 			owner = {
-				NOR = {
-					has_valid_civic = civic_idyllic_bloom
-					has_valid_civic = civic_hive_idyllic_bloom
-				}
 				is_idyllic_bloom_empire = no
 			}
 		}
@@ -723,10 +793,6 @@ building_gaiaseeders_3 = {
 			is_planet_class = pc_machine
 			NOT = { exists = owner }
 			owner = {
-				NOR = {
-					has_valid_civic = civic_idyllic_bloom
-					has_valid_civic = civic_hive_idyllic_bloom
-				}
 				is_idyllic_bloom_empire = no
 			}
 		}
@@ -743,21 +809,19 @@ building_gaiaseeders_3 = {
 
 building_gaiaseeders_4 = {
 	base_buildtime = @b2_time
-	can_build = no
 	category = government
+	can_demolish = no
+	can_be_ruined = no
 	can_be_disabled = no
+	position_priority = 0
 
 	destroy_trigger = {
 		OR = {
-			is_planet_class = pc_city
-			is_planet_class = pc_hive
-			is_planet_class = pc_machine
+			NOT = {
+				is_planet_class = pc_gaia
+			}
 			NOT = { exists = owner }
 			owner = {
-				NOR = {
-					has_valid_civic = civic_idyllic_bloom
-					has_valid_civic = civic_hive_idyllic_bloom
-				}
 				is_idyllic_bloom_empire = no
 			}
 		}
@@ -769,6 +833,18 @@ building_gaiaseeders_4 = {
 			energy = 1500
 			exotic_gases = @b4_rare_cost
 		}
+		upkeep = {
+			energy = @b4_upkeep
+			exotic_gases = @b3_rare_upkeep
+			multiplier = value:gaiaseeder_cost_mult
+		}
+	}
+
+	potential = {
+		OR = {
+			is_planet_class = pc_gaia
+			has_building = building_gaiaseeders_3
+		}
 	}
 
 	allow = {
@@ -777,5 +853,24 @@ building_gaiaseeders_4 = {
 
 	triggered_desc = {
 		text = building_gaiaseeders_4_effect_desc
+		trigger = {
+			exists = planet
+			planet = {
+				NOT = {
+					is_planet_class = pc_gaia
+				}
+			}
+		}
+	}
+
+	triggered_desc = {
+		text = gaia_seeder_bloomed_pops_effect
+	}
+
+	triggered_desc = {
+		text = gaia_seeder_bloom_timer_tooltip
+		trigger = {
+			has_planet_flag = gaia_seeder_bloom_timer
+		}
 	}
 }

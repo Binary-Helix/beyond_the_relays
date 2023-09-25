@@ -107,9 +107,6 @@ building_artist_patron = {
 			text = EMPIRE_UNIQUE_BUILDING
 			owner = {
 				has_country_flag = artist_building_patron
-				NOT = {
-					has_country_flag = built_one_ministry
-				}
 			}
 		}
 		NOT = { has_modifier = slave_colony }
@@ -170,30 +167,6 @@ building_artist_patron = {
 			owner = { is_gestalt = yes }
 		}
 		text = building_artist_patron_gestalt_desc
-	}
-
-	on_queued = {
-		owner = { remove_country_flag = artist_building_patron }
-	}
-
-	on_unqueued = {
-		owner = { set_country_flag = artist_building_patron }
-	}
-
-	on_built = {
-		owner = { set_country_flag = built_one_ministry }
-	}
-
-	on_destroy = {
-		owner = {
-			if = {
-				limit = {
-					has_country_flag = built_one_ministry
-				}
-				remove_country_flag = built_one_ministry
-				set_country_flag = artist_building_patron
-			}
-		}
 	}
 }
 
@@ -261,8 +234,7 @@ building_nuumismatic_shrine = {
 	}
 
 	planet_modifier = {
-		job_merchant_add = 2
-		job_priest_add = 2
+		job_numistic_priest_add = 4
 	}
 
 	resources = {
@@ -273,10 +245,7 @@ building_nuumismatic_shrine = {
 	}
 
 	triggered_desc = {
-		text = job_priest_effect_desc
-	}
-	triggered_desc = {
-		text = job_merchant_effect_desc
+		text = job_numistic_priest_effect_desc
 	}
 }
 

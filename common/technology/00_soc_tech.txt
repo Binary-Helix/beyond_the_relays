@@ -1146,7 +1146,7 @@ tech_frontier_health = {
 		}
 		modifier = {
 			factor = 2
-			has_country_flag = payback_researching_gene_clinics 
+			has_country_flag = payback_researching_gene_clinics
 		}
 	}
 }
@@ -2140,8 +2140,6 @@ tech_cloning = {
 
 	ai_weight = {
 		factor = @pop_growth_tech_ai_factor
-
-
 	}
 }
 
@@ -2189,7 +2187,7 @@ tech_gene_banks = {
 				any_member = { has_technology = tech_gene_banks }
 			}
 		}
-	}	
+	}
 }
 
 tech_gene_seed_purification = {
@@ -2211,6 +2209,9 @@ tech_gene_seed_purification = {
 		modifier = {
 			factor = 0
 			host_has_dlc = "Utopia"
+			NOT = {
+				has_ascension_perk = ap_engineered_evolution
+			}
 		}
 		modifier = {
 			factor = 1.25
@@ -2248,7 +2249,7 @@ tech_gene_seed_purification = {
 			OR = {
 				has_trait_in_council = { TRAIT = leader_trait_spark_of_genius }
 				has_trait_in_council = { TRAIT = leader_trait_spark_of_genius_2 }
-			}	
+			}
 		}
 	}
 }
@@ -3529,8 +3530,9 @@ tech_psionic_theory = {
 		}
 		modifier = {
 			factor = 2
-			any_owned_planet = {
-				has_modifier = pm_shroudwalker_teacher
+			has_paragon_dlc = no
+			any_owned_leader = {
+				has_trait = leader_trait_shroudwalker
 			}
 		}
 		modifier = {
@@ -3538,7 +3540,8 @@ tech_psionic_theory = {
 			AND = {
 				is_materialist = yes
 				NOR = {
-					has_trait_in_council = { TRAIT = leader_trait_expertise_psionics }
+					has_trait_tier1or2or3 = { TRAIT = leader_trait_expertise_psionics }
+					has_councilor = { COUNCILOR = "councilor_shroudwalker_teacher" }
 					any_owned_pop = {
 						OR = {
 							pop_has_trait = trait_psionic
@@ -3580,7 +3583,7 @@ tech_telepathy = {
 	potential = {
 		#NOT = { has_ethic = ethic_gestalt_consciousness }
 		NOT = {
-						galaxy_size = btr_hybrid_600
+			galaxy_size = btr_hybrid_600
 			galaxy_size = btr_hybrid_1300
 		}
 	}
@@ -3589,7 +3592,10 @@ tech_telepathy = {
 		factor = 0.5
 		modifier = {
 			factor = 0
-			host_has_dlc = "Utopia" # Granted by Psionic Ascension Path
+			host_has_dlc = "Utopia"
+			NOT = {
+				has_ascension_perk = ap_mind_over_matter
+			}
 		}
 		modifier = {
 			factor = 0.50
@@ -3619,8 +3625,9 @@ tech_telepathy = {
 		}
 		modifier = {
 			factor = 3
-			any_owned_planet = {
-				has_modifier = pm_shroudwalker_teacher
+			has_paragon_dlc = no
+			any_owned_leader = {
+				has_trait = leader_trait_shroudwalker
 			}
 		}
 		modifier = {
@@ -3752,6 +3759,9 @@ tech_thought_enforcement = {
 		modifier = {
 			factor = 0
 			host_has_dlc = "Utopia" # Granted by Psionic Ascension Path
+			NOT = {
+				has_ascension_perk = ap_mind_over_matter
+			}
 		}
 		modifier = {
 			factor = 0.50
@@ -3782,14 +3792,15 @@ tech_thought_enforcement = {
 			has_ethic = ethic_fanatic_authoritarian
 		}
 		modifier = {
-			factor = 3
-			any_owned_planet = {
-				has_modifier = pm_shroudwalker_teacher
-			}
-		}
-		modifier = {
 			factor = 2
 			has_valid_civic = civic_police_state
+		}
+		modifier = {
+			factor = 3
+			has_paragon_dlc = no
+			any_owned_leader = {
+				has_trait = leader_trait_shroudwalker
+			}
 		}
 		modifier = {
 			factor = 2
@@ -4277,7 +4288,6 @@ tech_subdermal_stimulation = {
 	}
 
 	potential = {
-		#NOT = { has_ethic = ethic_gestalt_consciousness	}
 		# NOR = {
 		# 	has_ethic = ethic_gestalt_consciousness
 		# 	has_civic = civic_dystopian_society
@@ -5850,5 +5860,398 @@ tech_xeno_linguistics = {
 				perc_communications_with_playable > 0
 			}
 		}
+	}
+}
+
+
+# Node Reformatting
+tech_node_reformatting_1 = {
+	cost = @tier2cost3
+	area = society
+	tier = 2
+	category = { statecraft }
+	prerequisites = { "tech_colonial_centralization" }
+	weight = @tier2weight3
+
+	potential = {
+		is_machine_empire = yes
+	}
+
+	gateway = node_reformatting
+
+	prereqfor_desc = {
+		custom = {
+			title = "AGENDA_UNLOCK_NODE_REFORMATTING_TITLE"
+			desc = "AGENDA_UNLOCK_NODE_REFORMATTING_DESC"
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill < 2
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill >= 3
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 5
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 7
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 9
+			}
+		}
+	}
+
+	ai_weight = {
+
+	}
+}
+
+tech_node_reformatting_2 = {
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { statecraft }
+	prerequisites = { "tech_node_reformatting_1" }
+	weight = @tier3weight3
+
+	potential = {
+		is_machine_empire = yes
+	}
+
+	modifier = {
+		restored_node_bonus_skill = 2
+		councilor_exp_gain = 0.25
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill < 4
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 5
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 7
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 9
+			}
+		}
+	}
+
+	ai_weight = {
+
+	}
+}
+
+tech_node_reformatting_3 = {
+	cost = @tier4cost3
+	area = society
+	tier = 4
+	category = { statecraft }
+	prerequisites = { "tech_node_reformatting_2" }
+	weight = @tier4weight3
+	is_rare = yes
+
+	potential = {
+		is_machine_empire = yes
+	}
+
+	modifier = {
+		restored_node_bonus_skill = 2
+		councilor_skill_add = 1
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill < 6
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 7
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 9
+			}
+		}
+		modifier = {
+			factor = 0.25
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_expertise_statecraft }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_node_reformatting_3 }
+			}
+		}
+	}
+
+	ai_weight = {
+
+	}
+}
+
+# Node Culling
+tech_node_culling_1 = {
+	cost = @tier2cost3
+	area = society
+	tier = 2
+	category = { statecraft }
+	prerequisites = { "tech_colonial_centralization" }
+	weight = @tier2weight3
+
+	potential = {
+		is_hive_empire = yes
+	}
+
+	gateway = gateway_node_culling
+
+	prereqfor_desc = {
+		custom = {
+			title = "AGENDA_UNLOCK_NODE_CULLING_TITLE"
+			desc = "AGENDA_UNLOCK_NODE_CULLING_DESC"
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill < 2
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill >= 3
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 5
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 7
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 9
+			}
+		}
+	}
+
+	ai_weight = {
+
+	}
+}
+
+tech_node_culling_2 = {
+	cost = @tier3cost3
+	area = society
+	tier = 3
+	category = { statecraft }
+	prerequisites = { "tech_node_culling_1" }
+	weight = @tier3weight3
+
+	potential = {
+		is_hive_empire = yes
+	}
+
+	modifier = {
+		restored_node_bonus_skill = 2
+		councilor_exp_gain = 0.25
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill < 4
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 5
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 7
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 9
+			}
+		}
+	}
+
+	ai_weight = {
+
+	}
+}
+
+tech_node_culling_3 = {
+	cost = @tier4cost3
+	area = society
+	tier = 4
+	category = { statecraft }
+	prerequisites = { "tech_node_culling_2" }
+	weight = @tier4weight3
+	is_rare = yes
+
+	potential = {
+		is_hive_empire = yes
+	}
+
+	modifier = {
+		restored_node_bonus_skill = 2
+		councilor_skill_add = 1
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill < 6
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 7
+			}
+		}
+		modifier = {
+			factor = 1.5
+			any_owned_leader = {
+				is_councilor = yes
+				is_ruler = no
+				has_skill  >= 9
+			}
+		}
+		modifier = {
+			factor = 0.25
+			NOR = {
+				has_trait_in_council = { TRAIT = leader_trait_expertise_statecraft }
+				has_trait_in_council = { TRAIT = leader_trait_curator }
+			}
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_node_culling_3 }
+			}
+		}
+	}
+
+	ai_weight = {
+
 	}
 }

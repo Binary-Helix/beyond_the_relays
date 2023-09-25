@@ -34,11 +34,8 @@ building_commercial_zone = {
 	}
 
 	planet_modifier = {
-		job_clerk_add = 3
-	}
-
-	triggered_desc = {
-		text = job_clerk_effect_desc
+		job_clerk_add = 2
+		job_trader_add = 1
 	}
 
 	triggered_planet_modifier = {
@@ -49,18 +46,16 @@ building_commercial_zone = {
 			}
 		}
 		modifier = {
-			job_merchant_add = 1
+			job_trader_add = 1
 		}
 	}
 
 	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = {
-				has_active_tradition = tr_mercantile_commercial_enterprise
-			}
-		}
-		text = job_merchant_effect_desc
+		text = job_clerk_effect_desc
+	}
+
+	triggered_desc = {
+		text = job_trader_effect_desc
 	}
 
 	prerequisites = {
@@ -111,8 +106,8 @@ building_commercial_megaplex = {
 	}
 
 	planet_modifier = {
-		job_clerk_add = 6
-		job_merchant_add = 1
+		job_clerk_add = 4
+		job_trader_add = 2
 	}
 
 	triggered_planet_modifier = {
@@ -123,7 +118,7 @@ building_commercial_megaplex = {
 			}
 		}
 		modifier = {
-			job_merchant_add = 1
+			job_trader_add = 2
 		}
 	}
 
@@ -132,7 +127,7 @@ building_commercial_megaplex = {
 	}
 
 	triggered_desc = {
-		text = job_merchant_effect_desc
+		text = job_trader_effect_desc
 	}
 
 	prerequisites = {
@@ -171,6 +166,20 @@ building_galactic_stock_exchange = {
 
 	allow = {
 		has_major_upgraded_capital = yes
+		if = {
+			limit = {
+				exists = orbital_defence
+			}
+			orbital_defence = {
+				exists = starbase
+				starbase = {
+					NOR = {
+						has_starbase_building = ring_galactic_stock_exchange
+						is_starbase_building_building = ring_galactic_stock_exchange
+					}
+				}
+			}
+		}
 	}
 
 	destroy_trigger = {
@@ -184,7 +193,7 @@ building_galactic_stock_exchange = {
 
 
 	planet_modifier = {
-		job_merchant_add = 2
+		job_merchant_add = 1
 		trade_value_mult = 0.20
 	}
 

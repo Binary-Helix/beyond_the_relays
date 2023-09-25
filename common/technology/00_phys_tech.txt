@@ -19,6 +19,7 @@ tech_basic_science_lab_1 = {
 	ai_weight = {
 		weight = 10000
 	}
+
 	starting_potential = {
 		is_low_tech_start = no # So Broken Shackles origin players don't start with it
 	}
@@ -213,6 +214,10 @@ tech_archeology_lab = {
 			title = "TECH_UNLOCK_CURATOR_LAB_2_TITLE"
 			desc = "TECH_UNLOCK_CURATOR_LAB_2_DESC"
 		}
+	}
+
+	potential = {
+		has_ancrel = no
 	}
 }
 
@@ -1024,6 +1029,11 @@ tech_neuro_quantum_links = {
 		modifier = {
 			factor = 0
 			host_has_dlc = "Utopia"
+			NOR = {
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+			}
 		}
 		modifier = {
 			factor = 0.25
@@ -1918,7 +1928,7 @@ tech_hyper_drive_1 = {
 	weight_modifier = {
 		factor = 1000
 	}
-		ai_weight = {
+	ai_weight = {
 		weight = 10000
 	}
 	starting_potential = {
@@ -2079,9 +2089,11 @@ tech_wormhole_stabilization = {
 	}
 
 	ai_weight = {
-		factor = 100
-		mid_game_years_passed > 0
-		has_country_flag = chosen_empire
+		modifier = {
+			factor = 100
+			mid_game_years_passed > 0
+			has_country_flag = chosen_empire
+		}
 	}
 }
 

@@ -9,7 +9,12 @@ building_luxury_residence = {
 	potential = {
 		OR = {
 			NOT = { is_planet_class = pc_habitat }
-			has_planet_flag = advanced_habitat
+			AND = {
+				exists = owner
+				owner = {
+					is_void_dweller_empire = yes
+				}
+			}
 		}
 		NOT = { has_modifier = slave_colony }
 		exists = owner
@@ -87,10 +92,9 @@ building_paradise_dome = {
 		OR = {
 			NOT = { is_planet_class = pc_habitat }
 			AND = {
-				has_planet_flag = advanced_habitat
 				exists = owner
 				owner = {
-					has_ascension_perk = ap_voidborn
+					is_void_dweller_empire = yes
 				}
 			}
 		}
@@ -167,7 +171,10 @@ building_communal_housing = {
 	potential = {
 		OR = {
 			NOT = { is_planet_class = pc_habitat }
-			has_planet_flag = advanced_habitat
+			exists = owner
+			owner = {
+				is_void_dweller_empire = yes
+			}
 		}
 		NOT = { has_modifier = slave_colony }
 		NOT = { has_planet_flag = planetary_station }
@@ -186,10 +193,6 @@ building_communal_housing = {
 				free_building_slots = 0
 				free_jobs < 1
 				free_housing > 10
-			}
-			AND = {
-				is_planet_class = pc_habitat
-				NOT = { has_planet_flag = advanced_habitat }
 			}
 			has_modifier = slave_colony
 			NOT = {
@@ -252,13 +255,13 @@ building_communal_housing_large = {
 			is_regular_empire = yes
 			has_valid_civic = civic_shared_burden
 		}
+
 		OR = {
 			NOT = { is_planet_class = pc_habitat }
 			AND = {
-				has_planet_flag = advanced_habitat
 				exists = owner
 				owner = {
-					has_ascension_perk = ap_voidborn
+					is_void_dweller_empire = yes
 				}
 			}
 		}
@@ -746,7 +749,13 @@ building_clinic = {
 	category = amenity
 
 	potential = {
+		exists = owner
+		# rule out Thrall-Worlds
+		NOT = { has_modifier = slave_colony }
+		NOT = { has_planet_flag = planetary_station }
+		# check the empire is valid
 		owner = {
+			# rule out gestalts and pre-FTL societies
 			OR = {
 				is_regular_empire = yes
 				AND = {
@@ -754,49 +763,59 @@ building_clinic = {
 					is_country_type = primitive
 				}
 			}
-		}
-		NOT = { has_modifier = slave_colony }
-		NOT = { has_planet_flag = planetary_station }
-
-		OR = {
-			owner = {
-				OR = {
-					is_ai = no
-					has_valid_civic = civic_private_healthcare_corporate
-					prev = {
-						has_branch_office = yes
-						branch_office_owner = {
-							has_valid_civic = civic_private_healthcare_corporate
-						}
+			# rule out AI empires with entirely no access to "Pharma State" Civic, unless the planet is unstable
+			OR = {
+				is_ai = no
+				has_valid_civic = civic_private_healthcare_corporate
+				prev = {
+					has_branch_office = yes
+					branch_office_owner = {
+						has_valid_civic = civic_private_healthcare_corporate
 					}
 				}
-			}
-			AND = {
-				NOT = { has_available_jobs = entertainer }
-				NOT = { has_forbidden_jobs = entertainer }
-				planet_stability < 50
-				free_amenities < 0
+				prev = {
+					NOT = { has_available_jobs = entertainer }
+					NOT = { has_forbidden_jobs = entertainer }
+					planet_stability < 50
+					free_amenities < 0
+				}
 			}
 		}
 	}
 
 	destroy_trigger = {
-		exists = owner
 		OR = {
-			owner = { 
-				NOR = {
-					is_regular_empire = yes
-					AND = {
-						has_origin = origin_fear_of_the_dark
-						is_country_type = primitive
+			# if this is now a Thrall-World
+			has_modifier = slave_colony
+			# if the planet is owned by a gestalt or pre-FTL society
+			AND = {
+				exists = owner
+				owner = {
+					OR = {
+						is_regular_empire = no
+						AND = {
+							is_country_type = primitive
+							NOT = { has_origin = origin_fear_of_the_dark }
+						}
 					}
 				}
 			}
-			has_modifier = slave_colony
+			# if this is an AI-controlled empire with entirely no access to "Pharma State" Civic, assuming the planet is now stable
 			AND = {
+				exists = owner
 				owner = {
 					is_ai = yes
-					NOT = { has_valid_civic = civic_private_healthcare_corporate }
+					NOT = {
+						OR = {
+							has_valid_civic = civic_private_healthcare_corporate
+							prev = {
+								has_branch_office = yes
+								branch_office_owner = {
+									has_valid_civic = civic_private_healthcare_corporate
+								}
+							}
+						}
+					}
 				}
 				planet_stability > 70
 				free_amenities > 20
@@ -829,6 +848,7 @@ building_clinic = {
 	triggered_desc = {
 		text = job_healthcare_effect_desc
 	}
+
 	on_destroy = {
 		owner = {
 			if = {
@@ -843,7 +863,7 @@ building_clinic = {
 	on_repaired = {
 		if = {
 			limit = {
-				owner = {
+				planet.owner = {
 					has_event_chain = payback_out_of_warranty_chain
 				}
 			}
@@ -851,6 +871,10 @@ building_clinic = {
 				50 = { # still broken
 					planet.owner = {
 						country_event = { id = origin.4302 }
+					}
+					modifier = {
+						factor = 0
+						planet.owner = { has_technology = tech_frontier_health }
 					}
 				}
 				20 = { # repaired
@@ -1087,7 +1111,7 @@ building_ranger_lodge = {
 
 	allow = {
 		custom_tooltip = {
-			fail_text = no_free_district_for_ranger_lodgeranger
+			fail_text = no_free_district_for_ranger_lodge
 			planet = {
 				num_free_districts = {
 					type = any
@@ -1134,44 +1158,42 @@ building_ranger_lodge = {
 	}
 
 	planet_modifier = {
-		job_ranger_add = @b1_jobs
+		job_ranger_add = 1 # 1 Ranger no matter what
 		deposit_blockers_natural_unity_produces_add = 2
 	}
 
-	#triggered_planet_modifier = { TODO_CD Reimplement this later with propper tooltips
-	#	potential = {
-	#		has_designation = col_resort
-	#	}
-	#	job_ranger_per_pop = 0.1 # 1 job per 10 pops
-	#}
+	triggered_planet_modifier = {
+		potential = {
+			always = yes
+		}
+		job_ranger_add = 1 # +1 Ranger per natural blocker
+		mult = value:natural_blocker_count
+	}
 
 	triggered_planet_modifier = {
-		potential = { 
-			owner_has_resolution = { 
-				RES = resolution_ecology_integrated_gardens 
-			} 
+		potential = {
+			owner_has_resolution = { RES = resolution_ecology_paradise_initiative }
 		}
+		job_ranger_add = 1 # +1 Ranger per natural blocker if GalCom approves
+		mult = value:natural_blocker_count
+	}
+
+
+	triggered_planet_modifier = {
+		potential = { owner_has_resolution = { RES = resolution_ecology_integrated_gardens } }
 		deposit_blockers_natural_unity_produces_add = 1
 	}
 
 	triggered_planet_modifier = {
-		potential = { 
-			owner_has_resolution = { 
-				RES = resolution_ecology_environmental_control_board 
-			} 
-		}
+		potential = { owner_has_resolution = { RES = resolution_ecology_environmental_control_board } }
 		deposit_blockers_natural_unity_produces_add = 1
 	}
 
 	triggered_planet_modifier = {
-		potential = { 
-			owner_has_resolution = { 
-				RES = resolution_ecology_paradise_initiative 
-			} 
-		}
+		potential = { owner_has_resolution = { RES = resolution_ecology_paradise_initiative } }
 		deposit_blockers_natural_unity_produces_add = 1
 	}
-	
+
 	resources = {
 		category = planet_buildings
 		cost = {
@@ -1196,11 +1218,17 @@ building_ranger_lodge = {
 		planet = {
 			if = {
 				limit = { has_deposit = d_big_nature_preserve_blocker }
-				remove_deposit = d_big_nature_preserve_blocker
+				every_deposit = {
+					limit = {
+						is_deposit_type = d_big_nature_preserve_blocker
+					}
+					remove_deposit = d_big_nature_preserve_blocker
+				}
 			}
 		}
 	}
 }
+
 building_toxic_bath = {
 	base_buildtime = @b1_time
 	base_cap_amount = 1
