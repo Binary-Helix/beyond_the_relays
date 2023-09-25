@@ -2912,6 +2912,13 @@ void_dweller_home_planet_setup = {
 				message = no
 			}
 		}
+		if = {
+			limit = {
+				has_valid_civic = civic_private_healthcare_corporate
+			}
+			give_technology = { message = no tech = tech_frontier_health }
+			add_research_option = tech_subdermal_stimulation
+		}		
 	}
 	if = {
 		limit = {
@@ -2990,6 +2997,15 @@ void_dweller_home_planet_setup = {
 			free_building_slots > 0
 		}
 		add_building = building_posthumous_employment_center
+	}
+	else_if = {
+		limit = {
+			owner = {
+				has_valid_civic = civic_private_healthcare_corporate
+			}
+			free_building_slots > 0
+		}
+		add_building = building_clinic
 	}
 	else = {
 		add_building = building_holo_theatres
