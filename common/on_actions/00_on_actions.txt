@@ -25,6 +25,7 @@ on_game_start = {
 
 on_game_start_country = {
 	events = {
+		action.501 # Give Imperial Ruler trait if ruler does not have it for some reason
 		game_start.33 # populate system with stations
 		game_start.10
 		#necroids.4 # flip guaranteed planets to guaranteed primitives for Necrophage
@@ -294,6 +295,7 @@ on_monthly_pulse_country = {
 		enclave.2075 # Find admiralless merc fleets and give them one.
 		ancrel.9902 # Archaoetech - Zro deficit ends - enable storm casters
 		ancrel.9906 # Archaoetech - Zro deficit starts - disable storm casters
+		paragon.6030 # Checks if your leader has enough zro to eat
 	}
 }
 
@@ -330,7 +332,6 @@ on_five_year_pulse_country = {
 		action.620 # pre-FTL diplo events
 		action.630 # pre-FTL tech events		
 		#origin.5715	# Imperial Vassal - Dissolution event chain
-		paragon.5203
 		preftl.10050 # In breach of Equal Standing - get a fine.
 		preftl.10150 # In breach of Non-Interference - get a fine.
 		preftl.10250 # In breach of Exploitation - get a fine.
@@ -419,7 +420,7 @@ on_decade_pulse_country = {
 	}
 }
 
-on_decade_pulse_country = {
+on_decade_pulse_skrand_country  = {
 	random_events = {
 		1 = paragon.3010
 		3 = paragon.3020
@@ -822,9 +823,9 @@ on_crossing_border = {
 # From = Planet
 on_survey = {
 	events = {
-		anomaly.2575 # #terraforming Candidates
-		#toxoids.500
-		aquatics.5
+		anomaly.2574 # Terraforming Candidates
+		toxoids.499
+		aquatics.4
 		advisor.10
 		advisor.15
 		advisor.25
@@ -1265,6 +1266,9 @@ on_fleet_auto_move_arrival = {
 # FromFrom = country that owns the fleet
 # Is fired immediately after fleet is leased out
 on_fleet_contract_started = {
+	events = {
+		enclave.2085 #Lock Admiral Into Merc Fleet
+	}
 }
 
 # This = fleet
@@ -1276,6 +1280,7 @@ on_fleet_contract_expired = {
 	events = {
 		enclave.2058 # Delay before AIs can hire the fleet again
 		enclave.2059 # Merc fleet contract expired. Renew?
+		enclave.2080 #Take your admiral back, AI enclave!
 	}
 }
 
@@ -1287,6 +1292,7 @@ on_fleet_contract_expired = {
 on_fleet_contract_cancelled = {
 	events = {
 		enclave.2058 # Delay before AIs can hire the fleet again
+		enclave.2080 #Take your admiral back, AI enclave!
 	}
 }
 
@@ -1667,12 +1673,7 @@ on_pop_bombed_to_death = {
 # This = Heir
 on_new_heir = {
 	events = {
-		action.504
-		paragon.5003
-		paragon_2.2072 # Technocracy Expertise Trait
-		paragon_2.2091 # Heroic Tales Random Trait
-		paragon_2.2056 # Zealot and Crusader from Crusader Spirit
-		paragon_2.2051 # One additional level from Vaults
+		action.504		# New Heir appointed, grant traits and select class.
 	}
 }
 
@@ -1680,7 +1681,6 @@ on_new_heir = {
 # This = Heir
 on_heir_promoted_to_ruler = {
 	events = {
-		action.501
 	}
 }
 
@@ -1937,7 +1937,8 @@ on_tech_increased = {
 		fircon.26		# Cloak Observation Outposts upon researching cloaking.
 		ancrel.9915 # Archaeotech - faking AI building faculty of archaeostudies
 		ancrel.9920 # Archaeotech - faking AI building archaeo refinery
-		paragon_2.2105
+		paragon_2.2105	# Xeno-Linguistics researched
+		paragon_2.2135	# Galactic Administration researched - reset government reform cooldown
 	}
 }
 
@@ -2447,7 +2448,9 @@ on_federation_leader_challenge = {
 # From = root of context where create_country/create_rebels happens
 on_country_created = {
 	events = {
+		action.501 # Give Imperial Ruler trait if ruler does not have it for some reason
 		game_start.60
+		game_start.61 # Gestalt Empire Council Generation
 		preftl.30	# Add technological progression situation to pre-FTLs if the situation was not already created.
 	}
 }
@@ -2751,7 +2754,7 @@ on_added_to_leader_pool = {
 		paragon_2.2055 #Zealot and Crusader from Crusader Spirit
 		paragon_2.2050 #One additional level from Vaults
 		paragon_2.2110 #Letters of Marque
-		paragon_2.2060 # +1 level if Aptitude tradition tree finished
+		paragon_2.2060 # +1 level if Aptitude tradition tree adopted
 		action.405
 	}
 }
@@ -3254,6 +3257,7 @@ on_post_government_changed = {
 		action.445 # Recalculate divided patronage modifier on government reform.
 		action.455 # Unlock Memorialist buildings for hive-minds that reform into the civic.
 		action.502 # Remove Imperial Heir trait on changing away from Imperial authority.
+		action.505 # Add Imperial Ruler trait on changing to Imperial authority.		
 	}
 }
 
