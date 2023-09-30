@@ -1,4 +1,5 @@
 guiTypes = {
+	@main_menu_margin = 50
 
 	containerWindowType = {
 		name = "frontend_background"
@@ -12,122 +13,121 @@ guiTypes = {
 			size = { x = 1280 y = 720 }
 		}
 	}
-	
 	containerWindowType = {
 		name = "frontend_background_view"
 		position = { x= 50000 y= 0 }
 		size = { width = 100% height = 100%}
-		orientation = center_down
-		
+		#orientation = center_down
+		margin = {
+			top = @main_menu_margin
+			right = @main_menu_margin
+			bottom = @main_menu_margin
+			left = @main_menu_margin
+		}
+
 		containerWindowType = {
 			name = "buttons"
 			position = { x=17 y=0 }	
-			
-			#containerWindowType = {
-			#	name = "social_view_interface_window"
-			#	position = { x=196 y=-67  }
-			#	size = { width=60 height=30 }
-				
-			#	buttonType = {
-			#		name = "toggle_button"
-			#		quadTextureSprite = "GFX_button_60_29"
-			#		position = { x=0 y=0  }
-			#	}
-				
-			#	iconType = {
-			#		name = "button_toggle_socialview_icon"
-			#		spriteType = "GFX_socialview_icon"
-			#		position = { x= 15 y = 10 }
-			#		alwaystransparent = yes
-			#	}
-				
-			#	instantTextBoxType={
-			#		name = "friends_online"
-			#		font = "cg_16b"
-			#		position = { x= 35 y= 18 }
-			#		text = "0"
-			#		maxWidth = 30
-			#		maxHeight = 16
-			#		alwaysTransparent = yes
-			#		format = center
-			#	}
-				
-			#	iconType = {
-			#		name = "new_message"
-			#		position = { x = 57 y = 8 }
-			#		spriteType = "GFX_new_message_icon"
-			#		pdx_tooltip = "SOCIAL_NEW_MESSAGE"
-			#	}
-				
-			#	iconType = {
-			#		name = "new_friend"
-			#		position = { x = 57 y = 20 }
-			#		spriteType = "GFX_new_friend_icon"
-			#		pdx_tooltip = "SOCIAL_NEW_FRIEND"
-			#	}
-			#}				
+			orientation = lower_left
+			origo = lower_left
 
-			@links_y = -55
+			@links_y = -40
 			
 			
-			buttonType =	{
+			buttonType = {
 				name = "privacy"
 				quadTextureSprite = "GFX_front_menu_privacy"
-				position = { x= 280 y = @links_y  }
+				position = { x = 350 y = @links_y }
 				pdx_tooltip = "PRIVACY_POLICY"
 			}
 			
-			buttonType =	{
+			buttonType = {
 				name = "pi_achievements"
 				quadTextureSprite = "GFX_front_menu_achievements"
-				position = { x= 320 y = @links_y  }
+				position = { x = 430 y = @links_y }
 				pdx_tooltip = "ACHIEVEMENTS"
 			}
 
-			buttonType =	{
+			buttonType = {
 				name = "homepage"
 				quadTextureSprite = "GFX_front_menu_homepage"
-				position = { x= 360 y = @links_y  }
+				position = { x = 310 y = @links_y }
 				pdx_tooltip = "HOMEPAGE"
 				web_link="https://www.paradoxinteractive.com/games/stellaris"
 			}
+
 		
-			buttonType =	{
+			buttonType = {
 				name = "forum"
 				quadTextureSprite = "GFX_front_menu_forum"
-				position = { x= 400 y = @links_y  }
+				position = { x = 390 y = @links_y }
 				pdx_tooltip = "FORUM"
 				web_link="https://forum.paradoxplaza.com/forum/index.php?forums/stellaris.900/"
 			}
 		
-			buttonType =	{
+			buttonType = {
 				name = "facebook"
 				quadTextureSprite = "GFX_front_menu_facebook"
-				position = { x= 440 y = @links_y }
+				position = { x = 470 y = @links_y }
 				pdx_tooltip = "FACEBOOK"
 				web_link="https://www.facebook.com/StellarisGame"
 			}
 		
-			buttonType =	{
+			buttonType = {
 				name = "twitter"
 				quadTextureSprite = "GFX_front_menu_twitter"
-				position = { x= 480 y = @links_y  }
+				position = { x = 510 y = @links_y }
 				pdx_tooltip = "TWITTER"
 				web_link="http://twitter.com/StellarisGame"
 			}
+
+			buttonType = {
+				name = "you_tube"
+				quadTextureSprite = "GFX_main_menu_youtube"
+				position = { x = 550 y = @links_y }
+				pdx_tooltip = "YOUTUBE"
+				web_link="https://www.youtube.com/stellarisofficial"
+			}
+
+			buttonType = {
+				name = "discord"
+				quadTextureSprite = "GFX_main_menu_discord"
+				position = { x = 590 y = @links_y }
+				pdx_tooltip = "DISCORD"
+				web_link="https://discord.gg/stellarisofficial"
+			}
 		}
-	}
+	}	
 	
 	containerWindowType = {
 		name = "frontendgui"
-		position = { x= 0 y= 0 }
+		position = { x = 0 y = 0 }
 		size = { width = 100% height = 100%}
-			
+		margin = {
+			top = @main_menu_margin
+			right = @main_menu_margin
+			bottom = @main_menu_margin
+			left = @main_menu_margin
+		}
+
+		containerWindowType = {
+			name = "main_menu_gradient"
+			position = { x = -50 y = -200 }
+			size = { width = 600 height = 4000 }
+
+			background = {
+				name = "main_menu_gradient_bg"
+				quadTextureSprite = "GFX_faded_gradient_tile"
+				alwaysTransparent = yes
+			}
+		}
+
 		iconType = {
 			name = "game_logo"
+			position = { x = -53 y = -33 } # Makes the logo appear to have the same top and left margin as other elements
 			if_resolution = {
-				 min_width = 2560 # min_width or max_width
-				 min_height = 1440 # min_height or max_height
+				min_width = 2560 # min_width or max_width
+				min_height = 1440 # min_height or max_height
 				position = { x = 15 y = 15 }
 				quadTextureSprite = "gfx_game_logo"
 				Orientation = "UPPER_LEFT"
@@ -136,19 +136,19 @@ guiTypes = {
 			if_resolution = {
 				min_width = 1920 # min_width or max_width
 				min_height = 1080 # min_height or max_height
-			   position = { x = 15 y = 15 }
-			   quadTextureSprite = "gfx_game_logo"
-			   Orientation = "UPPER_LEFT"
-			   scale = 0.50
-		   }
-		   if_resolution = {
-			 max_width = 1366 # min_width or max_width
-			 max_height = 768 # min_height or max_height
-		     position = { x = 15 y = 15 }
-		     quadTextureSprite = "gfx_game_logo"
-		     Orientation = "UPPER_LEFT"
-		   scale = 0.40
-	   }
+				position = { x = 15 y = 15 }
+				quadTextureSprite = "gfx_game_logo"
+				Orientation = "UPPER_LEFT"
+				scale = 0.50
+		   	}
+			if_resolution = {
+				max_width = 1366 # min_width or max_width
+				max_height = 768 # min_height or max_height
+		    	position = { x = 15 y = 15 }
+		    	quadTextureSprite = "gfx_game_logo"
+		    	Orientation = "UPPER_LEFT"
+		   		scale = 0.40
+	   		}
 		}
 
 		containerWindowType = {
@@ -190,27 +190,23 @@ guiTypes = {
 		
 		containerWindowType = {
             name ="menu"
-  				if_resolution = {
-     		 		min_width = 2560 # min_width or max_width
-   					min_height = 1440 # min_height or max_height
-    ### code only applies if game is running at 1920 width and 1080 height or higher
-      				position = { x=-200 y=-605 }
-  				}   
- 					if_resolution = {
-						min_width = 1920 # min_width or max_width
-	 					min_height = 1080 # min_height or max_height
-	### code only applies if game is running at 1920 width and 1080 height or higher
-						position = { x=-200 y=-375 }
-					}   
-						if_resolution = {
-						 max_width = 1366 # min_width or max_width
-						 max_height = 768 # min_height or max_height
-	### code only applies if game is running at 1920 width and 1080 height or higher
-						 position = { x= -185 y=-200 }
-						}   
-
-    size = { width=1280 height=720 }
-    orientation = LOWER_RIGHT
+				orientation = LOWER_RIGHT
+				size = { width=1280 height=720 }
+				if_resolution = {
+					min_width = 2560 # min_width or max_width
+					min_height = 1440 # min_height or max_height
+					position = { x=-200 y=-605 }
+				}   
+				if_resolution = {
+					min_width = 1920 # min_width or max_width
+					min_height = 1080 # min_height or max_height
+					position = { x=-200 y=-375 }
+				}   
+				if_resolution = {
+					max_width = 1366 # min_width or max_width
+					max_height = 768 # min_height or max_height
+					position = { x= -185 y=-200 }
+				}   
 
 			instantTextBoxType = {
 				name = "version"
@@ -222,6 +218,7 @@ guiTypes = {
 				fixedSize = yes
 				format = right
 			}
+
 			buttonType = {
 				name = "version_button"
 				spriteType = "GFX_invisible"
@@ -232,180 +229,214 @@ guiTypes = {
 
 			containerWindowType = {
 				name = "buttons"
+				position = { x = 0 y = 0 }
+				# The height here is the Y position of the last button on small resolutions + the height of the last button.
+				size = { width = @button_large_width height = 350 }
+				origo = CENTER_LEFT
+				orientation = CENTER_LEFT
 
-				buttonType =	{
-					id = "start"
-					name = "start"
-					quadTextureSprite = "GFX_btr_main_menu_stripe_button"
-					position = { x= -285  y = -320  }
-					#shortCut = "n"
-					oversound = mouse_over
-					navRight = "multiplayer"
-					defaultSelection = yes
-					clicksound = menu_sting_bloop
-					scale = 1.0
+				containerWindowType = {
+					name = "start_game_container"
+
+					buttonType =	{
+						id = "start"
+						name = "button"
+						quadTextureSprite = "GFX_btr_main_menu_stripe_button"
+						position = { x= -285  y = -320  }
+						#shortCut = "n"
+						oversound = mouse_over
+						navRight = "multiplayer"
+						defaultSelection = yes
+						clicksound = menu_sting_bloop
+						scale = 1.0
+					}
+
+					instantTextBoxType={
+						name = "start_new_game"
+						font = "korataki_30"
+						text = "BTR_FRONT_START"
+						position = { x= -195 y = -300 }
+						maxWidth = 400
+						maxHeight = 35
+						fixedSize = yes
+						format = left
+						alwaysTransparent = yes
+					}
 				}
+
+				containerWindowType = {
+					name = "coop_container"
+					
+					buttonType =	{
+						id = "coop"
+						name = "button"
+						quadTextureSprite = "GFX_btr_main_menu_stripe_button"
+						position = { x= -285 y = -260 }
+						#shortCut = "c"
+						oversound = mouse_over
+						navLeft = "multiplayer"
+						navRight = "load"
+						clicksound = menu_sting_bloop
+						#pdx_tooltip = NAME_Beta
+					}
+
+					instantTextBoxType = {
+						name = "coop_player_text"
+						font = "korataki_30"
+						text = "BTR_FRONT_COOP"
+						position = { x= -225 y = -240 }
+						maxWidth = 500
+						maxHeight = 35
+						fixedSize = yes
+						format = left
+						alwaysTransparent = yes
+					}
+				}
+
+				containerWindowType = {
+					name = "multiplayer_container"
+
+					buttonType =	{
+						id = "multiplayer"
+						name = "button"
+						quadTextureSprite = "GFX_btr_main_menu_stripe_button"
+						position = { x= -285 y = -200  }
+						#shortCut = "m"
+						oversound = mouse_over
+						navLeft = "start"
+						navRight = "load"
+						clicksound = menu_sting_multiplayer
+						scale = 1.0
+					}
+
+					instantTextBoxType = {
+						name = "multi_player_text"
+						font = "korataki_30"
+						text = "BTR_FRONT_MULTIPLAYER"
+						position = { x= -325 y = -180  }
+						maxWidth = 500
+						maxHeight = 35
+						fixedSize = yes
+						format = right
+						alwaysTransparent = yes
+					}
+				}
+
+
+				containerWindowType = {
+					name = "load_game_container"
+
+					buttonType =	{
+						id = "load"
+						name = "button"
+						quadTextureSprite = "GFX_btr_main_menu_stripe_button"
+						position = { x= -285 y = -140  }
+						#shortCut = "l"
+						oversound = mouse_over
+						navLeft = "multiplayer"
+						navRight = "credits"
+						clicksound = menu_sting_loadgame
+						scale = 1.0
+					}
 				
-				instantTextBoxType={
-					name = "start_new_game"
-					font = "korataki_30"
-					text = "BTR_FRONT_START"
-					position = { x= -195 y = -300 }
-					maxWidth = 400
-					maxHeight = 35
-					fixedSize = yes
-					format = left
-					alwaysTransparent = yes
-				}
+					instantTextBoxType = {
+						name = "load_game_text"
+						font = "korataki_30"
+						text = "BTR_FRONT_LOAD"
+						position = { x= -325 y = -120  }
+						maxWidth = 500
+						maxHeight = 35
+						fixedSize = yes
+						format = right
+						alwaysTransparent = yes
+					}
+				}				
 
-				buttonType =	{
-					id = "coop"
-					name = "coop"
-					quadTextureSprite = "GFX_btr_main_menu_stripe_button"
-					position = { x= -285 y = -260 }
-					#shortCut = "c"
-					oversound = mouse_over
-					navLeft = "multiplayer"
-					navRight = "load"
-					clicksound = menu_sting_bloop
-					#pdx_tooltip = NAME_Beta
-				}
+				containerWindowType = {
+					name = "settings_container"
 
-				instantTextBoxType = {
-					name = "coop_player_text"
-					font = "korataki_30"
-					text = "BTR_FRONT_COOP"
-					position = { x= -225 y = -240 }
-					maxWidth = 500
-					maxHeight = 35
-					fixedSize = yes
-					format = left
-					alwaysTransparent = yes
-				}
-
-				buttonType =	{
-					id = "multiplayer"
-					name = "multiplayer"
-					quadTextureSprite = "GFX_btr_main_menu_stripe_button"
-					position = { x= -285 y = -200  }
-					#shortCut = "m"
-					oversound = mouse_over
-					navLeft = "start"
-					navRight = "load"
-					clicksound = menu_sting_multiplayer
-					scale = 1.0
-				}
+					buttonType =	{
+						id = "settings"
+						name = "button"
+						quadTextureSprite = "GFX_btr_main_menu_stripe_button"
+						position = { x= -285 y = -20  }
+						#shortCut = "s"
+						oversound = mouse_over
+						navLeft = "credits"
+						navRight = "quit"
+						clicksound = echo_click
+						scale = 1.0
+					}
 				
-				instantTextBoxType = {
-					name = "multi_player_text"
-					font = "korataki_30"
-					text = "BTR_FRONT_MULTIPLAYER"
-					position = { x= -325 y = -180  }
-					maxWidth = 500
-					maxHeight = 35
-					fixedSize = yes
-					format = right
-					alwaysTransparent = yes
+					instantTextBoxType = {
+						name = "settings_text"
+						font = "korataki_30"
+						text = "BTR_FRONT_SETTINGS"
+						position = { x= -325 y = 0  }
+						maxWidth = 500
+						maxHeight = 35
+						fixedSize = yes
+						format = right
+						alwaysTransparent = yes
+					}
 				}
 
-				buttonType =	{
-					id = "load"
-					name = "load"
-					quadTextureSprite = "GFX_btr_main_menu_stripe_button"
-					position = { x= -285 y = -140  }
-					#shortCut = "l"
-					oversound = mouse_over
-					navLeft = "multiplayer"
-					navRight = "credits"
-					clicksound = menu_sting_loadgame
-					scale = 1.0
-				}
+				containerWindowType = {
+					name = "credits_container"
+
+					buttonType =	{
+						id = "credits"
+						name = "button"
+						quadTextureSprite = "GFX_btr_main_menu_stripe_button"
+						position = { x= -285 y = -80  }
+						#shortCut = "c"
+						oversound = mouse_over
+						navLeft = "load"
+						navRight = "settings"
+						clicksound = menu_sting_credits
+						scale = 1.0
+					}
 				
-				instantTextBoxType = {
-					name = "load_game_text"
-					font = "korataki_30"
-					text = "BTR_FRONT_LOAD"
-					position = { x= -325 y = -120  }
-					maxWidth = 500
-					maxHeight = 35
-					fixedSize = yes
-					format = right
-					alwaysTransparent = yes
+					instantTextBoxType = {
+						name = "credits_text"
+						font = "korataki_30"
+						text = "BTR_FRONT_CREDITS"
+						position = { x= -325 y = -60  }
+						maxWidth = 500
+						maxHeight = 35
+						fixedSize = yes
+						format = right
+						alwaysTransparent = yes
+					}
 				}
 
-				buttonType =	{
-					id = "credits"
-					name = "credits"
-					quadTextureSprite = "GFX_btr_main_menu_stripe_button"
-					position = { x= -285 y = -80  }
-					#shortCut = "c"
-					oversound = mouse_over
-					navLeft = "load"
-					navRight = "settings"
-					clicksound = menu_sting_credits
-					scale = 1.0
-				}
-				
-				instantTextBoxType = {
-					name = "credits_text"
-					font = "korataki_30"
-					text = "BTR_FRONT_CREDITS"
-					position = { x= -325 y = -60  }
-					maxWidth = 500
-					maxHeight = 35
-					fixedSize = yes
-					format = right
-					alwaysTransparent = yes
-				}
+				containerWindowType = {
+					name = "quit_container"
 
-				buttonType =	{
-					id = "settings"
-					name = "settings"
-					quadTextureSprite = "GFX_btr_main_menu_stripe_button"
-					position = { x= -285 y = -20  }
-					#shortCut = "s"
-					oversound = mouse_over
-					navLeft = "credits"
-					navRight = "quit"
-					clicksound = echo_click
-					scale = 1.0
-				}
-				
-				instantTextBoxType = {
-					name = "settings_text"
-					font = "korataki_30"
-					text = "BTR_FRONT_SETTINGS"
-					position = { x= -325 y = 0  }
-					maxWidth = 500
-					maxHeight = 35
-					fixedSize = yes
-					format = right
-					alwaysTransparent = yes
-				}
-
-				buttonType =	{
-					id = "quit"
-					name = "quit"
-					quadTextureSprite = "GFX_btr_main_menu_stripe_button"
-					position = { x= -285 y = 40  }
-					#shortCut = "e"
-					oversound = mouse_over
-					navLeft = "settings"
-					clicksound = menu_sting_exit
-					actionShortCut = "cancel"
-					scale = 1.0
-				}
-				
-				instantTextBoxType = {
-					name = "quit_text"
-					font = "korataki_30"
-					text = "BTR_FRONT_QUIT"
-					position = { x= -325 y = 60  }
-					maxWidth = 500
-					maxHeight = 35
-					fixedSize = yes
-					format = right
-					alwaysTransparent = yes
+					buttonType =	{
+						id = "quit"
+						name = "button"
+						quadTextureSprite = "GFX_btr_main_menu_stripe_button"
+						position = { x= -285 y = 40  }
+						#shortCut = "e"
+						oversound = mouse_over
+						navLeft = "settings"
+						clicksound = menu_sting_exit
+						actionShortCut = "cancel"
+						scale = 1.0
+					}
+					
+					instantTextBoxType = {
+						name = "quit_text"
+						font = "korataki_30"
+						text = "BTR_FRONT_QUIT"
+						position = { x= -325 y = 60  }
+						maxWidth = 500
+						maxHeight = 35
+						fixedSize = yes
+						format = right
+						alwaysTransparent = yes
+					}
 				}
 			}			
 					
