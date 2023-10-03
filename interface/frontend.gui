@@ -235,8 +235,26 @@ guiTypes = {
 				origo = CENTER_LEFT
 				orientation = CENTER_LEFT
 
+				if_scaled_resolution = {
+					min_height = 900
+
+					# The height here is the Y position of the last button on large resolutions + the height of the last button.
+					size = { width = @button_large_width height = 500}
+				}
+
+				@button_large_width = 340
+				@button_large_height = 49 # Reduced by 1 pixel to avoid overlap
+
 				containerWindowType = {
 					name = "start_game_container"
+					position = { x = 0 y = 0 }
+					size = { width = @button_large_width height = @button_large_height }
+
+					if_scaled_resolution = {
+						min_height = 900
+
+						position = { x = 0 y = 0 }
+					}
 
 					buttonType =	{
 						id = "start"
@@ -245,21 +263,21 @@ guiTypes = {
 						position = { x= -285  y = -320  }
 						#shortCut = "n"
 						oversound = mouse_over
-						navRight = "multiplayer"
 						defaultSelection = yes
 						clicksound = menu_sting_bloop
 						scale = 1.0
 					}
 
 					instantTextBoxType={
-						name = "start_new_game"
+						name = "text"
 						font = "korataki_30"
 						text = "BTR_FRONT_START"
-						position = { x= -195 y = -300 }
+						position = { x= -285 y = -300 }
 						maxWidth = 400
 						maxHeight = 35
 						fixedSize = yes
-						format = left
+						format = right
+						vertical_alignment = center
 						alwaysTransparent = yes
 					}
 				}
@@ -274,14 +292,12 @@ guiTypes = {
 						position = { x= -285 y = -260 }
 						#shortCut = "c"
 						oversound = mouse_over
-						navLeft = "multiplayer"
-						navRight = "load"
 						clicksound = menu_sting_bloop
 						#pdx_tooltip = NAME_Beta
 					}
 
 					instantTextBoxType = {
-						name = "coop_player_text"
+						name = "text"
 						font = "korataki_30"
 						text = "BTR_FRONT_COOP"
 						position = { x= -225 y = -240 }
@@ -303,21 +319,19 @@ guiTypes = {
 						position = { x= -285 y = -200  }
 						#shortCut = "m"
 						oversound = mouse_over
-						navLeft = "start"
-						navRight = "load"
 						clicksound = menu_sting_multiplayer
 						scale = 1.0
 					}
 
 					instantTextBoxType = {
-						name = "multi_player_text"
+						name = "text"
 						font = "korataki_30"
 						text = "BTR_FRONT_MULTIPLAYER"
 						position = { x= -325 y = -180  }
 						maxWidth = 500
 						maxHeight = 35
 						fixedSize = yes
-						format = right
+						format = left
 						alwaysTransparent = yes
 					}
 				}
@@ -333,21 +347,19 @@ guiTypes = {
 						position = { x= -285 y = -140  }
 						#shortCut = "l"
 						oversound = mouse_over
-						navLeft = "multiplayer"
-						navRight = "credits"
 						clicksound = menu_sting_loadgame
 						scale = 1.0
 					}
 				
 					instantTextBoxType = {
-						name = "load_game_text"
+						name = "text"
 						font = "korataki_30"
 						text = "BTR_FRONT_LOAD"
 						position = { x= -325 y = -120  }
 						maxWidth = 500
 						maxHeight = 35
 						fixedSize = yes
-						format = right
+						format = left
 						alwaysTransparent = yes
 					}
 				}				
@@ -362,21 +374,19 @@ guiTypes = {
 						position = { x= -285 y = -20  }
 						#shortCut = "s"
 						oversound = mouse_over
-						navLeft = "credits"
-						navRight = "quit"
 						clicksound = echo_click
 						scale = 1.0
 					}
 				
 					instantTextBoxType = {
-						name = "settings_text"
+						name = "text"
 						font = "korataki_30"
 						text = "BTR_FRONT_SETTINGS"
 						position = { x= -325 y = 0  }
 						maxWidth = 500
 						maxHeight = 35
 						fixedSize = yes
-						format = right
+						format = left
 						alwaysTransparent = yes
 					}
 				}
@@ -391,21 +401,19 @@ guiTypes = {
 						position = { x= -285 y = -80  }
 						#shortCut = "c"
 						oversound = mouse_over
-						navLeft = "load"
-						navRight = "settings"
 						clicksound = menu_sting_credits
 						scale = 1.0
 					}
 				
 					instantTextBoxType = {
-						name = "credits_text"
+						name = "text"
 						font = "korataki_30"
 						text = "BTR_FRONT_CREDITS"
 						position = { x= -325 y = -60  }
 						maxWidth = 500
 						maxHeight = 35
 						fixedSize = yes
-						format = right
+						format = left
 						alwaysTransparent = yes
 					}
 				}
@@ -420,21 +428,20 @@ guiTypes = {
 						position = { x= -285 y = 40  }
 						#shortCut = "e"
 						oversound = mouse_over
-						navLeft = "settings"
 						clicksound = menu_sting_exit
 						actionShortCut = "cancel"
 						scale = 1.0
 					}
 					
 					instantTextBoxType = {
-						name = "quit_text"
+						name = "text"
 						font = "korataki_30"
 						text = "BTR_FRONT_QUIT"
 						position = { x= -325 y = 60  }
 						maxWidth = 500
 						maxHeight = 35
 						fixedSize = yes
-						format = right
+						format = left
 						alwaysTransparent = yes
 					}
 				}
