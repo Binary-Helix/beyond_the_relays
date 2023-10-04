@@ -2944,72 +2944,47 @@ generate_yamm_free_trade_zone_country = {
 }
 
 generate_zoryan_sovereignty_country = {
-				log = "Zorya Capital Spawned"
-			save_global_event_target_as = faia_system_zorya
+	create_country = {
+		name = "Zoryan Sovereignty"
+		adjective = "PRESCRIPTED_adjective_zoryan_sovereignty"
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_free_autonomous
+		}
+		species = event_target:batarianSpecies
+		name_list = btr_batarian
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_militarist"
+			ethic = "ethic_authoritarian"
+			ethic = "ethic_materialist"
+		}
 
-			prevent_anomaly = yes
-			set_global_flag = zoryan_sovereignty_capital_spawned	
-			create_country = {
-				name = "Zoryan Sovereignty"
-				adjective = "PRESCRIPTED_adjective_zoryan_sovereignty"
-				authority = auth_democratic
-				civics = {
-					civic = independent_civic_industrialists
-					civic = independent_civic_free_autonomous
-				}
-				species = event_target:batarianSpecies
-				name_list = btr_batarian
-				ship_prefix = ""
-				ethos = {
-					ethic = "ethic_militarist"
-					ethic = "ethic_authoritarian"
-					ethic = "ethic_materialist"
-				}
-
-				type = independent_colony
-				origin = zorya_sov_origin
-				effect = {
-					set_country_flag = zoryan_sovereignty
-					set_country_flag = init_spawned
-					set_country_flag = canon_map
-					set_country_flag = btr_empire
-					set_country_flag = btr_independent_colony
-					set_graphical_culture = mammalian_01
-					save_global_event_target_as = zoryan_sovereignty
-					add_resource = {
-						energy = 1000
-						minerals = 1000
-						alloys = 1000
-						influence = 100
-						food = 1000
-						consumer_goods = 1000
-						volatile_motes = 500
-						exotic_gases = 500
-						rare_crystals = 500						
-					}
-				}
-			}	
-			create_colony = {
-				owner = event_target:zoryan_sovereignty
+		type = independent_colony
+		origin = zorya_sov_origin
+		effect = {
+			set_country_flag = zoryan_sovereignty
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = zoryan_sovereignty
+			add_resource = {
+				energy = 1000
+				minerals = 1000
+				alloys = 1000
+				influence = 100
+				food = 1000
+				consumer_goods = 1000
+				volatile_motes = 500
+				exotic_gases = 500
+				rare_crystals = 500						
 			}
-			event_target:zoryan_sovereignty = {							
-				create_starting_leaders = yes
-				log = "Zoryan Sovereignty Colony Spawned"
-			}
-			set_capital = yes
-			generate_btr_start_deposits_and_blockers = yes
-			clear_blockers = yes
-			#generate_sanctum_deposits = yes
-			generate_btr_independent_world_capitol_buildings = yes
-			generate_zorya_pops = yes
+		}
+	}		
 }
-
-
-
-
-
-
-
 
 ##### PRIMITIVE EMPIRES #####
 
