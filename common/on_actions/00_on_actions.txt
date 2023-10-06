@@ -326,6 +326,20 @@ on_yearly_pulse_country = {
 		paragon_2.1020 # Galactic Paragons negative leader trait event.
 		paragon.5955 #Luminary Age Check
 		paragon.5960 #Utility event for players continuing their old save
+		action.2000	# Caravaneers random events gatekeeper
+		fallen_empires_tasks.10 # Fallen Empire task Failure - timer ran out (previously: MTTH 12 months)
+	}
+}
+
+# this = country, fired via action.2001 from on_yearly_pulse_country
+on_yearly_random_pulse_country_caravaneers_list = {
+	random_events = {
+		1 = cara.4000 # Pops join Caravan (previously: MTTH 2 years)
+		1 = cara.4010 # Caravan pops join colony (previously: MTTH 2 years)
+		1 = cara.4020 # Caravan leaves hulk behind (previously: MTTH 2 years)
+		2 = cara.4030 # Xenophobes dislike Caravan (previously: MTTH 1 year)
+		2 = cara.4040 # Xenophiles like Caravan (previously: MTTH 1 year)
+		2 = cara.4050 # Caravaneers steal stuff (previously: MTTH 1 year)
 	}
 }
 
@@ -341,6 +355,7 @@ on_bi_yearly_pulse_country = {
 on_five_year_pulse_country = {
 	events = {
 		action.220
+		action.250	# communication spread
 		action.420
 		action.620 # pre-FTL diplo events
 		action.630 # pre-FTL tech events		
@@ -351,6 +366,7 @@ on_five_year_pulse_country = {
 		fircon.5050 # Solarpunk trade ending
 		origin.4109 # Payback - meeting Broken Shackles
 		paragon.200	# Astrocreator Azaryn encounter chance
+		action.2213		# on_five_year_random_pulse_country_fe_list
 	}
 	# See also: on_five_year_random_pulse_country = {}
 	random_events = {
@@ -374,7 +390,16 @@ on_five_year_random_pulse_country = {
 		100 = action.2211		# on_five_year_random_pulse_country_negative_list
 		25 = situation.500 		# Gravity Well situation
 		5 = fircon.1200			# Jaunting Traveler
-		2000 = 0
+		1900 = 0
+	}
+}
+
+# this = country, fired via action.220 from on_five_year_pulse_country
+on_five_years_communication_spread_country = {
+	random_events = {
+		75 = 0
+		35 = communications_spread.1	# Communications - neighbor (previously: MTTH 120 months)
+		25 = communications_spread.3	# Communications - neighbor (previously: MTTH 240 months)
 	}
 }
 
@@ -412,6 +437,18 @@ on_five_year_random_pulse_country_negative_list = {
 		20 = envoy_events.215	# Substance Abuse
 		10 = envoy_events.220	# Offense Taken
 		20 = action.2212		# Nothing, done differently because of operation_diplomatic_incident
+	}
+}
+
+on_five_year_random_pulse_country_fe_list = {
+	random_events = {
+		30 = fallen_empires_tasks.1 # Patronizing Fallen Empire gives a gift (previously: MTTH 100 years)
+		100 = fallen_empires_tasks.3 # Xenophile Fallen Empire asks for a pop (previously: MTTH 20 years)
+		40 = fallen_empires_tasks.7 # Xenophile Fallen Empire asks for a pop (previously: MTTH 200 years)
+		10 = fallen_empires_tasks.14 # Xenophile Fallen Empire asks for a pop (previously: MTTH 500 years)
+		50 = fallen_empires_tasks.21 # Materialist Fallen Empire asks for scientist (previously: MTTH 50 years)
+		200 = fallen_empires_tasks.23 # Xenophile Fallen Empire asks for brain scans found in anomaly (previously: MTTH 10 years)
+		280 = 0
 	}
 }
 
@@ -1357,6 +1394,7 @@ on_building_mining_station = {
 		anomaly.6880 #Sleeping Crystal
 		anomaly.6885 #Angry Crystal
 		awareness.120 # Outpost, mining or research station built in pre-ftl system
+		leviathans.660 # Dragon Hoard system - eggs and bones (previously: MTTH 50 years)
 	}
 }
 
@@ -1407,7 +1445,7 @@ on_building_starbase_outpost = {
 		#distar.1007
 		#distar.2036
 		#origin.3505 # Slingshot to the Stars
-		origin.5010 #Broken Shackles - First Station
+		origin.5010 # Broken Shackles - First Station
 		awareness.120 # Outpost, mining or research station built in pre-ftl system
 	}
 }
@@ -1595,6 +1633,7 @@ on_planet_bombarded = {
 		preftl.10160	# Violation of Non-Interference Act by Bombardment.
 		fircon.5034		# Bombarding Solarpunk
 		preftl.10300	# Bombarding Pre-FTLs
+		refugees.5		# Crisis faction creates refugees (previously: MTTH 3 months)
 		origin.7200		# Fruitful Origin: Seed Bombing stance creates blockers
 	}
 }
@@ -1975,6 +2014,7 @@ on_tech_increased = {
 		paragon_2.2105	# Xeno-Linguistics researched
 		paragon_2.2135	# Galactic Administration researched - reset government reform cooldown
 		action.730 # Void Hive Clearing Modifier on Tech Increase
+		anomaly.6710 # Nanite Swarm Anomaly follow-up
 	}
 }
 
@@ -2754,6 +2794,13 @@ on_colony_yearly_pulse = {
 		#toxoids.1 	#Increment pollution from Relentless Industrialists
 		awareness.140 # Colony in pre-ftl system
 	}
+	random_events = {
+		3 = manifesti.1
+		25 = crime.1 # Criminal Underworld Appears (Unemployment)
+		25 = crime.40 # Criminal Underworld Appears (High Crime)
+		25 = crime.41 # Criminal Underworld Disappears (Low Crime)
+		22 = 0
+	}
 }
 
 # Fires for each planet every 5 years (counting up from colonisation date, includes home planet)
@@ -2762,15 +2809,26 @@ on_colony_5_year_pulse = {
 		action.222 #Help for AI with Doomsday
 		necroids.275 #Permanent Employment holding
 	}
-	random_events = {
-		3 = manifesti.1
-		97 = 0
-	}
 }
 
 on_colony_10_year_pulse = {
 	events = {
 		necroids.1 #Apotheosis for non-necrophage pops to necrophage
+		action.2020	# Pops random events gatekeeper
+	}
+}
+
+# this = pop, fired via action.2021
+on_colony_10_year_pulse_random_pop_events_list = {
+	random_events = {
+		50 = 0
+		50 = pop.1 # (previously: MTTH 200 months)
+		50 = pop.2 # (previously: MTTH 220 months)
+		50 = pop.5 # (previously: MTTH 220 months)
+		50 = pop.7 # (previously: MTTH 220 months)
+		50 = pop.9 # (previously: MTTH 220 months)
+		50 = pop.11 # (previously: MTTH 220 months)
+		50 = pop.13 # (previously: MTTH 220 months)
 	}
 }
 
@@ -2987,6 +3045,7 @@ on_system_gained = {
 		#galactic_features.298 # Shielded World (Fallen Empire)
 		action.200	# recalc strategic war data
 		communications_spread.5 # Establish comms with any other countries in the system
+		leviathans.662  # Dragon Hoard system - eggs and bones (previously: MTTH 50 years)
 		specialist.200 # Add Bulwark Arrays to Bulwark subjects' starbases
 	}
 }
