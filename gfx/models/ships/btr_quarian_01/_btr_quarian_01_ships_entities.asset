@@ -1,26 +1,82 @@
-
-
+#########################
 ##### CIVILIAN SHIPS ####
+#########################
 
+##### CONSTRUCTOR SHIP #####
 entity = {
-	name = "btr_quarian_01_civilian_entity"	
+	name = "btr_quarian_01_constructor_entity"	
 	pdxmesh = "btr_quarian_01_civilian_mesh"
+
+	default_state = "idle"
+	state = { name = "idle"	 						animation = "idle" animation_blend_time = 0 }
+	state = { name = "moving"						animation = "idle" animation_blend_time = 2 }
+	state = { name = "working" 						animation = "idle" looping = no next_state = working_looping }
+	state = { name = "working_looping"				animation = "idle" }
+	state = { name = "death" animation = "death3" 	animation_blend_time = 0.0 chance = 1 looping = no 
+		event = { time = 4.63 node = "ship_main" particle = "large_ship_explosion_particle" }
+	}
+
 	scale = 1.0
 }
-
-
-##### STRIKECRAFT #####
-
 entity = {
-	name = "btr_quarian_01_bomber_entity"	
-	pdxmesh = "btr_quarian_01_strikecraft_mesh"
-	scale = 1.0
+ name = "quar_01_construction_ship_entity"
+	pdxmesh = "btr_quarian_01_civilian_mesh"
+		
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_starship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_construction } }
+    }
+	state = { name = "working"						animation = "working"		looping = no	next_state = working_looping 
+		event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		
+		event = { time = 0 node = "engine1" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes sound = { soundeffect = construction_progress_loop }  }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+	
+		event = { time = 4 node = "bot_1_welding" particle = "construction_bot_welding_effect" trigger_once = yes keep_particle = yes }
+		
+		event = { time = 4.16 node = "bot_3_welding" particle = "construction_bot_welding_effect" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "working_looping"				animation = "working_looping" 
+		event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+	}
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	scale = 1.1
 }
 
 entity = {
-	name = "btr_quarian_01_fighter_entity"	
-	pdxmesh = "btr_quarian_01_strikecraft_mesh"
-	scale = 1.0
+ name = "quar_01_science_ship_entity"
+	pdxmesh = "btr_quarian_01_civilian_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"	 animation = "idle" animation_blend_time = 4 }
+	state = { name = "moving"	animation = "idle" animation_blend_time = 2 }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	scale = 0.5
 }
 
 entity = {
@@ -41,4 +97,716 @@ entity = {
 	state = { name = "death" state_time = 5 looping = no
 		event = { time = 4.9 particle = "large_fallen_station_explosion_particle" keep_particle = yes trigger_once = yes sound = { soundeffect = "station_explosion_energy" } }
 	}
+}
+
+# Colony ship
+entity = {
+	name = "btr_quarian_01_colonizer_entity"
+	pdxmesh = "btr_quarian_01_liveship_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_starship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_colony_ship } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_colony_ship_entity"	
+	pdxmesh = "btr_quarian_01_liveship_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"	 animation = "idle" animation_blend_time = 4 }
+	state = { name = "moving"	animation = "idle" animation_blend_time = 2 }
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no 
+		event = { time = 4.63 node = "ship_main" particle = "large_ship_explosion_particle" }
+	}
+	#scale = 0.2
+}
+
+# Transport ship
+entity = {
+ name = "btr_quarian_01_transport_entity"
+	pdxmesh = "btr_quarian_01_civilian_mesh"
+	
+	default_state = "idle"
+	state = { name = "idle"	 animation = "idle" animation_blend_time = 4 
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_starship_hum" } }
+	}
+	state = { name = "moving"	animation = "idle" animation_blend_time = 2
+		event = { trigger_once = yes sound = { soundeffect = moving_out_science } }
+	}
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+ 
+	scale = 1.0
+}
+entity = {
+ name = "btr_quarian_01_transport_ship_entity"
+	pdxmesh = "btr_quarian_01_civilian_mesh"
+
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+}
+
+
+##### STRIKECRAFT #####
+
+entity = {
+	name = "btr_quarian_01_bomber_entity"	
+	pdxmesh = "btr_quarian_01_strikecraft_mesh"
+	scale = 1.0
+}
+
+entity = {
+	name = "btr_quarian_01_fighter_entity"	
+	pdxmesh = "btr_quarian_01_strikecraft_mesh"
+	scale = 1.0
+}
+
+#####################
+##### WAR SHIPS #####
+#####################
+
+##### FRIGATE (CORVETTES) #####
+entity = {
+	name = "btr_quarian_01_corvette_entity"	
+	pdxmesh = "btr_quarian_01_frigate_mesh"
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_corvette_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_corvette } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+
+	scale = 1.0
+}
+entity = {
+    name = "btr_quarian_01_corvette_S1_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.8
+}
+entity = {
+    name = "btr_quarian_01_corvette_M1S1_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.8
+}
+entity = {
+    name = "btr_quarian_01_corvette_S3_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.8
+}
+
+##### DESTROYER #####
+
+entity = {
+	name = "btr_quarian_01_destroyer_entity"	
+	pdxmesh = "btr_quarian_01_destroyer_mesh"
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_corvette_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_corvette } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+
+	scale = 1.0
+}
+entity = {
+    name = "btr_quarian_01_destroyer_bow_L1_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_destroyer_bow_M1S2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_destroyer_bow_S3_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_destroyer_stern_M1_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_destroyer_stern_S2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+
+##### CRUISER #####
+entity = {
+	name = "btr_quarian_01_cruiser_entity"	
+	pdxmesh = "btr_quarian_01_cruiser_mesh"
+
+	default_state = "idle"
+	state = { name = "idle" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_corvette_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = moving_out_corvette } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+
+	scale = 1.0
+}
+entity = {
+    name = "btr_quarian_01_cruiser_bow_L1_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_cruiser_bow_M1S2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_cruiser_bow_M2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_cruiser_mid_L1M1_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_cruiser_mid_M2S2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_cruiser_mid_M3_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_cruiser_mid_S2HB_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_cruiser_stern_M1_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_cruiser_stern_S2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+
+##### DREADNOUGHT #####
+entity = {
+	name = "btr_quarian_01_battleship_entity"	
+	pdxmesh = "btr_quarian_01_dreadnought_mesh"
+
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+
+	scale = 1.0
+}
+#bow
+entity = {
+    name = "btr_quarian_01_battleship_bow_L1M1S2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_battleship_bow_L1S4_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_04" rotation = { 0 0 0 } position = { 0 0 0 } }
+	scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_battleship_bow_L2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_battleship_bow_M1S2SHB_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_battleship_bow_M2S4_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_04" rotation = { 0 0 0 } position = { 0 0 0 } }
+	scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_battleship_bow_M3S2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_battleship_bow_XL1_entity"
+	pdxmesh = "empty_mesh"
+
+	locator = { name = "xl_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	scale = 0.1
+}
+
+#mid
+entity = {
+    name = "btr_quarian_01_battleship_mid_L1M4_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_04" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.50
+}
+entity = {
+    name = "btr_quarian_01_battleship_mid_L2M2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.50
+}
+entity = {
+    name = "btr_quarian_01_battleship_mid_L2S4_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" position = { 0  0  0 } }
+	locator = { name = "large_gun_02" position = { 0  0  0 } }
+	locator = { name = "small_gun_01" position = { 0  0  0 } }
+	locator = { name = "small_gun_02" position = { 0  0  0 } }
+	locator = { name = "small_gun_03" position = { 0  0  0 } }
+	locator = { name = "small_gun_04" position = { 0  0  0 } }
+    scale = 0.50
+}
+entity = {
+    name = "btr_quarian_01_battleship_mid_L3_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "large_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.50
+}
+entity = {
+    name = "btr_quarian_01_battleship_mid_M4SHB_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_04" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.50
+}
+entity = {
+    name = "btr_quarian_01_battleship_mid_S4LHB_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_04" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.50
+}
+
+#stern
+entity = {
+    name = "btr_quarian_01_battleship_stern_L1_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_battleship_stern_M1S2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_battleship_stern_M2_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+entity = {
+    name = "btr_quarian_01_battleship_stern_S4_entity"
+    pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "small_gun_04" rotation = { 0 0 0 } position = { 0 0 0 } }
+    scale = 0.1
+}
+
+##### SUPERDREADNOUGHT #####
+entity = {
+	name = "btr_quarian_01_dreadnought_entity"	
+	pdxmesh = "btr_quarian_01_dreadnought_mesh"
+
+	default_state = "idle"
+    state = { name = "idle" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_6_exhaust_idle_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "amb_battleship_hum" } }
+    }
+    state = { name = "moving" state_time = 5
+        event = { time = 0 node = "engine1" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine2" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine3" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { time = 0 node = "engine4" particle = "avian_01_1_7_ship_exhaust_moving_particle" trigger_once = yes keep_particle = yes }
+		event = { trigger_once = yes sound = { soundeffect = "moving_out_battleship" } }
+    }
+	state = { name = "death" animation = "death2" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+	state = { name = "death" animation = "death3" animation_blend_time = 0.0 chance = 1 looping = no
+		event = { time = 0.0 node = "engine1" particle = "ship_explosion_particle" sound = { soundeffect = ship_destroyed } }
+	}
+
+	scale = 1.0
+}
+# BOW
+entity = {
+	name = "btr_quarian_01_dreadnought_bow_L1M1S2_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_bow_L1S4_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_04" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_bow_L2_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_bow_M1S2SHB_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_bow_M2S4_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_04" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_bow_M3S2_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_03" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_bow_XL1_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "xl_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+
+# MID
+entity = {
+	name = "btr_quarian_01_dreadnought_mid_L2S4_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_04" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_mid_L1M4_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_03" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_04" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_mid_L2M2_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_mid_L3_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "large_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "large_gun_03" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_mid_M4SHB_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_03" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_04" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_mid_S4LHB_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_04" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "strike_craft_locator_01" rotation = { 0 0 0 } position = { 0 0 0 } }
+	locator = { name = "strike_craft_locator_02" rotation = { 0 0 0 } position = { 0 0 0 } }
+        scale = 0.1
+}
+
+# STERN
+entity = {
+	name = "btr_quarian_01_dreadnought_stern_L1_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "large_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_stern_M1S2_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_stern_M2_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "medium_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "medium_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
+}
+entity = {
+	name = "btr_quarian_01_dreadnought_stern_S4_entity"
+	pdxmesh = "empty_mesh"
+	locator = { name = "small_gun_01" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_02" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_03" rotation = { 0 0 0 } position = { 0  0  0 } }
+	locator = { name = "small_gun_04" rotation = { 0 0 0 } position = { 0  0  0 } }
+        scale = 0.1
 }
