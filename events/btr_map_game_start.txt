@@ -29,321 +29,24 @@ event = {
 	
 	immediate = {
 		every_system = {
-			limit = { 
-				NOT = {
-					has_star_flag = empire_home_system
-				}
+			limit = {
+				has_star_flag = widow_system
 			}
-			# Blue Nebula
-			if = {
-				limit = { 
-					OR = {
-						is_star_class = sc_a
-						is_star_class = sc_f
-						is_star_class = sc_d
-						is_star_class = sc_pulsar
-						is_star_class = sc_neutron_star
-						is_star_class = sc_magnetar
-						is_star_class = sc_ae
-						is_star_class = sc_tt_white
-						is_star_class = sc_microquasar_2
-						#is_star_class = sc_w_azure
-						#is_star_class = sc_w_green
-						is_a_system = yes
-						is_f_system = yes
-					}
-				}
-				random_list = {
-					30 = { 
-						random_list = {
-							25 = { create_thick_blue_nebula_1 = yes }
-							25 = { create_thick_blue_nebula_2 = yes }
-							25 = { create_thick_blue_nebula_3 = yes }
-							25 = { create_thick_blue_nebula_4 = yes }
-						}
-					}
-					30 = {
-						modifier = {
-							factor = 2
-							OR = {
-								has_star_flag = inside_bright_blue_nebula
-								has_star_flag = inside_bright_purple_nebula
-								has_star_flag = inside_bright_red_nebula
-								has_star_flag = inside_bright_yellow_nebula
-							}
-						}
-						random_list = {
-							50 = { create_bright_blue_nebula_1 = yes }
-							50 = { create_bright_blue_nebula_2 = yes }
-						}
-					}
-					30 = {
-						modifier = {
-							factor = 2
-							OR = {
-								has_star_flag = inside_turbulent_blue_nebula
-								has_star_flag = inside_turbulent_green_nebula
-								has_star_flag = inside_turbulent_orange_nebula
-								has_star_flag = inside_turbulent_purple_nebula
-							}
-						}
-						random_list = {
-							25 = { create_faint_blue_nebula_1 = yes }
-							25 = { create_faint_blue_nebula_2 = yes }
-							25 = { create_faint_blue_nebula_3 = yes }
-							25 = { create_faint_blue_nebula_4 = yes }
-						}
-					}
-					10 = {
-						modifier = {
-							factor = 0
-							has_star_flag = empire_home_system
-						}
-						random_list = {
-							50 = { create_turbulent_blue_nebula_1 = yes }
-							50 = { create_turbulent_blue_nebula_2 = yes }
-						}
-					}
-				}
+			create_bright_purple_nebula_1 = yes
+			create_bright_purple_nebula_2 = yes
+			create_faint_purple_nebula_1 = yes
+			create_faint_purple_nebula_2 = yes
+			create_faint_purple_nebula_3 = yes
+			create_faint_purple_nebula_4 = yes
+		}
+
+		every_system = {
+			limit = {
+				has_star_flag = tartarus_debris_field
 			}
-			# Orange Nebula
-			else_if = { 
-				limit = { 
-					OR = {
-						is_star_class = sc_g
-						is_star_class = sc_k
-						is_star_class = sc_s_giant
-						is_star_class = sc_tt_orange
-						#is_star_class = sc_protostar
-						is_g_system = yes
-						is_k_system = yes
-					}
-				}
-				random_list = {
-					30 = { 
-						random_list = {
-							25 = { create_thick_orange_nebula_1 = yes }
-							25 = { create_thick_orange_nebula_2 = yes }
-							25 = { create_thick_orange_nebula_3 = yes }
-							25 = { create_thick_orange_nebula_4 = yes }
-						}
-					}
-					30 = {
-						modifier = {
-							factor = 2
-							OR = {
-								has_star_flag = inside_bright_blue_nebula
-								has_star_flag = inside_bright_purple_nebula
-								has_star_flag = inside_bright_red_nebula
-								has_star_flag = inside_bright_yellow_nebula
-							}
-						}
-						random_list = {
-							50 = { create_bright_orange_nebula_1 = yes }
-							50 = { create_bright_orange_nebula_2 = yes }
-						}
-					}
-					30 = {
-						modifier = {
-							factor = 2
-							OR = {
-								has_star_flag = inside_turbulent_blue_nebula
-								has_star_flag = inside_turbulent_green_nebula
-								has_star_flag = inside_turbulent_orange_nebula
-								has_star_flag = inside_turbulent_purple_nebula
-							}
-						}
-						random_list = {
-							25 = { create_faint_orange_nebula_1 = yes }
-							25 = { create_faint_orange_nebula_2 = yes }
-							25 = { create_faint_orange_nebula_3 = yes }
-							25 = { create_faint_orange_nebula_4 = yes }
-						}
-					}
-					10 = {
-						modifier = {
-							factor = 0
-							has_star_flag = empire_home_system
-						}
-						random_list = {
-							50 = { create_turbulent_orange_nebula_1 = yes }
-							50 = { create_turbulent_orange_nebula_2 = yes }
-						}
-					}
-				}
-			}
-			# Red Nebula
-			else_if = { 
-				limit = { 
-					OR = {
-						is_star_class = sc_m
-						is_star_class = sc_m_giant
-						is_star_class = sc_c_giant
-						is_star_class = sc_l
-						is_star_class = sc_tt_red
-						is_star_class = sc_microquasar_1
-						#is_star_class = sc_w_red
-						is_m_system = yes
-					}
-				}
-				random_list = {
-					30 = { 
-						random_list = {
-							25 = { create_thick_red_nebula_1 = yes }
-							25 = { create_thick_red_nebula_2 = yes }
-							25 = { create_thick_red_nebula_3 = yes }
-							25 = { create_thick_red_nebula_4 = yes }
-						}
-					}
-					30 = {
-						modifier = {
-							factor = 2
-							OR = {
-								has_star_flag = inside_bright_blue_nebula
-								has_star_flag = inside_bright_purple_nebula
-								has_star_flag = inside_bright_red_nebula
-								has_star_flag = inside_bright_yellow_nebula
-							}
-						}
-						random_list = {
-							50 = { create_bright_red_nebula_1 = yes }
-							50 = { create_bright_red_nebula_2 = yes }
-						}
-					}
-					30 = {
-						modifier = {
-							factor = 2
-							OR = {
-								has_star_flag = inside_turbulent_blue_nebula
-								has_star_flag = inside_turbulent_green_nebula
-								has_star_flag = inside_turbulent_orange_nebula
-								has_star_flag = inside_turbulent_purple_nebula
-							}
-						}
-						random_list = {
-							25 = { create_faint_red_nebula_1 = yes }
-							25 = { create_faint_red_nebula_2 = yes }
-							25 = { create_faint_red_nebula_3 = yes }
-							25 = { create_faint_red_nebula_4 = yes }
-						}
-					}
-					10 = {
-						modifier = {
-							factor = 0
-							has_star_flag = empire_home_system
-						}
-						random_list = {
-							50 = { create_turbulent_red_nebula_1 = yes }
-							50 = { create_turbulent_red_nebula_2 = yes }
-						}
-					}
-				}
-			}
-			# Purple Nebula
-			else_if = { 
-				limit = { 
-					OR = {
-						is_star_class = sc_b
-						is_star_class = sc_t
-						is_star_class = sc_y
-						#is_star_class = sc_w_purple
-						is_b_system = yes
-					}
-				}
-				random_list = {
-					30 = { 
-						random_list = {
-							25 = { create_thick_purple_nebula_1 = yes }
-							25 = { create_thick_purple_nebula_2 = yes }
-							25 = { create_thick_purple_nebula_3 = yes }
-							25 = { create_thick_purple_nebula_4 = yes }
-						}
-					}
-					30 = {
-						modifier = {
-							factor = 2
-							OR = {
-								has_star_flag = inside_bright_blue_nebula
-								has_star_flag = inside_bright_purple_nebula
-								has_star_flag = inside_bright_red_nebula
-								has_star_flag = inside_bright_yellow_nebula
-							}
-						}
-						random_list = {
-							50 = { create_bright_purple_nebula_1 = yes }
-							50 = { create_bright_purple_nebula_2 = yes }
-						}
-					}
-					30 = {
-						modifier = {
-							factor = 2
-							OR = {
-								has_star_flag = inside_turbulent_blue_nebula
-								has_star_flag = inside_turbulent_green_nebula
-								has_star_flag = inside_turbulent_orange_nebula
-								has_star_flag = inside_turbulent_purple_nebula
-							}
-						}
-						random_list = {
-							25 = { create_faint_purple_nebula_1 = yes }
-							25 = { create_faint_purple_nebula_2 = yes }
-							25 = { create_faint_purple_nebula_3 = yes }
-							25 = { create_faint_purple_nebula_4 = yes }
-						}
-					}
-					10 = {
-						modifier = {
-							factor = 0
-							has_star_flag = empire_home_system
-						}
-						random_list = {
-							50 = { create_turbulent_purple_nebula_1 = yes }
-							50 = { create_turbulent_purple_nebula_2 = yes }
-						}
-					}
-				}
-			}
-			else_if = { 
-				limit = { 
-					OR = {
-						is_star_class = sc_black_hole
-						#is_star_class = sc_collapsar
-						#is_star_class = sc_lbv_orange
-						#is_star_class = sc_lbv_green
-						#is_star_class = sc_lbv_red
-					}
-				}
-				random_list = {
-					60 = { 
-						random_list = {
-							13 = { create_bright_orange_nebula_1 = yes }
-							12 = { create_bright_orange_nebula_2 = yes }
-							13 = { create_bright_red_nebula_1 = yes }
-							12 = { create_bright_red_nebula_2 = yes }
-							13 = { create_bright_blue_nebula_1 = yes }
-							12 = { create_bright_blue_nebula_2 = yes }
-							13 = { create_bright_purple_nebula_1 = yes }
-							12 = { create_bright_purple_nebula_2 = yes }
-						}
-					}
-					40 = {
-						modifier = {
-							factor = 0
-							has_star_flag = empire_home_system
-						}
-						random_list = {
-							13 = { create_turbulent_orange_nebula_1 = yes }
-							12 = { create_turbulent_orange_nebula_2 = yes }
-							13 = { create_turbulent_red_nebula_1 = yes }
-							12 = { create_turbulent_red_nebula_2 = yes }
-							13 = { create_turbulent_blue_nebula_1 = yes }
-							12 = { create_turbulent_blue_nebula_2 = yes }
-							13 = { create_turbulent_purple_nebula_1 = yes }
-							12 = { create_turbulent_purple_nebula_2 = yes }
-						}
-					}
-				}
-			}
+			create_thick_orange_nebula_1 = yes
+			create_thick_orange_nebula_2 = yes
+			create_thick_red_nebula_1 = yes
 		}
 
 		log = "btr_map_start.102 Real Space Nebulae Created"
@@ -4777,3 +4480,15 @@ event = {
 		log = "btr_map_start.111 - Dextro Modifiers Set"
 	}
 }
+
+event = {
+	id = btr_map_start.12
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		every_galaxy_planet = { 
+			add_deposit = random_nonblocker
+		}
+	}
+}	
