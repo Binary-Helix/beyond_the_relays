@@ -35,7 +35,7 @@ country_event = {
 		hidden_effect = {
 			create_country = {
 				name = "NAME_Elanos_Haliat"
-				type = paragon_event_country
+				type = faction
 				auto_delete = yes
 				flag = {
 					icon = {
@@ -129,14 +129,18 @@ country_event = {
 
 	option = {
 		name = "btr_skyblitz_1.1.a"
-		hidden_effect = {
-			country_event = {
-				id = btr_skyblitz_1.4 
-				days = 30
-				random = 5
-			}
-		}
+		# hidden_effect = {
+		# 	country_event = {
+		# 		id = btr_skyblitz_1.4 
+		# 		days = 30
+		# 		random = 5
+		# 	}
+			# event_target:haliat_insurrectionists = {
+			# 	set_country_flag = haliat_offer_accepted
+			# }
+		# }
 	}
+
 	option = {
 		name = "btr_skyblitz_1.1.b"
 		hidden_effect = {
@@ -170,7 +174,6 @@ country_event = {
 			limit = { 
 				has_country_flag = haliat_country
 			 }
-			 set_country_type = faction
 			 establish_communications_no_message = root.owner
 			 establish_contact = { who = root.owner location = root.solar_system }
 		}
@@ -179,8 +182,23 @@ country_event = {
 				any_galaxy_planet = { has_planet_flag = caleston_planet }
 			}
 			random_galaxy_planet = {
-				limit = { has_planet_flag = caleston_planet }
-				planet_event = { id = btr_skyblitz_1.3 days = 5 }
+				limit = { 
+					has_planet_flag = caleston_planet 
+				}
+				hidden_effect = {
+					while = {
+						count = 2
+						create_army = {
+							owner = event_target:caleston_directorate
+							type = defense_army
+							species = owner_main_species
+						}
+					}
+				}
+				planet_event = { 
+					id = btr_skyblitz_1.3 
+					days = 5 
+				}
 				set_global_flag = haliat_coup_initiated
 			}
 		}
@@ -195,90 +213,116 @@ country_event = {
 planet_event = {
 	id = btr_skyblitz_1.3
 	title = "btr_skyblitz_1.3.name"
-	desc = "btr_skyblitz_1.3.desc"
-	picture = GFX_evt_alien_nature
-	show_sound = event_air_raid_siren
-	is_triggered_only = yes
+	picture = GFX_evt_ground_combat
+	show_sound = event_ground_battle
 	location = ROOT
 
-	auto_opens = yes
-
-	pre_triggers = {
-		has_owner = yes
-		original_owner = yes
-		has_ground_combat = no
-	}
-
-	trigger = {
-		has_planet_flag = caleston_planet
-	}
+	is_triggered_only = yes
 
 	immediate = {
+		set_planet_flag = haliat_invasion_planet
+		event_target:haliat_insurrectionists = {
+			create_leader = {
+				class = general
+				species = owner_main_species
+				name = random
+				skill = 3
+			}
+		}
 		if = {
-			limit = { 
-				has_planet_flag = caleston_planet
+			limit = {
+				event_target:haliat_insurrectionists = {
+					NOT = { has_country_flag = haliat_offer_accepted }
+				}
 			}
-			log = "btr_skyblitz_1.3 Firing"
-			set_planet_flag = haliat_coup_planet
-			owner = {
-				set_country_flag = caleston_coup_empire
+			while = {
+				count = 6
+				create_army = {
+					name = "NAME_Invading_Horde"
+					owner = event_target:haliat_insurrectionists
+					species = event_target:asari_species
+					type = "assault_army"
+					leader = last_created_leader
+				}
 			}
-			create_army = {
-				name = "NAME_Eclipse_Merc_Company"
-				owner = event_target:haliat_insurrectionists
-				species	= "event_target:asariSpecies"
-				type = assault_army
+		}
+		if = {
+			limit = {
+				event_target:haliat_insurrectionists = { has_country_flag = haliat_offer_accepted }
 			}
-			create_army = {
-				name = "NAME_Eclipse_Merc_Company"
-				owner = event_target:haliat_insurrectionists
-				species	= "event_target:asariSpecies"
-				type = assault_army
-			}
-			create_army = {
-				name = "NAME_Eclipse_Merc_Company"
-				owner = event_target:haliat_insurrectionists
-				species	= "event_target:salarianSpecies"
-				type = assault_army
-			}
-			create_army = {
-				name = "NAME_Eclipse_Merc_Company"
-				owner = event_target:haliat_insurrectionists
-				species	= "event_target:salarianSpecies"
-				type = assault_army
+			while = {
+				count = 6
+				create_army = {
+					name = "NAME_Invading_Horde"
+					owner = event_target:haliat_insurrectionists
+					species = event_target:salarianspecies
+					type = "assault_army"
+					leader = last_created_leader
+				}
 			}
 		}
 	}
+	# title = "btr_skyblitz_1.3.name"
+	# desc = "btr_skyblitz_1.3.desc"
+	# picture = GFX_evt_alien_nature
+	# show_sound = event_air_raid_siren
+	# is_triggered_only = yes
+	# location = ROOT
 
-	option = {
-		name = btr_skyblitz_1.3.a
-		custom_tooltip = haliat_armies
-	}
+	# auto_opens = yes
+
+	# trigger = {
+	# 	has_planet_flag = caleston_planet
+	# }
+
+	# immediate = {
+	# 	log = "btr_skyblitz_1.3 Firing"
+	# 	set_planet_flag = haliat_coup_planet
+	# 	event_target:haliat_insurrectionists = {
+	# 		create_leader = {
+	# 			class = general
+	# 			species = owner_main_species
+	# 			name = random
+	# 			skill = 3
+	# 		}
+	# 		log = "Haliat Invasion Army General Created"
+	# 	}
+	# 	if = {
+	# 		limit = {
+	# 			event_target:haliat_insurrectionists = {
+	# 				NOT = { has_country_flag = haliat_offer_accepted }
+	# 			}
+	# 		}
+	# 		while = {
+	# 			count = 2
+	# 			create_army = {
+	# 				name = "NAME_Eclipse_Merc_Company"
+	# 				owner = event_target:haliat_insurrectionists
+	# 				species = event_target:asariSpecies
+	# 				type = assault_army
+	# 				leader = last_created_leader
+	# 			}
+	# 		}
+	# 		while = {
+	# 			count = 2
+	# 			create_army = {
+	# 				name = "NAME_Eclipse_Merc_Company"
+	# 				owner = event_target:haliat_insurrectionists
+	# 				species = event_target:turianSpecies
+	# 				type = assault_army
+	# 				leader = last_created_leader
+	# 			}
+	# 		}
+	# 		log = "Haliat Armies Created"
+	# 	}
+	# }
+
+	# option = {
+	# 	name = btr_skyblitz_1.3.a
+	# 	custom_tooltip = haliat_armies
+	# }
 }
 
-
-
-
-# country_event = {
-# 	id = btr_skyblitz_1.2
-
-# 	is_triggered_only = yes
-
-# 	trigger = {
-		
-# 	}
-# }
-
-
-# country_event = {
-# 	id = btr_skyblitz_1.3
-
-# 	is_triggered_only = yes
-
-# 	trigger = {
-		
-# 	}
-# }
 
 # country_event = {
 # 	id = btr_skyblitz_1.4
