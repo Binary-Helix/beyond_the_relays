@@ -75,7 +75,9 @@ building_asari_galactic_sports_center = {
         category = planet_buildings
         cost = {
             minerals = 2000
-            alloys = 200
+            #alloys = 200
+			light_metals = 140
+			heavy_metals = 60
             energy = 1000
         }
         upkeep = {
@@ -715,8 +717,9 @@ building_hanar_drell_barracks = {
 		}
 		upkeep = {
 			energy = 20
-			alloys = 1
-			#light_alloy = 1 TO BE ADDED LATER
+			#alloys = 1
+			light_metals = 0.7
+			heavy_metals = 0.3
 		}
 	}
 
@@ -773,8 +776,9 @@ building_batarian_slave_market = {
 		upkeep = {
 			energy = 5
 			consumer_goods = 2
-			exotic_gases = 1
-			#light_alloy = 1 TO BE ADDED LATER
+			light_metals = 0.7
+			heavy_metals = 0.3
+			antimatter_fuel = 1
 		}
 	}
 
@@ -818,8 +822,9 @@ building_batarian_black_site = {
 		}
 		upkeep = {
 			energy = 4
-			volatile_motes = 3
-			#light_alloy = 1 TO BE ADDED LATER
+			#volatile_motes = 3
+			light_metals = 0.9
+			heavy_metals = 2.1
 		}
 	}
 
@@ -1226,13 +1231,17 @@ building_caleston_great_dome = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			alloys = 100
+			#alloys = 100
+			light_metals = 70
+			heavy_metals = 30
 			minerals = 800
 			consumer_goods = 150
 		}
 		upkeep = {
 			energy = 10
-			alloys = 1
+			#alloys = 1
+			light_metals = 0.7
+			heavy_metals = 0.3
 			minerals = 10
 			consumer_goods = 5
 		}
@@ -1294,7 +1303,7 @@ building_caleston_energy_pits = {
 
 	planet_modifier = {
 		planet_jobs_minerals_produces_mult = 0.05
-		#planet_jobs_element_zero_produces_mult = 0.05
+		planet_jobs_eezo_produces_mult = 0.05
 		job_miner_add = 4
 		job_foundry_add = 1
 	}	
@@ -1882,8 +1891,10 @@ building_yahg_blood_arena = {
 		upkeep = {
 			energy = 10
 			consumer_goods = 2
-			alloys = 1
-			volatile_motes = 1
+			#alloys = 1
+			#volatile_motes = 1
+			light_metals = 1
+			heavy_metals = 1
 		}
 	}
 }
@@ -1918,7 +1929,9 @@ building_raloi_foreign_instructor_center = {
 		}
 		upkeep = {
 			energy = 5
-			alloys = 3
+			#alloys = 3
+			light_metals = 2.1
+			heavy_metals = 0.9
 		}
 	}
 
@@ -1964,9 +1977,12 @@ building_raloi_development_coop_institute = {
 		upkeep = {
 			energy = 10
 			consumer_goods = 2
-			exotic_gases = 2
-			volatile_motes = 2
-			rare_crystals = 2
+			#exotic_gases = 2
+			#volatile_motes = 2
+			#rare_crystals = 2
+			antimatter_fuel = 1
+			light_metals = 2.4
+			heavy_metals = 1.6
 		}
 	}
 
@@ -2071,11 +2087,14 @@ building_geth_production_center = {
 		}
 		cost = {
 			minerals = 300
-			alloys = 100
+			#alloys = 100
+			light_metals = 70
+			heavy_metals = 30
 		}
 		upkeep = {
 			energy = 10
-			exotic_gases = 1
+			#exotic_gases = 1
+			antimatter_fuel = 0.5
 		}
 	}
 }
@@ -2121,61 +2140,69 @@ building_nazara_altar = {
 		}
 		cost = {
 			minerals = 250
-			alloys = 100
+			#alloys = 100
+			light_metals = 70
+			heavy_metals = 30
 		}
 		upkeep = {
 			energy = 10
 			minerals = 10
-			alloys = 2
+			#alloys = 2
+			light_metals = 1.4
+			heavy_metals = 0.6
 		}
 	}
 }
 
-# ###Rachni Hive
-# building_rachni_subsurface_palace = {
-# 	base_buildtime = 200
-# 	icon = building_rachni_subsurface_palace
-# 	empire_limit = 1
-# 	base_cap_amount = 1
-# 	potential = {
-# 		exists = owner
-# 		owner = {
-# 			has_origin = rachni_hiv_origin
-# 		}
-# 	}
+###Rachni Hive
+building_rachni_subsurface_palace = {
+	base_buildtime = 200
+	icon = building_rachni_subsurface_palace
+	empire_limit = 1
+	base_cap_amount = 1
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = rachni_hiv_origin
+		}
+	}
 
-# 	allow = {
-# 		has_upgraded_capital = yes
-# 	}
+	allow = {
+		has_upgraded_capital = yes
+	}
 
-# 	destroy_trigger = {
-# 		exists = owner
-# 		OR = {
-# 			owner = { is_regular_empire = no }
-# 			owner = { NOR = { has_origin = rachni_hiv_origin } }
-# 		}
-# 	}
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOR = { has_origin = rachni_hiv_origin } }
+		}
+	}
 
-# 	planet_modifier = {
+	planet_modifier = {
 
-# 	}
+	}
 
-# 	resources = {
-# 		category = planet_buildings
-# 		produces = {
-# 			unity = 10
-# 		}
-# 		cost = {
-# 			minerals = 250
-# 			alloys = 100
-# 		}
-# 		upkeep = {
-# 			energy = 10
-# 			minerals = 10
-# 			alloys = 2
-# 		}
-# 	}
-# }
+	resources = {
+		category = planet_buildings
+		produces = {
+			unity = 10
+		}
+		cost = {
+			minerals = 250
+			#alloys = 100
+			light_metals = 70
+			heavy_metals = 30
+		}
+		upkeep = {
+			energy = 10
+			minerals = 10
+			#alloys = 2
+			light_metals = 1.4
+			heavy_metals = 0.6
+		}
+	}
+}
 
 ###Collectors
 
@@ -2446,7 +2473,9 @@ building_citadel_csec= {
 		category = planet_buildings
 		upkeep = {
 			energy = 10
-			alloys = 5
+			#alloys = 5
+			light_metals = 1.5
+			heavy_metals = 3.5
 		}
 	}
 }
