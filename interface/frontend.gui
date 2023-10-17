@@ -3,7 +3,7 @@ guiTypes = {
 
 	containerWindowType = {
 		name = "frontend_background"
-		position = { x= 0 y= 0 }
+		position = { x = 0 y= 0 }
 		size = { width = 100% height = 100%}
 		
 		buttonType = {	
@@ -15,7 +15,7 @@ guiTypes = {
 	}
 	containerWindowType = {
 		name = "frontend_background_view"
-		position = { x= 50000 y= 0 }
+		position = { x = 50000 y= 0 }
 		size = { width = 100% height = 100%}
 		#orientation = center_down
 		margin = {
@@ -27,7 +27,7 @@ guiTypes = {
 
 		containerWindowType = {
 			name = "buttons"
-			position = { x=17 y=0 }	
+			position = { x =17 y=0 }	
 			orientation = lower_left
 			origo = lower_left
 
@@ -154,7 +154,7 @@ guiTypes = {
 		containerWindowType = {
 			id = "press_to_continue"
 			name = "press_to_continue"
-			position = { x=0 y=0 }	
+			position = { x =0 y=0 }	
 			size = { width=1280 height=720 }
 			orientation = center
 
@@ -162,7 +162,7 @@ guiTypes = {
 				name = "press"
 				font = "malgun_goth_24"
 				text = "PRESS" 
-				position = { x= -100 y = -9  }
+				position = { x = -100 y = -9  }
 				maxWidth = 80
 				maxHeight = 35
 				fixedSize = yes
@@ -180,7 +180,7 @@ guiTypes = {
 				name = "to_continue"
 				font = "malgun_goth_24"
 				text = "TO_CONTINUE"
-				position = { x= 20 y = -9  }
+				position = { x = 20 y = -9  }
 				maxWidth = 400
 				maxHeight = 35
 				fixedSize = yes
@@ -197,7 +197,7 @@ guiTypes = {
 				name = "version"
 				font = "cg_16b"
 				text = "1337"
-				position = { x= -115 y = 575  }
+				position = { x = -115 y = 575  }
 				maxWidth = 300
 				maxHeight = 20
 				fixedSize = yes
@@ -208,7 +208,7 @@ guiTypes = {
 				name = "version_button"
 				spriteType = "GFX_invisible"
 				size = { x = 300 y = 20 }
-				position = { x= -600 y = -38  }
+				position = { x = -600 y = -38  }
 				no_clicksound = yes
 			}
 
@@ -368,6 +368,42 @@ guiTypes = {
 					}
 				}
 
+				# TODO [AA]: [AUG-42271] Uncomment this and move the below buttons back down (both the normal position and if_scaled_resolution).
+				#containerWindowType = {
+				#	name = "additional_content_container"
+				#	position = { x = 0 y = 200 }
+				#	size = { width = @button_large_width height = @button_large_height }
+				#
+				#	if_scaled_resolution = {
+				#		min_height = 900
+				#
+				#		position = { x = 0 y = 300 }
+				#	}
+				#
+				#	buttonType = {
+				#		id = "additional_content"
+				#		name = "button"
+				#		quadTextureSprite = "GFX_main_menu_button"
+				#		position = { x = 0 y = 0 }
+				#		size = { x = @button_large_width y = @button_large_height }
+				#		oversound = mouse_over
+				#		clicksound = confirm_click
+				#	}
+				#
+				#	instantTextBoxType = {
+				#		name = "text"
+				#		font = "jura"
+				#		text = "FRONT_ADDITIONAL_CONTENT"
+				#		position = { x = 0 y = 0 }
+				#		maxWidth = @button_large_width
+				#		maxHeight = @button_large_height
+				#		fixedSize = yes
+				#		format = left
+				#		vertical_alignment = center
+				#		alwaysTransparent = yes
+				#	}
+				#}
+
 				containerWindowType = {
 					name = "settings_container"
 					position = { x = 0 y = 200 }
@@ -498,7 +534,7 @@ guiTypes = {
 		### load save
 		containerWindowType = {
 			name ="load_save"
-			position = { x=0 y=0 }	
+			position = { x =0 y=0 }	
 			size = { width=1024 height=720 }
 			orientation = upper_left
 	
@@ -518,7 +554,7 @@ guiTypes = {
 			buttonType = {
 				name = "launch"
 				quadTextureSprite = "GFX_button"
-				position = { x= -200 y = -200  }
+				position = { x = -200 y = -200  }
 				Orientation = "LOWER_RIGHT"
 				buttonText = "FRONT_LAUNCH"
 				buttonFont = "cg_16b"
@@ -527,7 +563,7 @@ guiTypes = {
 			buttonType = {
 				name = "back"
 				quadTextureSprite = "GFX_button"
-				position = { x= -400 y = -200  }
+				position = { x = -400 y = -200  }
 				Orientation = "LOWER_RIGHT"
 				buttonText = "FRONT_BACK"
 				buttonFont = "cg_16b"
@@ -535,8 +571,8 @@ guiTypes = {
 			
 			listboxType = {
 				name ="list"
-				position = { x=100 y =80}
-				size = { x=220 y =260}
+				position = { x =100 y =80}
+				size = { x =220 y =260}
 				horizontal = 0
 				scrollbartype = "standardlistbox_slider"
 				borderSize = {x = 20 y = 20}
@@ -544,38 +580,66 @@ guiTypes = {
 			}
 		}
 
+		### Additional content browser "What's new"
+		# TODO [AA]: [AUG-42271] Uncomment
+		#containerWindowType = {
+		#	name = "additional_content_whats_new"
+		#	position = { x = 0 y = 0 }
+		#	size = { width = 250 height = 340 }
+		#	orientation = lower_right
+		#	origo = lower_right
+		#
+		#	instantTextBoxType = {
+		#		name = "title"
+		#		position = { x = 0 y = 0 }
+		#		maxWidth = 250
+		#		format = right
+		#		font = "large_title_font"
+		#		text = "ADDITIONAL_CONTENT_WHATS_NEW_TITLE"
+		#	}
+		#
+		#	gridBoxType = {
+		#		name = "items"
+		#		position = { x = 0 y = 45 }
+		#		size = { width = 100% }
+		#		slotSize = { width = 250 height = 155 }
+		#		max_slots_horizontal = 1
+		#		format = "UPPER_LEFT"
+		#	}
+		#}
+
 		### DEBUG
 		buttonType = {
-			name ="portrait_room"
+			name = "portrait_room"
 			spriteType = "GFX_portrait_room"
 			Orientation = "CENTER"
-			position = { x= -476 y= -10 }
+			position = { x = -476 y= -10 }
 		}
 
 		buttonType = {
-			name ="portrait_planet"
+			name = "portrait_planet"
 			spriteType = "GFX_portrait_planet_character"
 			Orientation = "CENTER"
-			position = { x= -100 y= -320 }
+			position = { x = -100 y= -320 }
 		}
 
 		buttonType = {
-			name ="portrait_character"
+			name = "portrait_character"
 			spriteType = "GFX_portrait_character"
 			Orientation = "CENTER"
-			position = { x= -500 y= -350 }
+			position = { x = -500 y= -350 }
 		}	
 
 		buttonType = {
-			name ="portrait_character_large"
+			name = "portrait_character_large"
 			spriteType = "GFX_portrait_character_large"
 			Orientation = "CENTER"
-			position = { x= -500 y= -350 }
+			position = { x = -500 y= -350 }
 		}		
 
 		containerWindowType = {
 			name = "blocker"
-			position = { x= 0 y= 0 }
+			position = { x = 0 y= 0 }
 			size = { width = 100% height = 100%}
 
 			background = {
@@ -587,13 +651,13 @@ guiTypes = {
 
 	containerWindowType = {
 		name = "save_item"
-		position = { x=0 y=0 }	
+		position = { x =0 y=0 }	
 		size = { width=64 height=48 }
 			
 		buttonType = {
 			name = "button"
 			quadTextureSprite = "GFX_button"
-			position = { x= 0 y = 0  }
+			position = { x = 0 y = 0  }
 			Orientation = "UPPER_LEFT"
 			buttonText = ""
 			buttonFont = "cg_16b"
