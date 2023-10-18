@@ -1,0 +1,224 @@
+# ####################
+# Planet killer beam?
+# ####################
+
+#weapon_component_template = {
+#	key = "PLANET_DESTRUCTION_COMPONENT"
+#	size = planet_killer
+#	type = planet_killer
+#	use_ship_kill_target = no
+#
+#	icon = GFX_technology_unknown
+#	icon_frame = 1
+#
+#	component_set = "PLANET_KILLER_1"
+#
+#	planet_destruction_gfx = "neutron_planet_gfx"
+#}
+
+weapon_component_template = { # World Cracker
+	key = "PLANET_KILLER_CRACKER"
+	size = planet_killer
+	type = planet_killer
+	use_ship_kill_target = no
+
+	prerequisites = { "tech_pk_cracker" }
+
+	icon = GFX_ship_part_world_cracker
+	icon_frame = 1
+
+	size_restriction = { colossus }
+	component_set = "PLANET_KILLER_CRACKER"
+
+	planet_destruction_gfx = "global_pacifier_gfx"
+
+	ai_weight = {
+		factor = 2
+	}
+}
+
+weapon_component_template = { # Pacifier
+	key = "PLANET_KILLER_SHIELDER"
+	size = planet_killer
+	type = planet_killer
+	use_ship_kill_target = no
+
+	prerequisites = { "tech_pk_shielder" }
+
+	icon = GFX_ship_part_global_pacifier
+	icon_frame = 1
+
+	size_restriction = { colossus }
+	component_set = "PLANET_KILLER_SHIELDER"
+
+	planet_destruction_gfx = "global_pacifier_gfx"
+
+	ai_weight = {
+		factor = 1
+		modifier = {
+			factor = 8
+			is_pacifist = yes
+		}
+	}
+}
+
+weapon_component_template = { # Neutron Beam
+	key = "PLANET_KILLER_NEUTRON"
+	size = planet_killer
+	type = planet_killer
+	use_ship_kill_target = no
+
+	prerequisites = { "tech_pk_neutron" }
+
+	icon = GFX_ship_part_neutron_sweep
+	icon_frame = 1
+
+	size_restriction = { colossus }
+	component_set = "PLANET_KILLER_NEUTRON"
+
+	planet_destruction_gfx = "neutron_planet_gfx"
+
+	ai_weight = {
+		factor = 1
+		modifier = {
+			factor = 5
+			is_homicidal = no
+		}
+	}
+}
+
+weapon_component_template = { # God Ray
+	key = "PLANET_KILLER_GODRAY"
+	size = planet_killer
+	type = planet_killer
+	use_ship_kill_target = no
+
+	prerequisites = { "tech_pk_godray" }
+
+	icon = GFX_ship_part_divine_enforcer
+	icon_frame = 1
+
+	size_restriction = { colossus }
+	component_set = "PLANET_KILLER_GODRAY"
+
+	planet_destruction_gfx = "god_ray_gfx"
+
+	ai_weight = {
+		factor = 1
+		modifier = {
+			factor = 8
+			is_spiritualist = yes
+		}
+	}
+}
+
+weapon_component_template = { # Nanobot Assimilation
+	key = "PLANET_KILLER_NANOBOTS"
+	size = planet_killer
+	type = planet_killer
+	use_ship_kill_target = no
+
+	prerequisites = { "tech_pk_nanobots" }
+
+	icon = GFX_ship_part_nanobot_diffuser
+	icon_frame = 1
+
+	size_restriction = { colossus }
+	component_set = "PLANET_KILLER_NANOBOTS"
+
+	planet_destruction_gfx = "assimilation_nanobots_gfx"
+
+	ai_weight = {
+		factor = 1
+		modifier = {
+			factor = 10
+			has_authority = auth_machine_intelligence
+		}
+	}
+}
+
+weapon_component_template = { # Deluge
+	key = "PLANET_KILLER_DELUGE"
+	size = planet_killer
+	type = planet_killer
+	use_ship_kill_target = no
+
+	valid_for_country = {
+		has_ascension_perk = ap_hydrocentric
+	}
+
+	icon = GFX_ship_part_deluge
+	icon_frame = 1
+
+	size_restriction = { colossus }
+	component_set = "PLANET_KILLER_DELUGE"
+
+	planet_destruction_gfx = "planet_deluge_gfx"
+
+	ai_weight = {
+		factor = 10
+	}
+}
+
+weapon_component_template = {
+	key = "PLANET_KILLER_TOXIFIER"
+	size = planet_killer
+	type = planet_killer
+	use_ship_kill_target = no
+
+	icon = GFX_ship_part_nanobot_diffuser
+	icon_frame = 1
+
+	size_restriction = { toxic_god }
+	component_set = "PLANET_KILLER_TOXIFIER"
+
+	planet_destruction_gfx = "planet_toxifier_gfx"
+}
+
+weapon_component_template = {
+	key = "PLANET_KILLER_STAR_CRACKER"
+	size = planet_killer
+	type = planet_killer
+	use_ship_kill_target = no
+	can_destroy_stars = yes
+
+	prerequisites = { "tech_btc_1" }
+
+	icon = GFX_ship_part_nanobot_diffuser
+	icon_frame = 1
+
+	size_restriction = { star_eater }
+	component_set = "PLANET_KILLER_STAR_CRACKER"
+
+	planet_destruction_gfx = "star_destroyer_effect_gfx"
+}
+
+weapon_component_template = { # Archaeo Devolving Beam
+	key = "PLANET_KILLER_DEVOLUTION"
+	size = planet_killer
+	type = planet_killer
+	use_ship_kill_target = no
+
+	prerequisites = { "tech_archaeo_pk_devolving_beam" }
+
+	icon = GFX_ship_part_devolution_beam
+	icon_frame = 1
+
+	size_restriction = { colossus }
+	component_set = "PLANET_KILLER_DEVOLVER"
+
+	planet_destruction_gfx = "neutron_planet_gfx"
+
+	ai_weight = {
+		factor = 1
+		modifier = {
+			factor = 3
+			is_homicidal = no
+		}
+		modifier = {
+			factor = 3
+			has_ascension_perk = ap_archaeoengineers
+		}
+	}
+}
+

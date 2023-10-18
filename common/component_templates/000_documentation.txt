@@ -1,0 +1,177 @@
+# SHIP COMPONENTS
+
+# Options common to all types of components:
+#
+# example_component = {
+#	key = "COMPONENT_1"							# Loc string to use as the name of this component
+# 	size = small								# The size of the component. Options: point_defence/small/medium/large/extra_large/titanic/torpedo/planet_killer/aux
+# 	icon = "GFX_icon_1"							# The icon for the component
+# 	icon_frame = X								# The icon frame to display
+# 	power = X									# The amount of power consumed by this component. -X costs power, X gives power.
+#
+# 	modifier = {								# Modifiers for values shown in the ship designer.
+#		ship_armor_add = 10
+#	}
+# 	ship_modifier = {							# Most modifiers for ship components go here. Not shown in the ship designer.
+#		ship_accuracy_add = 5
+#	}
+# 	triggered_ship_modifier = { 				# Use like triggered modifiers elsewhere. Not shown in the ship designer. Ship scope.
+# 		potential = {
+#
+# 		}
+# 		modifier = X
+#	}
+# 	triggered_ship_design_modifier = { 			# Use like triggered modifiers elsewhere. Shown in the ship designer. Design scope, from = country.
+# 		potential = {
+#
+# 		}
+# 		modifier = X
+#	}
+#	custom_tooltip = {							# Triggered modifiers won't show up in component tooltips. So use this to describe what will happen.
+#		fail_text = loc_string
+#		NOT = {
+#
+#		}
+#	}
+#
+# 	component_set = "COMPONENT_SET"				# The component set for this component, see common/component_sets for options.
+# 	upgrades_to = "UPGRADE_1"					# What other component that this component upgrades to.
+# 	resources = {								# The cost of the ship component. Works like other resources script.
+#		category = ship_components
+#		cost = {
+#			alloys = X
+#		}
+#		upkeep = {
+#			alloys = X
+#		}
+#	}
+#
+# 	prerequisites = {							# Technologies required to be able to get and use this component, see common/technology for options.
+#		TECH_1
+#		TECH_2
+#	}
+# 	class_restriction = {						# The ship class(es) that the component is restricted to.
+#		shipclass_military						# Options: shipclass_[military/constructor/colonizer/science_ship/transport/mining_station/research_station/military_station/
+#		shipclass_constructor					# /observation_station/starbase/military_special/none]
+#	}
+# 	size_restriction = { corvette titan }		# The sizes that the component is restricted to, see common/ship_sizes for options.
+# 	slot_restriction = { slot_example }			# The slots that the component is restricted to, see common/component_slot_templates for options.
+# 	ship_limit = X								# Limits how many of this component that can be put in a ship design.
+# 	blocked_by = {								# Components that can't be in a ship design with this component.
+#		COMPONENT_2
+#		COMPONENT_3
+#	}
+#
+# 	target_weights = { titan = 2 }				# This increases the weight to target a specific ship size, see common/ship_sizes for options.
+# 	tags = {}									# Tags are used to group components together for the use of common modifiers. They are also used in component_slot_templates for selecting GFX
+# 	build_time = X								# Increases the build time of the ship design when this component has been added.
+# 	entity = "example_entity"					# The entity to use for the component.
+# 	hidden = yes/no								#
+#
+# 	friendly_aura = {
+#		name = "AURA_NAME"
+#		stack_info = {							# A ship can only be affected by one aura of a certain ID. If multiple auras have the same ID the one with the highest priority will be applied.
+#			id = aura_id
+#			priority = X
+#		}
+#		system_wide = yes/no					# Default is no. If this is yes, the aura is applied to the whole system.
+#		limit = {								# The requirements for this aura
+#			exists = owner
+#			owner = { has_origin = origin_example }
+#		}
+#		modifier = {							# The modifiers applied by this aura.
+#
+#		}
+#		graphics = {							# Graphics for the aura. Can use both effects or only one of them.
+#			area_effect = {
+#				entity = "example_entity"
+#				dynamic_scale = yes/no
+#			}
+#			ship_effect = {
+#				entity = "example_entity"
+#				dynamic_scale = yes/no
+#			}
+#		}
+#		damage_per_day = {						# Deals damage per day to any ships affected by this aura.
+#			accuracy = X
+#			damage = X
+#			hull_damage = X
+#			armor_damage = X
+#			shield_damage = X
+#			armor_penetration = X
+#			shield_penetration = X
+#			size_damage_factor = X
+#		}
+#	}
+# 	hostile_aura = { ... }					# Same options as for friendly_aura, but this is always system wide.
+#
+# 	should_ai_use = yes/no			# Determines if the AI will build ships using this component.
+#	ai_weight = { 					# Prioritises which components to pick for AI.
+#		weight = X
+#		modifier = {
+#
+#		}
+#	}
+# 	ai_tags = { example_tag }		# Tags for the AI to determine when to use the component.
+# 	ai_tag_weight					#
+
+
+
+# Options for weapon components:
+#
+# type
+# windup
+# total_fire_time
+# range
+# max_range
+# min_range
+# accuracy
+# firing_arc
+# tracking
+# missile_speed
+# missile_evasion
+# missile_health
+# missile_shield
+# missile_armor
+# missile_retarget_range
+# use_ship_kill_target
+# can_destroy_stars
+# prio_projectile
+# point_defence_targets
+# projectile_gfx
+# planet_destruction_gfx
+
+# Options for utility components:
+#
+# sensor_range
+# hyperlane_range
+# ship_behavior
+# ftl_magnet
+# military_power
+# ftl
+# ftl_inhibitor
+# jumpdrive
+# armor_value
+
+# Options for strike craft components:
+#
+# custom_tooltip
+# count
+# regeneration_per_day
+# launch_time
+# cooldown
+# range
+# attack_range
+# engagement_range
+# accuracy
+# acceleration
+# rotation_speed
+# health
+# evasion
+# tracking
+# speed
+# weapon_type
+# ship_behavior
+# point_defence_targets
+# projectile_gfx
+# prio_projectile

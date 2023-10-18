@@ -1,0 +1,438 @@
+#reloadable with 'reload stats'
+# This file is where you start when you want to configure something new, then go to sections
+
+@corvette_collision_radius = 2.0
+
+@destroyer_collision_radius = 2.5
+
+@cruiser_collision_radius = 3
+
+@battleship_collision_radius = 3
+
+@titan_collision_radius = 15
+
+@build_block_radius_none = 0
+@build_block_radius_civilian = 20
+@build_block_radius_military = 200
+
+@speed_very_slow = 80
+@speed_slow = 100
+@speed_default = 120
+@speed_fast = 140
+@speed_very_fast = 160
+
+@salvagecostsmall = 100
+@salvagecostmedium = 250
+@salvagecostlarge = 500
+@salvagecostsmallrare = 10
+@salvagecostmediumrare = 25
+@salvagecostlargerare = 50
+
+#################
+# SPACE MONSTER #
+#################
+
+
+# Space Cloud
+space_cloud = {
+	graphical_culture = no
+	is_space_object = yes
+	max_speed = @speed_very_slow
+	rotation_speed = 0.1
+	acceleration = 0.3
+	modifier = {
+		ship_evasion_add = 65
+		ship_shield_add = 10000
+		ship_shield_regen_add_static = 20
+	}
+	max_hitpoints = 4000
+	size_multiplier = 4
+	fleet_slot_size = 4
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				energy = @salvagecostmedium
+				sr_dark_matter = @salvagecostmediumrare
+    		}
+	}
+}
+
+# Space Amoeba
+space_amoeba = {
+	graphical_culture = no
+	is_space_object = yes
+	max_speed = @speed_slow
+	rotation_speed = 0.03
+	collision_radius = 1.0
+	acceleration = 0.5
+	modifier = {
+		ship_evasion_add = 65
+		ship_armor_add = 100
+	}
+	max_hitpoints = 300
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+	pre_communications_name = "NO_COMMUNICATIONS_AMOEBA"
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostsmall
+				exotic_gases = @salvagecostsmallrare
+    		}
+	}
+}
+
+# Space Amoeba
+space_amoeba_mother = {
+	graphical_culture = no
+	is_space_object = yes
+	max_speed = @speed_slow
+	rotation_speed = 0.1
+	collision_radius = 5.0
+	acceleration = 1.0
+	modifier = {
+		ship_evasion_add = 15
+		ship_armor_add = 1500
+	}
+	max_hitpoints = 2000
+	size_multiplier = 4
+	fleet_slot_size = 4
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+	pre_communications_name = "NO_COMMUNICATIONS_AMOEBA"
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostmedium
+				exotic_gases = @salvagecostmediumrare
+    		}
+	}
+}
+
+# Space Whale Cow
+space_whale_1 = {
+	graphical_culture = no
+	is_space_object = yes
+	max_speed = @speed_very_slow
+	rotation_speed = 0.02
+	acceleration = 0.6
+	modifier = {
+		ship_evasion_add = 8
+		ship_armor_add = 2000
+	}
+	max_hitpoints = 4000
+	size_multiplier = 4
+	fleet_slot_size = 4
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostmedium
+				exotic_gases = @salvagecostmediumrare
+    		}
+	}
+}
+
+# Space Whale Bull
+space_whale_2 = {
+	graphical_culture = no
+	is_space_object = yes
+	max_speed = @speed_very_slow
+	rotation_speed = 0.02
+	acceleration = 0.6
+	modifier = {
+		ship_evasion_add = 8
+		ship_armor_add = 2000
+	}
+	max_hitpoints = 4000
+	size_multiplier = 4
+	fleet_slot_size = 4
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostmedium
+				exotic_gases = @salvagecostmediumrare
+    		}
+	}
+}
+
+# Space Whale Hatchling
+space_whale_3 = {
+	graphical_culture = no
+	entity = space_whale_orange_section_entity
+	is_space_object = yes
+	max_speed = @speed_very_slow
+	rotation_speed = 0.02
+	acceleration = 0.6
+	modifier = {
+		ship_evasion_add = 12
+		ship_armor_add = 1200
+	}
+	max_hitpoints = 1500
+	fleet_slot_size = 3
+	size_multiplier = 3
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostsmall
+				exotic_gases = @salvagecostsmallrare
+    		}
+	}
+}
+
+# Space Whale Calf
+space_whale_4 = {
+	graphical_culture = no
+	entity = space_whale_albino_section_entity
+	is_space_object = yes
+	max_speed = @speed_very_slow
+	rotation_speed = 0.02
+	acceleration = 0.6
+	modifier = {
+		ship_evasion_add = 12
+		ship_armor_add = 1600
+	}
+	max_hitpoints = 2200
+	fleet_slot_size = 3
+	size_multiplier = 3
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostsmall
+				exotic_gases = @salvagecostsmallrare
+    		}
+	}
+}
+
+# Space Whale Gravekeeper
+space_whale_5 = {
+	graphical_culture = no
+	entity = space_whale_station_section_entity
+	is_space_object = yes
+	max_speed = @speed_very_slow
+	rotation_speed = 0.02
+	acceleration = 0.04
+	modifier = {
+		ship_evasion_mult = -1
+		ship_shield_add = 1000
+		ship_armor_add = 1000
+	}
+	ship_modifier = {
+		ship_fire_rate_mult = 2
+		ship_weapon_range_mult = 2
+	}
+	max_hitpoints = 5000
+	fleet_slot_size = 3
+	size_multiplier = 4
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				food = @salvagecostmedium
+				exotic_gases = @salvagecostmediumrare
+    		}
+	}
+}
+
+#Lost Swarm#
+
+lost_swarm_adult = {
+	is_space_object = yes
+	graphical_culture = { "swarm_01" }
+	max_speed = @speed_slow
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = @battleship_collision_radius
+	modifier = {
+		ship_evasion_add = 5
+		ship_armor_add = 4000
+		ships_upkeep_mult = -1
+	}
+	max_hitpoints = 8000
+	size_multiplier = 8
+	fleet_slot_size = 8
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_space_monster
+	can_be_inspected = no
+
+	class = shipclass_military
+	is_designable = no
+}
+
+#############################################
+#											#
+#				Ancient Drones				#
+#											#
+#############################################
+
+# Ancient Drone
+ancient_mining_drone = {
+	max_speed = @speed_very_fast
+	rotation_speed = 0.5
+	acceleration = 0.5
+	modifier = {
+		ship_armor_add = 6
+		ship_evasion_add = 60
+	}
+	max_hitpoints = 200
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+	graphical_culture = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				minerals = @salvagecostmedium
+				alloys = @salvagecostsmall
+    		}
+	}
+}
+
+ancient_corvette = {
+	max_speed = @speed_very_fast
+	rotation_speed = 0.15
+	acceleration = 0.35
+	modifier = {
+		ship_armor_add = 2
+		ship_evasion_add = 60
+	}
+	max_hitpoints = 450
+	size_multiplier = 1
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+	graphical_culture = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				minerals = @salvagecostmedium
+				alloys = @salvagecostsmall
+    		}
+	}
+}
+
+ancient_destroyer = {
+	max_speed = @speed_very_fast
+	rotation_speed = 0.3
+	acceleration = 1.0
+	modifier = {
+		ship_armor_add = 10
+		ship_evasion_add = 30
+	}
+	max_hitpoints = 900
+	size_multiplier = 2
+	fleet_slot_size = 2
+	combat_size_multiplier = 4
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 3
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+	graphical_culture = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				minerals = @salvagecostlarge
+				alloys = @salvagecostmedium
+    		}
+	}
+}
+
+# Lesser Space Cloud
+lesser_space_cloud = {
+	graphical_culture = no
+	entity = space_cloud_entity
+	is_space_object = yes
+	max_speed = @speed_very_slow
+	rotation_speed = 0.1
+	acceleration = 0.3
+	modifier = {
+		ship_evasion_add = 65
+		ship_shield_add = 2000
+		ship_shield_regen_add_static = 20
+	}
+	max_hitpoints = 2000
+	size_multiplier = 4
+	fleet_slot_size = 4
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	icon = ship_size_space_monster
+	class = shipclass_military
+	is_designable = no
+
+	components_add_to_cost = no
+	resources = {
+		category = ships
+			cost = {
+				energy = @salvagecostsmall
+				sr_dark_matter = @salvagecostsmallrare
+    		}
+	}
+}
