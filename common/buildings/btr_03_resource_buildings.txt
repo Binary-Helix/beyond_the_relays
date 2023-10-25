@@ -3,7 +3,7 @@
 #############
 
 building_hydroponics_farm = {
-	base_buildtime = @b1_time
+	base_buildtime = @btr_civil_b1_time
 	category = resource
 	potential = {
 		exists = owner
@@ -47,11 +47,11 @@ building_hydroponics_farm = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = @b1_minerals
+			minerals = @btr_civil_b1_mineral_cost
 		}
 		upkeep = {
-			energy = 1
-			uranium = 1
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 	prerequisites = {
@@ -60,7 +60,7 @@ building_hydroponics_farm = {
 }
 
 building_food_processing_facility = {
-	base_buildtime = @b1_time
+	base_buildtime = @btr_civil_b1_time
 	base_cap_amount = 1
 	category = resource
 
@@ -113,11 +113,11 @@ building_food_processing_facility = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = @b1_minerals
+			minerals = @btr_civil_b1_mineral_cost
 		}
 		upkeep = {
-			energy = 1
-			uranium = 1
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 
@@ -131,7 +131,7 @@ building_food_processing_facility = {
 }
 
 building_food_processing_center = {
-	base_buildtime = @b2_time
+	base_buildtime = @btr_civil_b2_time
 	can_build = no
 	category = resource
 
@@ -188,35 +188,32 @@ building_food_processing_center = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			minerals = @b2_minerals
-			#volatile_motes = @b2_rare_cost
-			light_metals = 15
-			heavy_metals = 35
+			minerals = @btr_civil_b2_mineral_cost
+			light_metals = @btr_civil_b2_light_metals_cost
+			heavy_metals = @btr_civil_b2_heavy_metals_cost
+			uranium = @btr_civil_b2_uranium_cost
 		}
 		cost = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			minerals = 900
-			#volatile_motes = 200
-			light_metals = 60
-			heavy_metals = 140
+			minerals = @btr_civil_b2_mineral_cost
+			light_metals = @btr_civil_b2_light_metals_cost
+			heavy_metals = @btr_civil_b2_heavy_metals_cost
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = 1
-			#volatile_motes = @b2_rare_upkeep
-			uranium = 1
+			energy = @btr_civil_b2_energy_upkeep
+			uranium = @btr_civil_b2_uranium_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 2.5
-			#volatile_motes = 3
-			uranium = 2.5
+			energy = @btr_civil_b2_energy_upkeep
+			uranium = @btr_civil_b2_uranium_upkeep
 		}
 	}
 	prerequisites = {
@@ -225,7 +222,7 @@ building_food_processing_center = {
 }
 
 building_baol_organic_plant = {
-	base_buildtime = @b2_time
+	base_buildtime = @btr_civil_b2_time
 	base_cap_amount = 1
 	category = resource
 
@@ -302,12 +299,12 @@ building_baol_organic_plant = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = @b2_minerals
+			minerals = @btr_civil_b2_mineral_cost
 			minor_artifacts = 25
 		}
 		upkeep = {
-			energy = 0.5
-			uranium = 0.5
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 
@@ -328,7 +325,7 @@ building_mineral_purification_plant = {
 		text = building_scrap_processing_plant_desc
 	}
 
-	base_buildtime = @b1_time
+	base_buildtime = @btr_civil_b1_time
 	base_cap_amount = 1
 	category = resource
 
@@ -405,7 +402,9 @@ building_mineral_purification_plant = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 200
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		cost = {
 			trigger = {
@@ -413,14 +412,13 @@ building_mineral_purification_plant = {
 					is_robot_empire = yes
 				}
 			}
-			minerals = 100
-			#alloys = 100
-			light_metals = 70
-			heavy_metals = 30
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 1
-			uranium = 1
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 
@@ -445,7 +443,7 @@ building_mineral_purification_hub = {
 		text = building_scrap_processing_hub_desc
 	}
 
-	base_buildtime = @b2_time
+	base_buildtime = @btr_civil_b2_time
 	can_build = no
 	category = resource
 
@@ -529,10 +527,9 @@ building_mineral_purification_hub = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			minerals = @b2_minerals
-			#volatile_motes = @b2_rare_cost
-			light_metals = 15
-			heavy_metals = 35
+			minerals = @btr_civil_b2_mineral_cost
+			light_metals = @btr_civil_b2_light_metals_cost
+			heavy_metals = @btr_civil_b2_heavy_metals_cost
 		}
 		cost = {
 			trigger = {
@@ -540,35 +537,31 @@ building_mineral_purification_hub = {
 					is_robot_empire = yes
 				}
 			}
-			minerals = 300
-			#alloys = 150
-			light_metals = 105
-			heavy_metals = 45
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		cost = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			minerals = 900
-			#volatile_motes = 200
-			light_metals = 60
-			heavy_metals = 140
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = 2
-			#volatile_motes = @b2_rare_upkeep
-			uranium = 1
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 2.5
-			#volatile_motes = 3
-			uranium = 2.5
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 
@@ -578,7 +571,7 @@ building_mineral_purification_hub = {
 }
 
 building_energy_grid = {
-	base_buildtime = @b1_time
+	base_buildtime = @btr_civil_b1_time
 	base_cap_amount = 1
 	category = resource
 
@@ -652,7 +645,9 @@ building_energy_grid = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = @b1_minerals
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		cost = {
 			trigger = {
@@ -660,14 +655,13 @@ building_energy_grid = {
 					is_robot_empire = yes
 				}
 			}
-			minerals = 100
-			#alloys = 100
-			light_metals = 70
-			heavy_metals = 30
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 1
-			uranium = 1
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 
@@ -681,7 +675,7 @@ building_energy_grid = {
 }
 
 building_energy_nexus = {
-	base_buildtime = @b2_time
+	base_buildtime = @btr_civil_b2_time
 	can_build = no
 	category = resource
 
@@ -745,34 +739,34 @@ building_energy_nexus = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			minerals = @b2_minerals
-			#exotic_gases = @b2_rare_cost
+			minerals = @btr_civil_b2_mineral_cost
+			light_metals = @btr_civil_b2_light_metals_cost
+			heavy_metals = @btr_civil_b2_heavy_metals_cost
 			antimatter_fuel = 25
 		}
 		cost = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			minerals = 900
-			#exotic_gases = 200
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 			antimatter_fuel = 100
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = no
 			}
-			energy = 1
-			uranium = 1
-			#exotic_gases = @b2_rare_upkeep
+			energy = @btr_civil_b2_energy_upkeep
+			uranium = @btr_civil_b2_uranium_upkeep
 			antimatter_fuel = 0.5
 		}
 		upkeep = {
 			trigger = {
 				has_ringworld_output_boost = yes
 			}
-			energy = 2.5
-			uranium = 2.5
-			#exotic_gases = 3
+			energy = @btr_civil_b2_energy_upkeep
+			uranium = @btr_civil_b2_uranium_upkeep
 			antimatter_fuel = 1.5
 		}
 	}
@@ -842,11 +836,13 @@ building_resource_silo = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 200
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 0.5
-			uranium = 0.5
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 
@@ -909,7 +905,9 @@ building_bio_reactor = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 200
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		produces = {
 			trigger = {
