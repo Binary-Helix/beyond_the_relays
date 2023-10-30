@@ -19,7 +19,7 @@ static_galaxy_scenario = {
     extra_crisis_strength = { 5.5 6 6.5 7 7.5 8 8.5 9 9.5 10 11 12 13 14 15 17.5 20 22.5 25 30 35 40 45 50}
 
     num_gateways_default = 0
- 	random_hyperlanes = no
+ 	random_hyperlanes = yes
     core_radius = 25
 
 
@@ -47,7 +47,7 @@ static_galaxy_scenario = {
     system = { id = "91" name = "Mulla Xul" position = {  x = -161.3497 y = -49.09024 } initializer = sys_mullaxul_init spawn_weight = { base = 0 modifier = { add = 100000 has_origin = rachni_hiv_origin } } effect = { log = "Rachni Hive Home System (Mulla Xul) Spawned" } }
     system = { id = "75" name = "Tikkun" position = {  x = -413.7527 y = -250.7915 } initializer = sys_tikkun_init spawn_weight = { base = 0 modifier = { add = 100000 has_origin = geth_con_origin } } effect = { log = "Geth Consensus Home System (Tikkun) Spawned" } }
     system = { id = "235" name = "Tartarus Debris Field" position = {  x = 0.9682617 y = -3.531452 } initializer = sys_tartarusdebrisfield_init spawn_weight = { base = 0 modifier = { add = 100000 has_origin = collectors_emp_origin } } effect = { log = "The Collectors Home System (Tartarus Debris Field) Spawned" } }
-
+    prevent_hyperlane = { from = "235" to = "any" }
     #########################################
     ##### NON-HOMEWORLD CAPITAL SYSTEMS #####
     #########################################
@@ -354,6 +354,7 @@ static_galaxy_scenario = {
     ### PANGAEA EXPANSE ###
     nebula = { name = "Pangaea Expanse" position = {  x = -88.84399 y = -198.4182 } radius = 20 }
     system = { id = "51" name = "" position = {  x = -87.19479 y = -203.1049 } initializer = sys_refuge_init }
+    prevent_hyperlane = { from = "51" to = "any" }
     ##### Attican Traverse Sector - AT7 #####
     ### HINDARA GLOBULAR ###
     nebula = { name = "Hindara Globular" position = {  x = -169.8075 y = -170.3697 } radius = 20 }

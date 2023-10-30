@@ -865,6 +865,27 @@ country_event = {
 				species = owner_main_species
 			}
 		}
+
+		
+		if = {
+			limit = { 
+				NOR = {
+					galaxy_size = btr_sandbox_600
+					galaxy_size = btr_sandbox_1300
+					galaxy_size = btr_sandbox_1500
+				}
+			}
+			every_system = {
+				limit = {
+					NOR = {
+						has_star_flag = tartarus_debris_field
+						has_star_flag = mu_system
+						has_star_flag = migrant_fleet_system
+					}
+				}
+				root = { set_visited = prev }
+			}
+		}
 	}
 }
 
@@ -915,6 +936,7 @@ event = {
 		log = "Rachni Hive Territory Established"
 		generate_citadel_council_territory = yes	
 		log = "Citadel Council Territory Established"
+
 		log = "btr_game_start.10 - Completed"
 	}
 }
@@ -1008,7 +1030,7 @@ planet_event = {
 		if = {
 			limit = { 
 				NOT = {
-					has_global_flag = sedriicae_collective_colonies_spawned
+					has_global_flag = sedriicae_collective_colonies_created
 				}
 			}
 			generate_sedriicae_collective_colonies = yes
@@ -1017,7 +1039,7 @@ planet_event = {
 		if = {
 			limit = { 
 				NOT = {
-					has_global_flag = geth_consensus_colonies_spawned
+					has_global_flag = geth_consensus_colonies_created
 				}
 			}
 			generate_geth_consensus_colonies = yes
@@ -1026,7 +1048,7 @@ planet_event = {
 		if = {
 			limit = { 
 				NOT = {
-					has_global_flag = disciples_of_nazara_colonies_spawned
+					has_global_flag = disciples_of_nazara_colonies_created
 				}
 			}
 			generate_disciples_of_nazara_colonies = yes
@@ -1036,147 +1058,271 @@ planet_event = {
 	}
 }
 
-# # Add Pops to colonies
-# planet_event = {
-# 	id = game_start.13
-# 	hide_window = yes
-# 	is_triggered_only = yes
+# Add Pops to colonies
+country_event = {
+	id = game_start.13
+	hide_window = yes
+	is_triggered_only = yes
 
-# 	immediate = {
-# 		if = {
-# 			limit = { is_capital = yes }
+	immediate = {
+		every_owned_planet = {
+			if = {
+				limit = { 
+					has_planet_flag = civil_station
+				}
+				hidden_effect = {
+					if = {
+						limit = {
+							exists = owner
+							owner = {
+								is_megacorp = yes
+								is_spiritualist = no
+							}
+						}
+						custom_tooltip = district_corporate_complex_add
+					}
+				}
+				custom_tooltip = district_commercial_wards_add
+				hidden_effect = {
+					if = {
+						limit = {
+							exists = owner
+							owner = {
+								has_origin = origin_necrophage
+								has_trait = trait_necrophage
+								NOT = { has_valid_civic = civic_fanatic_purifiers }
+							}
+						}
+						custom_tooltip = district_elevation_center_add
+					}
+					if = {
+						limit = {
+							NOR = {
+								is_planet_class = pc_asteroid_station
+								is_planet_class = pc_ice_asteroid_station
+								is_planet_class = pc_crystal_asteroid_station
+							}
+						}
+						custom_tooltip = district_storage_yards_add
+					}
+					else = {
+						custom_tooltip = district_docking_bay_add
+					}
+					if = {
+						limit = { has_deposit = d_trading_route }
+						custom_tooltip = district_free_port_add
+					}
+					
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = civil_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = research_station
+				}
+				hidden_effect = {
+					if = {
+						limit = { has_deposit = d_mineral_lodes }
+						custom_tooltip = district_mining_complex_add
+					}
+					if = {
+						limit = { has_deposit = d_ore_rich_rings }
+						custom_tooltip = district_ore_processing_complex_add
+					}
+					if = {
+						limit = { has_deposit = d_rich_regolith_formations }
+						custom_tooltip = district_helium_extractor_add
+					}
+					if = {
+						limit = { has_deposit = d_helium_clouds }
+						custom_tooltip = district_helium_mining_facility_add
+					}
+					if = {
+						limit = { 
+							owner = { has_technology = tech_mine_volatile_motes }
+							has_deposit = d_dust_cavities
+						}
+						custom_tooltip = district_mote_mine_add
+					}
+					if = {
+						limit = { 
+							owner = { has_technology = tech_mine_exotic_gases }
+							has_deposit = d_exotic_gases_vent
+						}
+						custom_tooltip = district_gas_refinery_add
+					}
+					if = {
+						limit = { 
+							owner = { has_technology = tech_mine_rare_crystals }
+							has_deposit = d_crystal_cavities
+						}
+						custom_tooltip = district_crystal_mining_add
+					}
+					if = {
+						limit = { 
+							owner = { has_technology = tech_mine_zro }
+							has_deposit = d_zro_source
+						}
+						custom_tooltip = district_zro_harvesting_add
+					}
+		
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = mining_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = military_station
+				}
+				custom_tooltip = district_barracks_add
+				custom_tooltip = district_fortified_bunkers_add
+				hidden_effect = {
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = military_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}	
+			}
+			if = {
+				limit = { 
+					has_planet_flag = prison_station
+				}
+				hidden_effect = {
+					custom_tooltip = decision_prison_station_effect_desc
+					if = {
+						limit = { owner = { is_authoritarian = yes } }
+						custom_tooltip = add_political_persecution
+					}
+					if = {
+						limit = { owner = { is_spiritualist = yes } }
+						custom_tooltip = add_hunting_heretics
+					}
+					custom_tooltip = add_detention_operation
+					
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = prison_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = industrial_station
+				}
+				custom_tooltip = district_foundry_plant_add
+				hidden_effect = {
+					if = {
+						limit = { 
+							owner = {
+								country_uses_consumer_goods = yes
+							}
+						}
+						custom_tooltip = district_manufacturing_complex_add
+					}
+					if = {
+						limit = { 
+							owner = {
+								OR = {
+									AND = {
+										is_regular_empire = yes
+										NOT = { has_policy_flag = robots_outlawed }
+										has_technology = tech_robotic_workers
+									}
+									is_machine_empire = yes
+								}
+							}
+						}
+						custom_tooltip = district_assembly_factory_add
+					}
+					if = {
+						limit = { 
+							owner = { has_technology = tech_mine_living_metal }
+							has_deposit = d_living_metal_deposit
+						}
+						custom_tooltip = district_living_metal_processing_add
+					}
+					
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = industrial_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+		}
 
-# 			if = {
-# 				limit = { owner = { has_authority = auth_machine_intelligence } }
-# 				while = {
-# 					count = 13
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 			else_if = {
-# 				limit = { owner = { has_authority = auth_hive_mind } }
-# 				while = {
-# 					count = 16
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 			else_if = {
-# 				limit = { owner = { has_origin = origin_mechanists } }
-# 				random_galaxy_species = {
-# 					limit = {
-# 						has_species_flag = mechanical_species@root.owner
-# 					}
-# 					save_event_target_as = mechanical_species
-# 				}
-# 				while = {
-# 					count = 6
-# 					create_pop = {
-# 						species = event_target:mechanical_species
-# 					}
-# 				}
-# 				while = {
-# 					count = 12
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 			else_if = {
-# 				limit = {
-# 					owner = {
-# 						OR = {
-# 							has_origin = origin_syncretic_evolution
-# 							has_origin = origin_necrophage
-# 						}
-# 					}
-# 				}
-# 				random_galaxy_species = {
-# 					limit = {
-# 						has_species_flag = syncretic_species@root.owner
-# 					}
-# 					save_event_target_as = syncretic_species
-# 				}
-# 				while = {
-# 					count = 8
-# 					create_pop = { species = event_target:syncretic_species }
-# 				}
-# 				while = {
-# 					count = 10
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 			else = {
-# 				while = {
-# 					count = 18
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 		}
-# 		else = {
-# 			if = {
-# 				limit = { owner = { has_authority = auth_machine_intelligence } }
-# 				while = {
-# 					count = 15
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 			else_if = {
-# 				limit = { owner = { has_authority = auth_hive_mind } }
-# 				while = {
-# 					count = 18
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 			else_if = {
-# 				limit = { owner = { has_origin = origin_mechanists } }
-# 				random_galaxy_species = {
-# 					limit = {
-# 						has_species_flag = mechanical_species@root.owner
-# 					}
-# 					save_event_target_as = mechanical_species
-# 				}
-# 				while = {
-# 					count = 4
-# 					create_pop = {
-# 						species = event_target:mechanical_species
-# 					}
-# 				}
-# 				while = {
-# 					count = 7
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 			else_if = {
-# 				limit = {
-# 					owner = {
-# 						OR = {
-# 							has_origin = origin_syncretic_evolution
-# 							has_origin = origin_necrophage
-# 						}
-# 					}
-# 				}
-# 				random_galaxy_species = {
-# 					limit = {
-# 						has_species_flag = syncretic_species@root.owner
-# 					}
-# 					save_event_target_as = syncretic_species
-# 				}
-# 				while = {
-# 					count = 4
-# 					create_pop = { species = event_target:syncretic_species }
-# 				}
-# 				while = {
-# 					count = 6
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 			else = {
-# 				while = {
-# 					count = 10
-# 					create_pop = { species = owner_main_species }
-# 				}
-# 			}
-# 		}
-# 	}
-# }
+		log = "btr_game_start.11 - Generate Planetary Station Districts"
+	}
+}	
 
 # ### Empire init - populate home system
 # country_event = {
