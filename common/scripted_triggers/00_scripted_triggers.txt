@@ -1893,12 +1893,59 @@ has_distar = {
 #########################################
 
 is_wet = {
-	has_climate = wet
+	OR = {
+		has_climate = wet
+		AND = {
+			is_exotic = yes
+			OR = {
+				has_planet_modifier = pm_atoll_world
+				has_planet_modifier = pm_coastal_world
+				has_planet_modifier = pm_jungle_world
+				has_planet_modifier = pm_biolum_world
+				has_planet_modifier = pm_marsh_world
+				has_planet_modifier = pm_mangrove_world
+				has_planet_modifier = pm_bog_world
+				has_planet_modifier = pm_lake_world
+				has_planet_modifier = pm_prairie_world
+				has_planet_modifier = pm_temperate_world
+				has_planet_modifier = pm_forest_world
+				has_planet_modifier = pm_supercon_world
+				has_planet_modifier = pm_hotocean_world
+				has_planet_modifier = pm_ocean_world
+				has_planet_modifier = pm_coldocean_world
+				has_planet_modifier = pm_storm_world
+			}
+		}		
+	}
 }
 
 is_dry = {
-	has_climate = dry
-	NOT = { is_planet_class = pc_city }
+	OR = {
+		OR = {
+			AND = {
+				is_barren = no
+				has_climate = dry
+			}
+			NOT = { is_planet_class = pc_city }			
+		}
+		AND = {
+			is_exotic = yes
+			OR = {
+				has_planet_modifier = pm_dune_world
+				has_planet_modifier = pm_dust_world
+				has_planet_modifier = pm_badlands_world
+				has_planet_modifier = pm_aquifer_world
+				has_planet_modifier = pm_mesa_world
+				has_planet_modifier = pm_cenote_world
+				has_planet_modifier = pm_outback_world
+				has_planet_modifier = pm_oasis_world
+				has_planet_modifier = pm_steppe_world
+				has_planet_modifier = pm_veld_world
+				has_planet_modifier = pm_medit_world
+				has_planet_modifier = pm_retinal_world				
+			}
+		}
+	}
 }
 
 is_barren = {
@@ -1913,7 +1960,26 @@ is_barren = {
 }
 
 is_cold = {
-	has_climate = cold
+	OR = {
+		has_climate = cold
+		OR = {
+			is_exotic = yes
+		}
+		OR = {
+			has_planet_modifier = pm_boreal_world
+			has_planet_modifier = pm_highland_world
+			has_planet_modifier = pm_cascadian_world
+			has_planet_modifier = pm_crag_world
+			has_planet_modifier = pm_basalt_world
+			has_planet_modifier = pm_lichen_world
+			has_planet_modifier = pm_mire_world
+			has_planet_modifier = pm_fungal_world
+			has_planet_modifier = pm_snow_world
+			has_planet_modifier = pm_glacial_world
+			has_planet_modifier = pm_antar_world
+			has_planet_modifier = pm_cryovolcanic_world
+		}
+	}
 }
 
 can_have_mineral_deposits = {

@@ -1,12 +1,98 @@
-@low = 16
+@high = 16
 @med = 8
 @low = 4
 
-@low_rare = 0.5
+@high_rare = 0.5
 @mid_rare = 0.25
 @low_rare = 0.1
 
 @planet_type_bonus = 1.5
+
+### ELEMENT ZERO DEPOSITS ###
+d_eezo_trace = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_miners_eezo_produces_add = 0.1
+	}
+
+	potential = {
+		can_have_habitable_deposits = yes
+	}
+
+	drop_weight = {
+		weight = @high_rare
+		modifier = {
+			factor = 0
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+				}
+			}
+		}
+	}
+}
+
+d_eezo_scarce = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_miners_eezo_produces_add = 0.2
+	}
+
+	potential = {
+		can_have_eezo_deposits = yes
+	}
+
+	drop_weight = {
+		weight = @mid_rare
+		modifier = {
+			factor = 0
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+				}
+			}
+		}
+	}
+}
+
+d_eezo_abundant = {
+	is_for_colonizable = yes
+	use_for_min_max_adjustments = yes
+
+	category = deposit_cat_rare
+
+	planet_modifier = {
+		planet_miners_eezo_produces_add = 0.3
+	}
+
+	potential = {
+		can_have_eezo_deposits = yes
+	}
+
+	drop_weight = {
+		weight = @low_rare
+		modifier = {
+			factor = 0
+			solar_system = {
+				OR = {
+					has_star_flag = empire_home_system
+					has_star_flag = sol_system
+				}
+			}
+		}
+	}
+}
+
 
 ### PLANET SUBCLASS FEATURES ###
 
@@ -1894,3 +1980,4 @@ d_wild_thresher_maws = {
 		weight = 0
 	}
 }
+
