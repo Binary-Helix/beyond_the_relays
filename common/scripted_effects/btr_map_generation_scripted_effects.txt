@@ -1,4 +1,1015 @@
-generate_canon_planetary_features = {
+generate_btr_home_system_resources = {
+	optimize_memory
+	every_system_planet = {
+		limit = {
+			colonizable_planet = no
+			NOT = { has_planet_flag = ignore_startup_effect }
+		}
+		prevent_anomaly = yes
+	}
+
+	# ENERGY
+	system_star = {
+		set_planet_flag = starting_mining_target
+		set_planet_flag = starting_deposit
+		set_deposit = d_energy_5
+		if = {
+			limit = { 
+				is_planet_class = pc_m_giant_star		
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_6
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_g_giant_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_m_super_star		
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_7
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_o_super_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_b_super_star
+				is_planet_class = pc_f_super_star
+				is_planet_class = pc_g_super_star
+				is_planet_class = pc_k_super_star	
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_8
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_o_hyper_star
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_10
+		}
+	}
+	random_system_planet = {
+		limit = {
+			NOT = { has_planet_flag = starting_deposit }
+			NOT = { has_planet_flag = ignore_startup_effect }
+			OR = {
+				is_planet_class = pc_o_star
+				is_planet_class = pc_o_super_star
+				is_planet_class = pc_o_hyper_star	
+				is_planet_class = pc_a_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_b_star
+				is_planet_class = pc_b_super_star
+				is_planet_class = pc_f_star
+				is_planet_class = pc_f_super_star
+				is_planet_class = pc_g_star
+				is_planet_class = pc_g_giant_star
+				is_planet_class = pc_g_super_star
+				is_planet_class = pc_k_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_k_super_star	
+				is_planet_class = pc_m_star
+				is_planet_class = pc_m_giant_star
+				is_planet_class = pc_m_super_star
+				is_planet_class = pc_m_hyper_star
+				is_planet_class = pc_gas_giant
+				is_planet_class = pc_hot_giant
+				is_planet_class = pc_t_star
+				is_planet_class = pc_l_star
+				is_planet_class = pc_y_star	
+				is_planet_class = pc_d_star	
+			}
+		}
+		set_planet_flag = starting_mining_target
+		set_planet_flag = starting_deposit
+		set_deposit = d_energy_5
+		if = {
+			limit = { 
+				is_planet_class = pc_m_giant_star		
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_6
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_g_giant_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_k_giant_star
+				is_planet_class = pc_m_super_star		
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_7
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_o_super_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_a_super_star
+				is_planet_class = pc_b_super_star
+				is_planet_class = pc_f_super_star
+				is_planet_class = pc_g_super_star
+				is_planet_class = pc_k_super_star	
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_8
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_o_hyper_star
+			}
+			remove_deposit = d_energy_5
+			add_deposit = d_energy_10
+		}
+	}
+}
+
+# This is called after game start
+generate_btr_start_deposits_and_blockers = {
+	optimize_memory
+	if = {
+		limit = {
+			OR = {
+				# is_planet_class = pc_continental
+				# is_planet_class = pc_dextro_continental
+				# is_planet_class = pc_highgrav_continental
+				# is_planet_class = pc_dextro_highgrav_continental
+				# AND = {
+				# 	is_exotic = yes
+				# 	OR = {
+						has_planet_modifier = pm_prairie_world
+						has_planet_modifier = pm_temperate_world
+						has_planet_modifier = pm_forest_world
+						has_planet_modifier = pm_supercon_world
+				# 	}
+				# }
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_tempestous_mountain
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_rushing_waterfalls
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_rugged_woods
+		add_deposit = d_fertile_lands
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_rugged_woods
+			add_deposit = d_black_soil
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_tropical
+				is_planet_class = pc_dextro_tropical
+				is_planet_class = pc_highgrav_tropical
+				is_planet_class = pc_dextro_highgrav_tropical
+				AND = {
+					is_exotic = yes
+					OR = {
+						has_planet_modifier = pm_atoll_world
+						has_planet_modifier = pm_coastal_world
+						has_planet_modifier = pm_jungle_world
+						has_planet_modifier = pm_biolum_world
+					}
+				}
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_tempestous_mountain
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_rushing_waterfalls
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming (lithoids swap 3 for minerals)
+		add_deposit = d_green_hills
+		add_deposit = d_lush_jungle
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_green_hills
+			add_deposit = d_tropical_island
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_ocean
+				is_planet_class = pc_dextro_ocean
+				is_planet_class = pc_highgrav_ocean
+				is_planet_class = pc_dextro_highgrav_ocean
+				AND = {
+					is_exotic = yes
+					OR = {
+						has_planet_modifier = pm_hotocean_world
+						has_planet_modifier = pm_ocean_world
+						has_planet_modifier = pm_coldocean_world
+						has_planet_modifier = pm_storm_world
+					}
+				}
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_underwater_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_rushing_waterfalls
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming
+		add_deposit = d_green_hills
+		add_deposit = d_lush_jungle
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_green_hills
+			add_deposit = d_teeming_reef
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_arctic
+				is_planet_class = pc_dextro_arctic
+				is_planet_class = pc_highgrav_arctic
+				is_planet_class = pc_dextro_highgrav_arctic
+				AND = {
+					is_exotic = yes
+					OR = {
+						has_planet_modifier = pm_snow_world
+						has_planet_modifier = pm_glacial_world
+						has_planet_modifier = pm_antar_world
+						has_planet_modifier = pm_cryovolcanic_world
+					}
+				}
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_frozen_gas_lake
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_frozen_gas_lake
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_lichen_fields
+		add_deposit = d_fungal_caves
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no
+				} 
+			}
+			add_deposit = d_lichen_fields
+			add_deposit = d_fungal_forest
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_tundra
+				is_planet_class = pc_dextro_tundra
+				is_planet_class = pc_highgrav_tundra
+				is_planet_class = pc_dextro_highgrav_tundra
+				AND = {
+					is_exotic = yes
+					OR = {
+						has_planet_modifier = pm_basalt_world
+						has_planet_modifier = pm_lichen_world
+						has_planet_modifier = pm_mire_world
+						has_planet_modifier = pm_fungal_world
+					}
+				}
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_frozen_gas_lake
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_frozen_gas_lake
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_forgiving_tundra
+		add_deposit = d_fungal_caves
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_forgiving_tundra
+			add_deposit = d_fungal_forest
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_alpine
+				is_planet_class = pc_dextro_alpine
+				is_planet_class = pc_highgrav_alpine
+				is_planet_class = pc_dextro_highgrav_alpine
+				AND = {
+					is_exotic = yes
+					OR = {
+						has_planet_modifier = pm_boreal_world
+						has_planet_modifier = pm_highland_world
+						has_planet_modifier = pm_cascadian_world
+						has_planet_modifier = pm_crag_world
+					}
+				}
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_frozen_gas_lake
+		add_deposit = d_tempestous_mountain
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_frozen_gas_lake
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_forgiving_tundra
+		add_deposit = d_fungal_caves
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_forgiving_tundra
+			add_deposit = d_fungal_forest
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_desert
+				is_planet_class = pc_dextro_desert
+				is_planet_class = pc_highgrav_desert
+				is_planet_class = pc_dextro_highgrav_desert
+				AND = {
+					is_exotic = yes
+					OR = {
+						has_planet_modifier = pm_mesa_world
+						has_planet_modifier = pm_cenote_world
+						has_planet_modifier = pm_outback_world
+						has_planet_modifier = pm_oasis_world
+					}
+				}				
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_arid_highlands
+		add_deposit = d_searing_desert
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_searing_desert
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_nutritious_mudland
+		add_deposit = d_great_river
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_nutritious_mudland
+			add_deposit = d_marvelous_oasis
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_arid
+				is_planet_class = pc_dextro_arid
+				is_planet_class = pc_highgrav_arid
+				is_planet_class = pc_dextro_highgrav_arid
+				AND = {
+					is_exotic = yes
+					OR = {
+						has_planet_modifier = pm_dune_world
+						has_planet_modifier = pm_dust_world
+						has_planet_modifier = pm_badlands_world
+						has_planet_modifier = pm_aquifer_world
+					}
+				}
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_arid_highlands
+		add_deposit = d_searing_desert
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_searing_desert
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_veiny_cliffs
+		add_deposit = d_ore_rich_caverns
+		add_deposit = d_rich_mountain
+
+		# 4 + 3 farming
+		add_deposit = d_bountiful_plains
+		add_deposit = d_great_river
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_bountiful_plains
+			add_deposit = d_tropical_island
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_savannah
+				is_planet_class = pc_dextro_savannah
+				is_planet_class = pc_highgrav_savannah
+				is_planet_class = pc_dextro_highgrav_savannah
+				AND = {
+					is_exotic = yes
+					OR = {
+						has_planet_modifier = pm_steppe_world
+						has_planet_modifier = pm_veld_world
+						has_planet_modifier = pm_medit_world
+						has_planet_modifier = pm_retinal_world	
+					}
+				}				
+			}
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_arid_highlands
+		add_deposit = d_searing_desert
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_searing_desert
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming
+		add_deposit = d_bountiful_plains
+		add_deposit = d_fertile_lands
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+			add_deposit = d_bountiful_plains
+			add_deposit = d_black_soil
+		}
+	}
+
+	if = {
+		limit = {
+			OR = {
+				is_planet_class = pc_swamp
+				is_planet_class = pc_dextro_swamp
+				is_planet_class = pc_highgrav_swamp
+				is_planet_class = pc_dextro_highgrav_swamp
+			}
+			AND = {
+				is_exotic = yes
+				OR = {
+					has_planet_modifier = pm_marsh_world
+					has_planet_modifier = pm_mangrove_world
+					has_planet_modifier = pm_bog_world
+					has_planet_modifier = pm_lake_world
+				}
+			}	
+		}
+
+		# 3 + 3 energy
+		add_deposit = d_hot_springs
+		add_deposit = d_rushing_waterfalls
+		add_deposit = d_tempestous_mountain
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = yes 
+				} 
+			}
+			add_deposit = d_rushing_waterfalls
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming (lithoids swap 3 for minerals)
+		add_deposit = d_green_hills
+		add_deposit = d_lush_jungle
+
+		random_list = {
+				10 = { add_deposit = d_hydric_soil }
+				10 = { add_deposit = d_organic_islands }
+				10 = { add_deposit = d_disease_factory }
+				10 = { add_deposit = d_rolling_mists }
+				10 = { add_deposit = d_creeping_tendrils }
+		}
+		
+		if = {
+			limit = { 
+				owner = { 
+					is_machine_empire = no 
+				} 
+			}
+				add_deposit = d_green_hills
+				add_deposit = d_tropical_island
+		}
+	}
+
+	# if = {
+	# 	limit = {
+	# 		OR = {
+	# 			is_planet_class = pc_chlorine
+	# 			is_planet_class = pc_highgrav_chlorine
+	# 			is_planet_class = pc_ammonia
+	# 			is_planet_class = pc_highgrav_ammonia
+	# 			is_planet_class = pc_methane
+	# 			is_planet_class = pc_highgrav_methane
+	# 			is_planet_class = pc_mephitic
+	# 			is_planet_class = pc_highgrav_mephitic
+	# 			is_planet_class = pc_primal
+	# 			is_planet_class = pc_highgrav_primal
+	# 		}
+	# 	}
+
+	# 	# 3 + 3 energy
+	# 	add_deposit = d_hot_springs
+	# 	add_deposit = d_rushing_waterfalls
+	# 	add_deposit = d_tempestous_mountain
+	# 	if = {
+	# 		limit = { 
+	# 			owner = { 
+	# 				is_machine_empire = yes 
+	# 			} 
+	# 		}
+	# 		add_deposit = d_rushing_waterfalls
+	# 	}
+
+	# 	# 3 + 3 mining
+	# 	add_deposit = d_veiny_cliffs
+	# 	add_deposit = d_prosperous_mesa
+	# 	add_deposit = d_rich_mountain
+
+	# 	# 4 + 3 farming
+	# 	add_deposit = d_rugged_woods
+	# 	add_deposit = d_fertile_lands
+	# 	if = {
+	# 		limit = { 
+	# 			owner = { 
+	# 				is_machine_empire = no 
+	# 			} 
+	# 		}
+	# 		add_deposit = d_rugged_woods
+	# 		add_deposit = d_black_soil
+	# 	}
+	# }
+
+	if = {
+		limit = {
+			is_planet_class = pc_relic
+			owner = {
+				has_origin = origin_remnants
+				OR = {
+					has_origin = origin_remnants
+					has_origin = origin_slavers
+				}
+			}
+		}
+
+		set_planet_size = 22
+
+		# 6 blockers
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+		add_deposit = d_ruined_arcology
+
+		# 3 + 3 energy
+		add_deposit = d_arid_highlands
+		add_deposit = d_searing_desert
+		add_deposit = d_geothermal_vent
+		if = {
+			limit = { owner = { is_machine_empire = yes } }
+			add_deposit = d_searing_desert
+		}
+		if = {
+			limit = { owner = { has_valid_civic = civic_machine_servitor } }
+			add_deposit = d_arid_highlands
+		}
+
+		# 3 + 3 mining
+		add_deposit = d_mineral_fields
+		add_deposit = d_prosperous_mesa
+		add_deposit = d_submerged_ore_veins
+
+		# 4 + 3 farming
+		add_deposit = d_bountiful_plains
+		add_deposit = d_fertile_lands
+		if = {
+			limit = { owner = { is_machine_empire = no } }
+			add_deposit = d_bountiful_plains
+			add_deposit = d_black_soil
+		}
+	}
+
+	log = "Capital World Starting Deposits and Blockers Created"
+}
+
+generate_btr_start_buildings_and_districts = {
+	optimize_memory
+	if = {
+		limit = {
+			owner = {
+				NOT = {
+					is_country_type = primitive
+				}
+			}
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = asari_rep_origin
+				}
+			}
+			generate_asr_thessia_capitol_buildings = yes
+			establish_asari_republics_communication = yes	
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = salarian_uni_origin
+				}
+			}
+			generate_sal_surkesh_capitol_buildings = yes
+			establish_salarian_union_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = turian_hier_origin
+				}
+			}
+			generate_tur_palaven_capitol_buildings = yes
+			establish_turian_hierarchy_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = systems_all_origin
+				}
+			}
+			generate_sys_earth_capitol_buildings = yes
+			establish_systems_alliance_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = courts_dek_origin
+				}
+			}
+			generate_cod_dekuuna_capitol_buildings = yes
+			establish_courts_of_dekuuna_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = vol_pro_origin
+				}
+			}
+			generate_vol_irune_capitol_buildings = yes
+			establish_vol_protectorate_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = illuminated_pri_origin
+				}
+			}
+			generate_han_kahje_capitol_buildings = yes
+			establish_illuminated_primacy_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = hegemony_kha_origin
+				}
+			}
+			generate_bat_kharshan_capitol_buildings = yes
+			establish_hegemony_of_kharshan_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = aralakh_kah_origin
+				}
+			}
+			generate_kro_tuchanka_capitol_buildings = yes
+			establish_aralakh_kahmat_communication = yes
+		}
+		# if = {
+		# 	limit = {
+		# 		owner = {
+		# 			has_origin = migrant_fle_origin
+		# 		}
+		# 	}
+		# 	generate_qua_rayya_capitol_buildings = yes
+		# }
+		# if = {
+		# 	limit = {
+		# 		owner = {
+		# 			has_origin = cerberus_emp_origin
+		# 		}
+		# 	}
+		# 	generate_cer_cronos_capitol_buildings = yes
+		# }
+		if = {
+			limit = {
+				owner = {
+					has_origin = omega_emp_origin
+				}
+			}
+			generate_omega_building_and_districts = yes
+			establish_omega_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = illium_cor_origin
+				}
+			}
+			generate_illium_capitol_buildings = yes
+			establish_illium_corporate_interests_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = caleston_dir_origin
+				}
+			}
+			generate_caleston_capitol_buildings = yes
+			establish_caleston_directorate_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = remnants_rak_origin
+				}
+			}
+			generate_dre_rahkana_capitol_buildings = yes
+			set_destroyed_rakhana_buildings = yes
+			establish_remnants_of_rakhana_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = vorcha_cla_origin
+				}
+			}
+			generate_vor_heshtok_buildings = yes
+			establish_vorcha_clandom_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = sedriicae_col_origin
+				}
+			}
+			generate_sed_sedriicae_capitol_buildings = yes
+			establish_sedriicae_collective_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = lystheni_ord_origin
+				}
+			}
+			generate_lys_sepkai_capitol_buildings = yes
+			establish_lystheni_order_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = gothones_rem_origin
+				}
+			}
+			generate_got_vindicta_buildings = yes
+			establish_gothones_remnant_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = cerberus_emp_origin
+				}
+			}
+			generate_yah_parnack_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = cerberus_emp_origin
+				}
+			}
+			generate_ral_turvess_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = cerberus_emp_origin
+				}
+			}
+			generate_get_rannoch_capitol_buildings = yes
+			establish_geth_consensus_communication = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = disciples_naz_origin
+				}
+			}
+			generate_naz_heretic_station_capitol_buildings = yes
+		}
+		if = {
+			limit = {
+				owner = {
+					has_origin = rachni_hiv_origin
+				}
+			}
+			generate_rac_utukku_start_buildings = yes
+			establish_disciples_of_nazara_communication = yes
+		}
+		# if = {
+		# 	limit = {
+		# 		owner = {
+		# 			has_origin = collectors_emp_origin
+		# 		}
+		# 	}
+		# 	generate_collectors_capitol_buildings = yes
+		# }
+
+		if = {
+			limit = {
+				owner = {
+					NOT = {
+						has_country_flag = citadel_council
+					}
+					is_country_type = independent_colony
+				}
+			}
+			generate_btr_independent_world_capitol_buildings = yes
+			establish_citadel_council_communication = yes
+		}
+
+		# Replace mining districts with uncapped ones for subterranean origin
+		if = {
+			limit = {
+				owner = { is_subterranean_empire = yes }
+			}
+			while = {
+				limit = { num_districts = { type = district_mining value > 0 } }
+				remove_district = district_mining
+				add_district_and_planet_size_if_needed_effect = {
+					district = district_mining_uncapped
+				}
+			}
+		}
+	}
+}
+
+btr_generate_capital_planetary_features = {
 	if = {
 		limit = { has_planet_flag = thessia_planet }
 		add_deposit = d_thessia_republic_armali	
@@ -262,4 +1273,534 @@ generate_canon_planetary_features = {
 		add_deposit = d_citadel_purgatory_bar
 		add_deposit = d_citadel_joint_research_division
 	}
+}
+
+btr_generate_canon_planetary_deposits = {
+	if = {
+		limit = { has_planet_flag = junthor_planet }
+		add_deposit = d_aluminum_surface
+		add_deposit = d_nickel_deposits
+		add_deposit = d_junthor_ruins
+	}
+	if = {
+		limit = { has_planet_flag = noveria_planet }
+		add_deposit = d_noveria_port_hanshan
+		add_deposit = d_noveria_peak_research_facility
+	}
+}
+
+btr_generate_planet_subclass_deposits = {
+	if = {
+		limit = { has_planet_flag = dune_world }
+		add_deposit = d_great_sea
+	}
+	if = {
+		limit = { has_planet_flag = dust_world }
+		add_deposit = d_splintered_lands
+	}
+	if = {
+		limit = {has_planet_flag = badlands_world }
+		add_deposit = d_bountiful_valley
+	}
+	if = {
+		limit = { has_planet_flag = aquifer_world }
+		add_deposit = d_subterranean_ocean
+	}
+	if = {
+		limit = { has_planet_flag = mesa_world }
+		add_deposit = d_stellarite_archway
+	}
+	if = {
+		limit = { has_planet_flag = cenote_world }
+		add_deposit = d_eezo_sinkhole
+	}
+	if = {
+		limit = { has_planet_flag = outback_world }
+		add_deposit = d_fairwinds_basin
+	}
+	if = {
+		limit = { has_planet_flag = oasis_world }
+		add_deposit = d_green_ring
+	}
+	if = {
+		limit = { has_planet_flag = steppe_world }
+		add_deposit = d_great_mystery_tree
+	}
+	if = {
+		limit = { has_planet_flag = veld_world }
+		add_deposit = d_arborary_oasis
+	}
+	if = {
+		limit = { has_planet_flag = medit_world }
+		add_deposit = d_cooperative_weather
+	}
+	if = {
+		limit = { has_planet_flag = retinal_world }
+		add_deposit = d_purple_heaven_arch
+	}
+	if = {
+		limit = { has_planet_flag = atoll_world }
+		add_deposit = d_majestic_reef
+	}
+	if = {
+		limit = { has_planet_flag = coastal_world }
+		add_deposit = d_grand_bay
+	}
+	if = {
+		limit = { has_planet_flag = jungle_world }
+		add_deposit = d_bellowing_rainforest
+	}
+	if = {
+		limit = { has_planet_flag = biolum_world }
+		add_deposit = d_glowing_jungle
+	}
+	if = {
+		limit = { has_planet_flag = marsh_world }
+		add_deposit = d_mineral_rich_delta
+	}
+	if = {
+		limit = { has_planet_flag = mangrove_world }
+		add_deposit = d_heart_of_grove
+	}
+	if = {
+		limit = { has_planet_flag = bog_world }
+		add_deposit = d_endless_mud
+	}
+	if = {
+		limit = { has_planet_flag = lake_world }
+		add_deposit = d_water_web
+	}
+	if = {
+		limit = { has_planet_flag = prairie_world }
+		add_deposit = d_polarizing_seasons
+	}
+	if = {
+		limit = { has_planet_flag = temperate_world }
+		add_deposit = d_colorful_seasons
+	}
+	if = {
+		limit = { has_planet_flag = forest_world }
+		add_deposit = d_great_hunting_grounds
+	}
+	if = {
+		limit = { has_planet_flag = supercon_world }
+		add_deposit = d_dead_centre
+	}
+	if = {
+		limit = { has_planet_flag = hotocean_world }
+		add_deposit = d_hot_currents
+	}
+	if = {
+		limit = { has_planet_flag = coldocean_world }
+		add_deposit = d_standing_waters
+	}
+	if = {
+		limit = { has_planet_flag = storm_world }
+		add_deposit = d_storm_eye
+	}
+	if = {
+		limit = { has_planet_flag = boreal_world }
+		add_deposit = d_boreal_megafauna
+	}
+	if = {
+		limit = { has_planet_flag = highland_world }
+		add_deposit = d_northern_highlands
+	}
+	if = {
+		limit = { has_planet_flag = cascadian_world }
+		add_deposit = d_sights_to_behold
+	}
+	if = {
+		limit = { has_planet_flag = crag_world }
+		add_deposit = d_bleeding_volcano
+	}
+	if = {
+		limit = { has_planet_flag = basalt_world }
+		add_deposit = d_hidden_treasures
+	}
+	if = {
+		limit = { has_planet_flag = lichen_world }
+		add_deposit = d_lichen_trees
+	}
+	if = {
+		limit = { has_planet_flag = mire_world }
+		add_deposit = d_bottomless_mud_lakes
+	}
+	if = {
+		limit = { has_planet_flag = fungal_world }
+		add_deposit = d_holy_realm
+	}
+	if = {
+		limit = { has_planet_flag = snow_world }
+		add_deposit = d_great_blue_spot
+	}
+	if = {
+		limit = { has_planet_flag = glacial_world }
+		add_deposit = d_diamond_cliff
+	}
+	if = {
+		limit = { has_planet_flag = antar_world }
+		add_deposit = d_mammoth_cave
+	}
+	if = {
+		limit = { has_planet_flag = cryovolcanic_world }
+		add_deposit = d_empyrean_lakes
+	}
+}
+
+btr_generate_starting_deposits_and_resources = {
+	btr_generate_capital_planetary_features = yes
+	btr_generate_canon_planetary_deposits = yes
+	btr_generate_planet_subclass_deposits = yes
+}
+
+set_dune_subclass = {
+	add_modifier = {
+		modifier = "dune_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = dune_world	
+}
+
+set_dust_subclass = {
+	add_modifier = {
+		modifier = "dust_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = dust_world
+}
+
+set_badlands_subclass = {
+	add_modifier = {
+		modifier = "badlands_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = badlands_world
+}
+
+set_aquifer_subclass = {
+	add_modifier = {
+		modifier = "aquifer_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = aquifer_world
+}
+
+set_mesa_subclass = {
+	add_modifier = {
+		modifier = "mesa_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = mesa_world
+}
+
+set_cenote_subclass = {
+	add_modifier = {
+		modifier = "cenote_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = cenote_world
+}
+
+set_outback_subclass = {
+	add_modifier = {
+		modifier = "outback_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = outback_world
+}
+
+set_oasis_subclass = {
+	add_modifier = {
+		modifier = "oasis_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = oasis_world	
+}
+
+set_steppe_subclass = {
+	add_modifier = {
+		modifier = "steppe_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = steppe_world
+}
+
+set_veld_subclass = {
+	add_modifier = {
+		modifier = "veld_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = veld_world
+}
+
+set_medit_subclass = {
+	add_modifier = {
+		modifier = "medit_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = mediter_world
+}
+
+set_retinal_subclass = {
+	add_modifier = {
+		modifier = "retinal_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = retinal_world
+}
+
+set_atoll_subclass = {
+	add_modifier = {
+		modifier = "atoll_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = atoll_world
+}
+
+set_coastal_subclass = {
+	add_modifier = {
+		modifier = "coastal_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = coastal_world
+}
+
+set_jungle_subclass = {
+	add_modifier = {
+		modifier = "jungle_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = jungle_world
+}
+
+set_biolum_subclass = {
+	add_modifier = {
+		modifier = "biolum_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = biolum_world
+}
+
+set_marsh_subclass = {
+	add_modifier = {
+		modifier = "marsh_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = marsh_world
+}
+
+set_mangrove_subclass = {
+	add_modifier = {
+		modifier = "mangrove_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = mangrove_world
+}
+
+set_bog_subclass = {
+	add_modifier = {
+		modifier = "bog_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = bog_world
+}
+
+set_lake_subclass = {
+	add_modifier = {
+		modifier = "lake_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = lake_world
+}
+
+set_prairie_subclass = {
+	add_modifier = {
+		modifier = "prairie_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = prairie_world
+}
+
+set_temperate_subclass = {
+	add_modifier = {
+		modifier = "temperate_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = temperate_world
+}
+
+set_forest_subclass = {
+	add_modifier = {
+		modifier = "forest_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = forest_world
+}
+
+set_supercon_subclass = {
+	add_modifier = {
+		modifier = "supercon_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = supercon_world
+}
+
+set_hotocean_subclass = {
+	add_modifier = {
+		modifier = "hotocean_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = hotocean_world
+}
+
+set_coldocean_subclass = {
+	add_modifier = {
+		modifier = "coldocean_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = coldocean_world
+}
+
+set_storm_subclass = {
+	add_modifier = {
+		modifier = "storm_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = storm_world
+}
+
+set_boreal_subclass = {
+	add_modifier = {
+		modifier = "boreal_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = boreal_world
+}
+
+set_highland_subclass = {
+	add_modifier = {
+		modifier = "highland_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = highland_world
+}
+
+set_cascadian_subclass = {
+	add_modifier = {
+		modifier = "cascadian_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = cascadian_world
+}
+
+set_crag_subclass = {
+	add_modifier = {
+		modifier = "crag_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = crag_world
+}
+
+set_basalt_subclass = {
+	add_modifier = {
+		modifier = "basalt_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = basalt_world
+}
+
+set_lichen_subclass = {
+	add_modifier = {
+		modifier = "lichen_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = lichen_world
+}
+
+set_mire_subclass = {
+	add_modifier = {
+		modifier = "mire_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = mire_world
+}
+
+set_fungal_subclass = {
+	add_modifier = {
+		modifier = "fungal_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = fungal_world
+}
+
+set_snow_subclass = {
+	add_modifier = {
+		modifier = "snow_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = snow_world
+}
+
+set_glacial_subclass = {
+	add_modifier = {
+		modifier = "glacial_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = glacial_world
+}
+
+set_antar_subclass = {
+	add_modifier = {
+		modifier = "antar_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = antar_world
+}
+
+set_cryovolcanic_subclass = {
+	add_modifier = {
+		modifier = "cryovolcanic_world"
+		days = -1
+	}
+	set_planet_flag = subclass_world
+	set_planet_flag = cryovolcanic_world
 }
