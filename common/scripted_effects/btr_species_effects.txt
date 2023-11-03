@@ -1273,69 +1273,69 @@ create_geth_species = {
 	}
 }
 
-check_for_collectors_player = {
-	if = {
-		limit = { 
-			exists = event_target:collectorsSpecies
-		}
-		log = "collectorsSpecies already exists"
-	}
-	if = {
-		limit = { 
-			NOT = {
-				exists = event_target:collectorsSpecies
-			}
-		}
-		if = {
-			limit = { 
-				any_country = {
-					has_country_flag = collectors_empire
-				}
-			}
-			random_country = {
-				limit = {
-					has_country_flag = collectors_empire
-				}
-				log = "\\[Prev.GetName]: check_for_collectors_player - \\[This.GetName] is a player with collectors species - \\[This.owner_species.GetName]"
-				owner_species = {
-					save_global_event_target_as = collectorsSpecies
-					set_species_homeworld = event_target:collectorsHomeworld
-				}
-			}
-		}
-		else = {
-			log = "\\[This.GetName]: check_for_collectors_player - no player with collectors species"
-			create_collectors_species = yes
-		}
-	}
-}
+# check_for_collectors_player = {
+# 	if = {
+# 		limit = { 
+# 			exists = event_target:collectorsSpecies
+# 		}
+# 		log = "collectorsSpecies already exists"
+# 	}
+# 	if = {
+# 		limit = { 
+# 			NOT = {
+# 				exists = event_target:collectorsSpecies
+# 			}
+# 		}
+# 		if = {
+# 			limit = { 
+# 				any_country = {
+# 					has_country_flag = collectors_empire
+# 				}
+# 			}
+# 			random_country = {
+# 				limit = {
+# 					has_country_flag = collectors_empire
+# 				}
+# 				log = "\\[Prev.GetName]: check_for_collectors_player - \\[This.GetName] is a player with collectors species - \\[This.owner_species.GetName]"
+# 				owner_species = {
+# 					save_global_event_target_as = collectorsSpecies
+# 					set_species_homeworld = event_target:collectorsHomeworld
+# 				}
+# 			}
+# 		}
+# 		else = {
+# 			log = "\\[This.GetName]: check_for_collectors_player - no player with collectors species"
+# 			#create_collectors_species = yes
+# 		}
+# 	}
+# }
 
-create_collectors_species = {
-	if = {
-		limit = { 
-			NOT = {
-				exists = event_target:collectorsSpecies
-			}
-		}
-		create_species = {
-			class = GTH
-			portrait = collectors
-			name = PRESCRIPTED_species_name_collectors_consensus
-			plural = PRESCRIPTED_species_plural_collectors_consensus
-			adjective = PRESCRIPTED_species_adjective_collectors_consensus
-			name_list = btr_collectors
-			homeworld = event_target:collectorsHomeworld
-			species_bio = PRESCRIPTED_species_bio_collectors_consensus
-			traits = {
-				trait = collectors_trait_core
-				trait = collectors_trait_linked_consciousness
-				trait = collectors_trait_purpose_built_models
-				trait = collectors_trait_deontological_primacy
-				trait = trait_machine_unit
-			}
-			effect = {
-				save_global_event_target_as = collectorsSpecies
-			}
-		}
-	}
-}
+# create_collectors_species = {
+# 	if = {
+# 		limit = { 
+# 			NOT = {
+# 				exists = event_target:collectorsSpecies
+# 			}
+# 		}
+# 		create_species = {
+# 			class = GTH
+# 			portrait = collectors
+# 			name = PRESCRIPTED_species_name_collectors_consensus
+# 			plural = PRESCRIPTED_species_plural_collectors_consensus
+# 			adjective = PRESCRIPTED_species_adjective_collectors_consensus
+# 			name_list = btr_collectors
+# 			homeworld = event_target:collectorsHomeworld
+# 			species_bio = PRESCRIPTED_species_bio_collectors_consensus
+# 			traits = {
+# 				trait = collectors_trait_core
+# 				trait = collectors_trait_linked_consciousness
+# 				trait = collectors_trait_purpose_built_models
+# 				trait = collectors_trait_deontological_primacy
+# 				trait = trait_machine_unit
+# 			}
+# 			effect = {
+# 				save_global_event_target_as = collectorsSpecies
+# 			}
+# 		}
+# 	}
+# }
