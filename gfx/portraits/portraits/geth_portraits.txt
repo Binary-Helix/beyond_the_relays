@@ -13,6 +13,10 @@ portraits = {
 	geth_legion = {	entity = "portrait_geth_entity" clothes_selector = "no_texture" attachment_selector = "no_texture"	greeting_sound = "bta_geth_greeting" 
 		character_textures = {
 				"gfx/models/portraits/geth/geth_legion_ver3.dds"
+				"gfx/models/portraits/geth/geth_black.dds"
+				"gfx/models/portraits/geth/geth_grey.dds"
+				"gfx/models/portraits/geth/geth_white.dds"
+				"gfx/models/portraits/geth/geth_red.dds"
 		}
 	}
 }
@@ -21,42 +25,82 @@ portrait_groups = {
 	geth = {
 		default = geth
 		game_setup = { #will run with a limited country scope. species and government is set but the country does not actually exist
-			add = {
-				portraits = { 
-					geth
-					geth_legion
-				}
+		add = {
+			trigger = {
+				is_disciples_of_nazara = yes
 			}
+			portraits = { 
+				geth
+			}
+		}
+		add = {
+			trigger = {
+				is_geth_consensus = yes
+			}
+			portraits = { 
+				geth_legion
+			}
+		}
 		}		
 		
 		#species scope
 		species = { #generic portrait for a species
-			add = {
-				portraits = { 
-					geth
-					geth_legion
-				}
+		add = {
+			trigger = {
+				is_disciples_of_nazara = yes
 			}
+			portraits = { 
+				geth
+			}
+		}
+		add = {
+			trigger = {
+				is_geth_consensus = yes
+			}
+			portraits = { 
+				geth_legion
+			}
+		}
 		}		
 		
 		#pop scope
 		pop = { #for a specific pop
-			add = {
-				portraits = {
-					geth
-					geth_legion
-				}
+		add = {
+			trigger = {
+				is_disciples_of_nazara = yes
 			}
+			portraits = { 
+				geth
+			}
+		}
+		add = {
+			trigger = {
+				is_geth_consensus = yes
+			}
+			portraits = { 
+				geth_legion
+			}
+		}
 		}
 		
 		#leader scope
 		leader = { #scientists, generals, admirals, governor
-			add = {
-				portraits = { 
-					geth
-					geth_legion
-				 }
+		add = {
+			trigger = {
+				is_disciples_of_nazara = yes
 			}
+			portraits = { 
+				geth
+			}
+		}
+		add = {
+			trigger = {
+				is_geth_consensus = yes
+			}
+			portraits = { 
+				geth_legion
+			}
+		}
 		}
 
 			
@@ -68,7 +112,6 @@ portrait_groups = {
 				}
 				portraits = { 
 					geth
-					geth_legion
 				}
 			}
 			add = {
