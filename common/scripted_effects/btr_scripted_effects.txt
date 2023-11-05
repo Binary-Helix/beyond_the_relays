@@ -413,3 +413,123 @@ give_starting_ship_tech = {
 		}
 	}
 }
+
+count_robots_to_recycle_for_light_metals = {
+
+	set_variable = {
+		which = light_metals_for_robot
+		value = $LIGHT_METALS$
+	}
+
+	set_variable = {
+		which = recycled_robots
+		value = 0
+	}
+
+	# if machine empire, get half of the population
+	if = {
+		limit = {
+			owner = { is_machine_empire = yes }
+		}
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop
+			parameters = {
+				limit = {
+					is_robot_pop = yes
+				}
+			}
+			variable = recycled_robots
+		}
+		divide_variable = {
+			which = recycled_robots
+			value = 2
+		}
+
+		round_variable  = recycled_robots
+	}
+	# if normal empire, get all robots
+	else = {
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop
+			parameters = {
+				limit = {
+					OR = {
+						is_shackled_robot = yes
+						is_non_sapient_robot = yes
+					}
+				}
+			}
+			variable = recycled_robots
+		}
+	}
+
+	set_variable = {
+		which = total_light_metals_gained
+		value = recycled_robots
+	}
+
+	multiply_variable = {
+		which = total_light_metals_gained
+		value = $LIGHT_METALS$
+	}
+}
+
+count_robots_to_recycle_for_heavy_metals = {
+
+	set_variable = {
+		which = heavy_metals_for_robot
+		value = $HEAVY_METALS$
+	}
+
+	set_variable = {
+		which = recycled_robots
+		value = 0
+	}
+
+	# if machine empire, get half of the population
+	if = {
+		limit = {
+			owner = { is_machine_empire = yes }
+		}
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop
+			parameters = {
+				limit = {
+					is_robot_pop = yes
+				}
+			}
+			variable = recycled_robots
+		}
+		divide_variable = {
+			which = recycled_robots
+			value = 2
+		}
+
+		round_variable  = recycled_robots
+	}
+	# if normal empire, get all robots
+	else = {
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop
+			parameters = {
+				limit = {
+					OR = {
+						is_shackled_robot = yes
+						is_non_sapient_robot = yes
+					}
+				}
+			}
+			variable = recycled_robots
+		}
+	}
+
+	set_variable = {
+		which = total_heavy_metals_gained
+		value = recycled_robots
+	}
+
+	multiply_variable = {
+		which = total_heavy_metals_gained
+		value = $HEAVY_METALS$
+	}
+}
