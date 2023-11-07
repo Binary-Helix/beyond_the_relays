@@ -1,0 +1,216 @@
+## Categories used in this file must have use_for_ai_budget = yes defined in economic_categories ##
+## It is possible to have multiple entries with the same category and resource ##
+
+#################
+## Expenditure ##
+#################
+
+uranium_expenditure_planets = {
+	resource = uranium
+	type = expenditure
+	category = planets
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.2
+	}
+}
+
+uranium_expenditure_ships = {
+	resource = uranium
+	type = expenditure
+	category = ships
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.1
+		modifier = {
+			factor = 5
+			is_dragon_breeder_country = yes
+		}
+	}
+}
+
+uranium_expenditure_upgrade = {
+	resource = uranium
+	type = expenditure
+	category = ship_upgrades
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		base = 0.1
+	}
+}
+
+uranium_expenditure_trade = {
+	resource = uranium
+	type = expenditure
+	category = trade
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.1
+	}
+}
+
+uranium_expenditure_hyper_relays = {
+	resource = uranium
+	type = expenditure
+	category = megastructures_hyper_relay
+
+	potential = {
+		has_technology = tech_hyper_relays
+		any_system_within_border = {
+			NOR = {
+				has_megastructure = hyper_relay
+				has_megastructure = hyper_relay_restored
+			}
+			OR = {
+				is_capital_system = yes
+				any_neighbor_system = {
+					OR = {
+						has_megastructure = hyper_relay
+						has_megastructure = hyper_relay_restored
+					}
+				}
+			}
+		}
+	}
+
+	weight = {
+		weight = 0.5
+	}
+	desired_min = {
+		base = 100
+	}
+	desired_max = {
+		base = 100
+	}
+}
+
+uranium_expenditure_starbases = {
+	resource = uranium
+	type = expenditure
+	category = starbases
+
+	potential = {
+		any_owned_nonprimary_starbase = {
+			has_starbase_size >= orbital_ring_tier_2
+			exists = planet
+		}
+	}
+
+	weight = {
+		weight = 0.2
+
+		modifier = {
+			factor = 0
+			NOT = {
+				any_owned_nonprimary_starbase = {
+					exists = planet
+					OR = {
+						AND = {
+							has_starbase_size = orbital_ring_tier_2
+							count_starbase_buildings = {
+								count = 0
+							}
+						}
+						AND = {
+							has_starbase_size = orbital_ring_tier_3
+							count_starbase_buildings = {
+								count < 2
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Upkeep ---------------------------------------------------------------
+
+uranium_upkeep_planets = {
+	resource = uranium
+	type = upkeep
+	category = planets
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.9
+	}
+}
+
+uranium_upkeep_ships = {
+	resource = uranium
+	type = upkeep
+	category = ships
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		weight = 0.1
+	}
+}
+
+uranium_upkeep_edicts = {
+	resource = uranium
+	type = upkeep
+	category = edicts
+
+	potential = {
+		always = yes
+	}
+
+	weight = {
+		base = 0.25
+	}
+}
+
+uranium_upkeep_hyper_relays = {
+	resource = uranium
+	type = upkeep
+	category = megastructures_hyper_relay
+
+	potential = {
+		has_technology = tech_hyper_relays
+	}
+
+	weight = {
+		weight = 0.1
+	}
+}
+
+uranium_upkeep_starbases = {
+	resource = uranium
+	type = upkeep
+	category = starbases
+
+	potential = {
+		any_owned_nonprimary_starbase = {
+			has_starbase_size >= orbital_ring_tier_2
+			exists = planet
+		}
+	}
+
+	weight = {
+		weight = 0.1
+	}
+}

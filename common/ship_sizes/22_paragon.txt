@@ -1,0 +1,147 @@
+### PARAGON SHIP SIZES ###
+
+#reloadable with 'reload stats'
+# This file is where you start when you want to configure something new, then go to sections
+
+@corvette_collision_radius = 2.0
+
+@destroyer_collision_radius = 2.5
+
+@cruiser_collision_radius = 3
+
+@battleship_collision_radius = 3
+
+@titan_collision_radius = 15
+
+@build_block_radius_none = 0
+@build_block_radius_civilian = 20
+@build_block_radius_military = 200
+
+@speed_very_slow = 80
+@speed_slow = 100
+@speed_default = 120
+@speed_fast = 140
+@speed_very_fast = 160
+
+#First Claw Galactic Paragons Ship
+first_claw = {
+	formation_priority = @titan_formation_priority
+	graphical_culture = { "npf_01" }
+	entity = paragon_01_skrand_ship_01_entity
+	max_speed = @speed_slow
+	acceleration = 0.15
+	rotation_speed = 0.1
+	collision_radius = 7
+	modifier = {
+		ship_evasion_add = 15
+	}
+	max_hitpoints = 15000
+	size_multiplier = 16
+	combat_size_multiplier = 16
+	fleet_slot_size = 16
+	resources = {
+		category = ships
+		upkeep = {
+			energy = 12
+			#alloys = 4
+			antimatter_fuel = @cruiser_upkeep_antimatter_fuel
+		}
+	}
+	section_slots = { "mid" = { locator = "root" } }
+	num_target_locators = 0
+	is_space_station = no
+	is_space_object = no
+	can_be_inspected = no
+	icon = ship_size_military_16
+	combat_disengage_chance = 1
+	class = shipclass_military
+
+	is_designable = no
+
+	required_component_set = "ftl_components"
+	required_component_set = "combat_computers"
+	required_component_set = "thruster_components"
+}
+
+# Maven Cruiser
+maven_cruiser_01 = {
+	graphical_culture = no
+	max_speed = @speed_fast
+	acceleration = 0.5
+	rotation_speed = 0.2
+	collision_radius = 4
+	modifier = {
+		ship_evasion_add = 15
+		ship_armor_add = 30
+		ship_piracy_suppression_add = 6
+	}
+	max_hitpoints = @cruiser_hp
+	size_multiplier = 4
+	fleet_slot_size = 3
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	icon = ship_size_military_4
+	class = shipclass_military
+
+	is_designable = no
+
+	required_component_set = "ftl_components"
+	required_component_set = "combat_computers"
+	required_component_set = "thruster_components"
+}
+
+temple_of_whispers = {
+	formation_priority = @colossus_formation_priority
+	max_speed = @speed_very_slow
+	acceleration = 0.05
+	rotation_speed = 0.1
+	collision_radius = @colossus_collision_radius
+	max_hitpoints = 10000
+	size_multiplier = 16
+	fleet_slot_size = 8
+	section_slots = { "ship" = { locator = "frame_ship" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon = ship_size_military_32
+	can_have_federation_design = no
+	class = shipclass_military
+	graphical_culture = no
+	is_designable = no
+	components_add_to_cost = no # Affects upkeep
+	resources = {
+		category = ships
+		upkeep = {
+			energy = 20
+		}
+	}
+}
+
+azaryn_dome = {
+	formation_priority = @colossus_formation_priority
+	max_speed = @speed_very_slow
+	acceleration = 0.05
+	rotation_speed = 0.1
+	collision_radius = @colossus_collision_radius
+	max_hitpoints = 40000
+	size_multiplier = 32
+	fleet_slot_size = 0
+	section_slots = { "ship" = { locator = "frame_ship" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon = ship_size_science
+	can_have_federation_design = no
+	#class = shipclass_military
+	class = shipclass_science_ship
+	is_civilian = yes
+	cloaking_forbidden = yes # Need to hide cloaking button because we dont have space in the UI
+	graphical_culture = no
+	is_designable = no
+	components_add_to_cost = no # Affects upkeep
+	resources = {
+		category = ships
+		upkeep = {
+			energy = 20
+		}
+	}
+}

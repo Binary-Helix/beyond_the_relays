@@ -136,3 +136,233 @@ create_turbulent_nebula_2 = {
 	}
 	add_modifier = { modifier = turbulent_nebula }
 }
+
+## Kaleidoscope Situation
+# Spawn the Kaleidoscope on the capital planet
+spawn_kaleidoscope_effect = {
+	# Spawn Kaleidoscope of the correct color depending on global mood variable
+	if = {
+		limit = { 
+			event_target:global_event_country = {
+				check_variable = {
+					which = kaleidoscope_global_mood
+					value >= @kaleidoscopeHappy
+				}
+			}
+		}
+		create_ambient_object = {
+			location = star
+			type = kaleidoscope_happy
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = kaleidoscope_ambient_object
+			set_ambient_object_flag = kaleidoscope_happy
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	# Angry!
+	else_if = {
+		limit = { 
+			event_target:global_event_country = {
+				check_variable = {
+					which = kaleidoscope_global_mood
+					value  <= @kaleidoscopeAngry
+				}
+			}
+		}
+		create_ambient_object = {
+			location = star
+			type = kaleidoscope_angry
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = kaleidoscope_ambient_object
+			set_ambient_object_flag = kaleidoscope_angry
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			event_target:global_event_country = {
+				check_variable = {
+					which = kaleidoscope_global_mood
+					value < @kaleidoscopeHappy
+				}
+				check_variable = {
+					which = kaleidoscope_global_mood
+					value  > @kaleidoscopeAngry
+				}
+			}
+		}
+		create_ambient_object = {
+			location = star
+			type = kaleidoscope_neutral
+		}
+		last_created_ambient_object = {
+			set_ambient_object_flag = kaleidoscope_ambient_object
+			set_ambient_object_flag = kaleidoscope_neutral
+			set_location = {
+				target = prev
+				distance = 0
+				angle = random
+			}
+		}
+	}
+	# Setting a flag so we can retrieve the system even if the player moves their capital
+	set_star_flag = kaleidoscope_system
+}
+
+update_kaleidoscope_effect = {
+	# find the system
+	random_system_within_border = {
+		limit = {
+			has_star_flag = kaleidoscope_system
+		}
+		save_event_target_as = kaleidoscope_system
+		random_system_ambient_object = {
+			limit = { 				
+				has_ambient_object_flag = kaleidoscope_ambient_object
+			}
+			save_event_target_as = kaleidoscope_ambient_object
+		}
+		# check the Kaleidoscope's mood and recreate the ambient object if it changed
+		# Happy
+		if = {
+			limit = { 
+				event_target:global_event_country = {
+					check_variable = {
+						which = kaleidoscope_global_mood
+						value >= @kaleidoscopeHappy
+					}
+				}
+				event_target:kaleidoscope_ambient_object = {
+					NOT = { has_ambient_object_flag = kaleidoscope_happy }
+				}
+			}
+			create_ambient_object = {
+				location = star
+				type = kaleidoscope_happy
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = kaleidoscope_ambient_object
+				set_ambient_object_flag = kaleidoscope_happy
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+			event_target:kaleidoscope_ambient_object = {
+				destroy_ambient_object = this
+			}
+			break = yes
+		}
+		# Angry!
+		else_if = {
+			limit = { 
+				event_target:global_event_country = {
+					check_variable = {
+						which = kaleidoscope_global_mood
+						value  <= @kaleidoscopeAngry
+					}
+				}
+				event_target:kaleidoscope_ambient_object = {
+					NOT = { has_ambient_object_flag = kaleidoscope_angry }
+				}
+			}
+			create_ambient_object = {
+				location = star
+				type = kaleidoscope_angry
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = kaleidoscope_ambient_object
+				set_ambient_object_flag = kaleidoscope_angry
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+			event_target:kaleidoscope_ambient_object = {
+				destroy_ambient_object = this
+			}
+			break = yes
+		}
+		else_if = {
+			limit = {
+				event_target:global_event_country = {
+					check_variable = {
+						which = kaleidoscope_global_mood
+						value < @kaleidoscopeHappy
+					}
+					check_variable = {
+						which = kaleidoscope_global_mood
+						value  > @kaleidoscopeAngry
+					}
+				}
+				event_target:kaleidoscope_ambient_object = {
+					NOT = { has_ambient_object_flag = kaleidoscope_neutral }
+				}
+			}
+			event_target:kaleidoscope_ambient_object = {
+				destroy_ambient_object = this
+			}
+			create_ambient_object = {
+				location = star
+				type = kaleidoscope_neutral
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = kaleidoscope_ambient_object
+				set_ambient_object_flag = kaleidoscope_neutral
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+	}
+}
+
+# Espionage Success or situation end - Remove all Kaleidoscopes from your empire
+remove_kaleidoscope_effect = {
+	every_owned_planet = {
+		remove_modifier = phantom_load
+		remove_planet_flag = kaleidoscope_planet
+	}
+	every_system_within_border = {
+		every_system_ambient_object = {
+			limit = {
+				OR = {
+					has_ambient_object_flag = kaleidoscope_small
+					has_ambient_object_flag = kaleidoscope_ambient_object
+				}	
+			}
+			destroy_ambient_object = this
+		}
+		remove_star_flag = kaleidoscope_system
+	}
+}
+
+move_kaleidoscope_effect = {
+	every_owned_planet = {
+		remove_modifier = phantom_load
+		remove_planet_flag = kaleidoscope_planet
+	}
+	every_system_within_border = {
+		every_system_ambient_object = {
+			limit = {
+				has_ambient_object_flag = kaleidoscope_ambient_object
+			}
+			destroy_ambient_object = this
+		}
+		remove_star_flag = kaleidoscope_system
+	}
+}

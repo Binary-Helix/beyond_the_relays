@@ -50,519 +50,6 @@ btr_generate_stations = {
 # 	}
 #   }
 
-#This is called after game start
-generate_btr_start_deposits_and_blockers = {
-	if = {
-		limit = {
-			OR = {
-				is_planet_class = pc_desert
-				is_planet_class = pc_dextro_desert
-				is_planet_class = pc_highgrav_desert
-				is_planet_class = pc_dextro_highgrav_desert	
-				is_planet_class = pc_mephitic
-				is_planet_class = pc_highgrav_mephitic
-				is_planet_class = pc_mephitic_station					
-			}
-		}
-
-		# 3 + 3 energy
-		add_deposit = d_arid_highlands
-		add_deposit = d_searing_desert
-		add_deposit = d_geothermal_vent
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_searing_desert
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_arid_highlands
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_mineral_fields
-		add_deposit = d_ore_rich_caverns
-		add_deposit = d_rich_mountain
-
-		# 4 + 3 farming (lithoids swap 3 for minerals)
-		add_deposit = d_nutritious_mudland
-		add_deposit = d_great_river
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			add_deposit = d_nutritious_mudland
-
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_rich_mountain
-			}
-			else = {
-				add_deposit = d_marvelous_oasis
-			}
-		}
-		set_planet_flag = tasty_desert
-	}
-
-	if = {
-		limit = {
-			OR = {
-				is_planet_class = pc_arid
-				is_planet_class = pc_dextro_arid
-				is_planet_class = pc_highgrav_arid
-				is_planet_class = pc_dextro_highgrav_arid
-				is_planet_class = pc_primal
-				is_planet_class = pc_highgrav_primal
-			}
-		}
-
-		# 3 + 3 energy
-		add_deposit = d_arid_highlands
-		add_deposit = d_searing_desert
-		add_deposit = d_geothermal_vent
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_searing_desert
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_arid_highlands
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_veiny_cliffs
-		add_deposit = d_ore_rich_caverns
-		add_deposit = d_rich_mountain
-
-		# 4 + 3 farming (lithoids swap 3 for minerals)
-		add_deposit = d_bountiful_plains
-		add_deposit = d_great_river
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			add_deposit = d_bountiful_plains
-
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_rich_mountain
-			}
-			else = {
-				add_deposit = d_tropical_island
-			}
-		}
-	}
-	
-	if = {
-		limit = {
-			OR = {
-				is_planet_class = pc_savannah
-				is_planet_class = pc_dextro_savannah
-				is_planet_class = pc_highgrav_savannah
-				is_planet_class = pc_dextro_highgrav_desert				
-			}
-		}
-
-		# 3 + 3 energy
-		add_deposit = d_arid_highlands
-		add_deposit = d_searing_desert
-		add_deposit = d_geothermal_vent
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_searing_desert
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_arid_highlands
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_mineral_fields
-		add_deposit = d_prosperous_mesa
-		add_deposit = d_submerged_ore_veins
-
-		# 4 + 3 farming (lithoids swap 3 for minerals)
-		add_deposit = d_bountiful_plains
-		add_deposit = d_fertile_lands
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			add_deposit = d_bountiful_plains
-
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_rich_mountain
-			}
-			else = {
-				add_deposit = d_black_soil
-			}
-		}
-	}
-
-	if = {
-		limit = {
-			OR = {
-				is_planet_class = pc_swamp
-				is_planet_class = pc_dextro_swamp
-				is_planet_class = pc_highgrav_swamp
-				is_planet_class = pc_dextro_highgrav_swamp			
-			}
-		}
-		
-		# 3 + 3 energy		
-		add_deposit = d_hot_springs			
-		add_deposit = d_frozen_gas_lake
-		add_deposit = d_geothermal_vent	
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_frozen_gas_lake			
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_hot_springs		
-		}		
-		
-		# 3 + 3 mining
-		add_deposit = d_mineral_fields			
-		add_deposit = d_ore_rich_caverns
-		add_deposit = d_rich_mountain
-		
-		# 4 + 3 farming
-		add_deposit = d_boggy_fens
-		add_deposit = d_fungal_caves
-
-		random_list = {
-			10 = { add_deposit = d_hydric_soil }
-			10 = { add_deposit = d_organic_islands }
-			10 = { add_deposit = d_disease_factory }
-			10 = { add_deposit = d_rolling_mists }
-			10 = { add_deposit = d_creeping_tendrils }
-		}
-
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_rich_mountain
-			}
-			add_deposit = d_fungal_forest	
-		}	
-	}
-
-	if = {
-		limit = {
-			OR = {
-				is_planet_class = pc_tropical
-				is_planet_class = pc_dextro_tropical
-				is_planet_class = pc_highgrav_tropical
-				is_planet_class = pc_dextro_highgrav_tropical				
-			}
-		}
-
-		# 3 + 3 energy
-		add_deposit = d_hot_springs
-		add_deposit = d_rushing_waterfalls
-		add_deposit = d_tempestous_mountain
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_rushing_waterfalls
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_hot_springs
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_mineral_fields
-		add_deposit = d_prosperous_mesa
-		add_deposit = d_submerged_ore_veins
-
-		# 4 + 3 farming (lithoids swap 3 for minerals)
-		add_deposit = d_green_hills
-		add_deposit = d_lush_jungle
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_submerged_ore_veins
-			}
-			else = {
-				add_deposit = d_green_hills
-				add_deposit = d_tropical_island
-			}
-		}
-	}
-
-	if = {
-		limit = {
-			OR = {
-				is_planet_class = pc_continental
-				is_planet_class = pc_dextro_continental
-				is_planet_class = pc_highgrav_continental
-				is_planet_class = pc_dextro_highgrav_continental
-				is_planet_class = pc_ammonia	
-				is_planet_class = pc_ammonia_station
-				is_planet_class = pc_highgrav_ammonia			
-			}
-		}
-
-		# 3 + 3 energy
-		add_deposit = d_hot_springs
-		add_deposit = d_rushing_waterfalls
-		add_deposit = d_tempestous_mountain
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_rushing_waterfalls
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_hot_springs
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_veiny_cliffs
-		add_deposit = d_prosperous_mesa
-		add_deposit = d_rich_mountain
-
-		# 4 + 3 farming (lithoids swap 3 for minerals)
-		add_deposit = d_rugged_woods
-		add_deposit = d_fertile_lands
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			add_deposit = d_rugged_woods
-
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_rich_mountain
-			}
-			else = {
-				add_deposit = d_black_soil
-			}
-		}
-	}
-
-	if = {
-		limit = {
-			OR = {
-				is_planet_class = pc_ocean
-				is_planet_class = pc_dextro_ocean
-				is_planet_class = pc_highgrav_ocean
-				is_planet_class = pc_dextro_highgrav_ocean
-			}
-		}
-
-		# 3 + 3 energy
-		add_deposit = d_hot_springs
-		add_deposit = d_rushing_waterfalls
-		add_deposit = d_underwater_vent
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_rushing_waterfalls
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_hot_springs
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_mineral_fields
-		add_deposit = d_ore_rich_caverns
-		add_deposit = d_submerged_ore_veins
-
-		# 4 + 3 farming (lithoids swap 3 for minerals)
-		add_deposit = d_green_hills
-		add_deposit = d_lush_jungle
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			add_deposit = d_green_hills
-
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_submerged_ore_veins
-			}
-			else = {
-				add_deposit = d_teeming_reef
-			}
-		}
-	}
-
-	if = {
-		limit = {
-			OR = {
-				is_planet_class = pc_alpine
-				is_planet_class = pc_dextro_alpine
-				is_planet_class = pc_highgrav_alpine
-				is_planet_class = pc_dextro_highgrav_alpine
-				is_planet_class = pc_chlorine
-				is_planet_class = pc_highgrav_chlorine
-				is_planet_class = pc_chlorine_station
-			}
-		}
-
-		# 3 + 3 energy
-		add_deposit = d_hot_springs
-		add_deposit = d_frozen_gas_lake
-		add_deposit = d_tempestous_mountain
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_frozen_gas_lake
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_hot_springs
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_veiny_cliffs
-		add_deposit = d_ore_rich_caverns
-		add_deposit = d_rich_mountain
-
-		# 4 + 3 farming (lithoids swap 3 for minerals)
-		add_deposit = d_forgiving_tundra
-		add_deposit = d_fungal_caves
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			add_deposit = d_forgiving_tundra
-
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_rich_mountain
-			}
-			else = {
-				add_deposit = d_fungal_forest
-			}
-		}
-	}
-
-	if = {
-		limit = {
-			is_planet_class = pc_tundra
-			is_planet_class = pc_dextro_tundra
-			is_planet_class = pc_highgrav_tundra
-			is_planet_class = pc_dextro_highgrav_tundra
-		}
-
-		# 3 + 3 energy
-		add_deposit = d_hot_springs
-		add_deposit = d_frozen_gas_lake
-		add_deposit = d_geothermal_vent
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_frozen_gas_lake
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_hot_springs
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_mineral_fields
-		add_deposit = d_ore_rich_caverns
-		add_deposit = d_rich_mountain
-
-		# 4 + 3 farming (lithoids swap 3 for minerals)
-		add_deposit = d_forgiving_tundra
-		add_deposit = d_fungal_caves
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			add_deposit = d_forgiving_tundra
-
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_rich_mountain
-			}
-			else = {
-				add_deposit = d_fungal_forest
-			}
-		}
-	}
-
-	if = {
-		limit = {
-			is_planet_class = pc_arctic
-			is_planet_class = pc_dextro_arctic
-			is_planet_class = pc_highgrav_arctic
-			is_planet_class = pc_dextro_highgrav_arctic
-			is_planet_class = pc_methane
-			is_planet_class = pc_highgrav_methane
-			is_planet_class = pc_methane_station
-		}
-
-		# 3 + 3 energy
-		add_deposit = d_hot_springs
-		add_deposit = d_frozen_gas_lake
-		add_deposit = d_geothermal_vent
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_frozen_gas_lake
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_hot_springs
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_veiny_cliffs
-		add_deposit = d_ore_rich_caverns
-		add_deposit = d_rich_mountain
-
-		# 4 + 3 farming (lithoids swap 3 for minerals)
-		add_deposit = d_lichen_fields
-		add_deposit = d_fungal_caves
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			add_deposit = d_lichen_fields
-
-			if = {
-				limit = { owner = { is_lithoid_empire = yes } }
-				add_deposit = d_rich_mountain
-			}
-			else = {
-				add_deposit = d_fungal_forest
-			}
-		}
-	}
-
-	if = {
-		limit = {
-			is_planet_class = pc_relic
-			owner = {
-				has_origin = origin_remnants
-			}
-		}
-
-		set_planet_size = 22
-
-		# 5 blockers
-		add_deposit = d_ruined_arcology
-		add_deposit = d_ruined_arcology
-		add_deposit = d_ruined_arcology
-		add_deposit = d_ruined_arcology
-		add_deposit = d_ruined_arcology
-
-		# 3 + 3 energy
-		add_deposit = d_arid_highlands
-		add_deposit = d_searing_desert
-		add_deposit = d_geothermal_vent
-		if = {
-			limit = { owner = { is_machine_empire = yes } }
-			add_deposit = d_searing_desert
-		}
-		if = {
-			limit = { owner = { has_valid_civic = civic_machine_servitor } }
-			add_deposit = d_arid_highlands
-		}
-
-		# 3 + 3 mining
-		add_deposit = d_mineral_fields
-		add_deposit = d_prosperous_mesa
-		add_deposit = d_submerged_ore_veins
-
-		# 4 + 3 farming
-		add_deposit = d_bountiful_plains
-		add_deposit = d_fertile_lands
-		if = {
-			limit = { owner = { is_machine_empire = no } }
-			add_deposit = d_bountiful_plains
-			add_deposit = d_black_soil
-		}
-	}
-}
-
 give_btr_T0_starting_tech = {
 	owner = {
 		#Physics
@@ -615,9 +102,9 @@ give_btr_T0_starting_tech = {
 			limit = { 
 				owner = {
 					NOR = {
-						has_origin = cerberus_origin
-						has_origin = collectors_origin
-						has_origin = migrant_fleet
+						has_origin = cerberus_emp_origin
+						has_origin = collectors_emp_origin
+						has_origin = migrant_fle_origin
 					}
 				}
 			}
@@ -763,10 +250,7 @@ give_btr_T2_starting_tech = {
 		give_technology = { tech = tech_cold_fusion_power message = no }
 		give_technology = { tech = tech_reactor_boosters_3 message = no }
 		give_technology = { tech = tech_hyper_drive_2 message = no }
-		give_technology = { tech = tech_mine_volatile_motes message = no }
-		give_technology = { tech = tech_volatile_motes message = no }
 		give_technology = { tech = tech_gene_crops message = no }	
-		give_technology = { tech = tech_volatile_motes message = no }
 		give_technology = { tech = tech_epigenetic_triggers message = no }
 		give_technology = { tech = tech_cloning message = no }
 		give_technology = { tech = tech_society_2 message = no }
@@ -787,10 +271,7 @@ give_btr_T2_starting_tech = {
 		give_technology = { tech = tech_mining_2 message = no }
 		give_technology = { tech = tech_mineral_purification_2 message = no }		
 		give_technology = { tech = tech_exotic_gases message = no }
-		give_technology = { tech = tech_rare_crystals message = no }
-		give_technology = { tech = tech_mine_betharian message = no }
 		give_technology = { tech = tech_mine_exotic_gases message = no }
-		give_technology = { tech = tech_mine_rare_crystals message = no }
 		give_technology = { tech = tech_engineering_2 message = no }		
 		give_technology = { tech = tech_thrusters_2 message = no }
 		give_technology = { tech = tech_missiles_3 message = no }
@@ -930,5 +411,314 @@ give_starting_ship_tech = {
 				give_technology = {	tech = tech_titans message = no }
 			}
 		}
+	}
+}
+
+give_empire_unique_tech = {
+	if = {
+		limit = { 
+			NOT = {
+				galaxy_size = btr_canon_600
+				galaxy_size = btr_canon_1300
+				galaxy_size = btr_canon_1500
+			}
+		}
+		owner = {
+			if = {
+				limit = { 
+					has_origin = asari_rep_origin
+				}
+				give_technology = { tech = tech_asari_architecture message = no }
+				give_technology = { tech = tech_asari_ship_design message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = salarian_uni_origin
+				}
+				give_technology = { tech = tech_salarian_uv_antifighter message = no }
+				give_technology = { tech = tech_salarian_exo_arch message = no }
+			}		
+			if = {
+				limit = { 
+					has_origin = turian_hier_origin
+				}
+				give_technology = { tech = tech_turian_elkoss_contract message = no }
+				give_technology = { tech = tech_turian_planetary_kasrs message = no }
+			}		
+			if = {
+				limit = { 
+					has_origin = systems_all_origin
+				}
+				give_technology = { tech = tech_systems_all_exogeni message = no }
+				give_technology = { tech = tech_systems_all_eldfell message = no }
+			}	
+			if = {
+				limit = { 
+					has_origin = courts_dek_origin
+				}
+				give_technology = { tech = tech_elcor_automated_drone message = no }
+				give_technology = { tech = tech_elcor_loyal_wingmen message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = vol_pro_origin
+				}
+				give_technology = { tech = tech_volus_protective_suits message = no }
+				give_technology = { tech = tech_volus_government_structures	message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = illuminated_pri_origin
+				}
+				give_technology = { tech = tech_hanar_gravity_drives message = no }
+				give_technology = { tech = tech_hanar_genemodding	message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = hegemony_kha_origin
+				}
+				give_technology = { tech = tech_batarian_gulags message = no }
+				give_technology = { tech = tech_batarian_implants	message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = aralakh_kah_origin
+				}
+				give_technology = { tech = tech_krogan_sky_hammer_thrusters message = no }
+				give_technology = { tech = tech_krogan_rite_supremacy message = no }
+				give_technology = { tech = tech_krogan_anti_orbital_gun message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = migrant_fle_origin
+				}
+				give_technology = { tech = tech_quarian_agricultural_guild_production message = no }
+				give_technology = { tech = tech_quarian_central_financial_administration message = no }
+				give_technology = { tech = tech_quarian_weaponsmith_guild_arc_rifle message = no }
+				give_technology = { tech = tech_quarian_weaponsmith_guild_arc_pistol message = no }
+				give_technology = { tech = tech_quarian_shipyard_guild_emp_projector message = no }
+				give_technology = { tech = tech_quarian_anatomist_guild_ocular message = no }
+				give_technology = { tech = tech_quarian_medical_guild_personal message = no }
+				give_technology = { tech = tech_quarian_medical_guild_antibiotic message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = cerberus_emp_origin
+				}
+				give_technology = { tech = tech_cerberus_restricted_iff_codes message = no }
+				give_technology = { tech = tech_cerberus_enhanced_defense_initiative message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = omega_emp_origin
+				}
+				give_technology = { tech = tech_omega_unrestricted_knowledge message = no }
+				give_technology = { tech = tech_omega_unrestricted_targeting_scanners message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = illium_cor_origin
+				}
+				give_technology = { tech = tech_illium_stock_market message = no }
+				give_technology = { tech = tech_illium_shady_business_lines message = no }
+				give_technology = { tech = tech_illium_bleeding_edge message = no }
+				give_technology = { tech = tech_illium_outsourced_law_enforcement message = no }
+				give_technology = { tech = tech_illium_reinforced_arcologies message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = caleston_dir_origin
+				}
+				give_technology = { tech = tech_caleston_dir_hazard_suit message = no }
+				give_technology = { tech = tech_caleston_dir_eezo_refinement message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = remnants_rak_origin
+				}
+				give_technology = { tech = tech_drell_rachati_blades message = no }
+				give_technology = { tech = tech_drell_endothermic_valve_rerouters message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = vorcha_cla_origin
+				}
+				give_technology = { tech = tech_vorcha_tribe_of_tribes message = no }
+				give_technology = { tech = tech_vorcha_call_of_heshtok message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = sedriicae_col_origin
+				}
+				give_technology = { tech = tech_sedriicae_economic_policy message = no }
+				give_technology = { tech = tech_sedriicae_industry_modernization message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = lystheni_ord_origin
+				}
+				give_technology = { tech = tech_lystheni_viral_warfare_strategem message = no }
+				give_technology = { tech = tech_lystheni_oracle_class_ai message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = gothones_rem_origin
+				}
+				give_technology = { tech = tech_gothones_harmonious_husbandry message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = parnack_reg_origin
+				}
+				give_technology = { tech = tech_parnack_registry_of_alphas message = no }
+				give_technology = { tech = tech_parnack_standing_armies message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = raloi_rep_origin
+				}
+				give_technology = { tech = tech_raloi_foreign_advisors message = no }
+			}
+			if = {
+				limit = { 
+					OR = {
+						has_origin = geth_con_origin
+						has_origin = disciples_naz_origin
+					}
+				}
+				give_technology = { tech = tech_geth_uv_pd_laser message = no }
+				give_technology = { tech = tech_geth_sphere_phys message = no }
+			}
+			if = {
+				limit = { 
+					has_origin = rachni_hiv_origin
+				}
+				give_technology = { tech = tech_rachni_symphonic_intonation message = no }
+				give_technology = { tech = tech_rachni_dissonant_resolution message = no }
+				give_technology = { tech = tech_rachni_chord_progression message = no }
+				give_technology = { tech = tech_rachni_dominant_intervals message = no }
+				give_technology = { tech = tech_rachni_experimental_swarmshop message = no }
+			}
+		}
+	}
+}
+
+count_robots_to_recycle_for_light_metals = {
+
+	set_variable = {
+		which = light_metals_for_robot
+		value = $LIGHT_METALS$
+	}
+
+	set_variable = {
+		which = recycled_robots
+		value = 0
+	}
+
+	# if machine empire, get half of the population
+	if = {
+		limit = {
+			owner = { is_machine_empire = yes }
+		}
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop
+			parameters = {
+				limit = {
+					is_robot_pop = yes
+				}
+			}
+			variable = recycled_robots
+		}
+		divide_variable = {
+			which = recycled_robots
+			value = 2
+		}
+
+		round_variable  = recycled_robots
+	}
+	# if normal empire, get all robots
+	else = {
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop
+			parameters = {
+				limit = {
+					OR = {
+						is_shackled_robot = yes
+						is_non_sapient_robot = yes
+					}
+				}
+			}
+			variable = recycled_robots
+		}
+	}
+
+	set_variable = {
+		which = total_light_metals_gained
+		value = recycled_robots
+	}
+
+	multiply_variable = {
+		which = total_light_metals_gained
+		value = $LIGHT_METALS$
+	}
+}
+
+count_robots_to_recycle_for_heavy_metals = {
+
+	set_variable = {
+		which = heavy_metals_for_robot
+		value = $HEAVY_METALS$
+	}
+
+	set_variable = {
+		which = recycled_robots
+		value = 0
+	}
+
+	# if machine empire, get half of the population
+	if = {
+		limit = {
+			owner = { is_machine_empire = yes }
+		}
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop
+			parameters = {
+				limit = {
+					is_robot_pop = yes
+				}
+			}
+			variable = recycled_robots
+		}
+		divide_variable = {
+			which = recycled_robots
+			value = 2
+		}
+
+		round_variable  = recycled_robots
+	}
+	# if normal empire, get all robots
+	else = {
+		export_trigger_value_to_variable = {
+			trigger = count_owned_pop
+			parameters = {
+				limit = {
+					OR = {
+						is_shackled_robot = yes
+						is_non_sapient_robot = yes
+					}
+				}
+			}
+			variable = recycled_robots
+		}
+	}
+
+	set_variable = {
+		which = total_heavy_metals_gained
+		value = recycled_robots
+	}
+
+	multiply_variable = {
+		which = total_heavy_metals_gained
+		value = $HEAVY_METALS$
 	}
 }

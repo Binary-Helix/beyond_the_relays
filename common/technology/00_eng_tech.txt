@@ -60,12 +60,12 @@ tech_corvettes = {
 		factor = 1000
 	}
 
-	starting_potential = {
-		is_low_tech_start = no # So Broken Shackles origin players don't start with it
-	}
-
 	ai_weight = {
 		weight = 10000
+	}
+
+	starting_potential = {
+		is_low_tech_start = no # So Broken Shackles origin players don't start with it
 	}
 }
 
@@ -228,7 +228,6 @@ tech_battleships = {
 			factor = 1.25
 			has_tradition = tr_supremacy_adopt
 		}
-		modifier = {
 	}
 
 	ai_weight = {
@@ -312,7 +311,12 @@ tech_juggernaut = {
 	potential = {
 		host_has_dlc = "Federations"
 		NOT = {
-			galaxy_size = btr_hybrid_600
+			#galaxy_size = btr_hybrid_600
+			#galaxy_size = btr_hybrid_1300
+			#galaxy_size = btr_hybrid_1500
+			galaxy_size = btr_canon_600
+			galaxy_size = btr_canon_1300
+			galaxy_size = btr_canon_1500
 		}
 	}
 
@@ -613,7 +617,7 @@ tech_cruiser_hull_2 = {
 	modifier = {
 		custom_tooltip = tech_cruiser_hull_effect
 		shipsize_cruiser_hull_mult = 0.1
-		shipsize_offspring_cruiser_hull_add = 0.1
+		shipsize_offspring_cruiser_hull_mult = 0.1
 	}
 
 	weight_modifier = {
@@ -684,8 +688,8 @@ tech_battleship_hull_1 = {
 
 	modifier = {
 		custom_tooltip = tech_battleship_hull_effect
-		shipsize_battleship_hull_add = 800
-		shipsize_offspring_battleship_hull_add = 800
+		shipsize_battleship_hull_mult = 0.1
+		shipsize_offspring_battleship_hull_mult = 0.1
 	}
 
 	weight_modifier = {
@@ -1124,11 +1128,19 @@ tech_habitat_1 = {
 	prereqfor_desc = {
 		ship = {
 			title = "allow_habitats"
-			desc = "habitat_0_MEGASTRUCTURE_DETAILS"
+			desc = "habitat_central_complex_MEGASTRUCTURE_DETAILS"
 		}
 	}
 
 	ai_weight = {
+		modifier = {
+			factor = 100
+			OR = {
+				has_origin = origin_toxic_knights
+				has_country_flag = payback_habitat
+				has_valid_civic = civic_void_hive
+			}
+		}
 	}
 }
 
@@ -1148,11 +1160,8 @@ tech_habitat_2 = {
 		}
 	}
 
-	prereqfor_desc = {
-		ship = {
-			title = "allow_habitat_upgrade"
-			desc = "tech_habitat_2_effect"
-		}
+	modifier = {
+		habitat_max_districts_add = 1
 	}
 
 	weight_modifier = {
@@ -1171,6 +1180,14 @@ tech_habitat_2 = {
 	}
 
 	ai_weight = {
+		modifier = {
+			factor = 100
+			OR = {
+				has_origin = origin_toxic_knights
+				has_country_flag = payback_habitat
+				has_valid_civic = civic_void_hive
+			}
+		}
 	}
 }
 
@@ -1190,11 +1207,8 @@ tech_habitat_3 = {
 		}
 	}
 
-	prereqfor_desc = {
-		ship = {
-			title = "allow_habitat_2_upgrade"
-			desc = "tech_habitat_3_effect"
-		}
+	modifier = {
+		habitat_max_districts_add = 1
 	}
 
 	weight_modifier = {
@@ -1213,6 +1227,15 @@ tech_habitat_3 = {
 	}
 
 	ai_weight = {
+		modifier = {
+			factor = 100
+			OR = {
+				has_origin = origin_void_dwellers
+				has_origin = origin_toxic_knights
+				has_country_flag = payback_habitat
+				has_valid_civic = civic_void_hive
+			}
+		}
 	}
 }
 
@@ -1560,14 +1583,19 @@ tech_crystal_armor_1 = {
 		}
 	}
 
-	ai_weight = {
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = engineering
-				has_trait = "leader_trait_expertise_materials"
-			}
+	potential = {
+		host_has_dlc = "Federations"
+		NOT = {
+			#galaxy_size = btr_hybrid_600
+			#galaxy_size = btr_hybrid_1300
+			#galaxy_size = btr_hybrid_1500
+			galaxy_size = btr_canon_600
+			galaxy_size = btr_canon_1300
+			galaxy_size = btr_canon_1500
 		}
+	}
+
+	ai_weight = {
 	}
 }
 
@@ -1791,7 +1819,7 @@ tech_basic_industry = {
 	start_tech = yes
 	category = { industry }
 	tier = 0
-	icon = "tech_space_construction"
+	icon = "t_space_construction"
 
 	# unlocks basic buildings
 }
@@ -1802,7 +1830,7 @@ tech_mechanized_mining = {
 	start_tech = yes
 	category = { industry }
 	tier = 0
-	icon = "tech_space_construction"
+	icon = "t_space_construction"
 
 	# unlocks mining districts
 }
@@ -2557,13 +2585,6 @@ tech_synthetic_workers = {
 		modifier = {
 			factor = 2
 			has_origin = origin_mechanists
-		}
-		modifier = {
-			factor = 1.25
-			research_leader = {
-				area = engineering
-				has_trait = "leader_trait_expertise_industry"
-			}
 		}
 	}
 }

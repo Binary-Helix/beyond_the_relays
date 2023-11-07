@@ -1,4 +1,7 @@
-###NOTE FROM PUCK - Only change is added Planetary Station to is_special_colony_type.
+###NOTE FROM PUCK - 
+# - Planetary Station to is_special_colony_type.
+# - Added BTR classes to Planetary Gen Triggers
+# - Disabled a few Vanilla planet classes in Gen Triggers
 
 #	Example:
 #
@@ -336,6 +339,11 @@ has_humanoids = {
 	host_has_dlc = "Humanoids Species Pack"
 }
 
+has_humanoids_local = {
+	optimize_memory
+	local_has_dlc = "Humanoids Species Pack"
+}
+
 has_not_humanoids = {
 	optimize_memory
 	NOT = { host_has_dlc = "Humanoids Species Pack" }
@@ -413,6 +421,10 @@ uninhabitable_regular_planet = {
 		is_planet_class = pc_barren_cold
 		is_planet_class = pc_toxic
 		is_planet_class = pc_frozen
+		is_planet_class = pc_carbon
+		is_planet_class = pc_iron
+		is_planet_class = pc_chthonian
+		is_planet_class = pc_hothouse
 	}
 }
 
@@ -438,45 +450,134 @@ habitable_planet = {
 
 habitable_planet_not_urban = {
 	OR = {
-		is_planet_class = pc_desert
-		is_planet_class = pc_tropical
-		is_planet_class = pc_arid
 		is_planet_class = pc_continental
+		is_planet_class = pc_dextro_continental
+		is_planet_class = pc_highgrav_continental
+		is_planet_class = pc_dextro_highgrav_continental
+		is_planet_class = pc_tropical
+		is_planet_class = pc_dextro_tropical
+		is_planet_class = pc_highgrav_tropical
+		is_planet_class = pc_dextro_highgrav_tropical
 		is_planet_class = pc_ocean
-		is_planet_class = pc_tundra
+		is_planet_class = pc_dextro_ocean
+		is_planet_class = pc_highgrav_ocean
+		is_planet_class = pc_dextro_highgrav_ocean
 		is_planet_class = pc_arctic
+		is_planet_class = pc_dextro_arctic
+		is_planet_class = pc_highgrav_arctic
+		is_planet_class = pc_dextro_highgrav_arctic
+		is_planet_class = pc_tundra
+		is_planet_class = pc_dextro_tundra
+		is_planet_class = pc_highgrav_tundra
+		is_planet_class = pc_dextro_highgrav_tundra
 		is_planet_class = pc_alpine
+		is_planet_class = pc_dextro_alpine
+		is_planet_class = pc_highgrav_alpine
+		is_planet_class = pc_dextro_highgrav_alpine
+		is_planet_class = pc_desert
+		is_planet_class = pc_dextro_desert
+		is_planet_class = pc_highgrav_desert
+		is_planet_class = pc_dextro_highgrav_desert
+		is_planet_class = pc_arid
+		is_planet_class = pc_dextro_arid
+		is_planet_class = pc_highgrav_arid
+		is_planet_class = pc_dextro_highgrav_arid
 		is_planet_class = pc_savannah
+		is_planet_class = pc_dextro_savannah
+		is_planet_class = pc_highgrav_savannah
+		is_planet_class = pc_dextro_highgrav_savannah
+		is_planet_class = pc_swamp
+		is_planet_class = pc_dextro_swamp
+		is_planet_class = pc_highgrav_swamp
+		is_planet_class = pc_dextro_highgrav_swamp
 		is_planet_class = pc_gaia
 	}
 }
 
 is_starting_planet_type = {
 	OR = {
-		is_planet_class = pc_desert
-		is_planet_class = pc_tropical
-		is_planet_class = pc_arid
 		is_planet_class = pc_continental
+		is_planet_class = pc_dextro_continental
+		is_planet_class = pc_highgrav_continental
+		is_planet_class = pc_dextro_highgrav_continental
+		is_planet_class = pc_tropical
+		is_planet_class = pc_dextro_tropical
+		is_planet_class = pc_highgrav_tropical
+		is_planet_class = pc_dextro_highgrav_tropical
 		is_planet_class = pc_ocean
-		is_planet_class = pc_tundra
+		is_planet_class = pc_dextro_ocean
+		is_planet_class = pc_highgrav_ocean
+		is_planet_class = pc_dextro_highgrav_ocean
 		is_planet_class = pc_arctic
+		is_planet_class = pc_dextro_arctic
+		is_planet_class = pc_highgrav_arctic
+		is_planet_class = pc_dextro_highgrav_arctic
+		is_planet_class = pc_tundra
+		is_planet_class = pc_dextro_tundra
+		is_planet_class = pc_highgrav_tundra
+		is_planet_class = pc_dextro_highgrav_tundra
 		is_planet_class = pc_alpine
+		is_planet_class = pc_dextro_alpine
+		is_planet_class = pc_highgrav_alpine
+		is_planet_class = pc_dextro_highgrav_alpine
+		is_planet_class = pc_desert
+		is_planet_class = pc_dextro_desert
+		is_planet_class = pc_highgrav_desert
+		is_planet_class = pc_dextro_highgrav_desert
+		is_planet_class = pc_arid
+		is_planet_class = pc_dextro_arid
+		is_planet_class = pc_highgrav_arid
+		is_planet_class = pc_dextro_highgrav_arid
 		is_planet_class = pc_savannah
+		is_planet_class = pc_dextro_savannah
+		is_planet_class = pc_highgrav_savannah
+		is_planet_class = pc_dextro_highgrav_savannah
+		is_planet_class = pc_swamp
+		is_planet_class = pc_dextro_swamp
+		is_planet_class = pc_highgrav_swamp
+		is_planet_class = pc_dextro_highgrav_swamp
 	}
 }
 
 can_have_habitable_deposits = {
 	OR = {
 		is_planet_class = pc_nuked
-		is_planet_class = pc_desert
-		is_planet_class = pc_tropical
-		is_planet_class = pc_arid
 		is_planet_class = pc_continental
+		is_planet_class = pc_dextro_continental
+		is_planet_class = pc_highgrav_continental
+		is_planet_class = pc_dextro_highgrav_continental
+		is_planet_class = pc_tropical
+		is_planet_class = pc_dextro_tropical
+		is_planet_class = pc_highgrav_tropical
+		is_planet_class = pc_dextro_highgrav_tropical
 		is_planet_class = pc_ocean
-		is_planet_class = pc_tundra
+		is_planet_class = pc_dextro_ocean
+		is_planet_class = pc_highgrav_ocean
+		is_planet_class = pc_dextro_highgrav_ocean
 		is_planet_class = pc_arctic
+		is_planet_class = pc_dextro_arctic
+		is_planet_class = pc_highgrav_arctic
+		is_planet_class = pc_dextro_highgrav_arctic
+		is_planet_class = pc_tundra
+		is_planet_class = pc_dextro_tundra
+		is_planet_class = pc_highgrav_tundra
+		is_planet_class = pc_dextro_highgrav_tundra
 		is_planet_class = pc_alpine
+		is_planet_class = pc_dextro_alpine
+		is_planet_class = pc_highgrav_alpine
+		is_planet_class = pc_dextro_highgrav_alpine
+		is_planet_class = pc_desert
+		is_planet_class = pc_dextro_desert
+		is_planet_class = pc_highgrav_desert
+		is_planet_class = pc_dextro_highgrav_desert
+		is_planet_class = pc_arid
+		is_planet_class = pc_dextro_arid
+		is_planet_class = pc_highgrav_arid
+		is_planet_class = pc_dextro_highgrav_arid
 		is_planet_class = pc_savannah
+		is_planet_class = pc_dextro_savannah
+		is_planet_class = pc_highgrav_savannah
+		is_planet_class = pc_dextro_highgrav_savannah
 		is_planet_class = pc_gaia
 		is_planet_class = pc_relic
 	}
@@ -646,6 +747,13 @@ allows_purge = {
 	}
 }
 
+allows_preftl_exploitation = {
+	OR = {
+		has_policy_flag = interference_aggressive
+		has_policy_flag = interference_active
+	}
+}
+
 can_build_megastructure_on_planet = {
 	has_any_megastructure = no
 	NOR = {
@@ -656,13 +764,6 @@ can_build_megastructure_on_planet = {
 		}
 	}
 }
-
-allows_preftl_exploitation = {
-	OR = {
-		has_policy_flag = interference_aggressive
-		has_policy_flag = interference_active
-		 }
-	 }
 
 has_generic_government = {
 	OR = {
@@ -1026,6 +1127,16 @@ is_robot_empire = {
 	}
 }
 
+# Scopes: country, leader, pop, army, (colony) ship
+is_mechanical_species = {
+	species = {
+		OR = {
+			has_trait = trait_machine_unit # Machine Intelligence
+			has_trait = trait_mechanical # Robots & Synthetically-ascended Pops
+		}
+	}
+}
+
 is_lithoid_empire = {
 	owner_species = { is_lithoid = yes }
 }
@@ -1316,18 +1427,10 @@ is_xenophobe = {
 is_regular_empire = {
 	OR = {
 		is_country_type = default
+		#for checks in buildings and districts
+		is_country_type = awakened_marauders
 		is_country_type = fallen_empire
-		is_country_type = awakened_fallen_empire #for checks in buildings
-	}
-	NOT = { has_ethic = ethic_gestalt_consciousness	}
-}
-
-is_regular_empire_or_primitive = {
-	OR = {
-		is_country_type = default
-		is_country_type = fallen_empire
-		is_country_type = awakened_fallen_empire #for checks in buildings
-		is_primitive = yes
+		is_country_type = awakened_fallen_empire
 	}
 	NOT = { has_ethic = ethic_gestalt_consciousness	}
 }
@@ -1632,7 +1735,7 @@ has_no_non_gate_megastructure = {
 					is_megastructure_type = spy_orb_ruined
 					is_megastructure_type = spy_orb_restored
 
-					is_megastructure_type = habitat_0
+					is_megastructure_type = habitat_central_complex
 
 					is_megastructure_type = matter_decompressor_0
 					is_megastructure_type = matter_decompressor_1
@@ -1720,6 +1823,36 @@ is_slaver = {
 	}
 }
 
+# country scope | see 'triggered_opinion_xenophage'
+is_xenophage = {
+	OR = {
+		allows_purge = yes
+		allows_slavery = yes
+	}
+	any_owned_species = {
+		is_sapient = yes
+		OR = {
+			AND = {
+				has_citizenship_type = { country = prev type = citizenship_slavery }
+				OR = {
+					has_slavery_type = { country = prev type = slavery_livestock }
+					has_slavery_type = { country = prev type = slavery_matrix }
+				}
+			}
+			AND = {
+				OR = {
+					has_citizenship_type = { country = prev type = citizenship_purge_machine }
+					has_citizenship_type = { country = prev type = citizenship_purge }
+				}
+				OR = {
+					has_purge_type = { country = prev type = purge_processing }
+					has_purge_type = { country = prev type = purge_matrix }
+				}
+			}
+		}
+	}
+}
+
 has_active_xuracorp_trade = {
 	OR = {
 		has_modifier = enclave_trade_1_xur
@@ -1760,57 +1893,151 @@ has_distar = {
 #########################################
 
 is_wet = {
-	has_climate = wet
+	OR = {
+		has_climate = wet
+		AND = {
+			is_exotic = yes
+			OR = {
+				has_planet_modifier = pm_atoll_world
+				has_planet_modifier = pm_coastal_world
+				has_planet_modifier = pm_jungle_world
+				has_planet_modifier = pm_biolum_world
+				has_planet_modifier = pm_marsh_world
+				has_planet_modifier = pm_mangrove_world
+				has_planet_modifier = pm_bog_world
+				has_planet_modifier = pm_lake_world
+				has_planet_modifier = pm_prairie_world
+				has_planet_modifier = pm_temperate_world
+				has_planet_modifier = pm_forest_world
+				has_planet_modifier = pm_supercon_world
+				has_planet_modifier = pm_hotocean_world
+				has_planet_modifier = pm_ocean_world
+				has_planet_modifier = pm_coldocean_world
+				has_planet_modifier = pm_storm_world
+			}
+		}		
+	}
 }
 
 is_dry = {
-	has_climate = dry
-	NOT = { is_planet_class = pc_city }
+	OR = {
+		OR = {
+			AND = {
+				is_barren = no
+				has_climate = dry
+			}
+			NOT = { is_planet_class = pc_city }			
+		}
+		AND = {
+			is_exotic = yes
+			OR = {
+				has_planet_modifier = pm_dune_world
+				has_planet_modifier = pm_dust_world
+				has_planet_modifier = pm_badlands_world
+				has_planet_modifier = pm_aquifer_world
+				has_planet_modifier = pm_mesa_world
+				has_planet_modifier = pm_cenote_world
+				has_planet_modifier = pm_outback_world
+				has_planet_modifier = pm_oasis_world
+				has_planet_modifier = pm_steppe_world
+				has_planet_modifier = pm_veld_world
+				has_planet_modifier = pm_medit_world
+				has_planet_modifier = pm_retinal_world				
+			}
+		}
+	}
 }
 
 is_barren = {
 	OR = {
 		is_planet_class = pc_barren
 		is_planet_class = pc_barren_cold
-		is_planet_class = pc_asteroid
+		is_planet_class = pc_carbon
+		is_planet_class = pc_iron
+		is_planet_class = pc_chthonian
+		is_asteroid = yes
 	}
 }
 
 is_cold = {
-	has_climate = cold
+	OR = {
+		has_climate = cold
+		OR = {
+			is_exotic = yes
+		}
+		OR = {
+			has_planet_modifier = pm_boreal_world
+			has_planet_modifier = pm_highland_world
+			has_planet_modifier = pm_cascadian_world
+			has_planet_modifier = pm_crag_world
+			has_planet_modifier = pm_basalt_world
+			has_planet_modifier = pm_lichen_world
+			has_planet_modifier = pm_mire_world
+			has_planet_modifier = pm_fungal_world
+			has_planet_modifier = pm_snow_world
+			has_planet_modifier = pm_glacial_world
+			has_planet_modifier = pm_antar_world
+			has_planet_modifier = pm_cryovolcanic_world
+		}
+	}
 }
 
 can_have_mineral_deposits = {
 	OR = {
-		is_planet_class = pc_asteroid
+		is_asteroid = yes
 		is_planet_class = pc_molten
-		is_planet_class = pc_toxic
+		is_planet_class = pc_hothouse
 		is_planet_class = pc_frozen
 		is_planet_class = pc_barren
 		is_planet_class = pc_barren_cold
+		is_planet_class = pc_toxic # Disabled in BTR
+		is_planet_class = pc_frozen
 		is_planet_class = pc_broken
 		is_planet_class = pc_shattered
+		is_planet_class = pc_carbon
+		is_planet_class = pc_iron
+		is_planet_class = pc_chthonian
 	}
 }
 
+
 can_have_energy_deposits = {
 	OR = {
-		is_planet_class = pc_a_star
+		is_planet_class = pc_o_star # BTR Addition
+		is_planet_class = pc_o_super_star # BTR Addition
+		is_planet_class = pc_o_hyper_star # BTR Addition
 		is_planet_class = pc_b_star
+		is_planet_class = pc_b_super_star # BTR Addition
+		is_planet_class = pc_a_star
+		is_planet_class = pc_a_super_star # BTR Addition
 		is_planet_class = pc_f_star
+		is_planet_class = pc_f_super_star # BTR Addition
 		is_planet_class = pc_g_star
+		is_planet_class = pc_g_giant_star	
+		is_planet_class = pc_g_super_star # BTR Addition
 		is_planet_class = pc_k_star
+		is_planet_class = pc_k_super_star # BTR Addition
 		is_planet_class = pc_m_star
 		is_planet_class = pc_m_giant_star
+		is_planet_class = pc_m_super_star # BTR Addition
+		is_planet_class = pc_m_hyper_star # BTR Addition
 		is_planet_class = pc_t_star
-		is_planet_class = pc_gas_giant
-		is_planet_class = pc_molten
-		is_planet_class = pc_ice_asteroid
+		is_planet_class = pc_l_star	# BTR Addition
+		is_planet_class = pc_y_star	# BTR Addition		
+		is_planet_class = pc_d_star	# BTR Addition
+		is_planet_class = pc_neutron_star	# BTR Addition
+		is_planet_class = pc_pulsar	# BTR Addition
+		is_planet_class = pc_magnetar	# BTR Addition
+		is_planet_class = pc_fu_star	# BTR Addition
+		# is_planet_class = pc_gas_giant # BTR Removal
+		# is_planet_class = pc_molten # BTR Removal
+		# is_planet_class = pc_ice_asteroid # BTR Removal
 	}
 }
 
 can_have_society_deposits = {
 	is_planet_class = pc_toxic
+	is_planet_class = pc_hothouse
 }
 
 can_have_minor_physics_deposits = {
@@ -1846,6 +2073,8 @@ can_have_minor_engineering_deposits = {
 	OR = {
 		is_planet_class = pc_frozen
 		is_planet_class = pc_gas_giant
+		is_planet_class = pc_ice_giant
+		is_planet_class = pc_hot_giant
 	}
 }
 
@@ -1864,29 +2093,30 @@ can_have_trade_deposits = {
 		is_planet_class = pc_gas_giant
 		is_planet_class = pc_molten
 		is_planet_class = pc_toxic
+		is_planet_class = pc_hothouse
 		is_asteroid = yes
 	}
 }
 
 can_have_volatile_motes_deposit = {
 	OR = {
-		is_planet_class = pc_molten
-		is_planet_class = pc_asteroid
+		#is_planet_class = pc_molten
+		#is_planet_class = pc_asteroid
 	}
 }
 
 can_have_rare_crystals_deposits = {
 	OR = {
-		is_planet_class = pc_gas_giant
-		is_planet_class = pc_toxic
+		#is_planet_class = pc_gas_giant
+		#is_planet_class = pc_toxic
 	}
 }
 
 can_have_exotic_gases_deposits = {
 	OR = {
-		is_planet_class = pc_frozen
-		is_planet_class = pc_ice_asteroid
-		is_inside_nebula = yes
+		#is_planet_class = pc_frozen
+		#is_planet_class = pc_ice_asteroid
+		#is_inside_nebula = yes
 	}
 }
 
@@ -1910,7 +2140,7 @@ can_build_megastructures = {
 		has_technology = tech_gateway_construction
 		has_technology = tech_ring_world
 		has_technology = tech_orbital_ring_tier_1
-		has_technology = tech_hyper_relays 
+		has_technology = tech_hyper_relays
 		can_build_unity_megastructures = yes
 	}
 }
@@ -2771,6 +3001,23 @@ is_drone_country_type = {
 	}
 }
 
+is_pacified_space_critter_country_type = {
+	OR = {
+		is_country_type = tiyanki
+		AND = {
+			OR = { 
+				is_country_type = amoeba
+				is_country_type = amoeba_borderless
+			}
+			root = { has_country_flag = pacified_amoebas }
+		}
+		AND = {
+			is_country_type = crystal
+			root = { has_country_flag = pacified_crystals }
+		}
+	}
+}
+
 #solar_system scope
 is_valid_drone_expansion_destination_system = {
 	NOR = {
@@ -2806,6 +3053,7 @@ is_valid_crystal_splitter_system = {
 		has_star_flag = amoeba_home_system
 		has_star_flag = lcluster
 		has_star_flag = sealed_system
+		has_star_flag = fruitful_colonization
 	}
 	any_system_planet = { is_asteroid = yes }
 }
@@ -3022,6 +3270,8 @@ is_low_tech_start = {
 		has_origin = origin_broken_shackles
 		has_origin = origin_payback
 		is_eager_explorer_empire = yes
+		has_origin = vorcha_cla_origin
+		has_origin = remnants_rak_origin
 	}
 }
 
@@ -3236,6 +3486,13 @@ can_assemble_clone_soldier_pop = {
 	}
 }
 
+has_psionic_species_trait = {
+	OR = {
+		has_trait = trait_latent_psionic
+		has_trait = trait_psionic
+	}
+}
+
 is_pleasure_seeker = {
 	OR = {
 		has_valid_civic = civic_pleasure_seekers
@@ -3281,8 +3538,15 @@ is_death_cult_empire = {
 	}
 }
 
+is_worker_coop_empire = {
+	has_valid_civic = civic_worker_coop
+}
+
 is_subterranean_empire = {
-	has_origin = origin_subterranean
+	OR = {
+		has_origin = origin_subterranean
+		has_origin = rachni_hiv_origin
+	}
 }
 
 overlord_subject_event_trigger = {
@@ -3360,6 +3624,10 @@ is_orbital_ring = {
 	has_starbase_size >= orbital_ring_tier_1
 }
 
+is_normal_starbase = {
+	has_starbase_size >= starbase_outpost
+}
+
 is_faction_allowed = {
 	OR = {
 		AND = {
@@ -3419,6 +3687,7 @@ values_others = {
 		has_valid_civic = civic_hive_empath
 		has_valid_civic = civic_machine_servitor
 		has_valid_civic = civic_machine_exploration_protocol
+		has_origin = origin_fruitful
 	}
 }
 
@@ -3530,6 +3799,7 @@ is_reanimator = {
 		has_valid_civic = civic_reanimated_armies
 		has_valid_civic = civic_permanent_employment
 		has_valid_civic = civic_hive_cordyceptic_drones
+		has_ascension_perk = ap_mechromancy
 	}
 }
 
@@ -3689,11 +3959,29 @@ got_any_unprotected_drones = {
 # This can replace all the specific ones.
 has_councilor = {
 	exists = owner
-	owner = { 
+	owner = {
 		any_owned_leader = {
 			is_councilor = yes
-			is_councilor_type = $COUNCILOR$					
+			is_councilor_type = $COUNCILOR$			
 		}
+	}
+}
+
+has_enclave_councilor = {
+	OR = {
+		has_councilor = { COUNCILOR = councilor_shroudwalker_teacher }
+		has_councilor = { COUNCILOR = councilor_master_salvager }
+		has_councilor = { COUNCILOR = councilor_curator_archivist }
+		has_councilor = { COUNCILOR = councilor_enclave_trader }
+	}
+}
+
+is_enclave_councilor_type = {
+	OR = {
+		is_councilor_type = councilor_shroudwalker_teacher
+		is_councilor_type = councilor_master_salvager
+		is_councilor_type = councilor_curator_archivist
+		is_councilor_type = councilor_enclave_trader
 	}
 }
 
@@ -3714,6 +4002,7 @@ has_special_star_flag_trigger = {
 		has_star_flag = neighbor_t1_first_colony
 		has_star_flag = neighbor_t2
 		has_star_flag = neighbor_t2_second_colony
+		has_star_flag = empire_cluster
 		# Enclaves
 		has_star_flag = enclave
 		has_star_flag = caravaneer_home
@@ -3813,6 +4102,7 @@ is_human_species = {
 	OR = {
 		species_portrait = human
 		species_portrait = human_legacy
+		species_portrait = pla17
 	}
 }
 
@@ -3910,7 +4200,7 @@ is_preftl_but_not_special = {
 			NOR = {
 				has_trait = trait_hive_mind
 				has_trait = trait_pc_habitat_preference
-				# has_trait = pc_warden_guardian_preference
+	#			has_trait = pc_warden_guardian_preference
 			}
 		}
 		capital_scope = {
@@ -3983,9 +4273,75 @@ has_presapient_trait = {
 
 is_memory_vault_empire = {
 	OR = {
-		has_civic = civic_memory_vault
-		has_civic = civic_memory_vault_corporate
-		has_civic = civic_memory_vault_machine
-		has_civic = civic_memory_vault_hive
+		has_valid_civic = civic_memory_vault
+		has_valid_civic = civic_memory_vault_corporate
+		has_valid_civic = civic_memory_vault_machine
+		has_valid_civic = civic_memory_vault_hive
+	}
+}
+
+has_federator_personality = {
+	OR = {
+		has_ai_personality = federation_builders
+		has_ai_personality = spiritual_seekers
+		has_ai_personality = migrating_flock
+		has_ai_personality = peaceful_traders
+	}
+}
+
+is_ascensionist_empire = {
+	OR = {
+		has_valid_civic = civic_ascensionists
+		has_valid_civic = civic_corporate_ascensionists
+		has_valid_civic = civic_hive_ascensionists
+		has_valid_civic = civic_machine_ascensionists
+	}
+}
+
+is_flora_species = {
+	OR = {
+		is_species_class = FUN
+		is_species_class = PLANT
+	}
+}
+
+is_rival_technologically_superior = {
+	any_rival_country = {
+		 relative_power = {
+		 	who = root
+		 	category = technology
+		 	value >= superior
+		 }
+	}
+}
+
+is_rival_economically_superior = {
+	any_rival_country = {
+		 relative_power = {
+		 	who = root
+		 	category = economy
+		 	value >= superior
+		 }
+	}
+}
+
+is_rival_militarily_superior = {
+	any_rival_country = {
+		 relative_power = {
+		 	who = root
+		 	category = fleet
+		 	value >= superior
+		 }
+	}
+}
+
+blocks_disruptive_gameplay = { #In case we ever want to extend the effect to other game options
+	is_difficulty = 0
+}
+
+is_void_dweller_empire = {
+	OR = {
+		has_ascension_perk = ap_voidborn
+		has_origin = origin_void_dwellers
 	}
 }

@@ -75,6 +75,50 @@ entity = {
 		event = { time = 2.0 node = "bombardment_location_4" particle = "planetary_bombardment_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
 		event = { time = 5.0 node = "bombardment_location_8" particle = "planetary_bombardment_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
 	}
+		
+	state = { name = "bombard_pox" state_time = 4 looping = no next_state = "bombard_pox" chance = 1
+		event = { time = 0 node = "bombardment_location_7" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 2.0 node = "bombardment_location_4" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 5.0 node = "bombardment_location_8" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+	}
+
+	state = { name = "bombard_pox" state_time = 5.0 looping = no next_state = "bombard_pox" chance = 1
+		event = { time = 0 node = "bombardment_location_3" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 0.6 node = "bombardment_location_5" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 1.2 node = "bombardment_location_8" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 1.8 node = "bombardment_location_11" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 2.4 node = "bombardment_location_16" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+	}
+	
+	state = { name = "bombard_pox" state_time = 5.0 looping = no next_state = "bombard_pox" chance = 1
+		event = { time = 0 node = "bombardment_location_4" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 0.5 node = "bombardment_location_6" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 1.2 node = "bombardment_location_9" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 1.8 node = "bombardment_location_12" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 2.4 node = "bombardment_location_18" particle = "planetary_bombardment_pox_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+	}
+	
+	state = { name = "bombard_seed_bombing" state_time = 4 looping = no next_state = "bombard_seed_bombing" chance = 1
+		event = { time = 0 node = "bombardment_location_7" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 2.0 node = "bombardment_location_4" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 5.0 node = "bombardment_location_8" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+	}
+	
+	state = { name = "bombard_seed_bombing" state_time = 6.0 looping = no next_state = "bombard_seed_bombing" chance = 1
+		event = { time = 0 node = "bombardment_location_3" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 0.6 node = "bombardment_location_5" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 1.2 node = "bombardment_location_8" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 1.8 node = "bombardment_location_11" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 2.4 node = "bombardment_location_16" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+	}
+	
+	state = { name = "bombard_seed_bombing" state_time = 6.0 looping = no next_state = "bombard_seed_bombing" chance = 1
+		event = { time = 0 node = "bombardment_location_4" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 0.5 node = "bombardment_location_6" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 1.2 node = "bombardment_location_9" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 1.8 node = "bombardment_location_12" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+		event = { time = 2.4 node = "bombardment_location_18" particle = "planetary_bombardment_seed_effect" keep_particle = yes sound = { soundeffect = "bombardment_explosion" } }
+	}
 
 	scale = 1.0
 }
@@ -172,6 +216,7 @@ entity = {
 	texture_diffuse = "ai_01_diffuse.dds"
 	texture_normal = "ai_01_normals.dds"
 	texture_specular = "ai_01_specular.dds"
+	shader = "PdxMeshTerra"
 	}
 
 	##cloud texture override
@@ -3232,7 +3277,25 @@ entity = {
 	attach = { locator2 = "mammalian_01_ringworld_tech_entity_01_entity" }
 }
 
+# Only used for the preview in the ACB
+entity = {
+	name = "mammalian_01_ringworld_full_entity"
+	cull_radius = 500.0
 
+	locator = { name = "ringworld_north" 		position = { 450	0 	0 		} rotation = {	90	0	0	}		}
+	locator = { name = "ringworld_south" 		position = { -450	0 	0 		} rotation = {	-90	0	0	}		}
+	locator = { name = "ringworld_west" 		position = { 0		0 	450 	} rotation = {	0	0	0	}		}
+	locator = { name = "ringworld_east" 		position = { 0		0 	-450 	} rotation = {	180	0	0	}		}
+
+	attach = { ringworld_north 		= "mammalian_01_ringworld_phase_3_construction_entity" }
+	attach = { ringworld_south 		= "mammalian_01_ringworld_phase_3_construction_entity" }
+	attach = { ringworld_west 		= "mammalian_01_ringworld_phase_3_construction_entity" }
+	attach = { ringworld_east 		= "mammalian_01_ringworld_phase_3_construction_entity" }
+
+	game_data = {
+		size = 500
+	}
+}
 
 
 entity = {
@@ -5111,33 +5174,6 @@ entity = {
 }
 
 
-	#	entity = {
-	#		name = "ringworld_seam_construction_entity"
-	#		pdxmesh = "ringworld_seam_construction_mesh"
-	#
-	#		meshsettings = {
-	#			name = "pCube24Shape"
-	#			index = 0
-	#			texture_diffuse = "ringworld_seam_diffuse.dds"
-	#			texture_normal = "ringworld_seam_diffuse.dds"
-	#			texture_specular = "ringworld_seam_specular.dds"
-	#			shader = "PdxMeshTerra"
-	#		}
-	#	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ###								Damaged								###
 
 
@@ -5928,5 +5964,50 @@ entity = {
 	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class" } }
 		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_class_02" } }
+	}
+}
+
+##### Hive world
+entity = {
+	name = "hive_world_planet_01_entity"
+	pdxmesh = "planet_clouded_mesh"
+
+	meshsettings = {
+	name = "planet_geosphereShape"
+	texture_diffuse = "infested_diffuse.dds"
+	texture_normal = "infested_normal.dds"
+	texture_specular = "infested_spec.dds"
+	}
+
+	##pole texture override
+	meshsettings = {
+	name = "polesShape"
+	texture_diffuse = "poles_1_diffuse.dds"
+	texture_normal = "poles_1_normal.dds"
+	texture_specular = "poles_1_specular.dds"
+	}
+
+	##cloud texture override
+	meshsettings = {
+	name = "clouds_geosphereShape"
+	texture_diffuse = "clouds_medium_diffuse.dds"
+	texture_normal = "clouds_medium_normal.dds"
+	texture_specular = "clouds_medium_specular.dds"
+	}
+
+	##cloud shadow texture override
+	meshsettings = {
+	name = "clouds_shadow_geosphereShape"
+	texture_diffuse = "clouds_medium_shadow_diffuse.dds"
+	texture_normal = "nonormal.dds"
+	texture_specular = "nospec.dds"
+	}
+	
+
+		
+	default_state = "idle"
+	state = { name = "idle" animation = "idle" time_offset = { 0 100 }
+		start_event = { trigger_once = yes sound = { soundeffect = "amb_planet_world_hive" } }
+#		start_event = { node = "planet" particle = "hive_planet_effect" keep_particle = yes trigger_once = yes }
 	}
 }

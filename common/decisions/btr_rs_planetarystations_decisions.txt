@@ -137,28 +137,16 @@ decision_deep_exploration = {
 						}
 					}
 				}
-				4 = {
-					#Motes
-					planet_event =  { id = planetarystations_decision_event.9 days = 1 }
-				}
-				4 = {
-					#Crystals
-					planet_event =  { id = planetarystations_decision_event.10 days = 1 }
-				}
-				4 = {
-					#Gas
-					planet_event =  { id = planetarystations_decision_event.11 days = 1 }
-				}
-				1 = {
-					#Zro
+				4 = { 
+					#Trace Eezo
 					planet_event =  { id = planetarystations_decision_event.12 days = 1 }
 				}
-				1 = {
-					#Dark Matter
+				2 = {
+					#Scarce Eezo
 					planet_event =  { id = planetarystations_decision_event.13 days = 1 }
 				}
 				1 = {
-					#Living Metal
+					#Abundant Eezo
 					planet_event =  { id = planetarystations_decision_event.14 days = 1 }
 				}
 				
@@ -312,17 +300,16 @@ decision_mining_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 		OR = {
 			has_deposit = d_mineral_lodes
 			has_deposit = d_ore_rich_rings
 			has_deposit = d_rich_regolith_formations
 			has_deposit = d_helium_clouds
-			has_deposit = d_dust_cavities
 			has_deposit = d_exotic_gases_vent
-			has_deposit = d_crystal_cavities
-			has_deposit = d_zro_source
+			has_deposit = d_eezo_trace
+			has_deposit = d_eezo_scarce
+			has_deposit = d_eezo_abundant
 		}
 	}
 	
@@ -352,33 +339,11 @@ decision_mining_station = {
 			}
 			if = {
 				limit = { 
-					owner = { has_technology = tech_mine_volatile_motes }
-					has_deposit = d_dust_cavities
-				}
-				custom_tooltip = district_mote_mine_add
-			}
-			if = {
-				limit = { 
 					owner = { has_technology = tech_mine_exotic_gases }
 					has_deposit = d_exotic_gases_vent
 				}
 				custom_tooltip = district_gas_refinery_add
 			}
-			if = {
-				limit = { 
-					owner = { has_technology = tech_mine_rare_crystals }
-					has_deposit = d_crystal_cavities
-				}
-				custom_tooltip = district_crystal_mining_add
-			}
-			if = {
-				limit = { 
-					owner = { has_technology = tech_mine_zro }
-					has_deposit = d_zro_source
-				}
-				custom_tooltip = district_zro_harvesting_add
-			}
-
 			if = {
 				limit = {
 					NOR = {
@@ -410,8 +375,6 @@ decision_mining_station = {
 				has_deposit = d_helium_clouds
 				has_deposit = d_exotic_gases_vent
 				has_deposit = d_exotic_gases_clouds
-				has_deposit = d_crystal_cavities
-				has_deposit = d_dust_cavities
 			}
 		}
 	}
@@ -441,7 +404,6 @@ decision_research_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 	}
 	
@@ -457,14 +419,6 @@ decision_research_station = {
 		custom_tooltip = district_testing_site_add
 		hidden_effect = {
 			if = {
-				limit = { 
-					owner = { has_technology = tech_mine_dark_matter }
-					has_deposit = d_dark_matter_formation
-				}
-				custom_tooltip = district_dark_matter_extractor_add
-			}
-			
-			if = {
 				limit = {
 					NOR = {
 						has_planet_flag = energy_station
@@ -475,7 +429,6 @@ decision_research_station = {
 						has_planet_flag = military_station
 						has_planet_flag = cultural_station
 						has_planet_flag = prison_station
-						has_planet_flag = cracking_station
 					}
 				}
 				set_planet_flag = research_station
@@ -495,8 +448,6 @@ decision_research_station = {
 				has_deposit = d_giant_vortex
 				has_deposit = d_alien_wreckage
 				has_deposit = d_enigmatic_anomaly
-				has_deposit = d_dark_matter_formation
-				has_deposit = d_nanites_source
 			}
 		}
 	}
@@ -528,7 +479,6 @@ decision_civil_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 	}
 	
@@ -594,7 +544,6 @@ decision_civil_station = {
 						has_planet_flag = military_station
 						has_planet_flag = cultural_station
 						has_planet_flag = prison_station
-						has_planet_flag = cracking_station
 					}
 				}
 				set_planet_flag = civil_station
@@ -666,7 +615,6 @@ decision_transit_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 	}
 	
@@ -709,7 +657,6 @@ decision_transit_station = {
 						has_planet_flag = military_station
 						has_planet_flag = cultural_station
 						has_planet_flag = prison_station
-						has_planet_flag = cracking_station
 					}
 				}
 				set_planet_flag = civil_station
@@ -747,7 +694,6 @@ decision_industrial_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 	}
 	
@@ -802,7 +748,6 @@ decision_industrial_station = {
 						has_planet_flag = military_station
 						has_planet_flag = cultural_station
 						has_planet_flag = prison_station
-						has_planet_flag = cracking_station
 					}
 				}
 				set_planet_flag = industrial_station
@@ -854,7 +799,6 @@ decision_military_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 	}
 	
@@ -879,7 +823,6 @@ decision_military_station = {
 						has_planet_flag = military_station
 						has_planet_flag = cultural_station
 						has_planet_flag = prison_station
-						has_planet_flag = cracking_station
 					}
 				}
 				set_planet_flag = military_station
@@ -957,7 +900,6 @@ decision_resort_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 	}
 	
@@ -998,7 +940,6 @@ decision_resort_station = {
 						has_planet_flag = military_station
 						has_planet_flag = cultural_station
 						has_planet_flag = prison_station
-						has_planet_flag = cracking_station
 					}
 				}
 				set_planet_flag = cultural_station
@@ -1048,7 +989,6 @@ decision_temple_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 	}
 	
@@ -1087,7 +1027,6 @@ decision_temple_station = {
 						has_planet_flag = military_station
 						has_planet_flag = cultural_station
 						has_planet_flag = prison_station
-						has_planet_flag = cracking_station
 					}
 				}
 				set_planet_flag = cultural_station
@@ -1137,7 +1076,6 @@ decision_unity_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 	}
 	
@@ -1185,7 +1123,6 @@ decision_unity_station = {
 						has_planet_flag = military_station
 						has_planet_flag = cultural_station
 						has_planet_flag = prison_station
-						has_planet_flag = cracking_station
 					}
 				}
 				set_planet_flag = cultural_station
@@ -1235,7 +1172,6 @@ decision_prison_station = {
 			has_planet_flag = military_station
 			has_planet_flag = cultural_station
 			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
 		}
 	}
 	
@@ -1269,7 +1205,6 @@ decision_prison_station = {
 						has_planet_flag = military_station
 						has_planet_flag = cultural_station
 						has_planet_flag = prison_station
-						has_planet_flag = cracking_station
 					}
 				}
 				set_planet_flag = prison_station

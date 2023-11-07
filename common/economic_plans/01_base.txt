@@ -1,0 +1,341 @@
+# Base AI economic plans
+
+basic_economy_plan = {
+	income = {
+		energy = @economic_plan_energy_target
+		minerals = @economic_plan_minerals_target
+		lithium = @economic_plan_lithium_target
+		beryllium = @economic_plan_beryllium_target
+		iridium =@economic_plan_iridium_target
+		palladium = @economic_plan_palladium_target
+		platinum = @economic_plan_platinum_target
+		titanium = @economic_plan_titanium_target
+		helium_3 = @economic_plan_helium_3_target
+		hydrogen = @economic_plan_hydrogen_target
+	}
+
+	subplan = {
+		set_name = "base food"
+		potential = {
+			country_uses_food = yes
+		}
+
+		income = {
+			food = @economic_plan_food_target
+		}
+	}
+
+	subplan = {
+		set_name = "base science + unity organics"
+		potential = {
+			country_uses_consumer_goods = yes
+			has_monthly_income = { resource = consumer_goods value > @economic_plan_consumer_goods_target }
+		}
+		income = {
+			physics_research = @economic_plan_research_target
+			society_research = @economic_plan_research_target
+			engineering_research = @economic_plan_research_target
+			unity = @economic_plan_unity_target
+		}
+	}
+
+	subplan = {
+		set_name = "base unity hivemind"
+		potential = {
+			is_hive_empire = yes
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+		}
+		income = {
+			unity = @economic_plan_unity_target
+		}
+	}
+
+	subplan = {
+		set_name = "base science + unity machine empire"
+		potential = {
+			is_machine_empire = yes
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+		}
+		income = {
+			physics_research = @economic_plan_research_target
+			society_research = @economic_plan_research_target
+			engineering_research = @economic_plan_research_target
+			unity = @economic_plan_unity_target
+		}
+	}
+
+	subplan = {
+		set_name = "extended food"
+		potential = {
+			has_monthly_income = { resource = physics_research value > @economic_plan_research_target }
+			has_monthly_income = { resource = society_research value > @economic_plan_research_target }
+			has_monthly_income = { resource = engineering_research value > @economic_plan_research_target }
+			country_uses_food = yes
+		}
+
+		income = {
+			food = @economic_plan_food_target_extra
+		}
+	}
+
+	subplan = {
+		set_name = "base consumer goods"
+		potential = {
+			country_uses_consumer_goods = yes
+			has_monthly_income = { resource = minerals value > @economic_plan_minerals_target }
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			if = {
+				limit = {
+					country_uses_food = yes
+				}
+				has_monthly_income = { resource = food value > @economic_plan_food_target }
+			}
+		}
+		income = {
+			consumer_goods = @economic_plan_consumer_goods_target
+		}
+	}
+
+
+	subplan = {
+		set_name = "base pops"
+		potential = {
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_minerals_target }
+			has_monthly_income = { resource = physics_research value > @economic_plan_research_target }
+			has_monthly_income = { resource = society_research value > @economic_plan_research_target }
+			has_monthly_income = { resource = engineering_research value > @economic_plan_research_target }
+		}
+		pops = @economic_plan_pops_target
+	}
+
+	subplan = {
+		set_name = "clone origin pops"
+		potential = {
+			has_origin = origin_clone_army
+			NOT = {
+				has_country_flag = clone_army_fertility_unlocked
+			}
+			num_buildings = { type = building_clone_army_clone_vat value < 5 }
+		}
+		pops = @economic_plan_pops_target
+	}
+
+	#### SCALING SUBPLANS HERE ####
+	# Values in the scaling subplans are added to the base plan each time the AI reaches the target
+	# If base alloys = 10 and the AI reaches +12 per month, and it says alloys = 20 in the scaling subplan, the next target becomes alloys = 30
+	# All scaling subplans are cumulative
+
+	subplan = {
+		scaling = yes
+		set_name = "general scaling"
+		potential = {
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_minerals_target }
+		}
+
+		income = {
+			#alloys = 10
+			lithium = 10
+			beryllium = 10
+			iridium = 10
+			palladium = 10
+			platinum = 10
+			titanium = 10
+			helium_3 = 10
+			hydrogen = 10
+			light_metals = 10
+			heavy_metals = 10
+			antimatter_fuel = 10
+			minerals = 10
+			energy = 10
+			physics_research = @economic_plan_scaling_research_target
+			society_research = @economic_plan_scaling_research_target
+			engineering_research = @economic_plan_scaling_research_target
+			unity = 20
+		}
+	}
+
+	subplan = {
+		scaling = yes
+		set_name = "naval cap scaling"
+		potential = {
+			num_repeatable_techs > 0 #make sure it isn't messing up the earlier development (this is for the late game)
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_minerals_target }
+			#has_monthly_income = { resource = alloys value > @economic_plan_fleet_cap_alloy_target }
+			has_monthly_income = { resource = light_metals value > @economic_plan_fleet_cap_light_metals_target }
+			has_monthly_income = { resource = heavy_metals value > @economic_plan_fleet_cap_heavy_metals_target }
+			used_naval_capacity_percent > 0.95
+			used_starbase_capacity_percent >= 1
+		}
+
+		naval_cap = 50
+	}
+
+	subplan = {
+		scaling = yes
+		set_name = "general CG scaling"
+		potential = {
+			country_uses_consumer_goods = yes
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_minerals_target }
+		}
+		income = {
+			consumer_goods = @economic_plan_scaling_consumer_goods_target
+		}
+	}
+
+	#### VOID DWELLER EXTRA ALLOYS ####
+	subplan = {
+		scaling = yes
+		set_name = "Void Dweller alloys"
+		potential = {
+			has_origin = origin_void_dwellers
+
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_minerals_target }
+		}
+
+		income = {
+			#alloys = 10
+			light_metals = 10
+			heavy_metals = 10
+		}
+	}
+
+	#### MILITARIST EXTRA ALLOYS ####
+	subplan = {
+		scaling = yes
+		set_name = "Militarist alloys"
+		potential = {
+			OR = {
+				is_militarist = yes
+				is_homicidal = yes
+			}
+
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_minerals_target }
+		}
+
+		income = {
+			#alloys = 15
+			light_metals = 15
+			heavy_metals = 15
+		}
+	}
+
+	#### MATERIALIST SCIENCE ####
+	subplan = {
+		scaling = yes
+		set_name = "Materialist science"
+		potential = {
+			is_materialist = yes
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_minerals_target }
+		}
+
+		income = {
+			physics_research = 15
+			society_research = 15
+			engineering_research = 15
+		}
+	}
+
+	#### SPIRITUALIST UNITY ####
+	subplan = {
+		scaling = yes
+		set_name = "Spiritualist unity"
+		potential = {
+			is_spiritualist = yes
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+			has_monthly_income = { resource = minerals value > @economic_plan_minerals_target }
+		}
+
+		income = {
+			unity = 15
+		}
+	}
+
+	# Optional subplans don't need to be fulfilled for the other scaling subplans to become active
+	subplan = {
+		scaling = yes
+		set_name = "Kaleidoscope"
+		potential = {
+			any_situation = {
+				is_situation_type = situation_kaleidoscope
+				NOT = { current_situation_approach = approach_no_food }
+			}
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+		}
+
+		income = {
+			energy = 15
+		}
+	}
+	
+	subplan = {
+		optional = yes
+		set_name = "Rare resources"
+		potential = {
+			always = yes
+		}
+
+		income = {
+			#exotic_gases = @economic_plan_rare_resource_target
+			#volatile_motes = @economic_plan_rare_resource_target
+			#rare_crystals = @economic_plan_rare_resource_target
+			antimatter_fuel = @economic_plan_rare_resource_target
+			eezo =  @economic_plan_rare_resource_target
+		}
+	}
+
+
+	subplan = {
+		optional = yes
+		scaling = yes
+		set_name = "Scaling exotic gases"
+
+		potential = {
+			has_monthly_income = { resource = exotic_gases value < @economic_plan_rare_resource_limit }
+		}
+
+		income = {
+			#exotic_gases = @economic_plan_scaling_rare_resource_target
+			antimatter_fuel = @economic_plan_scaling_rare_resource_target
+			eezo =  @economic_plan_scaling_rare_resource_target
+		}
+	}
+
+	# subplan = {
+	# 	optional = yes
+	# 	scaling = yes
+	# 	set_name = "Scaling volatile motes"
+
+	# 	potential = {
+	# 		has_monthly_income = { resource = volatile_motes value < @economic_plan_rare_resource_limit }
+	# 	}
+
+	# 	income = {
+	# 		volatile_motes = @economic_plan_scaling_rare_resource_target
+	# 	}
+	# }
+
+	# subplan = {
+	# 	optional = yes
+	# 	scaling = yes
+	# 	set_name = "Scaling rare crystals"
+
+	# 	potential = {
+	# 		has_monthly_income = { resource = rare_crystals value < @economic_plan_rare_resource_limit }
+	# 	}
+
+	# 	income = {
+	# 		rare_crystals = @economic_plan_scaling_rare_resource_target
+	# 	}
+	# }
+
+	ai_weight = {
+		weight = 1
+	}
+}

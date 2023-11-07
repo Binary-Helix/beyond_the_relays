@@ -1,0 +1,444 @@
+@build_block_radius_civilian = 20
+
+### Overlord ###
+
+offspring_corvette = {
+	formation_priority = @corvette_formation_priority
+	entity = corvette_entity
+	max_speed = @speed_very_fast
+	acceleration = 0.35
+	rotation_speed = 0.1
+	collision_radius = 2.5
+	max_hitpoints = @corvette_hp
+	modifier = {
+		ship_evasion_add = @corvette_evasion
+		ship_piracy_suppression_add = 10
+		ship_hull_mult = 0.5
+		ship_weapon_range_mult = 0.25
+		ship_shield_mult = 0.5
+		ship_armor_mult = 0.5
+	}
+	size_multiplier = 1
+	hull_scale = 1.5
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 2
+	is_space_station = no
+	icon = ship_size_military_1
+	base_buildtime = @corvette_build_time
+	can_have_federation_design = no
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	use_shipnames_from = corvette
+
+	default_behavior = swarm
+	ship_roles = { screen gunship artillery brawler }
+
+	triggered_ship_roles = {
+		{
+			name = brawler_stealth
+			trigger = { has_technology = tech_cloaking_1 }
+		}
+		{
+			name = explosive
+			trigger = { has_technology = tech_torpedoes_1 }
+		}
+		{
+			name = explosive_stealth
+			trigger = {
+				has_technology = tech_cloaking_1
+				has_technology = tech_torpedoes_1 
+			}
+		}
+		{
+			name = energy_torpedoes
+			trigger = { has_technology = tech_energy_torpedoes_1 }
+		}
+	}
+
+	prerequisites = { "tech_corvettes" }
+	potential_country = { has_origin = origin_progenitor_hive }
+
+	combat_disengage_chance = 1.00
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+
+	resources = {
+		category = ships
+		cost = {
+			#alloys = 30
+			light_metals = 21
+			heavy_metals = 9
+		}
+		upkeep = {
+			energy = @corvette_upkeep_energy
+			#alloys = @corvette_upkeep_alloys
+			antimatter_fuel = @corvette_upkeep_antimatter_fuel
+			mult = 2
+		}
+	}
+
+	min_upgrade_cost = {
+		#alloys = 1
+		light_metals = 0.7
+		heavy_metals = 0.3
+	}
+
+	ai_ship_data = {
+		fraction = {
+			base = 0
+			modifier = {
+				add = 50
+				uses_standard_ship_sizes = yes
+			}
+		}
+	}
+}
+
+offspring_destroyer = {
+	entity = destroyer_entity
+	formation_priority = @destroyer_formation_priority
+	max_speed = @speed_fast
+	acceleration = 0.3
+	rotation_speed = 0.2
+	collision_radius = 3
+	max_hitpoints = @destroyer_hp
+	modifier = {
+		ship_evasion_add = @destroyer_evasion
+		ship_piracy_suppression_add = 8
+		ship_hull_mult = 0.5
+		ship_weapon_range_mult = 0.25
+		ship_shield_mult = 0.5
+		ship_armor_mult = 0.5
+	}
+	size_multiplier = 2
+	hull_scale = 1.5
+	fleet_slot_size = 2
+	section_slots = { "bow" = { locator = "part1" } "stern" = { locator = "part2" } }
+	num_target_locators = 4
+	icon = ship_size_military_2
+	is_space_station = no
+	base_buildtime = @destroyer_build_time
+	can_have_federation_design = no
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	use_shipnames_from = destroyer
+
+	default_behavior = picket
+	ship_roles = { gunship artillery screen brawler }
+
+	triggered_ship_roles = {
+		{
+			name = artillery_stealth
+			trigger = { has_technology = tech_cloaking_2 }
+		}
+	}
+
+	prerequisites = { "tech_destroyers" }
+	potential_country = { has_origin = origin_progenitor_hive }
+
+	combat_disengage_chance = 1.50
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+
+	resources = {
+		category = ships
+		cost = {
+			#@alloys = 60
+			light_metals = 42
+			heavy_metals = 18
+		}
+		upkeep = {
+			energy = @destroyer_upkeep_energy
+			#alloys = @destroyer_upkeep_alloys
+			antimatter_fuel = @destroyer_upkeep_antimatter_fuel
+			mult = 2
+		}
+	}
+	min_upgrade_cost = {
+		#alloys = 2
+		light_metals = 1.4
+		heavy_metals = 0.6
+	}
+}
+
+offspring_cruiser = {
+	entity = cruiser_entity
+	formation_priority = @cruiser_formation_priority
+	max_speed = @speed_default
+	acceleration = 0.25
+	rotation_speed = 0.175
+	collision_radius = 4
+	max_hitpoints = @cruiser_hp
+	modifier = {
+		ship_evasion_add = @cruiser_evasion
+		ship_piracy_suppression_add = 6
+		ship_hull_mult = 0.5
+		ship_weapon_range_mult = 0.25
+		ship_shield_mult = 0.5
+		ship_armor_mult = 0.5
+	}
+	size_multiplier = 4
+	hull_scale = 1.5
+	fleet_slot_size = 3
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon = ship_size_military_4
+	base_buildtime = @cruiser_build_time
+	can_have_federation_design = no
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	use_shipnames_from = cruiser
+
+	default_behavior = line
+	ship_roles = { gunship carrier explosive artillery }
+	triggered_ship_roles = {
+		{
+			name = explosive_stealth
+			trigger = { has_technology = tech_cloaking_3 }
+		}
+		{
+			name = energy_torpedoes
+			trigger = { has_technology = tech_energy_torpedoes_1 }
+		}
+		{
+			name = energy_torpedoes_stealth
+			trigger = {
+				has_technology = tech_cloaking_3
+				has_technology = tech_energy_torpedoes_1
+			}
+		}
+		{
+			name = artillery_stealth
+			trigger = {
+				has_technology = tech_cloaking_3
+			}
+		}
+	}
+	prerequisites = { "tech_cruisers" }
+	potential_country = { has_origin = origin_progenitor_hive }
+
+	combat_disengage_chance = 1.50
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+
+	resources = {
+		category = ships
+		cost = {
+			#alloys = 120
+			light_metals = 84
+			heavy_metals = 36
+		}
+		upkeep = {
+			energy = @cruiser_upkeep_energy
+			#alloys = @cruiser_upkeep_alloys
+			antimatter_fuel = @cruiser_upkeep_antimatter_fuel
+			mult = 2
+		}
+	}
+
+	min_upgrade_cost = {
+		#alloys = 4
+		light_metals = 2.8
+		heavy_metals = 1.2
+	}
+}
+
+offspring_battleship = {
+	entity = battleship_entity
+	formation_priority = @battleship_formation_priority
+	max_speed = @speed_slow
+	acceleration = 0.2
+	rotation_speed = 0.15
+	collision_radius = 4.5
+	max_hitpoints = @battleship_hp
+	modifier = {
+		ship_evasion_add = @battleship_evasion
+		ship_piracy_suppression_add = 4
+		ship_hull_mult = 0.5
+		ship_weapon_range_mult = 0.25
+		ship_shield_mult = 0.5
+		ship_armor_mult = 0.5
+	}
+	size_multiplier = 8
+	hull_scale = 1.5
+	fleet_slot_size = 4
+	section_slots = { "bow" = { locator = "part1" } "mid" = { locator = "part2" } "stern" = { locator = "part3" } }
+	num_target_locators = 4
+	is_space_station = no
+	icon = ship_size_military_8
+	base_buildtime = @battleship_build_time
+	can_have_federation_design = no
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	use_shipnames_from = battleship
+
+	default_behavior = artillery
+	ship_roles = { artillery carrier gunship }
+
+	prerequisites = { "tech_battleships" }
+	potential_country = { has_origin = origin_progenitor_hive }
+
+	combat_disengage_chance = 1.25
+
+	class = shipclass_military
+	construction_type = starbase_shipyard
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
+
+	resources = {
+		category = ships
+		cost = {
+			#alloys = 240
+			light_metals = 168
+			heavy_metals = 72
+		}
+		upkeep = {
+			energy = @battleship_upkeep_energy
+			#alloys = @battleship_upkeep_alloys
+			antimatter_fuel = @battleship_upkeep_antimatter_fuel
+			mult = 2
+		}
+	}
+
+	min_upgrade_cost = {
+		#alloys = 8
+		light_metals = 5.6
+		heavy_metals = 2.4
+	}
+}
+
+# Enclaves
+
+enclave_mercenary_station = {
+	entity = enclave_mercenary_station_entity
+	is_space_object = no
+	graphical_culture = no
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.002
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_mult = 1
+		ship_shield_mult = 1
+		ship_fire_rate_mult = 1
+		starbase_shipyard_capacity_add = 4
+		starbase_defense_platform_capacity_add = 8
+	}
+	max_hitpoints = @station_enclave_hp
+	combat_size_multiplier = 20
+	size_multiplier = 8
+	fleet_slot_size = 4
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	can_disable = no
+	is_space_station = yes
+	build_block_radius = @build_block_radius_civilian
+	icon = ship_size_military_station
+
+	use_shipnames_from = military_station_small
+
+	class = shipclass_starbase
+	construction_type = starbase_shipyard
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+
+	is_designable = no
+}
+
+enclave_salvager_station = {
+	entity = salvager_station_01_entity
+	graphical_culture = no
+	# is_space_object = yes
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.002
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_mult = 1
+		ship_shield_mult = 1
+		ship_fire_rate_mult = 1
+		starbase_shipyard_capacity_add = 4
+		starbase_defense_platform_capacity_add = 8
+	}
+	max_hitpoints = @station_enclave_hp
+	combat_size_multiplier = 20
+	size_multiplier = 8
+	fleet_slot_size = 4
+	section_slots = {
+		"mid" = { locator = "part1" }
+	}
+	num_target_locators = 0
+	can_disable = no
+	is_space_station = yes
+	build_block_radius = @build_block_radius_civilian
+
+	use_shipnames_from = military_station_small
+
+	class = shipclass_starbase
+	is_designable = no
+	icon = ship_size_military_station
+	construction_type = starbase_shipyard
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+}
+
+enclave_shroudwalker_station = {
+	# is_space_object = yes
+	graphical_culture = no
+	max_speed = 0.0
+	acceleration = 0.0
+	rotation_speed = 0.002
+	modifier = {
+		ship_evasion_mult = -1
+		ship_armor_mult = 1
+		ship_shield_mult = 1
+		ship_fire_rate_mult = 1
+		starbase_shipyard_capacity_add = 4
+		starbase_defense_platform_capacity_add = 8
+	}
+	max_hitpoints = @station_enclave_hp
+	combat_size_multiplier = 20
+	size_multiplier = 8
+	fleet_slot_size = 4
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	can_disable = no
+	is_space_station = yes
+	build_block_radius = @build_block_radius_civilian
+	icon = ship_size_military_station
+
+	use_shipnames_from = military_station_small
+
+	class = shipclass_starbase
+	construction_type = starbase_shipyard
+
+	required_component_set = "power_core"
+	required_component_set = "sensor_components"
+
+	is_designable = no
+}

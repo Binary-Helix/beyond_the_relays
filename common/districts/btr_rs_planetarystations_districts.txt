@@ -1,7 +1,9 @@
-@station_cost = 300
-@station_maintenance = 4
+@station_light_metals_cost = 150
+@station_heavy_metals_cost = 150
+@station_energy_upkeep = 0.1
+@station_uranium_upkeep = 0.25
 
-# Hausing - Starting Outpost
+# Housing - Starting Outpost
 
 district_residential_complex = {
 	base_buildtime = 240
@@ -32,10 +34,12 @@ district_residential_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -74,10 +78,12 @@ district_cell_block = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -113,10 +119,12 @@ district_hive_sector = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -157,10 +165,12 @@ district_nexus_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -197,10 +207,12 @@ district_geothermal_power_plant = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -295,10 +307,12 @@ district_hydrocarbon_power_plant = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -392,10 +406,12 @@ district_atmospheric_power_plant = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -486,10 +502,12 @@ district_reactor_block = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -573,10 +591,12 @@ district_mining_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -681,10 +701,12 @@ district_ore_processing_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -789,10 +811,12 @@ district_helium_extractor = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -864,10 +888,12 @@ district_helium_mining_facility = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -908,83 +934,85 @@ district_helium_mining_facility = {
 	}
 }
 
-district_mote_mine = {
-	base_buildtime = 240
+# district_mote_mine = {
+# 	base_buildtime = 240
 	
-	min_for_deposits_on_planet = 1
-	max_for_deposits_on_planet = 5
+# 	min_for_deposits_on_planet = 1
+# 	max_for_deposits_on_planet = 5
 
-	show_on_uncolonized = {
-		uses_district_set = planetary_station
-		OR = {
-			has_planet_flag = mining_station
-			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
-		}
-		owner = { has_technology = tech_mine_volatile_motes }
-		has_deposit = d_dust_cavities
-	}
+# 	show_on_uncolonized = {
+# 		uses_district_set = planetary_station
+# 		OR = {
+# 			has_planet_flag = mining_station
+# 			has_planet_flag = prison_station
+# 			has_planet_flag = cracking_station
+# 		}
+# 		owner = { has_technology = tech_mine_volatile_motes }
+# 		has_deposit = d_dust_cavities
+# 	}
 
-	potential = {
-		uses_district_set = planetary_station
-		OR = {
-			has_planet_flag = mining_station
-			has_planet_flag = prison_station
-		}
-		owner = { has_technology = tech_mine_volatile_motes }
-		has_deposit = d_dust_cavities
-	}
+# 	potential = {
+# 		uses_district_set = planetary_station
+# 		OR = {
+# 			has_planet_flag = mining_station
+# 			has_planet_flag = prison_station
+# 		}
+# 		owner = { has_technology = tech_mine_volatile_motes }
+# 		has_deposit = d_dust_cavities
+# 	}
 
-	planet_modifier = {
-		planet_housing_add = 1
-	}
+# 	planet_modifier = {
+# 		planet_housing_add = 1
+# 	}
 
-	resources = {
-		category = station_complex
-		cost = {
-			alloys = @station_cost
-		}
-		upkeep = {
-			energy = @station_maintenance
-		}
-	}
+# 	resources = {
+# 		category = station_complex
+# 		cost = {
+# 			light_metals = @station_light_metals_cost
+# 			heavy_metals = @station_heavy_metals_cost
+# 		}
+# 		upkeep = {
+# 			energy = @station_energy_upkeep
+# 			uranium = @station_uranium_upkeep
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_mote_harvester_add = 2
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_mote_harvester_add = 2
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		modifier = {
-			job_mote_harvesting_drone_add = 2
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		modifier = {
+# 			job_mote_harvesting_drone_add = 2
+# 		}
+# 	}
 	
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		text = job_mote_harvester_effect_desc
-	}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		text = job_mote_harvester_effect_desc
+# 	}
 
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_mote_harvesting_drone_effect_desc
-	}
-}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		text = job_mote_harvesting_drone_effect_desc
+# 	}
+# }
 
 district_gas_refinery = {
 	base_buildtime = 240
@@ -1026,10 +1054,12 @@ district_gas_refinery = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -1070,161 +1100,165 @@ district_gas_refinery = {
 	}
 }
 
-district_crystal_mining = {
-	base_buildtime = 240
+# district_crystal_mining = {
+# 	base_buildtime = 240
 	
-	min_for_deposits_on_planet = 1
-	max_for_deposits_on_planet = 5
+# 	min_for_deposits_on_planet = 1
+# 	max_for_deposits_on_planet = 5
 
-	show_on_uncolonized = {
-		uses_district_set = planetary_station
-		OR = {
-			has_planet_flag = mining_station
-			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
-		}
-		owner = { has_technology = tech_mine_rare_crystals }
-		has_deposit = d_crystal_cavities
-	}
+# 	show_on_uncolonized = {
+# 		uses_district_set = planetary_station
+# 		OR = {
+# 			has_planet_flag = mining_station
+# 			has_planet_flag = prison_station
+# 			has_planet_flag = cracking_station
+# 		}
+# 		owner = { has_technology = tech_mine_rare_crystals }
+# 		has_deposit = d_crystal_cavities
+# 	}
 
-	potential = {
-		uses_district_set = planetary_station
-		OR = {
-			has_planet_flag = mining_station
-			has_planet_flag = prison_station
-		}
-		owner = { has_technology = tech_mine_rare_crystals }
-		has_deposit = d_crystal_cavities
-	}
+# 	potential = {
+# 		uses_district_set = planetary_station
+# 		OR = {
+# 			has_planet_flag = mining_station
+# 			has_planet_flag = prison_station
+# 		}
+# 		owner = { has_technology = tech_mine_rare_crystals }
+# 		has_deposit = d_crystal_cavities
+# 	}
 
-	planet_modifier = {
-		planet_housing_add = 1
-	}
+# 	planet_modifier = {
+# 		planet_housing_add = 1
+# 	}
 
-	resources = {
-		category = station_complex
-		cost = {
-			alloys = @station_cost
-		}
-		upkeep = {
-			energy = @station_maintenance
-		}
-	}
+# 	resources = {
+# 		category = station_complex
+# 		cost = {
+# 			light_metals = @station_light_metals_cost
+# 			heavy_metals = @station_heavy_metals_cost
+# 		}
+# 		upkeep = {
+# 			energy = @station_energy_upkeep
+# 			uranium = @station_uranium_upkeep
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_crystal_miner_add = 2
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_crystal_miner_add = 2
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		modifier = {
-			job_crystal_mining_drone_add = 2
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		modifier = {
+# 			job_crystal_mining_drone_add = 2
+# 		}
+# 	}
 	
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		text = job_crystal_miner_effect_desc
-	}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		text = job_crystal_miner_effect_desc
+# 	}
 
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_crystal_mining_drone_effect_desc
-	}
-}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		text = job_crystal_mining_drone_effect_desc
+# 	}
+# }
 
-district_zro_harvesting = {
-	base_buildtime = 240
+# district_zro_harvesting = {
+# 	base_buildtime = 240
 	
-	min_for_deposits_on_planet = 1
-	max_for_deposits_on_planet = 3
+# 	min_for_deposits_on_planet = 1
+# 	max_for_deposits_on_planet = 3
 
-	show_on_uncolonized = {
-		uses_district_set = planetary_station
-		OR = {
-			has_planet_flag = mining_station
-			has_planet_flag = prison_station
-			has_planet_flag = cracking_station
-		}
-		owner = { has_technology = tech_mine_zro }
-		has_deposit = d_zro_source
-	}
+# 	show_on_uncolonized = {
+# 		uses_district_set = planetary_station
+# 		OR = {
+# 			has_planet_flag = mining_station
+# 			has_planet_flag = prison_station
+# 			has_planet_flag = cracking_station
+# 		}
+# 		owner = { has_technology = tech_mine_zro }
+# 		has_deposit = d_zro_source
+# 	}
 
-	potential = {
-		uses_district_set = planetary_station
-		OR = {
-			has_planet_flag = mining_station
-			has_planet_flag = prison_station
-		}
-		owner = { has_technology = tech_mine_zro }
-		has_deposit = d_zro_source
-	}
+# 	potential = {
+# 		uses_district_set = planetary_station
+# 		OR = {
+# 			has_planet_flag = mining_station
+# 			has_planet_flag = prison_station
+# 		}
+# 		owner = { has_technology = tech_mine_zro }
+# 		has_deposit = d_zro_source
+# 	}
 
-	planet_modifier = {
-		planet_housing_add = 1
-	}
+# 	planet_modifier = {
+# 		planet_housing_add = 1
+# 	}
 
-	resources = {
-		category = station_complex
-		cost = {
-			alloys = @station_cost
-		}
-		upkeep = {
-			energy = @station_maintenance
-		}
-	}
+# 	resources = {
+# 		category = station_complex
+# 		cost = {
+# 			light_metals = @station_light_metals_cost
+# 			heavy_metals = @station_heavy_metals_cost
+# 		}
+# 		upkeep = {
+# 			energy = @station_energy_upkeep
+# 			uranium = @station_uranium_upkeep
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_zro_harvester_add = 2
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_zro_harvester_add = 2
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		modifier = {
-			job_zro_harvesting_drone_add = 2
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		modifier = {
+# 			job_zro_harvesting_drone_add = 2
+# 		}
+# 	}
 	
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		text = job_zro_harvester_effect_desc
-	}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		text = job_zro_harvester_effect_desc
+# 	}
 
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_zro_harvesting_drone_effect_desc
-	}
-}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		text = job_zro_harvesting_drone_effect_desc
+# 	}
+# }
 
 # Cracking Station
 
@@ -1249,10 +1283,12 @@ district_mining_bay = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -1327,10 +1363,12 @@ district_experimental_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -1411,10 +1449,12 @@ district_biolaboratory = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -1495,10 +1535,12 @@ district_testing_site = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -1562,130 +1604,132 @@ district_testing_site = {
 	}
 }
 
-district_dark_matter_extractor = {
-	base_buildtime = 240
+# district_dark_matter_extractor = {
+# 	base_buildtime = 240
 	
-	min_for_deposits_on_planet = 1
-	max_for_deposits_on_planet = 3
+# 	min_for_deposits_on_planet = 1
+# 	max_for_deposits_on_planet = 3
 
-	show_on_uncolonized = {
-		uses_district_set = planetary_station
-		has_planet_flag = research_station
-		owner = { has_technology = tech_mine_dark_matter }
-		has_deposit = d_dark_matter_formation
-	}
+# 	show_on_uncolonized = {
+# 		uses_district_set = planetary_station
+# 		has_planet_flag = research_station
+# 		owner = { has_technology = tech_mine_dark_matter }
+# 		has_deposit = d_dark_matter_formation
+# 	}
 
-	potential = {
-		uses_district_set = planetary_station
-		has_planet_flag = research_station
-		owner = { has_technology = tech_mine_dark_matter }
-		has_deposit = d_dark_matter_formation
-	}
+# 	potential = {
+# 		uses_district_set = planetary_station
+# 		has_planet_flag = research_station
+# 		owner = { has_technology = tech_mine_dark_matter }
+# 		has_deposit = d_dark_matter_formation
+# 	}
 
-	resources = {
-		category = station_complex
-		cost = {
-			alloys = @station_cost
-		}
-		upkeep = {
-			energy = @station_maintenance
-		}
-	}
+# 	resources = {
+# 		category = station_complex
+# 		cost = {
+# 			light_metals = @station_light_metals_cost
+# 			heavy_metals = @station_heavy_metals_cost
+# 		}
+# 		upkeep = {
+# 			energy = @station_energy_upkeep
+# 			uranium = @station_uranium_upkeep
+# 		}
+# 	}
 
-	planet_modifier = {
-		planet_housing_add = 1
-	}
+# 	planet_modifier = {
+# 		planet_housing_add = 1
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_dark_matter_collector_add = 1
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_dark_matter_collector_add = 1
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		modifier = {
-			job_dark_matter_collector_drone_add = 1
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		modifier = {
+# 			job_dark_matter_collector_drone_add = 1
+# 		}
+# 	}
 	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_researcher_add = 1
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_researcher_add = 1
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_brain_drone_add = 1
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_hive_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_brain_drone_add = 1
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_calculator_add = 1
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_machine_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_calculator_add = 1
+# 		}
+# 	}
 	
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		text = job_dark_matter_collector_effect_desc
-	}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		text = job_dark_matter_collector_effect_desc
+# 	}
 
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_dark_matter_collector_drone_effect_desc
-	}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		text = job_dark_matter_collector_drone_effect_desc
+# 	}
 	
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		text = job_researcher_effect_desc
-	}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		text = job_researcher_effect_desc
+# 	}
 
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		text = job_brain_drone_effect_desc
-	}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_hive_empire = yes }
+# 		}
+# 		text = job_brain_drone_effect_desc
+# 	}
 
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		text = job_calculator_effect_desc
-	}
-}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_machine_empire = yes }
+# 		}
+# 		text = job_calculator_effect_desc
+# 	}
+# }
 
 #Civil Station
 
@@ -1716,10 +1760,12 @@ district_bureaucratic_center = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -1767,10 +1813,12 @@ district_corporate_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -1811,10 +1859,12 @@ district_outer_limits_router = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -1856,10 +1906,12 @@ district_commercial_wards = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -1965,10 +2017,12 @@ district_elevation_center = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 	
@@ -2053,10 +2107,12 @@ district_storage_yards = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 	
@@ -2131,10 +2187,12 @@ district_docking_bay = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 	
@@ -2198,10 +2256,12 @@ district_free_port = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -2242,10 +2302,12 @@ district_manufacturing_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -2353,10 +2415,12 @@ district_foundry_plant = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -2546,10 +2610,12 @@ district_assembly_factory = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -2601,76 +2667,78 @@ district_assembly_factory = {
 	}
 }
 
-district_living_metal_processing = {
-	base_buildtime = 240
+# district_living_metal_processing = {
+# 	base_buildtime = 240
 	
-	min_for_deposits_on_planet = 1
-	max_for_deposits_on_planet = 1
+# 	min_for_deposits_on_planet = 1
+# 	max_for_deposits_on_planet = 1
 
-	show_on_uncolonized = {
-		uses_district_set = planetary_station
-		has_planet_flag = industrial_station
-		owner = { has_technology = tech_mine_living_metal }
-		has_deposit = d_living_metal_source
-	}
+# 	show_on_uncolonized = {
+# 		uses_district_set = planetary_station
+# 		has_planet_flag = industrial_station
+# 		owner = { has_technology = tech_mine_living_metal }
+# 		has_deposit = d_living_metal_source
+# 	}
 
-	potential = {
-		uses_district_set = planetary_station
-		has_planet_flag = industrial_station
-		owner = { has_technology = tech_mine_living_metal }
-		has_deposit = d_living_metal_source
-	}
+# 	potential = {
+# 		uses_district_set = planetary_station
+# 		has_planet_flag = industrial_station
+# 		owner = { has_technology = tech_mine_living_metal }
+# 		has_deposit = d_living_metal_source
+# 	}
 
-	planet_modifier = {
-		planet_housing_add = 1
-	}
+# 	planet_modifier = {
+# 		planet_housing_add = 1
+# 	}
 
-	resources = {
-		category = station_complex
-		cost = {
-			alloys = @station_cost
-		}
-		upkeep = {
-			energy = @station_maintenance
-		}
-	}
+# 	resources = {
+# 		category = station_complex
+# 		cost = {
+# 			light_metals = @station_light_metals_cost
+# 			heavy_metals = @station_heavy_metals_cost
+# 		}
+# 		upkeep = {
+# 			energy = @station_energy_upkeep
+# 			uranium = @station_uranium_upkeep
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		modifier = {
-			job_living_metal_caster_add = 2
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		modifier = {
+# 			job_living_metal_caster_add = 2
+# 		}
+# 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		modifier = {
-			job_living_metal_drone_add = 2
-		}
-	}
+# 	triggered_planet_modifier = {
+# 		potential = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		modifier = {
+# 			job_living_metal_drone_add = 2
+# 		}
+# 	}
 	
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_regular_empire = yes }
-		}
-		text = job_living_metal_caster_effect_desc
-	}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_regular_empire = yes }
+# 		}
+# 		text = job_living_metal_caster_effect_desc
+# 	}
 
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_living_metal_drone_effect_desc
-	}
-}
+# 	triggered_desc = {
+# 		trigger = {
+# 			exists = owner
+# 			owner = { is_gestalt = yes }
+# 		}
+# 		text = job_living_metal_drone_effect_desc
+# 	}
+# }
 
 #Military Station
 
@@ -2691,10 +2759,12 @@ district_barracks = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -2754,10 +2824,12 @@ district_fortified_bunkers = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -2838,10 +2910,12 @@ district_leisure_sector = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -2912,10 +2986,12 @@ district_temple_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -2973,10 +3049,12 @@ district_grim_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -3024,10 +3102,12 @@ district_battle_arena = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -3121,10 +3201,12 @@ district_casino_level = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -3178,10 +3260,12 @@ district_race_track = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -3234,10 +3318,12 @@ district_synaptic_node = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -3282,10 +3368,12 @@ district_simulation_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 
@@ -3327,10 +3415,12 @@ district_sanctuary_complex = {
 	resources = {
 		category = station_complex
 		cost = {
-			alloys = @station_cost
+			light_metals = @station_light_metals_cost
+			heavy_metals = @station_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @station_maintenance
+			energy = @station_energy_upkeep
+			uranium = @station_uranium_upkeep
 		}
 	}
 

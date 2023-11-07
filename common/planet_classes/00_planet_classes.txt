@@ -1,3 +1,9 @@
+# Star glow from sun is set under atmosphere in	00_planet_classes
+# Star surface is set in worldgfx file for each star
+# Effects are set in particle effect for each star
+# New planets also need planet tiles (game\gfx\interface\icons\tile_backgrounds)
+# New planets need surface background (game\gfx\portraits\environments)
+
 ### EXAMPLE:
 #pc_tropical = {
 #	entity = "gaia_planet"
@@ -5,9 +11,9 @@
 #
 #	picture = pc_tropical	# Use tropical portrait art instead of gaia
 #
-#	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
-#	atmosphere_intensity 	= 1.0
-#	atmosphere_width 		= 0.5
+#	atmosphere_color		= hsv { 0.58	0.3 0.7 }
+#	atmosphere_intensity	= 1.0
+#	atmosphere_width		= 0.5
 #
 #	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.tga"
 #
@@ -31,7 +37,7 @@
 #	uses_alternative_skies_for_moons = yes				# Will set planet background for moon
 #	uses_alternative_skies_if_has_orbital_ring = yes	# Will set planet background if has orbital ring, Default is no.
 #
-# 	space_monster_target = yes	# Country types with space monster AI will wander to this planet type if set to yes
+#	space_monster_target = yes	# Country types with space monster AI will wander to this planet type if set to yes
 #
 #	is_artificial_planet = yes	# Will make sure that modifiers for non artificial planets are not added, e.g. max districts
 #}
@@ -39,9 +45,9 @@
 
 ###Note from Puck - Changes are just adjusting spawn odds to remove unwanted classes.
 
-# ###########
+####################
 # Habitable Planets
-# ###########
+####################
 
 # Dry
 pc_desert = {
@@ -53,9 +59,9 @@ pc_desert = {
 
 	entity_scale = @planet_standard_scale
 
-	atmosphere_color 		= hsv { 0.50 0.2 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	min_distance_from_sun = @habitable_min_distance
 	max_distance_from_sun = @habitable_max_distance
@@ -70,12 +76,11 @@ pc_desert = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	production_spawn_chance = 0.4
 
 	colonizable = yes
 	district_set = standard
-	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_for_moons = no
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
@@ -89,9 +94,9 @@ pc_arid = {
 	climate = "dry"
 	initial = yes
 
-	atmosphere_color 		= hsv { 0.50 0.3 0.7 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.50 0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	min_distance_from_sun = @habitable_min_distance
 	max_distance_from_sun = @habitable_max_distance
@@ -106,7 +111,6 @@ pc_arid = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = yes
 	district_set = standard
 	uses_alternative_skies_for_moons = yes
@@ -123,9 +127,9 @@ pc_savannah = {
 	climate = "dry"
 	initial = yes
 
-	atmosphere_color 		= hsv { 0.50 0.3 0.7 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.50 0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	min_distance_from_sun = @habitable_min_distance
 	max_distance_from_sun = @habitable_max_distance
@@ -140,7 +144,6 @@ pc_savannah = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = yes
 	district_set = standard
 	uses_alternative_skies_for_moons = yes
@@ -158,9 +161,9 @@ pc_tropical = {
 	climate = "wet"
 	initial = yes
 
-	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
 
@@ -175,10 +178,8 @@ pc_tropical = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = yes
 	district_set = standard
-	uses_alternative_skies_for_moons = yes
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
@@ -192,9 +193,9 @@ pc_continental = {
 	climate = "wet"
 	initial = yes
 
-	atmosphere_color 		= hsv { 0.59 0.45 0.95 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.59 0.45 0.95 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
 
@@ -210,10 +211,9 @@ pc_continental = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = yes
 	district_set = standard
-	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_for_moons = no
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
@@ -226,10 +226,10 @@ pc_ocean = {
 
 	climate = "wet"
 	initial = yes
-	
-	atmosphere_color 		= hsv { 0.58 0.5 0.9 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+
+	atmosphere_color		= hsv { 0.58 0.5 0.9 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_ocean.dds"
 
@@ -244,10 +244,9 @@ pc_ocean = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = yes
 	district_set = standard
-	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_for_moons = no
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
@@ -262,9 +261,9 @@ pc_tundra = {
 	climate = "cold"
 	initial = yes
 
-	atmosphere_color 		= hsv { 0.58 0.3 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.58 0.3 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_tundra.dds"
 
@@ -276,13 +275,12 @@ pc_tundra = {
 	extra_planet_count = 0
 
 	chance_of_ring = 0.2
-	enable_tilt = no
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
 
 	colonizable = yes
 	district_set = standard
-	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_for_moons = no
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_normal
@@ -296,9 +294,9 @@ pc_arctic = {
 	climate = "cold"
 	initial = yes
 
-	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_arctic.dds"
 
@@ -313,7 +311,6 @@ pc_arctic = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = yes
 	district_set = standard
 	uses_alternative_skies_for_moons = yes
@@ -330,9 +327,9 @@ pc_alpine = {
 	climate = "cold"
 	initial = yes
 
-	atmosphere_color 		= hsv { 0.48 0.15 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.48 0.15 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_alpine.dds"
 
@@ -347,7 +344,7 @@ pc_alpine = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
+
 	colonizable = yes
 	district_set = standard
 	uses_alternative_skies_for_moons = yes
@@ -356,18 +353,18 @@ pc_alpine = {
 	carry_cap_per_free_district = @carry_cap_normal
 }
 
-# ###########
+####################
 # Uninhabitable Planets
-# ###########
+####################
 
 pc_gas_giant = {
 	entity = "gas_giant"
 	entity_scale = 14
 	icon = GFX_planet_type_gas_giant
 
-	atmosphere_color 		= hsv { 0.1 0.15 1.1 }		#DONE
-	atmosphere_intensity 	= 1.1
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.1 0.15 1.1 }
+	atmosphere_intensity	= 1.1
+	atmosphere_width		= 0.5
 
 	min_distance_from_sun = 40
 	max_distance_from_sun = 1000
@@ -385,7 +382,6 @@ pc_gas_giant = {
 	production_spawn_chance = 0.5
 
 	space_monster_target = yes
-	enable_tilt = no
 	colonizable = no
 }
 
@@ -455,9 +451,9 @@ pc_molten = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_molten
 
-	atmosphere_color 		= hsv { 0.05 0.65 1.4 }		#DONE
-	atmosphere_intensity 	= 0.05
-	atmosphere_width 		= 1.0
+	atmosphere_color		= hsv { 0.05 0.65 1.4 }
+	atmosphere_intensity	= 0.05
+	atmosphere_width		= 1.0
 
 	min_distance_from_sun = 0
 	max_distance_from_sun = 60
@@ -467,7 +463,6 @@ pc_molten = {
 	extra_planet_count = 0
 
 	chance_of_ring = 0
-	enable_tilt = no
 	planet_size = { min = 14 max = 30 }
 	moon_size = { min = 6 max = 12 }
 
@@ -479,9 +474,9 @@ pc_barren = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_barren
 
-	atmosphere_color 		= hsv { 0.1 0.4 0.7 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	min_distance_from_sun = 40
 	max_distance_from_sun = 200
@@ -494,7 +489,6 @@ pc_barren = {
 
 	planet_size = { min = 12 max = 30 }
 	moon_size = { min = 6 max = 10 }
-	enable_tilt = no
 	colonizable = no
 }
 
@@ -503,9 +497,9 @@ pc_barren_cold = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_barren_cold
 
-	atmosphere_color 		= hsv { 0.55 0.3 0.75 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.55 0.3 0.75 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	min_distance_from_sun = 40
 	max_distance_from_sun = 200
@@ -518,7 +512,6 @@ pc_barren_cold = {
 
 	planet_size = { min = 12 max = 30 }
 	moon_size = { min = 6 max = 10 }
-	enable_tilt = no
 	colonizable = no
 }
 
@@ -527,9 +520,9 @@ pc_toxic = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_toxic
 
-	atmosphere_color 		= hsv { 0.19 0.45 0.9 }		#DONE
-	atmosphere_intensity 	= 0.1
-	atmosphere_width 		= 1.2
+	atmosphere_color		= hsv { 0.19 0.45 0.9 }
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
 
 	min_distance_from_sun = 60
 	max_distance_from_sun = 110
@@ -543,19 +536,18 @@ pc_toxic = {
 
 	planet_size = { min = 12 max = 25 }
 	moon_size = { min = 6 max = 10 }
-	enable_tilt = no
 	colonizable = no
 	show_city = no
 }
 
 pc_frozen = {
-	entity = "frozen_planet"		#DONE
+	entity = "frozen_planet"
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_frozen
 
-	atmosphere_color 		= hsv { 0.55 0.15 0.7 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.55 0.15 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	min_distance_from_sun = 120
 	max_distance_from_sun = 1000
@@ -568,22 +560,21 @@ pc_frozen = {
 
 	planet_size = { min = 10 max = 25 }
 	moon_size = { min = 6 max = 10 }
-	enable_tilt = no
 	colonizable = no
 }
 
-# ###########
+####################
 # Special Planets
-# ###########
+####################
 
 pc_nuked = {
 	entity = "nuked_planet"
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_nuked
 
-	atmosphere_color 		= hsv { 0.6 0.4 0.5 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.85
+	atmosphere_color		= hsv { 0.6 0.4 0.5 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.85
 	initial = yes
 	
 	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
@@ -599,11 +590,10 @@ pc_nuked = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	starting_planet = yes
 	colonizable = yes
 	district_set = standard
-	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_for_moons = no
 
 	carry_cap_per_free_district = @carry_cap_low
 }
@@ -615,9 +605,9 @@ pc_hive = {
 
 	icon = GFX_planet_type_hive
 
-	atmosphere_color 		= hsv { 0.75 0.2 0.7 }
-	atmosphere_intensity 	= 0.1
-	atmosphere_width 		= 1.2
+	atmosphere_color		= hsv { 0.75 0.2 0.7 }
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
 
@@ -640,7 +630,6 @@ pc_hive = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = yes
 	district_set = hive_world
 	ideal = yes
@@ -657,9 +646,9 @@ pc_machine = {
 
 	icon = GFX_planet_type_machine
 
-	atmosphere_color 		= hsv { 0.09 0.8 0.7 }
-	atmosphere_intensity 	= 0.4
-	atmosphere_width 		= 1.0
+	atmosphere_color		= hsv { 0.09 0.8 0.7 }
+	atmosphere_intensity	= 0.4
+	atmosphere_width		= 1.0
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
 
@@ -684,13 +673,42 @@ pc_machine = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = yes
 	district_set = machine_world
 	starting_planet = no
 	show_city = no
 
 	carry_cap_per_free_district = @carry_cap_low
+}
+
+pc_machine_broken = { #Similar concept to pc_ai, but not bound to Contingency
+	entity = "machine_planet"
+	entity_scale = @planet_standard_scale
+	picture = pc_ai
+
+	icon = GFX_planet_type_machine
+
+	atmosphere_color		= hsv { 0.09 0.8 0.7 }
+	atmosphere_intensity	= 0.4
+	atmosphere_width		= 1.0
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
+
+	min_distance_from_sun = 40
+	max_distance_from_sun = 1000
+
+	spawn_odds = 0
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	can_be_moon = no
+	chance_of_ring = 0.0
+
+	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	colonizable = no
+	starting_planet = no
 }
 
 pc_shielded = {
@@ -700,9 +718,9 @@ pc_shielded = {
 
 	entity_scale = @planet_standard_scale
 
-	atmosphere_color 		= hsv { 0.25 0.9 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 1.2
+	atmosphere_color		= hsv { 0.25 0.9 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 1.2
 
 	min_distance_from_sun = 60
 	max_distance_from_sun = 80
@@ -718,7 +736,6 @@ pc_shielded = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	production_spawn_chance = 0.4
 
 	colonizable = no
@@ -730,9 +747,9 @@ pc_ai = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_machine
 
-	atmosphere_color 		= hsv { 0.09 0.8 0.7 }
-	atmosphere_intensity 	= 0.4
-	atmosphere_width 		= 1.0
+	atmosphere_color		= hsv { 0.09 0.8 0.7 }
+	atmosphere_intensity	= 0.4
+	atmosphere_width		= 1.0
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
 
@@ -755,7 +772,6 @@ pc_ai = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = no
 	show_city = no
 }
@@ -766,9 +782,9 @@ pc_infested = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_hive
 
-	atmosphere_color 		= hsv { 0.75 0.2 0.7 }
-	atmosphere_intensity 	= 0.1
-	atmosphere_width 		= 1.2
+	atmosphere_color		= hsv { 0.75 0.2 0.7 }
+	atmosphere_intensity	= 0.1
+	atmosphere_width		= 1.2
 
 	# Should not really be needed, because swarm should not have cities, but they do currently, and if this is not here, you get lots of errors
 	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.dds"
@@ -791,7 +807,6 @@ pc_infested = {
 
 	planet_size = { min = 12 max = 25 }
 	moon_size = { min = 7 max = 12 }
-	enable_tilt = no
 	colonizable = no
 	colonizable_by_event = yes	# Ensure colonization mechanics are handled even if the planet cannot be colonized the usual way
 
@@ -803,9 +818,9 @@ pc_gaia = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_gaia
 
-	atmosphere_color 		= hsv { 0.58	0.3 0.7 }
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.58	0.3 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	city_color_lut = "gfx/portraits/misc/colorcorrection_tropical.dds"
 
@@ -827,12 +842,11 @@ pc_gaia = {
 
 	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
 	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
-	enable_tilt = no
 	colonizable = yes
 	district_set = standard
 	ideal = yes
 	starting_planet = no
-	uses_alternative_skies_for_moons = yes
+	uses_alternative_skies_for_moons = no
 	uses_alternative_skies_if_has_orbital_ring = yes
 
 	carry_cap_per_free_district = @carry_cap_high
@@ -844,11 +858,10 @@ pc_cybrex = {
 	picture = pc_ai
 	icon = GFX_planet_type_ringworld
 	entity_scale = 1.0
-	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.50 0.2 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
 	extra_orbit_size = 0
 	extra_planet_count = 0
@@ -858,6 +871,7 @@ pc_cybrex = {
 	colonizable = no
 	show_city = no
 	orbit_lines = no
+	can_have_no_pop_colony = yes
 	can_be_invaded = no
 	district_set = ring_world
 	show_health_bar_in_planet_view = yes # Determines whether to display 'surface integrity' gui component
@@ -866,9 +880,9 @@ pc_cybrex = {
 }
 
 
-# ###########
+####################
 # Megastructures
-# ###########
+####################
 
 pc_ringworld_habitable = {
 	ringworld = yes
@@ -879,9 +893,9 @@ pc_ringworld_habitable = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.0 0.0 1.0 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 	show_city = yes
 	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
 	extra_orbit_size = 0
@@ -903,7 +917,7 @@ pc_ringworld_habitable = {
 		planet_resettlement_unemployed_destination_mult = 0.5
 	}
 	spawn_odds = 0
-	carry_cap_per_free_district = @carry_cap_normal
+	carry_cap_per_free_district = @carry_cap_high
 }
 
 pc_ringworld_habitable_damaged = {
@@ -913,11 +927,11 @@ pc_ringworld_habitable_damaged = {
 	picture = pc_ringworld_broken
 	icon = GFX_planet_type_ringworld
 	entity_scale = 1.0
-	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.50 0.2 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	enable_tilt = no
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
 	extra_orbit_size = 0
 	extra_planet_count = 0
@@ -936,11 +950,11 @@ pc_ringworld_tech = {
 	picture = pc_ringworld_section
 	icon = GFX_planet_type_ringworld
 	entity_scale = 1.0
-	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.50 0.2 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	enable_tilt = no
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
 	extra_orbit_size = 0
 	extra_planet_count = 0
@@ -960,11 +974,11 @@ pc_ringworld_tech_damaged = {
 	picture = pc_ringworld_broken
 	icon = GFX_planet_type_ringworld
 	entity_scale = 1.0
-	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.50 0.2 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	enable_tilt = no
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
 	extra_orbit_size = 0
 	extra_planet_count = 0
@@ -987,9 +1001,9 @@ pc_ringworld_seam = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.50 0.2 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
 	extra_orbit_size = 0
 	extra_planet_count = 0
@@ -1012,9 +1026,9 @@ pc_ringworld_seam_damaged = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color 		= hsv { 0.50 0.2 0.8 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.50 0.2 0.8 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
 	extra_orbit_size = 0
 	extra_planet_count = 0
@@ -1037,7 +1051,7 @@ pc_shattered_ring_habitable = {
 	entity_scale = 1.0
 	enable_tilt = no
 	fixed_entity_scale = yes
-	atmosphere_color		= hsv { 0.0 0.0 1.0 }		#DONE
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }
 	atmosphere_intensity	= 1.0
 	atmosphere_width		= 0.5
 	show_city = yes
@@ -1057,11 +1071,11 @@ pc_shattered_ring_habitable = {
 
 	is_artificial_planet = yes
 
-#	modifier = {
-#		planet_max_buildings_add = 12
-#	}
-
 	carry_cap_per_free_district = @carry_cap_normal
+
+	modifier = {
+		pop_environment_tolerance = 1.0
+	}
 }
 
 pc_habitat = {
@@ -1073,9 +1087,9 @@ pc_habitat = {
 	fixed_entity_scale = yes
 	place_entity_on_planet_plane = no
 	entity_face_object = no #disable rotation towards sun or planet we orbit around
-	atmosphere_color 		= hsv { 0.0 0.0 1.0 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.0 0.0 1.0 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 	initial = yes
 	show_city = no
 	city_color_lut = "gfx/portraits/misc/colorcorrection_continental.dds"
@@ -1102,14 +1116,18 @@ pc_habitat = {
 	carry_cap_per_free_district = @carry_cap_low
 }
 
+##########################
+# Altered/Damaged Planets
+##########################
+
 pc_shrouded = {
 	entity = "shroud_planet"
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_shrouded
 
-	atmosphere_color 		= hsv { 0.0 0.9 0.45	}		#DONE
-	atmosphere_intensity 	= 0.5
-	atmosphere_width 		= 1.5
+	atmosphere_color		= hsv { 0.0 0.9 0.45	}
+	atmosphere_intensity	= 0.5
+	atmosphere_width		= 1.5
 
 	spawn_odds = 0
 
@@ -1118,7 +1136,6 @@ pc_shrouded = {
 
 	planet_size = { min = 10 max = 25 }
 	moon_size = { min = 6 max = 10 }
-	enable_tilt = no
 	colonizable = no
 }
 
@@ -1127,9 +1144,9 @@ pc_broken = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_barren
 
-	atmosphere_color 		= hsv { 0.1 0.4 0.7 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	spawn_odds = 0
 
@@ -1138,7 +1155,6 @@ pc_broken = {
 
 	planet_size = { min = 12 max = 30 }
 	moon_size = { min = 6 max = 10 }
-	enable_tilt = no
 	colonizable = no
 }
 
@@ -1147,9 +1163,9 @@ pc_shattered = {
 	entity_scale = @planet_standard_scale
 	icon = GFX_planet_type_barren
 
-	atmosphere_color 		= hsv { 0.1 0.4 0.7 }		#DONE
-	atmosphere_intensity 	= 1.0
-	atmosphere_width 		= 0.5
+	atmosphere_color		= hsv { 0.1 0.4 0.7 }
+	atmosphere_intensity	= 1.0
+	atmosphere_width		= 0.5
 
 	spawn_odds = 0
 
@@ -1158,13 +1174,40 @@ pc_shattered = {
 
 	planet_size = { min = 12 max = 30 }
 	moon_size = { min = 6 max = 10 }
-	enable_tilt = no
 	colonizable = no
 }
 
-# ###########
+pc_toxoid_star = {
+	entity = "toxoid_star_class_star_entity"
+	entity_scale = 20.0
+	picture = "pc_x_star"
+	icon = GFX_planet_type_toxoid_star
+
+	atmosphere_color		= hsv { 0.19 1 0.7 }
+	atmosphere_intensity	= 0.5
+	atmosphere_width		= 1.9
+
+	star = yes
+
+	min_distance_from_sun = 0
+	max_distance_from_sun = 0
+	spawn_odds = 0
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 20 max = 35 }
+
+	colonizable = no
+
+	planet_custom_label_offset = 100
+}
+
+####################
 # Random Lists
-# ###########
+####################
 
 random_list = {
 	name = "rl_habitable_normal"
@@ -1229,4 +1272,3 @@ random_list = {
 		"pc_broken"
 	}
 }
-				

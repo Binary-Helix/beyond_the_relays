@@ -1,0 +1,40 @@
+# Machine empire AI economic plans
+
+basic_economy_plan = {
+	subplan = {
+		set_name = "machine empire base alloys"
+		potential = {
+			is_machine_empire = yes
+		}
+
+		income = {
+			#alloys = @economic_plan_machine_empire_alloy_target
+			light_metals = @economic_plan_machine_empire_light_metals_target
+			heavy_metals = @economic_plan_machine_empire_heavy_metals_target
+		}
+	}
+
+	subplan = {
+		set_name = "base science machine empire"
+		potential = {
+			is_machine_empire = yes
+			has_monthly_income = { resource = energy value > @economic_plan_energy_target }
+		}
+		income = {
+			physics_research = @economic_plan_research_target
+			society_research = @economic_plan_research_target
+			engineering_research = @economic_plan_research_target
+		}
+	}
+
+	subplan = {
+		set_name = "base unity machine empire"
+		potential = {
+			is_machine_empire = yes
+		}
+
+		income = {
+			unity = @economic_plan_unity_target
+		}
+	}
+}

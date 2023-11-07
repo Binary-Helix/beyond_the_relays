@@ -103,8 +103,7 @@ nuclear_employee = {
 			energy = @requisitorium_energy_reduction
 		}
 		upkeep = {
-			#helium = 1
-			exotic_gases = 1
+			uranium = 1
 		}
 	}
 	
@@ -211,8 +210,7 @@ nuclear_drone = {
 			energy = @requisitorium_energy_reduction
 		}
 		upkeep = {
-			#helium = 1
-			exotic_gases = 1
+			uranium = 1
 		}
 	}
 	
@@ -279,8 +277,8 @@ regolith_miner = {
 	resources = {
 		category = planet_miners
 		produces = {
-			#helium = 1
-			exotic_gases = 1
+			helium_3 = 1
+			hydrogen = 1
 			minerals = 2
 		}
 		produces = {
@@ -308,7 +306,8 @@ regolith_miner = {
 	weight = {
 		weight = @worker_job_weight
 		mult = value:job_weights_modifier|JOB|regolith_miner|RESOURCE|minerals|
-		mult = value:job_weights_modifier|JOB|regolith_miner|RESOURCE|exotic_gases|
+		mult = value:job_weights_modifier|JOB|regolith_miner|RESOURCE|helium_3|
+		mult = value:job_weights_modifier|JOB|regolith_miner|RESOURCE|hydrogen|
 		modifier = {
 			factor = 10
 			is_enslaved = yes
@@ -358,8 +357,8 @@ regolith_miner_drone = {
 	resources = {
 		category = planet_miners
 		produces = {
-			#helium = 1
-			exotic_gases = 1
+			helium_3 = 1
+			hydrogen = 1
 			minerals = 4
 		}
 		produces = {
@@ -387,7 +386,8 @@ regolith_miner_drone = {
 	weight = {
 		weight = @simple_drone_job_weight
 		mult = value:job_weights_modifier|JOB|regolith_miner_drone|RESOURCE|minerals| 
-		mult = value:job_weights_modifier|JOB|regolith_miner_drone|RESOURCE|exotic_gases| #Change to Helium upon Farixen
+		mult = value:job_weights_modifier|JOB|regolith_miner_drone|RESOURCE|helium_3|
+		mult = value:job_weights_modifier|JOB|regolith_miner_drone|RESOURCE|hydrogen|
 		modifier = {
 			factor = 1.1
 			exists = owner
@@ -1762,14 +1762,15 @@ helium_extractor = {
 	resources = {
 		category = planet_sr_miners
 		produces = {
-			#helium = 2
-			exotic_gases = 2
+			helium_3 = 2
+			hydrogen = 2
 		}
 	}
 
 	weight = {
 		weight = @specialist_job_weight # Important job
-		mult = value:job_weights_modifier|JOB|helium_extractor|RESOURCE|exotic_gases|
+		mult = value:job_weights_modifier|JOB|helium_extractor|RESOURCE|helium_3|
+		mult = value:job_weights_modifier|JOB|helium_extractor|RESOURCE|hydrogen|
 		modifier = {
 			factor = 10
 			is_enslaved = yes
@@ -1821,8 +1822,8 @@ helium_extraction_drone = {
 	resources = {
 		category = planet_sr_miners
 		produces = {
-			#helium = 2
-			exotic_gases = 2
+			helium_3 = 2
+			hydrogen = 2
 		}
 		upkeep = {
 			energy = 1
@@ -1831,7 +1832,8 @@ helium_extraction_drone = {
 
 	weight = {
 		weight = @complex_drone_job_weight
-		mult = value:job_weights_modifier|JOB|helium_extraction_drone|RESOURCE|exotic_gases|
+		mult = value:job_weights_modifier|JOB|helium_extraction_drone|RESOURCE|helium_3|
+		mult = value:job_weights_modifier|JOB|helium_extraction_drone|RESOURCE|hydrogen|
 		modifier = {
 			factor = 1.1
 			exists = owner

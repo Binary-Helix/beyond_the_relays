@@ -1,4 +1,22 @@
+# Star classes add further definition to solar system initializers, in that they apply certain conditions to the whole star system. A given system initializer may either make an explicit choice of star class (e.g. "class = sc_f") or else choose one from a random list (e.g. "rl_binary_stars"). The random lists of star classes are defined further down in this file.
+
+### EXAMPLE:
+# sc_b = {									# The ID for this star class, which is then called in relevant system initializers
+# 	class = b_star							# ID as referenced by GFX and code, to determine lighting
+# 	planet = { key = pc_b_star }			# ID for the 'planet' class which defines the the actual star: its 3D asset, size, colonization setting, etc.
+# 	spawn_odds = 10							# Weighting applied to random_lists which include this star class
+# 	num_planets	= { min = 4 max = 10 }		# How many planets should be spawned in systems using this star class (using the 'spawn_odds' of each planet class)
+
+# 	NOTE: You may also set the odds that a given planet class will or will not spawn for system initializers which use this star class. By default the game will assume all planet classes are valid for random draws (while obeying placement rules like 'min_distance_from_sun') unless the spawn_odds for that planet class have been set to '0' (see 'common\planet_classes\00_planet_classes.txt'). For example:
+# 	pc_savannah = { spawn_odds = 0.5 }		# Savannah-class planets will appear in random draws half as often (@habitable_spawn_odds * 0.5)
+#	pc_continental = { spawn_odds = 0 }		# Continental-class planets may never spawn here randomly (@habitable_spawn_odds * 0)
+# }
+
 ###NOTE FROM PUCK - Added in RS Stars, as well as spawn odds for BtW Overhaul.
+
+###############
+# STAR CLASSES
+###############
 
 # Blue-Purple Stars
 sc_o = {

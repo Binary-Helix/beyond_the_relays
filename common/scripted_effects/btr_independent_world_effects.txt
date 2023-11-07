@@ -2,23 +2,12 @@
 ##### CITADEL COUNCIL #####
 ###########################
 
-generate_csec_citadel_council_deposits = {
-	add_deposit = d_citadel_wards
-	add_deposit = d_citadel_presidium
-	add_deposit = d_citadel_tower
-	add_deposit = d_citadel_csec
-	add_deposit = d_citadel_keeper_workshops
-	add_deposit = d_citadel_huerta_memorial_hospital
-	add_deposit = d_citadel_purgatory_bar
-	add_deposit = d_citadel_joint_research_division
-}
-
 generate_csec_citadel_buildings = {
 	while = { count = 3 add_district = { district_type = district_hab_housing ignore_cap = yes } }
 	while = { count = 3 add_district = { district_type = district_hab_energy ignore_cap = yes } }		
 	while = { count = 3 add_district = { district_type = district_hab_industrial ignore_cap = yes } }
-	while = { count = 3 add_district = { district_type = district_hab_cultural ignore_cap = yes } }
-	while = { count = 3 add_district = { district_type = district_hab_commercial ignore_cap = yes } }
+	while = { count = 3 add_district = { district_type = district_hab_housing ignore_cap = yes } }
+	while = { count = 3 add_district = { district_type = district_hab_energy ignore_cap = yes } }
 	add_building = building_citadel_tower
 	add_building = building_citadel_commons
 	add_building = building_citadel_csec
@@ -33,13 +22,67 @@ generate_csec_pinnacle_buildings = {
 	add_building = building_hab_capital
 }
 
+generate_citadel_station_pops = {
+	while = {
+		count = 12
+		generate_asariPop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+	while = {
+		count = 11
+		generate_salarianPop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+	while = {
+		count = 11
+		generate_turianPop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+	while = {
+		count = 6
+		generate_elcorPop = yes
+	}
+	while = {
+		count = 5
+		generate_volusPop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+	while = {
+		count = 5
+		generate_hanarPop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+	while = {
+		count = 1
+		generate_humanPop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+}
+
+generate_csec_pinnacle_pops = {
+	while = {
+	   count = 3
+	   generate_csec_pinnacle_pop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+ }
 
 ##########################
 ### INDEPENDENT WORLDS ###
 ##########################
 
 generate_btr_independent_world_capitol_buildings = {
+	while = { count = 2 add_district = { district_type = district_city ignore_cap = yes }}
+	while = { count = 2 add_district = { district_type = district_industrial ignore_cap = yes }}
+	while = { count = 2 add_district = { district_type = district_farming ignore_cap = yes }}
+	while = { count = 2 add_district = { district_type = district_mining ignore_cap = yes }}
 	add_building = building_capital
+	add_building = building_research_lab_1
+	add_building = building_foundry_1
+}
+
+generate_btr_independent_world_fleets = {
+
 }
 
 ###########################
@@ -51,12 +94,12 @@ generate_btr_independent_world_capitol_buildings = {
 
 generate_aite_pops = {
 	while = {
-		count = 1
+		count = 5
 		generate_humanPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
 	while = {
-		count = 3
+		count = 15
 		generate_misc_council_race_pop = yes
 	}
 }
@@ -65,10 +108,9 @@ generate_aite_pops = {
 ### ALAHYAN TERRAFORMATION ZONE ###
 ###################################
 
-
 generate_arvuna_pops = {
 	while = {
-		count = 3
+		count = 20
 		generate_humanPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -76,11 +118,11 @@ generate_arvuna_pops = {
 
 generate_alahya_pops = {
 	while = {
-		count = 1
+		count = 10
 		generate_humanPop = yes
 	}
 	while = {
-		count = 1
+		count = 10
 		generate_volusPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -92,7 +134,7 @@ generate_alahya_pops = {
 
 generate_altakiril_pops = {
 	while = {
-		count = 6
+		count = 20
 		generate_turianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -104,23 +146,23 @@ generate_altakiril_pops = {
 
 generate_anansi_pops = {
 	while = {
-		count = 5
+		count = 20
 		generate_hanarPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
 }
 
-#####################################
-##### UNITED ANHUR CORPORATIONS #####
-#####################################
+###########################
+##### POLITY OF ANHUR #####
+###########################
 
 generate_anhur_pops = {
 	while = {
-		count = 5
+		count = 7
 		generate_humanPop = yes
 	}
 	while = {
-		count = 9
+		count = 13
 		generate_batarianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -132,7 +174,7 @@ generate_anhur_pops = {
 
 generate_asteria_pops = {
 	while = {
-		count = 13
+		count = 20
 		generate_asariPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -144,7 +186,7 @@ generate_asteria_pops = {
 
 generate_chalkhos_pops = {
 	while = {
-		count = 11
+		count = 20
 		generate_asariPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -156,7 +198,7 @@ generate_chalkhos_pops = {
 
 generate_cyrene_pops = {
 	while = {
-		count = 2
+		count = 20
 		generate_humanPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -168,7 +210,7 @@ generate_cyrene_pops = {
 
 generate_dobrovolski_pops = {
 	while = {
-		count = 3
+		count = 20
 		generate_humanPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -180,7 +222,7 @@ generate_dobrovolski_pops = {
 
 generate_erinle_pops = {
 	while = {
-		count = 14
+		count = 20
 		generate_salarianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -192,7 +234,7 @@ generate_erinle_pops = {
 
 generate_ferris_fields_pops = {
 	while = {
-		count = 2
+		count = 20
 		generate_humanPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -204,11 +246,11 @@ generate_ferris_fields_pops = {
 
 generate_drifting_skies_pops = {
 	while = {
-		count = 3
+		count = 8
 		generate_hanarPop = yes
 	}
 	while = {
-		count = 1
+		count = 12
 		generate_drellPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -221,11 +263,11 @@ generate_drifting_skies_pops = {
 
 generate_wrill_pops = {
 	while = {
-		count = 3
+		count = 15
 		generate_kroganPop = yes
 	}
 	while = {
-		count = 1
+		count = 5
 		generate_vorchaPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -233,11 +275,11 @@ generate_wrill_pops = {
 
 generate_flett_pops = {
 	while = {
-		count = 2
+		count = 5
 		generate_kroganPop = yes
 	}
 	while = {
-		count = 6
+		count = 15
 		generate_vorchaPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -249,7 +291,7 @@ generate_flett_pops = {
 
 generate_freedoms_progress_pops = {
 	while = {
-		count = 3
+		count = 20
 		generate_humanPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -261,11 +303,11 @@ generate_freedoms_progress_pops = {
 
 generate_garvug_pops = {
 	while = {
-		count = 7
+		count = 14
 		generate_kroganPop = yes
 	}
 	while = {
-		count = 4
+		count = 6
 		generate_vorchaPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -277,7 +319,7 @@ generate_garvug_pops = {
 
 generate_horizon_pops = {
 	while = {
-		count = 3
+		count = 20
 		generate_humanPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -289,7 +331,7 @@ generate_horizon_pops = {
 
 generate_ishtar_pops = {
 	while = {
-		count = 5
+		count = 20
 		generate_salarianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -301,11 +343,11 @@ generate_ishtar_pops = {
 
 generate_jenera_pops = {
 	while = {
-		count = 1
+		count = 13
 		generate_batarianPop = yes
 	}
 	while = {
-		count = 2
+		count = 7
 		generate_vorchaPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -317,7 +359,7 @@ generate_jenera_pops = {
 
 generate_joab_pops = {
 	while = {
-		count = 6
+		count = 20
 		generate_humanPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -347,7 +389,7 @@ generate_korlus_pops = {
 
 generate_kosh_pops = {
 	while = {
-		count = 4
+		count = 20
 		generate_misc_terminus_pop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -357,9 +399,9 @@ generate_kosh_pops = {
 ### Logarisi Development Corporation ###
 ########################################
 
-generate_kosh_pops = {
+generate_logarisi_pops = {
 	while = {
-		count = 4
+		count = 20
 		generate_batarianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -371,7 +413,7 @@ generate_kosh_pops = {
 
 generate_monrini_pops = {
 	while = {
-		count = 5
+		count = 20
 		generate_salarianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -383,7 +425,7 @@ generate_monrini_pops = {
 
 generate_new_canton_pops = {
 	while = {
-		count = 5
+		count = 20
 		generate_humanPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -398,17 +440,17 @@ generate_noveria_deposits = {
 	add_deposit = d_noveria_peak_research_facility
 }
 
-generate_new_canton_pops = {
+generate_noveria_pops = {
 	while = {
-		count = 1
+		count = 8
 		generate_salarianPop = yes
 	}
 	while = {
-		count = 1
+		count = 7
 		generate_humanPop = yes
 	}
 	while = {
-		count = 1
+		count = 5
 		generate_asariPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -420,12 +462,23 @@ generate_new_canton_pops = {
 
 generate_sahi_dau_pops = {
 	while = {
-		count = 4
+		count = 20
 		generate_volusPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
 }
 
+############################
+### SANCTUM METALS GROUP ###
+############################
+
+generate_sanctum_pops = {
+	while = {
+		count = 20
+		generate_turianPop = yes
+	}
+	every_owned_pop = { set_pop_flag = init_spawn }
+}
 
 ##################################
 ### Thalassocracy of Talis Fia ###
@@ -445,7 +498,7 @@ generate_talis_fia_pops = {
 
 generate_thrednakka_pops = {
 	while = {
-		count = 2
+		count = 20
 		generate_batarianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -457,7 +510,7 @@ generate_thrednakka_pops = {
 
 generate_thunawanuro_pops = {
 	while = {
-		count = 5
+		count = 20
 		generate_elcorPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -469,7 +522,7 @@ generate_thunawanuro_pops = {
 
 generate_tortuga_pops = {
 	while = {
-		count = 8
+		count = 20
 		generate_misc_terminus_pop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -481,11 +534,11 @@ generate_tortuga_pops = {
 
 generate_trident_pops = {
 	while = {
-		count = 2
-		generate_humanpop = yes
+		count = 5
+		generate_humanPop = yes
 	}
 	while = {
-		count = 6
+		count = 15
 		generate_misc_terminus_pop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -495,9 +548,9 @@ generate_trident_pops = {
 ### Trigintan League ###
 ########################
 
-generate_tortuga_pops = {
+generate_triginta_petra_pops = {
 	while = {
-		count = 3
+		count = 20
 		generate_turianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -507,9 +560,9 @@ generate_tortuga_pops = {
 ### People's Authority of Tyvor ###
 ###################################
 
-generate_tortuga_pops = {
+generate_tyvor_pops = {
 	while = {
-		count = 13
+		count = 20
 		generate_turianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -519,9 +572,9 @@ generate_tortuga_pops = {
 ### Fal III Manufactory ###
 ###########################
 
-generate_yalsom_pops = {
+generate_yalson_pops = {
 	while = {
-		count = 4
+		count = 20
 		generate_salarianPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -533,7 +586,7 @@ generate_yalsom_pops = {
 
 generate_yamm_pops = {
 	while = {
-		count = 8
+		count = 20
 		generate_hanarPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }
@@ -545,19 +598,19 @@ generate_yamm_pops = {
 
 generate_zorya_pops = {
 	while = {
-		count = 3
+		count = 6
 		generate_humanPop = yes
 	}
 	while = {
-		count = 3
+		count = 6
 		generate_turianPop = yes
 	}
 	while = {
-		count = 3
+		count = 6
 		generate_batarianPop = yes
 	}
 	while = {
-		count = 2
+		count = 4
 		generate_vorchaPop = yes
 	}
 	every_owned_pop = { set_pop_flag = init_spawn }

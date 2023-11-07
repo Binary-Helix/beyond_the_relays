@@ -1782,6 +1782,17 @@ guiTypes = {
 					}
 				}
 
+				containerWindowType = {
+					name = "settings_accessibility_tooltip_tts_bg"
+					size = { width = 795 height = 46 }
+					position = { x = -427 y = 316 }
+
+					background = {
+						name = "setting_bg_frame"
+						spriteType = "GFX_tiles_dark_area_cut_8"
+					}
+				}	
+
 				# labels
 				instantTextBoxType={
 					position = {x = -410 y = -58 }
@@ -1871,6 +1882,16 @@ guiTypes = {
 					tooltip_mode_enabled = yes
 				}
 
+				instantTextBoxType={
+					position = {x = -410 y = 326 }
+					name = "tooltip_tts_label"
+					font = "malgun_goth_24"
+					maxWidth = 400
+					maxHeight = 18
+					text = "SETTINGS_ACCESSIBILITY_TOOLTIP_TTS"
+					tooltip = "SETTINGS_ACCESSIBILITY_TOOLTIP_TTS_INFO"
+					tooltip_mode_enabled = yes
+				}	
 
 				# values
 				instantTextBoxType={
@@ -1974,6 +1995,18 @@ guiTypes = {
 					tooltip = "SETTINGS_ACCESSIBILITY_GENERAL_TTS_VALUE_INFO"
 				}
 
+				instantTextBoxType = {
+					position = { x = 30 y = 326  }
+					name = "tooltip_tts_value"
+					font = "malgun_goth_24"
+					borderSize = {x = 0 y = 0}
+					maxWidth = 300
+					maxHeight = 18
+					text = "On"
+					orientation = "UPPER_LEFT"
+					format = center
+					tooltip = "SETTINGS_ACCESSIBILITY_TOOLTIP_TTS_VALUE_INFO"
+				}
 
 				# spinners
 				spinnerType = {
@@ -2212,6 +2245,40 @@ guiTypes = {
 						size = { x = @spinnerOverlaySizeX y = @spinnerOverlaySizeY }
 					}
 				}
+
+				spinnerType = {
+					id = "tooltip_tts_spinner"
+					name = "tooltip_tts_spinner"
+					leftbutton = "spinner_upButton"
+					rightbutton = "spinner_downButton"
+					size = {x = 360 y = 30 }
+					position = {x= 0 y = 326}
+					priority = 100
+					borderSize = {x =16 y = 16}
+					horizontal = 1
+					maxValue = 100
+					startValue = 0
+					defaultSelection = yes
+
+					guiButtonType = {
+						name = "spinner_upButton"
+						quadTextureSprite = "scrollbar_leftbutton"
+						position = { x=30 y =0}
+					}
+					guiButtonType = {
+						name = "spinner_downButton"
+						quadTextureSprite = "scrollbar_rightbutton"
+						position = { x=30 y =120}
+					}
+
+					overlay = {
+						name = "selected_overlay"
+						spriteType = "GFX_glow_tile_orange_no_padding"
+						overSprite = "GFX_glow_tile_line"
+						position = { x = @spinnerOverlayPosX y = @spinnerOverlayPosY }
+						size = { x = @spinnerOverlaySizeX y = @spinnerOverlaySizeY }
+					}
+				}	
 			}
 
 			################################# Message settings #################
