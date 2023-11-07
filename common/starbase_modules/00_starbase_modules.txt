@@ -1,0 +1,504 @@
+# possible section models:
+# SHIPYARD_STARBASE_SECTION
+# REFINERY_STARBASE_SECTION
+# SCIENCE_STARBASE_SECTION
+# HANGAR_STARBASE_SECTION
+# ASSEMBLYYARD_STARBASE_SECTION
+#Remember to update operation_sabotage_starbase if you add any new modules.
+# You will need to update the description, espionage_sabotage_starbase_module, and remove_sabotage_starbase_flag
+
+shipyard = {
+	icon = "GFX_starbase_shipyard"
+	section = "ASSEMBLYYARD_STARBASE_SECTION"
+	construction_days = 180
+	initial = yes
+
+	potential = {
+		is_normal_starbase = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		starbase_shipyard_capacity_add = 1
+	}
+	triggered_station_modifier = {
+		potential = { has_starbase_building = irassian_naval_yards }
+		starbase_shipyard_capacity_add = 1
+	}
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 100
+			owner = {
+				OR = {
+					count_owned_starbase = {
+						count = 0
+						limit = { has_starbase_module = shipyard }
+					}
+					AND = {
+						controlled_systems > 30
+						count_owned_starbase = {
+							count < 2
+							limit = { has_starbase_module = shipyard }
+						}
+					}
+					AND = {
+						controlled_systems > 60
+						count_owned_starbase = {
+							count < 3
+							limit = { has_starbase_module = shipyard }
+						}
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 3
+			has_starbase_module = shipyard
+			count_starbase_modules = {
+				count < 2
+				type = shipyard
+			}
+		}
+		modifier = {
+			factor = 3
+			has_starbase_module = shipyard
+			count_starbase_modules = {
+				count < 4
+				type = shipyard
+			}
+		}
+	}
+}
+
+anchorage = {
+	icon = "GFX_starbase_anchorage"
+	section = "ANCHORAGE_STARBASE_SECTION"
+	construction_days = 180
+
+	potential = {
+		is_normal_starbase = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 4
+	}
+	triggered_country_modifier = {
+		potential = {
+			is_scope_valid = yes
+			has_starbase_building = naval_logistics_office
+		}
+		country_naval_cap_add = 2
+	}
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 2
+			count_starbase_modules = {
+				type = anchorage
+				count < 2
+			}
+		}
+	}
+}
+
+gun_battery = {
+	section = "BATTERY_STARBASE_SECTION"
+	icon = GFX_spaceport_modules
+	construction_days = 180
+
+	potential = {
+		is_normal_starbase = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.10
+		ship_armor_mult = 0.10
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 5
+		starbase_defense_platform_capacity_add = 1
+	}
+
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = {
+				OR = {
+					is_preferred_weapons = weapon_type_energy
+					is_preferred_weapons = weapon_type_kinetic
+				}
+			}
+		}
+	}
+
+	show_in_tech = "tech_mass_drivers_1"
+}
+
+missile_battery = {
+	section = "MISSILE_STARBASE_SECTION"
+	icon = "GFX_starbase_missile_battery"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_torpedoes_1 }
+		is_normal_starbase = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.10
+		ship_armor_mult = 0.10
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 5
+		starbase_defense_platform_capacity_add = 1
+	}
+
+
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = { is_preferred_weapons = weapon_type_explosive }
+		}
+	}
+
+	show_in_tech = "tech_torpedoes_1"
+}
+
+hangar_bay = {
+	icon = "GFX_starbase_hangar_bay"
+	section = "HANGAR_STARBASE_SECTION"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_strike_craft_1 }
+		is_normal_starbase = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.10
+		ship_armor_mult = 0.10
+		starbase_trade_protection_range_add = 1
+		starbase_trade_protection_add = 10
+		starbase_defense_platform_capacity_add = 1
+	}
+
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 2
+			exists = owner
+			owner = { is_preferred_weapons = weapon_type_strike_craft }
+		}
+	}
+
+	show_in_tech = "tech_strike_craft_1"
+}
+
+solar_panel_network = {
+	icon = "GFX_solar_panel_network"
+	section = "SCIENCE_STARBASE_SECTION"
+	construction_days = 180
+	initial = yes
+
+	potential = {
+		exists = owner
+		is_normal_starbase = yes
+		owner = {
+			is_gestalt = yes
+			has_technology = "tech_solar_panel_network"
+		}
+	}
+
+	possible = {
+		solar_system = {
+			custom_tooltip = {
+				fail_text = "requires_no_black_hole_or_dyson_sphere"
+				NOR = {
+					is_star_class = sc_black_hole
+					has_megastructure = dyson_sphere_3
+					has_megastructure = dyson_sphere_4
+					has_megastructure = dyson_sphere_5
+				}
+			}
+		}
+	}
+
+	show_in_tech = "tech_solar_panel_network"
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		produces = {
+			energy = 6
+		}
+
+		produces = {
+			trigger = {
+				exists = owner
+				owner = {
+					is_galactic_community_member = yes
+				}
+				OR = {
+					is_active_resolution = "resolution_galacticstudies_astral_studies_network"
+					is_active_resolution = "resolution_galacticstudies_advanced_xenostudies"
+					is_active_resolution = "resolution_galacticstudies_ethical_guideline_refactoring"
+					is_active_resolution = "resolution_galacticstudies_extradimensional_experimentation"
+				}
+			}
+			energy = 6
+		}
+	}
+
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+}
+
+trading_hub = {
+	icon = "GFX_starbase_trading_hub"
+	section = "REFINERY_STARBASE_SECTION"
+	construction_days = 180
+	initial = yes
+
+	potential = {
+		exists = owner
+		owner = {
+			is_gestalt = no
+		}
+		is_normal_starbase = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		starbase_trade_collection_range_add = 1
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			hidden_trigger = { exists = this }
+			owner = {
+				has_councilor = { COUNCILOR = "councilor_trading_posts" }
+			}
+		}
+		trade_value_add = 0.5
+		mult = value:councilor_level|TYPE|councilor_trading_posts|
+	}
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			factor = 5
+			NOT = { has_starbase_module = trading_hub }
+			solar_system = {
+				any_neighbor_system = {
+					has_system_trade_value > 50
+				}
+			}
+		}
+	}
+}
+
+detection_array = {
+	icon = "GFX_spaceport_module_detecton_array"
+	section = "SCIENCE_STARBASE_SECTION"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_detection_array }
+		is_normal_starbase = yes
+	}
+
+	possible = {
+		NOT = {
+			has_starbase_building = dark_matter_listening_post
+		}
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 100
+			light_metals = 50
+			heavy_metals = 50
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_cloaking_detection_add = 1
+	}
+
+	ai_build_at_chokepoint = yes
+	ai_build_outside_chokepoint = yes
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+		modifier = {
+			add = 1000
+			owner = {
+				NOT = {
+					any_owned_starbase = {
+						has_starbase_module = detection_array
+					}
+				}
+			}
+		}
+	}
+
+	show_in_tech = "tech_detection_array"
+}
+
+archaeo_rampart = {
+	section = "ANCHORAGE_STARBASE_SECTION"
+	icon = GFX_starbase_archaeo_rampart
+	construction_days = 180
+
+	potential = {
+		is_normal_starbase = yes
+		owner = { has_technology = tech_archaeo_rampart }
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+			minor_artifacts = @minor_artifacts_cost_xl
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			owner = {
+				NOT = { has_ascension_perk = ap_archaeoengineers }
+			}
+		}
+		ship_hull_mult = 0.15
+		ship_armor_mult = 0.15
+		starbase_defense_platform_capacity_add = 2
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			owner = {
+				has_ascension_perk = ap_archaeoengineers
+			}
+		}
+		ship_hull_mult = 0.15
+		ship_armor_mult = 0.20
+		ship_armor_hardening_add = 0.10
+		starbase_defense_platform_capacity_add = 2
+	}
+
+	custom_tooltip = sm_archaeo_rampart_desc_modifier
+
+	defense_platform_modifier = {
+		ship_weapon_damage = 0.05
+		ship_hull_mult = 0.05
+	}
+
+	ai_weight = {
+		weight = 100 #use same weight here - ai weighting is done in starbase_types.txt
+	}
+
+	show_in_tech = "tech_archaeo_rampart"
+}

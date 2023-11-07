@@ -1,0 +1,168 @@
+# Icons set here are the ones show in the actual slot. The reason is so that we can support different icons for different sizes.
+
+#############
+#	COST	#
+#############
+
+@cost_6S = 30
+@cost_6M = 60
+@cost_6L = 120
+
+#############
+#	 FTL	#
+#############
+
+@ftl1 = 5
+@ftl2 = 10
+@ftl3 = 15
+@ftl4 = 30
+
+@power1 = -5
+@power2 = -7.5
+@power3 = -10
+@power4 = -10
+
+########################
+# The Beholder
+########################
+
+utility_component_template = {
+	key = "SHROUD_SHIELD_SUPPRESSION_FIELD"
+	size = medium
+	icon = "GFX_ship_part_shroudborne_shield_suppression"
+	icon_frame = 1
+	power = 0
+	
+	hostile_aura = {
+		name = "aura_shield_dampener"
+		system_wide = yes
+		#radius = 120
+		#apply_on = ships
+
+		stack_info = { # A ship can only be affected by one aura of a certain id. If multiple auras have the same ID the one with the highest priority will be applied.
+			id = hostile_inhibitor_aura
+			priority = 100
+		}
+
+		modifier = {
+			ship_shield_reduction = 1
+		}
+
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = no
+			}
+			ship_effect = {
+				entity = "ship_aura_negative_entity"
+				dynamic_scale = yes
+			}
+		}
+	}
+
+	friendly_aura = {
+		name = "aura_shield_dampener"
+		system_wide = yes
+		#radius = 120
+
+		stack_info = { # A ship can only be affected by one aura of a certain id. If multiple auras have the same ID the one with the highest priority will be applied.
+			id = friendly_inhibitor_aura
+			priority = 100
+		}
+
+		modifier = {
+			ship_shield_reduction = 1
+		}
+
+		graphics = {
+			area_effect = {
+				entity = "circle_area_entity"
+				dynamic_scale = no
+			}
+			ship_effect = {
+				entity = "ship_aura_negative_entity"
+				dynamic_scale = yes
+			}
+		}
+	}
+}
+
+utility_component_template = {
+	key = "SHIP_PLANETFALL"
+	size = large
+	icon = GFX_ship_part_bifunctional_design
+	icon_frame = 1
+	power = 0
+	
+	scripted_action_possible = {
+		exists = owner
+		exists = event_target:beholder_leader
+		exists = event_target:beholder_leader.owner
+		owner = { is_same_value = event_target:beholder_leader.owner }
+		is_under_colonization = no
+	}
+
+	scripted_action_name = on_beholder_target_planet_reached
+	scripted_action_tooltip = beholder_ship_button_desc
+	scripted_action_icon = GFX_fleet_task_planetfall_action
+	scripted_action_activity_key = beholder_action_activity_key
+	scripted_action_context_menu_name = beholder_context_menu_title
+
+	ai_weight = {
+		factor = 2
+	}
+}
+
+
+utility_component_template = {
+	key = "SHIP_AZARYN_TERRAFORM"
+	size = large
+	icon = GFX_ship_part_terraformation_nuclei_initiator
+	icon_frame = 1
+	power = 0
+	
+	scripted_action_possible = {
+		is_terraforming = no
+		NOT = { has_planet_flag = terraform_nucleus_transfixed }
+		is_azaryn_terraformable_pc = yes
+		exists = event_target:azaryn_leader
+		event_target:azaryn_leader = {
+			OR = {
+				has_trait = leader_trait_legendary_terraformation_nucleus_3_buds
+				has_trait = leader_trait_legendary_terraformation_nucleus_2_buds
+				has_trait = leader_trait_legendary_terraformation_nucleus_1_bud
+			}
+			exists = owner
+			owner = {
+				has_resource = { 
+					type = energy 
+					amount >= @azaryn_terraform_cost
+				}
+			}
+		}
+		exists = space_owner
+		space_owner = {
+			is_same_value = event_target:azaryn_leader.owner
+		}
+	}
+
+	scripted_action_button_possible = {
+		owner = {
+			has_resource = { type = energy amount >= 10000 }
+		}
+	}
+
+	scripted_action_finished = {
+		has_planet_flag = terraform_nucleus_transfixed
+	}
+
+	scripted_action_name = on_azaryn_target_planet_reached
+	scripted_action_tooltip = azaryn_ship_button
+	scripted_action_icon = GFX_fleet_order_button_transfix_terraformation_nucleus_action
+	scripted_action_on_cancel = on_azaryn_action_cancel
+	scripted_action_activity_key = azaryn_action_activity_key
+
+	ai_weight = {
+		factor = 2
+	}
+}

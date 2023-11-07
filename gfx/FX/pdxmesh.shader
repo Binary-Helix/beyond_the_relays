@@ -1207,7 +1207,7 @@ PixelShader =
 	]]
 
 	MainCode PixelPdxMeshPortrait
-		ConstantBuffers = { PortraitCommon, TwelthKind }
+		ConstantBuffers = { PortraitCommon, EigthKind }
 	[[
 		float4 main( VS_OUTPUT_PDXMESHSTANDARD In ) : PDX_COLOR
 		{
@@ -1227,34 +1227,25 @@ PixelShader =
 				#endif
 			#endif
 
+			#ifdef FLOWMAP
+				float4 vFlow = tex2D( NormalMap, In.vUV0 );
+				vFlow.xy = ( ( vFlow.xy - 0.5f ) * 2.0f ) * FlowMapIntensity * vFlow.z;
+
+				float2 flowUVs = UVLod.xy + ( vFlow.xy * frac( vUVAnimationTime ) );
+				float2 offsetFlowUVs = UVLod.xy + ( vFlow.xy * frac( vUVAnimationTime + 0.5f ) );
+
+				float4 vEffect = tex2Dlod( SpecularMap, float4( flowUVs.xy, UVLod.zw ) );
+				float4 vEffectOffset = tex2Dlod( SpecularMap, float4( offsetFlowUVs.xy, UVLod.zw ) );
+
+				float blendValue = abs( ( frac( vUVAnimationTime ) * 2.0f ) - 1.0f );
+				float4 blendEffect = lerp( vEffect, vEffectOffset, blendValue );
+
+				float4 finalPixel = lerp( vDiffuse, blendEffect, vFlow.b );
+
+				return float4( ToGamma( finalPixel.rgb ), finalPixel.a );
+			#endif
+
 			return float4( ToGamma( vDiffuse.rgb ), vDiffuse.a );
-		}
-
-	]]
-
-		MainCode PixelPdxMeshPortraitAnimateUV
-		ConstantBuffers = { PortraitCommon, EigthKind }
-	[[
-		float4 main( VS_OUTPUT_PDXMESHSTANDARD In ) : PDX_COLOR
-		{
-			float4 UVLod = float4( ( In.vUV0 ), 0.0f, PortraitMipLevel * 0.35f );
-
-			float4 vFlow = tex2D( NormalMap, In.vUV0 );
-			vFlow.xy = ( ( vFlow.xy - 0.5f ) * 2.0f ) * FlowMapIntensity * vFlow.z;
-
-			float2 flowUVs = UVLod.xy + ( vFlow.xy * frac( vUVAnimationTime ) );
-			float2 offsetFlowUVs = UVLod.xy + ( vFlow.xy * frac( vUVAnimationTime + 0.5f ) );
-
-			float4 vDiffuse = tex2Dlod( DiffuseMap, UVLod );
-			float4 vEffect = tex2Dlod( SpecularMap, float4(flowUVs.xy, UVLod.zw) );
-			float4 vEffectOffset = tex2Dlod( SpecularMap, float4( offsetFlowUVs.xy, UVLod.zw ) );
-
-			float blendValue = abs((frac(vUVAnimationTime ) * 2.0f) - 1.0f);
-			float4 blendEffect = lerp(vEffect, vEffectOffset, blendValue);
-
-			float4 finalPixel = lerp( vDiffuse, blendEffect, vFlow.b );
-
-			return float4( ToGamma( finalPixel.rgb ), finalPixel.a );
 		}
 
 	]]
@@ -1809,13 +1800,22 @@ Effect PdxMeshWPOAlphaBlendShadow
 }
 
 
+Effect PdxMeshPortraitAnimateUV
+{
+	VertexShader = "VertexPdxMeshPortraitStandard"
+	PixelShader = "PixelPdxMeshPortrait"
+	BlendState = "BlendStateAlphaBlendWriteAlpha"
+	DepthStencilState = "DepthStencilNoZ"
+	Defines = { "FLOWMAP" }
+}
+
 Effect PdxMeshPortraitAnimateUVSkinned
 {
 	VertexShader = "VertexPdxMeshPortraitStandardSkinned"
-	PixelShader = "PixelPdxMeshPortraitAnimateUV"
+	PixelShader = "PixelPdxMeshPortrait"
 	BlendState = "BlendStateAlphaBlendWriteAlpha"
 	DepthStencilState = "DepthStencilNoZ"
-	Defines = { "ANIMATE_UV" }
+	Defines = { "FLOWMAP" }
 }
 
 Effect PdxMeshAlphaAdditiveAnimateUV
@@ -2875,6 +2875,13 @@ Effect PdxMeshSimpleSkinned
 }
 
 ## ------------- SHADOWS UNUSED ------------------
+
+Effect PdxMeshPortraitAnimateUVShadow
+{
+	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshNoShadow"
+	Defines = { "IS_SHADOW" }
+}
 
 Effect PdxMeshPortraitAnimateUVSkinnedShadow
 {

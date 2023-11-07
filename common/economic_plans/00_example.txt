@@ -1,0 +1,62 @@
+
+# Note on overwriting: the economic plans (unlike most other database objects) are additive in their overwriting, a bit like on_actions.
+# This means that if you have multiple instances of e.g. "basic_economy_plan", the game will mash both entries into one.
+# In practice, this means that:
+# - you can add another "basic_economy_plan" with just a subplan entry, and it will add that subplan entry to the object
+# - if you add a subplan entry that has the same name as an existing one, it will overwrite the existing one instead
+# - if you add information that is not a subplan entry (e.g. simply "income = { }", it will usually overwrite it, depending on what exactly it is.
+# To do a full overwrite of an economic plan, you should overwrite the file rather than the entry.
+
+# Example AI Economic Plan
+
+#example_plan = {
+#	income = { # how much surplus income of resources the AI aims for
+#		energy = 50
+#		minerals = 200
+#		food = 100
+#		consumer_goods = 10
+#		alloys = 100
+#
+#		physics_research = 200
+#		society_research = 200
+#		engineering_research = 200
+#	}
+#
+#	focus = { # increased prio until surplus income of rhs value is reached
+#		alloys = 20
+#	}
+#
+#	subplan = {
+#		# an entire new plan with its own potential trigger and goals
+#		# if the empire fulfills the potential trigger of the subplan
+#		# then its goals will be added to the base plan.
+#
+#		# NOTE: there can be several subplans!
+#
+#		# NOTE: ai_weights are NOT added from subplans, also type is NOT checked!
+#	}
+#
+#
+#	scaling_subplan = {
+#		# if all sub plans are fulfilled then the scaling sub plans gets added multiple times until one of them is no longer fulfilled
+#		# code loops over all scaling sub plans and adds all of them if they pass the possible trigger
+#		# this allows for infinitely scaling sub plans which for example make the AI increase its alloys and science in a balanced manner
+#		# NOTE: there can be several scaling_subplans!
+#
+#	}
+#
+#	optional_subplan = {
+#		# optional sub plans are normal sub plans except they do not have to be fulfilled for the scaling behaviour to be enabled
+#		# scaling sub plans should include things which they AI should try to do but it is not critical to do so
+#		# a good example are advanced resources, they are paramount and the AI should try and get them, but it is not as critical as for example food
+#	}
+#
+#	pops = 500 # number of total pops to aim for
+#	empire_size = 1.25 # max admin capacity percent, ex. this means max 125% admin cap
+#	naval_cap = 500 # empire naval cap to aim for
+#
+#	ai_weight = { # ai weighting of plan, scope is country
+#		weight = 1
+#		# modifiers...
+#	}
+#}

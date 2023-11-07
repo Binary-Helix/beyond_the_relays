@@ -1,0 +1,428 @@
+#########################
+## Limited by deposits ##
+#########################
+
+building_mote_harvesters = {
+	base_buildtime = @b1_time
+	icon = building_mote_harvesting_traps
+
+	is_capped_by_modifier = yes
+
+	category = resource
+
+	potential = {
+		NOR = {
+			galaxy_size = btr_sandbox_600
+			galaxy_size = btr_sandbox_1300
+			galaxy_size = btr_sandbox_1500
+#			#galaxy_size = btr_hybrid_600
+#			#galaxy_size = btr_hybrid_1300
+#			#galaxy_size = btr_hybrid_1500
+			galaxy_size = btr_canon_600
+			galaxy_size = btr_canon_1300
+			galaxy_size = btr_canon_1500
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_mote_harvester_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mote_harvesting_drone_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 200
+		}
+		upkeep = {
+			energy = 0.5
+			uranium = 0.5
+		}
+	}
+
+	prerequisites = {
+		"tech_mine_volatile_motes"
+	}
+}
+
+building_gas_extractors = {
+	base_buildtime = @btr_civil_b1_time
+	icon = building_gas_extractors
+
+	is_capped_by_modifier = yes
+
+	category = resource
+
+	potential = {
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_gas_extractor_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_gas_extraction_drone_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
+		}
+		upkeep = {
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_mine_exotic_gases"
+	}
+}
+
+building_crystal_mines = {
+	base_buildtime = @btr_civil_b1_time
+
+	is_capped_by_modifier = yes
+
+	category = resource
+
+	potential = {
+		NOR = {
+			galaxy_size = btr_sandbox_600
+			galaxy_size = btr_sandbox_1300
+			galaxy_size = btr_sandbox_1500
+#			#galaxy_size = btr_hybrid_600
+#			#galaxy_size = btr_hybrid_1300
+#			#galaxy_size = btr_hybrid_1500
+			galaxy_size = btr_canon_600
+			galaxy_size = btr_canon_1300
+			galaxy_size = btr_canon_1500
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_crystal_miner_add = 1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_crystal_mining_drone_add = 1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @btr_civil_b0_mineral_cost
+			light_metals = @btr_civil_b0_light_metals_cost
+			heavy_metals = @btr_civil_b0_heavy_metals_cost
+		}
+		upkeep = {
+			energy = @btr_civil_b0_energy_upkeep
+			uranium = @btr_civil_b0_uranium_upkeep
+		}
+	}
+
+	prerequisites = {
+		"tech_mine_rare_crystals"
+	}
+}
+
+building_betharian_power_plant = {
+	base_buildtime = @b1_time
+
+	is_capped_by_modifier = yes
+
+	category = resource
+
+	potential = {
+		NOR = {
+			galaxy_size = btr_sandbox_600
+			galaxy_size = btr_sandbox_1300
+			galaxy_size = btr_sandbox_1500
+#			#galaxy_size = btr_hybrid_600
+#			#galaxy_size = btr_hybrid_1300
+#			#galaxy_size = btr_hybrid_1500
+			galaxy_size = btr_canon_600
+			galaxy_size = btr_canon_1300
+			galaxy_size = btr_canon_1500
+		}
+		NOR = {
+			has_modifier = resort_colony
+			has_modifier = crucible_colony
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @btr_civil_b0_mineral_cost
+			light_metals = @btr_civil_b0_light_metals_cost
+			heavy_metals = @btr_civil_b0_heavy_metals_cost
+		}
+		upkeep = {
+			energy = @btr_civil_b0_energy_upkeep
+			uranium = @btr_civil_b0_uranium_upkeep
+		}
+		produces = {
+			energy = 5
+			uranium = 5
+		}
+	}
+
+	inline_script = {
+		script = jobs/technicians_add
+		AMOUNT = 4
+	}
+
+	prerequisites = {
+		"tech_mine_betharian"
+	}
+}
+
+building_xeno_zoo = {
+	base_buildtime = @btr_civil_b1_time
+	base_cap_amount = 1
+	category = amenity
+
+	potential = {
+		exists = owner
+		owner = {
+			is_regular_empire = yes
+		}
+		planet = {
+			OR = {
+				has_deposit = d_alien_pets_deposit
+				AND = {
+					exists = owner
+					owner = { has_policy_flag = pre_sapients_protect }
+					any_owned_pop = {
+						is_sapient = no
+					}
+				}
+				any_owned_pop = {
+					is_livestock = yes
+				}
+			}
+		}
+	}
+
+	destroy_trigger = {
+		OR = {
+			AND = {
+				exists = owner
+				owner = {
+					is_regular_empire = no
+				}
+			}
+			planet = {
+				NOR = {
+					has_deposit = d_alien_pets_deposit
+					AND = {
+						exists = owner
+						owner = { has_policy_flag = pre_sapients_protect }
+						any_owned_pop = {
+							is_sapient = no
+						}
+					}
+					any_owned_pop = {
+						is_livestock = yes
+					}
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
+		}
+		upkeep = {
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_valid_civic = civic_warrior_culture
+			}
+		}
+		modifier = {
+			job_duelist_add = 1
+			job_entertainer_add = -1
+		}
+	}
+
+	planet_modifier = {
+		job_entertainer_add = 1
+		job_xeno_zoo_keeper_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				any_owned_pop = {
+					is_livestock = yes
+				}
+			}
+			exists = owner
+			owner = {
+				NOT = { has_valid_civic = civic_warrior_culture }
+			}
+		}
+		modifier = {
+			job_livestock_zoo_animal_add = 3
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			planet = {
+				any_owned_pop = {
+					is_livestock = no
+				}
+			}
+			exists = owner
+			owner = {
+				has_valid_civic = civic_warrior_culture
+			}
+		}
+		modifier = {
+			job_livestock_zoo_beast_add = 3
+		}
+	}
+
+	prerequisites = {
+		"tech_alien_life_studies"
+	}
+
+	triggered_desc = {
+		text = job_xeno_zoo_keeper_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { NOT = { has_valid_civic = civic_warrior_culture } }
+		}
+		text = job_entertainer_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { has_valid_civic = civic_warrior_culture }
+		}
+		text = job_duelist_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				any_owned_pop = {
+					is_sapient = no
+				}
+			}
+			exists = owner
+			owner = { NOT = { has_valid_civic = civic_warrior_culture } }
+		}
+		text = job_xeno_zoo_animal_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				any_owned_pop = {
+					is_livestock = yes
+				}
+			}
+			exists = owner
+			owner = { NOT = { has_valid_civic = civic_warrior_culture } }
+		}
+		text = job_livestock_zoo_animal_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				any_owned_pop = {
+					is_sapient = no
+				}
+			}
+			exists = owner
+			owner = { has_valid_civic = civic_warrior_culture }
+		}
+		text = job_xeno_zoo_beast_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = {
+			planet = {
+				any_owned_pop = {
+					is_livestock = yes
+				}
+			}
+			exists = owner
+			owner = { has_valid_civic = civic_warrior_culture }
+		}
+		text = job_livestock_zoo_beast_effect_desc
+	}
+}

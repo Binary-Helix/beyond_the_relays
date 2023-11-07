@@ -1,0 +1,5612 @@
+##########################
+## By Pierre du Plessis ##
+##########################
+
+namespace = situation
+
+
+# Mysterious Labyrinth
+
+planet_event = {
+	id = situation.5
+	title = situation.5.name
+	desc = situation.5.desc
+	picture = GFX_evt_medieval_alien_civilization
+	show_sound = event_wind_ruins
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = { has_planet_flag = colony_event }
+		is_artificial = no
+		NOT = { is_planet_class = pc_nuked }
+		owner = {
+			is_country_type = default
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+		owner = {
+			start_situation = {
+				type = situation_mysterious_labyrinth
+				target = root
+				effect = {
+					save_event_target_as = new_situation
+				}
+			}
+		}
+	}
+
+	option = {
+		name = situation.5.A #investigate it
+		icon = {
+			icon = GFX_situation_approach_research
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+		event_target:new_situation = {
+			set_situation_approach = approach_investigate
+		}
+	}
+	option = {
+		name = situation.5.B #we don't have time for this
+		icon = {
+			icon = GFX_situation_approach_shrug
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+		event_target:new_situation = {
+			set_situation_approach = approach_observe
+		}
+	}
+	after = {
+		hidden_effect = {
+			event_target:new_situation = {
+				set_situation_locked = no
+				set_timed_situation_flag = {
+					flag = labyrinth_timer
+					months = 21
+				}
+			}
+		}
+	}
+}
+
+# Labyrinth moves, prompting a rethink
+situation_event = {
+	id = situation.10
+	title = situation.10.name
+	desc = {
+		text = situation.10.desc
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+	desc = {
+		text = situation.10.desc.gestalt
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+	}
+
+	picture = GFX_evt_news_room
+	is_triggered_only = yes
+	location = target
+	situation = this
+
+	immediate = {
+		set_situation_locked = yes
+		set_situation_flag = observe_not_an_option
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = {
+		name = situation.10.A
+		set_situation_approach = approach_cordon_off
+		icon = {
+			icon = GFX_situation_approach_suspicious
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+	}
+	option = {
+		name = situation.10.B
+		set_situation_approach = approach_investigate
+		icon = {
+			icon = GFX_situation_approach_research
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+	}
+	option = {
+		name = situation.10.C
+		set_situation_approach = approach_destroy
+		icon = {
+			icon = GFX_situation_approach_fist
+			icon_background = GFX_situation_approach_bg_red
+			text = set_situation_approach_icon_text
+		}
+	}
+}
+
+#It's getting harder to ignore.
+situation_event = {
+	id = situation.15
+	title = situation.15.name
+	desc = {
+		text = situation.15.desc.standard
+		trigger = {
+			owner = {
+				NOR = {
+					has_country_flag = human_1
+					has_country_flag = human_2
+					has_country_flag = human_plantoid
+					is_human_species = yes
+				}
+				is_gestalt = no
+			}
+		}
+	}
+	desc = {
+		text = situation.15.desc.machine
+		trigger = {
+			owner = { is_machine_empire = yes }
+		}
+	}
+	desc = {
+		text = situation.15.desc.hive
+		trigger = {
+			owner = { is_hive_empire = yes }
+		}
+	}
+	desc = {
+		text = situation.15.desc.human
+		trigger = {
+			owner = {
+				OR = {
+					has_country_flag = human_1
+					has_country_flag = human_2
+					has_country_flag = human_plantoid
+					is_human_species = yes
+				}
+				is_gestalt = no
+			}
+		}
+	}
+	picture = GFX_evt_galactic_community
+	show_sound = event_default
+	is_triggered_only = yes
+	location = target
+	situation = this
+
+	immediate = {
+		set_situation_flag = cute_kittens
+	}
+
+	option = {
+		name = situation.15.A
+		custom_tooltip = situation.15.A.tooltip
+	}
+	#This event is just informative, no need for choices
+}
+
+# End event: ignored it
+situation_event = {
+	id = situation.20
+	title = situation.20.name
+	desc = situation.20.desc
+	picture = GFX_evt_clocks
+	is_triggered_only = yes
+	location = target
+	situation = this
+	show_sound = event_mystic_reveal_light
+
+	option = {
+		name = FASCINATING
+		target = {
+			add_deposit = d_space_time_anomaly
+		}
+	}
+
+	after = {
+		destroy_situation = this
+	}
+}
+
+# End event: destroy it
+situation_event = {
+	id = situation.25
+	title = situation.25.name
+	desc = situation.25.desc
+	picture = GFX_evt_nuclear_explosion
+	is_triggered_only = yes
+	location = target
+	situation = this
+	show_sound = event_collapsing_ruins
+
+	option = {
+		name = UNDERSTOOD
+		owner = {
+			add_resource = {
+				sr_dark_matter = 200
+				exotic_gases = 800
+				volatile_motes = 800
+				rare_crystals = 800
+			}
+		}
+	}
+
+	after = {
+		destroy_situation = this
+	}
+}
+
+# End event: ignored it (alternative outcome)
+situation_event = {
+	id = situation.30
+	title = situation.30.name
+	desc = situation.30.desc
+	picture = GFX_evt_clocks
+	is_triggered_only = yes
+	location = target
+	situation = this
+	show_sound = event_mystic_reveal_light
+
+	option = {
+		name = situation.30.A
+
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+	}
+
+	after = {
+		destroy_situation = this
+	}
+}
+
+
+# Mid event while studying
+situation_event = {
+	id = situation.40
+	title = situation.40.name
+	desc = situation.40.desc
+	picture = GFX_evt_clocks
+	is_triggered_only = yes
+	location = target
+	situation = this
+	show_sound = event_activating_unknown_technology
+
+	option = {
+		name = DISCONCERTING
+	}
+}
+
+# Another event while studying
+situation_event = {
+	id = situation.45
+	title = situation.45.name
+	desc = {
+		text = situation.45.desc
+		trigger = {
+			owner = { is_regular_empire = yes }
+		}
+	}
+	desc = {
+		text = situation.45.desc.hive
+		trigger = {
+			owner = { is_hive_empire = yes }
+		}
+	}
+	desc = {
+		text = situation.45.desc.machine
+		trigger = {
+			owner = { is_machine_empire = yes }
+		}
+	}
+	picture = GFX_evt_clocks
+	is_triggered_only = yes
+	location = target
+	situation = this
+	show_sound = event_activating_unknown_technology
+
+	immediate = {
+		set_situation_flag = harder_to_study
+	}
+
+	option = {
+		name = WORRYING
+		custom_tooltip = situation.15.A.tooltip #deliberate
+	}
+}
+
+# End event: fully studied it
+situation_event = {
+	id = situation.50
+	title = situation.50.name
+	desc = situation.50.desc
+	picture = GFX_evt_clocks
+	is_triggered_only = yes
+	location = target
+	situation = this
+	show_sound = event_mysterious_signal
+
+	option = {
+		name = situation.50.A
+
+		target = { add_deposit = d_space_time_anomaly }
+	}
+
+	after = {
+		destroy_situation = this
+	}
+}
+
+# End event: fully studied it, less good outcome
+situation_event = {
+	id = situation.55
+	title = situation.55.name
+	desc = situation.55.desc
+	picture = GFX_evt_nuclear_explosion
+	is_triggered_only = yes
+	location = target
+	situation = this
+	show_sound = event_ship_explosion
+
+	option = {
+		name = situation.50.A
+
+		target = {
+			add_blocker = { type = d_active_volcano }
+			add_blocker = { type = d_active_volcano }
+			add_blocker = { type = d_city_ruins }
+			add_blocker = { type = d_deep_sinkhole }
+			add_deposit = d_space_time_anomaly
+		}
+	}
+
+	after = {
+		destroy_situation = this
+	}
+}
+
+
+
+# Alien Snow Narrative
+
+planet_event = {
+	id = situation.150
+	title = situation.150.name
+	desc = situation.150.desc
+	picture = GFX_evt_outpost
+	is_triggered_only = yes
+	show_sound = event_default
+	fire_only_once = yes
+
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	trigger = {
+		NOT = { has_planet_flag = colony_event }
+		is_planet_class = pc_desert
+		owner = {
+			is_country_type = default
+			is_gestalt = no #for now
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+	}
+
+	option = {
+		name = INTERESTING
+		owner = {
+			start_situation = {
+				type = situation_living_snow
+				target = root
+			}
+		}
+	}
+}
+
+# 25% event
+situation_event = {
+	id = situation.155
+	title = situation.155.name
+	desc = situation.155.desc
+	picture = GFX_evt_outpost
+	is_triggered_only = yes
+	show_sound = event_default
+	location = target
+	situation = this
+
+	option = {
+		name = situation.155.A
+		set_situation_approach = situation_snow_observation
+		icon = {
+			icon = GFX_situation_approach_research
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+	}
+	option = {
+		name = situation.155.B
+		set_situation_approach = situation_snow_hostile
+		icon = {
+			icon = GFX_situation_approach_fist
+			icon_background = GFX_situation_approach_bg_red
+			text = set_situation_approach_icon_text
+		}
+	}
+}
+
+# Hostile path random event
+situation_event = {
+	id = situation.160
+	title = situation.160.name
+	desc = situation.160.desc
+	picture = GFX_evt_outpost
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+	location = target
+	situation = this
+
+	trigger = {
+		current_situation_approach = situation_snow_hostile
+		current_stage = stage_2
+		NOT = { has_situation_flag = random_event }
+	}
+
+	immediate = { set_situation_flag = random_event }
+
+	option = {
+		name = situation.160.A
+		custom_tooltip = situation.160.A.tooltip
+		set_situation_flag = very_hostile
+	}
+	option = {
+		name = situation.160.C
+		custom_tooltip = situation.160.C.tooltip
+		set_situation_flag = lackadaisical
+	}
+}
+
+# 80% event
+situation_event = {
+	id = situation.165
+	title = situation.165.name
+	desc = situation.165.desc
+	picture = GFX_evt_outpost
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+	location = target
+	situation = this
+
+	option = {
+		name = situation.165.A
+		trigger = { NOT = { current_situation_approach = situation_snow_observation } }
+		set_situation_approach = situation_snow_observation
+		icon = {
+			icon = GFX_situation_approach_research
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+	}
+	option = {
+		name = situation.165.A
+		trigger = { current_situation_approach = situation_snow_observation }
+		#No effect
+	}
+	option = {
+		name = situation.165.B
+		trigger = { NOT = { current_situation_approach = situation_snow_hostile } }
+		set_situation_approach = situation_snow_hostile
+		icon = {
+			icon = GFX_situation_approach_fist
+			icon_background = GFX_situation_approach_bg_red
+			text = set_situation_approach_icon_text
+		}
+	}
+	option = {
+		name = situation.165.B
+		trigger = { current_situation_approach = situation_snow_hostile }
+		#No effect
+	}
+	after = {
+		custom_tooltip = situation.165.tooltip
+		set_situation_flag = path_locked
+	}
+}
+
+situation_event = {
+	id = situation.170
+	title = situation.170.name
+	desc = situation.170.desc
+	picture = GFX_evt_outpost
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+	location = target
+	situation = this
+
+	trigger = {
+		current_stage = stage_2
+		NOT = { has_situation_flag = random_event }
+	}
+
+	immediate = {
+		set_situation_flag = random_event
+	}
+
+	option = {
+		name = situation.170.A
+		custom_tooltip = situation.170.A.tooltip
+		set_situation_flag = higher_observe_upkeep
+	}
+}
+
+situation_event = {
+	id = situation.175
+	title = situation.175.name
+	desc = situation.175.desc
+	picture = GFX_evt_outpost
+	show_sound = event_alien_nature
+	is_triggered_only = yes
+	location = target
+	situation = this
+
+	trigger = {
+		current_stage = stage_2
+		NOT = { has_situation_flag = random_research_event }
+	}
+
+	immediate = {
+		set_situation_flag = random_research_event
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = 2
+			current_situation_approach = situation_snow_observation
+		}
+	}
+
+	option = {
+		name = FASCINATING
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+
+situation_event = {
+	id = situation.180
+	title = INCOMING_TRANSMISSION
+	diplomatic_title = BLANK_STRING
+	desc = situation.185.desc
+	show_sound = event_whispering
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+
+	location = target
+
+	option = {
+		name = situation.180.A
+		custom_tooltip = situation.185.B.tooltip
+
+		hidden_effect = {
+			target = {
+				create_country = {
+					name = "NAME_Living_Snow"
+					type = faction
+					effect = {
+						establish_communications_no_message = root.owner
+						set_country_flag = living_snow
+					}
+				}
+				while = {
+					count = 6
+					create_army = {
+						name = "NAME_Monstrous_Snow"
+						owner = last_created_country
+						type = ice_army
+					}
+				}
+			}
+		}
+	}
+	after = { destroy_situation = this }
+}
+
+situation_event = {
+	id = situation.185
+	title = INCOMING_TRANSMISSION
+	diplomatic_title = BLANK_STRING
+	desc = situation.185.desc
+	show_sound = event_whispering
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+
+	location = target
+
+	option = {
+		name = situation.185.A
+		target = {
+			add_deposit = d_living_snow_reserve
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		name = situation.185.B
+		custom_tooltip = situation.185.B.tooltip
+
+		hidden_effect = {
+			target = {
+				create_country = {
+					name = "NAME_Living_Snow"
+					type = faction
+					effect = {
+						establish_communications_no_message = root.owner
+						set_country_flag = living_snow
+					}
+				}
+				while = {
+					count = 6
+					create_army = {
+						name = "NAME_Monstrous_Snow"
+						owner = last_created_country
+						type = ice_army
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			factor = 0
+		}
+	}
+	after = { destroy_situation = this }
+}
+
+# Snow took the planet
+# This = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+# on_planet_defenders_lose
+country_event = {
+	id = situation.190
+	title = situation.190.name
+	desc = situation.190.desc
+	picture = GFX_evt_arctic
+	show_sound = event_bad_omen
+	location = fromfrom
+	show_sound = event_dangerous_animals
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_country_flag = living_snow }
+	}
+
+	immediate = {
+		from = { save_event_target_as = living_snow_country }
+		fromfrom = {
+			planet_event = { id = situation.195 days = 1800 random = 360 }
+		}
+	}
+
+	option = {
+		name = WORRYING
+		custom_tooltip = situation.190.tooltip
+	}
+}
+
+planet_event = {
+	id = situation.195
+	title = situation.195.name
+	desc = situation.195.desc
+	picture = GFX_evt_arctic
+	show_sound = event_wind_ruins
+	location = root
+	show_sound = event_dangerous_animals
+
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:living_snow_country
+		controller = { is_same_value = event_target:living_snow_country }
+	}
+
+	immediate = {
+		owner = { save_event_target_as = saved_owner }
+		hidden_effect = {
+			every_owned_pop = { kill_pop = yes }
+		}
+		change_pc = pc_frozen
+		clear_deposits = yes
+	}
+
+	option = {
+		name = situation.195.A
+		tooltip = {
+			change_pc = pc_frozen
+		}
+		add_deposit = d_physics_8
+		add_deposit = d_society_8
+
+		event_target:saved_owner = {
+			if = {
+				limit = {
+					NOT = { has_technology = tech_terrestrial_sculpting }
+				}
+				add_tech_progress = {
+					tech = tech_terrestrial_sculpting
+					progress = 0.1
+				}
+			}
+		}
+	}
+}
+
+##########################
+## Narrative Situations ##
+## By Giada Zavarise	##
+##########################
+
+## Gravity Well
+
+# Starts from on_five_year_random_pulse_country
+# checks if suitable system exists
+# fire this from console to test
+country_event = {
+	id = situation.500
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_country_flag = gravity_well_happened }
+		any_system_within_border = {
+			is_star_class = sc_black_hole
+			starbase = {
+				has_starbase_building = black_hole_observatory
+				has_starbase_size >= starbase_starfortress
+			}
+		}
+	}
+
+	immediate = {
+		random_system_within_border = {
+			limit = {
+				is_star_class = sc_black_hole
+				starbase = {
+					has_starbase_building = black_hole_observatory
+					has_starbase_size >= starbase_starfortress
+				}
+			}
+			set_star_flag = gravity_well_black_hole
+			starbase = {
+				set_starbase_flag = gravity_well_station
+				save_event_target_as = gravity_well_station
+			}
+		}
+	}
+
+	after = {
+		country_event = { id = situation.501 }
+	}
+}
+
+# starts the situation, sets initial approach
+country_event = {
+	id = situation.501
+	title = "situation.501.name"
+	desc = "situation.501.desc"
+	picture = GFX_evt_black_hole
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	location = event_target:gravity_well_station
+
+	trigger = {
+		NOT = { has_country_flag = gravity_well_happened }
+		exists = event_target:gravity_well_station
+	}
+
+	immediate = {
+		start_situation = {
+			type = situation_gravity_well
+			target = event_target:gravity_well_station
+			effect = {
+				save_event_target_as = new_situation
+			}
+		}
+		set_country_flag = gravity_well_happened
+	}
+
+	option = {
+		name = situation.501.a # try to get away!
+		icon = {
+			icon = GFX_situation_approach_fleet
+			icon_background = GFX_situation_approach_bg_green
+			text = set_situation_approach_icon_text
+		}
+		event_target:new_situation = {
+			set_situation_approach = approach_retreat
+		}
+	}
+
+	option = {
+		name = situation.501.b # stationary orbit
+		icon = {
+			icon = GFX_situation_approach_fleet
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+		event_target:new_situation = {
+			set_situation_approach = approach_stand
+		}
+	}
+
+	option = {
+		name = situation.501.c # go forward! for SCIENCE
+		icon = {
+			icon = GFX_situation_approach_fleet
+			icon_background = GFX_situation_approach_bg_red
+			text = set_situation_approach_icon_text
+		}
+		event_target:new_situation = {
+			set_situation_approach = approach_advance
+		}
+	}
+
+	after = {
+		event_target:new_situation = {
+			set_situation_locked = no
+		}
+	}
+}
+
+# Mutiny! Going towards the black hole
+situation_event = {
+	id = situation.510
+	title = "situation.510.name"
+	desc = {
+		text = situation.510.spirit.desc
+		trigger = {
+			owner = { is_spiritualist = yes }
+		}
+	}
+	desc = {
+		text = situation.510.desc
+		trigger = {
+			owner = { is_spiritualist = no }
+		}
+	}
+
+	picture = {
+		trigger = {
+			owner = { is_spiritualist = yes }
+		}
+		picture = GFX_evt_surreal_visions
+	}
+	picture = {
+		trigger = {
+			owner = { is_spiritualist = no }
+		}
+		picture = GFX_evt_physics_research
+	}
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		owner = { # no mutiny for hiveminds
+			is_gestalt = no
+		}
+		NOR = {
+			has_situation_flag = mutiny
+			current_situation_approach = approach_advance
+		}
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = 2
+			owner = {
+				has_civic = civic_technocracy
+			}
+		}
+	}
+
+	immediate = {
+		set_situation_flag = mutiny
+		switch = {
+			trigger = current_situation_approach
+			approach_retreat = { set_situation_flag = mutiny_previous_approach_retreat }
+			approach_stand = { set_situation_flag = mutiny_previous_approach_stand }
+		}
+		set_situation_approach = approach_advance
+	}
+
+	option = {
+		name = ACKNOWLEDGED
+		icon = {
+			icon = GFX_situation_approach_fleet
+			icon_background = GFX_situation_approach_bg_red
+			text = set_situation_approach_icon_text
+		}
+		tooltip = {
+			set_situation_approach = approach_advance
+			set_situation_flag = mutiny
+		}
+		custom_tooltip = situation.510.tooltip
+	}
+
+	# we want players to be unable to set their approach for at least one month
+	# and get screwed if they were already playing with fire and getting too close.
+	after = {
+		hidden_effect = {
+			situation_event = { id = situation.513 days = 20 random = 25 }
+		}
+ 	}
+}
+
+# Mutiny! Fleeing from the black hole
+situation_event = {
+	id = situation.511
+	title = "situation.511.name"
+	# different description if the empire
+	# previously encountered ships caught in black holes
+	# (distar.20, anomaly.3070)
+	desc = {
+		text = situation.511.black.desc
+		trigger = {
+			owner = { has_country_flag = seen_event_horizon }
+		}
+	}
+	desc = {
+		text = situation.511.desc
+		trigger = {
+			owner = { NOT = { has_country_flag = seen_event_horizon } }
+		}
+	}
+	picture = GFX_evt_ruined_system
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		owner = { # no mutiny for hiveminds
+			is_gestalt = no
+		}
+		NOR = {
+			has_situation_flag = mutiny
+			current_situation_approach = approach_retreat
+		}
+	}
+
+	immediate = {
+		set_situation_flag = mutiny
+		switch = {
+			trigger = current_situation_approach
+			approach_advance = { set_situation_flag = mutiny_previous_approach_advance }
+			approach_stand = { set_situation_flag = mutiny_previous_approach_stand }
+		}
+		set_situation_approach = approach_retreat
+	}
+
+	option = {
+		name = ACKNOWLEDGED
+		icon = {
+			icon = GFX_situation_approach_fleet
+			icon_background = GFX_situation_approach_bg_green
+			text = set_situation_approach_icon_text
+		}
+		tooltip = {
+			set_situation_approach = approach_retreat
+			set_situation_flag = mutiny
+		}
+		custom_tooltip = situation.511.tooltip
+	}
+
+	after = {
+		hidden_effect = {
+			situation_event = { id = situation.513 days = 20 random = 25 }
+		}
+ 	}
+}
+
+# Mutiny: taking back control
+situation_event = {
+	id = situation.513
+	title = "situation.513.name"
+	desc = "situation.513.desc"
+	picture = GFX_evt_interior_battle
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = mutiny
+	}
+
+	immediate = {
+		remove_situation_flag = mutiny
+		if = {
+			limit = { has_situation_flag = mutiny_previous_approach_advance }
+			set_situation_approach = approach_advance
+			remove_situation_flag = mutiny_previous_approach_advance
+		}
+		else_if = {
+			limit = { has_situation_flag = mutiny_previous_approach_stand }
+			set_situation_approach = approach_stand
+			remove_situation_flag = mutiny_previous_approach_stand
+		}
+		else_if = {
+			limit = { has_situation_flag = mutiny_previous_approach_retreat }
+			set_situation_approach = approach_retreat
+			remove_situation_flag = mutiny_previous_approach_retreat
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+		custom_tooltip = situation.513.tooltip
+	}
+}
+
+# Random event: closer than we thought
+situation_event = {
+	id = situation.520
+	title = "situation.520.name"
+	desc = "situation.520.desc"
+	picture = GFX_evt_glitchy_matrix
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		situation_progress <= 80
+	}
+
+	immediate = {
+		add_situation_progress = 10
+	}
+
+	option = {
+		name = ACKNOWLEDGED
+		tooltip = {
+			add_situation_progress = 10
+		}
+	}
+}
+
+# Random event: scientific boon
+situation_event = {
+	id = situation.530
+	title = "situation.530.name"
+	desc = "situation.530.desc"
+	picture = GFX_evt_physics_research
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	option = {
+		name = ACKNOWLEDGED
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+}
+
+# Random event: The Penrose Process
+situation_event = {
+	id = situation.540
+	title = "situation.540.name"
+	desc = "situation.540.desc"
+	picture = GFX_evt_physics_research
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		situation_progress >= 70
+		NOT = { has_situation_flag = penrose_process }
+	}
+
+	# More chances of happening if you're close to the black hole
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = 2
+			current_stage = gravity_well_high
+		}
+		modifier = {
+			factor = 3
+			current_stage = gravity_well_high
+		}
+		modifier = {
+			factor = 4
+			current_stage = gravity_well_no_return
+		}
+	}
+
+	immediate = {
+		set_situation_flag = penrose_process
+	}
+
+	option = {
+		name = "situation.540.a"
+		custom_tooltip = "situation.540.a.tooltip"
+		hidden_effect = {
+			target = {
+			remove_starbase_building = { slot = all }
+			}
+
+			random_list = {
+				70 = { situation_event = { id = situation.541 days = 15 } }
+				30 = { situation_event = { id = situation.542 days = 15 } }
+			}
+		}
+	}
+
+	option = {
+		name = "situation.540.b"
+	}
+}
+
+# The Penrose Process follow-up: big push
+situation_event = {
+	id = situation.541
+	title = "situation.541.name"
+	desc = "situation.541.desc"
+	picture = GFX_evt_debris
+	show_sound = event_ship_explosion
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	immediate = {
+		add_situation_progress = -30
+	}
+
+	option = {
+		name = ACKNOWLEDGED
+		tooltip = {
+			add_situation_progress = -30
+		}
+	}
+}
+
+# The Penrose Process follow-up: small push
+situation_event = {
+	id = situation.542
+	title = "situation.542.name"
+	desc = "situation.542.desc"
+	picture = GFX_evt_worrying_signal
+	show_sound = event_ship_explosion
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	immediate = {
+		add_situation_progress = -10
+	}
+
+	option = {
+		name = UNFORTUNATE
+		tooltip = {
+			add_situation_progress = -10
+		}
+	}
+}
+
+# Crossed point of no return
+situation_event = {
+	id = situation.580
+	title = "situation.580.name"
+	desc = "situation.580.desc"
+	picture = GFX_evt_black_hole
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	option = {
+		name = ACKNOWLEDGED
+	}
+}
+
+# Ending 1: fall
+situation_event = {
+	id = situation.590
+	title = "situation.590.name"
+	desc = {
+		text = situation.590.desc.hive
+		trigger = {
+			owner = { is_hive_empire = yes }
+		}
+	}
+	desc = {
+		text = situation.590.desc.machine
+		trigger = {
+			owner = { is_machine_empire = yes }
+		}
+	}
+	desc = {
+		text = situation.590.desc.normal
+		trigger = {
+			owner = { is_gestalt = no }
+		}
+	}
+	picture = GFX_evt_black_hole
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+	location = target
+
+	immediate = {
+
+		# cleanup
+		create_ambient_object = {
+			type = "abandoned_starbase_01_object"
+			entity_offset_height = { min = -0 max = -25 }
+			location = target.solar_system.star
+		}
+		last_created_ambient_object = {
+			set_location = {
+				target = prev
+				distance = 5
+				angle = random
+			}
+		}
+
+		target = {
+			save_event_target_as = black_hole_station
+		}
+	}
+
+
+	# normal empires get nothing
+	option = {
+		name = {
+			trigger = {
+				owner = { is_gestalt = no }
+			}
+			text = UNFORTUNATE
+		}
+		name = {
+			trigger = {
+				owner = { is_gestalt = yes }
+			}
+			text = situation.590.a
+		}
+		tooltip = { destroy_situation = this }
+		owner = {
+			add_resource = {
+				influence = -100
+			}
+		}
+	}
+
+	# Gestalts can decide to witness the event,
+	# with potentially horrific consequences.
+	option = {
+		name = situation.590.b
+		tooltip = { destroy_situation = this }
+		trigger = {
+			owner = {
+				OR = {
+					has_authority = auth_hive_mind
+					has_authority = auth_machine_intelligence
+				}
+			}
+		}
+		random_list = {
+			# Gestalts who already are good at separating themselves have more chances
+			# of being able to cope with this
+			5 = {
+
+				modifier = {
+					factor = 2
+					owner = {
+						OR = {
+							has_civic = civic_hive_divided_attention
+							has_civic = civic_hive_subspace_ephapse
+							has_civic = civic_machine_delegated_functions
+						}
+					}
+				}
+				owner = {
+					country_event = { id = situation.591 days = 2 }
+				}
+			} # good
+
+			# Gestalts who favour absolute cohesion will struggle to get the good ending
+			5 = {
+				modifier = {
+					factor = 2
+					owner = {
+						OR = {
+							has_civic = civic_hive_one_mind
+							has_civic = civic_machine_unitary_cohesion
+						}
+					}
+				}
+				owner = {
+					country_event = { id = situation.592 days = 2 }
+				}
+			} # bad
+		}
+	}
+
+	after = {
+		target.fleet = { destroy_fleet = this }
+		destroy_situation = this
+	}
+}
+
+# Gestalt good ending
+country_event = {
+	id = situation.591
+	title = "situation.591.name"
+	desc = {
+		text = situation.591.desc.hive
+		trigger = {
+			owner = { is_hive_empire = yes }
+		}
+	}
+	desc = {
+		text = situation.591.desc.machine
+		trigger = {
+			owner = { is_machine_empire = yes }
+		}
+	}
+	picture = GFX_evt_surreal_visions
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	location = event_target:black_hole_station
+
+	option = {
+		name = ACKNOWLEDGED
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier3researchreward
+			min = @tier3researchmin
+			max = @tier3researchmax
+		}
+		add_modifier = {
+			modifier = gestalt_black_hole_good
+		}
+	}
+}
+
+# Gestalt bad ending
+country_event = {
+	id = situation.592
+	title = "situation.592.name"
+	desc = {
+		text = situation.592.desc.hive
+		trigger = {
+			owner = { is_hive_empire = yes }
+		}
+	}
+	desc = {
+		text = situation.592.desc.machine
+		trigger = {
+			owner = { is_machine_empire = yes }
+		}
+	}
+	picture = GFX_evt_surreal_visions
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+	location = event_target:black_hole_station
+
+	option = {
+		name = ACKNOWLEDGED
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+			add_modifier = {
+				modifier = gestalt_black_hole_bad
+			}
+		}
+	}
+}
+
+# Ending 2: escape - alternate endings
+situation_event = {
+	id = situation.595
+	hide_window = yes
+	is_triggered_only = yes
+	location = target
+
+	immediate = {
+		set_situation_flag = escaped
+		random_list = {
+			5 = { situation_event = { id = situation.596 } } # get a cool leader
+			5 = { situation_event = { id = situation.597 } } # get cool tech
+		}
+	}
+}
+
+# reward 1: leader
+situation_event = {
+	id = situation.596
+	title = "situation.596.name"
+	desc = "situation.596.desc"
+	picture = GFX_evt_space_station
+	is_triggered_only = yes
+	location = target
+
+	option = {
+		name = "EXCELLENT"
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+		}
+	}
+
+	after = { destroy_situation = this }
+}
+
+# reward 2: tech
+situation_event = {
+	id = situation.597
+	title = "situation.597.name"
+	desc = "situation.597.desc"
+	picture = GFX_evt_space_station
+	is_triggered_only = yes
+	location = target
+
+	option = {
+		name = "EXCELLENT"
+		owner = {
+			create_leader = {
+				class = scientist
+				species = owner_main_species
+				name = random
+				skill = 6
+				traits = {
+					trait = leader_trait_maniacal
+					trait = leader_trait_expertise_field_manipulation
+				}
+			}
+		}
+	}
+
+	after = { destroy_situation = this }
+}
+
+## Geomagnetic Storm
+
+# Starting event
+# Presents situation, asks to pick initial approach
+planet_event = {
+	id = situation.200
+	title = situation.200.name
+	desc = situation.200.desc
+	picture = GFX_evt_star_yellow
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+	fire_only_once = yes
+	location = root
+
+	pre_triggers = {
+		has_owner = yes
+		is_homeworld = no
+		original_owner = yes
+		is_ai = no
+		has_ground_combat = no
+		is_capital = no
+		is_occupied_flag = no
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = 2
+			has_planet_modifier = "pm_weak_magnetic_field"
+			# greater chance of happening on planets with weak magnetosphere, because science
+		}
+	}
+
+	trigger = {
+		NOR = {
+			has_planet_flag = colony_event
+			is_artificial = yes
+		}
+		# checking if majority of pops on the planet are drones
+		pop_percentage = {
+			percentage > 0.50
+			limit = {
+				has_trait = trait_machine_unit
+				# only focusing on machine empires for now,
+				# will make variations for synthetics/cyborgs... At some point
+			}
+		}
+		owner = {
+			is_machine_empire = yes
+			NOT = { has_country_flag = solar_storm_happened }
+		}
+	}
+
+	immediate = {
+		set_planet_flag = colony_event
+		add_modifier = {
+			modifier = magnetic_disruption
+			days = 1800 # 5 years
+		}
+		count_drones_on_planet = { ENERGY = 1 }
+	}
+
+	after = {
+		hidden_effect = {
+			planet_event = { id = situation.202 days = 15 }
+		}
+	}
+
+	option = { # Protect everyone
+		name = situation.200.c
+		custom_tooltip = "situation.200.c.tooltip"
+		allow = {
+			any_owned_pop = {
+				is_robot_pop = yes
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= root.total_drones_cost
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				add_resource = {
+					energy = -1
+					mult = root.total_drones_cost
+				}
+			}
+		}
+		set_planet_flag = protecting_simple_drones
+		set_planet_flag = protecting_complex_drones
+	}
+
+	option = { # Protect simple drones
+		name = situation.200.a
+		custom_tooltip = "situation.200.a.tooltip"
+		allow = {
+			any_owned_pop = {
+				is_robot_pop = yes
+				is_pop_category = simple_drone
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= root.simple_drones_cost
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				add_resource = {
+					energy = -1
+					mult = root.simple_drones_cost
+				}
+			}
+		}
+		set_planet_flag = protecting_simple_drones
+	}
+
+	option = { # Protect complex drones
+		name = situation.200.b
+		custom_tooltip = "situation.200.b.tooltip"
+		allow = {
+			any_owned_pop = {
+				is_robot_pop = yes
+				is_pop_category = complex_drone
+			}
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= root.complex_drones_cost
+				}
+			}
+		}
+		hidden_effect = {
+			owner = {
+				add_resource = {
+					energy = -1
+					mult = root.complex_drones_cost
+				}
+			}
+		}
+		set_planet_flag = protecting_complex_drones
+	}
+
+	option = { # Protect no one, we're broke
+		name = situation.200.d
+		custom_tooltip = "situation.200.d.tooltip"
+	}
+}
+
+# Follow-up that confirms the reversal is happening and starts the situation for real
+planet_event = {
+	id = situation.202
+	title = situation.202.name
+	desc = situation.202.desc
+	picture = GFX_evt_supernova
+	is_triggered_only = yes
+	show_sound = event_solar_fusion
+	location = root
+
+	trigger = {
+		has_planet_flag = colony_event
+		owner = {
+			is_machine_empire = yes
+			NOT = { has_country_flag = solar_storm_happened }
+		}
+	}
+
+	immediate = {
+		owner = {
+			start_situation = {
+				type = situation_geomagnetic_storm
+				target = root
+				effect = {
+					save_event_target_as = new_situation
+				}
+			}
+			set_country_flag = solar_storm_happened
+		}
+	}
+
+	option = {
+		name = ACKNOWLEDGED
+		icon = {
+			icon = GFX_situation_approach_pop
+			icon_background = GFX_situation_approach_bg_green
+			text = set_situation_approach_icon_text
+		}
+		# owner = {
+		# 	start_situation = {
+		# 		type = situation_geomagnetic_storm
+		# 		target = root
+		# 		effect = {
+		# 			save_event_target_as = new_situation
+		# 		}
+		# 	}
+		# 	set_country_flag = solar_storm_happened
+		# }
+	}
+
+	after = {
+		# Setting initial approach depending on the previous choice
+		# Also starts with more or less progress (radiation damage)
+		# depending on how many drones you were protecting
+		if = {
+			limit = {
+					has_planet_flag = protecting_simple_drones
+					has_planet_flag = protecting_complex_drones
+			}
+			event_target:new_situation = {
+				set_situation_approach = protect_everydrone
+			}
+		}
+		else_if = {
+			limit = {
+					has_planet_flag = protecting_simple_drones
+			}
+			event_target:new_situation = {
+				add_situation_progress = target.simple_drones_percentage
+				set_situation_approach = protect_simple_drones
+			}
+		}
+		else_if = {
+			limit = {
+					has_planet_flag = protecting_complex_drones
+			}
+			event_target:new_situation = {
+				add_situation_progress = target.complex_drones_percentage
+				set_situation_approach = protect_complex_drones
+			}
+		}
+		else = {
+			event_target:new_situation = {
+				add_situation_progress = target.total_drones_percentage
+				set_situation_approach = protect_nobody
+			}
+		}
+
+		hidden_effect = {
+			# cleanup
+			remove_planet_flag = protecting_simple_drones
+			remove_planet_flag = protecting_complex_drones
+
+			set_variable = {
+				which = storm_duration
+				value = 60
+			}
+
+			event_target:new_situation = {
+				set_situation_locked = no
+				situation_event = { id = situation.289 days = 1785 }
+				situation_event = { id = situation.203 days = 65 random = 35 }
+				# after 5 years - 15 days already passed, the storm ends
+			}
+		}
+	}
+}
+
+# Event: Bio-trophies want to help their caretakers
+# For Rogue Servitors only, triggers after 2-2 months
+situation_event = {
+	id = situation.203
+	title = situation.203.name
+	desc = situation.203.desc
+	picture = GFX_evt_synth_organic_relations
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		NOT = {
+			has_situation_flag = bio_trophies_help
+		}
+		target = {
+			NOT = { has_deposit = d_machine_care_home }
+			any_owned_pop = {
+				is_pop_category = bio_trophy
+			}
+		}
+	}
+
+	immediate = {
+		set_situation_flag = bio_trophies_help
+	}
+
+	option = { # let them help
+		name = situation.203.a
+		hidden_effect = {
+			target = { add_deposit = d_machine_care_home }
+		}
+	}
+
+	option = { # nope
+		name = situation.203.b
+	}
+}
+
+# Update the variables used to calculate shielding costs every month
+situation_event = {
+	id = situation.204
+	hide_window = yes
+	is_triggered_only = yes
+	location = target
+
+	immediate = {
+		target = {
+			change_variable = {
+				which = storm_duration
+				value = -1
+			}
+			count_drones_on_planet = { ENERGY = 1 }
+		}
+	}
+}
+
+# Random negative event: malfunctioning drones
+situation_event = {
+	id = situation.210
+	title = situation.210.name
+	# the more radiation damage you suffered, the more
+	# the desc, options and tooltips get scrambled
+	desc = {
+		trigger = {
+			switch = {
+				trigger = current_stage
+				radiation_damage_low = { text = situation.210.desc.1 }
+				radiation_damage_mid = { text = situation.210.desc.2 }
+				radiation_damage_high = { text = situation.210.desc.3 }
+			}
+		}
+	}
+	picture = GFX_evt_cybernetics
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		# checking if there are unprotected drones we can target
+		NOT = {
+			current_situation_approach = protect_everydrone
+		}
+		got_any_unprotected_drones = yes
+		target = {
+			# make sure we're not killing the last pop
+			# and ending the colony
+			any_owned_pop = { is_robot_pop = yes }
+			count_owned_pop = {
+				count > 2
+			}
+		}
+	}
+
+	immediate = {
+		get_unprotected_drone = yes
+	}
+
+	option = { # disconnect the drone
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = situation.210.a.1 }
+					radiation_damage_mid = { text = situation.210.a.2 }
+					radiation_damage_high = { text = situation.210.a.3 }
+				}
+			}
+		}
+		switch = {
+			trigger = current_stage
+			radiation_damage_low = {
+				event_target:broken_drone = {
+					kill_pop = yes
+				}
+			}
+			radiation_damage_mid = {
+				# hiding the effect so we can replace the "normal" tooltip
+				# with its damaged version
+				custom_tooltip = situation.210.a.2.tooltip
+				hidden_effect = {
+					event_target:broken_drone = {
+						kill_pop = yes
+					}
+				}
+			 }
+			radiation_damage_high = {
+				custom_tooltip = situation.210.a.3.tooltip
+				hidden_effect = {
+					event_target:broken_drone = {
+						kill_pop = yes
+					}
+				}
+			}
+		}
+	}
+
+	option = { # leave it
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = situation.210.b.1 }
+					radiation_damage_mid = { text = situation.210.b.2 }
+					radiation_damage_high = { text = situation.210.b.3 }
+				}
+			}
+		}
+		switch = {
+			trigger = current_stage
+			radiation_damage_low = {
+				add_situation_progress = 5
+			}
+			radiation_damage_mid = {
+				custom_tooltip = situation.210.b.2.tooltip
+				hidden_effect = {
+					add_situation_progress = 5
+				}
+			 }
+			radiation_damage_high = {
+				custom_tooltip = situation.210.b.3.tooltip
+				hidden_effect = {
+					add_situation_progress = 5
+				}
+			}
+		}
+	}
+
+	option = { # repair and shield it
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = situation.210.c.1 }
+					radiation_damage_mid = { text = situation.210.c.2 }
+					radiation_damage_high = { text = situation.210.c.3 }
+				}
+			}
+		}
+		switch = {
+			trigger = current_stage
+			radiation_damage_low = {
+				add_situation_progress = -5
+			}
+			radiation_damage_mid = {
+				custom_tooltip = situation.210.c.2.tooltip
+				hidden_effect = {
+					add_situation_progress = -5
+				}
+			 }
+			radiation_damage_high = {
+				custom_tooltip = situation.210.c.3.tooltip
+				hidden_effect = {
+					add_situation_progress = -5
+				}
+			}
+		}
+	}
+}
+
+# Random negative event: faulty assembly line
+situation_event = {
+	id = situation.213
+	title = situation.213.name
+	desc = {
+		trigger = {
+			switch = {
+				trigger = current_stage
+				radiation_damage_low = { text = situation.213.desc.1 }
+				radiation_damage_mid = { text = situation.213.desc.2 }
+				radiation_damage_high = { text = situation.213.desc.3 }
+			}
+		}
+	}
+	picture = GFX_evt_robot_assembly_plant
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		target = {
+			NOT = {
+				has_modifier = broken_assembly_line
+				has_planet_flag = assembly_line_broke_recently
+			}
+			OR = {
+				has_building = building_machine_assembly_plant
+				has_building = building_machine_assembly_complex
+			}
+		}
+	}
+
+	after = {
+		target = {
+			set_timed_planet_flag = {
+				flag = assembly_line_broke_recently
+				days = 180
+			}
+		}
+	}
+
+	option = { # restore facility
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = situation.213.a.1 }
+					radiation_damage_mid = { text = situation.213.a.2 }
+					radiation_damage_high = { text = situation.213.a.3 }
+				}
+			}
+		}
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 300
+				}
+			}
+		}
+		switch = {
+			trigger = current_stage
+			radiation_damage_low = {
+				owner = {
+					add_resource = {
+						energy = -300
+					}
+				}
+			}
+			radiation_damage_mid = {
+				custom_tooltip = situation.213.a.2.tooltip
+				hidden_effect = {
+					owner = {
+						add_resource = {
+							energy = -300
+						}
+					}
+				}
+			 }
+			radiation_damage_high = {
+				custom_tooltip = situation.213.a.3.tooltip
+				hidden_effect = {
+					owner = {
+						add_resource = {
+							energy = -300
+						}
+					}
+				}
+			}
+		}
+	}
+
+	option = { # leave it broken
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = situation.213.b.1 }
+					radiation_damage_mid = { text = situation.213.b.2 }
+					radiation_damage_high = { text = situation.213.b.3 }
+				}
+			}
+		}
+		switch = {
+			trigger = current_stage
+			radiation_damage_low = {
+				target = {
+					add_modifier = {
+						modifier = broken_assembly_line
+						days = 90
+					}
+				}
+			}
+			radiation_damage_mid = {
+				custom_tooltip = situation.213.b.2.tooltip
+				hidden_effect = {
+					target = {
+						add_modifier = {
+							modifier = broken_assembly_line
+							days = 90
+						}
+					}
+				}
+			 }
+			radiation_damage_high = {
+				custom_tooltip = situation.213.b.3.tooltip
+				hidden_effect = {
+					target = {
+						add_modifier = {
+							modifier = broken_assembly_line
+							days = 90
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# Random negative event: miscalculation switch
+situation_event = {
+	id = situation.214
+	hide_window = yes
+	is_triggered_only = yes
+	location = target
+
+	immediate = {
+		random_list = {
+			5 = { situation_event = { id = situation.215 } }
+			0 = {
+				modifier = {
+					add = 15
+					target = {
+						any_owned_pop = {
+							has_job = machine_nurse
+						}
+					}
+				}
+				situation_event = { id = situation.216 }
+				# Rogue Servitors employing bio-Assistants have a chance of getting
+				# a different, more positive event
+			}
+		}
+	}
+}
+
+# Random negative event: miscalculation
+situation_event = {
+	id = situation.215
+	title = situation.215.name
+	desc = {
+		trigger = {
+			switch = {
+				trigger = current_stage
+				radiation_damage_low = { text = situation.215.desc.1 }
+				radiation_damage_mid = { text = situation.215.desc.2 }
+				radiation_damage_high = { text = situation.215.desc.3 }
+			}
+		}
+	}
+	picture = GFX_evt_glitchy_matrix
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	option = {
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = ACKNOWLEDGED }
+					radiation_damage_mid = { text = situation.215.a.2 }
+					radiation_damage_high = { text = situation.215.a.3 }
+				}
+			}
+		}
+
+		switch = {
+			trigger = current_stage
+			radiation_damage_low = {
+				owner = {
+					random_stockpile_negative = yes
+				}
+			}
+			radiation_damage_mid = {
+				custom_tooltip = situation.215.a.2.tooltip
+				hidden_effect = {
+					owner = {
+						random_stockpile_negative = yes
+					}
+				}
+			}
+			radiation_damage_high = {
+				custom_tooltip = situation.215.a.3.tooltip
+				hidden_effect = {
+					owner = {
+						random_stockpile_negative = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# Random negative event: miscalculation - variant for rogue servitors
+situation_event = {
+	id = situation.216
+	title = situation.216.name
+	desc = {
+		trigger = {
+			switch = {
+				trigger = current_stage
+				radiation_damage_low = { text = situation.216.desc.1 }
+				radiation_damage_mid = { text = situation.216.desc.2 }
+				radiation_damage_high = { text = situation.216.desc.3 }
+			}
+		}
+	}
+	picture = GFX_evt_glitchy_matrix
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	option = {
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = ACKNOWLEDGED }
+					radiation_damage_mid = { text = situation.216.a.2 }
+					radiation_damage_high = { text = situation.216.a.3 }
+				}
+			}
+		}
+
+		switch = {
+			trigger = current_stage
+			radiation_damage_low = {
+				owner = {
+					random_stockpile_positive = yes
+				}
+			}
+			radiation_damage_mid = {
+				custom_tooltip = situation.216.a.2.tooltip
+				hidden_effect = {
+					owner = {
+						random_stockpile_positive = yes
+					}
+				}
+			}
+			radiation_damage_high = {
+				custom_tooltip = situation.216.a.3.tooltip
+				hidden_effect = {
+					owner = {
+						random_stockpile_positive = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# Random negative event: disappearing drones
+situation_event = {
+	id = situation.250
+	title = situation.250.name
+	desc = {
+		trigger = {
+			switch = {
+				trigger = current_stage
+				radiation_damage_low = { text = situation.250.desc.1 }
+				radiation_damage_mid = { text = situation.250.desc.2 }
+				radiation_damage_high = { text = situation.250.desc.3 }
+			}
+		}
+	}
+	picture = GFX_evt_city_ruins
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		NOT = { has_situation_flag = vanished_pop }
+	}
+
+	immediate = {
+		set_situation_flag = vanished_pop
+		target = {
+			random_owned_pop = {
+				limit = { is_robot_pop = yes }
+				save_event_target_as = disappearing_pop
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = UNFORTUNATE }
+					radiation_damage_mid = { text = situation.250.a.2 }
+					radiation_damage_high = { text = situation.250.a.3 }
+				}
+			}
+		}
+		hidden_effect = {
+			situation_event = { id = situation.251 days = 15 random = 90 }
+			event_target:disappearing_pop = {
+				kill_pop = yes
+			}
+
+		}
+
+	}
+}
+
+# Follow-up: found disappearing drones, but their drives are wiped out
+situation_event = {
+	id = situation.251
+	title = situation.251.name
+	desc = {
+		trigger = {
+			switch = {
+				trigger = current_stage
+				radiation_damage_low = { text = situation.251.desc.1 }
+				radiation_damage_mid = { text = situation.251.desc.2 }
+				radiation_damage_high = { text = situation.251.desc.3 }
+			}
+		}
+	}
+	picture = GFX_evt_hive_mind
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = vanished_pop
+	}
+
+	option = { # reinstall Ubuntu
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = situation.251.a.1 }
+					radiation_damage_mid = { text = situation.251.a.2 }
+					radiation_damage_high = { text = situation.251.a.3 }
+				}
+			}
+		}
+		hidden_effect = {
+			random_list = {
+				70 = { situation_event = { id = situation.252 days = 15 } }
+				30 = { situation_event = { id = situation.253 days = 15 } }
+			}
+		}
+	}
+
+	option = { # scrap them
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = situation.251.b.1 }
+					radiation_damage_mid = { text = situation.251.b.2 }
+					radiation_damage_high = { text = situation.251.b.3 }
+				}
+			}
+		}
+		switch = {
+			trigger = current_stage
+			radiation_damage_low = {
+				owner = {
+					add_resource = {
+						alloys = 500
+					}
+				}
+			}
+			radiation_damage_mid = {
+				custom_tooltip = situation.251.b.2.tooltip
+				hidden_effect = {
+					owner = {
+						add_resource = {
+							alloys = 500
+						}
+					}
+				}
+			 }
+			radiation_damage_high = {
+				custom_tooltip = situation.251.b.3.tooltip
+				hidden_effect = {
+					owner = {
+						add_resource = {
+							alloys = 500
+						}
+					}
+				}
+			}
+		}
+	}
+}
+# Droids repaired, but they're kinda wonky
+situation_event = {
+	id = situation.252
+	title = situation.252.name
+	desc = {
+		trigger = {
+			switch = {
+				trigger = current_stage
+				radiation_damage_low = { text = situation.252.desc.1 }
+				radiation_damage_mid = { text = situation.252.desc.2 }
+				radiation_damage_high = { text = situation.252.desc.3 }
+			}
+		}
+	}
+	picture = GFX_evt_robot_assembly_plant
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	immediate = {
+		target = {
+			create_pop = {
+				species = owner_main_species
+			}
+			last_created_pop = {
+				modify_species = {
+					add_trait = trait_robot_high_bandwidth
+					add_traits_at_start_of_list = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = UNFORTUNATE }
+					radiation_damage_mid = { text = situation.252.a.2 }
+					radiation_damage_high = { text = situation.252.a.3 }
+				}
+			}
+		}
+	}
+}
+
+# ...they're fine, really.
+situation_event = {
+	id = situation.253
+	title = situation.253.name
+	desc = {
+		trigger = {
+			switch = {
+				trigger = current_stage
+				radiation_damage_low = { text = situation.253.desc.1 }
+				radiation_damage_mid = { text = situation.253.desc.2 }
+				radiation_damage_high = { text = situation.253.desc.3 }
+			}
+		}
+	}
+	picture = GFX_evt_machine_sapience
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	immediate = {
+		target = {
+			create_pop = {
+				species = owner_main_species
+			}
+			last_created_pop = {
+				modify_species = {
+					add_trait = trait_robot_enhanced_memory
+					add_traits_at_start_of_list = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = {
+				switch = {
+					trigger = current_stage
+					radiation_damage_low = { text = EXCELLENT }
+					radiation_damage_mid = { text = situation.253.a.2 }
+					radiation_damage_high = { text = situation.253.a.3 }
+				}
+			}
+		}
+	}
+}
+
+# Ending switch
+situation_event = {
+	id = situation.289
+	hide_window = yes
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	immediate = {
+		target = {
+			remove_modifier = "magnetic_disruption"
+		}
+		switch = {
+			trigger = current_stage
+			radiation_damage_low = { # Good end: stronger hivemind
+				situation_event = { id = situation.292 }
+			}
+			radiation_damage_mid = {  # Neutral end: storm fades away
+				situation_event = { id = situation.293 }
+			}
+			radiation_damage_high = { # Bad end: scarred hivemind
+				situation_event = { id = situation.294 }
+			}
+		}
+	}
+}
+
+# Triggered by on_progress_complete
+# Worst end: Hivemind destroys all drones
+situation_event = {
+	id = situation.290
+	title = situation.290.name
+	desc = situation.290.desc
+	picture = GFX_evt_glitchy_matrix
+	is_triggered_only = yes
+	show_sound = event_life_support_fail
+	situation = this
+	location = target
+
+	after = {
+		hidden_effect = {
+			situation_event = { id = situation.291 }
+		}
+	}
+
+	option = {
+		name = situation.290.a
+		hidden_effect = {
+			target = {
+				every_owned_pop = {
+					limit = { is_robot_pop = yes }
+					kill_pop = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = situation.290.b
+		hidden_effect = {
+			target = {
+				every_owned_pop = {
+					limit = { is_robot_pop = yes }
+					kill_pop = yes
+				}
+			}
+		}
+	}
+
+	option = {
+		name = situation.290.c
+		hidden_effect = {
+			target = {
+				every_owned_pop = {
+					limit = { is_robot_pop = yes }
+					kill_pop = yes
+				}
+			}
+		}
+	}
+}
+
+situation_event = {
+	id = situation.291
+	title = situation.291.name
+	desc = situation.291.desc
+	picture = GFX_evt_sapient_AI
+	is_triggered_only = yes
+	show_sound = event_power_down
+	location = target
+
+	after = {
+		hidden_effect = {
+			target = {
+				# Follow-up in case you got bio-trophies and haven't completely
+				# lost the colony
+				planet_event = { id = situation.299 days = 15 }
+			}
+		}
+		destroy_situation = this
+	}
+
+	option = {
+		name = ACKNOWLEDGED
+	}
+}
+
+# Good end: Hivemind is now stronger!
+# If tempest has ended and stage = low
+situation_event = {
+	id = situation.292
+	title = situation.292.name
+	desc = situation.292.desc
+	picture = GFX_evt_sapient_AI
+	is_triggered_only = yes
+	show_sound = event_solar_fusion
+	situation = this
+	location = target
+
+	after = {
+		hidden_effect = {
+			target = {
+				planet_event = { id = situation.299 days = 15 }
+			}
+		}
+		destroy_situation = this
+	}
+
+	option = {
+		name = EXCELLENT
+		owner = {
+			owner = {
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier2researchreward
+					min = @tier2researchmin
+					max = @tier2researchmax
+				}
+				add_modifier = {
+					modifier = radiation_hardened_components
+					days = -1
+				}
+			}
+		}
+	}
+}
+
+# Neutral end: storm fades away
+# If tempest has ended and stage = mid
+situation_event = {
+	id = situation.293
+	title = situation.293.name
+	desc = situation.293.desc
+	picture = GFX_evt_star_yellow
+	is_triggered_only = yes
+	show_sound = event_solar_fusion
+	situation = this
+	location = target
+
+	after = {
+		hidden_effect = {
+			target = {
+				planet_event = { id = situation.299 days = 15 }
+			}
+		}
+		destroy_situation = this
+	}
+
+	option = {
+		name = GOOD
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+# Bad end: scarred Hivemind
+# If tempest has ended and stage = high
+situation_event = {
+	id = situation.294
+	title = situation.294.name
+	desc = situation.294.desc
+	picture = GFX_evt_sapient_AI
+	is_triggered_only = yes
+	show_sound = event_solar_fusion
+	situation = this
+	location = target
+
+	after = {
+		hidden_effect = {
+			target = {
+				planet_event = { id = situation.299 days = 15 }
+			}
+		}
+		destroy_situation = this
+	}
+
+	option = {
+		name = UNFORTUNATE
+		owner = {
+			add_modifier = {
+				modifier = software_damage
+				days = 1800
+			}
+		}
+	}
+}
+
+# Fate of the robot care home: follow up for Machine Servitors
+planet_event = {
+	id = situation.299
+	title = situation.299.name
+	desc = situation.299.desc
+	picture = GFX_evt_synth_organic_relations
+	is_triggered_only = yes
+	location = root
+
+	trigger = {
+		has_deposit = d_machine_care_home
+	}
+
+	after = {
+		remove_deposit = d_machine_care_home
+	}
+
+	option = { # scrap it
+	name = situation.299.a
+		owner = {
+			add_resource = {
+				alloys = 1000
+			}
+		}
+	}
+
+	option = { # keep it
+		name = situation.299.b
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 75
+				}
+			}
+		}
+		add_modifier = {
+			modifier = machine_care_museum
+			days = -1
+		}
+	}
+}
+
+### The Kaleidoscope
+## By Giada Zavarise
+
+# Creates the Kaleidoscope and the variables used to track its state as it gets passed around
+event = {
+	id = situation.2000
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_nemesis = yes
+		NOT = { has_global_flag = kaleidoscope_started }
+	}
+
+	immediate = {
+		#initialize global state-tracking variables
+		initialize_kaleidoscope = yes
+
+		# Picks a country
+		random_list = {
+			5 = {
+				random_playable_country = {
+					limit = {
+						is_ai = no
+						capital_scope = {
+							NOT = { has_active_building = building_planetary_shield_generator }
+						}
+					}
+					country_event = { id = situation.2002 random = 360 }
+				}
+			}
+			3 = {
+				random_playable_country = {
+					limit = {
+						is_ai = no
+					}
+					random_neighbor_country = {
+						limit = {
+							capital_scope = {
+								NOT = { has_active_building = building_planetary_shield_generator }
+							}
+						}
+						country_event = { id = situation.2002 random = 360 }
+					}
+				}
+			}
+			1 = {
+				random_playable_country = {
+					limit = {
+						is_ai = yes
+						capital_scope = {
+							NOT = { has_active_building = building_planetary_shield_generator }
+						}
+					}
+					country_event = { id = situation.2002 random = 360 }
+				}
+			}
+		}
+	}
+}
+
+# invisible monthly event to update Kaleidoscope status
+situation_event = {
+	id = situation.2001
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# if the Kaleidoscope's lifetime is over, it fades away
+		if = {
+			limit = {
+				event_target:global_event_country = {
+					NOT = { has_country_flag = kaleidoscope_global_lifetime }
+				}		
+			}
+			# Notify owner
+			situation_event = { id = situation.2040 days = 15 }
+			# Notify other countries
+			every_playable_country = {
+				limit = {
+					intel_level = {
+						level > low
+						system = root.owner.capital_scope.solar_system
+					}
+					NOT = { is_same_value = root.owner }
+				}
+				country_event = { id = situation.2045 }
+			}
+		}
+		# Update global progress to keep track of status as the Kaleidoscope gets passed around
+		event_target:global_event_country = {
+			set_variable = {
+				which = kaleidoscope_global_progress
+				value = root.trigger:situation_progress
+			}
+		}
+		# Check economy (used for AI_weights in the situation approach)
+		owner = {
+			export_trigger_value_to_variable = {
+				trigger = expenses
+				variable = kaleidoscope_owner_expenses
+				rounded = yes
+			}
+		}
+		# Update mood based on situation approach (aka how much it's eating)
+		switch = {
+			trigger = current_situation_approach
+			approach_no_food = {
+				# No food = angry Kaleidoscope
+				event_target:global_event_country = {
+					if = {
+						limit = { 
+							check_variable = {
+								which = kaleidoscope_global_mood
+								value > 1
+							}
+						}
+						change_variable = {
+							which = kaleidoscope_global_mood
+							value = -2
+						}
+					}
+				}
+			}
+			approach_little_food = {
+				# Little food = no mood changes
+				event_target:global_event_country = {
+					if = {
+						limit = { 
+							check_variable = {
+								which = kaleidoscope_global_mood
+								value < 20
+							}
+						}
+						change_variable = {
+							which = kaleidoscope_global_mood
+							value = 1
+						}
+					}
+				}
+			}
+			approach_a_lot_of_food = {
+				# A lot of food = happy Kaleidoscope
+				event_target:global_event_country = {
+					if = {
+						limit = { 
+							check_variable = {
+								which = kaleidoscope_global_mood
+								value < 20
+							}
+						}
+						change_variable = {
+							which = kaleidoscope_global_mood
+							value = 2
+						}
+					}
+				}
+			}
+		}
+		# Update Kaleidoscope visuals
+		owner = {
+			update_kaleidoscope_effect = yes
+		}
+	}
+}
+
+# Check if the empire already got the Kaleidoscope before - if so, skip the intro
+country_event = {
+	id = situation.2002
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		capital_scope = {
+			NOT = { has_active_building = building_planetary_shield_generator }
+		}
+	}
+
+	immediate = {
+		set_global_flag = kaleidoscope_started
+		# If we're firing this event from the console, initialize the Kaleidoscope
+		initialize_kaleidoscope = yes
+		if = {
+			limit = {
+				NOT = { has_country_flag = encountered_kaleidoscope }
+			}
+			country_event = { id = situation.2003 }
+		}
+		else = {
+			capital_scope = {
+				solar_system = {
+					spawn_kaleidoscope_effect = yes
+				}
+				planet_event = { id = situation.2010 }
+			}
+		}
+	}
+}
+
+# Kaleidoscope appears for the first time - owner
+country_event = {
+	id = situation.2003
+	title = situation.2003.name
+	desc = situation.2003.desc
+	picture = GFX_evt_city_ruins
+	show_sound = event_power_down
+	is_triggered_only = yes
+	location = capital_scope
+
+	immediate = {
+		capital_scope.solar_system = {
+			spawn_kaleidoscope_effect = yes
+		}
+	}
+
+	option = {
+		name = CURIOUS
+		capital_scope = {
+			add_modifier = {
+				modifier = global_power_outrage
+				days = -1
+			}
+
+			enable_special_project = {
+				name = "KALEIDOSCOPE_INFESTATION_FIRST"
+				location = this
+				owner = root.owner
+			}
+		}
+	}
+
+	# Notify other countries
+	after = {
+		hidden_effect = {
+			random_system_within_border = {
+				limit = {
+					has_star_flag = kaleidoscope_system
+				}
+				save_event_target_as = kaleidoscope_system
+			}
+			every_playable_country = {
+				limit = {
+					intel_level = {
+						level > low
+						system = event_target:kaleidoscope_system
+					}
+					NOT = { is_same_value = root }
+				}
+				country_event = { id = situation.2004 }
+			}
+		}
+	}
+}
+
+# Kaleidoscope appears for the first time - other countries
+country_event = {
+	id = situation.2004
+	title = situation.2004.name
+	desc = {
+		trigger = {
+			owner = {
+				NOT = { has_country_flag = seen_kaleidoscope }
+			}
+		}
+		text = situation.2004.desc
+	}
+	desc = {
+		trigger = {
+			owner = { has_country_flag = seen_kaleidoscope }
+		}
+		text = situation.2004.desc.again
+	}
+	picture = GFX_evt_kaleidoscopic_lights
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+	location = event_target:kaleidoscope_system
+
+	option = {
+		name = CURIOUS
+	}
+
+	after = {
+		set_country_flag = seen_kaleidoscope
+	}
+}
+
+# Special project - 50% progress
+planet_event = {
+	id = situation.2005
+	title = situation.2005.name
+	desc = situation.2005.desc
+	picture = GFX_evt_generator_powerup
+	is_triggered_only = yes
+	location = root
+
+	option = {
+		name = situation.2005.a
+	}
+}
+
+# Special project success - first time in your empire
+planet_event = {
+	id = situation.2010
+	title = situation.2010.name
+	desc = {
+		trigger = {
+			owner = {
+				NOT = { has_country_flag = encountered_kaleidoscope }
+			}
+		}
+		text = situation.2010.desc
+	}
+	desc = {
+		trigger = {
+			owner = { has_country_flag = encountered_kaleidoscope }
+		}
+		text = situation.2010.desc.again
+	}
+	picture = GFX_evt_news_room
+	show_sound = event_celebration
+	is_triggered_only = yes
+	location = root
+
+	immediate = {
+		# If we're firing this event from the console, initialize the Kaleidoscope
+		if = {
+			limit = {
+				NOT = { has_global_flag = kaleidoscope_started }
+			}
+			set_global_flag = kaleidoscope_started
+			initialize_kaleidoscope = yes
+			solar_system = {
+				spawn_kaleidoscope_effect = yes
+			}
+		}
+		# If this is the first time you meet it, remove the modifier
+		if = {
+			limit = {
+				has_modifier = global_power_outrage
+			}
+			remove_modifier = global_power_outrage
+		}
+		owner = {
+			start_situation = {
+				type = situation_kaleidoscope
+				target = owner
+				effect = {
+					save_event_target_as = new_kaleidoscope_situation
+					# To avoid immediately spamming player with random events
+					set_timed_situation_flag = {
+						flag = kaleidoscope_random_events
+						days = 180
+					}
+				}
+			}
+			# if the Kaleidoscope has been fed already, get the progress from global scope
+			if = {
+				limit = {
+					event_target:global_event_country = {
+						check_variable = {
+							which = kaleidoscope_global_progress
+							value > 0
+						}
+					}
+				}
+				event_target:new_kaleidoscope_situation = {
+					add_situation_progress = event_target:global_event_country.kaleidoscope_global_progress
+				}
+			}
+		}
+	}
+
+	option = {
+		name = situation.2010.a
+		icon = {
+			icon = GFX_situation_approach_energy_credits
+			icon_background = GFX_situation_approach_bg_red
+			text = set_situation_approach_icon_text
+		}
+		event_target:new_kaleidoscope_situation = {
+			set_situation_approach = approach_no_food
+		}
+		custom_tooltip = situation.2010.tooltip
+	}
+
+	option = {
+		name = situation.2010.b
+		icon = {
+			icon = GFX_situation_approach_energy_credits
+			icon_background = GFX_situation_approach_bg_yellow
+			text = set_situation_approach_icon_text
+		}
+		event_target:new_kaleidoscope_situation = {
+			set_situation_approach = approach_little_food
+		}
+		custom_tooltip = situation.2010.tooltip
+	}
+
+	option = {
+		name = situation.2010.c
+		icon = {
+			icon = GFX_situation_approach_energy_credits
+			icon_background = GFX_situation_approach_bg_green
+			text = set_situation_approach_icon_text
+		}
+		event_target:new_kaleidoscope_situation = {
+			set_situation_approach = approach_a_lot_of_food
+		}
+		custom_tooltip = situation.2010.tooltip
+	}
+
+	after = {
+		owner = {
+			set_country_flag = encountered_kaleidoscope
+		}
+	}
+}
+
+# Special project success - minor infestation
+planet_event = {
+	id = situation.2011
+	title = situation.2011.name
+	desc = situation.2011.desc
+	picture = GFX_evt_metropolis
+	show_sound = event_celebration
+	is_triggered_only = yes
+	location = root
+
+	option = {
+		name = EXCELLENT
+		remove_modifier = phantom_load
+		solar_system = {
+			every_system_ambient_object = {
+				limit = {
+					has_ambient_object_flag = kaleidoscope_small
+				}
+				destroy_ambient_object = this
+			}
+		}
+	}
+}
+
+## Espionage
+# First event
+espionage_operation_event = {
+	id = situation.2020
+	title = situation.2020.name
+	desc = situation.2020.desc
+	picture = GFX_evt_spy_network
+
+	is_triggered_only = yes
+
+	option = {
+		name = ACKNOWLEDGED
+	}
+}
+
+# Finishing operation
+espionage_operation_event = {
+	id = situation.2021
+	title = situation.2021.name
+	desc = situation.2021.desc
+	picture = GFX_evt_city_planet
+	show_sound = event_celebration
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			random_situation = {
+				limit = {
+					is_situation_type = situation_kaleidoscope
+				}
+				save_event_target_as = active_kaleidoscope
+			}
+			event_target:global_event_country = {
+				# the progress and the mood get carried over
+				set_variable = {
+					which = kaleidoscope_global_progress
+					value = event_target:active_kaleidoscope.trigger:situation_progress
+				}
+			}
+		}
+		set_espionage_operation_progress_locked = yes
+	}
+
+	option = {
+		name = LAUNCH_OPERATION
+		hidden_effect = {
+			target = {
+				country_event = { id = situation.2002 }
+			}
+		}
+	}
+
+	after = {
+		# Cleanup
+		owner = {
+			remove_kaleidoscope_effect = yes
+			every_situation = {
+				limit = {
+					is_situation_type = situation_kaleidoscope
+				}
+				destroy_situation = this
+			}
+		}
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+# Country infected by Kaleidoscope gets an energy shortage - notify the operation owner
+country_event = {
+	id = situation.2025
+	title = situation.2025.name
+	desc = situation.2025.desc
+	picture = GFX_evt_bribery
+	show_sound = event_energy_field
+	is_triggered_only = yes
+
+	option = {
+		name = SPLENDID
+	}
+}
+
+## Random events
+# Negative 1 - infests another planet
+situation_event = {
+	id = situation.2030
+	title = situation.2030.name
+	desc = situation.2030.desc
+	picture = GFX_evt_worrying_signal
+	show_sound = event_power_down
+	is_triggered_only = yes
+	location = event_target:infested_planet
+	situation = this
+
+	trigger = {
+		NOR = {
+			has_situation_flag = kaleidoscope_invasion
+			has_situation_flag = kaleidoscope_random_events
+		}
+		current_situation_approach = approach_no_food
+		owner = {
+			any_owned_planet = {
+				num_districts = {
+					type = district_generator
+					value >= 1
+				}
+				NOT = { has_modifier = phantom_load }
+			}
+		}
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = value:kaleidoscope_negative_events_value
+		}
+	}
+	
+	immediate = {
+		set_timed_situation_flag = {
+			flag = kaleidoscope_invasion
+			days = 720
+		}
+		set_timed_situation_flag = {
+			flag = kaleidoscope_random_events
+			days = 360
+		}
+		owner = {
+			random_owned_planet = {
+				limit = {
+					num_districts = {
+						type = district_generator
+						value >= 1
+					}
+					NOT = { has_modifier = phantom_load }
+				}
+				save_event_target_as = infested_planet
+			}
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+		event_target:infested_planet = {
+			add_modifier = {
+				modifier = phantom_load
+				days = -1
+			}
+			enable_special_project = {
+				name = "KALEIDOSCOPE_INFESTATION"
+				location = this
+				owner = root.owner
+			}
+			hidden_Effect = {
+				create_ambient_object = {
+					type = kaleidoscope_angry
+					scale = 0.20
+					location = this
+				}
+				last_created_ambient_object = {
+					set_ambient_object_flag = kaleidoscope_small
+				}
+			}
+		}
+	}
+
+	abort_trigger = {
+		event_target:infested_planet.owner = {
+			NOT = { is_same_value = root.owner }
+		}
+	}
+}
+
+# Negative 2 - eats energy building
+situation_event = {
+	id = situation.2031
+	title = situation.2031.name
+	desc = situation.2031.desc
+	picture = GFX_evt_worrying_signal
+	show_sound = event_energy_field
+	is_triggered_only = yes
+	situation = this
+
+	trigger = {
+		NOR = {
+			has_situation_flag = kaleidoscope_random_events
+			current_situation_approach = approach_a_lot_of_food
+		}
+		owner = {
+			any_owned_planet = {
+				OR = {
+					has_active_building = building_energy_grid
+					has_active_building = building_energy_nexus
+				}
+			}
+		}
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = value:kaleidoscope_negative_events_value
+		}
+	}
+	
+	immediate = {
+		set_timed_situation_flag = {
+			flag = kaleidoscope_random_events
+			days = 360
+		}
+		owner = {
+			random_owned_planet = {
+				limit = {
+					OR = {
+						has_active_building = building_energy_grid
+						has_active_building = building_energy_nexus
+					}
+				}
+				save_event_target_as = infested_planet
+			}
+		}
+	}
+
+	option = {
+		name = situation.2031.a
+		event_target:infested_planet = {
+			ruin_building = building_energy_grid
+			ruin_building = building_energy_nexus
+		}
+		add_situation_progress = 5
+	}
+
+	option = {
+		name = situation.2031.b
+		owner = {
+			add_resource = {
+				energy = 1000
+			}
+		}
+	}
+}
+
+# Negative 3 - unnerving patterns (- pop happiness)
+situation_event = {
+	id = situation.2032
+	title = situation.2032.name
+	desc = situation.2032.desc
+	picture = GFX_evt_kaleidoscopic_lights
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+	situation = this
+
+	trigger = {
+		current_situation_approach = approach_no_food
+		NOR = {
+			has_situation_flag = kaleidoscope_random_events
+			has_situation_flag = kaleidoscope_unnerving_patterns
+		}
+		owner = {
+			is_machine_empire = no
+		}
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = value:kaleidoscope_negative_events_value
+		}
+	}
+
+	immediate = {
+		set_situation_flag = kaleidoscope_unnerving_patterns
+		set_timed_situation_flag = {
+			flag = kaleidoscope_random_events
+			days = 360
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+		tooltip = {
+			owner = {
+				add_modifier = {
+					modifier = kaleidoscope_unnerving_patterns
+				}
+			}
+		}
+	}
+}
+
+# Negative 4 - ominous patterns (spiritualists)
+situation_event = {
+	id = situation.2033
+	title = situation.2033.name
+	desc = situation.2033.desc
+	picture = GFX_evt_kaleidoscopic_lights
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+	situation = this
+
+	trigger = {
+		current_situation_approach = approach_no_food
+		NOR = {
+			has_situation_flag = kaleidoscope_random_events
+			has_situation_flag = kaleidoscope_ominous_patterns
+		}
+		owner = {
+			is_spiritualist = yes
+		}
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = value:kaleidoscope_negative_events_value
+		}
+	}
+
+	immediate = {
+		set_timed_situation_flag = {
+			flag = kaleidoscope_random_events
+			days = 360
+		}
+	}
+
+	option = {
+		name = situation.2033.a
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 2000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -2000
+			}
+		}
+	}
+
+	option = {
+		name = situation.2033.b
+		set_situation_flag = kaleidoscope_ominous_patterns
+		tooltip = {
+			owner = {
+				add_modifier = {
+					modifier = kaleidoscope_ominous_patterns
+				}
+			}
+		}
+	}
+}
+
+# Negative 5 - slow ships
+situation_event = {
+	id = situation.2034
+	title = situation.2034.name
+	desc = situation.2034.desc
+	picture = GFX_evt_kaleidoscopic_lights
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+	situation = this
+
+	trigger = {
+		current_situation_approach = approach_no_food
+		NOR = {
+			has_situation_flag = kaleidoscope_random_events
+			has_situation_flag = kaleidoscope_pilfering_patterns
+		}
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = value:kaleidoscope_negative_events_value
+		}
+	}
+
+	immediate = {
+		set_situation_flag = kaleidoscope_pilfering_patterns
+		set_timed_situation_flag = {
+			flag = kaleidoscope_random_events
+			days = 360
+		}
+	}
+
+	option = {
+		name = UNFORTUNATE
+		tooltip = {
+			owner = {
+				add_modifier = {
+					modifier = kaleidoscope_pilfering_patterns
+				}
+			}
+		}
+	}
+}
+
+# Positive 1 - soothing patterns (unity)
+situation_event = {
+	id = situation.2037
+	title = situation.2037.name
+	desc = situation.2037.desc
+	picture = GFX_evt_kaleidoscopic_lights
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+	location = owner.capital_scope
+	situation = this
+
+	trigger = {
+		NOR = {
+			current_situation_approach = approach_no_food
+			has_situation_flag = kaleidoscope_soothing_patterns
+			has_situation_flag = kaleidoscope_random_events
+		}
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = value:kaleidoscope_positive_events_value
+		}
+	}
+
+	immediate = {
+		set_timed_situation_flag = {
+			flag = kaleidoscope_soothing_patterns
+			days = 720
+		}
+		set_timed_situation_flag = {
+			flag = kaleidoscope_random_events
+			days = 360
+		}
+	}
+
+	option = {
+		name = ASTOUNDING
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+	}
+}
+
+# Positive 2 - dazzling patterns (science)
+situation_event = {
+	id = situation.2038
+	title = situation.2038.name
+	desc = situation.2038.desc
+	picture = GFX_evt_kaleidoscopic_lights
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+	situation = this
+
+	trigger = {
+		NOR = {
+			current_situation_approach = approach_no_food
+			has_situation_flag = kaleidoscope_dazzling_patterns
+		}
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = value:kaleidoscope_positive_events_value
+		}
+	}
+
+	immediate = {
+		set_timed_situation_flag = {
+			flag = kaleidoscope_dazzling_patterns
+			days = 720
+		}
+		set_timed_situation_flag = {
+			flag = kaleidoscope_random_events
+			days = 360
+		}
+	}
+
+	option = {
+		name = CURIOUS
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+	}
+}
+
+
+## Endings
+# Kaleidoscope fades away if its lifetime is over - owner
+situation_event = {
+	id = situation.2040
+	title = situation.2040.name
+	desc = situation.2040.desc
+	picture = GFX_evt_city_planet
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+	location = event_target:kaleidoscope_system
+	situation = this
+
+	trigger = {
+		event_target:global_event_country = {
+			NOT = { has_country_flag = kaleidoscope_global_lifetime }
+		}
+	}
+
+	immediate = {
+		owner = {
+			random_system_within_border = {
+				limit = {
+					has_star_flag = kaleidoscope_system
+				}
+				save_event_target_as = kaleidoscope_system
+			}
+		}
+	}
+
+	option = {
+		name = ACKNOWLEDGED
+	}
+
+	after = {
+		set_global_flag = kaleidoscope_finished # just in case we need it in the future
+		owner = {
+			remove_kaleidoscope_effect = yes
+			every_situation = {
+				limit = {
+					is_situation_type = situation_kaleidoscope
+				}
+				destroy_situation = this
+			}
+		}
+		hidden_effect = {
+			every_playable_country = {
+				limit = {
+					intel_level = {
+						level > low
+						system = event_target:kaleidoscope_system
+					}
+					NOT = { is_same_value = root.owner }
+				}
+				country_event = { id = situation.2045 }
+			}
+		}
+	}
+}
+
+# Kaleidoscope fades away if its lifetime is over - other countries
+country_event = {
+	id = situation.2045
+	title = situation.2045.name
+	desc = situation.2045.desc
+	picture = GFX_evt_city_planet
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+
+	option = {
+		name = CURIOUS
+	}
+}
+
+# Kaleidoscope blooms - Good ending
+situation_event = {
+	id = situation.2041
+	title = situation.2041.name
+	desc = situation.2041.desc
+	picture = GFX_evt_kaleidoscopic_lights
+	show_sound = event_space_cloud
+	situation = this
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			random_system_within_border = {
+				limit = {
+					has_star_flag = kaleidoscope_system
+				}
+				save_event_target_as = kaleidoscope_system
+			}
+			remove_kaleidoscope_effect = yes
+		}
+		set_situation_locked = yes
+	}
+
+	option = {
+		name = FASCINATING
+		owner = {
+			add_relic = r_vacuum_flower
+		}
+	}
+
+	after = { 
+		set_global_flag = kaleidoscope_finished # just in case we need it in the future
+		destroy_situation = this
+		hidden_effect = {
+			every_playable_country = {
+				limit = {
+					intel_level = {
+						level > low
+						system = event_target:kaleidoscope_system
+					}
+					NOT = { is_same_value = root.owner }
+				}
+				country_event = { id = situation.2042 }
+			}
+		}
+	}
+}
+
+# Kaleidoscope blooms - Good ending - Notifying other countries
+country_event = {
+	id = situation.2042
+	title = situation.2042.name
+	desc = situation.2042.desc
+	picture = GFX_evt_kaleidoscopic_lights
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+
+	option = {
+		name = CURIOUS
+	}
+}
+
+# Kaleidoscope explodes! - Bad ending
+situation_event = {
+	id = situation.2043
+	title = situation.2043.name
+	desc = situation.2043.desc
+	picture = GFX_evt_archaeologists_escaping
+	situation = this
+	show_sound = event_super_explosion
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			random_system_within_border = {
+				limit = {
+					has_star_flag = kaleidoscope_system
+				}
+				save_event_target_as = kaleidoscope_system
+				every_system_colony = {
+					add_planet_devastation = 50
+				}
+			}
+			remove_kaleidoscope_effect = yes
+		}
+		set_situation_locked = yes
+	}
+
+	option = {
+		name = UNFORTUNATE
+	}
+
+	after = { 
+		set_global_flag = kaleidoscope_finished # just in case we need it in the future
+		destroy_situation = this
+		every_playable_country = {
+			limit = {
+				intel_level = {
+					level > low
+					system = event_target:kaleidoscope_system
+				}
+				NOT = { is_same_value = root.owner }
+			}
+			country_event = { id = situation.2044 }
+		}
+	}
+}
+
+# Kaleidoscope explodes! - Bad ending - Notifying other countries
+country_event = {
+	id = situation.2044
+	title = situation.2044.name
+	desc = situation.2044.desc
+	picture = GFX_evt_exploding_planet
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+
+	option = {
+		name = CURIOUS
+	}
+}
+
+# Kaleidoscope could get a Dyson sphere?
+situation_event = {
+	id = situation.2048
+	title = situation.2048.name
+	desc = situation.2048.desc
+	picture = GFX_evt_dyson_sphere
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+	location = target
+	situation = this
+
+	# Only triggers if you're NOT trying to starve the Kaleidoscope
+	trigger = {
+		NOT = { current_situation_approach = approach_no_food }
+		owner = {
+			is_xenophobe = no
+			NOT = { has_country_flag = can_build_disco_sphere }
+			any_owned_megastructure = {
+				OR = {
+					is_megastructure_type = dyson_sphere_5 
+					is_megastructure_type = dyson_sphere_restored
+				}
+			}
+		}
+	}
+
+	weight_multiplier = {
+		factor = 1
+		modifier = {
+			factor = value:kaleidoscope_positive_events_value
+		}
+	}
+
+	option = {
+		name = situation.2048.a
+		custom_tooltip = situation.2048.a.tooltip
+		owner = {
+			set_country_flag = can_build_disco_sphere
+		}
+	}
+
+	option = {
+		name = situation.2048.b
+	}
+}
+
+# DiScO EnDiNg
+country_event = {
+	id = situation.2049
+	title = situation.2049.name
+	desc = situation.2049.desc
+	picture = GFX_evt_dyson_sphere
+	show_sound = event_kaleidoscopic_lights
+	is_triggered_only = yes
+	location = event_target:gifted_sphere
+
+	option = {
+		name = EXCELLENT
+		set_global_flag = kaleidoscope_finished # just in case we need it in the future
+		remove_kaleidoscope_effect = yes
+		every_situation = {
+			limit = {
+				is_situation_type = situation_kaleidoscope
+			}
+			destroy_situation = this
+		}
+	}
+}
+
+# Move Kaleidoscope to new capital
+planet_event = {
+	id = situation.2050
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			any_situation = {
+				is_situation_type = situation_kaleidoscope
+			}
+		}
+	}
+
+	immediate = {
+		# Remove Kaleidoscope from old capital
+		from.solar_system = {
+			every_system_ambient_object = {
+				limit = {
+					OR = {
+						has_ambient_object_flag = kaleidoscope_small
+						has_ambient_object_flag = kaleidoscope_ambient_object
+					}	
+				}
+				destroy_ambient_object = this
+			}
+			remove_star_flag = kaleidoscope_system
+		}
+		# Spawn it to the new one
+		root.solar_system = {
+			spawn_kaleidoscope_effect = yes
+		}
+	}
+}
+
+# Give Kaleidoscope to the country who destroyed the host
+#This = destroyed country
+#From = optional, destroyer (country)
+country_event = {
+	id = situation.2060
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_situation = {
+			is_situation_type = situation_kaleidoscope
+		}
+		exists = from
+		from = {
+			is_country_type = default
+		}
+	}
+	
+	immediate = {		
+		from = {
+			# If the capital doesn't have a shield, give the Kaleidoscope to them 
+			if = {
+				limit = {
+					capital_scope = {
+						NOT = { has_active_building = building_planetary_shield_generator }
+					}
+				}
+				# Clean up so we can respawn it
+				remove_kaleidoscope_effect = yes
+				country_event = { id = situation.2002 }
+			}
+			# If the capital is shielded, the kaleidoscope disappears
+			else = {
+				random_system = {
+					limit = {
+						has_star_flag = kaleidoscope_system
+					}
+					save_event_target_as = kaleidoscope_system
+				}
+				every_playable_country = {
+					limit = {
+						intel_level = {
+							level > low
+							system = event_target:kaleidoscope_system
+						}
+						NOT = { is_same_value = root }
+					}
+					country_event = { id = situation.2045 }
+				}
+				# Clean up after notifying other countries, because we need the scope
+				remove_kaleidoscope_effect = yes
+			}
+		}
+	}
+}
+
+##########################
+## Leviathan Situations ##
+## By Victor Haeggman   ##
+##########################
+
+situation_event = {
+	id = situation.1000
+	title = situation.1000.name
+	location = target
+	desc = {
+		trigger = {
+			switch = {
+				trigger = has_situation_flag
+				small_unity_reward = { text = situation.1000.desc.small }
+				standard_unity_reward = { text = situation.1000.desc.standard }
+				large_unity_reward = { text = situation.1000.desc.large }
+			}
+		}
+	}
+	picture = GFX_evt_crisis_defeated
+	situation = this
+	is_triggered_only = yes
+	trigger = {
+		owner = { is_gestalt = yes }
+	}
+	option = {
+		trigger = { has_situation_flag = small_unity_reward }
+		set_celebration_modifier = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier2unityreward
+				min = @tier2unitymin
+				max = @tier2unitymax
+			}
+		}
+		name = situation.1000.a
+	}
+	option = {
+		trigger = { has_situation_flag = standard_unity_reward }
+		set_celebration_modifier = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+		name = situation.1000.b
+	}
+	option = {
+		trigger = { has_situation_flag = large_unity_reward }
+		set_celebration_modifier = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier4unityreward
+				min = @tier4unitymin
+				max = @tier4unitymax
+			}
+		}
+		name = situation.1000.c
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+situation_event = {
+	id = situation.1005
+	title = situation.1005.name
+	location = target
+	desc = {
+		trigger = {
+			switch = {
+				trigger = has_situation_flag
+				small_unity_reward = { text = situation.1005.desc.small }
+				standard_unity_reward = { text = situation.1005.desc.standard }
+				large_unity_reward = { text = situation.1005.desc.large }
+			}
+		}
+	}
+	picture = GFX_evt_crisis_defeated
+	situation = this
+	is_triggered_only = yes
+	trigger = {
+		owner = { is_gestalt = no }
+	}
+	option = {
+		trigger = { has_situation_flag = small_unity_reward }
+		set_celebration_modifier = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier2unityreward
+				min = @tier2unitymin
+				max = @tier2unitymax
+			}
+		}
+		name = situation.1005.a
+	}
+	option = {
+		trigger = { has_situation_flag = standard_unity_reward }
+		set_celebration_modifier = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+		name = situation.1005.b
+	}
+	option = {
+		trigger = { has_situation_flag = large_unity_reward }
+		set_celebration_modifier = yes
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier4unityreward
+				min = @tier4unitymin
+				max = @tier4unitymax
+			}
+		}
+		name = situation.1005.c
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+#Ether Drake Fang
+situation_event = {
+	id = situation.1045
+	title = situation.1045.name
+	desc = situation.1045.desc
+	picture = GFX_evt_space_dragon
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = celebration_ether_drake
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { #Be slow
+		name = situation.1045.a
+		add_situation_progress = -30
+		ai_chance = {
+			weight = 100
+		}
+	}
+	option = { #Study it
+		name = situation.1045.b
+		owner = {
+			add_modifier = { modifier = studying_decaying_fang days = 7200 }
+		}
+		custom_tooltip = situation.1045.b.tooltip
+		hidden_effect = {
+			destroy_situation = this
+		}
+	}
+	option = { #Replace it
+		name = situation.1045.c
+		if = {
+			limit = { NOT = { has_situation_flag = small_unity_reward } }
+			custom_tooltip = situation.1045.c.tooltip
+		}
+		reduce_unity_celebration = yes
+	}
+}
+#Eye of the Shard
+situation_event = {
+	id = situation.1050
+	title = situation.1050.name
+	desc = situation.1050.desc
+	picture = GFX_evt_space_dragon_blue
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = celebration_shard
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { #Attach it to the starbase
+		name = situation.1050.a
+		target = {
+			add_modifier = { modifier = all_seeing_shard days = -1 }
+		}
+		custom_tooltip = situation.1050.a.tooltip
+		hidden_effect = {
+			destroy_situation = this
+		}
+	}
+	option = { #Remove it fast
+		name = situation.1050.b
+		if = {
+			limit = { NOT = { has_situation_flag = small_unity_reward } }
+			custom_tooltip = situation.1045.c.tooltip
+		}
+		reduce_unity_celebration = yes
+	}
+	option = { #Remove it slow
+		name = situation.1050.c
+		add_situation_progress = -30
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		ai_chance = {
+			weight = 100
+		}
+	}
+}
+#Dreadnought Reactor
+situation_event = {
+	id = situation.1055
+	title = situation.1055.name
+	desc = situation.1055.desc
+	picture = GFX_evt_automated_dreadnought
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = celebration_automated_dreadnought
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { #Power the city
+		name = situation.1055.a
+		target = {
+			add_modifier = { modifier = reactor_overdrive days = 960 }
+		}
+		add_situation_progress = -40
+	}
+	option = { #Use it for the parade
+		name = situation.1055.b
+		random_list = {
+			1 = {
+				if = {
+					limit = { NOT = { has_situation_flag = large_unity_reward } }
+					custom_tooltip = situation.1055.b.tooltip
+				}
+				add_situation_progress = 20
+				increase_unity_celebration = yes
+			}
+			1 = {
+				add_situation_progress = -30
+			}
+		}
+	}
+	option = { #Turn it off
+		name = situation.1055.c
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+}
+# Tiyanki Matriarch Flagella
+situation_event = {
+	id = situation.1060
+	title = situation.1060.name
+	desc = situation.1060.desc
+	picture = GFX_evt_ancient_tiyanki
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = celebration_tiyanki_matriarch
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { #Harvest it
+		trigger = {
+			owner = { country_uses_food = yes }
+		}
+		name = situation.1060.a
+		owner = {
+			add_resource = { food = 500 }
+		}
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		add_situation_progress = -20
+		increase_unity_celebration = yes
+		ai_chance = {
+			weight = 100
+		}
+	}
+	option = { #Let it grow
+		name = situation.1060.b
+		target = {
+			if = {
+				limit = {
+					any_owned_pop = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop = no
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						NOT = { has_trait = trait_hive_mind }
+						is_robot_pop = no
+					}
+					root.target = {
+						create_pop = {
+							species = prev
+						}
+					}
+				}
+			}
+			else = {
+				random_owned_pop = {
+					root.target = {
+						create_pop = {
+							species = prev
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			weight = 10
+		}
+	}
+	option = { #Burn it
+		trigger = { owner = { is_xenophile = no } }
+		name = situation.1060.c
+		set_situation_flag = burnt_flagella
+		if = {
+			limit = { NOT = { has_situation_flag = small_unity_reward } }
+			custom_tooltip = situation.1045.c.tooltip
+		}
+		reduce_unity_celebration = yes
+	}
+}
+#Sky-Dragon's Plume
+situation_event = {
+	id = situation.1065
+	title = situation.1065.name
+	desc = situation.1065.desc
+	picture = GFX_evt_here_be_dragons
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = celebration_hrozgar
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	immediate = {
+		create_country = {
+			name = "NAME_Clutch_of_Whelps"
+			type = clutch_of_whelps
+			auto_delete = no
+			flag = {
+				icon = {
+					category = "spherical"
+					file = "flag_spherical_6.dds"
+				}
+				background = {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors = {
+					"light_blue"
+					"light_blue"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				every_playable_country = {
+					establish_communications_no_message = prev
+				}
+				set_faction_hostility = {
+					target = root.owner
+					set_hostile = no
+					set_neutral = no
+					set_friendly = yes
+				}
+				create_fleet = {
+					name = "NAME_Clutch_of_Whelps"
+					settings = {
+						#spawns_debris = no
+						is_boss = yes
+						can_change_leader = no
+					}
+					effect = {
+						set_owner = prev
+						while = {
+							count = 3
+							create_ship = {
+								name = "NAME_Sky_Dragon_Baby"
+								design = "NAME_Sky_Dragon_Baby"
+							}
+						}
+						set_location = {
+							target = root.target
+							distance = 300
+							angle = 180
+						}
+					}
+				}
+				save_event_target_as = clutch_of_whelps
+			}
+		}
+	}
+
+
+	option = { #Kill the whelps
+		trigger = { owner = { values_others = no } }
+		name = situation.1065.a
+		hidden_effect = {
+			event_target:clutch_of_whelps = {
+				set_faction_hostility = {
+					target = root.owner
+					set_hostile = yes
+					set_neutral = no
+					set_friendly = no
+				}
+				random_owned_fleet = {
+					set_fleet_stance = aggressive
+				}
+			}
+		}
+		if = {
+			limit = {
+				owner = {
+					OR = {
+						is_unfriendly = yes
+						is_xenophobe = yes
+						is_gestalt = yes
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { has_situation_flag = large_unity_reward } }
+				custom_tooltip = situation.1055.b.tooltip
+			}
+			increase_unity_celebration = yes
+		}
+		else = {
+			if = {
+				limit = { NOT = { has_situation_flag = small_unity_reward } }
+				custom_tooltip = situation.1045.c.tooltip
+			}
+			reduce_unity_celebration = yes
+		}
+	}
+	option = { #Find them a home
+		trigger = {
+			owner = {
+				NOR  = {
+					is_unfriendly = yes
+					is_xenophobe = yes
+				}
+			}
+		}
+		name = situation.1065.b
+		custom_tooltip = situation.1065.b.tooltip
+		hidden_effect = {
+			target.solar_system = {
+				spawn_planet = {
+					class = pc_asteroid
+					location = target.solar_system.star
+					orbit_distance_offset = 180
+					orbit_angle_offset = 5
+					size = 2
+					init_effect = {
+						set_deposit = d_living_metal_deposit
+						set_name = "NAME_Drakes_Roost"
+						save_event_target_as = drakes_roost
+						set_surveyed = {
+							surveyed = yes
+							surveyor = root.owner
+						}
+					}
+				}
+			}
+			event_target:clutch_of_whelps = {
+				random_owned_fleet = {
+					clear_fleet_actions = this
+					queue_actions = {
+						move_to = event_target:drakes_roost
+						orbit_planet = event_target:drakes_roost
+					}
+				}
+			}
+			destroy_situation = this
+		}
+		ai_chance = {
+			weight = 100
+		}
+	}
+
+	option = { #Trap Them
+		trigger = {
+			owner = {
+				NOR = {
+					is_egalitarian = yes
+					values_others = yes
+					is_xenophobe = yes
+				}
+			}
+		}
+		name = situation.1065.c
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		increase_unity_celebration = yes
+		hidden_effect = {
+			event_target:clutch_of_whelps = {
+				destroy_country = yes
+			}
+		}
+	}
+	option = { #Drive them off
+		trigger = { owner = { is_homicidal = no } }
+		name = situation.1065.d
+		add_situation_progress = -10
+		hidden_effect = {
+			event_target:clutch_of_whelps = {
+				destroy_country = yes
+			}
+		}
+	}
+}
+# Scavenger Bot's Compactor
+situation_event = {
+	id = situation.1070
+	title = situation.1070.name
+	desc = situation.1070.desc
+	picture = GFX_evt_scavenger_bot
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = celebration_scavenger_bot
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { #Use it for Construction
+		name = situation.1070.a
+		owner = {
+			add_resource = { alloys = 5000 }
+		}
+		add_situation_progress = -20
+		ai_chance = {
+			weight = 100
+		}
+	}
+	option = { #Use it for the parade
+		name = situation.1070.b
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		increase_unity_celebration = yes
+		add_situation_progress = 20
+	}
+	option = { #Send the compactor back into orbit
+		name = situation.1070.c
+		custom_tooltip = situation.1070.c.tooltip
+		hidden_effect = {
+			destroy_situation = this
+			target = {
+				solar_system = {
+					spawn_planet = {
+						class = pc_asteroid
+						location = root.target
+						orbit_location = yes
+						orbit_distance_offset = 10
+						orbit_angle_offset = 5
+						size = 2
+						init_effect = {
+							set_name = "NAME_Bot_Compactor"
+							set_surveyed = {
+								surveyed = yes
+								surveyor = root.owner
+							}
+							set_deposit = d_alloys_10
+						}
+					}
+				}
+			}
+		}
+	}
+}
+# Spectral Wraith's Disperser Sack
+situation_event = {
+	id = situation.1075
+	title = situation.1075.name
+	desc = situation.1075.desc
+	picture = GFX_evt_wraith
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = celebration_spectral_wraith
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { #Infuse the atmosphere
+		name = situation.1075.a
+		custom_tooltip = situation.1075.a.tooltip
+		target = { add_modifier = { modifier = infused_atmosphere } }
+		hidden_effect = {
+			destroy_situation = this
+		}
+	}
+	option = { #Plug it up
+		name = situation.1075.b
+	}
+	option = { #Use it for the parade
+		name = situation.1075.c
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		increase_unity_celebration = yes
+		add_situation_progress = -40
+	}
+}
+# Dimensional Horror Mass
+situation_event = {
+	id = situation.1080
+	title = situation.1080.name
+	desc = situation.1080.desc
+	picture = GFX_evt_dimensional_horror
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		OR = {
+			has_situation_flag = celebration_dimensional_horror
+			has_situation_flag = celebration_elder_one
+			has_situation_flag = celebration_worm
+		}
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = { #Return it to the Black Hole
+		allow = { owner = { is_materialist = no } }
+		name = situation.1080.a
+		custom_tooltip = situation.1080.a.tooltip
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+		hidden_effect = {
+			destroy_situation = this
+		}
+	}
+	option = { # Study it
+		trigger = { owner = { is_spiritualist = no } }
+		name = situation.1080.b
+		set_situation_flag = studied_the_mass
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		increase_unity_celebration = yes
+	}
+	option = { #Contain it
+		name = situation.1080.c
+		set_situation_flag = contained_the_mass
+	}
+	option = { #The divine
+		trigger = { owner = { is_spiritualist = yes } }
+		name = situation.1080.d
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		increase_unity_celebration = yes
+		set_situation_flag = deified_the_mass
+	}
+}
+
+planet_event = {
+	id = situation.1085
+	title = situation.1085.name
+	location = this
+	desc = {
+		trigger = {
+			has_modifier = horror_study_trophy
+		}
+		text = situation.1085.desc.study
+	}
+	desc = {
+		trigger = {
+			has_modifier = horror_deify_trophy
+		}
+		text = situation.1085.desc.deify
+	}
+	picture = GFX_evt_surreal_visions
+	is_triggered_only = yes
+	option = {
+		trigger = { has_modifier = horror_study_trophy }
+		name = situation.1085.a
+		remove_modifier = horror_study_trophy
+		add_modifier = { modifier = horror_study_trophy2 }
+		hidden_effect = {
+			planet_event = { id = situation.1090 days = 1240 }
+		}
+	}
+	option = {
+		name = {
+			text = situation.1085.b.divine
+			trigger = { owner = { has_country_flag = spiritualist_accept } }
+		}
+		name = {
+			text = situation.1085.b.anathema
+			trigger = { owner = { NOT = { has_country_flag = spiritualist_accept } } }
+		}
+		trigger = {
+			has_modifier = horror_deify_trophy
+		}
+		remove_modifier = horror_deify_trophy
+		add_modifier = { modifier = horror_deify_trophy2 }
+		hidden_effect = {
+			planet_event = { id = situation.1090 days = 1240 }
+		}
+	}
+	option = {
+		name = situation.1085.c
+		if = {
+			limit = { has_modifier = horror_deify_trophy }
+			remove_modifier = horror_deify_trophy
+		}
+		else = {
+			remove_modifier = horror_study_trophy
+		}
+	}
+}
+
+planet_event = {
+	id = situation.1090
+	title = situation.1090.name
+	location = this
+	desc = {
+		trigger = {
+			has_modifier = horror_study_trophy2
+		}
+		text = situation.1090.desc.study
+	}
+	desc = {
+		trigger = {
+			has_modifier = horror_deify_trophy2
+		}
+		text = situation.1090.desc.deify
+	}
+	picture = GFX_evt_surreal_visions
+	is_triggered_only = yes
+
+	option = {
+		trigger = { has_modifier = horror_study_trophy2 }
+		name = situation.1090.a
+		remove_modifier = horror_study_trophy2
+		add_modifier = { modifier = horror_too_late }
+		hidden_effect = {
+			planet_event = { id = situation.1095 days = 720 }
+			random_list = { #To make it harder to savescum the outcome.
+				2 = { set_planet_flag = black_hole_horror }
+				1 = { set_planet_flag = stabilized_horror }
+			}
+		}
+		add_planet_devastation = 10
+	}
+	option = {
+		trigger = { has_modifier = horror_deify_trophy2 }
+		name = situation.1090.b
+		remove_modifier = horror_deify_trophy2
+		add_modifier = { modifier = horror_too_late }
+		hidden_effect = {
+			planet_event = { id = situation.1095 days = 720 }
+			random_list = { #To make it harder to savescum the outcome.
+				2 = { set_planet_flag = black_hole_horror }
+				1 = { set_planet_flag = stabilized_horror }
+			}
+		}
+		add_planet_devastation = 10
+	}
+	option = {
+		allow = { owner = { NOT = { has_ethic = ethic_fanatic_materialist } } }
+		name = situation.1090.c
+		if = {
+			limit = { has_modifier = horror_deify_trophy2 }
+			remove_modifier = horror_deify_trophy2
+		}
+		else = {
+			remove_modifier = horror_study_trophy2
+		}
+		add_planet_devastation = 99
+	}
+}
+
+planet_event = {
+	id = situation.1095
+	title = situation.1095.name
+	desc = situation.1095.desc
+	picture = GFX_evt_shrouded_planet
+	is_triggered_only = yes
+	location = this
+
+	option = { #This is the end
+		name = {
+			text = situation.1095.a
+			trigger = {
+				owner = { is_spiritualist = no }
+			}
+		}
+		name = {
+			text = situation.1095.b
+			trigger = {
+				owner = { is_spiritualist = yes }
+			}
+		}
+		remove_modifier = horror_too_late
+		tooltip = {
+			random_list = {
+				2 = { change_pc = pc_black_hole }
+				1 = { add_modifier = { modifier = horror_stabilized } }
+			}
+		}
+		hidden_effect = {
+			switch = {
+				trigger = has_planet_flag
+				black_hole_horror = {
+					clear_planet_modifiers = yes
+					every_owned_pop = {
+						kill_pop = yes
+					}
+					destroy_colony = yes
+					set_planet_size = 2
+					change_pc = pc_black_hole
+					reset_planet = yes
+					create_ambient_object = {
+						type = "dimensional_horrorling_object"
+						scale = 0.2
+						location = root
+						use_3d_location = yes
+						entity_offset_height = 1
+					}
+				}
+				stabilized_horror = { add_modifier = { modifier = horror_stabilized } }
+			}
+		}
+	}
+}
+
+situation_event = {#Chamber from the fortress
+	id = situation.1100
+	title = situation.1100.name
+	desc = situation.1100.desc
+	picture = GFX_evt_enigmatic_fortress
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	trigger = {
+		has_situation_flag = celebration_enigmatic_fortress
+	}
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = {#Rescue the pop
+		name = situation.1100.a
+		if = {
+			limit = { NOT = { has_situation_flag = small_unity_reward } }
+			custom_tooltip = situation.1045.c.tooltip
+		}
+		reduce_unity_celebration = yes
+
+	}
+	option = {#Let the pop die
+		name = situation.1100.b
+		target = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+	option = {
+		name = {
+			text = situation.1100.c.auth
+			trigger = {
+				owner = { is_authoritarian = yes }
+			}
+		}
+		name = {
+			text = situation.1100.c.regular
+			trigger = {
+				owner = {
+					is_gestalt = no
+					is_authoritarian = no
+				}
+			}
+		}
+		name = {
+			text = situation.1100.c.gestalt
+			trigger = {
+				owner = { is_gestalt = yes }
+			}
+		}
+		target = {
+			random_owned_pop = {
+				kill_pop = yes
+			}
+		}
+		if = {
+			limit = { NOT = { has_situation_flag = large_unity_reward } }
+			custom_tooltip = situation.1055.b.tooltip
+		}
+		increase_unity_celebration = yes
+		add_situation_progress = -20
+	}
+}
+
+situation_event = {#Bonus unity for memorialists
+	id = situation.1105
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		owner = { is_memorialist_empire = yes }
+	}
+
+	immediate = {
+		increase_unity_celebration = yes
+	}
+}
+
+situation_event = {#Voidspawn's Venom Gland
+	id = situation.1110
+	title = situation.1110.name
+	location = target
+	desc = {
+		trigger = {
+			owner = {
+				is_machine_empire = no
+				is_lithoid = no
+			}
+		}
+		text = situation.1110.desc.reg
+	}
+	desc = {
+		trigger = {
+			owner = {
+				is_lithoid = yes
+			}
+		}
+		text = situation.1110.desc.lithoid
+	}
+	desc = {
+		trigger = {
+			owner = {
+				is_machine_empire = yes
+			}
+		}
+		text = situation.1110.desc.machine
+	}
+
+	trigger = {
+		has_situation_flag = celebration_voidspawn
+	}
+
+	picture = GFX_evt_voidspawn
+	situation = this
+	is_triggered_only = yes
+	show_sound = event_yellow_alert
+
+	immediate = {
+		target = {
+			add_modifier = { modifier = voidspawn_contaminant days = -1 }
+		}
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = {
+		name = situation.1110.a
+		custom_tooltip = situation.1110.a.tooltip
+		owner = {
+			start_situation = {
+				type = situation_tainted_voidspawn
+				target = root.target
+			}
+		}
+	}
+	option = {
+		name = situation.1110.b
+		custom_tooltip = situation.1110.b.tooltip
+		hidden_effect = {
+			destroy_situation = this
+		}
+		target = {
+			remove_modifier = voidspawn_contaminant
+		}
+	}
+}
+
+situation_event = {#Voidspawn Cleanup
+	id = situation.1115
+	title = situation.1115.name
+	desc = situation.1115.desc
+	picture = GFX_evt_clones
+	is_triggered_only = yes
+	situation = this
+	location = target
+
+	option = {
+		name = EXCELLENT
+		target = {
+			remove_modifier = voidspawn_contaminant
+		}
+		hidden_effect = {
+			owner = {
+				random_situation = {
+					limit = {
+						has_situation_flag = voidspawn_celebration
+					}
+					increase_unity_celebration = yes
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+situation_event = {#Stellar Devourers Egg Sac
+	id = situation.1120
+	title = situation.1120.name
+	desc = situation.1120.desc
+	picture = GFX_evt_stellarites
+	situation = this
+	location = event_target:dead_stellarite.solar_system
+	trigger = {
+		has_situation_flag = celebration_stellar_devourer
+	}
+	immediate = {
+		random_system = {
+			limit = { has_star_flag = stellarite_slain }
+			random_system_ambient_object = {
+				limit = { has_ambient_object_flag = stellarite_project_object }
+				save_event_target_as = dead_stellarite
+			}
+		}
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = {
+		name = situation.1120.a
+		custom_tooltip = situation.1120.a.tooltip
+		hidden_effect = {
+			destroy_situation = this
+		}
+		event_target:dead_stellarite = {
+			enable_special_project = {
+				name = "STELLARITE_DEAD_PROJECT"
+				location = this
+				owner = root.owner
+			}
+		}
+	}
+	is_triggered_only = yes
+	option = {
+		name = situation.1120.b
+		add_situation_progress = 15
+		event_target:dead_stellarite = {
+			destroy_ambient_object = this
+		}
+	}
+}
+
+espionage_operation_event = {
+	id = situation.1125
+	title = situation.1125.name
+	location = target.capital_star
+	desc = {
+		trigger = {
+			target.capital_star = {
+				is_binary_star = yes
+			}
+		}
+		text = situation.1125.desc.binary
+	}
+	desc = {
+		trigger = {
+			target.capital_star = {
+				is_trinary_star = yes
+			}
+		}
+		text = situation.1125.desc.trinary
+	}
+	desc = {
+		trigger = {
+			target.capital_star = {
+				is_binary_star = no
+				is_trinary_star = no
+			}
+		}
+		text = situation.1125.desc.regular
+	}
+	picture = GFX_evt_inhabited_solar_system
+
+	is_triggered_only = yes
+
+	option = {
+		name = PROCEED
+	}
+}
+
+espionage_operation_event = {
+	id = situation.1130
+	title = situation.1130.name
+	desc = situation.1130.desc
+	picture = GFX_evt_spymaster
+	location = target.capital_star
+
+	is_triggered_only = yes
+
+	option = {
+		name = ACKNOWLEDGED
+	}
+}
+
+espionage_operation_event = {
+	id = situation.1135
+	title = situation.1135.name
+	desc = situation.1135.desc
+	picture = GFX_evt_space_funeral
+	location = target.capital_star
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_espionage_operation_progress_locked = yes
+	}
+
+	option = {
+		name = LAUNCH_OPERATION
+		hidden_effect = {
+			target = {
+				set_country_flag = has_infested_star
+			}
+			owner = {
+				set_country_flag = infested_star@root.target
+				country_event = { id = situation.1140 }
+			}
+		}
+	}
+
+	after = {
+		set_espionage_operation_progress_locked = no
+	}
+}
+
+country_event = {
+	id = situation.1140
+	title = situation.1140.name
+	desc = situation.1140.desc
+	picture = GFX_evt_stellarites
+
+	is_triggered_only = yes
+
+	option = {
+		name = situation.1140.a
+		from.target = {
+			country_event = { id = situation.1145 days = 60 }
+		}
+	}
+}
+
+country_event = {
+	id = situation.1145
+	title = situation.1145.name
+	desc = {
+		trigger = {
+			is_gestalt = no
+		}
+		text = situation.1145.desc.regular
+	}
+	desc = {
+		trigger = {
+			is_gestalt = yes
+		}
+		text = situation.1145.desc.gestalt
+	}
+	picture = GFX_evt_star_yellow
+	location = capital_star
+	is_triggered_only = yes
+
+	option = {
+		name = situation.1145.a
+		capital_scope = {
+			solar_system = {
+				every_system_planet = {
+					limit = {
+						is_colony = yes
+					}
+					add_modifier = {
+						modifier = low_stellar_output_1
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = situation.1150 days = 180 }
+		}
+	}
+}
+
+country_event = {
+	id = situation.1150
+	title = situation.1150.name
+	desc = situation.1150.desc
+	picture = GFX_evt_star_yellow
+	show_sound = event_yellow_alert
+	location = capital_star
+	is_triggered_only = yes
+
+	immediate = {
+		capital_scope = {
+			solar_system = {
+				every_system_planet = {
+					limit = {
+						is_colony = yes
+						has_modifier = low_stellar_output_1
+					}
+					remove_modifier = low_stellar_output_1
+					add_modifier = {
+						modifier = low_stellar_output_2
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = situation.1150.a
+		start_situation = {
+			type = situation_stellarite_infested_star
+			target = root.capital_star
+		}
+	}
+}
+
+situation_event = {
+	id = situation.1155
+	is_triggered_only = yes
+	hide_window = yes
+	location = owner.capital_scope
+
+	immediate = {
+		target = {
+			solar_system = {
+				every_system_planet = {
+					limit = {
+						is_colony = yes
+						has_modifier = low_stellar_output_2
+					}
+					remove_modifier = low_stellar_output_2
+					add_modifier = {
+						modifier = low_stellar_output_3
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = situation.1160
+	title = situation.1160.name
+	desc = situation.1160.desc
+	picture = GFX_evt_stellarites
+	show_sound = event_red_alert
+	is_triggered_only = yes
+	location = capital_star
+	immediate = {
+		random_country = {
+			limit = {
+				has_country_flag = infested_star@root
+			}
+			save_event_target_as = star_infesters
+			if = {
+				limit = {
+					relative_encryption_decryption = {
+						target = root
+						value < 1.4
+					}
+				}
+				from = { set_situation_flag = knows_who_did_it }
+			}
+			else = {
+				from = { set_situation_flag = dont_know_who_did_it }
+			}
+		}
+	}
+
+	option = {
+		name = situation.1160.a
+		capital_star = {
+			enable_special_project = {
+				name = "STELLARITE_INFESTED_STAR_PROJECT"
+				location = this
+				owner = root
+			}
+		}
+	}
+}
+
+country_event = {
+	id = situation.1165
+	hide_window = yes
+	is_triggered_only = yes
+	location = capital_star
+	trigger = {
+		any_situation = {
+			is_situation_type = situation_stellarite_infested_star
+		}
+	}
+	immediate = {
+		set_country_flag = studied_stellarite_infestation
+		random_situation = {
+			limit = {
+				is_situation_type = situation_stellarite_infested_star
+			}
+			set_situation_approach = approach_cure_it
+		}
+		if = {#The AI will let the star get eaten if they are big enough.
+			limit = {
+				is_ai = yes
+				check_variable_arithmetic = {
+   					which = value:capital_empire_ratio
+   					value > 4
+				}
+			}
+			set_country_flag = will_not_stop_devourers
+		}
+	}
+}
+
+situation_event = {
+	id = situation.1170
+	title = situation.1170.name
+	location = target
+	desc = {
+		trigger = {
+			has_situation_flag = knows_who_did_it
+		}
+		text = situation.1170.desc.knows
+	}
+	desc = {
+		trigger = {
+			has_situation_flag = dont_know_who_did_it
+		}
+		text = situation.1170.desc.notknows
+	}
+	picture = GFX_evt_stellarites
+	situation = this
+	show_sound = event_screams
+	is_triggered_only = yes
+	immediate = {
+		target = {
+			change_pc = pc_t_star
+			change_planet_size = -10
+			solar_system = {
+				every_system_planet = {
+					limit = {
+						is_colony = yes
+					}
+					hidden_effect = {
+						clear_planet_modifiers = yes
+						every_owned_pop = {
+							kill_pop = yes
+						}
+						destroy_colony = yes
+					}
+					if = {
+						limit = {
+							is_artificial = no
+						}
+						change_pc = pc_frozen
+					}
+				}
+			}
+		}
+		if = {
+			limit = { has_situation_flag = knows_who_did_it }
+			random_country = {
+				limit = {
+					has_country_flag = infested_star@root.owner
+				}
+				save_event_target_as = star_infesters
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			has_situation_flag = dont_know_who_did_it
+		}
+		name = situation.1170.a
+	}
+
+	option = {
+		trigger = {
+			has_situation_flag = knows_who_did_it
+		}
+		name = situation.1170.b
+		owner = {
+			set_country_flag = knows_who_infested_star
+		}
+		event_target:star_infesters = {
+			root.owner = {
+				add_casus_belli = {
+					type = cb_revenge_for_eaten_star
+					who = prev
+					days = 7200
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+situation_event = {
+	id = situation.1175
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		target = {
+			solar_system = {
+				every_system_planet = {
+					limit = {
+						is_colony = yes
+					}
+					remove_modifier = low_stellar_output_1
+					remove_modifier = low_stellar_output_2
+					remove_modifier = low_stellar_output_3
+				}
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+situation_event = {
+	id = situation.1180
+	is_triggered_only = yes
+	hide_window = yes
+
+	after = {
+		destroy_situation = this
+	}
+}

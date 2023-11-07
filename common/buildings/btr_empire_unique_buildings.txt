@@ -3,7 +3,7 @@
 
 #Republic Communications Center
 building_asari_rep_comm_center = {
-    base_buildtime = 360
+    base_buildtime = @btr_govt_b3_time
     base_cap_amount = 1
 	icon = building_residence
     exempt_from_ai_planet_specialization = no
@@ -26,11 +26,14 @@ building_asari_rep_comm_center = {
     resources = {
         category = planet_buildings
         cost = {
-            minerals = 400
-            energy = 500
+            minerals = @btr_govt_b3_mineral_cost
+            light_metals = @btr_govt_b3_light_metals_cost
+			heavy_metals = @btr_govt_b3_heavy_metals_cost
+			uranium = @btr_govt_b3_uranium_cost
         }
         upkeep = {
-            energy = 6
+            energy = @btr_govt_b3_energy_upkeep
+			uranium = @btr_govt_b3_uranium_upkeep
         }
         produces = {
             unity = 4
@@ -50,8 +53,7 @@ building_asari_rep_comm_center = {
 
 #Galactic Sports Center
 building_asari_galactic_sports_center = {
-    base_buildtime = 600
-
+    base_buildtime = @btr_civil_b4_time
     exempt_from_ai_planet_specialization = no
 	icon = building_commercial_zone
     empire_limit = 1
@@ -74,14 +76,15 @@ building_asari_galactic_sports_center = {
     resources = {
         category = planet_buildings
         cost = {
-            minerals = 2000
-            alloys = 200
-            energy = 1000
+            minerals = @btr_civil_b4_mineral_cost
+			light_metals = @btr_civil_b4_light_metals_cost
+			heavy_metals = @btr_civil_b4_heavy_metals_cost
+            uranium = @btr_civil_b4_uranium_cost
         }
         upkeep = {
-            energy = 5
+            energy = @btr_civil_b4_energy_upkeep
+			uranium = @btr_civil_b4_uranium_upkeep
             food = 5
-            minerals = 1
         }
         produces = {
             energy = 20
@@ -113,7 +116,7 @@ building_asari_galactic_sports_center = {
 
 #Institute for Exo-Archaeological Research Outpost
 building_salarian_exo_arch_res_outpost = {
-	base_buildtime = 720
+	base_buildtime = @btr_research_b4_time
 	icon = building_research_lab_3
 	base_cap_amount = 1
 	empire_limit = 1
@@ -124,6 +127,8 @@ building_salarian_exo_arch_res_outpost = {
 			has_origin = salarian_uni_origin
 		}
 	}
+
+	category = research
 
 	allow = {
 		#buildings_simple_allow = yes
@@ -144,16 +149,21 @@ building_salarian_exo_arch_res_outpost = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1500
+			minerals = @btr_research_b4_mineral_cost
+			light_metals = @btr_research_b4_light_metals_cost
+			heavy_metals = @btr_research_b4_heavy_metals_cost
+			uranium = @btr_research_b4_uranium_cost
 		}
 		upkeep = {
-			energy = 3
+			energy = @btr_research_b4_energy_upkeep
+			uranium = @btr_research_b4_uranium_upkeep
+			eezo = @btr_research_b4_eezo_upkeep
 		}
 	}
 }
 
 building_salarian_covert_collection = {
-	base_buildtime = 600
+	base_buildtime = @btr_mili_b4_time
 	base_cap_amount = 1
 	icon = building_illicit_research_labs
 	potential = {
@@ -164,6 +174,8 @@ building_salarian_covert_collection = {
 			has_technology = tech_salarian_exo_arch
 		}
 	}
+
+	category = research
 
 	allow = {
 		exists = owner
@@ -205,10 +217,15 @@ building_salarian_covert_collection = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1000
+			minerals = @btr_mili_b4_mineral_cost
+			light_metals = @btr_mili_b4_light_metals_cost
+			heavy_metals = @btr_mili_b4_heavy_metals_cost
+			uranium = @btr_mili_b4_uranium_cost
 		}
 		upkeep = {
-			energy = 10
+			energy = @btr_mili_b4_energy_upkeep
+			uranium = @btr_mili_b4_uranium_upkeep
+			eezo = @btr_mili_b4_eezo_upkeep
 		}
 	}
 }
@@ -217,7 +234,7 @@ building_salarian_covert_collection = {
 
 #Planetary Kasrs
 building_turian_planetary_kasrs = {
-	base_buildtime = 365
+	base_buildtime = @btr_mili_b3_time
 	base_cap_amount = 1
 	icon = building_stronghold
 	category = army
@@ -266,10 +283,15 @@ building_turian_planetary_kasrs = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1000
+			minerals = @btr_mili_b3_mineral_cost
+			light_metals = @btr_mili_b3_light_metals_cost
+			heavy_metals = @btr_mili_b3_heavy_metals_cost
+			uranium = @btr_mili_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 4
+			energy = @btr_mili_b3_energy_upkeep
+			uranium = @btr_mili_b3_uranium_upkeep
+			eezo = @btr_mili_b3_eezo_upkeep
 		}
 		produces = {
 			unity = 1
@@ -279,7 +301,7 @@ building_turian_planetary_kasrs = {
 
 #Castra Auxilia
 building_turian_castra_auxilia = {
-	base_buildtime = 365
+	base_buildtime = @btr_civil_b3_time
 	base_cap_amount = 1
 	icon = building_guard_quarters
 	potential = {
@@ -290,6 +312,8 @@ building_turian_castra_auxilia = {
 			has_technology = tech_turian_planetary_kasrs
 		}
 	}
+
+	category = government
 
 	allow = {
 		exists = owner
@@ -323,17 +347,21 @@ building_turian_castra_auxilia = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 2
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 		}
 	}
 }
 
 ###Systems Alliance
 building_systems_colonial_affairs_office = {
-	base_buildtime = 150
+	base_buildtime = @btr_civil_b1_time
 	base_cap_amount = 1
 	icon = building_public_relations_office
 	category = government
@@ -376,16 +404,19 @@ building_systems_colonial_affairs_office = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 300
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 2
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 }
 
 building_systems_ict_academy = {
-	base_buildtime = 720
+	base_buildtime = @btr_mili_b4_time
 	empire_limit = 1
 	icon = building_military_academy
 	category = army
@@ -421,10 +452,15 @@ building_systems_ict_academy = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1500
+			minerals = @btr_mili_b4_mineral_cost
+			light_metals = @btr_mili_b4_light_metals_cost
+			heavy_metals = @btr_mili_b4_heavy_metals_cost
+			uranium = @btr_mili_b4_uranium_cost
 		}
 		upkeep = {
-			energy = 2
+			energy = @btr_mili_b4_energy_upkeep
+			uranium = @btr_mili_b4_uranium_upkeep
+			eezo = @btr_mili_b4_eezo_upkeep
 		}
 	}
 }
@@ -432,7 +468,7 @@ building_systems_ict_academy = {
 ###Courts of Dekuuna
 
 building_elcor_elders_assembly = {
-	base_buildtime = 120
+	base_buildtime = @btr_civil_b0_time
 	base_cap_amount = 1
 	icon = holding_park_ranger_lodge
 	category = government
@@ -459,19 +495,22 @@ building_elcor_elders_assembly = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500
+			minerals = @btr_civil_b0_mineral_cost
+			light_metals = @btr_civil_b0_light_metals_cost
+			heavy_metals = @btr_civil_b0_heavy_metals_cost
+		}
+		upkeep = {
+			energy = @btr_civil_b0_energy_upkeep
+			uranium = @btr_civil_b0_uranium_upkeep
 		}
 		produces = {
 			unity = 10
-		}
-		upkeep = {
-			energy = 4
 		}
 	}
 }
 
 building_elcor_communal_croplands = {
-	base_buildtime = 360
+	base_buildtime = @btr_civil_b3_time
 	base_cap_amount = 1
 	icon = building_hydroponics_farm
 	category = resource
@@ -498,17 +537,21 @@ building_elcor_communal_croplands = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 8
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 		}
 	}
 }
 
 ###Vol Protectorate
 building_volus_galactic_commercial_zone = {
-	base_buildtime = @b1_time
+	base_buildtime = @btr_civil_b1_time
 	base_cap_amount = 1
 	icon = building_commercial_megaplex
 	exempt_from_ai_planet_specialization = no
@@ -520,7 +563,7 @@ building_volus_galactic_commercial_zone = {
 
 	potential = {
 		owner = {
-			has_origin = vol_protectorate_origin
+			has_origin = vol_pro_origin
 		}
 	}
 
@@ -528,17 +571,7 @@ building_volus_galactic_commercial_zone = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = vol_protectorate_origin } }
-		}
-	}
-
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 400
-		}
-		upkeep = {
-			energy = 20
+			owner = { NOT = { has_origin = vol_pro_origin } }
 		}
 	}
 
@@ -547,6 +580,19 @@ building_volus_galactic_commercial_zone = {
 		job_manager_add = 2
 		job_executive_add = 1
 		planet_amenities_add = 15
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
+		}
+		upkeep = {
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
+		}
 	}
 
 	triggered_desc = {
@@ -569,7 +615,7 @@ building_volus_galactic_commercial_zone = {
 }
 
 building_volus_economic_regulation_office = {
-	base_buildtime = @b1_time
+	base_buildtime = @btr_civil_b1_time
 	base_cap_amount = 1
 	icon = holding_franchise_headquarters
 	exempt_from_ai_planet_specialization = no
@@ -581,7 +627,7 @@ building_volus_economic_regulation_office = {
 
 	potential = {
 		owner = {
-			has_origin = vol_protectorate_origin
+			has_origin = vol_pro_origin
 		}
 	}
 
@@ -589,18 +635,7 @@ building_volus_economic_regulation_office = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = vol_protectorate_origin } }
-		}
-	}
-
-	resources = {
-		category = planet_buildings
-		cost = {
-			minerals = 350
-		}
-		upkeep = {
-			energy = 10
-			unity = 10
+			owner = { NOT = { has_origin = vol_pro_origin } }
 		}
 	}
 
@@ -614,6 +649,20 @@ building_volus_economic_regulation_office = {
 		planet_jobs_unity_produces_mult = 0.05
 		pop_happiness = -0.05
 		pop_demotion_time_mult = -0.1
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
+		}
+		upkeep = {
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
+			unity = 10
+		}
 	}
 
 	triggered_desc = {
@@ -630,7 +679,7 @@ building_volus_economic_regulation_office = {
 
 ###Illuminated Primacy
 building_hanar_enkindler_reliquary = {
-	base_buildtime = 200
+	base_buildtime = @btr_civil_b1_time
 	base_cap_amount = 1
 	icon = building_sentinel_posts
 	exempt_from_ai_planet_specialization = no
@@ -642,7 +691,7 @@ building_hanar_enkindler_reliquary = {
 
 	potential = {
 		owner = {
-			has_origin = illuminated_primacy_origin
+			has_origin = illuminated_pri_origin
 		}
 	}
 
@@ -650,17 +699,20 @@ building_hanar_enkindler_reliquary = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = illuminated_primacy_origin } }
+			owner = { NOT = { has_origin = illuminated_pri_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 10
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 			consumer_goods = 5
 		}
 	}
@@ -684,7 +736,7 @@ building_hanar_enkindler_reliquary = {
 }
 
 building_hanar_drell_barracks = {
-	base_buildtime = 200
+	base_buildtime = @btr_civil_b1_time
 	base_cap_amount = 2
 	icon = building_stronghold
 	exempt_from_ai_planet_specialization = no
@@ -696,7 +748,7 @@ building_hanar_drell_barracks = {
 
 	potential = {
 		owner = {
-			has_origin = illuminated_primacy_origin
+			has_origin = illuminated_pri_origin
 		}
 	}
 
@@ -704,19 +756,20 @@ building_hanar_drell_barracks = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = illuminated_primacy_origin } }
+			owner = { NOT = { has_origin = illuminated_pri_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500
+			minerals = @btr_branch_offices_b1_mineral_cost
+			light_metals = @btr_branch_offices_b1_light_metals_cost
+			heavy_metals = @btr_branch_offices_b1_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 20
-			alloys = 1
-			#light_alloy = 1 TO BE ADDED LATER
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 
@@ -740,7 +793,7 @@ building_hanar_drell_barracks = {
 
 ###Hegemony of Khar'shan
 building_batarian_slave_market = {
-	base_buildtime = 480
+	base_buildtime = @btr_civil_b4_time
 	base_cap_amount = 1
 	icon = building_crude_huts
 	exempt_from_ai_planet_specialization = no
@@ -752,7 +805,7 @@ building_batarian_slave_market = {
 
 	potential = {
 		owner = {
-			has_origin = hegemony_of_kharshan_origin
+			has_origin = hegemony_kha_origin
 		}
 	}
 
@@ -760,21 +813,23 @@ building_batarian_slave_market = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = hegemony_of_kharshan_origin } }
+			owner = { NOT = { has_origin = hegemony_kha_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1000
-			energy = 500
+            minerals = @btr_civil_b4_mineral_cost
+			light_metals = @btr_civil_b4_light_metals_cost
+			heavy_metals = @btr_civil_b4_heavy_metals_cost
+            uranium = @btr_civil_b4_uranium_cost
 		}
 		upkeep = {
-			energy = 5
+            energy = @btr_civil_b4_energy_upkeep
+			uranium = @btr_civil_b4_uranium_upkeep
 			consumer_goods = 2
-			exotic_gases = 1
-			#light_alloy = 1 TO BE ADDED LATER
+			antimatter_fuel = 1
 		}
 	}
 
@@ -786,7 +841,7 @@ building_batarian_slave_market = {
 }
 
 building_batarian_black_site = {
-	base_buildtime = 480
+	base_buildtime = @btr_mili_b3_time
 	base_cap_amount = 1
 	icon = building_slave_processing
 	exempt_from_ai_planet_specialization = no
@@ -798,7 +853,7 @@ building_batarian_black_site = {
 
 	potential = {
 		owner = {
-			has_origin = hegemony_of_kharshan_origin
+			has_origin = hegemony_kha_origin
 		}
 	}
 
@@ -806,20 +861,22 @@ building_batarian_black_site = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = hegemony_of_kharshan_origin } }
+			owner = { NOT = { has_origin = hegemony_kha_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1000
-			energy = 500
+			minerals = @btr_mili_b3_mineral_cost
+			light_metals = @btr_mili_b3_light_metals_cost
+			heavy_metals = @btr_mili_b3_heavy_metals_cost
+			uranium = @btr_mili_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 4
-			volatile_motes = 3
-			#light_alloy = 1 TO BE ADDED LATER
+			energy = @btr_mili_b3_energy_upkeep
+			uranium = @btr_mili_b3_uranium_upkeep
+			eezo = @btr_mili_b3_eezo_upkeep
 		}
 	}
 
@@ -833,7 +890,7 @@ building_batarian_black_site = {
 
 ###Aralakh Kahmat
 building_krogan_maw_hammers = {
-	base_buildtime = 150
+	base_buildtime = @btr_civil_b0_time
 	base_cap_amount = 1
 	icon = building_order_holding
 	exempt_from_ai_planet_specialization = no
@@ -845,7 +902,7 @@ building_krogan_maw_hammers = {
 
 	potential = {
 		owner = {
-			has_origin = aralakh_kahmat_origin
+			has_origin = aralakh_kah_origin
 		}
 		planet = {
 			OR = {
@@ -859,7 +916,7 @@ building_krogan_maw_hammers = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = aralakh_kahmat_origin } }
+			owner = { NOT = { has_origin = aralakh_kah_origin } }
 		}
 	}
 
@@ -870,17 +927,19 @@ building_krogan_maw_hammers = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1000
+			minerals = @btr_civil_b0_mineral_cost
+			light_metals = @btr_civil_b0_light_metals_cost
+			heavy_metals = @btr_civil_b0_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 1
-			minerals = 1
+			energy = @btr_civil_b0_energy_upkeep
+			uranium = @btr_civil_b0_uranium_upkeep
 		}
 	}
 }
 
 building_krogan_neutral_ground = {
-	base_buildtime = 90
+	base_buildtime = @btr_civil_b0_time
 	base_cap_amount = 1
 	icon = holding_experimental_crater
 	exempt_from_ai_planet_specialization = no
@@ -888,7 +947,7 @@ building_krogan_neutral_ground = {
 
 	potential = {
 		owner = {
-			has_origin = aralakh_kahmat_origin
+			has_origin = aralakh_kah_origin
 		}
 	}
 
@@ -896,17 +955,20 @@ building_krogan_neutral_ground = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = aralakh_kahmat_origin } }
+			owner = { NOT = { has_origin = aralakh_kah_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 800
+			minerals = @btr_civil_b0_mineral_cost
+			light_metals = @btr_civil_b0_light_metals_cost
+			heavy_metals = @btr_civil_b0_heavy_metals_cost
 		}
 		upkeep = {
-			minerals = 2
+			energy = @btr_civil_b0_energy_upkeep
+			uranium = @btr_civil_b0_uranium_upkeep
 		}
 	}
 
@@ -919,75 +981,13 @@ building_krogan_neutral_ground = {
 }
 
 ###Migrant Fleet
-building_quarian_salvage_drydock = {
-	base_buildtime = 480
-	empire_limit = 1
-	icon = building_nano_forge
-	exempt_from_ai_planet_specialization = no
-	category = government
-
-	allow = {
-		has_planet_flag = quarian_drydock
-	}
-
-	potential = {
-		owner = {
-			has_origin = migrant_fleet
-		}
-	}
-
-	destroy_trigger = {
-		exists = owner
-		OR = {
-			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = migrant_fleet } }
-		}
-	}
-
-	resources = {
-		category = planet_buildings
-		produces = {
-			energy = 15
-			minerals = 15
-			alloys = 15
-			volatile_motes = 7
-			exotic_gases = 7
-			sr_zro = 1
-		}
-		upkeep = {
-			energy = 2
-			minerals = 2
-			alloys = 2
-			volatile_motes = 2
-			exotic_gases = 2
-		}
-	}
-
-	planet_modifier = {
-		job_bureaucrat_add = 1
-		job_executive_add = 1
-		job_artificer_add = 1
-		job_artisan_add = 1
-		job_chemist_add = 1
-		job_enforcer_add = 1
-		job_gas_extractor_add = 1
-		job_politician_add = 1
-		job_healthcare_add = 1
-		job_foundry_add = 1
-		job_researcher_add = 1
-		job_clerk_add = 1
-		job_miner_add = 1
-		job_scrap_miner_add = 1
-		job_technician_add = 1
-	}
-}
 
 ###Cerberus
 
 
 ###Omega
 building_omega_grey_market = {
-	base_buildtime = 100
+	base_buildtime = @btr_civil_b0_time
 	base_cap_amount = 1
 	icon = building_primitive_factory
 	exempt_from_ai_planet_specialization = no
@@ -999,7 +999,7 @@ building_omega_grey_market = {
 
 	potential = {
 		owner = {
-			has_origin = omega_origin
+			has_origin = omega_emp_origin
 		}
 	}
 
@@ -1007,18 +1007,20 @@ building_omega_grey_market = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = omega_origin } }
+			owner = { NOT = { has_origin = omega_emp_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 200
-			energy = 200
+			minerals = @btr_civil_b0_mineral_cost
+			light_metals = @btr_civil_b0_light_metals_cost
+			heavy_metals = @btr_civil_b0_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 10
+			energy = @btr_civil_b0_energy_upkeep
+			uranium = @btr_civil_b0_uranium_upkeep
 		}
 	}
 
@@ -1032,7 +1034,7 @@ building_omega_grey_market = {
 }
 
 building_omega_scrap_garage = {
-	base_buildtime = 200
+	base_buildtime = @btr_civil_b1_time
 	base_cap_amount = 2
 	icon = building_junkheap
 	exempt_from_ai_planet_specialization = no
@@ -1044,7 +1046,7 @@ building_omega_scrap_garage = {
 
 	potential = {
 		owner = {
-			has_origin = omega_origin
+			has_origin = omega_emp_origin
 		}
 	}
 
@@ -1052,17 +1054,20 @@ building_omega_scrap_garage = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = omega_origin } }
+			owner = { NOT = { has_origin = omega_emp_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 300
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		produces = {
-			energy = 5
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 		upkeep = {
 			food = 2
@@ -1077,7 +1082,7 @@ building_omega_scrap_garage = {
 
 ###Illium Corporate Interests
 building_illium_stock_exchange = {
-	base_buildtime = 600
+	base_buildtime = @btr_civil_b4_time
 	empire_limit = 1
 	icon = building_commercial_megaplex
 	exempt_from_ai_planet_specialization = no
@@ -1094,7 +1099,7 @@ building_illium_stock_exchange = {
 
 	potential = {
 		owner = {
-			has_origin = illium_origin
+			has_origin = illium_cor_origin
 		}
 	}
 
@@ -1102,20 +1107,21 @@ building_illium_stock_exchange = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = illium_origin } }
+			owner = { NOT = { has_origin = illium_cor_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 3000
-			minerals = 1000
-			consumer_goods = 500
+            minerals = @btr_civil_b4_mineral_cost
+			light_metals = @btr_civil_b4_light_metals_cost
+			heavy_metals = @btr_civil_b4_heavy_metals_cost
+            uranium = @btr_civil_b4_uranium_cost
 		}
 		upkeep = {
-			energy = 20
-			minerals = 10
+            energy = @btr_civil_b4_energy_upkeep
+			uranium = @btr_civil_b4_uranium_upkeep
 		}
 	}
 
@@ -1133,7 +1139,7 @@ building_illium_stock_exchange = {
 }
 
 building_illium_information_broker_network = {
-	base_buildtime = 600
+	base_buildtime = @btr_civil_b4_time
 	empire_limit = 1
 	icon = building_posthumous_employment_center
 	exempt_from_ai_planet_specialization = no
@@ -1150,7 +1156,7 @@ building_illium_information_broker_network = {
 
 	potential = {
 		owner = {
-			has_origin = illium_origin
+			has_origin = illium_cor_origin
 		}
 	}
 
@@ -1158,20 +1164,21 @@ building_illium_information_broker_network = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = illium_origin } }
+			owner = { NOT = { has_origin = illium_cor_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 1000
-			minerals = 3000
-			consumer_goods = 500
+            minerals = @btr_civil_b4_mineral_cost
+			light_metals = @btr_civil_b4_light_metals_cost
+			heavy_metals = @btr_civil_b4_heavy_metals_cost
+            uranium = @btr_civil_b4_uranium_cost
 		}
 		upkeep = {
-			energy = 20
-			minerals = 10
+            energy = @btr_civil_b4_energy_upkeep
+			uranium = @btr_civil_b4_uranium_upkeep
 		}
 	}
 
@@ -1189,7 +1196,7 @@ building_illium_information_broker_network = {
 }
 
 building_illium_trade_center = {
-	base_buildtime = 480
+	base_buildtime = @btr_civil_b4_time
 	empire_limit = 1
 	icon = building_commercial_forum
 	exempt_from_ai_planet_specialization = no
@@ -1206,7 +1213,7 @@ building_illium_trade_center = {
 
 	potential = {
 		owner = {
-			has_origin = illium_origin
+			has_origin = illium_cor_origin
 		}
 	}
 	
@@ -1214,20 +1221,21 @@ building_illium_trade_center = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = illium_origin } }
+			owner = { NOT = { has_origin = illium_cor_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 500
-			minerals = 1000
-			consumer_goods = 500
+            minerals = @btr_civil_b4_mineral_cost
+            light_metals = @btr_civil_b4_light_metals_cost
+            heavy_metals = @btr_civil_b4_heavy_metals_cost
+            uranium = @btr_civil_b4_uranium_cost
 		}
 		upkeep = {
-			energy = 10
-			minerals = 5
+            energy = @btr_civil_b4_energy_upkeep
+			uranium = @btr_civil_b4_uranium_upkeep
 			consumer_goods = 5
 		}
 	}
@@ -1254,8 +1262,8 @@ building_illium_trade_center = {
 
 # }
 
-building_great_dome = {
-	base_buildtime = 350
+building_caleston_great_dome = {
+	base_buildtime = @btr_civil_b3_time
 	icon = building_hydroponics_farm
 	exempt_from_ai_planet_specialization = no
 	base_cap_amount = 2
@@ -1288,14 +1296,15 @@ building_great_dome = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			alloys = 100
-			minerals = 800
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 			consumer_goods = 150
 		}
 		upkeep = {
-			energy = 10
-			alloys = 1
-			minerals = 10
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 			consumer_goods = 5
 		}
 	}
@@ -1313,8 +1322,8 @@ building_great_dome = {
 	}
 }
 
-building_eae_mining_pits = {
-	base_buildtime = 300
+building_caleston_energy_pits = {
+	base_buildtime = @btr_civil_b2_time
 	icon = building_archaeo_refinery
 	exempt_from_ai_planet_specialization = no
 	base_cap_amount = 2
@@ -1347,22 +1356,34 @@ building_eae_mining_pits = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1000
+			minerals = @btr_civil_b2_mineral_cost
+			light_metals = @btr_civil_b2_light_metals_cost
+			heavy_metals = @btr_civil_b2_heavy_metals_cost
+			uranium = @btr_civil_b2_uranium_cost
 		}
 		upkeep = {
-			energy = 10
+			energy = @btr_civil_b2_energy_upkeep
+			uranium = @btr_civil_b2_uranium_upkeep
 		}
 	}
 
 	planet_modifier = {
 		planet_jobs_minerals_produces_mult = 0.05
-		#planet_jobs_element_zero_produces_mult = 0.05
+		planet_jobs_beryllium_produces_mult = 0.05
+		planet_jobs_lithium_produces_mult = 0.05
+		planet_jobs_titanium_produces_mult = 0.05
+		planet_jobs_iridium_produces_mult = 0.05
+		planet_jobs_platinum_produces_mult = 0.05
+		planet_jobs_palladium_produces_mult = 0.05
+		planet_jobs_eezo_produces_mult = 0.05
+		job_miner_add = 4
+		job_foundry_add = 1
 	}	
 }
 
 ###Remnants of Rakhana
 building_drell_museum_wander = {
-	base_buildtime = 400
+	base_buildtime = @btr_civil_b3_time
 	empire_limit = 1
 	icon = building_institute
 	exempt_from_ai_planet_specialization = no
@@ -1378,7 +1399,7 @@ building_drell_museum_wander = {
 
 	potential = {
 		owner = {
-			has_origin = remnants_of_rakhana_origin
+			has_origin = remnants_rak_origin
 		}
 	}
 
@@ -1386,17 +1407,21 @@ building_drell_museum_wander = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = remnants_of_rakhana_origin } }
+			owner = { NOT = { has_origin = remnants_rak_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 550
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 2
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 		}
 	}
 
@@ -1410,7 +1435,7 @@ building_drell_museum_wander = {
 }
 
 building_drell_bureau_resources_labor = {
-	base_buildtime = 400
+	base_buildtime = @btr_civil_b3_time
 	base_cap_amount = 1
 	icon = building_bureaucratic_1
 	exempt_from_ai_planet_specialization = no
@@ -1426,7 +1451,7 @@ building_drell_bureau_resources_labor = {
 
 	potential = {
 		owner = {
-			has_origin = remnants_of_rakhana_origin
+			has_origin = remnants_rak_origin
 		}
 	}
 
@@ -1434,17 +1459,21 @@ building_drell_bureau_resources_labor = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = remnants_of_rakhana_origin } }
+			owner = { NOT = { has_origin = remnants_rak_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 800
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 5
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 			consumer_goods = 3
 		}
 	}
@@ -1463,7 +1492,7 @@ building_drell_bureau_resources_labor = {
 
 ###Vorcha Clandom
 building_vorcha_pyro_training = {
-	base_buildtime = 120
+	base_buildtime = @btr_civil_b0_time
 	base_cap_amount = 1
 	icon = building_pirate_haven
 	exempt_from_ai_planet_specialization = no
@@ -1477,7 +1506,7 @@ building_vorcha_pyro_training = {
 
 	potential = {
 		owner = {
-			has_origin = vorcha_origin
+			has_origin = vorcha_cla_origin
 		}
 	}
 
@@ -1485,19 +1514,21 @@ building_vorcha_pyro_training = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = vorcha_origin } }
+			owner = { NOT = { has_origin = vorcha_cla_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500
-			energy = 50
+			minerals = @btr_civil_b0_mineral_cost
+			light_metals = @btr_civil_b0_light_metals_cost
+			heavy_metals = @btr_civil_b0_heavy_metals_cost
 			food = 25
 		}
 		upkeep = {
-			energy = 2.5
+			energy = @btr_civil_b0_energy_upkeep
+			uranium = @btr_civil_b0_uranium_upkeep
 		}
 	}
 
@@ -1507,7 +1538,7 @@ building_vorcha_pyro_training = {
 }
 
 building_vorcha_communal_spawning_pits = {
-	base_buildtime = 120
+	base_buildtime = @btr_civil_b0_time
 	base_cap_amount = 1
 	icon = building_toxic_bath
 	exempt_from_ai_planet_specialization = no
@@ -1521,7 +1552,7 @@ building_vorcha_communal_spawning_pits = {
 
 	potential = {
 		owner = {
-			has_origin = vorcha_origin
+			has_origin = vorcha_cla_origin
 		}
 	}
 	
@@ -1529,18 +1560,20 @@ building_vorcha_communal_spawning_pits = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = vorcha_origin } }
+			owner = { NOT = { has_origin = vorcha_cla_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 550
-			food = 125
+			minerals = @btr_civil_b0_mineral_cost
+			light_metals = @btr_civil_b0_light_metals_cost
+			heavy_metals = @btr_civil_b0_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 1
+			energy = @btr_civil_b0_energy_upkeep
+			uranium = @btr_civil_b0_uranium_upkeep
 			food = 3
 		}
 		produces = {
@@ -1557,7 +1590,7 @@ building_vorcha_communal_spawning_pits = {
 
 ###Sed'riicae Collective
 building_sedriicae_foreign_trade = {
-	base_buildtime = 480
+	base_buildtime = @btr_civil_b4_time
 	base_cap_amount = 1
 	icon = building_corporate_embassy
 	exempt_from_ai_planet_specialization = no
@@ -1565,7 +1598,7 @@ building_sedriicae_foreign_trade = {
 
 	potential = {
 		owner = {
-			has_origin = sedriicae_collective_origin
+			has_origin = sedriicae_col_origin
 		}
 	}
 
@@ -1573,19 +1606,21 @@ building_sedriicae_foreign_trade = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = sedriicae_collective_origin } }
+			owner = { NOT = { has_origin = sedriicae_col_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 300
-			minerals = 800
+            minerals = @btr_civil_b4_mineral_cost
+            light_metals = @btr_civil_b4_light_metals_cost
+            heavy_metals = @btr_civil_b4_heavy_metals_cost
+            uranium = @btr_civil_b4_uranium_cost
 		}
 		upkeep = {
-			energy = 6
-			minerals = 2
+            energy = @btr_civil_b4_energy_upkeep
+			uranium = @btr_civil_b4_uranium_upkeep
 			food = 2
 		}
 	}
@@ -1600,7 +1635,7 @@ building_sedriicae_foreign_trade = {
 }
 
 building_sedriicae_central_plaza = {
-	base_buildtime = 360
+	base_buildtime = @btr_civil_b3_time
 	base_cap_amount = 1
 	icon = building_public_relations_office
 	exempt_from_ai_planet_specialization = no
@@ -1608,7 +1643,7 @@ building_sedriicae_central_plaza = {
 
 	potential = {
 		owner = {
-			has_origin = sedriicae_collective_origin
+			has_origin = sedriicae_col_origin
 		}
 	}
 
@@ -1616,18 +1651,21 @@ building_sedriicae_central_plaza = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = sedriicae_collective_origin } }
+			owner = { NOT = { has_origin = sedriicae_col_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 500
-			minerals = 800
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 10
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 		}
 	}
 
@@ -1641,7 +1679,7 @@ building_sedriicae_central_plaza = {
 
 ###Lystheni Order
 building_lystheni_fortress_one = {
-	base_buildtime = 480
+	base_buildtime = @btr_govt_b4_time
 	empire_limit = 1
 	icon = holding_overlord_garrison
 	exempt_from_ai_planet_specialization = no
@@ -1655,7 +1693,7 @@ building_lystheni_fortress_one = {
 
 	potential = {
 		owner = {
-			has_origin = lystheni_order_origin
+			has_origin = lystheni_ord_origin
 		}
 	}
 
@@ -1663,18 +1701,21 @@ building_lystheni_fortress_one = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = lystheni_order_origin } }
+			owner = { NOT = { has_origin = lystheni_ord_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 500
-			minerals = 500
+			minerals = @btr_govt_b4_mineral_cost
+			light_metals = @btr_govt_b4_light_metals_cost
+			heavy_metals = @btr_govt_b4_heavy_metals_cost
+			uranium = @btr_govt_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 15
+			energy = @btr_govt_b4_energy_upkeep
+			uranium = @btr_govt_b4_uranium_upkeep
 		}
 	}
 
@@ -1688,7 +1729,7 @@ building_lystheni_fortress_one = {
 }
 
 building_lystheni_league_monastery = {
-	base_buildtime = 360
+	base_buildtime = @btr_civil_b3_time
 	empire_limit = 12
 	icon = building_sacrificial_temple_2
 	exempt_from_ai_planet_specialization = no
@@ -1702,7 +1743,7 @@ building_lystheni_league_monastery = {
 
 	potential = {
 		owner = {
-			has_origin = lystheni_order_origin
+			has_origin = lystheni_ord_origin
 		}
 	}
 
@@ -1710,18 +1751,21 @@ building_lystheni_league_monastery = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = lystheni_order_origin } }
+			owner = { NOT = { has_origin = lystheni_ord_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 500
-			minerals = 500
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 15
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 		}
 	}
 
@@ -1734,7 +1778,7 @@ building_lystheni_league_monastery = {
 }
 
 building_lystheni_ai_training_center = {
-	base_buildtime = 360
+	base_buildtime = @btr_mili_b2_time
 	empire_limit = 12
 	icon = building_military_contractors
 	exempt_from_ai_planet_specialization = no
@@ -1748,7 +1792,7 @@ building_lystheni_ai_training_center = {
 
 	potential = {
 		owner = {
-			has_origin = lystheni_order_origin
+			has_origin = lystheni_ord_origin
 		}
 	}
 
@@ -1756,7 +1800,7 @@ building_lystheni_ai_training_center = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = lystheni_order_origin } }
+			owner = { NOT = { has_origin = lystheni_ord_origin } }
 		}
 	}
 	
@@ -1767,18 +1811,22 @@ building_lystheni_ai_training_center = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 600
-			minerals = 650
+			minerals = @btr_mili_b2_mineral_cost
+			light_metals = @btr_mili_b2_light_metals_cost
+			heavy_metals = @btr_mili_b2_heavy_metals_cost
+			uranium = @btr_mili_b2_uranium_cost
 		}
 		upkeep = {
-			energy = 12
+			energy = @btr_mili_b2_energy_upkeep
+			uranium = @btr_mili_b2_uranium_upkeep
+			eezo = @btr_mili_b2_eezo_upkeep
 			food = 2
 		}
 	}
 }
 
 building_lystheni_temple_mother = {
-	base_buildtime = 360
+	base_buildtime = @btr_civil_b3_time
 	base_cap_amount = 1
 	icon = building_sacrificial_temple_3
 	exempt_from_ai_planet_specialization = no
@@ -1786,7 +1834,7 @@ building_lystheni_temple_mother = {
 
 	potential = {
 		owner = {
-			has_origin = lystheni_order_origin
+			has_origin = lystheni_ord_origin
 		}
 	}
 
@@ -1794,18 +1842,21 @@ building_lystheni_temple_mother = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = lystheni_order_origin } }
+			owner = { NOT = { has_origin = lystheni_ord_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 1000
-			minerals = 750
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 8
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 			food = 4
 		}
 	}
@@ -1821,7 +1872,7 @@ building_lystheni_temple_mother = {
 
 ###Gothones Remnant
 building_gothones_beastmasters_quarters = {
-	base_buildtime = 360
+	base_buildtime = @btr_civil_b3_time
 	base_cap_amount = 1
 	icon = holding_park_ranger_lodge
 	exempt_from_ai_planet_specialization = no
@@ -1830,7 +1881,7 @@ building_gothones_beastmasters_quarters = {
 
 	potential = {
 		owner = {
-			has_origin = gothones_remnant_origin
+			has_origin = gothones_rem_origin
 		}
 	}
 
@@ -1838,17 +1889,21 @@ building_gothones_beastmasters_quarters = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = gothones_remnant_origin } }
+			owner = { NOT = { has_origin = gothones_rem_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 2
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 		}
 		produces = {
 			society_research = 3
@@ -1862,7 +1917,7 @@ building_gothones_beastmasters_quarters = {
 }	
 
 building_gothones_longhouse = {
-	base_buildtime = 360
+	base_buildtime = @btr_civil_b3_time
 	icon = building_precinct_house
 	exempt_from_ai_planet_specialization = no
 
@@ -1870,7 +1925,7 @@ building_gothones_longhouse = {
 
 	potential = {
 		owner = {
-			has_origin = gothones_remnant_origin
+			has_origin = gothones_rem_origin
 		}
 	}
 
@@ -1878,17 +1933,21 @@ building_gothones_longhouse = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = gothones_remnant_origin } }
+			owner = { NOT = { has_origin = gothones_rem_origin } }
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 500
+			minerals = @btr_civil_b3_mineral_cost
+			light_metals = @btr_civil_b3_light_metals_cost
+			heavy_metals = @btr_civil_b3_heavy_metals_cost
+			uranium = @btr_civil_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 2
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
 		}
 		produces = {
 			unity = 2
@@ -1903,22 +1962,24 @@ building_gothones_longhouse = {
 
 ###Parnack Regime
 building_yahg_blood_arena = {
-	base_buildtime = 360
+	base_buildtime = @btr_mili_b3_time
 	base_cap_amount = 1
 	icon = building_xeno_zoo
 	potential = {
 		exists = owner
 		owner = {
 			is_regular_empire = yes
-			has_origin = parnack_regime_origin
+			has_origin = parnack_reg_origin
 		}
 	}
+
+	category = army
 
 	destroy_trigger = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOT = { has_origin = parnack_regime_origin } }
+			owner = { NOT = { has_origin = parnack_reg_origin } }
 		}
 	}
 
@@ -1937,20 +1998,22 @@ building_yahg_blood_arena = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 1200
+			minerals = @btr_mili_b3_mineral_cost
+			light_metals = @btr_mili_b3_light_metals_cost
+			heavy_metals = @btr_mili_b3_heavy_metals_cost
+			uranium = @btr_mili_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 10
-			consumer_goods = 2
-			alloys = 1
-			volatile_motes = 1
+			energy = @btr_mili_b3_energy_upkeep
+			uranium = @btr_mili_b3_uranium_upkeep
+			eezo = @btr_mili_b3_eezo_upkeep
 		}
 	}
 }
 
 ###Raloi Republic
 building_raloi_foreign_instructor_center = {
-	base_buildtime = 480
+	base_buildtime = @btr_govt_b4_time
 	base_cap_amount = 1
 	icon = building_embassy
 	exempt_from_ai_planet_specialization = no
@@ -1961,6 +2024,8 @@ building_raloi_foreign_instructor_center = {
 			has_origin = raloi_rep_origin
 		}
 	}
+
+	category = army
 
 	destroy_trigger = {
 		exists = owner
@@ -1973,12 +2038,14 @@ building_raloi_foreign_instructor_center = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 300
-			minerals = 1000
+			minerals = @btr_govt_b4_mineral_cost
+			light_metals = @btr_govt_b4_light_metals_cost
+			heavy_metals = @btr_govt_b4_heavy_metals_cost
+			uranium = @btr_govt_b3_uranium_cost
 		}
 		upkeep = {
-			energy = 5
-			alloys = 3
+			energy = @btr_govt_b4_energy_upkeep
+			uranium = @btr_govt_b4_uranium_upkeep
 		}
 	}
 
@@ -1992,7 +2059,7 @@ building_raloi_foreign_instructor_center = {
 }
 
 building_raloi_development_coop_institute = {
-	base_buildtime = 480
+	base_buildtime = @btr_govt_b4_time
 	empire_limit = 1
 	icon = building_offspring_nest
 	exempt_from_ai_planet_specialization = no
@@ -2007,6 +2074,8 @@ building_raloi_development_coop_institute = {
 		}
 	}
 
+	category = research
+
 	destroy_trigger = {
 		exists = owner
 		OR = {
@@ -2018,15 +2087,16 @@ building_raloi_development_coop_institute = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			energy = 500
-			minerals = 2000
+            minerals = @btr_civil_b4_mineral_cost
+            light_metals = @btr_civil_b4_light_metals_cost
+            heavy_metals = @btr_civil_b4_heavy_metals_cost
+            uranium = @btr_civil_b4_uranium_cost
 		}
 		upkeep = {
-			energy = 10
+            energy = @btr_civil_b4_energy_upkeep
+			uranium = @btr_civil_b4_uranium_upkeep
 			consumer_goods = 2
-			exotic_gases = 2
-			volatile_motes = 2
-			rare_crystals = 2
+			antimatter_fuel = 1
 		}
 	}
 
@@ -2042,7 +2112,7 @@ building_raloi_development_coop_institute = {
 
 ###Geth Consensus
 building_geth_uplink_node = {
-	base_buildtime = 100
+	base_buildtime = @btr_civil_b0_time
 	icon = building_master_archive
 
 	potential = {
@@ -2050,9 +2120,11 @@ building_geth_uplink_node = {
 		owner = {
 			is_machine_empire = yes
 			has_origin = geth_con_origin
-			has_origin = disciples_of_nazara_origin
+			has_origin = disciples_naz_origin
 		}
 	}
+
+	category = amenity
 
 	allow = {
 		has_upgraded_capital = yes
@@ -2076,16 +2148,19 @@ building_geth_uplink_node = {
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = 300
+			minerals = @btr_civil_b1_mineral_cost
+			light_metals = @btr_civil_b1_light_metals_cost
+			heavy_metals = @btr_civil_b1_heavy_metals_cost
 		}
 		upkeep = {
-			energy = 20
+			energy = @btr_civil_b0_energy_upkeep
+			uranium = @btr_civil_b0_uranium_upkeep
 		}
 	}
 }
 
 building_geth_production_center = {
-	base_buildtime = 300
+	base_buildtime = @btr_civil_b2_time
 	icon = building_hypercomms_forum
 
 	empire_limit = 1
@@ -2095,13 +2170,15 @@ building_geth_production_center = {
 			is_machine_empire = yes
 			OR = {
 				has_origin = geth_con_origin
-				has_origin = disciples_of_nazara_origin
+				has_origin = disciples_naz_origin
 			}
 		}
 		planet = {
 			is_capital = yes
 		}
 	}
+
+	category = manufacturing
 
 	allow = {
 		has_upgraded_capital = yes
@@ -2114,7 +2191,7 @@ building_geth_production_center = {
 			owner = { 
 				NOR = { 
 					has_origin = geth_con_origin 
-					has_origin = disciples_of_nazara_origin 
+					has_origin = disciples_naz_origin 
 				} 
 			}
 		}
@@ -2130,30 +2207,36 @@ building_geth_production_center = {
 			unity = 10
 		}
 		cost = {
-			minerals = 300
-			alloys = 100
+			minerals = @btr_branch_offices_b2_mineral_cost
+			light_metals = @btr_branch_offices_b2_light_metals_cost
+			heavy_metals = @btr_branch_offices_b2_heavy_metals_cost
+			uranium = @btr_branch_offices_b2_uranium_cost
 		}
 		upkeep = {
-			energy = 10
-			exotic_gases = 1
+			energy = @btr_branch_offices_b2_energy_upkeep
+			uranium = @btr_branch_offices_b2_uranium_upkeep
+			eezo = @btr_branch_offices_b2_eezo_upkeep
+			antimatter_fuel = 0.5
 		}
 	}
 }
 
 ###Disciples of Nazara
 building_nazara_altar = {
-	base_buildtime = 200
+	base_buildtime = @btr_civil_b2_time
 	icon = building_nazara_altar
 	potential = {
 		exists = owner
 		owner = {
 			is_machine_empire = yes
-			has_origin = disciples_of_nazara_origin
+			has_origin = disciples_naz_origin
 		}
 		planet = {
 			is_capital = yes
 		}
 	}
+	
+	category = unity
 
 	allow = {
 		has_upgraded_capital = yes
@@ -2163,7 +2246,7 @@ building_nazara_altar = {
 		exists = owner
 		OR = {
 			owner = { is_regular_empire = no }
-			owner = { NOR = { has_origin = disciples_of_nazara_origin } }
+			owner = { NOR = { has_origin = disciples_naz_origin } }
 		}
 	}
 
@@ -2180,68 +2263,74 @@ building_nazara_altar = {
 			unity = 10
 		}
 		cost = {
-			minerals = 250
-			alloys = 100
+			minerals = @btr_research_b2_mineral_cost
+			light_metals = @btr_research_b2_light_metals_cost
+			heavy_metals = @btr_research_b2_heavy_metals_cost
+			uranium = @btr_research_b2_uranium_cost
 		}
 		upkeep = {
-			energy = 10
-			minerals = 10
-			alloys = 2
+			energy = @btr_branch_offices_b2_energy_upkeep
+			uranium = @btr_branch_offices_b2_uranium_upkeep
+			eezo = @btr_branch_offices_b2_eezo_upkeep
 		}
 	}
 }
 
-# ###Rachni Hive
-# building_rachni_subsurface_palace = {
-# 	base_buildtime = 200
-# 	icon = building_rachni_subsurface_palace
-# 	empire_limit = 1
-# 	base_cap_amount = 1
-# 	potential = {
-# 		exists = owner
-# 		owner = {
-# 			has_origin = rachni_hive_origin
-# 		}
-# 	}
+###Rachni Hive
+building_rachni_subsurface_palace = {
+	base_buildtime = @btr_civil_b2_time
+	icon = building_rachni_subsurface_palace
+	empire_limit = 1
+	base_cap_amount = 1
+	potential = {
+		exists = owner
+		owner = {
+			has_origin = rachni_hiv_origin
+		}
+	}
 
-# 	allow = {
-# 		has_upgraded_capital = yes
-# 	}
+	category = unity
 
-# 	destroy_trigger = {
-# 		exists = owner
-# 		OR = {
-# 			owner = { is_regular_empire = no }
-# 			owner = { NOR = { has_origin = rachni_hive_origin } }
-# 		}
-# 	}
+	allow = {
+		has_upgraded_capital = yes
+	}
 
-# 	planet_modifier = {
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOR = { has_origin = rachni_hiv_origin } }
+		}
+	}
 
-# 	}
+	planet_modifier = {
 
-# 	resources = {
-# 		category = planet_buildings
-# 		produces = {
-# 			unity = 10
-# 		}
-# 		cost = {
-# 			minerals = 250
-# 			alloys = 100
-# 		}
-# 		upkeep = {
-# 			energy = 10
-# 			minerals = 10
-# 			alloys = 2
-# 		}
-# 	}
-# }
+	}
+
+	resources = {
+		category = planet_buildings
+		produces = {
+			unity = 10
+		}
+		cost = {
+			minerals = @btr_branch_offices_b2_mineral_cost
+			light_metals = @btr_branch_offices_b2_light_metals_cost
+			heavy_metals = @btr_branch_offices_b2_heavy_metals_cost
+			uranium = @btr_branch_offices_b2_uranium_cost
+		}
+		upkeep = {
+			energy = @btr_branch_offices_b2_energy_upkeep
+			uranium = @btr_branch_offices_b2_uranium_upkeep
+			eezo = @btr_branch_offices_b2_eezo_upkeep
+		}
+	}
+}
 
 ###Collectors
 
 ###Citadel Council
 building_citadel_tower = {
-	base_buildtime = 200
+	base_buildtime = @btr_govt_b1_time
 	capital = yes
 	can_build = no
 	can_demolish = no
@@ -2255,6 +2344,8 @@ building_citadel_tower = {
 			has_origin = citadel_council_origin
 		}
 	}
+
+	category = government
 
 	allow = {
 		has_upgraded_capital = yes
@@ -2275,14 +2366,15 @@ building_citadel_tower = {
 			unity = 5
 		}
 		upkeep = {
-			energy = 5
+            energy = @btr_govt_b3_energy_upkeep
+			uranium = @btr_govt_b3_uranium_upkeep
 			consumer_goods = 1
 		}
 	}
 }
 
 building_citadel_embassies = {
-	base_buildtime = 200
+	base_buildtime = @btr_govt_b0_time
 	can_build = no
 	can_demolish = no
 	can_be_ruined = no
@@ -2298,6 +2390,8 @@ building_citadel_embassies = {
 			is_capital = yes
 		}
 	}
+
+	category = government
 
 	allow = {
 		has_upgraded_capital = yes
@@ -2322,13 +2416,14 @@ building_citadel_embassies = {
 			influence = 1
 		}
 		upkeep = {
-			energy = 15
+            energy = @btr_govt_b3_energy_upkeep
+			uranium = @btr_govt_b3_uranium_upkeep
 		}
 	}
 }
 
 building_citadel_commons= {
-	base_buildtime = 200
+	base_buildtime = @btr_civil_b1_time
 	can_build = no
 	can_demolish = no
 	can_be_ruined = no
@@ -2344,6 +2439,8 @@ building_citadel_commons= {
 			is_capital = yes
 		}
 	}
+
+	category = trade
 
 	allow = {
 		has_upgraded_capital = yes
@@ -2375,7 +2472,7 @@ building_citadel_commons= {
 }
 
 building_citadel_financial= {
-	base_buildtime = 200
+	base_buildtime = @btr_civil_b1_time
 	can_build = no
 	can_demolish = no
 	can_be_ruined = no
@@ -2391,6 +2488,8 @@ building_citadel_financial= {
 			is_capital = yes
 		}
 	}
+
+	category = trade
 
 	allow = {
 		has_upgraded_capital = yes
@@ -2415,13 +2514,14 @@ building_citadel_financial= {
 		}
 		upkeep = {
 			consumer_goods = 2
-			energy = 5
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 }
 
 building_citadel_docks= {
-	base_buildtime = 200
+	base_buildtime = @btr_civil_b1_time
 	can_build = no
 	can_demolish = no
 	can_be_ruined = no
@@ -2438,6 +2538,8 @@ building_citadel_docks= {
 		}
 	}
 
+	category = army
+
 	allow = {
 		has_upgraded_capital = yes
 	}
@@ -2450,7 +2552,7 @@ building_citadel_docks= {
 		}
 	}
 
-	planet_modifier = {
+	country_modifier = {
 		ship_orbit_upkeep_mult = -0.25
 	}
 
@@ -2462,13 +2564,14 @@ building_citadel_docks= {
 			minerals = 100
 		}
 		upkeep = {
-			energy = 10
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 }
 
 building_citadel_csec= {
-	base_buildtime = 200
+	base_buildtime = @btr_mili_b0_time
 	can_build = no
 	can_demolish = no
 	can_be_ruined = no
@@ -2484,6 +2587,8 @@ building_citadel_csec= {
 			is_capital = yes
 		}
 	}
+
+	category = government
 
 	allow = {
 		has_upgraded_capital = yes
@@ -2505,14 +2610,15 @@ building_citadel_csec= {
 	resources = {
 		category = planet_buildings
 		upkeep = {
-			energy = 10
-			alloys = 5
+			minerals = @btr_mili_b1_mineral_cost
+			light_metals = @btr_mili_b1_light_metals_cost
+			heavy_metals = @btr_mili_b1_heavy_metals_cost
 		}
 	}
 }
 
 building_citadel_park = {
-	base_buildtime = 200
+	base_buildtime = @btr_civil_b1_time
 	can_build = no
 	can_demolish = no
 	can_be_ruined = no
@@ -2528,6 +2634,8 @@ building_citadel_park = {
 			is_capital = yes
 		}
 	}
+
+	category = unity
 
 	allow = {
 		has_upgraded_capital = yes
@@ -2549,7 +2657,8 @@ building_citadel_park = {
 	resources = {
 		category = planet_buildings
 		upkeep = {
-			energy = 4
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
 		}
 	}
 }

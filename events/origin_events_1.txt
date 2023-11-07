@@ -1,0 +1,3030 @@
+###################################
+# Origin Events
+# Written by Henrik Thyrwall et al
+###################################
+
+@scionRewardTimer = 9000 # minimum time between rewards from the Scion, in days (currently 25 years)
+@scionRewardTimerDelay = 9000 # randomized delay added to 'scionRewardTimer', in days (currently 25 years)
+@scionRefusalsCap = 2 # number of times a Scion may refuse their Overlord before they think it rude
+
+namespace = origin
+
+# 0-54,200–250:	"Scion"
+# 55-59			"Common Ground" & "Hegemon"
+# 60-99:		"Doomsday"
+# 100-109:		"Lost Colony"
+# 110-150:		"Broken Shackles" & "Payback"
+
+########
+# SCION
+########
+
+# Setup
+country_event = {
+	id = origin.5
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = first_contact_event
+		set_country_flag = Story2 # Already encountered spacefarers
+		# Spawn mini-FE if player turned off Fallen Empires but picked this Origin anyway...
+		# if = {
+		# 	limit = {
+		# 		NOT = {
+		# 			any_country = {
+		# 				OR = {
+		# 					is_country_type = fallen_empire
+		# 					is_country_type = awakened_fallen_empire
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# 	set_country_flag = scion_needs_fe
+		# 	if = {
+		# 		limit = { is_spiritualist = yes }
+		# 		random_system = {
+		# 			limit = { has_owner = no }
+		# 			spawn_system = { initializer = "scion_fallen_2" }
+		# 		}
+		# 	}
+		# 	else_if = {
+		# 		limit = { is_materialist = yes }
+		# 		random_system = {
+		# 			limit = { has_owner = no }
+		# 			spawn_system = { initializer = "scion_fallen_1" }
+		# 		}
+		# 	}
+		# 	else = {
+		# 		random_list = {
+		# 			10 = {
+		# 				random_system = {
+		# 					limit = { has_owner = no }
+		# 					spawn_system = { initializer = "scion_fallen_1" }
+		# 				}
+		# 			}
+		# 			10 = {
+		# 				random_system = {
+		# 					limit = { has_owner = no }
+		# 					spawn_system = { initializer = "scion_fallen_2" }
+		# 				}
+		# 			}
+		# 		}
+		# 	}
+		# 	add_extra_hyperlane_to_spawned_system_effect = yes
+		# }
+
+		#else_if = {
+		if = {			
+			limit = {
+				is_spiritualist = yes
+				any_country = { has_country_flag = fallen_empire_2 }
+			}
+			random_country = {
+				limit = { has_country_flag = fallen_empire_2 }
+				set_country_flag = scion_master
+				save_event_target_as = scion_master
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_scion
+				}
+				country_event = { id = origin.20 days = @scionRewardTimer random = @scionRewardTimerDelay }
+				root = {
+					establish_communications_no_message = event_target:scion_master
+					set_subject_of = {
+						who = event_target:scion_master
+						preset = preset_scion
+					}
+					add_opinion_modifier = {
+						who = event_target:scion_master
+						modifier = opinion_scion
+					}
+					country_event = { id = origin.10 days = 3 }
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				is_materialist = yes
+				any_country = { has_country_flag = fallen_empire_1 }
+			}
+			random_country = {
+				limit = { has_country_flag = fallen_empire_1 }
+				set_country_flag = scion_master
+				save_event_target_as = scion_master
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_scion
+				}
+				country_event = { id = origin.20 days = @scionRewardTimer random = @scionRewardTimerDelay }
+				root = {
+					establish_communications_no_message = event_target:scion_master
+					set_subject_of = {
+						who = event_target:scion_master
+						preset = preset_scion
+					}
+					add_opinion_modifier = {
+						who = event_target:scion_master
+						modifier = opinion_scion
+					}
+					country_event = { id = origin.10 days = 3 }
+				}
+			}
+		}
+		else = {
+			random_country = {
+				limit = {
+					OR = {
+						has_country_flag = fallen_empire_1
+						has_country_flag = fallen_empire_2
+					}
+				}
+				set_country_flag = scion_master
+				save_event_target_as = scion_master
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_scion
+				}
+				country_event = { id = origin.20 days = @scionRewardTimer random = @scionRewardTimerDelay }
+				root = {
+					establish_communications_no_message = event_target:scion_master
+					set_subject_of = {
+						who = event_target:scion_master
+						preset = preset_scion
+					}
+					add_opinion_modifier = {
+						who = event_target:scion_master
+						modifier = opinion_scion
+					}
+					country_event = { id = origin.10 days = 3 }
+				}
+			}
+		}
+		if = {
+			limit = {
+				exists = event_target:scion_master
+			}
+			create_scion_wormhole_link = yes
+		}
+	}
+}
+
+# Bring Into Fold War Goal Successful (HIDDEN)
+# Necessary to bounce effects in this event from the war goal, or there is no truce period
+country_event = {
+	id = origin.6
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { event_target:scion_victim = { has_been_declared_crisis = no } }
+			event_target:scion_victim = {
+				set_subject_of = {
+					who = event_target:scion_master
+					preset = preset_scion
+				}
+			}
+		}
+		event_target:scion_master = {
+			every_agreement = {
+				limit = {
+					has_fallen_empire_subject_preset = no
+				}
+				set_agreement_preset = {
+					preset = preset_scion
+					apply_terms = yes
+				}
+			}
+		}
+	}
+}
+
+# Intro Diplomatic Message
+country_event = {
+	id = origin.10
+	title = TRANSMISSION
+
+	desc = {
+		trigger = {
+			event_target:scion_master = { has_country_flag = fallen_empire_2 }
+		}
+		text = "origin.10.a.desc"
+	}
+	desc = {
+		trigger = {
+			event_target:scion_master = { has_country_flag = fallen_empire_1 }
+		}
+		text = "origin.10.b.desc"
+	}
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = { save_event_target_as = scion_master }
+	}
+
+	option = {
+		name = origin.10.a
+		trigger = {
+			event_target:scion_master = { has_country_flag = fallen_empire_2 }
+		}
+	}
+	option = {
+		name = origin.10.b
+		trigger = {
+			event_target:scion_master = { has_country_flag = fallen_empire_1 }
+		}
+	}
+}
+
+# Surveyed a Holy World (via on_survey): gatekeeper event
+# this = Science vessel | from = planet
+ship_event = {
+	id = origin.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = owner
+		owner = {
+			NOR = {
+				is_ai = yes
+				has_country_flag = encountered_holy_world
+			}
+			has_origin = origin_scion
+			exists = overlord
+			overlord = {
+				is_country_type = fallen_empire # excludes 'awakened_fallen_empire'
+				# OR = {
+				# 	has_country_flag = fallen_empire_1 # Materialist
+				# 	has_country_flag = fallen_empire_2 # Spiritualist
+				# }
+			}
+		}
+		from = {
+			has_modifier = holy_planet
+			is_colony = no
+		}
+	}
+
+	immediate = {
+		owner = {
+			set_country_flag = encountered_holy_world
+			if = {
+				limit = {
+					overlord = {
+						has_country_flag = fallen_empire_2
+					}
+				}
+				country_event = { id = origin.12 } # Spiritualist Overlord's Holy World
+			}
+			else = {
+				country_event = { id = origin.13 } # Another FE's Holy World
+			}
+		}
+	}
+}
+
+# Surveyed a Holy World: Spiritualist Overlord's Holy World
+# from = Science vessel | fromfrom = planet
+country_event = {
+	id = origin.12
+	title = fallen_empires.100.name
+	desc = origin.12.desc
+	picture = GFX_evt_ship_in_orbit
+	show_sound = event_mystic_reveal_light
+	location = fromfrom
+	is_triggered_only = yes
+
+	option = { # Suspicious (Influence + Xenophobia)
+		name = origin.12.a
+		add_resource = { influence = 25 }
+		add_modifier = {
+			modifier = scion_suspicious_holy_world
+			years = 10
+		}
+	}
+	option = { # They know best (Unity + Spiritualism)
+		name = origin.12.b
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier1unityreward
+			min = @tier1unitymin
+			max = @tier1unitymax
+		}
+		add_modifier = {
+			modifier = scion_found_holy_world
+			years = 10
+		}
+	}
+}
+
+# Surveyed a Holy World: another FE's Holy World
+# from = Science vessel | fromfrom = planet
+country_event = {
+	id = origin.13
+	title = fallen_empires.100.name
+	desc = {
+		trigger = {
+			has_communications = event_target:spi_fallen_empire
+		}
+		text = origin.13.hasmet.desc
+	}
+	desc = {
+		trigger = {
+			NOT = { has_communications = event_target:spi_fallen_empire }
+		}
+		text = origin.13.notmet.desc
+	}
+	picture = GFX_evt_ship_in_orbit
+	show_sound = event_mystic_reveal_light
+	location = fromfrom
+	is_triggered_only = yes
+
+	immediate = {
+		random_country = {
+			limit = {
+				is_country_type = fallen_empire
+				has_country_flag = fallen_empire_2
+			}
+			save_event_target_as = spi_fallen_empire
+		}
+	}
+
+	option = {
+		name = CURIOUS # (Unity + Research)
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier1unityreward
+			min = @tier1unitymin
+			max = @tier1unitymax
+		}
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier1researchreward
+			min = @tier1researchmin
+			max = @tier1researchmax
+		}
+	}
+	option = {
+		name = origin.13.a # Dismissive attitude (Influence + Research)
+		add_resource = { influence = 25 }
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier1researchreward
+			min = @tier1researchmin
+			max = @tier1researchmax
+		}
+	}
+}
+
+# Gift (HIDDEN)
+country_event = {
+	id = origin.20
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Note that applying a trigger here (such as to mirror the 'limit' below) may not be desirable, as it would break the cycle of "Scion" rewards should the subject empire ever be temporarily stolen from the FE.
+
+	immediate = {
+		every_playable_country = {
+			limit = {
+				has_origin = origin_scion
+				root = { is_overlord_to = prev }
+				any_agreement = {
+					agreement_preset = preset_scion
+				}
+			}
+			random_list = {
+				50 = { # Technologies
+					modifier = {
+						factor = 0
+						scion_has_techs = yes
+					}
+					country_event = { id = origin.21 }
+				}
+				50 = { # Resources
+					country_event = { id = origin.24 }
+				}
+			}
+		}
+		# Repeat
+		country_event = { id = origin.20 days = @scionRewardTimer random = @scionRewardTimerDelay }
+	}
+}
+
+# Gift: Tech
+country_event = {
+	id = origin.21
+	title = TRANSMISSION
+	desc = {
+		trigger = {
+			event_target:scion_master = { has_country_flag = fallen_empire_2 }
+		}
+		text = "origin.21.a.desc"
+	}
+	desc = {
+		trigger = {
+			event_target:scion_master = { has_country_flag = fallen_empire_1 }
+		}
+		text = "origin.21.b.desc"
+	}
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = { save_event_target_as = scion_master }
+	}
+
+	option = {
+		name = origin.21.a
+		locked_random_list = {
+			1 = { # Engineering
+				modifier = {
+					factor = 0
+					OR = {
+						has_technology = tech_alloys_1
+						NOT = { can_research_technology = tech_alloys_1 }
+					}
+					OR = {
+						has_technology = tech_mineral_purification_2
+						NOT = { can_research_technology = tech_mineral_purification_2 }
+					}
+					OR = {
+						has_technology = tech_space_defense_station_improvement
+						NOT = { can_research_technology = tech_space_defense_station_improvement }
+					}
+					OR = {
+						has_technology = tech_battleships
+						NOT = { can_research_technology = tech_battleships }
+					}
+					OR = {
+						has_technology = tech_titan_hull_1
+						NOT = { can_research_technology = tech_titan_hull_1 }
+					}
+				}
+				scion_engineering_tech = yes
+			}
+			1 = { # Physics
+				modifier = {
+					factor = 0
+					OR = {
+						has_technology = tech_space_science_2
+						NOT = { can_research_technology = tech_space_science_2 }
+					}
+					OR = {
+						has_technology = tech_self_aware_logic
+						NOT = { can_research_technology = tech_self_aware_logic }
+					}
+					OR = {
+						has_technology = tech_antimatter_power
+						NOT = { can_research_technology = tech_antimatter_power }
+					}
+					OR = {
+						has_technology = tech_combat_computers_autonomous
+						NOT = { can_research_technology = tech_combat_computers_autonomous }
+					}
+					OR = {
+						has_technology = tech_jump_drive_1
+						NOT = { can_research_technology = tech_jump_drive_1 }
+					}
+				}
+				scion_physics_tech = yes
+			}
+			1 = { # Society
+				modifier = {
+					factor = 0
+					OR = {
+						has_technology = tech_eco_simulation
+						NOT = { can_research_technology = tech_eco_simulation }
+					}
+					OR = {
+						has_technology = tech_society_2
+						NOT = { can_research_technology = tech_society_2 }
+					}
+					OR = {
+						has_technology = tech_colonization_4
+						NOT = { can_research_technology = tech_colonization_4 }
+					}
+					OR = {
+						has_technology = tech_climate_restoration
+						NOT = { can_research_technology = tech_climate_restoration }
+					}
+					OR = {
+						has_technology = tech_ascension_theory
+						NOT = { can_research_technology = tech_ascension_theory }
+					}
+				}
+				scion_society_tech = yes
+			}
+		}
+	}
+}
+
+# Gift: Resources
+country_event = {
+	id = origin.24
+	base = origin.21
+	option_clear = yes
+
+	option = {
+		name = origin.21.a
+		locked_random_list = {
+			33 = { add_resource = { alloys = 5000 } }
+			33 = { add_resource = { alloys = 4000 } }
+			33 = { add_resource = { alloys = 3000 } }
+			33 = { add_resource = { consumer_goods = 5000 } }
+			33 = { add_resource = { consumer_goods = 4000 } }
+			33 = { add_resource = { consumer_goods = 3000 } }
+		}
+	}
+}
+
+### INTERVENTIONS
+
+# via on_yearly_pulse
+event = {
+	id = origin.200
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_playable_country = {
+			is_ai = no
+			is_subject = yes
+			any_agreement = {
+				agreement_preset = preset_scion
+			}
+			NAND = {
+				has_country_flag = scion_requested_leader
+				has_country_flag = scion_gave_leader
+				has_country_flag = scion_gave_ships
+				has_country_flag = scion_gave_propulsion_tech
+				has_country_flag = scion_gave_colonization_supplies
+			}
+		}
+	}
+
+	immediate = {
+		random_playable_country = {
+			limit = {
+				is_ai = no
+				is_subject = yes
+				any_agreement = {
+					agreement_preset = preset_scion
+				}
+			}
+			random_list = {
+				250 = { # no Intervention
+					modifier = {
+						factor = 2
+						OR = {
+							years_passed > 50
+							event_target:global_event_country = {
+								check_variable = {
+									which = scion_intervention
+									value > 0
+								}
+							}
+						}
+					}
+				}
+				10 = { # FE requests a Leader
+					modifier = {
+						factor = 0
+						OR = {
+							has_country_flag = scion_requested_leader
+							NOT = {
+								any_owned_leader = {
+									is_ruler = no
+									NOT = { has_leader_flag = fe_gifted_leader }
+									has_skill >= 5
+								}
+							}
+						}
+					}
+					country_event = { id = origin.205 }
+					event_target:global_event_country = {
+						change_variable = { which = scion_intervention value = 1 }
+					}
+				}
+				10 = { # FE gives a Leader
+					modifier = {
+						factor = 0
+						has_country_flag = scion_gave_leader
+					}
+					modifier = {
+						factor = 3
+						has_country_flag = scion_requested_leader
+					}
+					country_event = { id = origin.210 }
+					event_target:global_event_country = {
+						change_variable = { which = scion_intervention value = 1 }
+					}
+				}
+				10 = { # FE gives ships
+					modifier = {
+						factor = 0
+						has_country_flag = scion_gave_ships
+					}
+					country_event = { id = origin.215 }
+					event_target:global_event_country = {
+						change_variable = { which = scion_intervention value = 1 }
+					}
+				}
+				10 = { # FE gives propulsion tech boost
+					modifier = {
+						factor = 0
+						OR = {
+							years_passed < 25
+							has_country_flag = scion_gave_propulsion_tech
+							has_technology = tech_hyper_drive_3
+						}
+					}
+					modifier = {
+						factor = 5
+						OR = {
+							is_eager_explorer_empire = yes
+							AND = {
+								NOT = { has_technology = tech_hyper_drive_2 }
+								years_passed > 75
+							}
+						}
+					}
+					country_event = { id = origin.220 }
+					event_target:global_event_country = {
+						change_variable = { which = scion_intervention value = 1 }
+					}
+				}
+				10 = { # FE gives colonization supplies
+					modifier = {
+						factor = 0
+						OR = {
+							end_game_years_passed > -40
+							has_country_flag = scion_gave_colonization_supplies
+						}
+					}
+					modifier = {
+						factor = 5
+						years_passed > 50
+						count_owned_planet = {
+							limit = { is_colony = yes }
+							count < 3
+						}
+					}
+					country_event = { id = origin.225 }
+					event_target:global_event_country = {
+						change_variable = { which = scion_intervention value = 1 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Task: Surrender Leader
+country_event = {
+	id = origin.205
+	title = TRANSMISSION
+	desc = origin.205.desc
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = { save_event_target_as = scion_master }
+		ordered_owned_leader = {
+			limit = {
+				NOR = {
+					is_ruler = yes
+					has_leader_flag = fe_gifted_leader
+				}
+				has_skill >= 5
+			}
+			position = 0
+			order_by = trigger:has_skill
+			save_event_target_as = desired_leader
+		}
+		set_country_flag = scion_requested_leader
+	}
+
+	option = {
+		name = origin.205.a
+		response_text = origin.205.a.response
+		custom_tooltip = origin.205.a.tooltip
+		hidden_effect = {
+			event_target:scion_master = {
+				clone_leader = {
+					target = event_target:desired_leader
+				}
+			}
+			event_target:desired_leader = {
+				kill_leader = { show_notification = no }
+			}
+		}
+	}
+	option = {
+		name = origin.205.b
+		response_text = origin.205.b.response
+	}
+}
+
+# Reward: Receive Leader
+country_event = {
+	id = origin.210
+	title = TRANSMISSION
+	desc = origin.210.desc
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = {
+			save_event_target_as = scion_master
+			owner_species = { save_event_target_as = fe_species }
+		}
+		set_country_flag = scion_gave_leader
+	}
+
+	option = {
+		name = origin.210.a
+		response_text = origin.210.a.response
+		locked_random_list = {
+			10 = { # Admiral
+				create_scion_leader = {
+					CLASS = admiral
+				}
+				custom_tooltip = origin.210.admiral
+			}
+			10 = { # Governor
+				create_scion_leader = {
+					CLASS = governor
+				}
+				custom_tooltip = origin.210.governor
+			}
+			10 = { # Scientist
+				create_scion_leader = {
+					CLASS = scientist
+				}
+				custom_tooltip = origin.210.scientist
+			}
+			10 = { # General
+				create_scion_leader = {
+					CLASS = general
+				}
+				custom_tooltip = origin.210.general
+			}
+		}
+		# Apply a negative Council Trait ("Galactic Paragons" only)
+		hidden_effect = {
+			if = {
+				limit = {
+					has_paragon_dlc = yes
+				}
+				event_target:fe_gifted_leader = {
+					add_trait_no_notify = leader_trait_volatile
+				}
+			}
+		}
+	}
+	option = {
+		name = origin.210.b
+		response_text = origin.210.b.response
+		hidden_effect = {
+			change_variable = {
+				which = scion_refusals
+				value = 1
+			}
+		}
+	}
+}
+
+# Reward: Receive Ships
+country_event = {
+	id = origin.215
+	title = TRANSMISSION
+	desc = "origin.215.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = { save_event_target_as = scion_master }
+		set_country_flag = scion_gave_ships
+	}
+
+	option = {
+		name = origin.215.a
+		custom_tooltip = origin.215.tooltip
+		capital_scope = {
+			create_fleet = {
+				effect = {
+					set_owner = event_target:scion_master # For ship names
+					while = {
+						count = 1
+						create_fallen_empire_large_ship = yes
+					}
+					while = {
+						count = 3
+						create_fallen_empire_small_ship = yes
+					}
+					set_location = {
+						target = prev
+						distance = 45
+						angle = random
+					}
+					set_owner = root
+				}
+			}
+		}
+	}
+}
+
+# Task/Reward: Receive Propulsion Technology ("Get a move on")
+country_event = {
+	id = origin.220
+	title = TRANSMISSION
+	desc = origin.220.desc
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = { save_event_target_as = scion_master }
+		set_country_flag = scion_gave_propulsion_tech
+	}
+
+	option = {
+		name = origin.220.a
+		if = {
+			limit = {
+				NOT = { has_technology = tech_hyper_drive_1 }
+			}
+			add_research_option = tech_hyper_drive_1
+			add_tech_progress = {
+				tech = tech_hyper_drive_1
+				progress = 0.40
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { has_technology = tech_hyper_drive_2 }
+			}
+			add_research_option = tech_hyper_drive_2
+			add_tech_progress = {
+				tech = tech_hyper_drive_2
+				progress = 0.30
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { has_technology = tech_hyper_drive_3 }
+			}
+			add_research_option = tech_hyper_drive_3
+			add_tech_progress = {
+				tech = tech_hyper_drive_3
+				progress = 0.10
+			}
+		}
+	}
+}
+
+# Task/Reward: Colonization Supplies ("Downpayment on a new Colony")
+country_event = {
+	id = origin.225
+	title = TRANSMISSION
+	desc = origin.225.desc
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = { save_event_target_as = scion_master }
+		set_country_flag = scion_gave_colonization_supplies
+	}
+
+	option = { # Accept (note: need not take Frontier Spirit into account. Values should match the cost of a 'colonizer'/'shipclass_colonizer'.)
+		name = origin.205.a
+		if = {
+			limit = {
+				is_robot_empire = yes
+			}
+			add_resource = { alloys = 400 }
+		}
+		else = {
+			add_resource = { alloys = 200 }
+			add_resource = { consumer_goods = 200 }
+			if = {
+				limit = {
+					owner_species = { is_lithoid = yes }
+				}
+				add_resource = { minerals = 200 }
+			}
+			else = {
+				add_resource = { food = 200 }
+			}
+		}
+	}
+	option = { # Hesitate or refuse
+		name = origin.225.b
+		trigger = {
+			NOT = { has_country_flag = scion_refused_colonization_supplies } # hides this option in the response event
+
+		}
+		hidden_effect = {
+			change_variable = {
+				which = scion_refusals
+				value = 1
+			}
+			set_country_flag = scion_refused_colonization_supplies
+			country_event = { id = origin.226 }
+		}
+	}
+}
+# Refused Colonization Supplies
+country_event = {
+	id = origin.226
+	base = origin.225
+	desc_clear = yes
+
+	desc = {
+		trigger = {
+			check_variable = {
+				which = scion_refusals
+				value < @scionRefusalsCap
+			}
+		}
+		text = origin.226.desc.A
+	}
+	desc = {
+		trigger = {
+			check_variable = {
+				which = scion_refusals
+				value < @scionRefusalsCap
+			}
+		}
+		text = origin.226.desc.B
+	}
+
+	# inherits the 'accept' option from origin.225
+}
+
+# FE War Intervention
+# via on_monthly_pulse (no scope)
+event = {
+	id = origin.50
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_playable_country = {
+			is_ai = no
+			is_at_war = yes
+			is_subject = yes
+			overlord = { is_at_war = no }
+			any_agreement = {
+				agreement_preset = preset_scion
+			}
+			NOT = { has_country_flag = scion_war_help }
+			OR = {
+				any_war = {
+					any_defender = {
+						is_same_value = prevprev
+					}
+					any_attacker = {
+						OR = {
+							relative_power = {
+								who = prevprev
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = prevprev
+								category = fleet
+								value = superior
+							}
+						}
+					}
+					defender_war_exhaustion > 0.8
+					attacker_war_exhaustion < 0.6
+				}
+				any_war = {
+					any_attacker = {
+						is_same_value = prevprev
+					}
+					any_defender = {
+						OR = {
+							relative_power = {
+								who = prevprev
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = prevprev
+								category = fleet
+								value = superior
+							}
+						}
+					}
+					attacker_war_exhaustion > 0.8
+					defender_war_exhaustion < 0.6
+				}
+			}
+		}
+	}
+
+	immediate = {
+		random_playable_country = {
+			limit = {
+				is_ai = no
+				is_at_war = yes
+				is_subject = yes
+				overlord = { is_at_war = no }
+				any_agreement = {
+					agreement_preset = preset_scion
+				}
+				NOT = { has_country_flag = scion_war_help }
+				OR = {
+					any_war = {
+						any_defender = {
+							is_same_value = prevprev
+						}
+						any_attacker = {
+							OR = {
+								relative_power = {
+									who = prevprev
+									category = fleet
+									value = overwhelming
+								}
+								relative_power = {
+									who = prevprev
+									category = fleet
+									value = superior
+								}
+							}
+						}
+						defender_war_exhaustion > 0.8
+						attacker_war_exhaustion < 0.6
+					}
+					any_war = {
+						any_attacker = {
+							is_same_value = prevprev
+						}
+						any_defender = {
+							OR = {
+								relative_power = {
+									who = prevprev
+									category = fleet
+									value = overwhelming
+								}
+								relative_power = {
+									who = prevprev
+									category = fleet
+									value = superior
+								}
+							}
+						}
+						attacker_war_exhaustion > 0.8
+						defender_war_exhaustion < 0.6
+					}
+				}
+			}
+			country_event = { id = origin.51 }
+		}
+	}
+}
+# FE War Intervention: receive temporary FE Fleet
+country_event = {
+	id = origin.51
+	title = TRANSMISSION
+	desc = "origin.51.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = {
+			save_event_target_as = scion_master
+			owner_species = { save_event_target_as = fe_species }
+		}
+		set_timed_country_flag = { flag = scion_war_help days = 7200 } # 20 year cooldown
+	}
+
+	option = {
+		name = origin.51.a
+		hidden_effect = {
+			if = {
+				limit = { scion_losing_defensive_war = yes }
+				random_country = {
+					limit = {
+						NOT = { is_same_value = root}
+						is_at_war = yes
+						is_at_war_with = root
+						scion_losing_defensive_war_combatant = yes
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+					}
+					scion_fe_intervention = yes
+				}
+			}
+			else_if = {
+				limit = { scion_losing_offensive_war = yes }
+				random_country = {
+					limit = {
+						NOT = { is_same_value = root}
+						is_at_war = yes
+						is_at_war_with = root
+						scion_losing_offensive_war_combatant = yes
+						OR = {
+							relative_power = {
+								who = root
+								category = fleet
+								value = overwhelming
+							}
+							relative_power = {
+								who = root
+								category = fleet
+								value = superior
+							}
+						}
+					}
+					scion_fe_intervention = yes
+				}
+			}
+		}
+	}
+}
+
+# FE War Intervention: fleet lost
+# via on_fleet_destroyed_victim
+# this = owner of destroyed fleet; from = owner of combatant fleet
+# fromfrom = destroyed fleet; fromfromfrom = combatant fleet
+country_event = {
+	id = origin.52
+	title = "origin.52.name"
+	desc = "origin.52.desc"
+	picture = GFX_evt_exploding_ship
+	show_sound = event_space_battle
+	is_triggered_only = yes
+
+	trigger = {
+		fromfrom = { has_fleet_flag = scion_borrowed_fleet }
+		exists = overlord
+	}
+
+	immediate = {
+		overlord = {
+			save_event_target_as = scion_master
+			owner_species = { save_event_target_as = fe_species }
+		}
+		remove_country_flag = borrowed_fleet_from@event_target:scion_master
+	}
+
+	option = {
+		name = DISCONCERTING
+		hidden_effect = {
+			country_event = { id = origin.53 days = 5 }
+		}
+	}
+}
+# FE War Intervention: fleet lost communication
+country_event = {
+	id = origin.53
+	title = TRANSMISSION
+	desc = "origin.53.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = { save_event_target_as = scion_master }
+	}
+
+	option = {
+		name = origin.53.a
+	}
+}
+
+# Independence War: FE fleet reclaimed
+# via on_war_beginning | this = every involved country; from = war
+country_event = {
+	id = origin.29
+	title = TRANSMISSION
+	desc = "origin.29.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	trigger = {
+		from = {
+			using_war_goal = {
+				type = wg_independence
+				owner = attacker
+			}
+			# Fire only for the attacker, i.e. a subject or Scion
+			any_attacker = { is_same_value = root }
+			any_defender = {
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+		}
+		# Fire only if root controls a fleet gifted by the FE via the "Scion" Origin
+		any_country = {
+			is_at_war_with = root
+			OR = {
+				is_country_type = fallen_empire
+				is_country_type = awakened_fallen_empire
+			}
+			root = {
+				has_country_flag = borrowed_fleet_from@prev
+				any_controlled_fleet = { has_fleet_flag = scion_borrowed_fleet }
+			}
+		}
+	}
+
+	immediate = {
+		random_country = {
+			limit = {
+				is_at_war_with = root
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+				root = {
+					has_country_flag = borrowed_fleet_from@prev
+					any_controlled_fleet = { has_fleet_flag = scion_borrowed_fleet }
+				}
+			}
+			save_event_target_as = scion_master
+		}
+		random_controlled_fleet = {
+			limit = { has_fleet_flag = scion_borrowed_fleet }
+			set_owner = event_target:scion_master
+		}
+		remove_country_flag = borrowed_fleet_from@event_target:scion_master
+	}
+
+	option = {
+		name = origin.29.a
+	}
+}
+
+# FE War Intervention: FE fleet reclaimed (war over)
+# via on_monthly_pulse (no scope)
+event = {
+	id = origin.30
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_playable_country = {
+			is_at_war = no
+			exists = overlord
+			any_controlled_fleet = { has_fleet_flag = scion_borrowed_fleet }
+		}
+	}
+
+	immediate = {
+		random_playable_country = {
+			limit = {
+				is_at_war = no
+				any_controlled_fleet = { has_fleet_flag = scion_borrowed_fleet }
+			}
+			country_event = { id = origin.54 }
+		}
+	}
+}
+# FE War Intervention: FE fleet reclaimed
+country_event = {
+	id = origin.54
+	title = TRANSMISSION
+	desc = "origin.54.desc"
+	diplomatic = yes
+	is_triggered_only = yes
+
+	picture_event_data = {
+		portrait = event_target:scion_master
+		planet_background = event_target:scion_master
+		graphical_culture = event_target:scion_master
+		city_level = event_target:scion_master
+		room = event_target:scion_master
+	}
+
+	immediate = {
+		overlord = { save_event_target_as = scion_master }
+		random_controlled_fleet = {
+			limit = { has_fleet_flag = scion_borrowed_fleet }
+			leader = {
+				kill_leader = { show_notification = no }
+			}
+			delete_fleet = this
+		}
+		remove_country_flag = borrowed_fleet_from@event_target:scion_master
+	}
+
+	option = {
+		name = origin.54.a
+	}
+}
+
+##########################
+# COMMON GROUND & HEGEMON
+##########################
+
+# Common Ground/Hegemon Setup
+country_event = {
+	id = origin.55
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = first_contact_event
+		set_country_flag = Story2 # Already encountered spacefarers
+		add_tradition = tr_diplomacy_adopt
+		add_tradition = tr_diplomacy_the_federation
+
+		# Replace prescripted ideal planets with barren worlds and spawn federation partners.
+		if = {
+			limit = { num_guaranteed_colonies >= 2 }
+			capital_scope = {
+				solar_system = {
+					closest_system = {
+						limit = { has_star_flag = neighbor_t1_first_colony }
+						random_system_planet = {
+							limit = { has_planet_flag = prescripted_ideal }
+							change_pc = pc_barren
+						}
+						spawn_random_home_system = yes
+						last_created_system = {
+							federation_origin_planet_setup = {
+								NUM = 1
+							}
+						}
+					}
+					closest_system = {
+						limit = { has_star_flag = neighbor_t2_second_colony }
+						random_system_planet = {
+							limit = { has_planet_flag = prescripted_ideal }
+							change_pc = pc_barren
+						}
+						spawn_random_home_system = yes
+						last_created_system = {
+							federation_origin_planet_setup = {
+								NUM = 2
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = { num_guaranteed_colonies >= 1 }
+			capital_scope = {
+				solar_system = {
+					closest_system = {
+						limit = { has_star_flag = neighbor_t1_first_colony }
+						random_system_planet = {
+							limit = { has_planet_flag = prescripted_ideal }
+							change_pc = pc_barren
+						}
+						spawn_random_home_system = yes
+						last_created_system = {
+							federation_origin_planet_setup = {
+								NUM = 1
+							}
+						}
+					}
+					closest_system = {
+						limit = {
+							NOT = { has_star_flag = neighbor_t1_first_colony }
+							has_owner = no
+						}
+						spawn_random_home_system = yes
+						last_created_system = {
+							federation_origin_planet_setup = {
+								NUM = 2
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = { num_guaranteed_colonies = 0 }
+			capital_scope = {
+				solar_system = {
+					closest_system = {
+						limit = { has_owner = no }
+						spawn_random_home_system = yes
+						last_created_system = {
+							federation_origin_planet_setup = {
+								NUM = 1
+							}
+						}
+					}
+					closest_system = {
+						limit = {
+							NOT = { has_star_flag = fed_origin_system_1 }
+							has_owner = no
+						}
+						spawn_random_home_system = yes
+						last_created_system = {
+							federation_origin_planet_setup = {
+								NUM = 2
+							}
+						}
+					}
+				}
+			}
+		}
+
+		# Create first member
+		event_target:fed_planet_1 = {
+			solar_system = { generate_home_system_resources = yes }
+			if = {
+				limit = {
+					root = {
+						NOT = {
+							has_valid_civic = civic_selective_kinship
+						}
+					}
+				}
+				create_fed_planet_1_species = { CLASS = random }
+			}
+			else = {
+				root = {
+					switch = {
+						trigger = is_species_class
+						HUM =		{ create_fed_planet_1_species = { CLASS = HUM } }
+						MAM =		{ create_fed_planet_1_species = { CLASS = MAM } }
+						FUN =		{ create_fed_planet_1_species = { CLASS = FUN } }
+						AVI =		{ create_fed_planet_1_species = { CLASS = AVI } }
+						PLANT =		{ create_fed_planet_1_species = { CLASS = PLANT } }
+						ART =		{ create_fed_planet_1_species = { CLASS = ART } }
+						REP =		{ create_fed_planet_1_species = { CLASS = REP } }
+						MOL =		{ create_fed_planet_1_species = { CLASS = MOL } }
+						LITHOID =	{ create_fed_planet_1_species = { CLASS = LITHOID } }
+						NECROID =	{ create_fed_planet_1_species = { CLASS = NECROID } }
+						AQUATIC =	{ create_fed_planet_1_species = { CLASS = AQUATIC } }
+						TOX =		{ create_fed_planet_1_species = { CLASS = TOX } }
+						default =	{ create_fed_planet_1_species = { CLASS = HUM } }
+					}
+				}
+			}
+			# Common Ground
+			if = {
+				limit = {
+					root = { has_origin = origin_common_ground }
+				}
+				create_common_ground_member = { NUM = 1 }
+			}
+			# Hegemon
+			if = {
+				limit = {
+					root = {
+						has_origin = origin_hegemon
+						NOT = { has_ethic = ethic_xenophobe }
+					}
+				}
+				create_hegemon_member = {
+					NUM = 1
+				}
+			}
+			create_colony = {
+				owner = event_target:fed_member_1
+			}
+			generate_start_deposits_and_blockers = yes
+			generate_start_buildings_and_districts = yes
+			generate_start_pops = yes
+			event_target:fed_member_1 = {
+				country_event = { id = game_start.8 }
+				give_starting_resources_effect = yes
+			}
+			solar_system = {
+				if = {
+					limit = {
+						event_target:fed_member_1 = {
+							is_gestalt = no
+						}
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						building = crew_quarters
+						owner = event_target:fed_member_1
+						effect = {
+							set_starbase_module = {
+								slot = 1
+								module = trading_hub
+							}
+							set_starbase_module = {
+								slot = 2
+								module = shipyard
+							}
+						}
+					}
+				}
+				else = {
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						building = crew_quarters
+						owner = event_target:fed_member_1
+						effect = {
+							set_starbase_module = {
+								slot = 1
+								module = solar_panel_network
+							}
+							set_starbase_module = {
+								slot = 2
+								module = shipyard
+							}
+						}
+					}
+				}
+			}
+		}
+
+		# Create second member
+		event_target:fed_planet_2 = {
+			solar_system = { generate_home_system_resources = yes }
+			if = {
+				limit = {
+					root = {
+						NOT = {
+							has_valid_civic = civic_selective_kinship
+						}
+					}
+				}
+				create_fed_planet_2_species = { CLASS = random }
+			}
+			else = {
+				root = {
+					switch = {
+						trigger = is_species_class
+						HUM =		{ create_fed_planet_2_species = { CLASS = HUM } }
+						MAM =		{ create_fed_planet_2_species = { CLASS = MAM } }
+						FUN =		{ create_fed_planet_2_species = { CLASS = FUN } }
+						AVI =		{ create_fed_planet_2_species = { CLASS = AVI } }
+						PLANT =		{ create_fed_planet_2_species = { CLASS = PLANT } }
+						ART =		{ create_fed_planet_2_species = { CLASS = ART } }
+						REP =		{ create_fed_planet_2_species = { CLASS = REP } }
+						MOL =		{ create_fed_planet_2_species = { CLASS = MOL } }
+						LITHOID =	{ create_fed_planet_2_species = { CLASS = LITHOID } }
+						NECROID =	{ create_fed_planet_2_species = { CLASS = NECROID } }
+						AQUATIC =	{ create_fed_planet_2_species = { CLASS = AQUATIC } }
+						TOX =		{ create_fed_planet_2_species = { CLASS = TOX } }
+						default =	{ create_fed_planet_2_species = { CLASS = HUM } }
+					}
+				}
+			}
+			# Common Ground
+			if = {
+				limit = {
+					root = { has_origin = origin_common_ground }
+				}
+				create_common_ground_member = { NUM = 2 }
+			}
+			# Hegemon
+			if = {
+				limit = {
+					root = {
+						has_origin = origin_hegemon
+						NOT = { has_ethic = ethic_xenophobe }
+					}
+				}
+				create_hegemon_member = {
+					NUM = 2
+				}
+			}
+			create_colony = {
+				owner = event_target:fed_member_2
+			}
+			generate_start_deposits_and_blockers = yes
+			generate_start_buildings_and_districts = yes
+			generate_start_pops = yes
+			event_target:fed_member_2 = {
+				country_event = { id = game_start.8 }
+				give_starting_resources_effect = yes
+			}
+			solar_system = {
+				if = {
+					limit = {
+						event_target:fed_member_2 = {
+							is_gestalt = no
+						}
+					}
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						building = crew_quarters
+						owner = event_target:fed_member_2
+						effect = {
+							set_starbase_module = {
+								slot = 1
+								module = trading_hub
+							}
+							set_starbase_module = {
+								slot = 2
+								module = shipyard
+							}
+						}
+					}
+				}
+				else = {
+					create_starbase = {
+						size = starbase_starport
+						module = shipyard
+						building = crew_quarters
+						owner = event_target:fed_member_2
+						effect = {
+							set_starbase_module = {
+								slot = 1
+								module = solar_panel_network
+							}
+							set_starbase_module = {
+								slot = 2
+								module = shipyard
+							}
+						}
+					}
+				}
+			}
+		}
+
+		# Finish setting up member empires
+		event_target:fed_member_1 = {
+			create_starting_leaders = yes
+			country_event = { id = game_start.9 } # create starter set of ships
+			country_event = { id = game_start.33 days = 1 } # needs delay for system ownership to settle
+			join_alliance = {
+				who = root
+				override_requirements = yes
+			}
+			set_name = random # Fixes some naming issues
+		}
+		event_target:fed_member_2 = {
+			create_starting_leaders = yes
+			country_event = { id = game_start.9 }
+			country_event = { id = game_start.33 days = 1 } # needs delay for system ownership to settle
+			join_alliance = {
+				who = root
+				override_requirements = yes
+			}
+			set_name = random # Fixes some naming issues
+		}
+
+		# Set Intel levels, Opinion, and Federation laws
+		if = {
+			limit = { has_origin = origin_common_ground }
+			event_target:fed_member_1 = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_common_ground
+				}
+				add_trust = {
+					amount = 50
+					who = root
+				}
+				add_trust = {
+					amount = 50
+					who = event_target:fed_member_2
+				}
+				add_intel = {
+					amount = 60
+					who = root
+				}
+				add_intel = {
+					amount = 60
+					who = event_target:fed_member_2
+				}
+			}
+			event_target:fed_member_2 = {
+				add_opinion_modifier = {
+					who = root
+					modifier = opinion_common_ground
+				}
+				add_trust = {
+					amount = 50
+					who = root
+				}
+				add_trust = {
+					amount = 50
+					who = event_target:fed_member_1
+				}
+				add_intel = {
+					amount = 60
+					who = root
+				}
+				add_intel = {
+					amount = 60
+					who = event_target:fed_member_1
+				}
+			}
+			add_opinion_modifier = {
+				who = event_target:fed_member_1
+				modifier = opinion_common_ground
+			}
+			add_opinion_modifier = {
+				who = event_target:fed_member_2
+				modifier = opinion_common_ground
+			}
+			add_trust = {
+				amount = 50
+				who = event_target:fed_member_1
+			}
+			add_trust = {
+				amount = 50
+				who = event_target:fed_member_2
+			}
+			add_intel = {
+				amount = 60
+				who = event_target:fed_member_1
+			}
+			add_intel = {
+				amount = 60
+				who = event_target:fed_member_2
+			}
+			set_federation_leader = root
+			country_event = { id = origin.57 days = 2 }
+		}
+		if = {
+			limit = { has_origin = origin_hegemon }
+			federation = {
+				set_federation_type = hegemony_federation
+				set_federation_leader = root
+				set_name = random
+				set_federation_law = succession_term_years_20
+				add_federation_experience = 600
+				add_cohesion = 100
+			}
+			event_target:fed_member_1 = {
+				add_intel = {
+					amount = 40
+					who = root
+				}
+				add_intel = {
+					amount = 40
+					who = event_target:fed_member_2
+				}
+				set_closed_borders = {
+					who = root
+					status = no
+				}
+				set_closed_borders = {
+					who = event_target:fed_member_2
+					status = no
+				}
+			}
+			event_target:fed_member_2 = {
+				add_intel = {
+					amount = 40
+					who = root
+				}
+				add_intel = {
+					amount = 40
+					who = event_target:fed_member_1
+				}
+				set_closed_borders = {
+					who = root
+					status = no
+				}
+				set_closed_borders = {
+					who = event_target:fed_member_1
+					status = no
+				}
+			}
+			add_intel = {
+				amount = 40
+				who = event_target:fed_member_1
+			}
+			set_closed_borders = {
+				who = event_target:fed_member_1
+				status = no
+			}
+			add_intel = {
+				amount = 40
+				who = event_target:fed_member_2
+			}
+			set_closed_borders = {
+				who = event_target:fed_member_2
+				status = no
+			}
+		}
+	}
+}
+
+country_event = {
+	id = origin.57
+	title = origin.57.name
+	desc = origin.57.desc
+	picture = GFX_evt_galactic_senate
+	show_sound = event_administrative_work
+	is_triggered_only = yes
+
+	option = {
+		name = origin.57.A
+		icon = {
+			icon = GFX_default_federation
+			text = origin.57.A.icon_tooltip
+		}
+		tooltip = { #does nothing, it is already default
+			federation = { set_federation_type = default_federation }
+		}
+		ai_chance = { factor = 1 }
+	}
+	option = {
+		name = origin.57.B
+		icon = {
+			icon = GFX_military_federation
+			text = origin.57.B.icon_tooltip
+		}
+		allow = {
+			OR = {
+				custom_tooltip = {
+					fail_text = civic_tooltip_militarist
+					is_militarist = yes
+				}
+				has_valid_civic = civic_hive_strength_of_legions
+				has_valid_civic = civic_machine_warbots
+			}
+
+		}
+		federation = {
+			set_federation_type = military_federation
+			set_name = random
+		}
+		ai_chance = { factor = 10 }
+	}
+	option = {
+		name = origin.57.C
+		icon = {
+			icon = GFX_research_federation
+			text = origin.57.C.icon_tooltip
+		}
+		allow = {
+			OR = {
+				custom_tooltip = {
+					fail_text = civic_tooltip_materialist
+					is_materialist = yes
+				}
+				is_machine_empire = yes
+				has_valid_civic = civic_hive_natural_neural_network
+			}
+		}
+		federation = {
+			set_federation_type = research_federation
+			set_name = random
+		}
+		ai_chance = { factor = 10 }
+	}
+	option = {
+		name = origin.57.D
+		trigger = {
+			is_gestalt = no
+		}
+		icon = {
+			icon = GFX_spiritualist_federation
+			text = origin.57.D.icon_tooltip
+		}
+		allow = {
+			custom_tooltip = {
+				fail_text = civic_tooltip_spiritualist
+				is_spiritualist = yes
+			}
+		}
+		federation = {
+			set_federation_type = spiritualist_federation
+			set_name = random
+		}
+		ai_chance = { factor = 10 }
+	}
+	option = {
+		name = origin.57.E
+		trigger = {
+			is_gestalt = no
+		}
+		icon = {
+			icon = GFX_trade_federation
+			text = origin.57.E.icon_tooltip
+		}
+		allow = {
+			OR = {
+				is_megacorp = yes
+				has_valid_civic = civic_merchant_guilds
+				has_valid_civic = civic_corporate_dominion
+			}
+		}
+		federation = {
+			set_federation_type = trade_federation
+			set_name = random
+		}
+		ai_chance = { factor = 10 }
+	}
+
+	after = {
+		federation = {
+			add_federation_experience = 600
+			add_cohesion = 100
+		}
+	}
+}
+
+###########
+# DOOMSDAY
+###########
+
+# Set Up
+country_event = {
+	id = origin.60
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		save_event_target_as = doomsday_owner
+		capital_scope = {
+			set_planet_flag = doomed_planet_origin
+			add_modifier = {
+				modifier = doomsday_1
+			}
+			planet_event = { id = origin.61 days = 5 }
+		}
+	}
+}
+
+# Doomsday 2
+planet_event = {
+	id = origin.61
+	title = "origin.61.name"
+	desc = "origin.61.desc"
+	picture = GFX_evt_animal_wildlife
+	show_sound = event_wind_ruins
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_modifier = doomsday_1
+		add_modifier = {
+			modifier = doomsday_2
+		}
+		add_planet_devastation = 10
+		planet_event = { id = origin.65 days = 3150 random = 900 }
+	}
+
+	option = {
+		name = origin_61.a
+		tooltip = {
+			add_planet_devastation = 10
+			add_modifier = {
+				modifier = doomsday_2
+			}
+		}
+	}
+}
+
+# Doomsday 3
+planet_event = {
+	id = origin.65
+	title = "origin.65.name"
+	desc = {
+		trigger = {
+			owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		text = "origin.65.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { has_ethic = ethic_gestalt_consciousness }
+		}
+		text = "origin.65.2.desc"
+	}
+	picture = GFX_evt_colony_settlement
+	show_sound = event_wind_ruins
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_modifier = doomsday_2
+		add_modifier = {
+			modifier = doomsday_3
+		}
+		add_planet_devastation = 15
+		planet_event = { id = origin.70 days = 3150 random = 900 }
+	}
+
+	option = {
+		name = origin_65.a
+		tooltip = {
+			add_planet_devastation = 15
+			add_modifier = {
+				modifier = doomsday_3
+			}
+		}
+	}
+}
+
+# Doomsday 4
+planet_event = {
+	id = origin.70
+	title = "origin.70.name"
+	desc = {
+		trigger = {
+			owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		text = "origin.70.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { has_ethic = ethic_gestalt_consciousness }
+		}
+		text = "origin.70.2.desc"
+	}
+	picture = GFX_evt_tomb_world
+	show_sound = event_wind_ruins
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_modifier = doomsday_3
+		add_modifier = {
+			modifier = doomsday_4
+		}
+		add_planet_devastation = 20
+		planet_event = { id = origin.75 days = 3150 random = 900 }
+	}
+
+	option = {
+		name = origin_70.a
+		trigger = {
+			owner = {
+				NOT = { has_authority = auth_machine_intelligence }
+			}
+		}
+		tooltip = {
+			add_planet_devastation = 20
+			add_modifier = {
+				modifier = doomsday_4
+			}
+		}
+	}
+
+	option = {
+		name = origin_70.b
+		trigger = {
+			owner = { has_authority = auth_machine_intelligence }
+		}
+		tooltip = {
+			add_planet_devastation = 20
+			add_modifier = {
+				modifier = doomsday_4
+			}
+		}
+	}
+}
+
+# Doomsday 5
+planet_event = {
+	id = origin.75
+	title = "origin.75.name"
+	desc = {
+		trigger = {
+			owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		text = "origin.75.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { has_ethic = ethic_gestalt_consciousness }
+		}
+		text = "origin.75.2.desc"
+	}
+	picture = GFX_evt_outpost
+	show_sound = event_wind_ruins
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		remove_modifier = doomsday_4
+		add_modifier = {
+			modifier = doomsday_5
+		}
+		add_planet_devastation = 25
+		planet_event = { id = origin.76 days = 3150 random = 900 }
+	}
+
+	option = {
+		name = origin_75.a
+		tooltip = {
+			add_planet_devastation = 25
+			add_modifier = {
+				modifier = doomsday_5
+			}
+		}
+	}
+}
+
+# Doomsday 5.5
+planet_event = {
+	id = origin.76
+	title = "origin.76.name"
+	desc = {
+		trigger = {
+			owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		text = "origin.76.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { has_ethic = ethic_gestalt_consciousness }
+		}
+		text = "origin.76.2.desc"
+	}
+	picture = GFX_evt_city_ruins
+	show_sound = event_screams
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		planet_event = { id = origin.80 days = 260 random = 80 }
+	}
+
+	option = {
+		name = origin_76.a
+	}
+}
+
+# Doomsday 6 - THE END
+planet_event = {
+	id = origin.80
+	title = "origin.80.name"
+	desc = {
+		trigger = {
+			has_planet_flag = doomsday_lost_some_pops
+			has_planet_flag = doomsday_still_original_owner
+			event_target:doomsday_owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		text = "origin.80.1.desc"
+	}
+	desc = {
+		trigger = {
+			has_planet_flag = doomsday_lost_some_pops
+			has_planet_flag = doomsday_still_original_owner
+			event_target:doomsday_owner = {
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		text = "origin.80.1.gestalt.desc"
+	}
+	desc = {
+		trigger = {
+			has_planet_flag = doomsday_lost_many_pops
+			has_planet_flag = doomsday_still_original_owner
+			event_target:doomsday_owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		text = "origin.80.2.desc"
+	}
+	desc = {
+		trigger = {
+			has_planet_flag = doomsday_lost_many_pops
+			has_planet_flag = doomsday_still_original_owner
+			event_target:doomsday_owner = {
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		text = "origin.80.2.gestalt.desc"
+	}
+	desc = {
+		trigger = {
+			has_planet_flag = doomsday_lost_everything
+			has_planet_flag = doomsday_still_original_owner
+			event_target:doomsday_owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		text = "origin.80.4.desc"
+	}
+	desc = {
+		trigger = {
+			has_planet_flag = doomsday_lost_everything
+			has_planet_flag = doomsday_still_original_owner
+			event_target:doomsday_owner = {
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		text = "origin.80.4.gestalt.desc"
+	}
+	desc = {
+		trigger = {
+			NOT = { has_planet_flag = doomsday_still_original_owner }
+		}
+		text = "origin.80.5.desc"
+	}
+	picture = GFX_evt_exploding_planet
+	show_sound = event_super_explosion
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_owner = yes
+				owner = { is_same_value = event_target:doomsday_owner }
+			}
+			set_planet_flag = doomsday_still_original_owner
+			if = {
+				limit = {
+					owner = { num_owned_planets = 1 }
+				}
+				set_planet_flag = doomsday_lost_everything
+				owner = { set_country_flag = silence_destroy_event }
+			}
+			else_if = {
+				limit = {
+					owner = { num_owned_planets > 1 }
+					num_pops >= 20
+				}
+				set_planet_flag = doomsday_lost_many_pops
+			}
+			else_if = {
+				limit = {
+					owner = { num_owned_planets > 1 }
+					num_pops <= 19
+					num_pops > 0
+				}
+				set_planet_flag = doomsday_lost_some_pops
+			}
+			event_target:doomsday_owner = {
+				every_relation = {
+					limit = {
+						is_ai = no
+						has_communications = prev
+						OR = {
+							has_intel_level = {
+								who = prev
+								category = government
+								level >= 1
+							}
+							has_intel_level = {
+								who = prev
+								category = economy
+								level >= 1
+							}
+						}
+					}
+					country_event = { id = origin.90 }
+				}
+			}
+		}
+		else = {
+			event_target:doomsday_owner = {
+				country_event = { id = origin.81 }
+				every_relation = {
+					limit = {
+						is_ai = no
+						has_communications = prev
+						OR = {
+							has_intel_level = {
+								who = prev
+								category = government
+								level >= 1
+							}
+							has_intel_level = {
+								who = prev
+								category = economy
+								level >= 1
+							}
+						}
+					}
+					country_event = { id = origin.91 }
+				}
+			}
+		}
+		every_owned_pop = { kill_pop = yes }
+		remove_modifier = doomsday_5
+		destroy_colony = yes
+		change_pc = pc_shattered
+		clear_deposits = yes
+		random_list = {
+			1 = {
+				add_deposit = d_minerals_10
+				add_deposit = d_minerals_6
+			}
+			1 = {
+				add_deposit = d_minerals_10
+				add_deposit = d_minerals_2
+			}
+			1 = {
+				add_deposit = d_minerals_8
+			}
+			1 = {
+				add_deposit = d_minerals_4
+			}
+		}
+	}
+
+	option = {
+		name = origin_80.a
+		trigger = {
+			has_planet_flag = doomsday_lost_everything
+		}
+	}
+	option = {
+		name = origin_80.b
+		trigger = {
+			has_planet_flag = doomsday_lost_many_pops
+		}
+	}
+	option = {
+		name = origin_80.c
+		trigger = {
+			has_planet_flag = doomsday_lost_some_pops
+		}
+	}
+	option = {
+		name = UNFORTUNATE
+		trigger = {
+			NOR = {
+				has_planet_flag = doomsday_lost_everything
+				has_planet_flag = doomsday_lost_some_pops
+				has_planet_flag = doomsday_lost_many_pops
+				has_planet_flag = doomsday_lost_some_pops
+			}
+		}
+	}
+}
+
+# Doomsday 6 - Planet Evacuated
+country_event = {
+	id = origin.81
+	title = "origin.81.name"
+	desc = "origin.81.desc"
+	picture = GFX_evt_exploding_planet
+	show_sound = event_ground_battle
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = origin_81.a
+	}
+}
+
+# Doomsday Colonized Planet (HIDDEN)
+planet_event = {
+	id = origin.84
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		owner = {
+			has_origin = origin_doomsday
+			NOT = { has_country_flag = colonized_first_planet }
+		}
+	}
+
+	immediate = {
+		owner = { set_country_flag = colonized_first_planet }
+		planet_event = { id = origin.85 days = 5 }
+	}
+}
+
+# Doomsday Colonized Planet
+planet_event = {
+	id = origin.85
+	title = "origin.85.name"
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+			habitability = {
+				who = root.owner.owner_species
+				value >= 0.5
+			}
+		}
+		text = "origin.85.1.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = no }
+			habitability = {
+				who = root.owner.owner_species
+				value < 0.5
+			}
+		}
+		text = "origin.85.2.desc"
+	}
+	desc = {
+		trigger = {
+			owner = { is_gestalt = yes }
+		}
+		text = "origin.85.3.desc"
+	}
+	picture = GFX_evt_landing_ship
+	show_sound = event_ship_thrusters
+	location = root
+
+	is_triggered_only = yes
+
+	option = {
+		name = origin_85.a
+		owner = {
+			if = {
+				limit = { is_gestalt = yes }
+				add_modifier = {
+					modifier = "doomsday_first_colony_gestalt"
+					days = 1800
+				}
+			}
+			else = {
+				add_modifier = {
+					modifier = "doomsday_first_colony"
+					days = 1800
+				}
+			}
+		}
+	}
+}
+
+# Doomsday - Neighbors Informed
+country_event = {
+	id = origin.90
+	title = "origin.90.name"
+	desc = {
+		trigger = {
+			from = { has_planet_flag = doomsday_lost_some_pops }
+			event_target:doomsday_owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		text = "origin.90.1.desc"
+	}
+	desc = {
+		trigger = {
+			from = { has_planet_flag = doomsday_lost_some_pops }
+			event_target:doomsday_owner = { has_ethic = ethic_gestalt_consciousness }
+		}
+		text = "origin.90.1.gestalt.desc"
+	}
+	desc = {
+		trigger = {
+			from = { has_planet_flag = doomsday_lost_many_pops }
+			event_target:doomsday_owner = {
+				NOT = { has_ethic = ethic_gestalt_consciousness }
+			}
+		}
+		text = "origin.90.2.desc"
+	}
+	desc = {
+		trigger = {
+			from = { has_planet_flag = doomsday_lost_many_pops }
+			event_target:doomsday_owner = { has_ethic = ethic_gestalt_consciousness }
+		}
+		text = "origin.90.2.gestalt.desc"
+	}
+	desc = {
+		trigger = {
+			from = { has_planet_flag = doomsday_lost_everything }
+		}
+		text = "origin.90.3.desc"
+	}
+	picture = GFX_evt_exploding_planet
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = origin_90.a
+	}
+}
+
+# Doomsday - Neighbors Informed, Planet Completely Evacuated
+country_event = {
+	id = origin.91
+	title = "origin.91.name"
+	desc = "origin.91.desc"
+	picture = GFX_evt_exploding_planet
+	show_sound = event_super_explosion
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = origin_91.a
+	}
+}
+
+##############
+# LOST COLONY
+##############
+
+# Lost Colony Setup
+country_event = {
+	id = origin.100
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				is_human_species = no
+			}
+			random_country = {
+				limit = {
+					has_country_flag = lost_colony_parent_of@root
+				}
+				capital_scope = { change_pc = root.species }
+				every_owned_planet = {
+					limit = { has_planet_flag = lost_colony_planet }
+					change_pc = root.species
+				}
+			}
+		}
+	}
+}
+
+############################
+# BROKEN SHACKLES & PAYBACK
+############################
+
+# Broken Shackles Setup
+country_event = {
+	id = origin.110
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		low_tech_start_add_research_options_effect = yes
+
+		# Broken Shackles pops are aware of alien life
+		set_country_flag = encountered_first_primitive
+		set_country_flag = first_contact_event
+		set_country_flag = first_alien_life
+		set_country_flag = Story1
+		set_country_flag = Story2 # Already encountered spacefarers
+		set_country_flag = Story3
+		set_country_flag = Story4
+		set_country_flag = Story5
+		set_country_flag = Story6
+		set_country_flag = Story7
+		set_country_flag = has_encountered_other_empire
+
+		if = {
+			limit = {
+				count_country = {
+					limit = {
+						is_primitive = yes
+					}
+					count < 3
+				}
+			}
+			capital_scope = {
+				while = {
+					count = 3
+					spawn_system = {
+						min_distance = 10
+						max_distance = 100
+						initializer = pre_ftl_init_01
+						hyperlane = no
+						is_discovered = no
+					}
+					add_extra_hyperlane_to_spawned_system_effect = yes
+					add_extra_hyperlane_to_spawned_system_effect = yes
+				}
+			}
+		}
+
+		capital_scope = {
+			solar_system = {
+				set_star_flag = broken_shackles_system
+			}
+			while = {
+				limit = { num_pops < 28 }
+				if = {
+					limit = {
+						any_country = {
+							species = {
+								ideal_planet_is_special = no
+								NOT = { has_trait = trait_hive_mind }
+							}
+							OR = {
+								is_preftl_but_not_special = yes
+								AND = {
+									has_slave_origin = yes
+									NOT = { is_same_value = root }
+								}
+							}
+						}
+					}
+					random_country = {
+						limit = {
+							species = {
+								ideal_planet_is_special = no
+								NOT = { has_trait = trait_hive_mind }
+							}
+							OR = {
+								is_preftl_but_not_special = yes
+								AND = {
+									has_slave_origin = yes
+									NOT = { is_same_value = root }
+								}
+							}
+						}
+						set_country_flag = broken_shackles_abductees_country
+						set_country_flag = broken_shackles_abductees@root
+						owner_species = { save_event_target_as = random_primitive_species }
+						capital_scope = {
+							set_planet_flag = broken_shackles_abductees_world@root
+						}
+						if = {
+							limit = {
+								is_primitive = yes
+								has_awareness < 75
+							}
+							set_awareness = 75
+						}
+					}
+					create_pop = {
+						species = event_target:random_primitive_species
+						ethos = random
+					}
+				}
+			}
+			check_planet_employment = yes
+
+			# Dig site
+			owner = {
+				set_country_flag = broken_shackles_origin_arcsite_owner@prev
+			}
+			create_archaeological_site = broken_shackles_digsite
+		}
+
+		random_owned_pop = {
+			species = {
+				save_event_target_as = researcher_species
+			}
+		}
+		create_leader = {
+			class = scientist
+			name = random
+			species = event_target:researcher_species
+			effect = {
+				set_council_position = councilor_research
+			}
+		}
+
+		random_owned_pop = {
+			species = {
+				save_event_target_as = defense_species
+			}
+		}
+		create_leader = {
+			class = admiral
+			name = random
+			species = event_target:defense_species
+			effect = {
+				set_council_position = councilor_defense
+			}
+		}
+
+		if = {
+			limit = {
+				is_human_species = no
+			}
+			random_country = {
+				limit = {
+					has_country_flag = broken_shackles_parent_of@root
+				}
+				capital_scope = { change_pc = root.species }
+			}
+		}
+		else = {
+			# Spawn Primitive Earth if no other Earth exists
+			if = {
+				limit = {
+					NOT = {
+						exists = event_target:sol_system_earth
+					}
+				}
+				random_system = {
+					limit = { NOT = { has_star_flag = empire_cluster } }
+					spawn_system = {
+						min_distance = 10
+						max_distance = 30
+						max_jumps = 0
+						initializer = "pre_ftl_init_sol"
+					}
+				}
+			}
+
+			set_country_flag = parent_system_spawned
+			save_event_target_as = broken_shackles_child
+
+			# Now make Earth our homeworld
+			event_target:sol_system_earth = {
+				if = {
+					limit = {
+						exists = owner
+					}
+					owner = {
+						set_country_flag = broken_shackles_parent_country
+						set_country_flag = special_intro_for@event_target:broken_shackles_child
+						set_country_flag = broken_shackles_parent_of@event_target:broken_shackles_child
+					}
+					set_planet_flag = broken_shackles_homeworld_@root
+					solar_system = {
+						set_star_flag = broken_shackles_home_system_@root
+					}
+				}
+			}
+
+			owner_species = { set_species_homeworld = event_target:sol_system_earth }
+		}
+
+		# Safety pops in case there are literally no other primitives in the galaxy
+		capital_scope = {
+			while = {
+				limit = { num_pops < 28 }
+				create_pop = {
+					species = owner_main_species
+					ethos = random
+				}
+			}
+			check_planet_employment = yes
+		}
+		random_country = {
+			limit = {
+				has_country_flag = broken_shackles_parent_of@root
+				is_primitive = yes
+			}
+			set_awareness = 75
+		}
+
+		# Parliamentary System interaction
+		if = {
+			limit = {
+				has_valid_civic = civic_parliamentary_system
+			}
+			country_event = {
+				id = origin.5041
+				days = 30
+			}
+		}
+	}
+}
+
+# Broken Shackles - crashed ship depleted
+country_event = {
+	id = origin.111
+	title = "origin.111.name"
+
+	desc = {
+		trigger = {
+			any_owned_planet = {
+				has_deposit = d_crashed_slaver_ship
+			}
+		}
+		text = "origin.111.1.desc"
+	}
+	desc = {
+		trigger = {
+			NOT = {
+				any_owned_planet = {
+					has_deposit = d_crashed_slaver_ship
+				}
+			}
+		}
+		text = "origin.111.2.desc"
+	}
+
+	picture = GFX_evt_ship_offloading_cargo
+	show_sound = event_construction
+	location = root
+
+	is_triggered_only = yes
+
+	option = {
+		name = origin_111.a
+		custom_tooltip = origin_111.tooltip
+		set_country_flag = origin_broken_shackles_crashed_slaver_ship_depleted
+		if = {
+			limit = {
+				owner = {
+					has_country_flag = broken_shackles_scrappers
+				}
+			}
+			owner = {
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier2researchreward
+					min = @tier2researchmin
+					max = @tier2researchmax
+				}
+				owner = {
+					add_monthly_resource_mult = {
+						resource = minerals
+						value = @tier3materialreward
+						min = @tier3materialmin
+						max = @tier3materialmax
+					}
+					add_monthly_resource_mult = {
+						resource = consumer_goods
+						value = @tier3materialreward
+						min = @tier3materialmin
+						max = @tier3materialmax
+					}
+					add_monthly_resource_mult = {
+						resource = alloys
+						value = @tier3materialreward
+						min = @tier3materialmin
+						max = @tier3materialmax
+					}
+				}
+			}
+		}
+	}
+}
+
+# Spawn Broken Shackles for Payback
+country_event = {
+	id = origin.112
+	hide_window = yes
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				count_country = {
+					limit = {
+						is_primitive = yes
+					}
+					count < 3
+				}
+			}
+			capital_scope = {
+				while = {
+					count = 3
+					spawn_system = {
+						min_distance = 10
+						max_distance = 100
+						initializer = pre_ftl_init_01
+						hyperlane = no
+						is_discovered = no
+					}
+					add_extra_hyperlane_to_spawned_system_effect = yes
+					add_extra_hyperlane_to_spawned_system_effect = yes
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_playable_country = {
+					has_origin = origin_broken_shackles
+				}
+			}
+		}
+		else = {
+			uplift_pre_ftl_with_origin_effect = {
+				ORIGIN = origin_broken_shackles
+			}
+			set_country_flag = victims_of_@event_target:MSI_country
+		}
+	}
+}
+
+# Spawn Payback for Broken Shackles
+country_event = {
+	id = origin.113
+	hide_window = yes
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				any_playable_country = {
+					has_origin = origin_payback
+				}
+			}
+		}
+		else = {
+			uplift_pre_ftl_with_origin_effect = {
+				ORIGIN = origin_payback
+			}
+			set_country_flag = victims_of_@event_target:MSI_country
+		}
+	}
+}

@@ -1,4 +1,10 @@
 @planet_type_bonus = 1.5
+@high = 16
+@med = 8
+@low = 4
+
+@high_rare = 0.5
+@mid_rare = 0.25
 @low_rare = 0.1
 
 ### Thessia
@@ -53,7 +59,8 @@ d_thessia_devastated_republic_yisrin = {
 		cost = {
 			energy = 15000
 			minerals = 5000
-			alloys = 1200
+			light_metals = 700
+			heavy_metals = 500
 		}
 	}
 
@@ -331,7 +338,31 @@ d_heshtok_ocean_of_cinders_5 = {
 	prerequisites = { "tech_volcano" }
 }
 
+d_heretic_unfinished_server_cores = {
+	icon = d_unfinished_server_cores
+	time = 120
 
+	is_for_colonizable = yes
+	category = deposit_cat_blockers
+
+	potential = { always = no }
+
+	planet_modifier = {
+		planet_max_districts_add = -1
+	}
+
+	use_weights_for_blocker_swap_types = no
+	blocker_swap_types = {
+		d_heretic_geth_server_hubs
+	}
+
+	resources = {
+		category = deposit_blockers
+		cost = {
+			energy = 300
+		}
+	}
+}
 
 
 
@@ -424,6 +455,6 @@ d_shifty_cow = {
 	time = 360
 
 	drop_weight = {
-		weight = @low_rare
+		weight = @high_rare
 	}
 }

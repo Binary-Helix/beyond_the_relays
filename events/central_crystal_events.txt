@@ -1,0 +1,724 @@
+##############################
+# Central Crystal Events
+# by Joachim
+##############################
+
+namespace = central
+
+# Start Events
+event = {
+	id = central.1
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		any_country = {
+			is_ai = no
+			has_origin = origin_void_dwellers
+		}
+	}
+
+	immediate = {
+		random = {
+			chance = 1
+			set_global_flag = central_crystal_flag
+		}
+	}
+}
+
+event = {
+	id = central.2
+
+	hide_window = yes
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	trigger = {
+		has_global_flag = central_crystal_flag
+		any_system = {
+			has_natural_wormhole = no
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				any_system = {
+					has_star_flag = central_crystal_flag
+				}
+			}
+			random_system = {
+				limit = {
+					has_star_flag = central_crystal_flag
+				}
+				random_system_planet = {
+					limit = {
+						has_planet_flag = snow_crystal_planet
+					}
+					central_crystal_country_spawn_effect = yes
+				}
+			}
+		}
+		# else = {
+		# 	central_crystal_spawn_effect = {
+		# 		INITIALIZER = central_crystal_init_01
+		# 	}
+
+		# 	event_target:the_outer_gate = {
+		# 		random_system = {
+		# 			limit = {
+		# 				has_natural_wormhole = no
+		# 			}
+		# 			prev = {
+		# 				spawn_natural_wormhole = {
+		# 					bypass_type = wormhole
+		# 					random_pos = no
+		# 					orbit_angle = 360
+		# 				}
+		# 			}
+		# 			spawn_natural_wormhole = {
+		# 				bypass_type = wormhole
+		# 				random_pos = no
+		# 				orbit_angle = 360
+		# 			}
+		# 			link_wormholes = prev
+		# 		}
+		# 	}
+		# }
+
+		every_playable_country = {
+			country_event = {
+				id = central.5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = central.5
+	title = central.5.name
+	desc = central.5.desc
+	picture = GFX_evt_star_pulsar
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = central.5.a
+	}
+
+	after = {
+		hidden_effect = {
+			#set_timed_country_flag = { flag = central_crystal_task days = 7200 }
+			establish_communications_no_message = event_target:central_crystal_empire
+			country_event = {
+				id = central.10
+			}
+		}
+	}
+}
+
+country_event = {
+	id = central.10
+	title = INCOMING_TRANSMISSION
+	desc = central.10.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:central_crystal_empire
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	option = {
+		name = SCUM
+		trigger = {
+			has_valid_civic = civic_fanatic_purifiers
+		}
+	}
+
+	option = {
+		name = TASTY
+		trigger = {
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+	}
+
+	option = {
+		name = EXTERMINATE
+		trigger = {
+			has_valid_civic = civic_machine_terminator
+		}
+	}
+
+	option = {
+		name = central.10.a
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = central.15
+			}
+		}
+	}
+}
+
+country_event = {
+	id = central.15
+	title = INCOMING_TRANSMISSION
+	desc = central.15.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		room = no_video_feed_room
+	}
+
+	option = {
+		name = central.15.a
+	}
+}
+
+# Transmissions with the Empire
+country_event = {
+	id = central.19
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { has_country_flag = central_crystal_country }
+		NOT = {
+			has_active_event = {
+				central.19
+				central.20
+				central.21
+			}
+		}
+	}
+
+	immediate = {
+		from = {
+			save_event_target_as = crystalline_empire_target
+		}
+		remove_country_flag = central_crystal_further_discussions
+		if = {
+			limit = {
+				event_target:crystalline_empire_target = {
+					is_hostile = root
+				}
+			}
+			country_event = {
+				id = central.21
+			}
+		}
+		else = {
+			country_event = {
+				id = central.20
+			}
+		}
+	}
+}
+
+# Base Transmission
+country_event = {
+	id = central.20
+	title = central.20.name
+	desc = {
+		text = central.20.1.desc
+		trigger = {
+			has_country_flag = central_crystal_further_discussions
+		}
+	}
+	desc = {
+		text = central.20.2.desc
+		trigger = {
+			event_target:crystalline_empire_target = {
+				opinion = {
+					who = root
+					value < 50
+				}
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	immediate = {
+		hidden_effect = {
+			remove_country_flag = central_crystal_first_question
+			remove_country_flag = central_crystal_second_question
+			remove_country_flag = central_crystal_third_question
+		}
+	}
+
+	option = {
+		name = SCUM
+		trigger = {
+			has_valid_civic = civic_fanatic_purifiers
+		}
+	}
+
+	option = {
+		name = TASTY
+		trigger = {
+			has_valid_civic = civic_hive_devouring_swarm
+		}
+	}
+
+	option = {
+		name = EXTERMINATE
+		trigger = {
+			has_valid_civic = civic_machine_terminator
+		}
+	}
+
+	option = { # Ask about their background
+		name = central.20.a
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+				has_country_flag = central_crystal_first_question
+			}
+		}
+		hidden_effect = {
+			set_country_flag = central_crystal_first_question
+		}
+		is_dialog_only = yes
+		response_text = central.20.a.response
+	}
+
+	option = { # Ask what brought them out of hiding
+		name = central.20.b
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+				has_country_flag = central_crystal_second_question
+			}
+		}
+		hidden_effect = {
+			set_country_flag = central_crystal_second_question
+		}
+		is_dialog_only = yes
+		response_text = central.20.b.response
+	}
+
+	option = { # When you have no available tasks
+		name = central.20.c
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+				has_country_flag = central_crystal_third_question
+			}
+			has_country_flag = central_crystal_task
+		}
+		hidden_effect = {
+			set_country_flag = central_crystal_third_question
+		}
+		is_dialog_only = yes
+		response_text = central.20.c.response
+	}
+
+	option = { # When you have an available task
+		name = central.20.c
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+				has_country_flag = central_crystal_task
+				has_country_flag = central_crystal_third_question
+			}
+		}
+		hidden_effect = {
+			set_country_flag = central_crystal_third_question
+			set_timed_country_flag = {
+				flag = central_crystal_task
+				days = 7200
+			}
+			fire_on_action = { on_action = on_crystalline_empire_task }
+		}
+	}
+
+	option = {
+		name = central.20.d
+		trigger = {
+			NOR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		default_hide_option = yes
+	}
+}
+
+# Hostile Transmission
+country_event = {
+	id = central.21
+	title = central.20.name
+	desc = central.21.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	option = {
+		name = central.21.a
+	}
+}
+
+### Tasks ###
+
+# Refugees from the Empire
+country_event = {
+	id = central.50
+	title = central.20.name
+	desc = central.50.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	trigger = {
+		any_owned_planet = {
+			is_planet_class = pc_habitat
+		}
+	}
+
+	option = {
+		name = central.50.a
+		set_timed_country_flag = {
+			flag = crystalline_refugees_flag
+			days = 3600
+		}
+		custom_tooltip = central.50.a.tt
+		hidden_effect = {
+			country_event = {
+				id = central.51
+			}
+		}
+	}
+
+	option = {
+		name = central.50.b
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = {
+				id = central.52
+			}
+		}
+	}
+
+	after = {
+		set_timed_country_flag = { flag = central_crystal_task days = 7200 }
+	}
+}
+
+country_event = {
+	id = central.51
+	title = central.20.name
+	desc = central.51.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	option = {
+		name = central.51.a
+		hidden_effect = {
+			set_country_flag = central_crystal_further_discussions
+			country_event = {
+				id = central.20
+			}
+		}
+	}
+
+	option = {
+		name = central.51.b
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = central.52
+	title = central.20.name
+	desc = central.52.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	option = {
+		name = central.51.a
+		hidden_effect = {
+			set_country_flag = central_crystal_further_discussions
+			country_event = {
+				id = central.20
+			}
+		}
+	}
+
+	option = {
+		name = central.51.b
+		default_hide_option = yes
+	}
+}
+
+# Secret Techniques
+country_event = {
+	id = central.60
+	title = central.20.name
+	desc = central.60.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	trigger = {
+		resource_stockpile_compare = {
+			resource = alloys
+			value > 1000
+		}
+	}
+
+	option = {
+		name = central.60.a
+		set_timed_country_flag = {
+			flag = crystalline_architecture_flag
+			days = 3600
+		}
+		custom_tooltip = central.60.a.tt
+		add_resource = { energy = 2000 }
+		add_resource = { alloys = -1000 }
+		hidden_effect = {
+			country_event = { id = central.61 }
+		}
+	}
+
+	option = {
+		name = central.60.b
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = { id = central.62 }
+		}
+	}
+
+	after = {
+		set_timed_country_flag = { flag = central_crystal_task days = 7200 }
+	}
+}
+
+country_event = {
+	id = central.61
+	title = central.20.name
+	desc = central.61.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	option = {
+		name = central.51.a
+		hidden_effect = {
+			set_country_flag = central_crystal_further_discussions
+			country_event = {
+				id = central.20
+			}
+		}
+	}
+
+	option = {
+		name = central.51.b
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = central.62
+	title = central.20.name
+	desc = central.62.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	option = {
+		name = central.51.a
+		hidden_effect = {
+			set_country_flag = central_crystal_further_discussions
+			country_event = {
+				id = central.20
+			}
+		}
+	}
+
+	option = {
+		name = central.51.b
+		default_hide_option = yes
+	}
+}
+
+# Curious Scientist
+country_event = {
+	id = central.70
+	title = central.20.name
+	desc = central.70.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	trigger = {
+
+	}
+
+	option = {
+		name = central.70.a
+		custom_tooltip = central.70.a.tt
+		hidden_effect = {
+			country_event = { id = central.71 }
+			create_leader = {
+				class = scientist
+				species = event_target:crystalline_empire_species
+				skill = 7
+			}
+		}
+	}
+
+	option = {
+		name = central.70.b
+		default_hide_option = yes
+		hidden_effect = {
+			country_event = { id = central.72 }
+		}
+	}
+
+	after = {
+		set_timed_country_flag = { flag = central_crystal_task days = 7200 }
+	}
+}
+
+country_event = {
+	id = central.71
+	title = central.20.name
+	desc = central.71.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	option = {
+		name = central.51.a
+		hidden_effect = {
+			set_country_flag = central_crystal_further_discussions
+			country_event = {
+				id = central.20
+			}
+		}
+	}
+
+	option = {
+		name = central.51.b
+		default_hide_option = yes
+	}
+}
+
+country_event = {
+	id = central.72
+	title = central.20.name
+	desc = central.72.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:crystalline_empire_target
+		room = personality_harmonious_hierarchy_room
+		planet_background = pc_ice_asteroid
+	}
+
+	option = {
+		name = central.51.a
+		hidden_effect = {
+			set_country_flag = central_crystal_further_discussions
+			country_event = {
+				id = central.20
+			}
+		}
+	}
+
+	option = {
+		name = central.51.b
+		default_hide_option = yes
+	}
+}

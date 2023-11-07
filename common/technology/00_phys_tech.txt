@@ -19,6 +19,7 @@ tech_basic_science_lab_1 = {
 	ai_weight = {
 		weight = 10000
 	}
+
 	starting_potential = {
 		is_low_tech_start = no # So Broken Shackles origin players don't start with it
 	}
@@ -121,7 +122,12 @@ tech_curator_lab = {
 
 	potential = {
 		NOT = {
-			galaxy_size = btr_hybrid_600
+			#galaxy_size = btr_hybrid_600
+			#galaxy_size = btr_hybrid_1300
+			#galaxy_size = btr_hybrid_1500
+			galaxy_size = btr_canon_600
+			galaxy_size = btr_canon_1300
+			galaxy_size = btr_canon_1500
 		}
 	}
 
@@ -179,7 +185,12 @@ tech_archeology_lab = {
 	potential = {
 		NOT = {
 			#has_ancrel = no
-			galaxy_size = btr_hybrid_600
+			#galaxy_size = btr_hybrid_600
+			#galaxy_size = btr_hybrid_1300
+			#galaxy_size = btr_hybrid_1500
+			galaxy_size = btr_canon_600
+			galaxy_size = btr_canon_1300
+			galaxy_size = btr_canon_1500
 		}
 	}
 
@@ -1022,6 +1033,11 @@ tech_neuro_quantum_links = {
 		modifier = {
 			factor = 0
 			host_has_dlc = "Utopia"
+			NOR = {
+				has_ascension_perk = ap_the_flesh_is_weak
+				has_ascension_perk = ap_organo_machine_interfacing
+				has_ascension_perk = ap_organo_machine_interfacing_assimilator
+			}
 		}
 		modifier = {
 			factor = 0.25
@@ -1906,7 +1922,8 @@ tech_hyper_drive_1 = {
 	is_reverse_engineerable = no
 
 	prereqfor_desc = {
-		component = {
+		hide_prereq_for_desc = component
+		custom = {
 			title = "TECH_UNLOCK_HYPERDRIVE_1_TITLE"
 			desc = "TECH_UNLOCK_HYPERDRIVE_1_DESC"
 		}
@@ -1915,7 +1932,7 @@ tech_hyper_drive_1 = {
 	weight_modifier = {
 		factor = 1000
 	}
-		ai_weight = {
+	ai_weight = {
 		weight = 10000
 	}
 	starting_potential = {
@@ -1950,7 +1967,8 @@ tech_hyper_drive_2 = {
 	}
 
 	prereqfor_desc = {
-		component = {
+		hide_prereq_for_desc = component
+		custom = {
 			title = "TECH_UNLOCK_HYPERDRIVE_2_TITLE"
 			desc = "TECH_UNLOCK_HYPERDRIVE_2_DESC"
 		}
@@ -1988,7 +2006,8 @@ tech_hyper_drive_3 = {
 	}
 
 	prereqfor_desc = {
-		component = {
+		hide_prereq_for_desc = component
+		custom = {
 			title = "TECH_UNLOCK_HYPERDRIVE_3_TITLE"
 			desc = "TECH_UNLOCK_HYPERDRIVE_3_DESC"
 		}
@@ -2074,9 +2093,11 @@ tech_wormhole_stabilization = {
 	}
 
 	ai_weight = {
-		factor = 100
-		mid_game_years_passed > 0
-		has_country_flag = chosen_empire
+		modifier = {
+			factor = 100
+			mid_game_years_passed > 0
+			has_country_flag = chosen_empire
+		}
 	}
 }
 
@@ -2165,7 +2186,12 @@ tech_ftl_inhibitor = {
 
 	potential = {
 		NOT = {
-			galaxy_size = btr_hybrid_600
+			#galaxy_size = btr_hybrid_600
+			#galaxy_size = btr_hybrid_1300
+			#galaxy_size = btr_hybrid_1500
+			galaxy_size = btr_canon_600
+			galaxy_size = btr_canon_1300
+			galaxy_size = btr_canon_1500
 		}
 	}
 
@@ -2195,6 +2221,7 @@ tech_bio_reactor = {
 
 	potential = {
 		OR = {
+			is_catalytic_empire = yes
 			is_machine_empire = yes
 			is_mechanical_empire = yes
 			is_lithoid_empire = yes
