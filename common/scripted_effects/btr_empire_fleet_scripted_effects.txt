@@ -2307,6 +2307,46 @@ generate_gothones_rem_science_ships = {
 	}
 }
 
+### Rachni Hive
+generate_rachni_hiv_fleet = {
+	create_fleet = {
+		effect = {
+			set_owner = prev
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:rachniFleet
+				distance = 150
+				angle = random
+			}	
+		}
+	}
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Rachni Fleet"
+			set_owner = prev
+
+			while = {
+				count = 1
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			set_location = {
+				target = event_target:rachniFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+}
 
 ### Geth Consensus
 generate_geth_con_first_fleet = {

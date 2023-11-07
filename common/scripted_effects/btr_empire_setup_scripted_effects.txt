@@ -684,6 +684,10 @@ generate_omega_empire_starting_setup = {
 		modifier = omega_never_ending_party
 		days = -1
 	}		
+	add_modifier = {
+		modifier = corpo_private_enterprises
+		days = -1
+	}
 
 	log = "Omega Empire Modifier Set"
 
@@ -742,6 +746,10 @@ generate_illium_corporate_interests_starting_setup = {
 		modifier = illium_corporate_emporium
 		days = -1
 	}
+	add_modifier = {
+		modifier = corpo_private_enterprises
+		days = -1
+	}
 
 	log = "Illium Corporate Interests Empire Modifier Set"
 
@@ -798,6 +806,10 @@ generate_caleston_directorate_starting_setup = {
 
 	add_modifier = {
 		modifier = caleston_dir_civility_among_savages
+		days = -1
+	}
+	add_modifier = {
+		modifier = corpo_private_enterprises
 		days = -1
 	}
 
@@ -1501,6 +1513,54 @@ generate_citadel_council_starting_resources = {
 	log = "Citadel Council Mining and Research Stations Set"
 }
 
+generate_independent_world_starting_setup = {
+	add_resource = { energy = 1000	}
+	add_resource = { minerals = 1000 }
+	add_resource = { food = 1000 }
+	add_resource = { consumer_goods = 1000 }
+	add_resource = { light_metals = 1000 }	
+	add_resource = { beryllium = 1000 }
+	add_resource = { lithium = 1000 }
+	add_resource = { titanium = 1000 }
+	add_resource = { heavy_metals = 1000 }
+	add_resource = { iridium = 1000 }
+	add_resource = { palladium = 1000 }
+	add_resource = { platinum = 1000 }
+	add_resource = { antimatter_fuel = 1000 }
+	add_resource = { helium_3 = 1000 }
+	add_resource = { hydrogen = 1000 }
+	add_resource = { uranium = 1000 }
+	add_resource = { eezo = 1000 }
+
+	add_modifier = {
+		modifier = corpo_private_enterprises
+		days = -1
+	}
+
+	give_btr_T0_starting_tech = yes
+	give_btr_T1_starting_tech = yes
+
+	every_planet_within_border = {
+		limit = {
+			has_deposit_for = shipclass_mining_station
+			has_mining_station = no
+		}
+		create_mining_station = {
+			owner = ROOT
+		}
+	}
+	every_planet_within_border = {
+		limit = {
+			has_deposit_for = shipclass_research_station
+			has_research_station = no
+		}
+		create_research_station = {
+			owner = ROOT
+		}
+	}
+
+	log = "Independent World Setup completed"
+}
 
 ##########################
 ### PRIMITIVE VARIANTS ###
@@ -1535,4 +1595,3 @@ generate_primitive_raloi_republic_starting_setup = {
 
 	log = "Raloi Republic Primitives Spawned"
 }
-

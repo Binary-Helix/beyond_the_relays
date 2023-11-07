@@ -546,6 +546,21 @@ country_event = {
 			}
 			generate_collectors_empire_starting_setup = yes
 		}	
+		if = {
+			limit = {
+				has_country_flag = btr_independent_colony
+				NOT = {
+					has_country_flag = citadel_council
+				}
+			}
+			generate_independent_world_starting_setup = yes
+		}
+		if = {
+			limit = {
+				has_country_flag = citadel_council
+			}
+			generate_citadel_council_starting_resources = yes
+		}
 	}
 }
 
@@ -827,6 +842,15 @@ country_event = {
 
 				log = "Gothones Remnant Starting Fleets Established"
 			}
+			#Rachni Hive
+			if = {
+				limit = { 
+					has_country_flag = rachni_hive
+				}
+				generate_rachni_hiv_fleet = yes
+
+				log = "Rachni Hive Starting Fleets Established"
+			}			
 			#Geth Consensus
 			if = {
 				limit = { 

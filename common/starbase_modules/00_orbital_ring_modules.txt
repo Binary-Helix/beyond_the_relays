@@ -1,0 +1,319 @@
+#Remember to update operation_sabotage_starbase if you add any new modules.
+# You will need to update the description, espionage_sabotage_starbase_module, and remove_sabotage_starbase_flag
+
+orbital_ring_habitation = {
+	icon = "GFX_orbitalring_module_habitation"
+	section = "HABITAT_ORBITAL_RING_SECTION"
+	construction_days = 360
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_housing_2 }
+		is_orbital_ring = yes
+	}
+
+	show_in_tech = "tech_housing_2"
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 200
+			influence = 25
+			light_metals = 100
+			heavy_metals = 100
+		}
+
+		upkeep = {
+			energy = 2
+		}
+	}
+
+	planet_modifier = {
+		planet_max_districts_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		planet_max_buildings_add = 0.5
+	}
+
+	replaceable = {
+		custom_tooltip = {
+			fail_text = orbital_ring_habitation_districts_maxed_out
+			OR = { # to keep tooltip from showing up when no module is built yet
+				NOT = { has_starbase_module = orbital_ring_habitation }
+				AND = {
+					has_starbase_module = orbital_ring_habitation
+					planet = {
+						num_free_districts = { type = any value >= 1 }
+					}
+				}
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+orbital_ring_shipyard = {
+	icon = "GFX_starbase_shipyard"
+	section = "SHIPYARD_ORBITAL_RING_SECTION"
+	construction_days = 180
+	initial = yes
+
+	potential = {
+		is_orbital_ring = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		starbase_shipyard_capacity_add = 1
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		starbase_shipyard_capacity_add = 1
+	}
+
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+orbital_ring_anchorage = {
+	icon = "GFX_starbase_anchorage"
+	section = "ANCHORAGE_ORBITAL_RING_SECTION"
+	construction_days = 180
+
+	potential = {
+		is_orbital_ring = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 4
+	}
+	triggered_country_modifier = {
+		potential = {
+			is_scope_valid = yes
+			has_starbase_building = naval_logistics_office
+		}
+		country_naval_cap_add = 2
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		country_naval_cap_add = 2
+	}
+
+
+	ai_weight = {
+		weight = 100
+	}
+}
+
+orbital_ring_gun_battery = {
+	section = "GUN_BATTERY_ORBITAL_RING_SECTION"
+	icon = GFX_spaceport_modules
+	construction_days = 180
+
+	potential = {
+		is_orbital_ring = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.20
+		ship_armor_mult = 0.20
+		starbase_defense_platform_capacity_add = 1
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		starbase_defense_platform_capacity_add = 1
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	show_in_tech = "tech_mass_drivers_1"
+}
+
+orbital_ring_missile_battery = {
+	section = "MISSILE_BATTERY_ORBITAL_RING_SECTION"
+	icon = "GFX_starbase_missile_battery"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		owner = { has_technology = tech_torpedoes_1 }
+		is_orbital_ring = yes
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.20
+		ship_armor_mult = 0.20
+		starbase_defense_platform_capacity_add = 1
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		starbase_defense_platform_capacity_add = 1
+	}
+
+	ai_weight = {
+		weight = 100
+	}
+
+	show_in_tech = "tech_torpedoes_1"
+}
+
+orbital_ring_hangar_bay = {
+	icon = "GFX_starbase_hangar_bay"
+	section = "HANGAR_ORBITAL_RING_SECTION"
+	construction_days = 180
+
+	potential = {
+		exists = owner
+		is_orbital_ring = yes
+		owner = { has_technology = tech_strike_craft_1 }
+	}
+
+	resources = {
+		category = starbase_modules
+		cost = {
+			#alloys = 50
+			light_metals = 25
+			heavy_metals = 25
+		}
+
+		upkeep = {
+			energy = 1
+		}
+	}
+
+	station_modifier = {
+		ship_hull_mult = 0.20
+		ship_armor_mult = 0.20
+		starbase_defense_platform_capacity_add = 1
+	}
+
+	triggered_station_modifier = {
+		potential = {
+			exists = planet
+			planet = {
+				exists = owner.overlord
+				has_holding = {
+					holding = holding_orbital_assembly_complex
+					owner = owner.overlord
+				}
+			}
+		}
+		starbase_defense_platform_capacity_add = 1
+	}
+
+
+	ai_weight = {
+		weight = 100
+	}
+
+	show_in_tech = "tech_strike_craft_1"
+}
