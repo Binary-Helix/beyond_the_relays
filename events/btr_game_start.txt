@@ -571,121 +571,123 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		#science
 		if = {
 			limit = { 
 				OR = {
-					is_btr_major_empire = no					
-					is_btr_standard_empire = no
-					is_low_tech_start = no
+					galaxy_size = btr_canon_600
+					galaxy_size = btr_canon_1300
+					galaxy_size = btr_canon_1500
+					#galaxy_size = btr_hybrid_600
+					#galaxy_size = btr_hybrid_1300
+					#galaxy_size = btr_hybrid_1500					
 				}
 			}
-			create_fleet = {
-				effect = {
-					set_owner = prev
-
-					create_ship = {
-						name = random
-						random_existing_design = science
-					}
-
-					set_fleet_stance = evasive
-					#set_location = prev.capital_star
-					set_location = prev.capital_scope.star
-
-					owner = {
-						create_leader = {
-							class = scientist
-							sub_type = survey
-							name = random
-							species = owner_main_species
-						}
-					}
-					set_leader = last_created_leader
-				}
-			}
-		}
-		if = {
-			limit = { 
-				is_btr_standard_empire = yes
-			}
-
-			while = {
-				count = 2
-				create_fleet = {
-					effect = {
-						set_owner = prev
-	
-						create_ship = {
-							name = random
-							random_existing_design = science
-						}
-	
-						set_fleet_stance = evasive
-						#set_location = prev.capital_star
-						set_location = prev.capital_scope.star
-	
-						owner = {
-							create_leader = {
-								class = scientist
-								sub_type = survey
-								name = random
-								species = owner_main_species
-							}
-						}
-						set_leader = last_created_leader
-					}
-				}
-			}
-		}
-		if = {
-			limit = { 
-				OR = {
-					is_btr_major_empire = yes
-				}
-			}
-
-			while = {
-				count = 3
-				create_fleet = {
-					effect = {
-						set_owner = prev
-	
-						create_ship = {
-							name = random
-							random_existing_design = science
-						}
-	
-						set_fleet_stance = evasive
-						#set_location = prev.capital_star
-						set_location = prev.capital_scope.star
-	
-						owner = {
-							create_leader = {
-								class = scientist
-								sub_type = survey
-								name = random
-								species = owner_main_species
-							}
-						}
-						set_leader = last_created_leader
-					}
-				}
-			}
-		}
-		if = {
-			limit = { 
-				galaxy_size = btr_canon_600
-				galaxy_size = btr_canon_1300
-				galaxy_size = btr_canon_1500
-				#galaxy_size = btr_hybrid_600
-				#galaxy_size = btr_hybrid_1300
-				#galaxy_size = btr_hybrid_1500
-			}
-					#Asari Republics
+			#science
 			if = {
 				limit = { 
-					has_country_flag = asari_republics
+					OR = {
+						is_btr_major_empire = no					
+						is_btr_standard_empire = no
+						is_low_tech_start = no
+					}
+				}
+				create_fleet = {
+					effect = {
+						set_owner = prev
+
+						create_ship = {
+							name = random
+							random_existing_design = science
+						}
+
+						set_fleet_stance = evasive
+						#set_location = prev.capital_star
+						set_location = prev.capital_scope.star
+
+						owner = {
+							create_leader = {
+								class = scientist
+								sub_type = survey
+								name = random
+								species = owner_main_species
+							}
+						}
+						set_leader = last_created_leader
+					}
+				}
+			}
+			if = {
+				limit = { 
+					is_btr_standard_empire = yes
+				}
+
+				while = {
+					count = 2
+					create_fleet = {
+						effect = {
+							set_owner = prev
+		
+							create_ship = {
+								name = random
+								random_existing_design = science
+							}
+		
+							set_fleet_stance = evasive
+							#set_location = prev.capital_star
+							set_location = prev.capital_scope.star
+		
+							owner = {
+								create_leader = {
+									class = scientist
+									sub_type = survey
+									name = random
+									species = owner_main_species
+								}
+							}
+							set_leader = last_created_leader
+						}
+					}
+				}
+			}
+			if = {
+				limit = { 
+					OR = {
+						is_btr_major_empire = yes
+					}
+				}
+
+				while = {
+					count = 3
+					create_fleet = {
+						effect = {
+							set_owner = prev
+		
+							create_ship = {
+								name = random
+								random_existing_design = science
+							}
+		
+							set_fleet_stance = evasive
+							#set_location = prev.capital_star
+							set_location = prev.capital_scope.star
+		
+							owner = {
+								create_leader = {
+									class = scientist
+									sub_type = survey
+									name = random
+									species = owner_main_species
+								}
+							}
+							set_leader = last_created_leader
+						}
+					}
+				}
+			}
+			#Asari Republics
+			if = {
+				limit = { 
+					has_country_flag = asari_republics						
 				}
 				generate_asari_rep_construction_ships = yes
 				generate_asari_rep_second_fleet = yes
@@ -698,7 +700,7 @@ country_event = {
 			#Salarian Union
 			if = {
 				limit = { 
-					has_country_flag = salarian_union
+					has_country_flag = salarian_union					
 				}
 				generate_salarian_uni_first_fleet = yes
 				generate_salarian_uni_second_fleet = yes
@@ -710,7 +712,7 @@ country_event = {
 			#Turian Hierarchy
 			if = {
 				limit = { 
-					has_country_flag = turian_hierarchy
+					has_country_flag = turian_hierarchy						
 				}
 				generate_turian_hier_fourth_fleet = yes
 				generate_turian_hier_fifth_fleet = yes
