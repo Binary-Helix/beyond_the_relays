@@ -2751,3 +2751,93 @@ generate_citadel_con_construction_ships = {
 		}
 	}
 }
+
+generate_sandbox_starting_fleet = {
+	#science
+	if = {
+		limit = { is_low_tech_start = no }
+		create_fleet = {
+			effect = {
+				set_owner = prev
+
+				create_ship = {
+					name = random
+					random_existing_design = science
+				}
+
+				set_fleet_stance = evasive
+				#set_location = prev.capital_star
+				set_location = prev.capital_scope.star
+
+				owner = {
+					create_leader = {
+						class = scientist
+						sub_type = survey
+						name = random
+						species = owner_main_species
+					}
+				}
+				set_leader = last_created_leader
+			}
+		}
+	}
+	#constructor
+	if = {
+		limit = { is_low_tech_start = no }
+
+		create_fleet = {
+			effect = {
+				set_owner = prev
+
+				create_ship = {
+					name = random
+					random_existing_design = constructor
+				}
+
+				set_fleet_stance = evasive
+				set_location = prev.capital_star
+			}
+		}
+	}
+	if = {
+		limit = {
+			is_low_tech_start = no
+		}
+		create_fleet = {
+			effect = {
+				set_owner = prev
+				if = {
+					limit = {
+						root = {
+							NOT = {
+								has_valid_civic = civic_hive_cordyceptic_drones
+							}
+						}
+					}
+					while = {
+						count = 2
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+					else = {
+						create_ship = {
+							name = random
+							random_existing_design = corvette
+						}
+					}
+					set_location = prev.capital_star
+				}
+				owner = {
+					create_leader = {
+						class = admiral
+						name = random
+						species = owner_main_species
+					}
+				}
+				set_leader = last_created_leader
+			}
+		}
+	}
+}
