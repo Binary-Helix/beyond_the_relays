@@ -1412,12 +1412,12 @@ generate_illuminated_primacy_starting_fleets = {
 }
 
 ###Hegemony of Khar'shan
-generate_hegemony_khar_second_fleet = {
+generate_hegemony_of_kharshan_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Hegemon Second Fleet"
-			set_owner = prev
+			set_owner = event_target:hegemony_of_kharshan
 			while = {
 				count = 10
 				create_ship = {
@@ -1460,14 +1460,11 @@ generate_hegemony_khar_second_fleet = {
 			}	
 		}
 	}
-}
-
-generate_hegemony_khar_third_fleet = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Hegemon Third Fleet"
-			set_owner = prev
+			set_owner = event_target:hegemony_of_kharshan
 			while = {
 				count = 10
 				create_ship = {
@@ -1510,13 +1507,9 @@ generate_hegemony_khar_third_fleet = {
 			}	
 		}
 	}
-}
-
-
-generate_hegemony_khar_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:hegemony_of_kharshan
 
 			create_ship = {
 				name = random
@@ -1525,7 +1518,7 @@ generate_hegemony_khar_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:hegemonSecondFleet
+				target = event_target:hegemonSciCon1
 				distance = 150
 				angle = random
 			}	
@@ -1533,7 +1526,7 @@ generate_hegemony_khar_construction_ships = {
 	}
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:hegemony_of_kharshan
 
 			create_ship = {
 				name = random
@@ -1542,15 +1535,29 @@ generate_hegemony_khar_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:hegemonThirdFleet
+				target = event_target:hegemonSciCon2
 				distance = 150
 				angle = random
 			}	
 		}
-	}	
-}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:hegemony_of_kharshan
 
-generate_hegemony_khar_science_ships = {
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:hegemonCon1
+				distance = 150
+				angle = random
+			}	
+		}
+	}
 	create_fleet = {
 		effect = {
 			set_owner = event_target:hegemony_of_kharshan
@@ -1560,7 +1567,7 @@ generate_hegemony_khar_science_ships = {
 			}
 			set_fleet_stance = evasive
 			set_location = {
-				target = prev
+				target = event_target:hegemonSciCon1
 				distance = 20
 				angle = 40
 			}
@@ -1585,7 +1592,7 @@ generate_hegemony_khar_science_ships = {
 			}
 			set_fleet_stance = evasive
 			set_location = {
-				target = prev
+				target = event_target:hegemonSciCon2
 				distance = 25
 				angle = 50
 			}
@@ -1604,12 +1611,12 @@ generate_hegemony_khar_science_ships = {
 }
 
 ###Aralakh Kahmat
-generate_aralakh_kah_third_fleet = {
+generate_aralakh_kahmat_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Aralakh Defense Fleet"
-			set_owner = prev
+			set_owner = event_target:aralakh_kahmat
 			while = {
 				count = 5
 				create_ship = {
@@ -1638,12 +1645,9 @@ generate_aralakh_kah_third_fleet = {
 			}	
 		}
 	}
-}
-
-generate_aralakh_kah_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:aralakh_kahmat
 
 			create_ship = {
 				name = random
@@ -1652,21 +1656,46 @@ generate_aralakh_kah_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:aralakhDefense
+				target = event_target:aralakhCon1
 				distance = 150
 				angle = random
 			}	
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:aralakh_kahmat
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:aralakhSci1
+				distance = 25
+				angle = 50
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
 		}
 	}
 }
 
 ###Omega
-generate_omega_first_fleet = {
+generate_omega_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Omega First Fleet"
-			set_owner = prev
+			set_owner = event_target:omega_empire
 			while = {
 				count = 15
 				create_ship = {
@@ -1702,14 +1731,11 @@ generate_omega_first_fleet = {
 			}	
 		}
 	}
-}
-
-generate_omega_second_fleet = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Omega Second Fleet"
-			set_owner = prev
+			set_owner = event_target:omega_empire
 			while = {
 				count = 15
 				create_ship = {
@@ -1739,19 +1765,15 @@ generate_omega_second_fleet = {
 				}
 			}
 			set_location = {
-				target = event_target:omegaFirstFleet
+				target = event_target:omegaSecondFleet
 				distance = 75
 				angle = random
 			}	
 		}
 	}
-}
-
-
-generate_omega_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:omega_empire
 
 			create_ship = {
 				name = random
@@ -1760,21 +1782,47 @@ generate_omega_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:omegaFirstFleet
+				target = event_target:omegaSciCon1
 				distance = 150
 				angle = random
 			}	
 		}
 	}	
+	create_fleet = {
+		effect = {
+			set_owner = event_target:omega_empire
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:omegaSciCon1
+				distance = 25
+				angle = 50
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
 }
 
+
 ###Illium Corporate Interests
-generate_illium_corpsec_fleet = {
+generate_illium_corporate_interests_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Illium Corporate Security"
-			set_owner = prev
+			set_owner = event_target:illium_corporate_interests
 			while = {
 				count = 10
 				create_ship = {
@@ -1810,12 +1858,9 @@ generate_illium_corpsec_fleet = {
 			}	
 		}
 	}
-}
-
-generate_illium_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:illium_corporate_interests
 
 			create_ship = {
 				name = random
@@ -1824,21 +1869,63 @@ generate_illium_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:illiumCorpSec
+				target = event_target:illiumCon1
 				distance = 150
 				angle = random
 			}	
 		}
 	}	
+	create_fleet = {
+		effect = {
+			set_owner = event_target:illium_corporate_interests
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:illiumCon2
+				distance = 150
+				angle = random
+			}	
+		}
+	}	
+	create_fleet = {
+		effect = {
+			set_owner = event_target:illium_corporate_interests
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:illiumSci1
+				distance = 25
+				angle = 50
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
 }
 
 ###Caleston Directorate
-generate_caleston_corpsec_fleet = {
+generate_caleston_directorate_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Caleston Corporate Security"
-			set_owner = prev
+			set_owner = event_target:caleston_directorate
 			while = {
 				count = 10
 				create_ship = {
@@ -1874,12 +1961,9 @@ generate_caleston_corpsec_fleet = {
 			}	
 		}
 	}
-}
-
-generate_caleston_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:caleston_directorate
 
 			create_ship = {
 				name = random
@@ -1888,22 +1972,63 @@ generate_caleston_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:calestonCorpSec
+				target = event_target:calestonCon1
 				distance = 150
 				angle = random
 			}	
 		}
 	}	
-}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:caleston_directorate
 
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:calestonCon2
+				distance = 150
+				angle = random
+			}	
+		}
+	}	
+	create_fleet = {
+		effect = {
+			set_owner = event_target:caleston_directorate
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:calestonSci1
+				distance = 25
+				angle = 50
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
+}
 ###Sed'riicae Collective
 
-generate_sedriicae_col_first_fleet = {
+generate_sedriicae_collective_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Collective First Fleet"
-			set_owner = prev
+			set_owner = event_target:sedriicae_collective
 			while = {
 				count = 10
 				create_ship = {
@@ -1939,13 +2064,9 @@ generate_sedriicae_col_first_fleet = {
 			}	
 		}
 	}
-}
-
-
-generate_sedriicae_col_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:sedriicae_collective
 
 			create_ship = {
 				name = random
@@ -1954,7 +2075,7 @@ generate_sedriicae_col_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:collectivefirstFleet
+				target = event_target:sedriicaeCon1
 				distance = 150
 				angle = random
 			}	
@@ -1962,7 +2083,7 @@ generate_sedriicae_col_construction_ships = {
 	}
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:sedriicae_collective
 
 			create_ship = {
 				name = random
@@ -1971,15 +2092,12 @@ generate_sedriicae_col_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:collectivefirstFleet
+				target = event_target:sedriicaeCon2
 				distance = 150
 				angle = random
 			}	
 		}
 	}	
-}
-
-generate_sedriicae_col_science_ships = {
 	create_fleet = {
 		effect = {
 			set_owner = event_target:sedriicae_collective
@@ -1989,7 +2107,7 @@ generate_sedriicae_col_science_ships = {
 			}
 			set_fleet_stance = evasive
 			set_location = {
-				target = prev
+				target = event_target:sedriicaeSci1
 				distance = 20
 				angle = 40
 			}
@@ -2014,7 +2132,7 @@ generate_sedriicae_col_science_ships = {
 			}
 			set_fleet_stance = evasive
 			set_location = {
-				target = prev
+				target = event_target:sedriicaeSci2
 				distance = 25
 				angle = 50
 			}
@@ -2033,12 +2151,12 @@ generate_sedriicae_col_science_ships = {
 }
 
 ### Lystheni Order
-generate_lystheni_ord_first_fleet = {
+generate_lystheni_order_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Fleet of the One"
-			set_owner = prev
+			set_owner = event_target:lystheni_order
 			while = {
 				count = 10
 				create_ship = {
@@ -2074,13 +2192,9 @@ generate_lystheni_ord_first_fleet = {
 			}	
 		}
 	}
-}
-
-
-generate_lystheni_ord_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:lystheni_order
 
 			create_ship = {
 				name = random
@@ -2089,7 +2203,7 @@ generate_lystheni_ord_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:lystheniFirstFleet
+				target = event_target:lystheniSciCon1
 				distance = 150
 				angle = random
 			}	
@@ -2097,7 +2211,7 @@ generate_lystheni_ord_construction_ships = {
 	}
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:lystheni_order
 
 			create_ship = {
 				name = random
@@ -2106,15 +2220,12 @@ generate_lystheni_ord_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:lystheniFirstFleet
+				target = event_target:lystheniSciCon2
 				distance = 150
 				angle = random
 			}	
 		}
-	}	
-}
-
-generate_lystheni_ord_science_ships = {
+	}
 	create_fleet = {
 		effect = {
 			set_owner = event_target:lystheni_order
@@ -2124,7 +2235,7 @@ generate_lystheni_ord_science_ships = {
 			}
 			set_fleet_stance = evasive
 			set_location = {
-				target = prev
+				target = event_target:lystheniSciCon1
 				distance = 20
 				angle = 40
 			}
@@ -2149,7 +2260,7 @@ generate_lystheni_ord_science_ships = {
 			}
 			set_fleet_stance = evasive
 			set_location = {
-				target = prev
+				target = event_target:lystheniSciCon2
 				distance = 25
 				angle = 50
 			}
@@ -2167,14 +2278,13 @@ generate_lystheni_ord_science_ships = {
 	}
 }
 
-
 ### Gothones Remnant
-generate_gothones_rem_first_fleet = {
+generate_gothones_remnant_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Gothones First Fleet"
-			set_owner = prev
+			set_owner = event_target:gothones_remnant
 			while = {
 				count = 10
 				create_ship = {
@@ -2210,13 +2320,9 @@ generate_gothones_rem_first_fleet = {
 			}	
 		}
 	}
-}
-
-
-generate_gothones_rem_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:gothones_remnant
 
 			create_ship = {
 				name = random
@@ -2225,32 +2331,12 @@ generate_gothones_rem_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:gothonesFirstFleet
-				distance = 150
-				angle = random
-			}	
-		}
-	}
-	create_fleet = {
-		effect = {
-			set_owner = prev
-
-			create_ship = {
-				name = random
-				random_existing_design = constructor
-			}
-
-			set_fleet_stance = evasive
-			set_location = {
-				target = event_target:gothonesFirstFleet
+				target = event_target:gothonesSciCon1
 				distance = 150
 				angle = random
 			}	
 		}
 	}	
-}
-
-generate_gothones_rem_science_ships = {
 	create_fleet = {
 		effect = {
 			set_owner = event_target:gothones_remnant
@@ -2260,34 +2346,9 @@ generate_gothones_rem_science_ships = {
 			}
 			set_fleet_stance = evasive
 			set_location = {
-				target = prev
+				target = event_target:gothonesSciCon1
 				distance = 20
 				angle = 40
-			}
-			
-			owner = {
-				create_leader = {
-					class = scientist
-					sub_type = survey
-					name = random
-					species = owner_main_species
-				}
-			}
-			set_leader = last_created_leader
-		}
-	}
-	create_fleet = {
-		effect = {
-			set_owner = event_target:gothones_remnant
-			create_ship = {
-				name = random
-				random_existing_design = science
-			}
-			set_fleet_stance = evasive
-			set_location = {
-				target = prev
-				distance = 25
-				angle = 50
 			}
 			
 			owner = {
@@ -2304,10 +2365,10 @@ generate_gothones_rem_science_ships = {
 }
 
 ### Rachni Hive
-generate_rachni_hiv_fleet = {
+generate_rachni_hive_starting_fleets = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:rachni_hive
 
 			create_ship = {
 				name = random
@@ -2326,7 +2387,7 @@ generate_rachni_hiv_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Rachni Fleet"
-			set_owner = prev
+			set_owner = event_target:rachni_hive
 
 			while = {
 				count = 1
@@ -2342,107 +2403,16 @@ generate_rachni_hiv_fleet = {
 			}	
 		}
 	}
-}
-
-### Geth Consensus
-generate_geth_con_first_fleet = {
-	create_fleet = {
-		set_take_point = yes
-		effect = {
-			set_name = "Geth Fleet"
-			set_owner = prev
-			while = {
-				count = 12
-				create_ship = {
-					name = random
-					random_existing_design = corvette
-				}
-			}
-			while = {
-				count = 12
-				create_ship = {
-					name = random
-					random_existing_design = frigate
-				}
-			}
-			while = {
-				count = 10
-				create_ship = {
-					name = random
-					random_existing_design = destroyer
-				}
-			}
-			while = {
-				count = 10
-				create_ship = {
-					name = random
-					random_existing_design = cruiser
-				}
-			}
-			while = {
-				count = 6
-				create_ship = {
-					name = random
-					random_existing_design = battleship
-				}
-			}
-			set_location = {
-				target = event_target:gethFirstFleet
-				distance = 75
-				angle = random
-			}	
-		}
-	}
-}
-
-generate_geth_con_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
-
-			create_ship = {
-				name = random
-				random_existing_design = constructor
-			}
-
-			set_fleet_stance = evasive
-			set_location = {
-				target = event_target:gethFirstFleet
-				distance = 150
-				angle = random
-			}	
-		}
-	}
-	create_fleet = {
-		effect = {
-			set_owner = prev
-
-			create_ship = {
-				name = random
-				random_existing_design = constructor
-			}
-
-			set_fleet_stance = evasive
-			set_location = {
-				target = event_target:gethFirstFleet
-				distance = 150
-				angle = random
-			}	
-		}
-	}	
-}
-
-generate_geth_con_science_ships = {
-	create_fleet = {
-		effect = {
-			set_owner = event_target:geth_consensus
+			set_owner = event_target:rachni_hive
 			create_ship = {
 				name = random
 				random_existing_design = science
 			}
 			set_fleet_stance = evasive
 			set_location = {
-				target = prev
+				target = event_target:rachniFleet
 				distance = 20
 				angle = 40
 			}
@@ -2460,14 +2430,14 @@ generate_geth_con_science_ships = {
 	}
 }
 
-
-### Disciples of Nazara
-generate_disciples_naz_first_fleet = {
+### Geth Consensus
+generate_geth_consensus_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Geth Fleet"
-			set_owner = prev
+			set_owner = event_target:geth_consensus
+
 			while = {
 				count = 12
 				create_ship = {
@@ -2504,18 +2474,15 @@ generate_disciples_naz_first_fleet = {
 				}
 			}
 			set_location = {
-				target = event_target:nazaraFirstFleet
+				target = event_target:gethFirstFleet
 				distance = 75
 				angle = random
 			}	
 		}
 	}
-}
-
-generate_disciples_naz_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:geth_consensus
 
 			create_ship = {
 				name = random
@@ -2524,15 +2491,147 @@ generate_disciples_naz_construction_ships = {
 
 			set_fleet_stance = evasive
 			set_location = {
-				target = event_target:nazaraFirstFleet
+				target = event_target:gethCon1
+				distance = 150
+				angle = random
+			}	
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:geth_consensus
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:gethCon2
 				distance = 150
 				angle = random
 			}	
 		}
 	}	
+	create_fleet = {
+		effect = {
+			set_owner = event_target:geth_consensus
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:gethSci1
+				distance = 20
+				angle = 40
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:geth_consensus
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:gethSci2
+				distance = 20
+				angle = 40
+			}
+			
+			owner = {
+				create_leader = {
+					class = scientist
+					sub_type = survey
+					name = random
+					species = owner_main_species
+				}
+			}
+			set_leader = last_created_leader
+		}
+	}
 }
 
-generate_disciples_naz_science_ships = {
+### Disciples of Nazara
+generate_disciples_nazara_starting_fleets = {
+	create_fleet = {
+		set_take_point = yes
+		effect = {
+			set_name = "Geth Fleet"
+			set_owner = event_target:disciples_of_nazara
+			while = {
+				count = 16
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+			while = {
+				count = 14
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+			while = {
+				count = 12
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+			while = {
+				count = 8
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+			while = {
+				count = 4
+				create_ship = {
+					name = random
+					random_existing_design = battleship
+				}
+			}
+			set_location = {
+				target = event_target:nazaraFirstFleet
+				distance = 75
+				angle = random
+			}	
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = event_target:disciples_of_nazara
+
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+
+			set_fleet_stance = evasive
+			set_location = {
+				target = event_target:nazaraSciCon1
+				distance = 150
+				angle = random
+			}	
+		}
+	}	
 	create_fleet = {
 		effect = {
 			set_owner = event_target:disciples_of_nazara
@@ -2542,7 +2641,7 @@ generate_disciples_naz_science_ships = {
 			}
 			set_fleet_stance = evasive
 			set_location = {
-				target = prev
+				target = event_target:nazaraSciCon1
 				distance = 20
 				angle = 40
 			}
@@ -2561,12 +2660,12 @@ generate_disciples_naz_science_ships = {
 }
 
 ### Citadel Council
-generate_citadel_con_first_fleet = {
+generate_citadel_council_starting_fleets = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "First Citadel Defense Fleet"
-			set_owner = prev
+			set_owner = event_target:citadel_council
 			while = {
 				count = 10
 				create_ship = {
@@ -2609,14 +2708,11 @@ generate_citadel_con_first_fleet = {
 			}	
 		}
 	}
-}
-
-generate_citadel_con_second_fleet = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Second Citadel Defense Fleet"
-			set_owner = prev
+			set_owner = event_target:citadel_council
 			while = {
 				count = 10
 				create_ship = {
@@ -2659,14 +2755,11 @@ generate_citadel_con_second_fleet = {
 			}	
 		}
 	}
-}
-
-generate_citadel_con_third_fleet = {
 	create_fleet = {
 		set_take_point = yes
 		effect = {
 			set_name = "Third Citadel Defense Fleet"
-			set_owner = prev
+			set_owner = event_target:citadel_council
 			while = {
 				count = 10
 				create_ship = {
@@ -2709,12 +2802,9 @@ generate_citadel_con_third_fleet = {
 			}	
 		}
 	}
-}
-
-generate_citadel_con_construction_ships = {
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:citadel_council
 
 			create_ship = {
 				name = random
@@ -2731,7 +2821,7 @@ generate_citadel_con_construction_ships = {
 	}
 	create_fleet = {
 		effect = {
-			set_owner = prev
+			set_owner = event_target:citadel_council
 
 			create_ship = {
 				name = random
@@ -2748,7 +2838,7 @@ generate_citadel_con_construction_ships = {
 	}
 }
 
-generate_sandbox_starting_fleet = {
+generate_sandbox_starting_fleets = {
 	#science
 	if = {
 		limit = { is_low_tech_start = no }
