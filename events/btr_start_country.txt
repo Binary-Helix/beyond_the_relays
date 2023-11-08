@@ -25,7 +25,9 @@ event = {
 			country_event = { id = btr_start_country.14 days = 1 } #Set Species Rights and Slavery
 			country_event = { id = btr_start_country.19 days = 0 } #Set Start Techs
 			country_event = { id = btr_start_country.9 days = 0 } #Set Capital Buildings TODO:Add Colony Buildings for canon
+			country_event = { id = btr_start_country.11 days = 1 } #Set Empire Starting Territory
 			#country_event = { id = btr_start_country.18 days = 1 } #Set Country Policies - TODO: Have Team review Empires to determine policies at game start.
+
 			country_event = { id = btr_start_country.20 days = 1 } #Set Homeworld surveyed and clear borders of hostiles
 			country_event = { id = btr_start_country.22 days = 0 } #Pregame Genocide
 			#country_event = { id = btr_start_country.24 } TODO: Have team finalize list of starting relics - Asari beacon, earth mars archives, etc.
@@ -131,7 +133,7 @@ country_event = {
 		random_country = { limit = { has_country_flag = cerberus_empire } save_event_target_as = cerberus_empire }
 		random_country = { limit = { has_country_flag = omega_empire } save_event_target_as = omega_empire }
 		random_country = { limit = { has_country_flag = illium_corporate_interests } save_event_target_as = illium_corporate_interests }
-		random_country = { limit = { has_country_flag = caleston_directorate } save_event_target_as = caleston_directorate }v
+		random_country = { limit = { has_country_flag = caleston_directorate } save_event_target_as = caleston_directorate }
 		random_country = { limit = { has_country_flag = remnants_of_rakhana } save_event_target_as = remnants_of_rakhana }
 		random_country = { limit = { has_country_flag = vorcha_clandom } save_event_target_as = vorcha_clandom }
 		random_country = { limit = { has_country_flag = sedriicae_collective } save_event_target_as = sedriicae_collective }
@@ -176,6 +178,58 @@ country_event = {
 		}
 	}
 }
+
+event = {
+	id = btr_start_country.11
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		log = "btr_start_country.10 - Started"
+		generate_asari_republics_territory = yes
+		log = "Asari Republics Territory Spawned"
+		generate_salarian_union_territory = yes
+		log = "Salarian Union Territory Established"
+		generate_turian_hierarchy_territory = yes
+		log = "Turian Hierarchy Territory Established"
+		generate_systems_alliance_territory = yes
+		log = "Systems Alliance Territory Established"
+		generate_courts_of_dekuuna_territory = yes
+		log = "Courts of Dekuuna Territory Established"
+		generate_vol_protectorate_territory = yes
+		log = "Vol Protectorate Territory Established"
+		generate_illuminated_primacy_territory = yes
+		log = "Illuminated Primacy Territory Established"
+		generate_hegemony_of_kharshan_territory = yes
+		log = "Hegemony of Khar'shan Territory Established"
+		generate_aralakh_kahmat_territory = yes
+		log = "Aralakh Kahmat Territory Established"
+		generate_omega_empire_territory = yes
+		log = "Omega Territory Established"
+		generate_illium_corporate_interests_territory = yes
+		log = "Illium Corporate Interests Territory Established"
+		generate_remnants_of_rakhana_territory = yes
+		log = "Remnants of Rakhana Territory Established"
+		generate_vorcha_clandom_territory = yes
+		log = "Vorcha Clandom Territory Established"
+		generate_sedriiace_collective_territory = yes
+		log = "Sed'riicae Collective Territory Established"
+		generate_lystheni_order_territory = yes
+		log = "Lystheni Order Territory Established"
+		generate_gothones_remnant_territory = yes
+		log = "Gothones Remnant Territory Established"
+		generate_geth_consensus_territory = yes
+		log = "Geth Consensus Territory Established"
+		generate_disciples_of_nazara_territory = yes
+		log = "Disciples of Nazara Territory Established"
+		generate_rachni_hive_territory = yes
+		log = "Rachni Hive Territory Established"
+		generate_citadel_council_territory = yes	
+		log = "Citadel Council Territory Established"
+
+		log = "btr_start_country.10 - Completed"
+	}
+}
+
 
 country_event = {
 	id = btr_start_country.14
@@ -306,7 +360,7 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		is_normal_country = yes
+		is_btr_empire = yes
 	}
 	immediate = {
 		if = {
@@ -359,337 +413,52 @@ country_event = {
 	id = btr_start_country.26
 	hide_window = yes
 	is_triggered_only = yes
-	trigger = { }
-	immediate = {	
-		log = "btr_start_country.26"
+	trigger = { is_btr_empire = yes }
+	immediate = {
 		if = {
 			limit = { 
-				is_btr_canon_map = yes
+				has_origin = asari_rep_origin
 			}
-			every_country = {
-				#science
-				if = {
-					limit = { 
-						is_btr_empire = yes 
-					}
-					create_fleet = {
-						effect = {
-							set_owner = prev
-
-							create_ship = {
-								name = random
-								random_existing_design = science
-							}
-
-							set_fleet_stance = evasive
-							#set_location = prev.capital_star
-							set_location = prev.capital_scope.star
-
-							owner = {
-								create_leader = {
-									class = scientist
-									sub_type = survey
-									name = random
-									species = owner_main_species
-								}
-							}
-							set_leader = last_created_leader
-						}
-					}
-				}
-				if = {
-					limit = { 
-						is_btr_standard_empire = yes
-					}
-
-					while = {
-						count = 2
-						create_fleet = {
-							effect = {
-								set_owner = prev
-			
-								create_ship = {
-									name = random
-									random_existing_design = science
-								}
-			
-								set_fleet_stance = evasive
-								#set_location = prev.capital_star
-								set_location = prev.capital_scope.star
-			
-								owner = {
-									create_leader = {
-										class = scientist
-										sub_type = survey
-										name = random
-										species = owner_main_species
-									}
-								}
-								set_leader = last_created_leader
-							}
-						}
-					}
-				}
-				if = {
-					limit = { 
-						OR = {
-							is_btr_major_empire = yes
-						}
-					}
-
-					while = {
-						count = 3
-						create_fleet = {
-							effect = {
-								set_owner = prev
-			
-								create_ship = {
-									name = random
-									random_existing_design = science
-								}
-			
-								set_fleet_stance = evasive
-								#set_location = prev.capital_star
-								set_location = prev.capital_scope.star
-			
-								owner = {
-									create_leader = {
-										class = scientist
-										sub_type = survey
-										name = random
-										species = owner_main_species
-									}
-								}
-								set_leader = last_created_leader
-							}
-						}
-					}
-				}
-				#Asari Republics
-				if = {
-					limit = { 
-						has_country_flag = asari_republics						
-					}
-					generate_asari_rep_construction_ships = yes
-					generate_asari_rep_second_fleet = yes
-					generate_asari_rep_third_fleet = yes
-					generate_asari_rep_fourth_fleet = yes
-					generate_asari_rep_sixth_fleet = yes
-
-					log = "Asari Republics Starting Fleets Established"
-				}
-				#Salarian Union
-				if = {
-					limit = { 
-						has_country_flag = salarian_union					
-					}
-					generate_salarian_uni_first_fleet = yes
-					generate_salarian_uni_second_fleet = yes
-					generate_salarian_uni_third_fleet = yes
-					generate_salarian_uni_construction_ships = yes
-
-					log = "Salarian Union Starting Fleets Established"
-				}
-				#Turian Hierarchy
-				if = {
-					limit = { 
-						has_country_flag = turian_hierarchy						
-					}
-					generate_turian_hier_fourth_fleet = yes
-					generate_turian_hier_fifth_fleet = yes
-					generate_turian_hier_sixth_fleet = yes
-					generate_turian_hier_construction_ships = yes
-
-					log = "Turian Hierarchy Starting Fleets Established"
-				}
-				#Systems Alliance
-				if = {
-					limit = { 
-						has_country_flag = systems_alliance
-					}
-					generate_systems_all_third_fleet = yes
-					generate_systems_all_fourth_fleet = yes
-					generate_systems_all_construction_ships = yes
-
-					log = "Systems Alliance Starting Fleets Established"
-				}
-				#Courts of Dekuuna
-				if = {
-					limit = { 
-						has_country_flag = courts_of_dekuuna
-					}
-					generate_courts_dek_first_fleet = yes
-					generate_courts_dek_construction_ships = yes
-
-					log = "Courts of Dekuuna Starting Fleets Established"
-				}
-				#Illuminated Primacy
-				if = {
-					limit = { 
-						has_country_flag = illuminated_primacy
-					}
-					generate_illuminated_pri_first_fleet = yes
-					generate_illuminated_pri_construction_ships = yes
-
-					log = "Illuminated Primacy Starting Fleets Established"
-				}
-				#Vol Protectorate
-				if = {
-					limit = { 
-						has_country_flag = vol_protectorate
-					}
-					generate_vol_pro_first_fleet = yes
-					generate_vol_pro_construction_ships = yes
-
-					log = "Vol Protectorate Starting Fleets Established"
-				}
-				#Hegemony of Khar'shan
-				if = {
-					limit = { 
-						has_country_flag = hegemony_of_kharshan
-					}
-					generate_hegemony_khar_second_fleet = yes
-					generate_hegemony_khar_third_fleet = yes
-					generate_hegemony_khar_construction_ships = yes
-
-					log = "Hegemony of Khar'shan Starting Fleets Established"
-				}
-				#Aralakh Kahmat
-				if = {
-					limit = { 
-						has_country_flag = aralakh_kahmat
-					}
-					generate_aralakh_kah_third_fleet = yes
-					generate_aralakh_kah_construction_ships = yes
-
-					log = "Aralakh Kahmat Starting Fleets Established"
-				}
-				#Omega
-				if = {
-					limit = { 
-						has_country_flag = omega_empire
-					}
-					generate_omega_first_fleet = yes
-					generate_omega_second_fleet = yes
-					generate_omega_construction_ships = yes
-
-					log = "Omega Starting Fleets Established"
-				}
-				#Illium Corporate Interests
-				if = {
-					limit = { 
-						has_country_flag = illium_corporate_interests
-					}
-					generate_illium_corpsec_fleet = yes
-					generate_illium_construction_ships = yes
-
-					log = "Illium Corporate Interests Starting Fleets Established"
-				}
-				#Caleston Directorate
-				if = {
-					limit = { 
-						has_country_flag = caleston_directorate
-					}
-					generate_caleston_corpsec_fleet = yes
-					generate_caleston_construction_ships = yes
-
-					log = "Caleston Directorate Starting Fleets Established"
-				}
-				#Sed'riicae Collective		
-				if = {
-					limit = { 
-						has_country_flag = sedriicae_collective
-					}
-					generate_sedriicae_col_first_fleet = yes
-					generate_sedriicae_col_construction_ships = yes
-
-					log = "Sed'riicae Collective Starting Fleets Established"
-				}
-				#Lystheni Order
-				if = {
-					limit = { 
-						has_country_flag = lystheni_order
-					}
-					generate_sedriicae_col_first_fleet = yes
-					generate_sedriicae_col_construction_ships = yes
-
-					log = "Lystheni Order Starting Fleets Established"
-				}
-				#Gothones Remnant
-				if = {
-					limit = { 
-						has_country_flag = gothones_remnant
-					}
-					generate_gothones_rem_first_fleet = yes
-					generate_gothones_rem_construction_ships = yes
-
-					log = "Gothones Remnant Starting Fleets Established"
-				}
-				#Rachni Hive
-				if = {
-					limit = { 
-						has_country_flag = rachni_hive
-					}
-					generate_rachni_hiv_fleet = yes
-
-					log = "Rachni Hive Starting Fleets Established"
-				}			
-				#Geth Consensus
-				if = {
-					limit = { 
-						has_country_flag = geth_consensus
-					}
-					generate_geth_con_first_fleet = yes
-					generate_geth_con_construction_ships = yes
-
-					log = "Geth Consensus Starting Fleets Established"
-				}
-				#Disciples of Nazara
-				if = {
-					limit = { 
-						has_country_flag = disciples_of_nazara
-					}
-					generate_disciples_naz_first_fleet = yes
-					generate_disciples_naz_construction_ships = yes
-
-					log = "Disciples of Nazara Starting Fleets Established"
-				}
-				#Citadel Council
-				if = {
-					limit = { 
-						has_country_flag = citadel_council
-					}
-					generate_citadel_con_first_fleet = yes
-					generate_citadel_con_second_fleet = yes
-					generate_citadel_con_third_fleet = yes
-					generate_citadel_con_construction_ships = yes
-
-					log = "Citadel Council Starting Fleets Established"
-				}
-			}
-			if = {
-				limit = { 
-					is_btr_sandbox_map = no
-				}
-				every_system = {
-					limit = {
-						NOR = {
-							has_star_flag = tartarus_debris_field
-							has_star_flag = mu_system
-							has_star_flag = migrant_fleet_system
-							has_star_flag = refuge_system
-						}
-					}
-					root = { set_visited = prev }
-				}
-			}
+			generate_asari_republic_starting_fleets = yes
 		}
 		if = {
 			limit = { 
-				is_btr_sandbox_map = yes
+				has_origin = salarian_uni_origin
 			}
-			generate_sandbox_starting_fleet = yes
+			generate_salarian_union_starting_fleets = yes
 		}
+		if = {
+			limit = { 
+				has_origin = turian_hier_origin
+			}
+			generate_turian_hierarchy_starting_fleets = yes
+		}
+		if = {
+			limit = { 
+				has_origin = systems_all_origin
+			}
+			generate_systems_alliance_starting_fleets = yes
+		}
+		if = {
+			limit = { 
+				has_origin = courts_dek_origin
+			}
+			generate_courts_of_dekuuna_starting_fleets = yes
+		}
+		if = {
+			limit = { 
+				has_origin = vol_pro_origin
+			}
+			generate_vol_protectorate_starting_fleets = yes
+		}
+		if = {
+			limit = { 
+				has_origin = illuminated_pri_origin
+			}
+			generate_illuminated_primacy_starting_fleets = yes
+		}
+
+		log = "btr_game_start.9 - Generate Fleets"
 	}
 }
 
