@@ -1,0 +1,129 @@
+###########################
+###
+### WRITTEN BY PUCKHEAD73
+### Using STNH as framework
+### 
+###########################
+
+namespace = btr_start_global
+
+#####################
+# GLOBAL START EVENTS
+#####################
+
+##### WELCOME MENU
+country_event = {
+	id = btr_start_global.1
+	title = btr_start_global.1
+	desc = btr_start_global.1
+	picture = btr_start_global_GFX_main_menu
+	trigger = { }
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = { 
+				is_btr_canon_map = yes
+			}
+			set_country_flag = is_playing_canon
+			log = "btr_start_global.1 - Gamemode is Canon"
+		}
+		# if = {
+		# 	limit = { 
+		# 		is_btr_hybrid_map = yes
+		# 	}
+		# 	set_country_flag = is_playing_hybrid
+		#	log = "btr_start_global.1 - Gamemode is Hybrid"
+		# }
+		if = {
+			limit = { 
+				is_btr_sandbox_map = yes
+			}
+			set_country_flag = is_playing_sandbox
+			log = "btr_start_global.1 - Gamemode is Sandbox"
+		}
+	}
+}
+
+##### Custom Empire Check
+country_event = {
+	id = btr_start_global.2
+	title = btr_start_global.2.name
+	desc = btr_start_global.2.desc
+	picture = btr_start_global_GFX_custom_empire
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = btr_empire
+		}
+	}
+
+	immediate = {
+		log = "btr_start_global.2 - Custom Country Check"
+	}
+	option = {
+		name = OK
+	}
+}
+
+##### Integrated Mod Installation Check
+event = {
+	id = btr_start_global.3
+	title = btr_start_global.3.name
+	desc = btr_start_global.3.desc
+	picture = btr_start_global_GFX_integrated_mod
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			has_global_flag = beyond_the_advisors_installed
+			has_global_flag = beyond_the_worlds_installed
+			has_global_flag = has_real_space_mod
+		}
+	}
+
+	immediate = {
+		log = "btr_start_global.5 - Integrated Mod Check"
+	}
+	option = {
+		name = OK
+	}
+}
+
+##### Incompatible Mod Check
+event = {
+	id = btr_start_global.4
+	title = btr_start_global.4.name
+	desc = btr_start_global.4.desc
+	picture = btr_start_global_GFX_incompatible_mod
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = planetarydiversity
+	}
+
+	immediate = {
+		log = "btr_start_global.4 - Incompatible Mod Check"
+	}
+
+	option = {
+		name = OK
+	}	
+}
+# Flags
+country_event = {
+	id = btr_start_global.5
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = { 
+		set_global_flag = game_started 
+		country_event = { id = btr_start_global.6 days = 1 }
+		log = "btr_start_global.5"
+	}
+}
+country_event = {
+	id = btr_start_global.6
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = { 
+		set_global_flag = game_started_day_1
+		log = "btr_start_global.6"
+	}
+}

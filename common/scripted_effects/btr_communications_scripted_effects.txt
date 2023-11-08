@@ -295,10 +295,16 @@ establish_turian_hierarchy_communication = {
 			if = {
 				limit = { exists = event_target:vol_protectorate  }
 				establish_communications_no_message = event_target:vol_protectorate
-				guarantee_country = event_target:vol_protectorate
 				add_opinion_modifier = {
 					who = event_target:vol_protectorate
 					modifier = citadel_embassy_race
+				}
+				every_agreement = {
+					limit = { agreement_preset = preset_protectorate }
+					set_agreement_preset = {
+						preset = preset_protectorate
+						apply_terms = yes
+					}
 				}
 			}
 			if = {
@@ -624,6 +630,7 @@ establish_vol_protectorate_communication = {
 	if = {
 		limit = { exists = event_target:vol_protectorate }
 		event_target:vol_protectorate = {
+			set_subject_of = { who = event_target:turian_hierarchy preset = preset_protectorate }
 			if = {
 				limit = { exists = event_target:asari_republics }
 				establish_communications_no_message = event_target:asari_republics
@@ -1477,6 +1484,7 @@ establish_remnants_of_rakhana_communication = {
 				establish_communications_no_message = event_target:illuminated_primacy
 				guarantee_country = event_target:illuminated_primacy
 			}
+			
 			if = {
 				limit = { exists = event_target:hegemony_of_kharshan  }
 				establish_communications_no_message = event_target:hegemony_of_kharshan
