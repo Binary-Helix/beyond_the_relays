@@ -1,7 +1,6 @@
 ###########################
 ###
-### WRITTEN BY PUCKHEAD73
-### Using STNH as framework
+### 
 ### 
 ###########################
 
@@ -10,7 +9,6 @@ namespace = btr_start_country
 #####################
 # MASTER START EVENTS
 #####################
-
 event = {
 	id = btr_start_country.1
 	hide_window = yes
@@ -21,11 +19,13 @@ event = {
 		random_country = { limit = { is_country_type = default } country_event = { id = btr_start_global.5 days = 1 } } #Set Start Flag
 		every_country = {
 			limit = { is_btr_empire = yes }
-			country_event = { id = btr_start_country.10 days = 2 } #Country Starting Setups
-			country_event = { id = btr_start_country.14 days = 1 } #Set Species Rights and Slavery
+			country_event = { id = btr_start_country.10 days = 0 } #Country Starting Setups
+			country_event = { id = btr_start_country.14 days = 0 } #Set Species Rights and Slavery
 			country_event = { id = btr_start_country.19 days = 0 } #Set Start Techs
 			country_event = { id = btr_start_country.9 days = 0 } #Set Capital Buildings TODO:Add Colony Buildings for canon
-			country_event = { id = btr_start_country.11 days = 1 } #Set Empire Starting Territory
+			country_event = { id = btr_start_country.11 days = 0 } #Set Empire Starting Territory
+			country_event = { id = btr_start_country.12 days = 0 } #Set Empire Starting Colonies
+			country_event = { id = btr_start_country.13 days = 0 } #Set Empire Starting Colony Pops
 			#country_event = { id = btr_start_country.18 days = 1 } #Set Country Policies - TODO: Have Team review Empires to determine policies at game start.
 
 			country_event = { id = btr_start_country.20 days = 1 } #Set Homeworld surveyed and clear borders of hostiles
@@ -33,8 +33,6 @@ event = {
 			#country_event = { id = btr_start_country.24 } TODO: Have team finalize list of starting relics - Asari beacon, earth mars archives, etc.
 			country_event = { id = btr_start_country.26 days = 0 } #Set Starting Ships
 			country_event = { id = btr_start_country.28 days = 0 } #Mining and Research Stations
-			country_event = { id = btr_start_country.30 days = 5 } #Set Special Named Leaders
-			country_event = { id = btr_start_country.31 days = 0 } #Set Founder Starting Names
 			country_event = { id = btr_start_country.32 days = 1 } #Fix unemployment
 			country_event = { id = btr_start_country.34 days = 1 } #Set starting defense armies			
 		}
@@ -184,54 +182,440 @@ event = {
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
-		log = "btr_start_country.10 - Started"
-		generate_asari_republics_territory = yes
-		log = "Asari Republics Territory Spawned"
-		generate_salarian_union_territory = yes
-		log = "Salarian Union Territory Established"
-		generate_turian_hierarchy_territory = yes
-		log = "Turian Hierarchy Territory Established"
-		generate_systems_alliance_territory = yes
-		log = "Systems Alliance Territory Established"
-		generate_courts_of_dekuuna_territory = yes
-		log = "Courts of Dekuuna Territory Established"
-		generate_vol_protectorate_territory = yes
-		log = "Vol Protectorate Territory Established"
-		generate_illuminated_primacy_territory = yes
-		log = "Illuminated Primacy Territory Established"
-		generate_hegemony_of_kharshan_territory = yes
-		log = "Hegemony of Khar'shan Territory Established"
-		generate_aralakh_kahmat_territory = yes
-		log = "Aralakh Kahmat Territory Established"
-		generate_omega_empire_territory = yes
-		log = "Omega Territory Established"
-		generate_illium_corporate_interests_territory = yes
-		log = "Illium Corporate Interests Territory Established"
-		generate_caleston_directorate_territory = yes
-		log = "Caleston Directorate Territory Established"
-		generate_remnants_of_rakhana_territory = yes
-		log = "Remnants of Rakhana Territory Established"
-		generate_vorcha_clandom_territory = yes
-		log = "Vorcha Clandom Territory Established"
-		generate_sedriiace_collective_territory = yes
-		log = "Sed'riicae Collective Territory Established"
-		generate_lystheni_order_territory = yes
-		log = "Lystheni Order Territory Established"
-		generate_gothones_remnant_territory = yes
-		log = "Gothones Remnant Territory Established"
-		generate_geth_consensus_territory = yes
-		log = "Geth Consensus Territory Established"
-		generate_disciples_of_nazara_territory = yes
-		log = "Disciples of Nazara Territory Established"
-		generate_rachni_hive_territory = yes
-		log = "Rachni Hive Territory Established"
-		generate_citadel_council_territory = yes	
-		log = "Citadel Council Territory Established"
-
+		if = {
+			limit = { 
+				is_btr_canon_map = yes
+			}
+			log = "btr_start_country.10 - Started"
+			generate_asari_republics_territory = yes
+			log = "Asari Republics Territory Spawned"
+			generate_salarian_union_territory = yes
+			log = "Salarian Union Territory Established"
+			generate_turian_hierarchy_territory = yes
+			log = "Turian Hierarchy Territory Established"
+			generate_systems_alliance_territory = yes
+			log = "Systems Alliance Territory Established"
+			generate_courts_of_dekuuna_territory = yes
+			log = "Courts of Dekuuna Territory Established"
+			generate_vol_protectorate_territory = yes
+			log = "Vol Protectorate Territory Established"
+			generate_illuminated_primacy_territory = yes
+			log = "Illuminated Primacy Territory Established"
+			generate_hegemony_of_kharshan_territory = yes
+			log = "Hegemony of Khar'shan Territory Established"
+			generate_aralakh_kahmat_territory = yes
+			log = "Aralakh Kahmat Territory Established"
+			generate_omega_empire_territory = yes
+			log = "Omega Territory Established"
+			generate_illium_corporate_interests_territory = yes
+			log = "Illium Corporate Interests Territory Established"
+			generate_caleston_directorate_territory = yes
+			log = "Caleston Directorate Territory Established"
+			generate_remnants_of_rakhana_territory = yes
+			log = "Remnants of Rakhana Territory Established"
+			generate_vorcha_clandom_territory = yes
+			log = "Vorcha Clandom Territory Established"
+			generate_sedriiace_collective_territory = yes
+			log = "Sed'riicae Collective Territory Established"
+			generate_lystheni_order_territory = yes
+			log = "Lystheni Order Territory Established"
+			generate_gothones_remnant_territory = yes
+			log = "Gothones Remnant Territory Established"
+			generate_geth_consensus_territory = yes
+			log = "Geth Consensus Territory Established"
+			generate_disciples_of_nazara_territory = yes
+			log = "Disciples of Nazara Territory Established"
+			generate_rachni_hive_territory = yes
+			log = "Rachni Hive Territory Established"
+			generate_citadel_council_territory = yes	
+			log = "Citadel Council Territory Established"
+		}
 		log = "btr_start_country.10 - Completed"
 	}
 }
 
+planet_event = {
+	id = btr_start_country.12
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		log = "btr_start_country.11 - Started"
+
+		if = {
+			limit = { 
+				is_btr_canon_map = yes
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = asari_republics_colonies_created
+					}
+				}
+				generate_asari_republics_colonies = yes
+				log = "Asari Republics Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = salarian_union_colonies_created
+					}
+				}
+				generate_salarian_union_colonies = yes
+				log = "Salarian Union Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = turian_hierarchy_colonies_created
+					}
+				}
+				generate_turian_hierarchy_colonies = yes
+				log = "Turian Hierarchy Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = systems_alliance_colonies_created
+					}
+				}
+				generate_systems_alliance_colonies = yes
+				log = "Systems Alliance Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = courts_of_dekuuna_colonies_created
+					}
+				}
+				generate_courts_of_dekuuna_colonies = yes
+				log = "Courts of Dekuuna Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = vol_protectorate_colonies_created
+					}
+				}
+				generate_vol_protectorate_colonies = yes
+				log = "Vol Protectorate Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = illuminated_primacy_colonies_created
+					}
+				}
+				generate_illuminated_primacy_colonies = yes
+				log = "Illuminated Primacy Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = hegemony_of_kharshan_colonies_created
+					}
+				}
+				generate_hegemony_of_kharshan_colonies = yes
+				log = "Hegemony of Khar'shan Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = sedriicae_collective_colonies_created
+					}
+				}
+				generate_sedriicae_collective_colonies = yes
+				log = "Sed'riicae Collective Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = geth_consensus_colonies_created
+					}
+				}
+				generate_geth_consensus_colonies = yes
+				log = "Geth Consensus Colonies Spawned"
+			}
+			if = {
+				limit = { 
+					NOT = {
+						has_global_flag = disciples_of_nazara_colonies_created
+					}
+				}
+				generate_disciples_of_nazara_colonies = yes
+				log = "Disciples of Nazara Colonies Spawned"
+			}
+		}
+
+		log = "btr_start_country.11 - Completed"
+	}
+}
+
+# Add Pops to colonies
+country_event = {
+	id = btr_start_country.13
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_planet = {
+			if = {
+				limit = { 
+					has_planet_flag = civil_station
+				}
+				hidden_effect = {
+					if = {
+						limit = {
+							exists = owner
+							owner = {
+								is_megacorp = yes
+								is_spiritualist = no
+							}
+						}
+						custom_tooltip = district_corporate_complex_add
+					}
+				}
+				custom_tooltip = district_commercial_wards_add
+				hidden_effect = {
+					if = {
+						limit = {
+							exists = owner
+							owner = {
+								has_origin = origin_necrophage
+								has_trait = trait_necrophage
+								NOT = { has_valid_civic = civic_fanatic_purifiers }
+							}
+						}
+						custom_tooltip = district_elevation_center_add
+					}
+					if = {
+						limit = {
+							NOR = {
+								is_planet_class = pc_asteroid_station
+								is_planet_class = pc_ice_asteroid_station
+								is_planet_class = pc_crystal_asteroid_station
+							}
+						}
+						custom_tooltip = district_storage_yards_add
+					}
+					else = {
+						custom_tooltip = district_docking_bay_add
+					}
+					if = {
+						limit = { has_deposit = d_trading_route }
+						custom_tooltip = district_free_port_add
+					}
+					
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = civil_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = research_station
+				}
+				hidden_effect = {
+					if = {
+						limit = { has_deposit = d_mineral_lodes }
+						custom_tooltip = district_mining_complex_add
+					}
+					if = {
+						limit = { has_deposit = d_ore_rich_rings }
+						custom_tooltip = district_ore_processing_complex_add
+					}
+					if = {
+						limit = { has_deposit = d_rich_regolith_formations }
+						custom_tooltip = district_helium_extractor_add
+					}
+					if = {
+						limit = { has_deposit = d_helium_clouds }
+						custom_tooltip = district_helium_mining_facility_add
+					}
+					# if = {
+					# 	limit = { 
+					# 		owner = { has_technology = tech_mine_volatile_motes }
+					# 		has_deposit = d_dust_cavities
+					# 	}
+					# 	custom_tooltip = district_mote_mine_add
+					# }
+					if = {
+						limit = { 
+							owner = { has_technology = tech_mine_exotic_gases }
+							has_deposit = d_exotic_gases_vent
+						}
+						custom_tooltip = district_gas_refinery_add
+					}
+					# if = {
+					# 	limit = { 
+					# 		owner = { has_technology = tech_mine_rare_crystals }
+					# 		has_deposit = d_crystal_cavities
+					# 	}
+					# 	custom_tooltip = district_crystal_mining_add
+					# }
+					# if = {
+					# 	limit = { 
+					# 		owner = { has_technology = tech_mine_zro }
+					# 		has_deposit = d_zro_source
+					# 	}
+					# 	custom_tooltip = district_zro_harvesting_add
+					# }
+		
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = mining_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = military_station
+				}
+				custom_tooltip = district_barracks_add
+				custom_tooltip = district_fortified_bunkers_add
+				hidden_effect = {
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = military_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}	
+			}
+			if = {
+				limit = { 
+					has_planet_flag = prison_station
+				}
+				hidden_effect = {
+					custom_tooltip = decision_prison_station_effect_desc
+					if = {
+						limit = { owner = { is_authoritarian = yes } }
+						custom_tooltip = add_political_persecution
+					}
+					if = {
+						limit = { owner = { is_spiritualist = yes } }
+						custom_tooltip = add_hunting_heretics
+					}
+					custom_tooltip = add_detention_operation
+					
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = prison_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = industrial_station
+				}
+				custom_tooltip = district_foundry_plant_add
+				hidden_effect = {
+					if = {
+						limit = { 
+							owner = {
+								country_uses_consumer_goods = yes
+							}
+						}
+						custom_tooltip = district_manufacturing_complex_add
+					}
+					if = {
+						limit = { 
+							owner = {
+								OR = {
+									AND = {
+										is_regular_empire = yes
+										NOT = { has_policy_flag = robots_outlawed }
+										has_technology = tech_robotic_workers
+									}
+									is_machine_empire = yes
+								}
+							}
+						}
+						custom_tooltip = district_assembly_factory_add
+					}
+					if = {
+						limit = { 
+							owner = { has_technology = tech_mine_living_metal }
+							has_deposit = d_living_metal_deposit
+						}
+						custom_tooltip = district_living_metal_processing_add
+					}
+					
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = industrial_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+		}
+
+		log = "btr_start_country.11 - Generate Planetary Station Districts"
+	}
+}	
 
 country_event = {
 	id = btr_start_country.14
