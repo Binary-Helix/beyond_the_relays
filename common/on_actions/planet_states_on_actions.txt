@@ -1,0 +1,81 @@
+# Triggers when the game starts
+on_game_start = {
+	events = {
+		ps.1 # Spawn Planet-States
+	}
+}
+
+# this = country
+on_monthly_pulse_country = {
+	events = {
+		ps.18 # No More Energy - Trades Canceled
+	}
+}
+
+# No scope, like on_game_start
+on_yearly_pulse = {
+	events = {
+		ps.10 # Planet-State Yearly Border Opinion
+	}
+}
+
+# this = country
+on_yearly_pulse_country = {
+	events = {
+		ps.17 # Resource Deal yearly opinion
+	}
+}
+
+# Triggers when trying to open the diplomacy view for countries with custom diplomacy.
+# Country scope
+# This = target country (player)
+# From = source country
+on_custom_diplomacy = {
+	events = {
+		ps.100 # The Egalitarian
+		ps.1005 # Attacked Egalitarian PS
+		ps.200 # The Authoritarian
+		ps.2005 # Attacked Authoritarian PS
+		ps.300 # The Militarist
+		ps.3005 # Attacked Militarist PS
+		ps.400 # The Pacifist
+		ps.4005 # Attacked Pacifist PS
+	}
+}
+
+# This = owner of fleet 1
+# From = owner of fleet 2
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+on_entering_battle = {
+	events = {
+		ps.1003 # Attacked Egalitarian PS
+		ps.2003 # Attacked Authoritarian PS
+		ps.3003 # Attacked Militarist PS
+		ps.4003 # Attacked Pacifist PS
+	}
+}
+
+# Triggers country_event for the attacker upon victory
+# (Before controller is switched)
+# This = country, leader attacker
+# From = country, planet owner
+# FromFrom = planet
+# IDENTITIES: attacker is the side that "IsHostile" to
+# the planet controller; e.g. spawned monster armies
+# are attackers, but if they win and the player attempts
+# to retake the planet, the player is the attacker
+on_planet_attackers_win = {
+	events = {
+		ps.19 # Planet-State Conquered (HIDDEN)
+	}
+}
+
+# Scope: first_contact_scope
+# Root.Owner = contact_country.root.owner (the country for which you are setting the first contact)
+# FromFrom = contact_country (the country that will be discovered after the first contact)
+on_first_contact_stage_1_no_path = {
+	events = {
+		ps_on_action.1
+	}
+}

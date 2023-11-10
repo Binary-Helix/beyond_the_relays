@@ -1,0 +1,3242 @@
+#TODO:REWRITE EVENTS TO APPLY TO INDEPENDENT COLONIES INSTEAD OF RANDOMIZED LIKE IN NORMAL PLANET STATE MOD
+ namespace = ps
+
+# ps.1: Spawn Planet-States (on_game_start)
+event = {
+	id = ps.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+
+		# Planet-State 1: The Egalitrian
+		random_system = {
+			limit = { is_appropriate_planet_state_system = yes }
+			create_planet_state_egalitarian = yes
+			log = "check if planet state is created"
+			event_target:target_ps_egalitarian = { country_event = { id = ps.2 days = 1 } }
+			log = "[event_target:target_ps_egalitarian.GetName]"
+		}
+
+		# Planet-State 2: The Authoritarian
+		random_system = {
+			limit = { is_appropriate_planet_state_system = yes }
+			create_planet_state_authoritarian = yes
+			log = "check if planet state is created"
+			event_target:target_ps_authoritarian = { country_event = { id = ps.3 days = 1 } }
+			log = "[event_target:target_ps_authoritarian.GetName]"
+		}
+
+		# Planet-State 3: The Militarist
+		random_system = {
+			limit = { is_appropriate_planet_state_system = yes }
+			create_planet_state_militarist = yes
+			log = "check if planet state is created"
+			event_target:target_ps_militarist = { country_event = { id = ps.4 days = 1 } }
+			log = "[event_target:target_ps_militarist.GetName]"
+		}
+
+		# Planet-State 4: The Pacifist
+		random_system = {
+			limit = { is_appropriate_planet_state_system = yes }
+			create_planet_state_pacifist = yes
+			log = "check if planet state is created"
+			log = "[event_target:target_ps_authoritarian.GetName]"
+			
+		}
+	}
+}
+
+# ps.2: Spawn adjustments for Egalitarian PS
+country_event = {
+	id = ps.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ps_egalitarian_main_species = {
+			set_citizenship_type = {
+				type = citizenship_full
+				country = event_target:target_ps_egalitarian
+			}
+			set_living_standard = {
+				type = living_standard_utopian
+				country = event_target:target_ps_egalitarian
+			}
+		}
+	}
+}
+
+# ps.3: Spawn adjustments for Authoritarian PS
+country_event = {
+	id = ps.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ps_authoritarian_main_species = {
+			set_citizenship_type = {
+				type = citizenship_full
+				country = event_target:target_ps_authoritarian
+			}
+			set_living_standard = {
+				type = living_standard_chemical_bliss
+				country = event_target:target_ps_authoritarian
+			}
+		}
+		event_target:ps_authoritarian_specialist_species = {
+			set_citizenship_type = {
+				type = citizenship_limited
+				country = event_target:target_ps_authoritarian
+			}
+			set_living_standard = {
+				type = living_standard_stratified
+				country = event_target:target_ps_authoritarian
+			}
+		}
+		event_target:ps_authoritarian_servile_species = {
+			set_citizenship_type = {
+				type = citizenship_slavery
+				country = event_target:target_ps_authoritarian
+			}
+			set_living_standard = {
+				type = living_standard_subsistence
+				country = event_target:target_ps_authoritarian
+			}
+			set_slavery_type = {
+				type = slavery_domestic
+				country = event_target:target_ps_authoritarian
+			}
+		}
+		event_target:ps_authoritarian_slave_species = {
+			set_citizenship_type = {
+				type = citizenship_slavery
+				country = event_target:target_ps_authoritarian
+			}
+			set_living_standard = {
+				type = living_standard_subsistence
+				country = event_target:target_ps_authoritarian
+			}
+			set_slavery_type = {
+				type = slavery_normal
+				country = event_target:target_ps_authoritarian
+			}
+		}
+	}
+}
+
+# ps.4: Spawn adjustments for Militarist PS
+country_event = {
+	id = ps.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:ps_militarist_main_species = {
+			set_citizenship_type = {
+				type = citizenship_full
+				country = event_target:target_ps_militarist
+			}
+			set_living_standard = {
+				type = living_standard_good
+				country = event_target:target_ps_militarist
+			}
+		}
+		event_target:ps_militarist_robot_species = {
+			set_military_service_type = {
+				type = military_service_none
+				country = event_target:target_ps_militarist
+			}
+		}
+	}
+}
+
+# ps.10: Planet-State Yearly Border Opinion (on_yearly_pulse)
+event = {
+	id = ps.10
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { is_country_type = planet_state }
+			country_event = { id = ps.11 }
+		}
+	}
+}
+
+# ps.11: Add +1 opinion per year (called by ps.10)
+country_event = {
+	id = ps.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_fleet = {
+			limit = {
+				exists = solar_system
+				solar_system = {
+					exists = space_owner
+					space_owner = {
+						is_country_type = default
+					}
+				}
+			}
+			solar_system = {
+				space_owner = {
+					root = {
+						add_trust = {
+							who = prev
+							amount = 1
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# ps.12: Port
+country_event = {
+	id = ps.12
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		save_global_event_target_as = target_planet_state
+		switch = {
+			trigger = has_country_flag
+			ps_egalitarian = { from = { country_event = { id = ps.13 } } }
+			ps_authoritarian = { from = { country_event = { id = ps.14 } } }
+			ps_militarist = { from = { country_event = { id = ps.15 } } }
+			ps_pacifist = { from = { country_event = { id = ps.16 } } }
+		}
+	}
+}
+
+# ps.13: First contact with Egalitarian Planet-State
+country_event = {
+	id = ps.13
+	title = ps.13.name
+	desc = ps.13.desc
+	location = event_target:ps_egalitarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_planet_state
+		planet_background = event_target:target_planet_state
+		graphical_culture = event_target:target_planet_state
+		city_level = event_target:target_planet_state
+		room = personality_federation_builders_room
+	}
+
+	option = {
+		name = ps.13.a
+		trigger = { is_homicidal = no }
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+	}
+}
+# ps.14: First contact with Authoritarian Planet-State
+country_event = {
+	id = ps.14
+	title = ps.13.name
+	desc = ps.14.desc
+	location = event_target:ps_authoritarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_planet_state
+		planet_background = event_target:target_planet_state
+		graphical_culture = event_target:target_planet_state
+		city_level = event_target:target_planet_state
+		room = personality_decadent_hierarchy_room
+	}
+
+	option = {
+		name = ps.13.a
+		trigger = { is_homicidal = no }
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+	}
+}
+# ps.15: First contact with Militarist Planet-State
+country_event = {
+	id = ps.15
+	title = ps.13.name
+	desc = ps.15.desc
+	location = event_target:ps_militarist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_planet_state
+		planet_background = event_target:target_planet_state
+		graphical_culture = event_target:target_planet_state
+		city_level = event_target:target_planet_state
+		room = personality_honorbound_warriors_room
+	}
+
+	option = {
+		name = ps.13.a
+		trigger = { is_homicidal = no }
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+	}
+}
+# ps.16: First contact with Pacifist Planet-State
+country_event = {
+	id = ps.16
+	title = ps.13.name
+	desc = ps.16.desc
+	location = event_target:ps_pacifist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_planet_state
+		planet_background = event_target:target_planet_state
+		graphical_culture = event_target:target_planet_state
+		city_level = event_target:target_planet_state
+		room = personality_spiritual_seekers_room
+	}
+
+	option = {
+		name = ps.13.a
+		trigger = { is_homicidal = no }
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+	}
+}
+
+# ps.17: Resource Deal yearly opinion (on_yearly_pulse_country)
+country_event = {
+	id = ps.17
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		OR = {
+			has_any_active_ps_egalitarian_deal = yes
+			has_any_active_ps_authoritarian_deal = yes
+			has_any_active_ps_militarist_deal = yes
+			has_any_active_ps_pacifist_deal = yes
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { has_any_active_ps_egalitarian_deal = yes }
+			every_country = {
+				limit = { has_country_flag = ps_egalitarian }
+				add_trust = {
+					who = Root
+					amount = 2
+				}
+			}
+		}
+		if = {
+			limit = { has_any_active_ps_authoritarian_deal = yes }
+			every_country = {
+				limit = { has_country_flag = ps_authoritarian }
+				add_trust = {
+					who = Root
+					amount = 2
+				}
+			}
+		}
+		if = {
+			limit = { has_any_active_ps_militarist_deal = yes }
+			every_country = {
+				limit = { has_country_flag = ps_militarist }
+				add_trust = {
+					who = Root
+					amount = 2
+				}
+			}
+		}
+		if = {
+			limit = { has_any_active_ps_pacifist_deal = yes }
+			every_country = {
+				limit = { has_country_flag = ps_pacifist }
+				add_trust = {
+					who = Root
+					amount = 2
+				}
+			}
+		}
+	}
+}
+
+# ps.18: No More Energy - Trades Canceled (on_monthly_pulse_country)
+country_event = {
+	id = ps.18
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		resource_stockpile_compare = { resource = energy value <= 0 }
+		OR = {
+			has_active_ps_egalitarian_trade_deal = yes
+			has_active_ps_authoritarian_trade_deal = yes
+			has_active_ps_militarist_trade_deal = yes
+			has_active_ps_pacifist_trade_deal = yes
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { has_active_ps_egalitarian_trade_deal = yes }
+			remove_ps_egalitarian_trade_deal = yes
+			every_country = {
+				limit = { has_country_flag = ps_egalitarian }
+				add_trust = {
+					who = Root
+					amount = -20
+				}
+			}
+		}
+		if = {
+			limit = { has_active_ps_authoritarian_trade_deal = yes }
+			remove_ps_authoritarian_trade_deal = yes
+			every_country = {
+				limit = { has_country_flag = ps_authoritarian }
+				add_trust = {
+					who = Root
+					amount = -20
+				}
+			}
+		}
+		if = {
+			limit = { has_active_ps_militarist_trade_deal = yes }
+			remove_ps_militarist_trade_deal = yes
+			every_country = {
+				limit = { has_country_flag = ps_militarist }
+				add_trust = {
+					who = Root
+					amount = -20
+				}
+			}
+		}
+		if = {
+			limit = { has_active_ps_pacifist_trade_deal = yes }
+			remove_ps_pacifist_trade_deal = yes
+			every_country = {
+				limit = { has_country_flag = ps_pacifist }
+				add_trust = {
+					who = Root
+					amount = -20
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				NOR = {
+					has_active_xuracorp_trade = yes
+					has_active_riggan_trade = yes
+					has_active_muutagan_trade = yes
+				}
+			}
+			country_event = { id = leviathans.171 }
+		}
+	}
+}
+
+# ps.19: Planet-State Conquered (HIDDEN) (on_planet_attackers_win)
+country_event = {
+	id = ps.19
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		From = { is_country_type = planet_state }
+		is_country_type = default
+	}
+
+	immediate = {
+		From = { save_event_target_as = target_planet_state }
+		FromFrom = { save_event_target_as = target_planet_state_capital }
+
+		if = {
+			limit = { From = { has_country_flag = ps_egalitarian } }
+			country_event = { id = ps.1000 }
+		}
+		if = {
+			limit = { From = { has_country_flag = ps_authoritarian } }
+			country_event = { id = ps.2000 }
+		}
+		if = {
+			limit = { From = { has_country_flag = ps_militarist } }
+			country_event = { id = ps.3000 }
+		}
+		if = {
+			limit = { From = { has_country_flag = ps_pacifist } }
+			country_event = { id = ps.4000 }
+		}
+	}
+}
+
+# ps.100: Egalitarian PS - Main Menu (Initial)
+country_event = {
+	id = ps.100
+	title = ps.100.name
+	desc = ps.100a.desc
+	location = event_target:ps_egalitarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_egalitarian
+		planet_background = event_target:target_ps_egalitarian
+		graphical_culture = event_target:target_ps_egalitarian
+		city_level = event_target:target_ps_egalitarian
+		room = personality_federation_builders_room
+	}
+
+	trigger = {
+		from = {
+			is_country_type = planet_state
+			has_country_flag = ps_egalitarian
+		}
+		NOT = { has_country_flag = ps_egalitarian_diplomacy_engaged }
+		NOT = { has_country_flag = attacked_ps_egalitarian }
+	}
+
+	immediate = {
+		set_country_flag = ps_egalitarian_diplomacy_engaged
+		From = { save_event_target_as = target_ps_egalitarian }
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+
+	# Resource deal (ps.110)
+	option = {
+		name = ps.100.a
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.100.a.alreadyhired
+				has_active_ps_egalitarian_trade_deal = no
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.110 }
+		}
+	}
+	# Cancel trade deal
+	option = {
+		name = ps.100.ab
+		response_text = ps.100.ab.reply
+		is_dialog_only = yes
+		trigger = { has_active_ps_egalitarian_trade_deal = yes }
+		custom_tooltip = ps.100.ab.tooltip
+		hidden_effect = { remove_ps_egalitarian_trade_deal = yes }
+	}
+
+	# Commercial pact (ps.120)
+	option = {
+		name = ps.100.b
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.100.b.opinion
+				event_target:target_ps_egalitarian = {
+					trust = {
+						who = Root
+						value >= 50
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = ps.100.b.alreadyhired
+				NOT = { has_modifier = modifier_ps_egalitarian_commercial_pact }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.120 }
+		}
+	}
+
+	# Goodbye
+	option = {
+		name = ps.100.goodbye
+		default_hide_option = yes
+		trigger = { is_homicidal = no }
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+}
+
+# ps.101: Egalitarian PS - Main Menu
+country_event = {
+	id = ps.101
+	title = ps.100.name
+	desc = ps.100a.desc
+	location = event_target:ps_egalitarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_egalitarian
+		planet_background = event_target:target_ps_egalitarian
+		graphical_culture = event_target:target_ps_egalitarian
+		city_level = event_target:target_ps_egalitarian
+		room = personality_federation_builders_room
+	}
+
+	trigger = {
+		NOT = { has_country_flag = ps_egalitarian_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = ps_egalitarian_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+
+	# Resource Deal (ps.110)
+	option = {
+		name = ps.100.a
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.100.a.alreadyhired
+				has_active_ps_egalitarian_trade_deal = no
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.110 }
+		}
+	}
+	# Cancel trade deal
+	option = {
+		name = ps.100.ab
+		response_text = ps.100.ab.reply
+		is_dialog_only = yes
+		trigger = { has_active_ps_egalitarian_trade_deal = yes }
+		custom_tooltip = ps.100.ab.tooltip
+		hidden_effect = { remove_ps_egalitarian_trade_deal = yes }
+	}
+
+	# Commercial pact (ps.120)
+	option = {
+		name = ps.100.b
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.100.b.opinion
+				event_target:target_ps_egalitarian = {
+					trust = {
+						who = Root
+						value >= 50
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = ps.100.b.alreadyhired
+				NOT = { has_modifier = modifier_ps_egalitarian_commercial_pact }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.120 }
+		}
+	}
+
+	# Goodbye
+	option = {
+		name = ps.100.goodbye
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+}
+
+# ps.110: Resource Deal
+country_event = {
+	id = ps.110
+	title = ps.110.name
+	desc = ps.110.desc
+	location = event_target:ps_egalitarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_egalitarian
+		planet_background = event_target:target_ps_egalitarian
+		graphical_culture = event_target:target_ps_egalitarian
+		city_level = event_target:target_ps_egalitarian
+		room = personality_federation_builders_room
+	}
+
+	immediate = {
+		set_country_flag = ps_egalitarian_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+
+	# 10 CG for 20 Energys
+	option = {
+		name = ps.110.a
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_egalitarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_egalitarian_trade_deal_1
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.111 }
+		}
+	}
+	# 20 CG for 40 Energy
+	option = {
+		name = ps.110.b
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_egalitarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_egalitarian_trade_deal_2
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.111 }
+		}
+	}
+	# 30 CG for 60 Energy
+	option = {
+		name = ps.110.c
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_egalitarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_egalitarian_trade_deal_3
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.111 }
+		}
+	}
+	# 40 CG for 80 Energy
+	option = {
+		name = ps.110.d
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_egalitarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_egalitarian_trade_deal_4
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.111 }
+		}
+	}
+	# 50 CG for 100 Energy
+	option = {
+		name = ps.110.e
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_egalitarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_egalitarian_trade_deal_5
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.111 }
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.110.back
+		hidden_effect = {
+			country_event = { id = ps.101 }
+		}
+	}
+	# End
+	option = {
+		name = ps.100.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.111: Resource Deal - Answer
+country_event = {
+	id = ps.111
+	title = ps.110.name
+	desc = ps.111.desc
+	location = event_target:ps_egalitarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_egalitarian
+		planet_background = event_target:target_ps_egalitarian
+		graphical_culture = event_target:target_ps_egalitarian
+		city_level = event_target:target_ps_egalitarian
+		room = personality_federation_builders_room
+	}
+
+	immediate = {
+		set_country_flag = ps_egalitarian_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.110.back
+		hidden_effect = {
+			country_event = { id = ps.101 }
+		}
+	}
+	# End
+	option = {
+		name = ps.100.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.120: Commercial Pact
+country_event = {
+	id = ps.120
+	title = ps.120.name
+	desc = ps.120.desc
+	location = event_target:ps_egalitarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_egalitarian
+		planet_background = event_target:target_ps_egalitarian
+		graphical_culture = event_target:target_ps_egalitarian
+		city_level = event_target:target_ps_egalitarian
+		room = personality_federation_builders_room
+	}
+
+	immediate = {
+		set_country_flag = ps_egalitarian_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = ps.120.a
+		response_text = ps.120.a.reply
+		custom_tooltip = opinion50
+		is_dialog_only = yes
+		add_modifier = {
+			modifier = modifier_ps_egalitarian_commercial_pact
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			event_target:target_ps_egalitarian = {
+				add_trust = {
+					who = root
+					amount = 20
+				}
+			}
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.110.back
+		hidden_effect = {
+			country_event = { id = ps.101 }
+		}
+	}
+	# End
+	option = {
+		name = ps.100.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.1000: Egalitarian PS destroyed (HIDDEN)
+country_event = {
+	id = ps.1000
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = ps.1001 }
+		save_event_target_as = ps_egalitarian_destroyer
+
+		every_country = {
+			limit = {
+				has_communications = event_target:target_planet_state
+				NOT = { is_country = event_target:ps_egalitarian_destroyer }
+				is_country_type = default
+			}
+			country_event = { id = ps.1002 }
+		}
+	}
+}
+
+# ps.1001: Egalitarian PS destroyed (Destroyer)
+country_event = {
+	id = ps.1001
+	title = ps.1001.name
+	desc = ps.1001.desc
+	picture = GFX_evt_space_debris
+	location = event_target:target_planet_state_capital
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = destroyed_ps_egalitarian
+		if = {
+			limit = { is_regular_empire = yes }
+			event_target:target_planet_state_capital = {
+				add_modifier = {
+					modifier = planet_lost_autonomy
+					years = 10
+				}
+				set_owner = Root
+			}
+		}
+		else = {
+			event_target:target_planet_state_capital = {
+				set_owner = Root
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# ps.1002: Egalitarian PS Destroyed
+country_event = {
+	id = ps.1002
+	title = ps.1002.name
+	desc = {
+		text = ps.1002.a.desc
+		trigger = {
+			has_any_active_ps_egalitarian_deal = no
+			has_communications = event_target:ps_egalitarian_destroyer
+		}
+	}
+	desc = {
+		text = ps.1002.b.desc
+		trigger = {
+			has_any_active_ps_egalitarian_deal = no
+			NOT = { has_communications = event_target:ps_egalitarian_destroyer }
+		}
+	}
+	desc = {
+		text = ps.1002.c.desc
+		trigger = {
+			has_any_active_ps_egalitarian_deal = yes
+			has_communications = event_target:ps_egalitarian_destroyer
+		}
+	}
+	desc = {
+		text = ps.1002.d.desc
+		trigger = {
+			has_any_active_ps_egalitarian_deal = yes
+			NOT = { has_communications = event_target:ps_egalitarian_destroyer }
+		}
+	}
+	picture = GFX_evt_exploding_ship
+	location = event_target:target_planet_state_capital
+	show_sound = event_ship_explosion
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_any_active_ps_egalitarian_deal = yes
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:ps_egalitarian_destroyer
+				modifier = opinion_destroyed_ps_egalitarian_trade
+			}
+		}
+		if = {
+			limit = {
+				has_any_active_ps_egalitarian_deal = yes
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:ps_egalitarian_destroyer
+				modifier = opinion_destroyed_ps_egalitarian
+			}
+		}
+	}
+
+	after = {
+		remove_all_ps_egalitarian_deals = yes
+	}
+
+	option  = {
+		name = ps.1002.a
+		trigger = {
+			has_any_active_ps_egalitarian_deal = no
+		}
+	}
+	option = {
+		name = ps.1002.b
+		trigger = {
+			has_any_active_ps_egalitarian_deal = yes
+		}
+	}
+}
+
+# ps.1003: Attacked Egalitarian PS (Hidden) (on_entering_battle)
+country_event = {
+	id = ps.1003
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		From = { has_country_flag = ps_egalitarian }
+	}
+
+	immediate = {
+		From = {
+			save_event_target_as = target_ps_egalitarian
+			add_trust = {
+				who = Root
+				amount = -100
+			}
+		}
+		set_country_flag = attacked_ps_egalitarian
+		if = {
+			limit = { has_any_active_ps_egalitarian_deal = yes }
+			remove_all_ps_egalitarian_deals = yes
+			country_event = { id = ps.1004 }
+		}
+	}
+}
+
+# ps.1004: Attacked Egalitarian PS - Agreements Terminated
+country_event = {
+	id = ps.1004
+	title = ps.1004.name
+	desc = ps.1004.desc
+	location = event_target:ps_egalitarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_egalitarian
+		planet_background = event_target:target_ps_egalitarian
+		graphical_culture = event_target:target_ps_egalitarian
+		city_level = event_target:target_ps_egalitarian
+		room = personality_federation_builders_room
+	}
+
+	option = {
+		name = ps.1004.a
+	}
+}
+
+# ps.1005: Attacked Egalitarian PS - Refuses Communications (on_custom_diplomacy)
+country_event = {
+	id = ps.1005
+	title = ps.1005.name
+	desc = ps.1005a.desc
+	location = event_target:ps_egalitarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_egalitarian
+		planet_background = event_target:target_ps_egalitarian
+		graphical_culture = event_target:target_ps_egalitarian
+		city_level = event_target:target_ps_egalitarian
+		room = personality_federation_builders_room
+	}
+
+	trigger = {
+		From = {
+			is_country_type = planet_state
+			has_country_flag = ps_egalitarian
+		}
+		has_country_flag = attacked_ps_egalitarian
+		NOT = { has_country_flag = ps_egalitarian_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = ps_egalitarian_diplomacy_engaged
+		From = { save_event_target_as = target_ps_egalitarian }
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_egalitarian_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+	}
+	option = {
+		name = ps.1005.a
+		trigger = { is_homicidal = no }
+		default_hide_option = yes
+	}
+}
+
+# ps.200: Authoritarian PS - Main Menu (Initial)
+country_event = {
+	id = ps.200
+	title = ps.200.name
+	desc = ps.200a.desc
+	location = event_target:ps_authoritarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_authoritarian
+		planet_background = event_target:target_ps_authoritarian
+		graphical_culture = event_target:target_ps_authoritarian
+		city_level = event_target:target_ps_authoritarian
+		room = personality_decadent_hierarchy_room
+	}
+
+	trigger = {
+		from = {
+			is_country_type = planet_state
+			has_country_flag = ps_authoritarian
+		}
+		NOT = { has_country_flag = ps_authoritarian_diplomacy_engaged }
+		NOT = { has_country_flag = attacked_ps_authoritarian }
+	}
+
+	immediate = {
+		set_country_flag = ps_authoritarian_diplomacy_engaged
+		From = { save_event_target_as = target_ps_authoritarian }
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+
+	# Resource Deal (ps.210)
+	option = {
+		name = ps.200.a
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.200.a.alreadyhired
+				has_active_ps_authoritarian_trade_deal = no
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.210 }
+		}
+	}
+	# Cancel trade deal
+	option = {
+		name = ps.200.ab
+		response_text = ps.200.ab.reply
+		is_dialog_only = yes
+		trigger = { has_active_ps_authoritarian_trade_deal = yes }
+		custom_tooltip = ps.200.ab.tooltip
+		hidden_effect = { remove_ps_authoritarian_trade_deal = yes }
+	}
+
+	# Commercial pact (ps.220)
+	option = {
+		name = ps.200.b
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.200.b.opinion
+				event_target:target_ps_authoritarian = {
+					trust = {
+						who = Root
+						value >= 50
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = ps.200.b.alreadyhired
+				NOT = { has_modifier = modifier_ps_authoritarian_commercial_pact }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.220 }
+		}
+	}
+
+	# Goodbye
+	option = {
+		name = ps.200.goodbye
+		default_hide_option = yes
+		trigger = { is_homicidal = no }
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+}
+
+# ps.201: Authoritarian PS - Main Menu
+country_event = {
+	id = ps.201
+	title = ps.200.name
+	desc = ps.200a.desc
+	location = event_target:ps_authoritarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_authoritarian
+		planet_background = event_target:target_ps_authoritarian
+		graphical_culture = event_target:target_ps_authoritarian
+		city_level = event_target:target_ps_authoritarian
+		room = personality_decadent_hierarchy_room
+	}
+
+	trigger = {
+		NOT = { has_country_flag = ps_authoritarian_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = ps_authoritarian_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+
+	# Resource deal (ps.210)
+	option = {
+		name = ps.200.a
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.200.a.alreadyhired
+				has_active_ps_authoritarian_trade_deal = no
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.210 }
+		}
+	}
+	# Cancel trade deal
+	option = {
+		name = ps.200.ab
+		response_text = ps.200.ab.reply
+		is_dialog_only = yes
+		trigger = { has_active_ps_authoritarian_trade_deal = yes }
+		custom_tooltip = ps.200.ab.tooltip
+		hidden_effect = { remove_ps_authoritarian_trade_deal = yes }
+	}
+
+	# Commercial pact (ps.220)
+	option = {
+		name = ps.200.b
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.200.b.opinion
+				event_target:target_ps_authoritarian = {
+					trust = {
+						who = Root
+						value >= 50
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = ps.200.b.alreadyhired
+				NOT = { has_modifier = modifier_ps_authoritarian_commercial_pact }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.220 }
+		}
+	}
+
+	# Goodbye
+	option = {
+		name = ps.200.goodbye
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+}
+
+# ps.210: Resource Deal
+country_event = {
+	id = ps.210
+	title = ps.210.name
+	desc = ps.210.desc
+	location = event_target:ps_authoritarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_authoritarian
+		planet_background = event_target:target_ps_authoritarian
+		graphical_culture = event_target:target_ps_authoritarian
+		city_level = event_target:target_ps_authoritarian
+		room = personality_decadent_hierarchy_room
+	}
+
+	immediate = {
+		set_country_flag = ps_authoritarian_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+
+	# 10 Minerals for 10 Energy
+	option = {
+		name = ps.210.a
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_authoritarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_authoritarian_trade_deal_1
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.211 }
+		}
+	}
+	# 20 Minerals for 20 Energy
+	option = {
+		name = ps.210.b
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_authoritarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_authoritarian_trade_deal_2
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.211 }
+		}
+	}
+	# 30 Minerals for 30 Energy
+	option = {
+		name = ps.210.c
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_authoritarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_authoritarian_trade_deal_3
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.211 }
+		}
+	}
+	# 40 Minerals for 40 Energy
+	option = {
+		name = ps.210.d
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_authoritarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_authoritarian_trade_deal_4
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.211 }
+		}
+	}
+	# 50 Minerals for 50 Energy
+	option = {
+		name = ps.210.e
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_authoritarian }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_authoritarian_trade_deal_5
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.211 }
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.210.back
+		hidden_effect = {
+			country_event = { id = ps.201 }
+		}
+	}
+	# End
+	option = {
+		name = ps.200.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.211: Resource Deal - Answer
+country_event = {
+	id = ps.211
+	title = ps.210.name
+	desc = ps.211.desc
+	location = event_target:ps_authoritarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_authoritarian
+		planet_background = event_target:target_ps_authoritarian
+		graphical_culture = event_target:target_ps_authoritarian
+		city_level = event_target:target_ps_authoritarian
+		room = personality_decadent_hierarchy_room
+	}
+
+	immediate = {
+		set_country_flag = ps_authoritarian_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.210.back
+		hidden_effect = {
+			country_event = { id = ps.201 }
+		}
+	}
+	# End
+	option = {
+		name = ps.200.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.220: Commercial Pact
+country_event = {
+	id = ps.220
+	title = ps.220.name
+	desc = ps.220.desc
+	location = event_target:ps_authoritarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_authoritarian
+		planet_background = event_target:target_ps_authoritarian
+		graphical_culture = event_target:target_ps_authoritarian
+		city_level = event_target:target_ps_authoritarian
+		room = personality_decadent_hierarchy_room
+	}
+
+	immediate = {
+		set_country_flag = ps_authoritarian_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = ps.220.a
+		response_text = ps.220.a.reply
+		custom_tooltip = opinion50
+		add_modifier = {
+			modifier = modifier_ps_authoritarian_commercial_pact
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			event_target:target_ps_authoritarian = {
+				add_trust = {
+					who = root
+					amount = 20
+				}
+			}
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.210.back
+		hidden_effect = {
+			country_event = { id = ps.201 }
+		}
+	}
+	# End
+	option = {
+		name = ps.200.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.2000: Authoritarian PS destroyed (HIDDEN)
+country_event = {
+	id = ps.2000
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = ps.2001 }
+		save_event_target_as = ps_authoritarian_destroyer
+
+		every_country = {
+			limit = {
+				has_communications = event_target:target_planet_state
+				NOT = { is_country = event_target:ps_authoritarian_destroyer }
+				is_country_type = default
+			}
+			country_event = { id = ps.2002 }
+		}
+	}
+}
+
+# ps.2001: Authoritarian PS destroyed (Destroyer)
+country_event = {
+	id = ps.2001
+	title = ps.1001.name
+	desc = ps.1001.desc
+	picture = GFX_evt_space_debris
+	location = event_target:target_planet_state_capital
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = destroyed_ps_authoritarian
+		if = {
+			limit = { is_regular_empire = yes }
+			event_target:target_planet_state_capital = {
+				add_modifier = {
+					modifier = planet_lost_autonomy
+					years = 10
+				}
+				set_owner = Root
+			}
+		}
+		else = {
+			event_target:target_planet_state_capital = {
+				set_owner = Root
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# ps.2002: Authoritarian PS Destroyed
+country_event = {
+	id = ps.2002
+	title = ps.1002.name
+	desc = {
+		text = ps.1002.a.desc
+		trigger = {
+			has_any_active_ps_authoritarian_deal = no
+			has_communications = event_target:ps_authoritarian_destroyer
+		}
+	}
+	desc = {
+		text = ps.1002.b.desc
+		trigger = {
+			has_any_active_ps_authoritarian_deal = no
+			NOT = { has_communications = event_target:ps_authoritarian_destroyer }
+		}
+	}
+	desc = {
+		text = ps.1002.c.desc
+		trigger = {
+			has_any_active_ps_authoritarian_deal = yes
+			has_communications = event_target:ps_authoritarian_destroyer
+		}
+	}
+	desc = {
+		text = ps.1002.d.desc
+		trigger = {
+			has_any_active_ps_authoritarian_deal = yes
+			NOT = { has_communications = event_target:ps_authoritarian_destroyer }
+		}
+	}
+	picture = GFX_evt_exploding_ship
+	location = event_target:target_planet_state_capital
+	show_sound = event_ship_explosion
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_any_active_ps_authoritarian_deal = yes
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:ps_authoritarian_destroyer
+				modifier = opinion_destroyed_ps_authoritarian_trade
+			}
+		}
+		if = {
+			limit = {
+				has_any_active_ps_authoritarian_deal = yes
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:ps_authoritarian_destroyer
+				modifier = opinion_destroyed_ps_authoritarian
+			}
+		}
+	}
+
+	after = {
+		remove_all_ps_authoritarian_deals = yes
+	}
+
+	option  = {
+		name = ps.1002.a
+		trigger = {
+			has_any_active_ps_authoritarian_deal = no
+		}
+	}
+	option = {
+		name = ps.1002.b
+		trigger = {
+			has_any_active_ps_authoritarian_deal = yes
+		}
+	}
+}
+
+# ps.2003: Attacked Authoritarian PS (Hidden) (on_entering_battle)
+country_event = {
+	id = ps.2003
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		From = { has_country_flag = ps_authoritarian }
+	}
+
+	immediate = {
+		From = {
+			save_event_target_as = target_ps_authoritarian
+			add_trust = {
+				who = Root
+				amount = -100
+			}
+		}
+		set_country_flag = attacked_ps_authoritarian
+		if = {
+			limit = { has_any_active_ps_authoritarian_deal = yes }
+			remove_all_ps_authoritarian_deals = yes
+			country_event = { id = ps.2004 }
+		}
+	}
+}
+
+# ps.2004: Attacked Authoritarian PS - Agreements Terminated
+country_event = {
+	id = ps.2004
+	title = ps.2004.name
+	desc = ps.2004.desc
+	location = event_target:ps_authoritarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_authoritarian
+		planet_background = event_target:target_ps_authoritarian
+		graphical_culture = event_target:target_ps_authoritarian
+		city_level = event_target:target_ps_authoritarian
+		room = personality_decadent_hierarchy_room
+	}
+
+	option = {
+		name = ps.2004.a
+	}
+}
+
+# ps.2005: Attacked Authoritarian PS - Refuses Communications
+country_event = {
+	id = ps.2005
+	title = ps.2005.name
+	desc = ps.2005a.desc
+	location = event_target:ps_authoritarian_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_authoritarian
+		planet_background = event_target:target_ps_authoritarian
+		graphical_culture = event_target:target_ps_authoritarian
+		city_level = event_target:target_ps_authoritarian
+		room = personality_decadent_hierarchy_room
+	}
+
+	trigger = {
+		From = {
+			is_country_type = planet_state
+			has_country_flag = ps_authoritarian
+		}
+		has_country_flag = attacked_ps_authoritarian
+		NOT = { has_country_flag = ps_authoritarian_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = ps_authoritarian_diplomacy_engaged
+		From = { save_event_target_as = target_ps_authoritarian }
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_authoritarian_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+	}
+	option = {
+		name = ps.2005.a
+		trigger = { is_homicidal = no }
+		default_hide_option = yes
+	}
+}
+
+# ps.300: Militarist PS - Main Menu (Initial)
+country_event = {
+	id = ps.300
+	title = ps.300.name
+	desc = ps.300a.desc
+	location = event_target:ps_militarist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_militarist
+		planet_background = event_target:target_ps_militarist
+		graphical_culture = event_target:target_ps_militarist
+		city_level = event_target:target_ps_militarist
+		room = personality_honorbound_warriors_room
+	}
+
+	trigger = {
+		from = {
+			is_country_type = planet_state
+			has_country_flag = ps_militarist
+		}
+		NOT = { has_country_flag = ps_militarist_diplomacy_engaged }
+		NOT = { has_country_flag = attacked_ps_militarist }
+	}
+
+	immediate = {
+		set_country_flag = ps_militarist_diplomacy_engaged
+		From = { save_event_target_as = target_ps_militarist }
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+
+	# Resource deal (ps.310)
+	option = {
+		name = ps.300.a
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.300.a.alreadyhired
+				has_active_ps_militarist_trade_deal = no
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.310 }
+		}
+	}
+	# Cancel trade deal
+	option = {
+		name = ps.300.ab
+		response_text = ps.300.ab.reply
+		is_dialog_only = yes
+		trigger = { has_active_ps_militarist_trade_deal = yes }
+		custom_tooltip = ps.300.ab.tooltip
+		hidden_effect = { remove_ps_militarist_trade_deal = yes }
+	}
+
+	# Commercial pact (ps.320)
+	option = {
+		name = ps.300.b
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.300.b.opinion
+				event_target:target_ps_militarist = {
+					trust = {
+						who = Root
+						value >= 50
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = ps.300.b.alreadyhired
+				NOT = { has_country_flag = hired_ps_army }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.320 }
+		}
+	}
+
+	# Goodbye
+	option = {
+		name = ps.300.goodbye
+		default_hide_option = yes
+		trigger = { is_homicidal = no }
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+}
+
+# ps.301: Militarist PS - Main Menu
+country_event = {
+	id = ps.301
+	title = ps.300.name
+	desc = ps.300a.desc
+	location = event_target:ps_militarist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_militarist
+		planet_background = event_target:target_ps_militarist
+		graphical_culture = event_target:target_ps_militarist
+		city_level = event_target:target_ps_militarist
+		room = personality_honorbound_warriors_room
+	}
+
+	trigger = {
+		NOT = { has_country_flag = ps_militarist_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = ps_militarist_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+
+	# Resource Deal (ps.310)
+	option = {
+		name = ps.300.a
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.300.a.alreadyhired
+				has_active_ps_militarist_trade_deal = no
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.310 }
+		}
+	}
+	# Cancel trade deal
+	option = {
+		name = ps.300.ab
+		response_text = ps.300.ab.reply
+		is_dialog_only = yes
+		trigger = { has_active_ps_militarist_trade_deal = yes }
+		custom_tooltip = ps.300.ab.tooltip
+		hidden_effect = { remove_ps_militarist_trade_deal = yes }
+	}
+
+	# Commercial pact (ps.320)
+	option = {
+		name = ps.300.b
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.300.b.opinion
+				event_target:target_ps_militarist = {
+					trust = {
+						who = Root
+						value >= 50
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = ps.300.b.alreadyhired
+				NOT = { has_country_flag = hired_ps_army }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.320 }
+		}
+	}
+
+	# Goodbye
+	option = {
+		name = ps.300.goodbye
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+}
+
+# ps.310: Resource Deal
+country_event = {
+	id = ps.310
+	title = ps.310.name
+	desc = ps.310.desc
+	location = event_target:ps_militarist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_militarist
+		planet_background = event_target:target_ps_militarist
+		graphical_culture = event_target:target_ps_militarist
+		city_level = event_target:target_ps_militarist
+		room = personality_honorbound_warriors_room
+	}
+
+	immediate = {
+		set_country_flag = ps_militarist_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+
+	# 10 Alloys for 40 Energy
+	option = {
+		name = ps.310.a
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_militarist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_militarist_trade_deal_1
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.311 }
+		}
+	}
+	# 20 Alloys for 80 Energy
+	option = {
+		name = ps.310.b
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_militarist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_militarist_trade_deal_2
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.311 }
+		}
+	}
+	# 30 Alloys for 120 Energy
+	option = {
+		name = ps.310.c
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_militarist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_militarist_trade_deal_3
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.311 }
+		}
+	}
+	# 40 Alloys for 160 Energy
+	option = {
+		name = ps.310.d
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_militarist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_militarist_trade_deal_4
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.311 }
+		}
+	}
+	# 50 Alloys for 200 Energy
+	option = {
+		name = ps.310.e
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_militarist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_militarist_trade_deal_5
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.311 }
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.310.back
+		hidden_effect = {
+			country_event = { id = ps.301 }
+		}
+	}
+	# End
+	option = {
+		name = ps.300.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.311: Resource Deal - Answer
+country_event = {
+	id = ps.311
+	title = ps.310.name
+	desc = ps.311.desc
+	location = event_target:ps_militarist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_militarist
+		planet_background = event_target:target_ps_militarist
+		graphical_culture = event_target:target_ps_militarist
+		city_level = event_target:target_ps_militarist
+		room = personality_honorbound_warriors_room
+	}
+
+	immediate = {
+		set_country_flag = ps_militarist_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.310.back
+		hidden_effect = {
+			country_event = { id = ps.301 }
+		}
+	}
+	# End
+	option = {
+		name = ps.300.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.320: Commercial Pact
+country_event = {
+	id = ps.320
+	title = ps.320.name
+	desc = ps.320.desc
+	location = event_target:ps_militarist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_militarist
+		planet_background = event_target:target_ps_militarist
+		graphical_culture = event_target:target_ps_militarist
+		city_level = event_target:target_ps_militarist
+		room = personality_honorbound_warriors_room
+	}
+
+	immediate = {
+		set_country_flag = ps_militarist_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = ps.320.a
+		response_text = ps.320.a.reply
+		custom_tooltip = opinion50
+		add_modifier = {
+			modifier = modifier_ps_militarist_commercial_pact
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			event_target:target_ps_militarist = {
+				add_trust = {
+					who = root
+					amount = 20
+				}
+			}
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.310.back
+		hidden_effect = {
+			country_event = { id = ps.301 }
+		}
+	}
+	# End
+	option = {
+		name = ps.300.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.3000: Militarist PS destroyed (HIDDEN)
+country_event = {
+	id = ps.3000
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = ps.3001 }
+		save_event_target_as = ps_militarist_destroyer
+
+		every_country = {
+			limit = {
+				has_communications = event_target:target_planet_state
+				NOT = { is_country = event_target:ps_militarist_destroyer }
+				is_country_type = default
+			}
+			country_event = { id = ps.3002 }
+		}
+	}
+}
+
+# ps.3001: Militarist PS destroyed (Destroyer)
+country_event = {
+	id = ps.3001
+	title = ps.1001.name
+	desc = ps.1001.desc
+	picture = GFX_evt_space_debris
+	location = event_target:target_planet_state_capital
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = destroyed_ps_militarist
+		if = {
+			limit = { is_regular_empire = yes }
+			event_target:target_planet_state_capital = {
+				add_modifier = {
+					modifier = planet_lost_autonomy
+					years = 10
+				}
+				set_owner = Root
+			}
+		}
+		else = {
+			event_target:target_planet_state_capital = {
+				set_owner = Root
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# ps.3002: Militarist PS Destroyed
+country_event = {
+	id = ps.3002
+	title = ps.1002.name
+	desc = {
+		text = ps.1002.a.desc
+		trigger = {
+			has_any_active_ps_militarist_deal = no
+			has_communications = event_target:ps_militarist_destroyer
+		}
+	}
+	desc = {
+		text = ps.1002.b.desc
+		trigger = {
+			has_any_active_ps_militarist_deal = no
+			NOT = { has_communications = event_target:ps_militarist_destroyer }
+		}
+	}
+	desc = {
+		text = ps.1002.c.desc
+		trigger = {
+			has_any_active_ps_militarist_deal = yes
+			has_communications = event_target:ps_militarist_destroyer
+		}
+	}
+	desc = {
+		text = ps.1002.d.desc
+		trigger = {
+			has_any_active_ps_militarist_deal = yes
+			NOT = { has_communications = event_target:ps_militarist_destroyer }
+		}
+	}
+	picture = GFX_evt_exploding_ship
+	location = event_target:target_planet_state_capital
+	show_sound = event_ship_explosion
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_any_active_ps_militarist_deal = yes
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:ps_militarist_destroyer
+				modifier = opinion_destroyed_ps_militarist_trade
+			}
+		}
+		if = {
+			limit = {
+				has_any_active_ps_militarist_deal = yes
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:ps_militarist_destroyer
+				modifier = opinion_destroyed_ps_militarist
+			}
+		}
+	}
+
+	after = {
+		remove_all_ps_militarist_deals = yes
+	}
+
+	option  = {
+		name = ps.1002.a
+		trigger = {
+			has_any_active_ps_militarist_deal = no
+		}
+	}
+	option = {
+		name = ps.1002.b
+		trigger = {
+			has_any_active_ps_militarist_deal = yes
+		}
+	}
+}
+
+# ps.3003: Attacked Militarist PS (Hidden) (on_entering_battle)
+country_event = {
+	id = ps.3003
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		From = { has_country_flag = ps_militarist }
+	}
+
+	immediate = {
+		From = {
+			save_event_target_as = target_ps_militarist
+			add_trust = {
+				who = Root
+				amount = -100
+			}
+		}
+		set_country_flag = attacked_ps_militarist
+		if = {
+			limit = { has_any_active_ps_militarist_deal = yes }
+			remove_all_ps_militarist_deals = yes
+			country_event = { id = ps.3004 }
+		}
+	}
+}
+
+# ps.3004: Attacked Militarist PS - Agreements Terminated
+country_event = {
+	id = ps.3004
+	title = ps.3004.name
+	desc = ps.3004.desc
+	location = event_target:ps_militarist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_militarist
+		planet_background = event_target:target_ps_militarist
+		graphical_culture = event_target:target_ps_militarist
+		city_level = event_target:target_ps_militarist
+		room = personality_honorbound_warriors_room
+	}
+
+	option = {
+		name = ps.3004.a
+	}
+}
+
+# ps.3005: Attacked Militarist PS - Refuses Communications
+country_event = {
+	id = ps.3005
+	title = ps.3005.name
+	desc = ps.3005a.desc
+	location = event_target:ps_militarist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_militarist
+		planet_background = event_target:target_ps_militarist
+		graphical_culture = event_target:target_ps_militarist
+		city_level = event_target:target_ps_militarist
+		room = personality_honorbound_warriors_room
+	}
+
+	trigger = {
+		From = {
+			is_country_type = planet_state
+			has_country_flag = ps_militarist
+		}
+		has_country_flag = attacked_ps_militarist
+		NOT = { has_country_flag = ps_militarist_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = ps_militarist_diplomacy_engaged
+		From = { save_event_target_as = target_ps_militarist }
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+	}
+	option = {
+		name = ps.3005.a
+		trigger = { is_homicidal = no }
+		default_hide_option = yes
+	}
+}
+
+# ps.400: Pacifist PS - Main Menu (Initial)
+country_event = {
+	id = ps.400
+	title = ps.400.name
+	desc = ps.400a.desc
+	location = event_target:ps_pacifist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_pacifist
+		planet_background = event_target:target_ps_pacifist
+		graphical_culture = event_target:target_ps_pacifist
+		city_level = event_target:target_ps_pacifist
+		room = personality_spiritual_seekers_room
+	}
+
+	trigger = {
+		from = {
+			is_country_type = planet_state
+			has_country_flag = ps_pacifist
+		}
+		NOT = { has_country_flag = ps_pacifist_diplomacy_engaged }
+		NOT = { has_country_flag = attacked_ps_pacifist }
+	}
+
+	immediate = {
+		set_country_flag = ps_pacifist_diplomacy_engaged
+		From = { save_event_target_as = target_ps_pacifist }
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_pacifist_diplomacy_engaged
+		}
+	}
+
+	# Resource deal (ps.410)
+	option = {
+		name = ps.400.a
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.400.a.alreadyhired
+				has_active_ps_pacifist_trade_deal = no
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.410 }
+		}
+	}
+	# Cancel trade deal
+	option = {
+		name = ps.400.ab
+		response_text = ps.400.ab.reply
+		is_dialog_only = yes
+		trigger = { has_active_ps_pacifist_trade_deal = yes }
+		custom_tooltip = ps.400.ab.tooltip
+		hidden_effect = { remove_ps_pacifist_trade_deal = yes }
+	}
+
+	# Commercial pact (ps.420)
+	option = {
+		name = ps.400.b
+		trigger = { is_homicidal = no }
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.400.b.opinion
+				event_target:target_ps_pacifist = {
+					trust = {
+						who = Root
+						value >= 50
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = ps.400.b.alreadyhired
+				NOT = { has_country_flag = hired_ps_army }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.420 }
+		}
+	}
+
+	# Goodbye
+	option = {
+		name = ps.400.goodbye
+		default_hide_option = yes
+		trigger = { is_homicidal = no }
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+}
+
+# ps.401: Pacifist PS - Main Menu
+country_event = {
+	id = ps.401
+	title = ps.400.name
+	desc = ps.400a.desc
+	location = event_target:ps_pacifist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_pacifist
+		planet_background = event_target:target_ps_pacifist
+		graphical_culture = event_target:target_ps_pacifist
+		city_level = event_target:target_ps_pacifist
+		room = personality_spiritual_seekers_room
+	}
+
+	trigger = {
+		NOT = { has_country_flag = ps_pacifist_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = ps_pacifist_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_pacifist_diplomacy_engaged
+		}
+	}
+
+	# Resource deal (ps.410)
+	option = {
+		name = ps.400.a
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.400.a.alreadyhired
+				has_active_ps_pacifist_trade_deal = no
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.410 }
+		}
+	}
+	# Cancel trade deal
+	option = {
+		name = ps.400.ab
+		response_text = ps.400.ab.reply
+		is_dialog_only = yes
+		trigger = { has_active_ps_pacifist_trade_deal = yes }
+		custom_tooltip = ps.400.ab.tooltip
+		hidden_effect = { remove_ps_pacifist_trade_deal = yes }
+	}
+
+	# Commercial pact (ps.420)
+	option = {
+		name = ps.400.b
+		allow = {
+			custom_tooltip = {
+				fail_text = ps.400.b.opinion
+				event_target:target_ps_pacifist = {
+					trust = {
+						who = Root
+						value >= 50
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = ps.400.b.alreadyhired
+				NOT = { has_country_flag = hired_ps_army }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = ps.420 }
+		}
+	}
+
+	# Goodbye
+	option = {
+		name = ps.400.goodbye
+		default_hide_option = yes
+		hidden_effect = {
+			remove_country_flag = ps_militarist_diplomacy_engaged
+		}
+	}
+}
+
+# ps.410: Resource Deal
+country_event = {
+	id = ps.410
+	title = ps.410.name
+	desc = ps.410.desc
+	location = event_target:ps_pacifist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_pacifist
+		planet_background = event_target:target_ps_pacifist
+		graphical_culture = event_target:target_ps_pacifist
+		city_level = event_target:target_ps_pacifist
+		room = personality_spiritual_seekers_room
+	}
+
+	immediate = {
+		set_country_flag = ps_pacifist_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_pacifist_diplomacy_engaged
+		}
+	}
+
+	# 10 Food for 10 Energy
+	option = {
+		name = ps.410.a
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_pacifist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_pacifist_trade_deal_1
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.411 }
+		}
+	}
+	# 20 Food for 20 Energy
+	option = {
+		name = ps.410.b
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_pacifist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_pacifist_trade_deal_2
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.411 }
+		}
+	}
+	# 30 Food for 30 Energy
+	option = {
+		name = ps.410.c
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_pacifist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_pacifist_trade_deal_3
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.411 }
+		}
+	}
+	# 40 Food for 40 Energy
+	option = {
+		name = ps.410.d
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_pacifist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_pacifist_trade_deal_4
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.411 }
+		}
+	}
+	# 50 Food for 50 Energy
+	option = {
+		name = ps.410.e
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = attacked_ps_pacifist }
+			}
+		}
+		add_modifier = {
+			modifier = modifier_ps_pacifist_trade_deal_5
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			country_event = { id = ps.411 }
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.410.back
+		hidden_effect = {
+			country_event = { id = ps.401 }
+		}
+	}
+	# End
+	option = {
+		name = ps.400.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.411: Resource Deal - Answer
+country_event = {
+	id = ps.411
+	title = ps.410.name
+	desc = ps.411.desc
+	location = event_target:ps_pacifist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_pacifist
+		planet_background = event_target:target_ps_pacifist
+		graphical_culture = event_target:target_ps_pacifist
+		city_level = event_target:target_ps_pacifist
+		room = personality_spiritual_seekers_room
+	}
+
+	immediate = {
+		set_country_flag = ps_pacifist_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_pacifist_diplomacy_engaged
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.410.back
+		hidden_effect = {
+			country_event = { id = ps.401 }
+		}
+	}
+	# End
+	option = {
+		name = ps.400.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.420: Commercial Pact
+country_event = {
+	id = ps.420
+	title = ps.420.name
+	desc = ps.420.desc
+	location = event_target:ps_pacifist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_pacifist
+		planet_background = event_target:target_ps_pacifist
+		graphical_culture = event_target:target_ps_pacifist
+		city_level = event_target:target_ps_pacifist
+		room = personality_spiritual_seekers_room
+	}
+
+	immediate = {
+		set_country_flag = ps_pacifist_diplomacy_engaged
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_pacifist_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = ps.420.a
+		response_text = ps.420.a.reply
+		custom_tooltip = opinion50
+		add_modifier = {
+			modifier = modifier_ps_pacifist_commercial_pact
+		}
+		custom_tooltip = ps.yearly.opinion
+		hidden_effect = {
+			event_target:target_ps_pacifist = {
+				add_trust = {
+					who = root
+					amount = 20
+				}
+			}
+		}
+	}
+
+	# Back to the main menu
+	option = {
+		name = ps.410.back
+		hidden_effect = {
+			country_event = { id = ps.401 }
+		}
+	}
+	# End
+	option = {
+		name = ps.400.goodbye
+		default_hide_option = yes
+	}
+}
+
+# ps.4000: Pacifist PS destroyed (HIDDEN)
+country_event = {
+	id = ps.4000
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		country_event = { id = ps.4001 }
+		save_event_target_as = ps_pacifist_destroyer
+
+		every_country = {
+			limit = {
+				has_communications = event_target:target_planet_state
+				NOT = { is_country = event_target:ps_pacifist_destroyer }
+				is_country_type = default
+			}
+			country_event = { id = ps.4002 }
+		}
+	}
+}
+
+# ps.4001: Pacifist PS destroyed (Destroyer)
+country_event = {
+	id = ps.4001
+	title = ps.1001.name
+	desc = ps.1001.desc
+	picture = GFX_evt_space_debris
+	location = event_target:target_planet_state_capital
+	show_sound = event_ship_bridge
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = destroyed_ps_pacifist
+		if = {
+			limit = { is_regular_empire = yes }
+			event_target:target_planet_state_capital = {
+				add_modifier = {
+					modifier = planet_lost_autonomy
+					years = 10
+				}
+				set_owner = Root
+			}
+		}
+		else = {
+			event_target:target_planet_state_capital = {
+				set_owner = Root
+			}
+		}
+	}
+
+	option = {
+		name = EXCELLENT
+	}
+}
+
+# ps.4002: Pacifist PS Destroyed
+country_event = {
+	id = ps.4002
+	title = ps.1002.name
+	desc = {
+		text = ps.1002.a.desc
+		trigger = {
+			has_any_active_ps_pacifist_deal = no
+			has_communications = event_target:ps_pacifist_destroyer
+		}
+	}
+	desc = {
+		text = ps.1002.b.desc
+		trigger = {
+			has_any_active_ps_pacifist_deal = no
+			NOT = { has_communications = event_target:ps_pacifist_destroyer }
+		}
+	}
+	desc = {
+		text = ps.1002.c.desc
+		trigger = {
+			has_any_active_ps_pacifist_deal = yes
+			has_communications = event_target:ps_pacifist_destroyer
+		}
+	}
+	desc = {
+		text = ps.1002.d.desc
+		trigger = {
+			has_any_active_ps_pacifist_deal = yes
+			NOT = { has_communications = event_target:ps_pacifist_destroyer }
+		}
+	}
+	picture = GFX_evt_exploding_ship
+	location = event_target:target_planet_state_capital
+	show_sound = event_ship_explosion
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_any_active_ps_pacifist_deal = yes
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:ps_pacifist_destroyer
+				modifier = opinion_destroyed_ps_pacifist_trade
+			}
+		}
+		if = {
+			limit = {
+				has_any_active_ps_pacifist_deal = yes
+				is_ai = yes
+			}
+			add_opinion_modifier = {
+				who = event_target:ps_pacifist_destroyer
+				modifier = opinion_destroyed_ps_pacifist
+			}
+		}
+	}
+
+	after = {
+		remove_all_ps_pacifist_deals = yes
+	}
+
+	option  = {
+		name = ps.1002.a
+		trigger = {
+			has_any_active_ps_pacifist_deal = no
+		}
+	}
+	option = {
+		name = ps.1002.b
+		trigger = {
+			has_any_active_ps_pacifist_deal = yes
+		}
+	}
+}
+
+# ps.4003: Attacked Pacifist PS (Hidden) (on_entering_battle)
+country_event = {
+	id = ps.4003
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+		From = { has_country_flag = ps_pacifist }
+	}
+
+	immediate = {
+		From = {
+			save_event_target_as = target_ps_pacifist
+			add_trust = {
+				who = Root
+				amount = -100
+			}
+		}
+		set_country_flag = attacked_ps_pacifist
+		if = {
+			limit = { has_any_active_ps_pacifist_deal = yes }
+			remove_all_ps_pacifist_deals = yes
+			country_event = { id = ps.4004 }
+		}
+	}
+}
+
+# ps.4004: Attacked Pacifist PS - Agreements Terminated
+country_event = {
+	id = ps.4004
+	title = ps.4004.name
+	desc = ps.4004.desc
+	location = event_target:ps_pacifist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_pacifist
+		planet_background = event_target:target_ps_pacifist
+		graphical_culture = event_target:target_ps_pacifist
+		city_level = event_target:target_ps_pacifist
+		room = personality_spiritual_seekers_room
+	}
+
+	option = {
+		name = ps.4004.a
+	}
+}
+
+# ps.4005: Attacked Pacifist PS - Refuses Communications
+country_event = {
+	id = ps.4005
+	title = ps.4005.name
+	desc = ps.4005a.desc
+	location = event_target:ps_pacifist_planet
+
+	is_triggered_only = yes
+	diplomatic = yes
+	force_open = yes
+
+	picture_event_data = {
+		portrait = event_target:target_ps_pacifist
+		planet_background = event_target:target_ps_pacifist
+		graphical_culture = event_target:target_ps_pacifist
+		city_level = event_target:target_ps_pacifist
+		room = personality_spiritual_seekers_room
+	}
+
+	trigger = {
+		From = {
+			is_country_type = planet_state
+			has_country_flag = ps_pacifist
+		}
+		has_country_flag = attacked_ps_pacifist
+		NOT = { has_country_flag = ps_pacifist_diplomacy_engaged }
+	}
+
+	immediate = {
+		set_country_flag = ps_pacifist_diplomacy_engaged
+		From = { save_event_target_as = target_ps_pacifist }
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = ps_pacifist_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = SCUM
+		trigger = { has_valid_civic = civic_fanatic_purifiers }
+	}
+	option = {
+		name = TASTY
+		trigger = { has_valid_civic = civic_hive_devouring_swarm }
+	}
+	option = {
+		name = EXTERMINATE
+		trigger = { has_valid_civic = civic_machine_terminator }
+	}
+	option = {
+		name = ps.4005.a
+		trigger = { is_homicidal = no }
+		default_hide_option = yes
+	}
+}

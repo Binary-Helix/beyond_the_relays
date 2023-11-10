@@ -1,0 +1,627 @@
+building_ps_capitol = {
+	capital = yes
+	category = government
+	can_build = no
+	can_demolish = yes
+	icon = building_palace
+
+	potential = {
+		exists = owner
+		owner = { is_country_type = planet_state }
+	}
+
+	convert_to = {
+		building_hive_major_capital
+		building_machine_major_capital
+		building_major_capital
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { NOT = { has_valid_civic = civic_aristocratic_elite } }
+		}
+		modifier = {
+			job_politician_add = 5
+			job_enforcer_add = 10
+			planet_housing_add = 25
+			planet_amenities_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_aristocratic_elite }
+		}
+		modifier = {
+			job_noble_add = 5
+			job_enforcer_add = 10
+			planet_housing_add = 25
+			planet_amenities_add = 25
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_govt_b0_energy_upkeep
+			uranium = @btr_govt_b0_uranium_upkeep
+		}
+	}
+}
+
+building_ps_anti_matter_reactor = {
+	category = resource
+	base_buildtime = @btr_civil_b1_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_energy_nexus
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	planet_modifier = {
+		planet_technician_energy_produces_mult = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+		modifier = {
+			job_technician_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_technician_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_technician_drone_add = 25
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
+		}
+	}
+}
+
+building_ps_aeroponics_farms_complex = {
+	category = resource
+	base_buildtime = @btr_civil_b1_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_hydroponics_farm
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	planet_modifier = {
+		planet_farmers_food_produces_mult = 0.25
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+		modifier = {
+			job_farmer_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_farmer_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_agri_drone_add = 25
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
+		}
+	}
+}
+
+building_ps_mineral_purification_complex = {
+	category = resource
+	base_buildtime = @btr_civil_b1_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_mineral_purification_hub
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	planet_modifier = {
+		planet_miners_minerals_produces_mult = 0.25
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_robot_empire = yes
+			}
+		}
+		modifier = {
+			planet_miners_minerals_produces_mult = 0.05
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+		modifier = {
+			job_miner_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_miner_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_mining_drone_add = 25
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
+		}
+	}
+}
+
+building_ps_multidimensional_printers = {
+	category = manufacturing
+	base_buildtime = @btr_civil_b1_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_factory_3
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	planet_modifier = {
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+		modifier = {
+			job_artisan_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_artisan_add = 25
+		}
+	}
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_civil_b1_energy_upkeep
+			uranium = @btr_civil_b1_uranium_upkeep
+		}
+	}
+}
+
+building_ps_leisure_complex = {
+	category = unity
+	base_buildtime = @btr_civil_b2_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_hyper_entertainment_forum
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	planet_modifier = {
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+		modifier = {
+			job_entertainer_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				NOT = { has_civic = civic_warrior_culture }
+			}
+		}
+		modifier = {
+			job_entertainer_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				has_civic = civic_warrior_culture
+			}
+		}
+		modifier = {
+			job_duelist_add = 25
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_civil_b2_energy_upkeep
+			uranium = @btr_civil_b2_uranium_upkeep
+		}
+	}
+}
+
+building_ps_distillation_complex = {
+	category = manufacturing
+	base_buildtime = @btr_civil_b2_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_refinery
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	planet_modifier = {
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+		modifier = {
+			job_gas_refiner_add = 6
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_gas_refiner_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_gas_refiner_drone_add = 6
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_civil_b2_energy_upkeep
+			uranium = @btr_civil_b2_uranium_upkeep
+		}
+	}
+}
+
+building_ps_chemical_complex = {
+	category = manufacturing
+	base_buildtime = @btr_civil_b3_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_chemical_plant
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	planet_modifier = {
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+		modifier = {
+			job_chemist_add = 6
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_chemist_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_chemist_drone_add = 6
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_civil_b3_energy_upkeep
+			uranium = @btr_civil_b3_uranium_upkeep
+		}
+	}
+}
+
+building_ps_synthesizers_complex = {
+	category = manufacturing
+	base_buildtime = @btr_civil_b4_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_crystal_plant
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	planet_modifier = {
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+		modifier = {
+			job_translucer_add = 6
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_translucer_add = 6
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_translucer_drone_add = 6
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_civil_b4_energy_upkeep
+			uranium = @btr_civil_b4_uranium_upkeep
+		}
+	}
+}
+
+building_ps_crowded_serf_houses = {
+	category = amenity
+	base_buildtime = @btr_civil_b4_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_crude_huts
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		OR = {
+			owner = { is_regular_empire = no }
+			owner = { NOT = { has_civic = civic_aristocratic_elite } }
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 20
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_civil_b4_energy_upkeep
+			uranium = @btr_civil_b4_uranium_upkeep
+		}
+	}
+}
+
+building_ps_manorial_lands = {
+	category = government
+	base_buildtime = @btr_govt_b4_time
+	can_build = yes
+	can_demolish = yes
+	icon = building_palace
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	destroy_trigger = {
+		exists = owner
+		NOT = {
+			owner = { has_civic = civic_aristocratic_elite }
+			owner = { is_regular_empire = yes }
+		}
+	}
+
+	planet_modifier = {
+		job_archduke_add = 1
+		job_duke_add = 2
+		job_count_add = 3
+		job_baron_add = 5
+		planet_housing_add = 10
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_govt_b4_energy_upkeep
+			uranium = @btr_govt_b4_uranium_upkeep
+		}
+	}
+}
+
+building_ps_bastion = {
+	category = army
+	base_buildtime = @btr_mili_b3_time
+	can_build = yes
+	planetary_ftl_inhibitor = yes
+	can_demolish = yes
+	icon = building_fortress
+
+	potential = {
+		custom_tooltip = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 5
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = planet_state }
+		}
+		modifier = {
+			job_soldier_add = 25
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_soldier_add = 10
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = {
+			job_warrior_drone_add = 10
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		upkeep = {
+			energy = @btr_mili_b3_energy_upkeep
+			uranium = @btr_mili_b3_uranium_upkeep
+			eezo = @btr_mili_b3_eezo_upkeep
+		}
+	}
+}
