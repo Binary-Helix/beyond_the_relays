@@ -900,7 +900,7 @@ generate_geth_consensus_country = {
 		adjective = "PRESCRIPTED_adjective_geth_consensus"
 		authority = auth_machine_intelligence
 		civics = { 
-			civic = geth_con_civic_nebulous_pariahs 
+			civic = geth_con_civic_nebulous_pariahs
 			civic = geth_con_civic_collective_conscious 
 		}
 		species = event_target:gethSpecies
@@ -992,47 +992,135 @@ generate_collectors_empire_country = {
 ##### INDEPENDENT WORLDS #####
 
 generate_citadel_council_country = {
-	create_country = {
-		name = "Citadel Council"
-		adjective = "PRESCRIPTED_adjective_citadel_council"
-		authority = auth_oligarchic
-		civics = { 
-			civic = citadel_center_of_galaxy
-			civic = citadel_csec_cdf
+	set_star_flag = planet_state
+	random_system_planet = {
+		limit = {
+			has_planet_flag = citadel_station
 		}
-		species = event_target:asariSpecies
-		name_list = btr_asari
-		ship_prefix = "CDF"
-		ethos = { 
-			ethic = "ethic_egalitarian" 
-			ethic = "ethic_fanatic_xenophile"  
+		save_global_event_target_as = citadel_council
+		create_country = {
+			name = "Citadel Council"
+			adjective = "PRESCRIPTED_adjective_citadel_council"
+			type = planet_state
+			authority = auth_oligarchic
+			civics = {
+				civic = citadel_center_of_galaxy
+				civic = citadel_csec_cdf
+			}
+			species = event_target:asariSpecies
+			name_list = btr_asari
+			ship_prefix = "CDF"
+			ethos = {
+				ethic = "ethic_egalitarian"
+				ethic = "ethic_fanatic_xenophile"
+			}
+			flag = {
+				icon={
+					category="beyondtherelays"
+					file="citadel_council.dds"
+				}
+				background={
+					category="backgrounds"
+					file="00_solid.dds"
+				}
+				colors={
+					"blue"
+					"grey"
+					"null"
+					"null"
+				}
+			}
+			ignore_initial_colony_error = yes
+			origin = citadel_council_origin
+			effect = {
+				set_country_flag = ps_egalitarian
+				save_event_target_as = target_ps_egalitarian
+				set_country_flag = citadel_council
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_graphical_culture = mec_asari_01
+				save_global_event_target_as = citadel_council
+				create_fleet = {
+					name = "Citadel Defense Station"
+					settings = {
+						spawn_debris = no
+					}
+					effect = {
+						set_owner = prev
+						create_ship = {
+							name = "Citadel Defense Station"
+							design = "NAME_Planet_State_Station"
+							graphical_culture = prev
+						}
+						set_location = {
+							target = prevprev
+							angle = random
+							distance = 15
+						}
+					}
+				}
+				create_leader = {
+					class = governor
+					species = event_target:asariSpecies
+					name = "Matriarch Lidanya"
+					gender = female
+					skill = 5
+					effect = {
+						event_target:target_ps_egalitarian = {
+							set_leader = prev
+						}
+					}
+				}
+			}
 		}
-		flag = {
-			icon={
-				category="beyondtherelays"
-				file="citadel_council.dds"
+		# Set Planet-State as Owner of the planet
+		set_owner = event_target:target_ps_egalitarian
+		set_controller = event_target:target_ps_egalitarian
+		set_capital = yes
+		# Add Builings, Districts, Pops
+		while = {
+			limit = {
+				free_district_slots > 0
 			}
-			background={
-				category="backgrounds"
-				file="00_solid.dds"
-			}
-			colors={
-				"blue"
-				"grey"
-				"null"
-				"null"
+			add_district_if_free_slot = {
+				DISTRICT = district_arcology_housing
 			}
 		}
-		type = default 
-		origin = citadel_council_origin
-		effect = {
-			set_country_flag = citadel_council
-			set_country_flag = init_spawned
-			set_country_flag = canon_map
-			set_country_flag = btr_empire
-			set_graphical_culture = mec_asari_01
-			save_global_event_target_as = citadel_council
-		}		
+		while = {
+			count = 122
+			create_pop = {
+				species = owner_main_species
+				ethos = {
+					ethic = ethic_fanatic_egalitarian
+				}
+			}
+		}
+
+		add_building = building_ps_capitol
+		add_building = building_ps_anti_matter_reactor
+		add_building = building_ps_bastion
+		add_building = building_ps_aeroponics_farms_complex
+		add_building = building_ps_mineral_purification_complex
+		add_building = building_ps_mineral_purification_complex
+		add_building = building_ps_multidimensional_printers
+		add_building = building_ps_multidimensional_printers
+		add_building = building_ps_leisure_complex
+		add_building = building_ps_distillation_complex
+		add_building = building_ps_chemical_complex
+		add_building = building_ps_synthesizers_complex
+		event_target:target_ps_egalitarian = {
+			set_policy = {
+				policy = purge
+				option = purge_not_allowed
+				cooldown = no
+			}
+			set_policy = {
+				policy = resettlement
+				option = resettlement_not_allowed
+				cooldown = no
+			}
+		}
 	}
 }	
 
@@ -1622,9 +1710,141 @@ generate_anansi_manufacturing_country = {
 		add_building = building_ps_bastion
 		add_building = building_ps_bastion
 	}
-}	
+}
 
-generate_authority_of_new_canton = {
+generate_arvunan_administration_country = {
+	set_star_flag = planet_state
+	random_system_planet = {
+		limit = {
+			has_planet_flag = arvuna_planet
+		}
+		save_global_event_target_as = ps_authoritarian_planet
+		create_country = {
+			name = "Arvunan Administratioonn"
+			adjective = "PRESCRIPTED_adjective_arvunan_administration"
+			type = planet_state
+			authority = auth_oligarchic
+			civics = {
+				civic = independent_civic_isolationist
+				civic = independent_civic_suspicious_untrusting
+			}
+			species = event_target:humanSpecies
+			name_list = btr_alliance
+			flag = random
+			ship_prefix = ""
+			ethos = {
+				ethic = "ethic_fanatic_xenophobe"
+				ethic = "ethic_authoritarian"
+			}
+			ignore_initial_colony_error = yes
+			origin = antialliance_com_origin
+			effect = {
+				set_country_flag = ps_authoritarian
+				save_event_target_as = target_ps_authoritarian
+				create_fleet = {
+					name = "NAME_PS_Authoritarian_Fleet"
+					settings = {
+						spawn_debris = no
+					}
+					effect = {
+						set_owner = prev
+						create_ship = {
+							name = "NAME_Planet_State_Station_Authoritarian"
+							design = "NAME_Planet_State_Station"
+							graphical_culture = prev
+						}
+						set_location = {
+							target = prevprev
+							angle = random
+							distance = 15
+						}
+					}
+				}
+				create_leader = {
+					class = governor
+					species = event_target:humanSpecies
+					name = NAME_PS_Authoritarian_Leader
+					gender = male
+					skill = 5
+					effect = {
+						event_target:target_ps_authoritarian = {
+							set_leader = prev
+						}
+					}
+				}
+				set_country_flag = arvunan_administration
+				set_country_flag = init_spawned
+				set_country_flag = canon_map
+				set_country_flag = btr_empire
+				set_country_flag = btr_independent_colony
+				set_graphical_culture = mammalian_01
+				save_global_event_target_as = arvunan_administration
+			}
+		}
+		# Set Planet-State as Owner of the planet
+		set_owner = event_target:target_ps_authoritarian
+		set_controller = event_target:target_ps_authoritarian
+		set_capital = yes
+		# Add Builings, Districts, Pops
+		while = {
+			count = 10
+			add_district_if_free_slot = {
+				DISTRICT = district_ps_city
+			}
+		}
+		while = {
+			count = 5
+			add_district_if_free_slot = {
+				DISTRICT = district_farming
+			}
+		}
+		while = {
+			count = 5
+			add_district_if_free_slot = {
+				DISTRICT = district_generator
+			}
+		}
+		while = {
+			count = 5
+			add_district_if_free_slot = {
+				DISTRICT = district_mining
+			}
+		}
+		while = {
+			count = 37
+			create_pop = {
+				species = owner_main_species
+				ethos = {
+					ethic = ethic_fanatic_authoritarian
+				}
+			}
+		}
+		add_building = building_ps_capitol
+		add_building = building_ps_manorial_lands
+		add_building = building_ps_manorial_lands
+		add_building = building_ps_bastion
+		add_building = building_ps_bastion
+		add_building = building_ps_anti_matter_reactor
+		add_building = building_ps_aeroponics_farms_complex
+		add_building = building_ps_mineral_purification_complex
+		add_building = building_ps_multidimensional_printers
+		add_building = building_ps_distillation_complex
+		add_building = building_ps_chemical_complex
+		add_building = building_ps_synthesizers_complex
+		while = {
+			count = 85
+			create_pop = {
+				species = event_target:salarianSpecies
+				ethos = {
+					ethic = ethic_fanatic_authoritarian
+				}
+			}
+		}
+	}
+}
+
+
+generate_authority_of_new_canton_country = {
 	set_star_flag = planet_state
 	random_system_planet = {
 		limit = {
