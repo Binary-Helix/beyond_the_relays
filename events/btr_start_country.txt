@@ -19,12 +19,13 @@ event = {
 		random_country = { limit = { is_country_type = default } country_event = { id = btr_start_global.5 days = 1 } } #Set Start Flag
 		every_country = {
 			limit = { is_btr_empire = yes }
-			country_event = { id = btr_start_country.10 days = 0 } #Country Starting Setups
+			country_event = { id = btr_start_country.2 days = 0 } #Country Starting Setups
 			country_event = { id = btr_start_country.14 days = 0 } #Set Species Rights and Slavery
 			country_event = { id = btr_start_country.19 days = 0 } #Set Start Techs
 			country_event = { id = btr_start_country.9 days = 0 } #Set Capital Buildings TODO:Add Colony Buildings for canon
+			#country_event = { id = btr_start_country.11 days = 0 } #Create Independent Colonies
 			country_event = { id = btr_start_country.12 days = 0 } #Set Empire Starting Territory
-			country_event = { id = btr_start_country.13 days = 0 } #Set Empire Starting Colonies
+			#planet_event = { id = btr_start_country.13 days = 0 } #Set Empire Starting Colonies
 			country_event = { id = btr_start_country.14 days = 0 } #Set Empire Starting Colony Pops
 			#country_event = { id = btr_start_country.18 days = 1 } #Set Country Policies - TODO: Have Team review Empires to determine policies at game start.
 
@@ -33,108 +34,19 @@ event = {
 			#country_event = { id = btr_start_country.24 } TODO: Have team finalize list of starting relics - Asari beacon, earth mars archives, etc.
 			country_event = { id = btr_start_country.26 days = 0 } #Set Starting Ships
 			country_event = { id = btr_start_country.28 days = 0 } #Mining and Research Stations
-			country_event = { id = btr_start_country.32 days = 1 } #Fix unemployment
-			country_event = { id = btr_start_country.34 days = 1 } #Set starting defense armies			
 		}
 	}
 }
 
-# ps.2: Spawn adjustments for Egalitarian PS
 country_event = {
-	id = btr_start_country.3	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-
-		event_target:citadel_council = {
-			set_citizenship_type = {
-				type = citizenship_full
-				country = event_target:target_ps_egalitarian
-			}
-			set_living_standard = {
-				type = living_standard_utopian
-				country = event_target:target_ps_egalitarian
-			}
-		}
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-country_event = {
-	id = btr_start_country.9
-	hide_window = yes
-	is_triggered_only = yes
-	immediate = {
-		log = "btr_start_country.9"
-		if = {
-			limit = { 
-				is_btr_canon_map = yes
-			}
-			every_owned_planet = {
-				limit = {
-					is_capital = yes
-				}
-				generate_btr_canon_capital_buildings_and_districts = yes
-			}
-		}
-		if = {
-			limit = { 
-				is_btr_sandbox_map = yes
-			}
-			every_owned_planet = {
-				limit = {
-					is_capital = yes
-				}
-				generate_btr_sandbox_capital_buildings_and_districts = yes
-			}
-		}
-	}
-}
-
-
-
-
-
-
-
-
-
-country_event = {
-	id = btr_start_country.10
+	id = btr_start_country.2
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {	}
 	immediate = {
 
-		log = "btr_start_country.10"
-
+		log = "btr_start_country.2"
+		# PRIMARY EMPIRES
 		random_country = { limit = { has_country_flag = asari_republics } save_global_event_target_as = asari_republics }
 		random_country = { limit = { has_country_flag = salarian_union } save_global_event_target_as = salarian_union }
 		random_country = { limit = { has_country_flag = turian_hierarchy } save_global_event_target_as = turian_hierarchy }
@@ -159,8 +71,48 @@ country_event = {
 		random_country = { limit = { has_country_flag = disciples_of_nazara } save_global_event_target_as = disciples_of_nazara }
 		random_country = { limit = { has_country_flag = rachni_hive } save_global_event_target_as = rachni_hive }
 		random_country = { limit = { has_country_flag = collectors_empire } save_global_event_target_as = collectors_empire }
+		# INDEPENDENT WORLDS
+		random_country = { limit = { has_country_flag = citadel_council } save_global_event_target_as = citadel_council }
+		random_country = { limit = { has_country_flag = aite_warring_states } save_global_event_target_as = aite_warring_states }
+		random_country = { limit = { has_country_flag = alahyan_terraformation_zone } save_global_event_target_as = alahyan_terraformation_zone }
+		random_country = { limit = { has_country_flag = altai_mineral_works } save_global_event_target_as = altai_mineral_works }
+		random_country = { limit = { has_country_flag = altakiril_union } save_global_event_target_as = altakiril_union }
+		random_country = { limit = { has_country_flag = arvunan_administration } save_global_event_target_as = arvunan_administration }
+		random_country = { limit = { has_country_flag = authority_of_new_canton } save_global_event_target_as = authority_of_new_canton }
+		random_country = { limit = { has_country_flag = autonomy_cyrene } save_global_event_target_as = autonomy_cyrene }
+		random_country = { limit = { has_country_flag = chalkhos_freehold } save_global_event_target_as = chalkhos_freehold }
+		random_country = { limit = { has_country_flag = commune_of_horizon } save_global_event_target_as = commune_of_horizon }
+		random_country = { limit = { has_country_flag = commonwealth_of_joab } save_global_event_target_as = commonwealth_of_joab }
+		random_country = { limit = { has_country_flag = confederation_of_thunawanuro } save_global_event_target_as = confederation_of_thunawanuro }
+		random_country = { limit = { has_country_flag = fal_iii_manufactory } save_global_event_target_as = fal_iii_manufactory }
+		random_country = { limit = { has_country_flag = flett_transport_union } save_global_event_target_as = flett_transport_union }
+		random_country = { limit = { has_country_flag = freehold_of_freedoms_progress } save_global_event_target_as = freehold_of_freedoms_progress }
+		random_country = { limit = { has_country_flag = free_port_of_tortuga } save_global_event_target_as = free_port_of_tortuga }
+		random_country = { limit = { has_country_flag = ishtar_emporium } save_global_event_target_as = ishtar_emporium }
+		random_country = { limit = { has_country_flag = jenera_corporation } save_global_event_target_as = jenera_corporation }
+		random_country = { limit = { has_country_flag = korlus_recycling_union } save_global_event_target_as = korlus_recycling_union }
+		random_country = { limit = { has_country_flag = kosh_development_corporation } save_global_event_target_as = kosh_development_corporation }
+		random_country = { limit = { has_country_flag = league_of_sahi_dau } save_global_event_target_as = league_of_sahi_dau }
+		random_country = { limit = { has_country_flag = logarisi_development_corporation } save_global_event_target_as = logarisi_development_corporation }
+		random_country = { limit = { has_country_flag = monrini_syndicate } save_global_event_target_as = monrini_syndicate }
+		random_country = { limit = { has_country_flag = noveria_development_corporation } save_global_event_target_as = noveria_development_corporation }
+		random_country = { limit = { has_country_flag = peoples_authority_of_tyvor } save_global_event_target_as = peoples_authority_of_tyvor }
+		random_country = { limit = { has_country_flag = polity_of_anhur } save_global_event_target_as = polity_of_anhur }
+		random_country = { limit = { has_country_flag = relic_mineral_works } save_global_event_target_as = relic_mineral_works }
+		random_country = { limit = { has_country_flag = republic_of_asteria } save_global_event_target_as = republic_of_asteria }
+		random_country = { limit = { has_country_flag = sanctum_metals_group } save_global_event_target_as = sanctum_metals_group }
+		random_country = { limit = { has_country_flag = state_of_garvug } save_global_event_target_as = state_of_garvug }
+		random_country = { limit = { has_country_flag = thalassocracy_of_talis_fia } save_global_event_target_as = thalassocracy_of_talis_fia }
+		random_country = { limit = { has_country_flag = thrednakka_autonomy } save_global_event_target_as = thrednakka_autonomy }
+		random_country = { limit = { has_country_flag = trident_exports_limited } save_global_event_target_as = trident_exports_limited }
+		random_country = { limit = { has_country_flag = trigintan_league } save_global_event_target_as = trigintan_league }
+		random_country = { limit = { has_country_flag = union_of_ferris_fields } save_global_event_target_as = union_of_ferris_fields }
+		random_country = { limit = { has_country_flag = wrill_mining_consortium } save_global_event_target_as = wrill_mining_consortium }
+		random_country = { limit = { has_country_flag = yamm_trade_zone } save_global_event_target_as = yamm_trade_zone }
+		random_country = { limit = { has_country_flag = zoryan_sovereignty } save_global_event_target_as = zoryan_sovereignty }
+
 		if = {
-			limit = { 
+			limit = {
 				is_btr_canon_map = yes
 			}
 			log = "btr_start_country.10 - CANON MAP SETUP"
@@ -184,323 +136,6 @@ country_event = {
 			establish_geth_consensus_communication = yes
 			establish_disciples_of_nazara_communication = yes
 			establish_citadel_council_communication = yes
-		}
-		if = {
-			limit = { any_relation = { is_country_type = default }
-			}
-			set_country_flag = has_encountered_other_empire
-		}
-	}
-}
-
-event = {
-	id = btr_start_country.11
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		#Citadel Council
-		random_system = {
-			limit = { has_star_flag = widow_system }
-			generate_citadel_council_country = yes
-			event_target:citadel_council = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:citadel_council.GetName]"
-		}
-
-		#Aite Warring States
-		random_system = {
-			limit = { has_star_flag = typhon_system }
-			generate_aite_warring_states_country = yes
-			event_target:aite_warring_states = { country_event = { id = btr_start_country.5 days = 1 } }
-			log = "[event_target:aite_warring_states.GetName]"
-		}
-
-		#Alahyan Terraformation Zone
-		random_system = {
-			limit = { has_star_flag = aysur_system }
-			generate_alahyan_terraformation_zone_country = yes
-			event_target:alahyan_terraformation_zone = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:alahyan_terraformation_zone.GetName]"
-		}
-
-		#Altai Mineral Works
-		random_system = {
-			limit = { has_star_flag = pamyat_system }
-			generate_altai_mineral_works_country = yes
-			event_target:altai_mineral_works = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:altai_mineral_works.GetName]"
-		}
-
-		#Altakiril Union
-		random_system = {
-			limit = { has_star_flag = thal_system }
-			generate_altakiril_union_country = yes
-			event_target:altakiril_union = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:altakiril_union.GetName]"
-		}
-
-		#Anansi Manufacturing
-		random_system = {
-			limit = { has_star_flag = cavalcante_system }
-			generate_anansi_manufacturing_country = yes
-			log = "[event_target:anansi_manufacturing.GetName]"
-		}
-
-		#Arvunan Administration
-		random_system = {
-			limit = { has_star_flag = aysur_system }
-			generate_arvunan_administration_country = yes
-			log = "[event_target:arvunan_administration.GetName]"
-		}
-
-		#Authority of New Canton
-		random_system = {
-			limit = { has_star_flag = razhek_system }
-			generate_authority_of_new_canton_country = yes
-			log = "[event_target:authority_of_new_canton.GetName]"
-		}
-
-		#Autonomy of Cyrene
-		random_system = {
-			limit = { has_star_flag = tkachyov_system }
-			generate_autonomy_of_cyrene_country = yes
-			log = "[event_target:autonomy_cyrene.GetName]"
-		}
-
-		#Altakiril Union
-		random_system = {
-			limit = { has_star_flag = mil_system }
-			generate_chalkos_freehold_country = yes
-			event_target:altakiril_union = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:chalkhos_freehold.GetName]"
-		}
-
-		#Commune of Horizon
-		random_system = {
-			limit = { has_star_flag = iera_system }
-			generate_commune_of_horizon_country = yes
-			event_target:commune_of_horizon = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:commune_of_horizon.GetName]"
-		}
-
-		#Commonwealth of Joab
-		random_system = {
-			limit = { has_star_flag = enoch_system }
-			generate_commonwealth_of_joab_country = yes
-			event_target:commonwealth_of_joab = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:commonwealth_of_joab.GetName]"
-		}
-
-		#Confederation of Thunawanuro
-		random_system = {
-			limit = { has_star_flag = batalla_system }
-			generate_confederation_of_thunawanuro_country = yes
-			log = "[event_target:confederation_of_thunawanuro.GetName]"
-		}
-
-		#Confederation of Thunawanuro
-		random_system = {
-			limit = { has_star_flag = osun_system }
-			generate_erinle_conservancy_country = yes
-			log = "[event_target:erinle_conservancy.GetName]"
-		}
-
-		#Fal III Manufactory
-		random_system = {
-			limit = { has_star_flag = fal_system }
-			generate_fal_III_manufactory_country = yes
-			event_target:fal_iii_manufactory = { country_event = { id = btr_start_country.4 days = 1 } }
-			log = "[event_target:fal_iii_manufactory.GetName]"
-		}
-
-		#Flett Transport Union
-		random_system = {
-			limit = { has_star_flag = malgus_system }
-			generate_flett_transport_union_country = yes
-			event_target:flett_transport_union = { country_event = { id = btr_start_country.5 days = 1 } }
-			log = "[event_target:flett_transport_union.GetName]"
-		}
-
-		#Freehold of Freedom's Progress
-		random_system = {
-			limit = { has_star_flag = tydeous_system }
-			generate_freehold_of_freedoms_progress_country = yes
-			log = "[event_target:freehold_of_freedoms_progress.GetName]"
-		}
-
-		#Flett Transport Union
-		random_system = {
-			limit = { has_star_flag = olonnais_system }
-			generate_free_port_of_tortuga_country = yes
-			event_target:free_port_of_tortuga = { country_event = { id = btr_start_country.5 days = 1 } }
-			log = "[event_target:free_port_of_tortuga.GetName]"
-		}
-
-		#Ishtar Emporium
-		random_system = {
-			limit = { has_star_flag = crete_system }
-			generate_ishtar_emporium_country = yes
-			log = "[event_target:ishtar_emporium.GetName]"
-		}
-
-		#Jenera Corporation
-		random_system = {
-			limit = { has_star_flag = cheng_system }
-			generate_jenera_corporation_country = yes
-			event_target:jenera_corporation = { country_event = { id = btr_start_country.4 days = 1 } }
-			log = "[event_target:jenera_corporation.GetName]"
-		}
-
-		#Korlus Recycling Union
-		random_system = {
-			limit = { has_star_flag = imir_system }
-			generate_korlus_recycling_union_country = yes
-			event_target:korlus_recycling_union = { country_event = { id = btr_start_country.4 days = 1 } }
-			log = "[event_target:korlus_recycling_union.GetName]"
-		}
-
-		#Kosh Development Corporation
-		random_system = {
-			limit = { has_star_flag = webel_system }
-			generate_kosh_development_corporation_country = yes
-			log = "[event_target:kosh_development_corporation.GetName]"
-		}
-
-		#League of Sahi Dau
-		random_system = {
-			limit = { has_star_flag = essul_system }
-			generate_league_of_sahi_dau_country = yes
-			event_target:league_of_sahi_dau = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:league_of_sahi_dau.GetName]"
-		}
-
-		#Logarisi Development Corporation
-		random_system = {
-			limit = { has_star_flag = batalla_system }
-			generate_logarisi_development_corporation_country = yes
-			event_target:logarisi_development_corporation = { country_event = { id = btr_start_country.4 days = 1 } }
-			log = "[event_target:logarisi_development_corporation.GetName]"
-		}
-
-		#Monrini Syndicate
-		random_system = {
-			limit = { has_star_flag = adiratna_system }
-			generate_monrini_syndicate_country = yes
-			log = "[event_target:kosh_development_corporation.GetName]"
-		}
-
-		#Noveria Development Corporation
-		random_system = {
-			limit = { has_star_flag = pax_system }
-			generate_noveria_development_corporation_country = yes
-			event_target:noveria_development_corporation = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:noveria_development_corporation.GetName]"
-		}
-
-		#People's Authority of Tyvor
-		random_system = {
-			limit = { has_star_flag = agnes_system }
-			generate_peoples_authority_of_tyvor_country = yes
-			event_target:peoples_authority_of_tyvor = { country_event = { id = btr_start_country.4 days = 1 } }
-			log = "[event_target:peoples_authority_of_tyvor.GetName]"
-		}
-
-		#Polity of Anhur
-		random_system = {
-			limit = { has_star_flag = amun_system }
-			generate_polity_of_anhur_country = yes
-			event_target:polity_of_anhur = { country_event = { id = btr_start_country.4 days = 1 } }
-			log = "[event_target:polity_of_anhur.GetName]"
-		}
-
-		#Relic Mineral Works
-		random_system = {
-			limit = { has_star_flag = relic_system }
-			generate_relic_mineral_works_country = yes
-			event_target:relic_mineral_works = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:relic_mineral_works.GetName]"
-		}
-
-		#Republic of Asteria
-		random_system = {
-			limit = { has_star_flag = hekate_system }
-			generate_republic_of_asteria_country = yes
-			log = "[event_target:republic_of_asteria.GetName]"
-		}
-
-		#Sanctum Metals Group
-		random_system = {
-			limit = { has_star_flag = decoris_system }
-			generate_sanctum_metals_group_country = yes
-			event_target:sanctum_metals_group = { country_event = { id = btr_start_country.5 days = 1 } }
-			log = "[event_target:sanctum_metals_group.GetName]"
-		}
-
-		#State of Garvug
-		random_system = {
-			limit = { has_star_flag = paz_system }
-			generate_state_of_garvug_country = yes
-			event_target:state_of_garvug = { country_event = { id = btr_start_country.5 days = 1 } }
-			log = "[event_target:state_of_garvug.GetName]"
-		}
-
-		#Thalassocracy of Talis Fia
-		random_system = {
-			limit = { has_star_flag = urlalast_system }
-			generate_thalassocracy_of_talis_fia_country = yes
-			log = "[event_target:thalassocracy_of_talis_fia.GetName]"
-		}
-
-		#Thred'nakka Autonomy
-		random_system = {
-			limit = { has_star_flag = brikhaun_system }
-			generate_thrednakka_autonomy_country = yes
-			event_target:thrednakka_autonomy = { country_event = { id = btr_start_country.5 days = 1 } }
-			log = "[event_target:thrednakka_autonomy.GetName]"
-		}
-
-		#Trident Exports Limited
-		random_system = {
-			limit = { has_star_flag = hoplos_system }
-			generate_trident_exports_limited_country = yes
-			log = "[event_target:trident_exports_limited.GetName]"
-		}
-
-		#Union of Ferris Fields
-		random_system = {
-			limit = { has_star_flag = jintanei_system }
-			generate_union_of_ferris_fields_country = yes
-			log = "[event_target:union_of_ferris_fields.GetName]"
-		}
-
-		#Wrill Mining Consortium
-		random_system = {
-			limit = { has_star_flag = malgus_system }
-			generate_wrill_mining_consortium_country = yes
-			event_target:wrill_mining_consortium = { country_event = { id = btr_start_country.5 days = 1 } }
-			log = "[event_target:wrill_mining_consortium.GetName]"
-		}
-
-		#Yamm Trade Zone
-		random_system = {
-			limit = { has_star_flag = kalabsha_system }
-			generate_yamm_free_trade_zone_country = yes
-			event_target:yamm_trade_zone = { country_event = { id = btr_start_country.3 days = 1 } }
-			log = "[event_target:yamm_trade_zone.GetName]"
-		}
-
-		#Zoryan Sovereignty
-		random_system = {
-			limit = { has_star_flag = faia_system }
-			generate_zoryan_sovereignty_country = yes
-			event_target:zoryan_sovereignty = { country_event = { id = btr_start_country.5 days = 1 } }
-			log = "[event_target:zoryan_sovereignty.GetName]"
-		}
-		if = {
-			limit = {
-				is_btr_canon_map = yes
-			}
-			log = "btr_start_country.11 - INNDEPENDENT WORLD SETUP"
 			establish_citadel_council_communication = yes
 			establish_aite_warring_states_communications = yes
 			establish_alahyan_terraformation_zone_communications = yes
@@ -542,7 +177,13 @@ event = {
 			establish_zoryan_sovereignty_communications = yes
 		}
 		if = {
-			limit = { any_relation = { is_country_type = planet_state }
+			limit = {
+				any_relation = {
+					OR = {
+						is_country_type = default
+						is_country_type = planet_state
+					}
+				}
 			}
 			set_country_flag = has_encountered_other_empire
 		}
@@ -550,7 +191,655 @@ event = {
 }
 
 
-system_event = {
+
+
+
+
+
+
+
+
+
+country_event = {
+	id = btr_start_country.9
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		log = "btr_start_country.9"
+		if = {
+			limit = { 
+				is_btr_canon_map = yes
+			}
+			every_owned_planet = {
+				limit = {
+					is_capital = yes
+				}
+				generate_btr_canon_capital_buildings_and_districts = yes
+			}
+		}
+		# if = {
+		# 	limit = { 
+		# 		is_btr_sandbox_map = yes
+		# 	}
+		# 	every_owned_planet = {
+		# 		limit = {
+		# 			is_capital = yes
+		# 		}
+		# 		generate_btr_sandbox_capital_buildings_and_districts = yes
+		# 	}
+		# }
+	}
+}
+
+
+
+
+
+
+
+
+
+
+country_event = {
+	id = btr_start_country.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					is_btr_non_sandbox_map = yes
+					is_btr_sandbox_map = yes
+				}
+			}
+			#Citadel Council
+			random_system = {
+				limit = { has_star_flag = widow_system }
+				generate_citadel_council_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = citadel_council
+					}
+					save_global_event_target_as = citadel_council
+				}
+				#event_target:citadel_council = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:citadel_council.GetName]"
+			}
+
+			#Aite Warring States
+			random_system = {
+				limit = { has_star_flag = typhon_system }
+				generate_aite_warring_states_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = aite_warring_states
+					}
+					save_global_event_target_as = aite_warring_states
+				}
+				#event_target:aite_warring_states = { country_event = { id = btr_start_country.5 days = 1 } }
+				log = "[event_target:aite_warring_states.GetName]"
+			}
+
+			#Alahyan Terraformation Zone
+			random_system = {
+				limit = { has_star_flag = aysur_system }
+				generate_alahyan_terraformation_zone_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = alahyan_terraformation_zone
+					}
+					save_global_event_target_as = alahyan_terraformation_zone
+				}
+				#event_target:alahyan_terraformation_zone = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:alahyan_terraformation_zone.GetName]"
+			}
+
+			#Altai Mineral Works
+			random_system = {
+				limit = { has_star_flag = pamyat_system }
+				generate_altai_mineral_works_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = altai_mineral_works
+					}
+					save_global_event_target_as = altai_mineral_works
+				}
+				#event_target:altai_mineral_works = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:altai_mineral_works.GetName]"
+			}
+
+			#Altakiril Union
+			random_system = {
+				limit = { has_star_flag = thal_system }
+				generate_altakiril_union_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = altakiril_union
+					}
+					save_global_event_target_as = altakiril_union
+				}
+				#event_target:altakiril_union = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:altakiril_union.GetName]"
+			}
+
+			#Anansi Manufacturing
+			random_system = {
+				limit = { has_star_flag = cavalcante_system }
+				generate_anansi_manufacturing_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = anansi_manufacturing
+					}
+					save_global_event_target_as = anansi_manufacturing
+				}
+				log = "[event_target:anansi_manufacturing.GetName]"
+			}
+
+			#Arvunan Administration
+			random_system = {
+				limit = { has_star_flag = aysur_system }
+				generate_arvunan_administration_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = arvunan_administration
+					}
+					save_global_event_target_as = arvunan_administration
+				}
+				log = "[event_target:arvunan_administration.GetName]"
+			}
+
+			#Authority of New Canton
+			random_system = {
+				limit = { has_star_flag = razhek_system }
+				generate_authority_of_new_canton_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = authority_of_new_canton
+					}
+					save_global_event_target_as = authority_of_new_canton
+				}
+				log = "[event_target:authority_of_new_canton.GetName]"
+			}
+
+			#Autonomy of Cyrene
+			random_system = {
+				limit = { has_star_flag = tkachyov_system }
+				generate_autonomy_of_cyrene_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = autonomy_cyrene
+					}
+					save_global_event_target_as = autonomy_cyrene
+				}
+				log = "[event_target:autonomy_cyrene.GetName]"
+			}
+
+			#Altakiril Union
+			random_system = {
+				limit = { has_star_flag = mil_system }
+				generate_chalkos_freehold_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = chalkhos_freehold
+					}
+					save_global_event_target_as = chalkhos_freehold
+				}
+				#event_target:altakiril_union = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:chalkhos_freehold.GetName]"
+			}
+
+			#Commune of Horizon
+			random_system = {
+				limit = { has_star_flag = iera_system }
+				generate_commune_of_horizon_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = commune_of_horizon
+					}
+					save_global_event_target_as = commune_of_horizon
+				}
+				#event_target:commune_of_horizon = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:commune_of_horizon.GetName]"
+			}
+
+			#Commonwealth of Joab
+			random_system = {
+				limit = { has_star_flag = enoch_system }
+				generate_commonwealth_of_joab_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = commonwealth_of_joab
+					}
+					save_global_event_target_as = commonwealth_of_joab
+				}
+				#event_target:commonwealth_of_joab = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:commonwealth_of_joab.GetName]"
+			}
+
+			#Confederation of Thunawanuro
+			random_system = {
+				limit = { has_star_flag = batalla_system }
+				generate_confederation_of_thunawanuro_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = confederation_of_thunawanuro
+					}
+					save_global_event_target_as = confederation_of_thunawanuro
+				}
+				log = "[event_target:confederation_of_thunawanuro.GetName]"
+			}
+
+			#Confederation of Thunawanuro
+			random_system = {
+				limit = { has_star_flag = osun_system }
+				generate_erinle_conservancy_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = erinle_conservancy
+					}
+					save_global_event_target_as = erinle_conservancy
+				}
+				log = "[event_target:erinle_conservancy.GetName]"
+			}
+
+			#Fal III Manufactory
+			random_system = {
+				limit = { has_star_flag = fal_system }
+				generate_fal_III_manufactory_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = fal_iii_manufactory
+					}
+					save_global_event_target_as = fal_iii_manufactory
+				}
+				#event_target:fal_iii_manufactory = { country_event = { id = btr_start_country.4 days = 1 } }
+				log = "[event_target:fal_iii_manufactory.GetName]"
+			}
+
+			#Flett Transport Union
+			random_system = {
+				limit = { has_star_flag = malgus_system }
+				generate_flett_transport_union_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = flett_transport_union
+					}
+					save_global_event_target_as = flett_transport_union
+				}
+				#event_target:flett_transport_union = { country_event = { id = btr_start_country.5 days = 1 } }
+				log = "[event_target:flett_transport_union.GetName]"
+			}
+
+			#Freehold of Freedom's Progress
+			random_system = {
+				limit = { has_star_flag = tydeous_system }
+				generate_freehold_of_freedoms_progress_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = freehold_of_freedoms_progress
+					}
+					save_global_event_target_as = freehold_of_freedoms_progress
+				}
+				log = "[event_target:freehold_of_freedoms_progress.GetName]"
+			}
+
+			#Flett Transport Union
+			random_system = {
+				limit = { has_star_flag = olonnais_system }
+				generate_free_port_of_tortuga_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = free_port_of_tortuga
+					}
+					save_global_event_target_as = free_port_of_tortuga
+				}
+				#event_target:free_port_of_tortuga = { country_event = { id = btr_start_country.5 days = 1 } }
+				log = "[event_target:free_port_of_tortuga.GetName]"
+			}
+
+			#Ishtar Emporium
+			random_system = {
+				limit = { has_star_flag = crete_system }
+				generate_ishtar_emporium_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = ishtar_emporium
+					}
+					save_global_event_target_as = ishtar_emporium
+				}
+				log = "[event_target:ishtar_emporium.GetName]"
+			}
+
+			#Jenera Corporation
+			random_system = {
+				limit = { has_star_flag = cheng_system }
+				generate_jenera_corporation_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = jenera_corporation
+					}
+					save_global_event_target_as = jenera_corporation
+				}
+				#event_target:jenera_corporation = { country_event = { id = btr_start_country.4 days = 1 } }
+				log = "[event_target:jenera_corporation.GetName]"
+			}
+
+			#Korlus Recycling Union
+			random_system = {
+				limit = { has_star_flag = imir_system }
+				generate_korlus_recycling_union_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = korlus_recycling_union
+					}
+					save_global_event_target_as = korlus_recycling_union
+				}
+				#event_target:korlus_recycling_union = { country_event = { id = btr_start_country.4 days = 1 } }
+				log = "[event_target:korlus_recycling_union.GetName]"
+			}
+
+			#Kosh Development Corporation
+			random_system = {
+				limit = { has_star_flag = webel_system }
+				generate_kosh_development_corporation_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = kosh_development_corporation
+					}
+					save_global_event_target_as = kosh_development_corporation
+				}
+				log = "[event_target:kosh_development_corporation.GetName]"
+			}
+
+			#League of Sahi Dau
+			random_system = {
+				limit = { has_star_flag = essul_system }
+				generate_league_of_sahi_dau_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = league_of_sahi_dau
+					}
+					save_global_event_target_as = league_of_sahi_dau
+				}
+				#event_target:league_of_sahi_dau = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:league_of_sahi_dau.GetName]"
+			}
+
+			#Logarisi Development Corporation
+			random_system = {
+				limit = { has_star_flag = batalla_system }
+				generate_logarisi_development_corporation_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = logarisi_development_corporation
+					}
+					save_global_event_target_as = logarisi_development_corporation
+				}
+				#event_target:logarisi_development_corporation = { country_event = { id = btr_start_country.4 days = 1 } }
+				log = "[event_target:logarisi_development_corporation.GetName]"
+			}
+
+			#Monrini Syndicate
+			random_system = {
+				limit = { has_star_flag = adiratna_system }
+				generate_monrini_syndicate_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = monrini_syndicate
+					}
+					save_global_event_target_as = monrini_syndicate
+				}
+				log = "[event_target:monrini_syndicate.GetName]"
+			}
+
+			#Noveria Development Corporation
+			random_system = {
+				limit = { has_star_flag = pax_system }
+				generate_noveria_development_corporation_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = noveria_development_corporation
+					}
+					save_global_event_target_as = noveria_development_corporation
+				}
+				#event_target:noveria_development_corporation = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:noveria_development_corporation.GetName]"
+			}
+
+			#People's Authority of Tyvor
+			random_system = {
+				limit = { has_star_flag = agnes_system }
+				generate_peoples_authority_of_tyvor_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = peoples_authority_of_tyvor
+					}
+					save_global_event_target_as = peoples_authority_of_tyvor
+				}
+				#event_target:peoples_authority_of_tyvor = { country_event = { id = btr_start_country.4 days = 1 } }
+				log = "[event_target:peoples_authority_of_tyvor.GetName]"
+			}
+
+			#Polity of Anhur
+			random_system = {
+				limit = { has_star_flag = amun_system }
+				generate_polity_of_anhur_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = polity_of_anhur
+					}
+					save_global_event_target_as = polity_of_anhur
+				}
+				#event_target:polity_of_anhur = { country_event = { id = btr_start_country.4 days = 1 } }
+				log = "[event_target:polity_of_anhur.GetName]"
+			}
+
+			#Relic Mineral Works
+			random_system = {
+				limit = { has_star_flag = relic_system }
+				generate_relic_mineral_works_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = relic_mineral_works
+					}
+					save_global_event_target_as = relic_mineral_works
+				}
+				#event_target:relic_mineral_works = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:relic_mineral_works.GetName]"
+			}
+
+			#Republic of Asteria
+			random_system = {
+				limit = { has_star_flag = hekate_system }
+				generate_republic_of_asteria_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = republic_of_asteria
+					}
+					save_global_event_target_as = republic_of_asteria
+				}
+				log = "[event_target:republic_of_asteria.GetName]"
+			}
+
+			#Sanctum Metals Group
+			random_system = {
+				limit = { has_star_flag = decoris_system }
+				generate_sanctum_metals_group_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = sanctum_metals_group
+					}
+					save_global_event_target_as = sanctum_metals_group
+				}
+				#event_target:sanctum_metals_group = { country_event = { id = btr_start_country.5 days = 1 } }
+				log = "[event_target:sanctum_metals_group.GetName]"
+			}
+
+			#State of Garvug
+			random_system = {
+				limit = { has_star_flag = paz_system }
+				generate_state_of_garvug_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = state_of_garvug
+					}
+					save_global_event_target_as = state_of_garvug
+				}
+			#	event_target:state_of_garvug = { country_event = { id = btr_start_country.5 days = 1 } }
+				log = "[event_target:state_of_garvug.GetName]"
+			}
+
+			#Thalassocracy of Talis Fia
+			random_system = {
+				limit = { has_star_flag = urlalast_system }
+				generate_thalassocracy_of_talis_fia_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = thalassocracy_of_talis_fia
+					}
+					save_global_event_target_as = thalassocracy_of_talis_fia
+				}
+				log = "[event_target:thalassocracy_of_talis_fia.GetName]"
+			}
+
+			#Thred'nakka Autonomy
+			random_system = {
+				limit = { has_star_flag = brikhaun_system }
+				generate_thrednakka_autonomy_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = thrednakka_autonomy
+					}
+					save_global_event_target_as = thrednakka_autonomy
+				}
+			#	event_target:thrednakka_autonomy = { country_event = { id = btr_start_country.5 days = 1 } }
+				log = "[event_target:thrednakka_autonomy.GetName]"
+			}
+
+			#Trident Exports Limited
+			random_system = {
+				limit = { has_star_flag = hoplos_system }
+				generate_trident_exports_limited_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = trident_exports_limited
+					}
+					save_global_event_target_as = trident_exports_limited
+				}
+				log = "[event_target:trident_exports_limited.GetName]"
+			}
+
+			#Union of Ferris Fields
+			random_system = {
+				limit = { has_star_flag = jintanei_system }
+				generate_union_of_ferris_fields_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = union_of_ferris_fields
+					}
+					save_global_event_target_as = union_of_ferris_fields
+				}
+				log = "[event_target:union_of_ferris_fields.GetName]"
+			}
+
+			#Wrill Mining Consortium
+			random_system = {
+				limit = { has_star_flag = malgus_system }
+				generate_wrill_mining_consortium_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = wrill_mining_consortium
+					}
+					save_global_event_target_as = wrill_mining_consortium
+				}
+			#	event_target:wrill_mining_consortium = { country_event = { id = btr_start_country.5 days = 1 } }
+				log = "[event_target:wrill_mining_consortium.GetName]"
+			}
+
+			#Yamm Trade Zone
+			random_system = {
+				limit = { has_star_flag = kalabsha_system }
+				generate_yamm_free_trade_zone_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = yamm_trade_zone
+					}
+					save_global_event_target_as = yamm_trade_zone
+				}
+				#event_target:yamm_trade_zone = { country_event = { id = btr_start_country.3 days = 1 } }
+				log = "[event_target:yamm_trade_zone.GetName]"
+			}
+
+			#Zoryan Sovereignty
+			random_system = {
+				limit = { has_star_flag = faia_system }
+				generate_zoryan_sovereignty_country = yes
+				random_country = {
+					limit = {
+						has_country_flag = zoryan_sovereignty
+					}
+					save_global_event_target_as = zoryan_sovereignty
+				}
+			#	event_target:zoryan_sovereignty = { country_event = { id = btr_start_country.5 days = 1 } }
+				log = "[event_target:zoryan_sovereignty.GetName]"
+			}
+			if = {
+				limit = {
+					is_btr_canon_map = yes
+				}
+				log = "btr_start_country.11 - INNDEPENDENT WORLD SETUP"
+				establish_citadel_council_communication = yes
+				establish_aite_warring_states_communications = yes
+				establish_alahyan_terraformation_zone_communications = yes
+				establish_altai_mineral_works_communications = yes
+				establish_altakiril_union_communications = yes
+				establish_anansi_manufacturing_communications = yes
+				establish_polity_of_anhur_communications = yes
+				establish_arvunan_administration_communications = yes
+				establish_republic_of_asteria_communications = yes
+				establish_chalkos_freehold_communications = yes
+				establish_autonomy_of_cyrene_communications = yes
+				establish_erinle_conservancy_communications = yes
+				establish_union_of_ferris_fields_communications = yes
+				establish_relic_mineral_works_communications = yes
+				establish_flett_transort_union_communications = yes
+				establish_freehold_of_freedoms_progress_communications = yes
+				establish_state_of_garvug_communications = yes
+				establish_ishtar_emporium_communications = yes
+				establish_jenera_corporation_communications = yes
+				establish_commonwealth_of_joab_communications = yes
+				establish_korlus_recycling_union_communications = yes
+				establish_kosh_development_corporation_communications = yes
+				establish_logarisi_development_corporation_communications = yes
+				establish_monrini_syndicate_communications = yes
+				establish_authority_of_new_canton_communications = yes
+				establish_noveria_development_corporation_communications = yes
+				establish_league_of_sahi_dau_communications = yes
+				establish_sanctum_metals_group_communications = yes
+				establish_thalassocracy_of_talis_fia_communications = yes
+				establish_thrednakka_autonomy_communications = yes
+				establish_confederation_of_thunawanuro_communications = yes
+				establish_free_port_of_tortuga_communications = yes
+				establish_trident_exports_communications = yes
+				establish_trigintan_league_communications = yes
+				establish_peoples_authority_of_tyvor_communications = yes
+				establish_wrill_mining_consortium_communications = yes
+				establish_fal_III_manufactory_communications = yes
+				establish_yamm_free_trade_zone_communications = yes
+				establish_zoryan_sovereignty_communications = yes
+			}
+			if = {
+				limit = { any_relation = { is_country_type = planet_state }
+				}
+				set_country_flag = has_encountered_other_empire
+			}
+		}
+	}
+}
+
+
+country_event = {
 	id = btr_start_country.12
 	hide_window = yes
 	is_triggered_only = yes

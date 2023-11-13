@@ -2485,7 +2485,7 @@ sys_malgus_init = {
     class = "sc_k"
 	max_instances = 1
 
-	flags = { attican_traverse sector_at3 eagle_nebula malgus_system secondary_relay_system }
+	flags = { attican_traverse sector_at3 eagle_nebula malgus_system secondary_relay_system planet_state }
 	
     planet = {
 		name = "Malgus"
@@ -2547,12 +2547,31 @@ sys_malgus_init = {
 		deposit_blockers = none
 		modifiers = none
 		entity = "methane_desert_03_entity"
-		flags = { subclass_world }
+		flags = { subclass_world wrill_planet }
 		deposit_blockers = none
         modifiers = none
 		init_effect = {
 			save_global_event_target_as = wrillHomeworld
-            set_planet_flag = wrill_planet
+			if = {
+                limit = {
+                    exists = event_target:wrillHomeworld
+                }
+                log = "Wrill Mining Consortium Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_wrill_mining_consortium_country = yes
+
+			set_capital = yes
+			set_owner = event_target:wrill_mining_consortium
+			create_colony = {
+				owner = event_target:wrill_mining_consortium
+				species = event_target:kroganSpecies
+				ethos = owner
+			}
+
+			generate_wrill_pops = yes
+			
 			add_modifier = {
 				modifier = dune_world
 				days = -1
@@ -2567,13 +2586,31 @@ sys_malgus_init = {
         orbit_angle = 184
         has_ring = no
 		size = 14
-		flags = { subclass_world }
+		flags = { subclass_world flett_planet }
 		deposit_blockers = none
         modifiers = none
 		entity = "mephitic_planet_04_entity"
 		init_effect = {
 			save_global_event_target_as = flettHomeworld
-            set_planet_flag = flett_planet
+			if = {
+                limit = {
+                    exists = event_target:flettHomeworld
+                }
+                log = "Flett Transport Union Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_flett_transport_union_country = yes
+
+			set_capital = yes
+			set_owner = event_target:flett_transport_union
+			create_colony = {
+				owner = event_target:flett_transport_union
+				species = event_target:kroganSpecies
+				ethos = owner
+			}
+
+			generate_flett_pops = yes
 		}
     }	
 
@@ -6624,7 +6661,7 @@ sys_aysur_init = {
     class = sc_g
 	max_instances = 1
 
-    flags = { attican_traverse sector_at8 caleston_rift aysur_system }
+    flags = { attican_traverse sector_at8 caleston_rift aysur_system planet_state }
 
 	planet = {
 	    name = "Aysur"
@@ -6680,9 +6717,29 @@ sys_aysur_init = {
             orbit_angle = 169
             has_ring = no
 			size = 16
-			flags = { subclass_world }
+			flags = { subclass_world arvuna_planet }
 			init_effect = {
-                set_planet_flag = arvuna_planet
+				save_global_event_target_as = arvunaHomeworld
+				if = {
+					limit = {
+						exists = event_target:arvunaHomeworld
+					}
+					log = "Arvunan Administration Zone Event Target Set"
+				}
+				prevent_anomaly = yes
+
+				generate_arvunan_administration_country = yes
+
+				set_capital = yes
+				set_owner = event_target:arvunan_administration
+				create_colony = {
+					owner = event_target:arvunan_administration
+					species = event_target:humanSpecies
+					ethos = owner
+				}
+
+				generate_arvuna_pops = yes
+
 				add_modifier = {
 					modifier = dangerous_wildlife
 					days = -1
@@ -6698,12 +6755,30 @@ sys_aysur_init = {
 			orbit_angle = { min = 90 max = 270 }
 			orbit_distance = 5
 			size = 8
-			flags = { subclass_world }		
+			flags = { subclass_world alahya_planet }		
 			deposit_blockers = none
 			modifiers = none
 			init_effect = {
 				save_global_event_target_as = alahyaHomeworld
-                set_planet_flag = alahya_planet
+				if = {
+					limit = {
+						exists = event_target:alahyaHomeworld
+					}
+					log = "Alahyan Terraformation Zone Event Target Set"
+				}
+				prevent_anomaly = yes
+
+				generate_alahyan_terraformation_zone_country = yes
+
+				set_capital = yes
+				set_owner = event_target:alahyan_terraformation_zone
+				create_colony = {
+					owner = event_target:alahyan_terraformation_zone
+					species = event_target:volusSpecies
+					ethos = owner
+				}
+
+				generate_alahya_pops = yes
 			}	
 		}	
 		
@@ -8392,7 +8467,7 @@ sys_pamyat_init = {
     class = "sc_g"
 	max_instances = 1
 
-    flags = { attican_traverse sector_at9 hades_nexus pamyat_system }
+    flags = { attican_traverse sector_at9 hades_nexus pamyat_system planet_state }
 
     planet = {
 		name = "Pamyat"
@@ -8418,17 +8493,35 @@ sys_pamyat_init = {
 
     planet = {
         name = "Dobrovolski"
-        class = pc_barren_cold
+        class = pc_barren_cold_station
         orbit_distance = 120
         orbit_angle = 187
         has_ring = no
 		size = 17
-		flags = { subclass_world }
+		flags = { subclass_world dobrovolski_planet }
 		deposit_blockers = none
         modifiers = none
 		init_effect = {
 			save_global_event_target_as = dobrovolskiHomeworld
-            set_planet_flag = dobrovolski_planet
+			if = {
+                limit = {
+                    exists = event_target:dobrovolskiHomeworld
+                }
+                log = "Altai Mineral Works Event Target Set"
+            }
+
+			generate_altai_mineral_works_country = yes
+
+			set_capital = yes
+			set_owner = event_target:altai_mineral_works
+			create_colony = {
+				owner = event_target:altai_mineral_works
+				species = event_target:humanSpecies
+				ethos = owner
+			}
+
+			generate_dobrovolski_pops = yes
+
 			add_deposit = d_eezo_scarce
 		}
     }
@@ -10944,7 +11037,7 @@ sys_iera_init = {
     class = sc_f
 	max_instances = 1
 
-	flags = { attican_traverse sector_at11 shadow_sea iera_system primary_relay_system }
+	flags = { attican_traverse sector_at11 shadow_sea iera_system primary_relay_system planet_state }
 
     planet = {
 		name = "Iera"
@@ -11010,12 +11103,31 @@ sys_iera_init = {
         has_ring = no
 		size = 13
 		modifiers = none
-		flags = { subclass_world }	
+		flags = { subclass_world horizon_planet }	
 		deposit_blockers = none
         modifiers = none
 		init_effect = {
 			save_global_event_target_as = horizonHomeworld
-            set_planet_flag = horizon_planet
+            if = {
+                limit = {
+                    exists = event_target:horizonHomeworld
+                }
+                log = "Commune of Horizon Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_commune_of_horizon_country = yes
+
+			set_capital = yes
+			set_owner = event_target:citadel_council
+			create_colony = {
+				owner = event_target:citadel_council
+				species = event_target:humanSpecies
+				ethos = owner
+			}
+
+			generate_horizon_pops = yes
+
 			add_modifier = {
 				modifier = lush_planet
 				days = -1

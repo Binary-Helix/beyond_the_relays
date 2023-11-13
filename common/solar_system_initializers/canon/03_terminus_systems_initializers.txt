@@ -1031,7 +1031,7 @@ sys_thal_init = {
     class = sc_k
 	max_instances = 1
 
-    flags = { terminus_systems sector_t1 shrike_abyssal thal_system }
+    flags = { terminus_systems sector_t1 shrike_abyssal thal_system planet_state }
 	
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -1093,11 +1093,30 @@ sys_thal_init = {
         orbit_angle = 253
         has_ring = no
 		size = 14
-		flags = { subclass_world }
+		flags = { subclass_world altakiril_planet }
 		entity = "fungal_planet_01_entity"
 		init_effect = {
             save_global_event_target_as = altakirilHomeworld
-            set_planet_flag = altakiril_planet
+            if = {
+                limit = {
+                    exists = event_target:altakirilHomeworld
+                }
+                log = "Altakiril Union Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_altakiril_union_country = yes
+
+            set_capital = yes
+			set_owner = event_target:altakiril_union
+			create_colony = {
+				owner = event_target:altakiril_union
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+
+            generate_altakiril_pops = yes
+
 			add_modifier = {
 				modifier = fungal_world
 				days = -1
@@ -1428,7 +1447,7 @@ sys_osun_init = {
     class = sc_f
 	max_instances = 1
 
-    flags = { terminus_systems sector_t2 hourglass_nebula osun_system primary_relay_system }
+    flags = { terminus_systems sector_t2 hourglass_nebula osun_system primary_relay_system planet_state }
 
     planet = {
 		name = "Osun"
@@ -1453,13 +1472,32 @@ sys_osun_init = {
         orbit_angle = 202
         has_ring = no
 		size = 16
-		flags = { subclass_world }
+		flags = { subclass_world erinle_planet }
         deposit_blockers = none
         modifiers = none
 		entity = "bog_planet_02_entity"
 		init_effect = {
             save_global_event_target_as = erinleHomeworld
-            set_planet_flag = erinle_planet
+            if = {
+                limit = {
+                    exists = event_target:erinleHomeworld
+                }
+                log = "Erinle Conservancy Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_erinle_conservancy_country = yes
+
+            set_capital = yes
+			set_owner = event_target:erinle_conservancy
+			create_colony = {
+				owner = event_target:erinle_conservancy
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+
+            generate_erinle_pops = yes
+
 			add_modifier = {
 				modifier = bog_world
 				days = -1
@@ -3733,7 +3771,7 @@ sys_tkachyov_init = {
 	class = sc_m_giant
 	max_instances = 1
 
-    flags = { terminus_systems sector_t3 titan_nebula tkachyov_system secondary_relay_system }
+    flags = { terminus_systems sector_t3 titan_nebula tkachyov_system secondary_relay_system planet_state }
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -3786,7 +3824,26 @@ sys_tkachyov_init = {
             modifiers = none
 			init_effect = {
                 save_global_event_target_as = cyreneHomeworld
-                set_planet_flag = cyrene_planet
+                if = {
+                    limit = {
+                        exists = event_target:citadelHomeworld
+                    }
+                    log = "Autonomy of Cyrene Event Target Set"
+                }
+                prevent_anomaly = yes
+
+                generate_autonomy_of_cyrene_country = yes
+
+                set_capital = yes
+                set_owner = event_target:autonomy_of_cyrene
+                create_colony = {
+                    owner = event_target:autonomy_of_cyrene
+                    species = event_target:humanSpecies
+                    ethos = owner
+                }
+
+                generate_cyrene_pops = yes
+
 				add_modifier = {
 					modifier = steppe_world
 					days = -1
@@ -4279,7 +4336,7 @@ sys_enoch_init = {
     class = sc_g
 	max_instances = 1
 
-    flags = { terminus_systems sector_t4 rosetta_nebula enoch_system primary_relay_system }
+    flags = { terminus_systems sector_t4 rosetta_nebula enoch_system primary_relay_system planet_state }
 
     planet = {
 		name = "Enoch"
@@ -4327,8 +4384,27 @@ sys_enoch_init = {
 		entity = "mire_planet_06_entity"
 		init_effect = {
             save_global_event_target_as = joabHomeworld
-            set_planet_flag = joab_planet
-			add_modifier = {
+            if = {
+                limit = {
+                    exists = event_target:joabHomeworld
+                }
+                log = "Commonwealth of Joab Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_commonwealth_of_joab_country = yes
+
+            set_capital = yes
+			set_owner = event_target:commonwealth_of_joab
+			create_colony = {
+				owner = event_target:commonwealth_of_joab
+				species = event_target:humanSpecies
+				ethos = owner
+			}
+
+            generate_joab_pops = yes
+
+            add_modifier = {
 				modifier = mire_world
 				days = -1
 			}
@@ -5691,7 +5767,7 @@ sys_razhek_init = {
     class = sc_g
 	max_instances = 1
 
-    flags = { terminus_systems sector_t5 radana_burst razhek_system primary_relay_system }
+    flags = { terminus_systems sector_t5 radana_burst razhek_system primary_relay_system planet_state }
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -5723,8 +5799,27 @@ sys_razhek_init = {
 		entity = "snow_planet_05_entity"
 		init_effect = {
             save_global_event_target_as = newcantonHomeworld
-            set_planet_flag = new_canton_planet
-			add_modifier = {
+            if = {
+                limit = {
+                    exists = event_target:newcantonHomeworld
+                }
+                log = "New Canton Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_authority_of_new_canton_country = yes
+
+            set_capital = yes
+			set_owner = event_target:authority_of_new_canton
+			create_colony = {
+				owner = event_target:authority_of_new_canton
+				species = event_target:humanSpecies
+				ethos = owner
+			}
+
+            generate_new_canton_pops = yes
+
+            add_modifier = {
 				modifier = snow_world
 				days = -1
 			}
@@ -7506,7 +7601,7 @@ sys_typhon_init = {
     class = sc_g
 	max_instances = 1
 
-    flags = { terminus_systems sector_t7 the_phoenix_massing typhon_system secondary_relay_system }
+    flags = { terminus_systems sector_t7 the_phoenix_massing typhon_system secondary_relay_system planet_state }
 
     planet = {
 	    name = "Typhon"
@@ -7542,6 +7637,27 @@ sys_typhon_init = {
 		init_effect = {
             save_global_event_target_as = aiteHomeworld
             set_planet_flag = aite_planet
+            if = {
+                limit = {
+                    exists = event_target:aiteHomeworld
+                }
+                log = "Aite Warring States Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_aite_warring_states_country = yes
+
+            set_capital = yes
+			set_owner = event_target:aite_warring_states
+            set_controller = event_target:aite_warring_states
+			create_colony = {
+				owner = event_target:aite_warring_states
+				species = event_target:batarianSpecies
+				ethos = owner
+			}
+
+            generate_aite_pops = yes
+
 			add_modifier = {
 				modifier = temperate_world
 				days = -1
@@ -8922,7 +9038,7 @@ sys_fal_init = {
 	class = sc_m_hyper
 	max_instances = 1
 
-    flags = { terminus_systems sector_t10 nemean_alpha fal_system secondary_relay_system }
+    flags = { terminus_systems sector_t10 nemean_alpha fal_system secondary_relay_system planet_state }
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -8963,9 +9079,29 @@ sys_fal_init = {
 		size = 15
         deposit_blockers = none
         modifiers = none
+        flags = { yalson_planet }
         init_effect = {
             save_global_event_target_as = yalsonHomeworld
-            set_planet_flag = yalson_planet
+            if = {
+                limit = {
+                    exists = event_target:yalsonHomeworld
+                }
+                log = "Fal III Manufactory Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_fal_III_manufactory_country = yes
+
+            set_capital = yes
+			set_owner = event_target:fal_III_manufactory
+			create_colony = {
+				owner = event_target:fal_III_manufactory
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+
+            generate_yalson_pops = yes
+
             add_deposit = d_eezo_trace
         }
 	}
@@ -10872,7 +11008,7 @@ sys_mil_init = {
     class = sc_g
 	max_instances = 1
 
-	flags = { terminus_systems sector_t12 sigurds_cradle mil_system }
+	flags = { terminus_systems sector_t12 sigurds_cradle mil_system planet_state }
 
     planet = {
 		name = "Mil"
@@ -10913,10 +11049,28 @@ sys_mil_init = {
 		size = 12
         deposit_blockers = none
         modifiers = none
+        flags = { subclass_world chalkos_planet }
         init_effect = {
             save_global_event_target_as = chalkosHomeworld
-            set_planet_flag = chalkos_planet
-            generate_btr_independent_world_capitol_buildings = yes
+            if = {
+                limit = {
+                    exists = event_target:chalkosHomeworld
+                }
+                log = "Chalkos Freehold Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_chalkos_freehold_country = yes
+            
+            set_capital = yes
+			set_owner = event_target:chalkos_freehold
+			create_colony = {
+				owner = event_target:chalkos_freehold
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+
+            generate_chalkhos_pops = yes
 
         }
     }
@@ -11684,7 +11838,7 @@ sys_batalla_init = {
     class = sc_k
     max_instances = 1
 
-	flags = { terminus_systems sector_t13 omega_nebula batalla_system }
+	flags = { terminus_systems sector_t13 omega_nebula batalla_system planet_state }
 
     init_effect = {
         save_global_event_target_as = courtsSciCon
@@ -11704,13 +11858,12 @@ sys_batalla_init = {
         orbit_angle = 143
         has_ring = no
 		size = 12
-		flags = { subclass_world }
+		flags = { subclass_world logarisi_planet }
         deposit_blockers = none
         modifiers = none
 		entity = "mephitic_arid_planet_03_entity"
 		init_effect = {
             save_global_event_target_as = logarisiHomeworld
-            set_planet_flag = logarisi_planet
 			add_modifier = {
 				modifier = outback_world
 				days = -1
@@ -11725,12 +11878,31 @@ sys_batalla_init = {
         orbit_angle = 305
         has_ring = no
 		size = 25
-        flags = { subclass_world }
+        flags = { subclass_world thunawanuro_planet }
         deposit_blockers = none
         modifiers = none
 		init_effect = {
             save_global_event_target_as = thunawanuroHomeworld
-            set_planet_flag = thunawanuro_planet
+            if = {
+                limit = {
+                    exists = event_target:thunawanuroHomeworld
+                }
+                log = "Confederation of Thunawanuro Event Target Set"
+            }
+            prevent_anomaly = yes
+
+            generate_confederation_of_thunawanuro_country = yes
+
+            set_capital = yes
+			set_owner = event_target:confederation_of_thunawanuro
+			create_colony = {
+				owner = event_target:confederation_of_thunawanuro
+				species = event_target:elcorSpecies
+				ethos = owner
+			}
+
+            generate_thunawanuro_pops = yes
+
 			add_modifier = {
 				modifier = high_gravity
 				days = -1

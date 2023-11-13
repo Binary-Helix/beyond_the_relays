@@ -3786,7 +3786,7 @@ sys_cavalcante_init = {
     class = sc_m
 	max_instances = 1
 
-    flags = { skyllian_verge sector_sv5 hades_gamma cavalcante_system }
+    flags = { skyllian_verge sector_sv5 hades_gamma cavalcante_system planet_state }
 
     planet = {
 		name = "Cavalcante"
@@ -3801,12 +3801,31 @@ sys_cavalcante_init = {
         orbit_distance = 250
         size = 30
 		entity = "biolum_planet_04_entity"
-		flags = { subclass_world }
+		flags = { subclass_world anansi_planet }
 		deposit_blockers = none
         modifiers = none
 		init_effect = {
 			save_global_event_target_as = anansiHomeworld
-			set_planet_flag = anansi_planet
+            if = {
+                limit = {
+                    exists = event_target:anansiHomeworld
+                }
+                log = "Anansi Manufacturing Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_anansi_manufacturing_country = yes
+
+			set_capital = yes
+			set_owner = event_target:citadel_council
+			create_colony = {
+				owner = event_target:anansi_manufacturing
+				species = event_target:hanarSpecies
+				ethos = owner
+			}
+
+			generate_anansi_pops = yes
+
 			add_modifier = {
 				modifier = biolum_world
 				days = -1

@@ -11609,7 +11609,7 @@ sys_widow_init = {
     class = sc_b_super
 	max_instances = 1
 
-    flags = { outer_council sector_oc4 serpent_nebula widow_system primary_relay_system }
+    flags = { outer_council sector_oc4 serpent_nebula widow_system primary_relay_system planet_state }
 
     init_effect = {
         save_global_event_target_as = citadelFirstFleet
@@ -11645,15 +11645,16 @@ sys_widow_init = {
             prevent_anomaly = yes
 
             generate_citadel_council_country = yes
-            set_capital = yes
-            set_owner = event_target:citadel_council
-            create_colony = {
-                owner = event_target:citadel_council
-                species = event_target:asariSpecies
-                ethos = owner
-            }
-            generate_citadel_station_pops = yes
             
+            set_capital = yes
+			set_owner = event_target:citadel_council
+			create_colony = {
+				owner = event_target:citadel_council
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+
+            generate_citadel_station_pops = yes
         }
 	}
 
