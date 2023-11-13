@@ -20,11 +20,18 @@ event = {
 		every_country = {
 			limit = { is_btr_empire = yes }
 			country_event = { id = btr_start_country.2 days = 0 } #Country Starting Setups
-			#country_event = { id = btr_start_country.14 days = 0 } #Set Species Rights and Slavery
+			country_event = { id = btr_start_country.3 days = 0 } #Set Empire Starting Territory
+			country_event = { id = btr_start_country.4 days = 0 } #Create Empire Starting Colonies
+			country_event = { id = btr_start_country.5 days = 0 } #Set Capital Buildings TODO:Add Colony Buildings for canon
+			country_event = { id = btr_start_country.6 days = 0 } #Set Empire Specific Policies
+			#country_event = { id = btr_start_country.28 days = 0 } #Mining and Research Stations
+
+
+			#country_event = { id = btr_start_country.3 days = 0 } #Set Species Rights and Slavery
 			#country_event = { id = btr_start_country.19 days = 0 } #Set Start Techs
-			#country_event = { id = btr_start_country.9 days = 0 } #Set Capital Buildings TODO:Add Colony Buildings for canon
-			#country_event = { id = btr_start_country.11 days = 0 } #Create Independent Colonies
-			#country_event = { id = btr_start_country.12 days = 0 } #Set Empire Starting Territory
+
+
+
 			#planet_event = { id = btr_start_country.13 days = 0 } #Set Empire Starting Colonies
 			#country_event = { id = btr_start_country.14 days = 0 } #Set Empire Starting Colony Pops
 			#country_event = { id = btr_start_country.18 days = 1 } #Set Country Policies - TODO: Have Team review Empires to determine policies at game start.
@@ -33,7 +40,6 @@ event = {
 			#country_event = { id = btr_start_country.22 days = 0 } #Pregame Genocide
 			#country_event = { id = btr_start_country.24 } TODO: Have team finalize list of starting relics - Asari beacon, earth mars archives, etc.
 			#country_event = { id = btr_start_country.26 days = 0 } #Set Starting Ships
-			#country_event = { id = btr_start_country.28 days = 0 } #Mining and Research Stations
 		}
 	}
 }
@@ -45,7 +51,7 @@ country_event = {
 	trigger = {	}
 	immediate = {
 
-		log = "btr_start_country.2"
+		log = "btr_start_country.2 - Started"
 		# PRIMARY EMPIRES
 		random_country = { limit = { has_country_flag = asari_republics } save_global_event_target_as = asari_republics }
 		random_country = { limit = { has_country_flag = salarian_union } save_global_event_target_as = salarian_union }
@@ -186,660 +192,12 @@ country_event = {
 			}
 			set_country_flag = has_encountered_other_empire
 		}
+		log = "btr_start_country.2 - Completed"
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
 country_event = {
-	id = btr_start_country.9
-	hide_window = yes
-	is_triggered_only = yes
-	immediate = {
-		log = "btr_start_country.9"
-		if = {
-			limit = { 
-				is_btr_canon_map = yes
-			}
-			every_owned_planet = {
-				limit = {
-					is_capital = yes
-				}
-				generate_btr_canon_capital_buildings_and_districts = yes
-			}
-		}
-		# if = {
-		# 	limit = { 
-		# 		is_btr_sandbox_map = yes
-		# 	}
-		# 	every_owned_planet = {
-		# 		limit = {
-		# 			is_capital = yes
-		# 		}
-		# 		generate_btr_sandbox_capital_buildings_and_districts = yes
-		# 	}
-		# }
-	}
-}
-
-
-
-
-
-
-
-
-
-
-country_event = {
-	id = btr_start_country.11
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		if = {
-			limit = {
-				OR = {
-					is_btr_non_sandbox_map = yes
-					is_btr_sandbox_map = yes
-				}
-			}
-			#Citadel Council
-			random_system = {
-				limit = { has_star_flag = widow_system }
-				generate_citadel_council_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = citadel_council
-					}
-					save_global_event_target_as = citadel_council
-				}
-				#event_target:citadel_council = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:citadel_council.GetName]"
-			}
-
-			#Aite Warring States
-			random_system = {
-				limit = { has_star_flag = typhon_system }
-				generate_aite_warring_states_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = aite_warring_states
-					}
-					save_global_event_target_as = aite_warring_states
-				}
-				#event_target:aite_warring_states = { country_event = { id = btr_start_country.5 days = 1 } }
-				log = "[event_target:aite_warring_states.GetName]"
-			}
-
-			#Alahyan Terraformation Zone
-			random_system = {
-				limit = { has_star_flag = aysur_system }
-				generate_alahyan_terraformation_zone_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = alahyan_terraformation_zone
-					}
-					save_global_event_target_as = alahyan_terraformation_zone
-				}
-				#event_target:alahyan_terraformation_zone = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:alahyan_terraformation_zone.GetName]"
-			}
-
-			#Altai Mineral Works
-			random_system = {
-				limit = { has_star_flag = pamyat_system }
-				generate_altai_mineral_works_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = altai_mineral_works
-					}
-					save_global_event_target_as = altai_mineral_works
-				}
-				#event_target:altai_mineral_works = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:altai_mineral_works.GetName]"
-			}
-
-			#Altakiril Union
-			random_system = {
-				limit = { has_star_flag = thal_system }
-				generate_altakiril_union_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = altakiril_union
-					}
-					save_global_event_target_as = altakiril_union
-				}
-				#event_target:altakiril_union = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:altakiril_union.GetName]"
-			}
-
-			#Anansi Manufacturing
-			random_system = {
-				limit = { has_star_flag = cavalcante_system }
-				generate_anansi_manufacturing_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = anansi_manufacturing
-					}
-					save_global_event_target_as = anansi_manufacturing
-				}
-				log = "[event_target:anansi_manufacturing.GetName]"
-			}
-
-			#Arvunan Administration
-			random_system = {
-				limit = { has_star_flag = aysur_system }
-				generate_arvunan_administration_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = arvunan_administration
-					}
-					save_global_event_target_as = arvunan_administration
-				}
-				log = "[event_target:arvunan_administration.GetName]"
-			}
-
-			#Authority of New Canton
-			random_system = {
-				limit = { has_star_flag = razhek_system }
-				generate_authority_of_new_canton_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = authority_of_new_canton
-					}
-					save_global_event_target_as = authority_of_new_canton
-				}
-				log = "[event_target:authority_of_new_canton.GetName]"
-			}
-
-			#Autonomy of Cyrene
-			random_system = {
-				limit = { has_star_flag = tkachyov_system }
-				generate_autonomy_of_cyrene_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = autonomy_of_cyrene
-					}
-					save_global_event_target_as = autonomy_of_cyrene
-				}
-				log = "[event_target:autonomy_of_cyrene.GetName]"
-			}
-
-			#Altakiril Union
-			random_system = {
-				limit = { has_star_flag = mil_system }
-				generate_chalkhos_freehold_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = chalkhos_freehold
-					}
-					save_global_event_target_as = chalkhos_freehold
-				}
-				#event_target:altakiril_union = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:chalkhos_freehold.GetName]"
-			}
-
-			#Commune of Horizon
-			random_system = {
-				limit = { has_star_flag = iera_system }
-				generate_commune_of_horizon_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = commune_of_horizon
-					}
-					save_global_event_target_as = commune_of_horizon
-				}
-				#event_target:commune_of_horizon = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:commune_of_horizon.GetName]"
-			}
-
-			#Commonwealth of Joab
-			random_system = {
-				limit = { has_star_flag = enoch_system }
-				generate_commonwealth_of_joab_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = commonwealth_of_joab
-					}
-					save_global_event_target_as = commonwealth_of_joab
-				}
-				#event_target:commonwealth_of_joab = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:commonwealth_of_joab.GetName]"
-			}
-
-			#Confederation of Thunawanuro
-			random_system = {
-				limit = { has_star_flag = batalla_system }
-				generate_confederation_of_thunawanuro_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = confederation_of_thunawanuro
-					}
-					save_global_event_target_as = confederation_of_thunawanuro
-				}
-				log = "[event_target:confederation_of_thunawanuro.GetName]"
-			}
-
-			#Confederation of Thunawanuro
-			random_system = {
-				limit = { has_star_flag = osun_system }
-				generate_erinle_conservancy_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = erinle_conservancy
-					}
-					save_global_event_target_as = erinle_conservancy
-				}
-				log = "[event_target:erinle_conservancy.GetName]"
-			}
-
-			#Fal III Manufactory
-			random_system = {
-				limit = { has_star_flag = fal_system }
-				generate_fal_iii_manufactory_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = fal_iii_manufactory
-					}
-					save_global_event_target_as = fal_iii_manufactory
-				}
-				#event_target:fal_iii_manufactory = { country_event = { id = btr_start_country.4 days = 1 } }
-				log = "[event_target:fal_iii_manufactory.GetName]"
-			}
-
-			#Flett Transport Union
-			random_system = {
-				limit = { has_star_flag = malgus_system }
-				generate_flett_transport_union_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = flett_transport_union
-					}
-					save_global_event_target_as = flett_transport_union
-				}
-				#event_target:flett_transport_union = { country_event = { id = btr_start_country.5 days = 1 } }
-				log = "[event_target:flett_transport_union.GetName]"
-			}
-
-			#Freehold of Freedom's Progress
-			random_system = {
-				limit = { has_star_flag = tydeous_system }
-				generate_freehold_of_freedoms_progress_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = freehold_of_freedoms_progress
-					}
-					save_global_event_target_as = freehold_of_freedoms_progress
-				}
-				log = "[event_target:freehold_of_freedoms_progress.GetName]"
-			}
-
-			#Flett Transport Union
-			random_system = {
-				limit = { has_star_flag = olonnais_system }
-				generate_free_port_of_tortuga_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = free_port_of_tortuga
-					}
-					save_global_event_target_as = free_port_of_tortuga
-				}
-				#event_target:free_port_of_tortuga = { country_event = { id = btr_start_country.5 days = 1 } }
-				log = "[event_target:free_port_of_tortuga.GetName]"
-			}
-
-			#Ishtar Emporium
-			random_system = {
-				limit = { has_star_flag = crete_system }
-				generate_ishtar_emporium_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = ishtar_emporium
-					}
-					save_global_event_target_as = ishtar_emporium
-				}
-				log = "[event_target:ishtar_emporium.GetName]"
-			}
-
-			#Jenera Corporation
-			random_system = {
-				limit = { has_star_flag = cheng_system }
-				generate_jenera_corporation_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = jenera_corporation
-					}
-					save_global_event_target_as = jenera_corporation
-				}
-				#event_target:jenera_corporation = { country_event = { id = btr_start_country.4 days = 1 } }
-				log = "[event_target:jenera_corporation.GetName]"
-			}
-
-			#Korlus Recycling Union
-			random_system = {
-				limit = { has_star_flag = imir_system }
-				generate_korlus_recycling_union_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = korlus_recycling_union
-					}
-					save_global_event_target_as = korlus_recycling_union
-				}
-				#event_target:korlus_recycling_union = { country_event = { id = btr_start_country.4 days = 1 } }
-				log = "[event_target:korlus_recycling_union.GetName]"
-			}
-
-			#Kosh Development Corporation
-			random_system = {
-				limit = { has_star_flag = webel_system }
-				generate_kosh_development_corporation_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = kosh_development_corporation
-					}
-					save_global_event_target_as = kosh_development_corporation
-				}
-				log = "[event_target:kosh_development_corporation.GetName]"
-			}
-
-			#League of Sahi Dau
-			random_system = {
-				limit = { has_star_flag = essul_system }
-				generate_league_of_sahi_dau_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = league_of_sahi_dau
-					}
-					save_global_event_target_as = league_of_sahi_dau
-				}
-				#event_target:league_of_sahi_dau = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:league_of_sahi_dau.GetName]"
-			}
-
-			#Logarisi Development Corporation
-			random_system = {
-				limit = { has_star_flag = batalla_system }
-				generate_logarisi_development_corporation_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = logarisi_development_corporation
-					}
-					save_global_event_target_as = logarisi_development_corporation
-				}
-				#event_target:logarisi_development_corporation = { country_event = { id = btr_start_country.4 days = 1 } }
-				log = "[event_target:logarisi_development_corporation.GetName]"
-			}
-
-			#Monrini Syndicate
-			random_system = {
-				limit = { has_star_flag = adiratna_system }
-				generate_monrini_syndicate_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = monrini_syndicate
-					}
-					save_global_event_target_as = monrini_syndicate
-				}
-				log = "[event_target:monrini_syndicate.GetName]"
-			}
-
-			#Noveria Development Corporation
-			random_system = {
-				limit = { has_star_flag = pax_system }
-				generate_noveria_development_corporation_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = noveria_development_corporation
-					}
-					save_global_event_target_as = noveria_development_corporation
-				}
-				#event_target:noveria_development_corporation = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:noveria_development_corporation.GetName]"
-			}
-
-			#People's Authority of Tyvor
-			random_system = {
-				limit = { has_star_flag = agnes_system }
-				generate_peoples_authority_of_tyvor_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = peoples_authority_of_tyvor
-					}
-					save_global_event_target_as = peoples_authority_of_tyvor
-				}
-				#event_target:peoples_authority_of_tyvor = { country_event = { id = btr_start_country.4 days = 1 } }
-				log = "[event_target:peoples_authority_of_tyvor.GetName]"
-			}
-
-			#Polity of Anhur
-			random_system = {
-				limit = { has_star_flag = amun_system }
-				generate_polity_of_anhur_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = polity_of_anhur
-					}
-					save_global_event_target_as = polity_of_anhur
-				}
-				#event_target:polity_of_anhur = { country_event = { id = btr_start_country.4 days = 1 } }
-				log = "[event_target:polity_of_anhur.GetName]"
-			}
-
-			#Relic Mineral Works
-			random_system = {
-				limit = { has_star_flag = relic_system }
-				generate_relic_mineral_works_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = relic_mineral_works
-					}
-					save_global_event_target_as = relic_mineral_works
-				}
-				#event_target:relic_mineral_works = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:relic_mineral_works.GetName]"
-			}
-
-			#Republic of Asteria
-			random_system = {
-				limit = { has_star_flag = hekate_system }
-				generate_republic_of_asteria_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = republic_of_asteria
-					}
-					save_global_event_target_as = republic_of_asteria
-				}
-				log = "[event_target:republic_of_asteria.GetName]"
-			}
-
-			#Sanctum Metals Group
-			random_system = {
-				limit = { has_star_flag = decoris_system }
-				generate_sanctum_metals_group_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = sanctum_metals_group
-					}
-					save_global_event_target_as = sanctum_metals_group
-				}
-				#event_target:sanctum_metals_group = { country_event = { id = btr_start_country.5 days = 1 } }
-				log = "[event_target:sanctum_metals_group.GetName]"
-			}
-
-			#State of Garvug
-			random_system = {
-				limit = { has_star_flag = paz_system }
-				generate_state_of_garvug_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = state_of_garvug
-					}
-					save_global_event_target_as = state_of_garvug
-				}
-			#	event_target:state_of_garvug = { country_event = { id = btr_start_country.5 days = 1 } }
-				log = "[event_target:state_of_garvug.GetName]"
-			}
-
-			#Thalassocracy of Talis Fia
-			random_system = {
-				limit = { has_star_flag = urlalast_system }
-				generate_thalassocracy_of_talis_fia_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = thalassocracy_of_talis_fia
-					}
-					save_global_event_target_as = thalassocracy_of_talis_fia
-				}
-				log = "[event_target:thalassocracy_of_talis_fia.GetName]"
-			}
-
-			#Thred'nakka Autonomy
-			random_system = {
-				limit = { has_star_flag = brikhaun_system }
-				generate_thrednakka_autonomy_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = thrednakka_autonomy
-					}
-					save_global_event_target_as = thrednakka_autonomy
-				}
-			#	event_target:thrednakka_autonomy = { country_event = { id = btr_start_country.5 days = 1 } }
-				log = "[event_target:thrednakka_autonomy.GetName]"
-			}
-
-			#Trident Exports Limited
-			random_system = {
-				limit = { has_star_flag = hoplos_system }
-				generate_trident_exports_limited_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = trident_exports_limited
-					}
-					save_global_event_target_as = trident_exports_limited
-				}
-				log = "[event_target:trident_exports_limited.GetName]"
-			}
-
-			#Union of Ferris Fields
-			random_system = {
-				limit = { has_star_flag = jintanei_system }
-				generate_union_of_ferris_fields_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = union_of_ferris_fields
-					}
-					save_global_event_target_as = union_of_ferris_fields
-				}
-				log = "[event_target:union_of_ferris_fields.GetName]"
-			}
-
-			#Wrill Mining Consortium
-			random_system = {
-				limit = { has_star_flag = malgus_system }
-				generate_wrill_mining_consortium_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = wrill_mining_consortium
-					}
-					save_global_event_target_as = wrill_mining_consortium
-				}
-			#	event_target:wrill_mining_consortium = { country_event = { id = btr_start_country.5 days = 1 } }
-				log = "[event_target:wrill_mining_consortium.GetName]"
-			}
-
-			#Yamm Trade Zone
-			random_system = {
-				limit = { has_star_flag = kalabsha_system }
-				generate_yamm_free_trade_zone_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = yamm_free_trade_zone
-					}
-					save_global_event_target_as = yamm_free_trade_zone
-				}
-				#event_target:yamm_free_trade_zone = { country_event = { id = btr_start_country.3 days = 1 } }
-				log = "[event_target:yamm_free_trade_zone.GetName]"
-			}
-
-			#Zoryan Sovereignty
-			random_system = {
-				limit = { has_star_flag = faia_system }
-				generate_zoryan_sovereignty_country = yes
-				random_country = {
-					limit = {
-						has_country_flag = zoryan_sovereignty
-					}
-					save_global_event_target_as = zoryan_sovereignty
-				}
-			#	event_target:zoryan_sovereignty = { country_event = { id = btr_start_country.5 days = 1 } }
-				log = "[event_target:zoryan_sovereignty.GetName]"
-			}
-			if = {
-				limit = {
-					is_btr_canon_map = yes
-				}
-				log = "btr_start_country.11 - INNDEPENDENT WORLD SETUP"
-				establish_citadel_council_communication = yes
-				establish_aite_warring_states_communications = yes
-				establish_alahyan_terraformation_zone_communications = yes
-				establish_altai_mineral_works_communications = yes
-				establish_altakiril_union_communications = yes
-				establish_anansi_manufacturing_communications = yes
-				establish_polity_of_anhur_communications = yes
-				establish_arvunan_administration_communications = yes
-				establish_republic_of_asteria_communications = yes
-				establish_chalkhos_freehold_communications = yes
-				establish_autonomy_of_cyrene_communications = yes
-				establish_erinle_conservancy_communications = yes
-				establish_union_of_ferris_fields_communications = yes
-				establish_relic_mineral_works_communications = yes
-				establish_flett_transort_union_communications = yes
-				establish_freehold_of_freedoms_progress_communications = yes
-				establish_state_of_garvug_communications = yes
-				establish_ishtar_emporium_communications = yes
-				establish_jenera_corporation_communications = yes
-				establish_commonwealth_of_joab_communications = yes
-				establish_korlus_recycling_union_communications = yes
-				establish_kosh_development_corporation_communications = yes
-				establish_logarisi_development_corporation_communications = yes
-				establish_monrini_syndicate_communications = yes
-				establish_authority_of_new_canton_communications = yes
-				establish_noveria_development_corporation_communications = yes
-				establish_league_of_sahi_dau_communications = yes
-				establish_sanctum_metals_group_communications = yes
-				establish_thalassocracy_of_talis_fia_communications = yes
-				establish_thrednakka_autonomy_communications = yes
-				establish_confederation_of_thunawanuro_communications = yes
-				establish_free_port_of_tortuga_communications = yes
-				establish_trident_exports_communications = yes
-				establish_trigintan_league_communications = yes
-				establish_peoples_authority_of_tyvor_communications = yes
-				establish_wrill_mining_consortium_communications = yes
-				establish_fal_iii_manufactory_communications = yes
-				establish_yamm_free_trade_zone_communications = yes
-				establish_zoryan_sovereignty_communications = yes
-			}
-			if = {
-				limit = { any_relation = { is_country_type = planet_state }
-				}
-				set_country_flag = has_encountered_other_empire
-			}
-		}
-	}
-}
-
-
-country_event = {
-	id = btr_start_country.12
+	id = btr_start_country.3
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
@@ -847,7 +205,7 @@ country_event = {
 			limit = { 
 				is_btr_canon_map = yes
 			}
-			log = "btr_start_country.12 - Started"
+			log = "btr_start_country.3 - Started"
 			generate_asari_republics_territory = yes
 			log = "Asari Republics Territory Spawned"
 			generate_salarian_union_territory = yes
@@ -893,17 +251,18 @@ country_event = {
 			generate_independent_worlds_territory = yes
 			log = "Independent World Territory Established"
 		}
-		log = "btr_start_country.12 - Completed"
+		log = "btr_start_country.3 - Completed"
 	}
 }
 
+
 planet_event = {
-	id = btr_start_country.13
+	id = btr_start_country.4
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		log = "btr_start_country.13 - Started"
+		log = "btr_start_country.4 - Started"
 
 		if = {
 			limit = { 
@@ -1010,276 +369,156 @@ planet_event = {
 			}
 		}
 
-		log = "btr_start_country.13 - Completed"
+		log = "btr_start_country.4 - Completed"
+	}
+}
+country_event = {
+	id = btr_start_country.5
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		log = "btr_start_country.5 - Started"
+		event_target:asari_republics = { establish_asari_republics_starting_policies = yes }
+		event_target:salarian_union = { establish_salarian_union_starting_policies = yes }
+		event_target:turian_hierarchy = { establish_turian_hierarchy_starting_policies = yes }
+		event_target:systems_alliance = { establish_systems_alliance_starting_policies = yes }
+		event_target:courts_of_dekuuna = { establish_courts_of_dekuuna_starting_policies = yes }
+		event_target:vol_protectorate = { establish_vol_protectorate_starting_policies = yes }
+		event_target:illuminated_primacy = { establish_illuminated_primacy_starting_policies = yes }
+		event_target:hegemony_of_kharshan = { establish_hegemony_of_kharshan_starting_policies = yes }
+		event_target:aralakh_kahmat = { establish_aralakh_kahmat_starting_policies = yes }
+		#event_target:migrant_fleet = { establish_migrant_fleet_starting_policies = yes }
+		#event_target:cerberus_empire = { establish_cerberus_starting_policies = yes }
+		event_target:omega_empire = { establish_omega_starting_policies = yes }
+		event_target:illium_corporate_interests = { establish_illium_corporate_interests_starting_policies = yes }
+		event_target:caleston_directorate = { establish_caleston_directorate_starting_policies = yes }
+		event_target:remnants_of_rakhana = { establish_remnants_of_rakhana_starting_policies = yes }
+		event_target:vorcha_clandom = { establish_vorcha_clandom_starting_policies = yes }
+		event_target:sedriicae_collective = { establish_sedriicae_collective_starting_policies = yes }
+		event_target:lystheni_order = { establish_lystheni_order_starting_policies = yes }
+		event_target:gothones_remnant = { establish_gothones_remnant_starting_policies = yes }
+		event_target:parnack_regime = { establish_parnack_regime_starting_policies = yes }
+		event_target:raloi_republic = { establish_raloi_republic_starting_policies = yes }
+		event_target:disciples_of_nazara = { establish_disciples_of_nazara_starting_policies = yes }
+		event_target:geth_consensus = { establish_geth_consensus_starting_policies = yes }
+		log = "btr_start_country.5 - Completed"
 	}
 }
 
-# Add Pops to colonies
+
 country_event = {
-	id = btr_start_country.14
+	id = btr_start_country.5
 	hide_window = yes
 	is_triggered_only = yes
-
 	immediate = {
-		every_owned_planet = {
-			if = {
-				limit = { 
-					has_planet_flag = civil_station
+		log = "btr_start_country.5 - Started"
+		if = {
+			limit = { 
+				is_btr_canon_map = yes
+			}
+			every_owned_planet = {
+				limit = {
+					is_capital = yes
 				}
-				hidden_effect = {
-					if = {
-						limit = {
-							exists = owner
-							owner = {
-								is_megacorp = yes
-								is_spiritualist = no
-							}
-						}
-						custom_tooltip = district_corporate_complex_add
-					}
+				generate_btr_canon_capital_buildings_and_districts = yes
+			}
+		}
+		# if = {
+		# 	limit = { 
+		# 		is_btr_sandbox_map = yes
+		# 	}
+		# 	every_owned_planet = {
+		# 		limit = {
+		# 			is_capital = yes
+		# 		}
+		# 		generate_btr_sandbox_capital_buildings_and_districts = yes
+		# 	}
+		# }
+		log = "btr_start_country.5 - Completed"
+	}
+}
+
+#Set Starting Mining Stations
+country_event = {
+	id = btr_start_country.6
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { is_btr_empire = yes }
+	immediate = {	
+		log = "btr_start_country.6 - Started"	
+		every_planet_within_border = {
+			limit = {
+				has_deposit_for = shipclass_mining_station
+				has_mining_station = no
+			}
+			create_mining_station = {
+				owner = ROOT
+			}
+		}
+		every_planet_within_border = {
+			limit = {
+				has_deposit_for = shipclass_research_station
+				has_research_station = no
+			}
+			create_research_station = {
+				owner = ROOT
+			}
+		}
+		log = "btr_start_country.6 - Completed"	
+	}
+}
+
+country_event = {
+	id = btr_start_country.
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_country = {
+			random_owned_pop = {
+				limit = {
+					has_pop_flag = init_spawn
+					is_same_species = owner_species
 				}
-				custom_tooltip = district_commercial_wards_add
-				hidden_effect = {
-					if = {
-						limit = {
-							exists = owner
-							owner = {
-								has_origin = origin_necrophage
-								has_trait = trait_necrophage
-								NOT = { has_valid_civic = civic_fanatic_purifiers }
-							}
-						}
-						custom_tooltip = district_elevation_center_add
-					}
-					if = {
-						limit = {
-							NOR = {
-								is_planet_class = pc_asteroid_station
-								is_planet_class = pc_ice_asteroid_station
-								is_planet_class = pc_crystal_asteroid_station
-							}
-						}
-						custom_tooltip = district_storage_yards_add
-					}
-					else = {
-						custom_tooltip = district_docking_bay_add
-					}
-					if = {
-						limit = { has_deposit = d_trading_route }
-						custom_tooltip = district_free_port_add
-					}
-					
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = civil_station
-						validate_planet_buildings_and_districts = yes
-					}
-				}
+				save_event_target_as = realOwnerSpecies
 			}
 			if = {
-				limit = { 
-					has_planet_flag = research_station
-				}
-				hidden_effect = {
-					if = {
-						limit = { has_deposit = d_mineral_lodes }
-						custom_tooltip = district_mining_complex_add
-					}
-					if = {
-						limit = { has_deposit = d_ore_rich_rings }
-						custom_tooltip = district_ore_processing_complex_add
-					}
-					if = {
-						limit = { has_deposit = d_rich_regolith_formations }
-						custom_tooltip = district_helium_extractor_add
-					}
-					if = {
-						limit = { has_deposit = d_helium_clouds }
-						custom_tooltip = district_helium_mining_facility_add
-					}
-					# if = {
-					# 	limit = { 
-					# 		owner = { has_technology = tech_mine_volatile_motes }
-					# 		has_deposit = d_dust_cavities
-					# 	}
-					# 	custom_tooltip = district_mote_mine_add
-					# }
-					if = {
-						limit = { 
-							owner = { has_technology = tech_mine_exotic_gases }
-							has_deposit = d_exotic_gases_vent
-						}
-						custom_tooltip = district_gas_refinery_add
-					}
-					# if = {
-					# 	limit = { 
-					# 		owner = { has_technology = tech_mine_rare_crystals }
-					# 		has_deposit = d_crystal_cavities
-					# 	}
-					# 	custom_tooltip = district_crystal_mining_add
-					# }
-					# if = {
-					# 	limit = { 
-					# 		owner = { has_technology = tech_mine_zro }
-					# 		has_deposit = d_zro_source
-					# 	}
-					# 	custom_tooltip = district_zro_harvesting_add
-					# }
-		
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = mining_station
-						validate_planet_buildings_and_districts = yes
-					}
-				}
-			}
-			if = {
-				limit = { 
-					has_planet_flag = military_station
-				}
-				custom_tooltip = district_barracks_add
-				custom_tooltip = district_fortified_bunkers_add
-				hidden_effect = {
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = military_station
-						validate_planet_buildings_and_districts = yes
-					}
-				}	
-			}
-			if = {
-				limit = { 
-					has_planet_flag = prison_station
-				}
-				hidden_effect = {
-					custom_tooltip = decision_prison_station_effect_desc
-					if = {
-						limit = { owner = { is_authoritarian = yes } }
-						custom_tooltip = add_political_persecution
-					}
-					if = {
-						limit = { owner = { is_spiritualist = yes } }
-						custom_tooltip = add_hunting_heretics
-					}
-					custom_tooltip = add_detention_operation
-					
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = prison_station
-						validate_planet_buildings_and_districts = yes
-					}
-				}
-			}
-			if = {
-				limit = { 
-					has_planet_flag = industrial_station
-				}
-				custom_tooltip = district_foundry_plant_add
-				hidden_effect = {
-					if = {
-						limit = { 
-							owner = {
-								country_uses_consumer_goods = yes
-							}
-						}
-						custom_tooltip = district_manufacturing_complex_add
-					}
-					if = {
-						limit = { 
-							owner = {
-								OR = {
-									AND = {
-										is_regular_empire = yes
-										NOT = { has_policy_flag = robots_outlawed }
-										has_technology = tech_robotic_workers
-									}
-									is_machine_empire = yes
-								}
-							}
-						}
-						custom_tooltip = district_assembly_factory_add
-					}
-					if = {
-						limit = { 
-							owner = { has_technology = tech_mine_living_metal }
-							has_deposit = d_living_metal_deposit
-						}
-						custom_tooltip = district_living_metal_processing_add
-					}
-					
-					if = {
-						limit = {
-							NOR = {
-								has_planet_flag = energy_station
-								has_planet_flag = mining_station
-								has_planet_flag = research_station
-								has_planet_flag = civil_station
-								has_planet_flag = industrial_station
-								has_planet_flag = military_station
-								has_planet_flag = cultural_station
-								has_planet_flag = prison_station
-								#has_planet_flag = cracking_station
-							}
-						}
-						set_planet_flag = industrial_station
-						validate_planet_buildings_and_districts = yes
-					}
+				limit = { exists = event_target:realOwnerSpecies }
+				change_dominant_species = {
+					species = event_target:owner_species
 				}
 			}
 		}
+		every_country = {
+			if = {
+				limit = { 
+					has_origin = asari_rep_origin
+				}
+				
+			}
 
-		log = "btr_start_country.11 - Generate Planetary Station Districts"
+		}
 	}
-}	
+}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Set Species Rights
 country_event = {
 	id = btr_start_country.14
 	hide_window = yes
@@ -1596,32 +835,5 @@ country_event = {
 	}
 }
 
-#Set Starting Mining Stations
-country_event = {
-	id = btr_start_country.28
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = { is_btr_empire = yes }
-	immediate = {	
-		log = "btr_start_country.28"	
-		every_planet_within_border = {
-			limit = {
-				has_deposit_for = shipclass_mining_station
-				has_mining_station = no
-			}
-			create_mining_station = {
-				owner = ROOT
-			}
-		}
-		every_planet_within_border = {
-			limit = {
-				has_deposit_for = shipclass_research_station
-				has_research_station = no
-			}
-			create_research_station = {
-				owner = ROOT
-			}
-		}
-	}
-}
+
 
