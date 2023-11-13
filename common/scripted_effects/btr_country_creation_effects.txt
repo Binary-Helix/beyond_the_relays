@@ -2128,2827 +2128,1036 @@ generate_flett_transport_union_country = {
 }
 
 generate_freehold_of_freedoms_progress_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = freedoms_progress_planet
+	save_global_event_target_as = ps_pacifist_planet
+	create_country = {
+		name = "Freehold of Freedom's Progress"
+		adjective = "PRESCRIPTED_adjective_freehold_of_freedoms_progress"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_isolationist
 		}
-		save_global_event_target_as = ps_pacifist_planet
-		create_country = {
-			name = "Freehold of Freedom's Progress"
-			adjective = "PRESCRIPTED_adjective_freehold_of_freedoms_progress"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_industrialists
-				civic = independent_civic_isolationist
-			}
-			species = event_target:humanSpecies
-			flag = random
-			name_list = btr_alliance
-			ship_prefix = ""
-			ethos = {
-				ethic = "ethic_fanatic_pacifist"
-				ethic = "ethic_egalitarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = antialliance_com_origin
-			effect = {
-				set_country_flag = ps_pacifist
-				save_event_target_as = target_ps_pacifist
-				create_fleet = {
-					name = "NAME_PS_Pacifist_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:humanSpecies
+		flag = random
+		name_list = btr_alliance
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_pacifist"
+			ethic = "ethic_egalitarian"
+		}
+		ignore_initial_colony_error = yes
+		origin = antialliance_com_origin
+		effect = {
+			set_country_flag = ps_pacifist
+			save_event_target_as = target_ps_pacifist
+			create_fleet = {
+				name = "NAME_PS_Pacifist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Pacifist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Pacifist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:humanSpecies
-					name = NAME_PS_Pacifist_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_pacifist = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:humanSpecies
+				name = NAME_PS_Pacifist_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_pacifist = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = freehold_of_freedoms_progress
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = alliance_01
-				save_global_event_target_as = freehold_of_freedoms_progress
 			}
+			set_country_flag = freehold_of_freedoms_progress
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = alliance_01
+			save_global_event_target_as = freehold_of_freedoms_progress
 		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_pacifist
-		set_controller = event_target:target_ps_pacifist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 14
-			add_district = district_ps_city
-		}
-		while = {
-			count = 3
-			add_district = district_farming
-			add_district = district_mining
-			add_district = district_generator
-		}
-		while = {
-			count = 125
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_pacifist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
 	}
 }
 
 generate_free_port_of_tortuga_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = tortuga_planet
+	save_global_event_target_as = ps_militarist_planet
+	create_country = {
+		name = "Free Port of Tortuga"
+		adjective = "PRESCRIPTED_adjective_free_port_of_tortuga"
+		authority = auth_dictatorial
+		civics = {
+			civic = independent_civic_fractured_domain
+			civic = independent_civic_suspicious_untrusting
 		}
-		save_global_event_target_as = ps_militarist_planet
-		create_country = {
-			name = "Free Port of Tortuga"
-			adjective = "PRESCRIPTED_adjective_free_port_of_tortuga"
-			authority = auth_dictatorial
-			civics = {
-				civic = independent_civic_fractured_domain
-				civic = independent_civic_suspicious_untrusting
-			}
-			species = event_target:batarianSpecies
-			flag = random
-			name_list = btr_batarian
-			ship_prefix = ""
-			ethos = {
-				ethic = "ethic_materialist"
-				ethic = "ethic_militarist"
-				ethic = "ethic_authoritarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = free_port_origin
-			effect = {
-				set_country_flag = ps_militarist
-				save_event_target_as = target_ps_militarist
-				create_fleet = {
-					name = "NAME_PS_Militarist_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:batarianSpecies
+		flag = random
+		name_list = btr_batarian
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_materialist"
+			ethic = "ethic_militarist"
+			ethic = "ethic_authoritarian"
+		}
+		ignore_initial_colony_error = yes
+		origin = free_port_origin
+		effect = {
+			set_country_flag = ps_militarist
+			save_event_target_as = target_ps_militarist
+			create_fleet = {
+				name = "NAME_PS_Militarist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Militarist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Militarist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:batarianSpecies
-					name = NAME_PS_Militarist_Leader
-					skill = 5
-					gender = female
-					effect = {
-						event_target:target_ps_militarist = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:batarianSpecies
+				name = NAME_PS_Militarist_Leader
+				skill = 5
+				gender = female
+				effect = {
+					event_target:target_ps_militarist = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = free_port_of_tortuga
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = free_port_of_tortuga
 			}
-		}
-		set_owner = event_target:target_ps_militarist
-		set_controller = event_target:target_ps_militarist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 11
-			add_district = district_ps_city
-		}
-		while = {
-			count = 47
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_militarist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		create_species = {
-			name = "NAME_Synthetic"
-			plural = "NAME_Synthetics"
-			class = ROBOT
-			portrait = "default_robot"
-			namelist = random
-			traits = {
-				trait = "trait_mechanical"
-				trait = "trait_robot_efficient_processors"
-				trait = "trait_robot_loyalty_circuits"
-			}
-			effect = {
-				save_event_target_as = ps_militarist_robot_species
-			}
-		}
-		while = {
-			count = 75
-			create_pop = {
-				species = event_target:ps_militarist_robot_species
-			}
+			set_country_flag = free_port_of_tortuga
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = free_port_of_tortuga
 		}
 	}
 }
 
 generate_ishtar_emporium_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = ishtar_planet
+	save_global_event_target_as = ps_pacifist_planet
+	create_country = {
+		name = "Ishtar Emporium"
+		adjective = "PRESCRIPTED_adjective_ishtar_emporium"
+		type = planet_state
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_research_outpost
+			civic = independent_civic_citadel_setup
 		}
-		save_global_event_target_as = ps_pacifist_planet
-		create_country = {
-			name = "Ishtar Emporium"
-			adjective = "PRESCRIPTED_adjective_ishtar_emporium"
-			type = planet_state
-			authority = auth_oligarchic
-			civics = {
-				civic = independent_civic_research_outpost
-				civic = independent_civic_citadel_setup
-			}
-			species = event_target:salarianSpecies
-			flag = random
-			name_list = btr_salarian
-			ship_prefix = ""
-			ethos = {
-				ethic = "ethic_fanatic_materialist"
-				ethic = "ethic_pacifist"
-			}
-			ignore_initial_colony_error = yes
-			origin = reign_pri_origin
-			effect = {
-				set_country_flag = ps_pacifist
-				save_event_target_as = target_ps_pacifist
-				create_fleet = {
-					name = "NAME_PS_Pacifist_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:salarianSpecies
+		flag = random
+		name_list = btr_salarian
+		ship_prefix = ""
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_pacifist"
+		}
+		ignore_initial_colony_error = yes
+		origin = reign_pri_origin
+		effect = {
+			set_country_flag = ps_pacifist
+			save_event_target_as = target_ps_pacifist
+			create_fleet = {
+				name = "NAME_PS_Pacifist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Pacifist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Pacifist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:salarianSpecies
-					name = NAME_PS_Pacifist_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_pacifist = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:salarianSpecies
+				name = NAME_PS_Pacifist_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_pacifist = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = ishtar_emporium
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = ishtar_emporium
 			}
+			set_country_flag = ishtar_emporium
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = ishtar_emporium
 		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_pacifist
-		set_controller = event_target:target_ps_pacifist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 14
-			add_district = district_ps_city
-		}
-		while = {
-			count = 3
-			add_district = district_farming
-			add_district = district_mining
-			add_district = district_generator
-		}
-		while = {
-			count = 125
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_pacifist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-	}	
+	}
 }
 
 generate_jenera_corporation_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = jenera_planet
+	save_global_event_target_as = ps_authoritarian_planet
+	create_country = {
+		name = "Jenera Corporation"
+		adjective = "PRESCRIPTED_adjective_jenera_corporation"
+		type = planet_state
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_corporate_ownership
+			civic = independent_civic_industrialists
 		}
-		save_global_event_target_as = ps_authoritarian_planet
-		create_country = {
-			name = "Jenera Corporation"
-			adjective = "PRESCRIPTED_adjective_jenera_corporation"
-			type = planet_state
-			authority = auth_oligarchic
-			civics = {
-				civic = independent_civic_corporate_ownership
-				civic = independent_civic_industrialists
-			}
-			species = event_target:batarianSpecies
-			name_list = btr_batarian
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_xenophobe"
-				ethic = "ethic_materialist"
-				ethic = "ethic_authoritarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = reign_pri_origin
-			effect = {
-				set_country_flag = ps_authoritarian
-				save_event_target_as = target_ps_authoritarian
-				create_fleet = {
-					name = "NAME_PS_Authoritarian_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:batarianSpecies
+		name_list = btr_batarian
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_xenophobe"
+			ethic = "ethic_materialist"
+			ethic = "ethic_authoritarian"
+		}
+		ignore_initial_colony_error = yes
+		origin = reign_pri_origin
+		effect = {
+			set_country_flag = ps_authoritarian
+			save_event_target_as = target_ps_authoritarian
+			create_fleet = {
+				name = "NAME_PS_Authoritarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Authoritarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Authoritarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:batarianSpecies
-					name = NAME_PS_Authoritarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_authoritarian = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:batarianSpecies
+				name = NAME_PS_Authoritarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_authoritarian = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = jenera_corporation
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = jenera_corporation
 			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_authoritarian
-		set_controller = event_target:target_ps_authoritarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 10
-			add_district_if_free_slot = {
-				DISTRICT = district_ps_city
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_farming
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_generator
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_mining
-			}
-		}
-		while = {
-			count = 37
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_robust
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_specialist_species
-			}
-		}
-		while = {
-			count = 25
-			create_pop = {
-				species = event_target:ps_authoritarian_specialist_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_charismatic
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_servile_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_servile_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_syncretic_proles
-				trait = trait_very_strong
-				trait = trait_nerve_stapled
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_slave_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_slave_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
+			set_country_flag = jenera_corporation
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = jenera_corporation
 		}
 	}
 }
 
 generate_korlus_recycling_union_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = korlus_planet
+	save_global_event_target_as = ps_authoritarian_planet
+	create_country = {
+		name = "Korlus Recycling Union"
+		adjective = "PRESCRIPTED_adjective_korlus_recycling_union"
+		type = planet_state
+		authority = auth_dictatorial
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_free_autonomous
 		}
-		save_global_event_target_as = ps_authoritarian_planet
-		create_country = {
-			name = "Korlus Recycling Union"
-			adjective = "PRESCRIPTED_adjective_korlus_recycling_union"
-			type = planet_state
-			authority = auth_dictatorial
-			civics = {
-				civic = independent_civic_industrialists
-				civic = independent_civic_free_autonomous
-			}
-			species = event_target:kroganSpecies
-			name_list = btr_krogan
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_fanatic_materialist"
-				ethic = "ethic_authoritarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = korlus_rec_origin
-			effect = {
-				set_country_flag = ps_authoritarian
-				save_event_target_as = target_ps_authoritarian
-				create_fleet = {
-					name = "NAME_PS_Authoritarian_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:kroganSpecies
+		name_list = btr_krogan
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_authoritarian"
+		}
+		ignore_initial_colony_error = yes
+		origin = korlus_rec_origin
+		effect = {
+			set_country_flag = ps_authoritarian
+			save_event_target_as = target_ps_authoritarian
+			create_fleet = {
+				name = "NAME_PS_Authoritarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Authoritarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Authoritarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:kroganSpecies
-					name = NAME_PS_Authoritarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_authoritarian = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:kroganSpecies
+				name = NAME_PS_Authoritarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_authoritarian = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = korlus_recycling_union
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = korlus_recycling_union
 			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_authoritarian
-		set_controller = event_target:target_ps_authoritarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 10
-			add_district_if_free_slot = {
-				DISTRICT = district_ps_city
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_farming
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_generator
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_mining
-			}
-		}
-		while = {
-			count = 37
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_robust
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_specialist_species
-			}
-		}
-		while = {
-			count = 25
-			create_pop = {
-				species = event_target:ps_authoritarian_specialist_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_charismatic
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_servile_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_servile_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_syncretic_proles
-				trait = trait_very_strong
-				trait = trait_nerve_stapled
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_slave_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_slave_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
+			set_country_flag = korlus_recycling_union
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = korlus_recycling_union
 		}
 	}
 }
 
 generate_kosh_development_corporation_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = kosh_planet
+	save_global_event_target_as = ps_pacifist_planet
+	create_country = {
+		name = "Kosh Development Corporation"
+		adjective = "PRESCRIPTED_adjective_kosh_development_corporation"
+		type = planet_state
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_corporate_ownership
+			civic = independent_civic_industrialists
 		}
-		save_global_event_target_as = ps_pacifist_planet
-		create_country = {
-			name = "Kosh Development Corporation"
-			adjective = "PRESCRIPTED_adjective_kosh_development_corporation"
-			type = planet_state
-			authority = auth_oligarchic
-			civics = {
-				civic = independent_civic_corporate_ownership
-				civic = independent_civic_industrialists
-			}
-			species = event_target:asariSpecies
-			name_list = btr_asari
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_fanatic_materialist"
-				ethic = "ethic_pacifist"
-			}
-			ignore_initial_colony_error = yes
-			origin = reign_pri_origin
-			effect = {
-				set_country_flag = ps_pacifist
-				save_event_target_as = target_ps_pacifist
-				create_fleet = {
-					name = "NAME_PS_Pacifist_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:asariSpecies
+		name_list = btr_asari
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_pacifist"
+		}
+		ignore_initial_colony_error = yes
+		origin = reign_pri_origin
+		effect = {
+			set_country_flag = ps_pacifist
+			save_event_target_as = target_ps_pacifist
+			create_fleet = {
+				name = "NAME_PS_Pacifist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Pacifist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Pacifist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:asariSpecies
-					name = NAME_PS_Pacifist_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_pacifist = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:asariSpecies
+				name = NAME_PS_Pacifist_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_pacifist = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = kosh_development_corporation
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = kosh_development_corporation
 			}
+			set_country_flag = kosh_development_corporation
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = kosh_development_corporation
 		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_pacifist
-		set_controller = event_target:target_ps_pacifist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 14
-			add_district = district_ps_city
-		}
-		while = {
-			count = 3
-			add_district = district_farming
-			add_district = district_mining
-			add_district = district_generator
-		}
-		while = {
-			count = 125
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_pacifist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
 	}
 }
 
 generate_league_of_sahi_dau_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = sahidau_planet
+	save_global_event_target_as = ps_egalitarian_planet
+	create_country = {
+		name = "League of Sahi Dau"
+		adjective = "PRESCRIPTED_adjective_league_of_sahi_dau"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_citadel_setup
+			civic = independent_civic_industrialists
 		}
-		save_global_event_target_as = ps_egalitarian_planet
-		create_country = {
-			name = "League of Sahi Dau"
-			adjective = "PRESCRIPTED_adjective_league_of_sahi_dau"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_citadel_setup
-				civic = independent_civic_industrialists
-			}
-			species = event_target:volusSpecies
-			name_list = btr_volus
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_fanatic_materialist"
-				ethic = "ethic_egalitarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = defensive_tra_origin
-			effect = {
-				# Create Station and Leader
-				set_country_flag = ps_egalitarian
-				save_event_target_as = target_ps_egalitarian
-				create_fleet = {
-					name = "NAME_PS_Egalitarian_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:volusSpecies
+		name_list = btr_volus
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_egalitarian"
+		}
+		ignore_initial_colony_error = yes
+		origin = defensive_tra_origin
+		effect = {
+			# Create Station and Leader
+			set_country_flag = ps_egalitarian
+			save_event_target_as = target_ps_egalitarian
+			create_fleet = {
+				name = "NAME_PS_Egalitarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Egalitarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Egalitarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:volusSpecies
-					name = NAME_PS_Egalitarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_egalitarian = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:volusSpecies
+				name = NAME_PS_Egalitarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_egalitarian = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = league_of_sahi_dau
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = league_of_sahi_dau
 			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_egalitarian
-		set_controller = event_target:target_ps_egalitarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			limit = {
-				free_district_slots > 0
-			}
-			add_district_if_free_slot = {
-				DISTRICT = district_arcology_housing
-			}
-		}
-		while = {
-			count = 122
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_egalitarian
-				}
-			}
-		}
-
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_bastion
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		event_target:target_ps_egalitarian = {
-			set_policy = {
-				policy = purge
-				option = purge_not_allowed
-				cooldown = no
-			}
-			set_policy = {
-				policy = resettlement
-				option = resettlement_not_allowed
-				cooldown = no
-			}
+			set_country_flag = league_of_sahi_dau
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = league_of_sahi_dau
 		}
 	}
 }
 
 generate_logarisi_development_corporation_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = logarisi_planet
+	save_global_event_target_as = ps_authoritarian_planet
+	create_country = {
+		name = "Logarisi Development Corporation"
+		adjective = "PRESCRIPTED_adjective_logarisi_development_corporation"
+		type = planet_state
+		authority = auth_dictatorial
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_free_autonomous
 		}
-		save_global_event_target_as = ps_authoritarian_planet
-		create_country = {
-			name = "Logarisi Development Corporation"
-			adjective = "PRESCRIPTED_adjective_logarisi_development_corporation"
-			type = planet_state
-			authority = auth_dictatorial
-			civics = {
-				civic = independent_civic_industrialists
-				civic = independent_civic_free_autonomous
-			}
-			species = event_target:batarianSpecies
-			name_list = btr_batarian
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_fanatic_authoritarian"
-				ethic = "ethic_xenophobe"
-			}
-			ignore_initial_colony_error = yes
-			origin = criminal_den_origin
-			effect = {
-				set_country_flag = ps_authoritarian
-				save_event_target_as = target_ps_authoritarian
-				create_fleet = {
-					name = "NAME_PS_Authoritarian_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:batarianSpecies
+		name_list = btr_batarian
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_fanatic_authoritarian"
+			ethic = "ethic_xenophobe"
+		}
+		ignore_initial_colony_error = yes
+		origin = criminal_den_origin
+		effect = {
+			set_country_flag = ps_authoritarian
+			save_event_target_as = target_ps_authoritarian
+			create_fleet = {
+				name = "NAME_PS_Authoritarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Authoritarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Authoritarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:batarianSpecies
-					name = NAME_PS_Authoritarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_authoritarian = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:batarianSpecies
+				name = NAME_PS_Authoritarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_authoritarian = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = logarisi_development_corporation
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = logarisi_development_corporation
 			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_authoritarian
-		set_controller = event_target:target_ps_authoritarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 10
-			add_district_if_free_slot = {
-				DISTRICT = district_ps_city
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_farming
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_generator
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_mining
-			}
-		}
-		while = {
-			count = 37
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_robust
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_specialist_species
-			}
-		}
-		while = {
-			count = 25
-			create_pop = {
-				species = event_target:ps_authoritarian_specialist_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_charismatic
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_servile_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_servile_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_syncretic_proles
-				trait = trait_very_strong
-				trait = trait_nerve_stapled
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_slave_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_slave_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
+			set_country_flag = logarisi_development_corporation
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = logarisi_development_corporation
 		}
 	}
 }
 
 generate_monrini_syndicate_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = monrini_planet
+	save_global_event_target_as = ps_pacifist_planet
+	create_country = {
+		name = "Monrini Syndicate"
+		adjective = "PRESCRIPTED_adjective_monrini_syndicate"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_research_outpost
+			civic = independent_civic_industrialists
 		}
-		save_global_event_target_as = ps_pacifist_planet
-		create_country = {
-			name = "Monrini Syndicate"
-			adjective = "PRESCRIPTED_adjective_monrini_syndicate"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_research_outpost
-				civic = independent_civic_industrialists
-			}
-			species = event_target:salarianSpecies
-			name_list = btr_salarian
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_fanatic_materialist"
-				ethic = "ethic_pacifist"
-			}
-			ignore_initial_colony_error = yes
-			origin = sovereign_blo_origin
-			effect = {
-				set_country_flag = ps_pacifist
-				save_event_target_as = target_ps_pacifist
-				create_fleet = {
-					name = "NAME_PS_Pacifist_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:salarianSpecies
+		name_list = btr_salarian
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_pacifist"
+		}
+		ignore_initial_colony_error = yes
+		origin = sovereign_blo_origin
+		effect = {
+			set_country_flag = ps_pacifist
+			save_event_target_as = target_ps_pacifist
+			create_fleet = {
+				name = "NAME_PS_Pacifist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Pacifist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Pacifist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:salarianSpecies
-					name = NAME_PS_Pacifist_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_pacifist = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:salarianSpecies
+				name = NAME_PS_Pacifist_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_pacifist = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = monrini_syndicate
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = monrini_syndicate
 			}
+			set_country_flag = monrini_syndicate
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = monrini_syndicate
 		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_pacifist
-		set_controller = event_target:target_ps_pacifist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 14
-			add_district = district_ps_city
-		}
-		while = {
-			count = 3
-			add_district = district_farming
-			add_district = district_mining
-			add_district = district_generator
-		}
-		while = {
-			count = 125
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_pacifist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
 	}
 }
 
 generate_noveria_development_corporation_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = noveria_planet
+	save_global_event_target_as = ps_egalitarian_planet
+	create_country = {
+		name = "Noveria Development Corporation"
+		adjective = "PRESCRIPTED_adjective_noveria_development_corporation"
+		type = planet_state
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_research_outpost
+			civic = independent_civic_corporate_ownership
 		}
-		save_global_event_target_as = ps_egalitarian_planet
-		create_country = {
-			name = "Noveria Development Corporation"
-			adjective = "PRESCRIPTED_adjective_noveria_development_corporation"
-			type = planet_state
-			authority = auth_oligarchic
-			civics = {
-				civic = independent_civic_research_outpost
-				civic = independent_civic_corporate_ownership
-			}
-			species = event_target:salarianSpecies
-			name_list = btr_salarian
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_fanatic_materialist"
-				ethic = "ethic_authoritarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = noveria_dev_origin
-			effect = {
-				# Create Station and Leader
-				set_country_flag = ps_egalitarian
-				save_event_target_as = target_ps_egalitarian
-				create_fleet = {
-					name = "NAME_PS_Egalitarian_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:salarianSpecies
+		name_list = btr_salarian
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_authoritarian"
+		}
+		ignore_initial_colony_error = yes
+		origin = noveria_dev_origin
+		effect = {
+			# Create Station and Leader
+			set_country_flag = ps_egalitarian
+			save_event_target_as = target_ps_egalitarian
+			create_fleet = {
+				name = "NAME_PS_Egalitarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Egalitarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Egalitarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:salarianSpecies
-					name = NAME_PS_Egalitarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_egalitarian = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:salarianSpecies
+				name = NAME_PS_Egalitarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:noveria_development_corporation = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = noveria_development_corporation
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = noveria_development_corporation
 			}
+			set_country_flag = noveria_development_corporation
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = noveria_development_corporation
 		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_egalitarian
-		set_controller = event_target:target_ps_egalitarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			limit = {
-				free_district_slots > 0
-			}
-			add_district_if_free_slot = {
-				DISTRICT = district_arcology_housing
-			}
-		}
-		while = {
-			count = 122
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_egalitarian
-				}
-			}
-		}
+	}
 
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_bastion
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		event_target:target_ps_egalitarian = {
-			set_policy = {
-				policy = purge
-				option = purge_not_allowed
-				cooldown = no
-			}
-			set_policy = {
-				policy = resettlement
-				option = resettlement_not_allowed
-				cooldown = no
-			}
+	event_target:noveria_development_corporation = {
+		set_policy = {
+			policy = purge
+			option = purge_not_allowed
+			cooldown = no
+		}
+		set_policy = {
+			policy = resettlement
+			option = resettlement_not_allowed
+			cooldown = no
 		}
 	}
 }
 
 generate_peoples_authority_of_tyvor_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = tyvor_planet
+	save_global_event_target_as = ps_authoritarian_planet
+	create_country = {
+		name = "People's Authority of Tyvor"
+		adjective = "PRESCRIPTED_adjective_peoples_authority_of_tyvor"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_isolationist
+			civic = independent_civic_suspicious_untrusting
 		}
-		save_global_event_target_as = ps_authoritarian_planet
-		create_country = {
-			name = "People's Authority of Tyvor"
-			adjective = "PRESCRIPTED_adjective_peoples_authority_of_tyvor"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_isolationist
-				civic = independent_civic_suspicious_untrusting
-			}
-			species = event_target:turianSpecies
-			name_list = btr_turian
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_egalitarian"
-				ethic = "ethic_fanatic_xenophobe"
-			}
-			ignore_initial_colony_error = yes
-			origin = libertarian_fou_origin
-			effect = {
-				set_country_flag = ps_authoritarian
-				save_event_target_as = target_ps_authoritarian
-				create_fleet = {
-					name = "NAME_PS_Authoritarian_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:turianSpecies
+		name_list = btr_turian
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_egalitarian"
+			ethic = "ethic_fanatic_xenophobe"
+		}
+		ignore_initial_colony_error = yes
+		origin = libertarian_fou_origin
+		effect = {
+			set_country_flag = ps_authoritarian
+			save_event_target_as = target_ps_authoritarian
+			create_fleet = {
+				name = "NAME_PS_Authoritarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Authoritarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Authoritarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:turianSpecies
-					name = NAME_PS_Authoritarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_authoritarian = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:turianSpecies
+				name = NAME_PS_Authoritarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_authoritarian = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = peoples_authority_of_tyvor
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = peoples_authority_of_tyvor
 			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_authoritarian
-		set_controller = event_target:target_ps_authoritarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 10
-			add_district_if_free_slot = {
-				DISTRICT = district_ps_city
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_farming
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_generator
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_mining
-			}
-		}
-		while = {
-			count = 37
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_robust
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_specialist_species
-			}
-		}
-		while = {
-			count = 25
-			create_pop = {
-				species = event_target:ps_authoritarian_specialist_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_charismatic
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_servile_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_servile_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_syncretic_proles
-				trait = trait_very_strong
-				trait = trait_nerve_stapled
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_slave_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_slave_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
+			set_country_flag = peoples_authority_of_tyvor
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = peoples_authority_of_tyvor
 		}
 	}
 }
 
 generate_polity_of_anhur_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = anhur_planet
+	save_global_event_target_as = ps_authoritarian_planet
+	create_country = {
+		name = "Polity of Anhur"
+		adjective = "PRESCRIPTED_adjective_polity_of_anhur"
+		type = planet_state
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_isolationist
+			civic = independent_civic_suspicious_untrusting
 		}
-		save_global_event_target_as = ps_authoritarian_planet
-		create_country = {
-			name = "Polity of Anhur"
-			adjective = "PRESCRIPTED_adjective_polity_of_anhur"
-			type = planet_state
-			authority = auth_oligarchic
-			civics = {
-				civic = independent_civic_isolationist
-				civic = independent_civic_suspicious_untrusting
-			}
-			species = event_target:batarianSpecies
-			name_list = btr_batarian
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_authoritarian"
-				ethic = "ethic_materialist"
-				ethic = "ethic_militarist"
-			}
-			ignore_initial_colony_error = yes
-			origin = polity_anh_origin
-			effect = {
-				set_country_flag = ps_authoritarian
-				save_event_target_as = target_ps_authoritarian
-				create_fleet = {
-					name = "NAME_PS_Authoritarian_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:batarianSpecies
+		name_list = btr_batarian
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_authoritarian"
+			ethic = "ethic_materialist"
+			ethic = "ethic_militarist"
+		}
+		ignore_initial_colony_error = yes
+		origin = polity_anh_origin
+		effect = {
+			set_country_flag = ps_authoritarian
+			save_event_target_as = target_ps_authoritarian
+			create_fleet = {
+				name = "NAME_PS_Authoritarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Authoritarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Authoritarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:batarianSpecies
-					name = NAME_PS_Authoritarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_authoritarian = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:batarianSpecies
+				name = NAME_PS_Authoritarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_authoritarian = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = polity_of_anhur
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = reptilian_01
-				save_global_event_target_as = polity_of_anhur
 			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_authoritarian
-		set_controller = event_target:target_ps_authoritarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 10
-			add_district_if_free_slot = {
-				DISTRICT = district_ps_city
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_farming
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_generator
-			}
-		}
-		while = {
-			count = 5
-			add_district_if_free_slot = {
-				DISTRICT = district_mining
-			}
-		}
-		while = {
-			count = 37
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_manorial_lands
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_robust
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_specialist_species
-			}
-		}
-		while = {
-			count = 25
-			create_pop = {
-				species = event_target:ps_authoritarian_specialist_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_uplifted
-				trait = trait_presapient_proles
-				trait = trait_charismatic
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_servile_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_servile_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
-		}
-		create_species = {
-			name = random
-			class = random_non_machine
-			portrait = random
-			homeworld = THIS
-			traits = {
-				trait = trait_survivor
-				trait = trait_syncretic_proles
-				trait = trait_very_strong
-				trait = trait_nerve_stapled
-			}
-			effect = {
-				save_event_target_as = ps_authoritarian_slave_species
-			}
-		}
-		while = {
-			count = 30
-			create_pop = {
-				species = event_target:ps_authoritarian_slave_species
-				ethos = {
-					ethic = ethic_fanatic_authoritarian
-				}
-			}
+			set_country_flag = polity_of_anhur
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = reptilian_01
+			save_global_event_target_as = polity_of_anhur
 		}
 	}
 }
 
 generate_relic_mineral_works_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = drifting_skies_planet
+	save_global_event_target_as = ps_egalitarian_planet
+	create_country = {
+		name = "Relic Mineral Works"
+		adjective = "PRESCRIPTED_adjective_relic_mineral_works"
+		type = planet_state
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_corporate_ownership
+			civic = independent_civic_industrialists
 		}
-		save_global_event_target_as = ps_egalitarian_planet
-		create_country = {
-			name = "Relic Mineral Works"
-			adjective = "PRESCRIPTED_adjective_relic_mineral_works"
-			type = planet_state
-			authority = auth_oligarchic
-			civics = {
-				civic = independent_civic_corporate_ownership
-				civic = independent_civic_industrialists
-			}
-			species = event_target:hanarSpecies
-			name_list = btr_hanar
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_materialist"
-				ethic = "ethic_xenophobe"
-				ethic = "ethic_egalitarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = mining_ope_origin
-			effect = {
-				# Create Station and Leader
-				set_country_flag = ps_egalitarian
-				save_event_target_as = target_ps_egalitarian
-				create_fleet = {
-					name = "NAME_PS_Egalitarian_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:hanarSpecies
+		name_list = btr_hanar
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_materialist"
+			ethic = "ethic_xenophobe"
+			ethic = "ethic_egalitarian"
+		}
+		ignore_initial_colony_error = yes
+		origin = mining_ope_origin
+		effect = {
+			# Create Station and Leader
+			set_country_flag = ps_egalitarian
+			save_event_target_as = target_ps_egalitarian
+			create_fleet = {
+				name = "NAME_PS_Egalitarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Egalitarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Egalitarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:hanarSpecies
-					name = NAME_PS_Egalitarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_egalitarian = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:hanarSpecies
+				name = NAME_PS_Egalitarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_egalitarian = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = relic_mineral_works
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = aquatic_01
-				save_global_event_target_as = relic_mineral_works
 			}
+			set_country_flag = relic_mineral_works
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = aquatic_01
+			save_global_event_target_as = relic_mineral_works
 		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_egalitarian
-		set_controller = event_target:target_ps_egalitarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			limit = {
-				free_district_slots > 0
-			}
-			add_district_if_free_slot = {
-				DISTRICT = district_arcology_housing
-			}
+	}
+	event_target:relic_mineral_works = {
+		set_policy = {
+			policy = purge
+			option = purge_not_allowed
+			cooldown = no
 		}
-		while = {
-			count = 122
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_egalitarian
-				}
-			}
-		}
-
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_bastion
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		event_target:target_ps_egalitarian = {
-			set_policy = {
-				policy = purge
-				option = purge_not_allowed
-				cooldown = no
-			}
-			set_policy = {
-				policy = resettlement
-				option = resettlement_not_allowed
-				cooldown = no
-			}
+		set_policy = {
+			policy = resettlement
+			option = resettlement_not_allowed
+			cooldown = no
 		}
 	}
 }
 
 generate_republic_of_asteria_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = asteria_planet
+	save_global_event_target_as = ps_pacifist_planet
+	create_country = {
+		name = "Republic of Asteria"
+		adjective = "PRESCRIPTED_adjective_republic_of_asteria"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_citadel_setup
+			civic = independent_civic_fearful_alone
 		}
-		save_global_event_target_as = ps_pacifist_planet
-		create_country = {
-			name = "Republic of Asteria"
-			adjective = "PRESCRIPTED_adjective_republic_of_asteria"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_citadel_setup
-				civic = independent_civic_fearful_alone
-			}
-			species = event_target:asariSpecies
-			name_list = btr_asari
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_pacifist"
-				ethic = "ethic_egalitarian"
-				ethic = "ethic_spiritualist"
-			}
-			ignore_initial_colony_error = yes
-			origin = unchecked_rep_origin
-			effect = {
-				set_country_flag = ps_pacifist
-				save_event_target_as = target_ps_pacifist
-				create_fleet = {
-					name = "NAME_PS_Pacifist_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:asariSpecies
+		name_list = btr_asari
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_pacifist"
+			ethic = "ethic_egalitarian"
+			ethic = "ethic_spiritualist"
+		}
+		ignore_initial_colony_error = yes
+		origin = unchecked_rep_origin
+		effect = {
+			set_country_flag = ps_pacifist
+			save_event_target_as = target_ps_pacifist
+			create_fleet = {
+				name = "NAME_PS_Pacifist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Pacifist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Pacifist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:asariSpecies
-					name = NAME_PS_Pacifist_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_pacifist = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:asariSpecies
+				name = NAME_PS_Pacifist_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_pacifist = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = republic_of_asteria
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mec_asari_01
-				save_global_event_target_as = republic_of_asteria
 			}
+			set_country_flag = republic_of_asteria
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mec_asari_01
+			save_global_event_target_as = republic_of_asteria
 		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_pacifist
-		set_controller = event_target:target_ps_pacifist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 14
-			add_district = district_ps_city
-		}
-		while = {
-			count = 3
-			add_district = district_farming
-			add_district = district_mining
-			add_district = district_generator
-		}
-		while = {
-			count = 125
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_pacifist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
 	}
 }
 
 generate_sanctum_metals_group_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = sanctum_planet
+	save_global_event_target_as = ps_militarist_planet
+	create_country = {
+		name = "Sanctum Metals Group"
+		adjective = "PRESCRIPTED_adjective_sanctum_metals_group"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_corporate_ownership
+			civic = independent_civic_fractured_domain
 		}
-		save_global_event_target_as = ps_militarist_planet
-		create_country = {
-			name = "Sanctum Metals Group"
-			adjective = "PRESCRIPTED_adjective_sanctum_metals_group"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_corporate_ownership
-				civic = independent_civic_fractured_domain
-			}
-			species = event_target:turianSpecies
-			name_list = btr_turian
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_fanatic_materialist"
-				ethic = "ethic_militarist"
-			}
-			ignore_initial_colony_error = yes
-			origin = mining_ope_origin
-			effect = {
-				set_country_flag = ps_militarist
-				save_event_target_as = target_ps_militarist
-				create_fleet = {
-					name = "NAME_PS_Militarist_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:turianSpecies
+		name_list = btr_turian
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_militarist"
+		}
+		ignore_initial_colony_error = yes
+		origin = mining_ope_origin
+		effect = {
+			set_country_flag = ps_militarist
+			save_event_target_as = target_ps_militarist
+			create_fleet = {
+				name = "NAME_PS_Militarist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Militarist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Militarist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:turianSpecies
-					name = NAME_PS_Militarist_Leader
-					skill = 5
-					gender = female
-					effect = {
-						event_target:target_ps_militarist = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:turianSpecies
+				name = NAME_PS_Militarist_Leader
+				skill = 5
+				gender = female
+				effect = {
+					event_target:target_ps_militarist = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = sanctum_metals_group
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = sanctum_metals_group
 			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_militarist
-		set_controller = event_target:target_ps_militarist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 11
-			add_district = district_ps_city
-		}
-		while = {
-			count = 47
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_militarist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		create_species = {
-			name = "NAME_Synthetic"
-			plural = "NAME_Synthetics"
-			class = ROBOT
-			portrait = "default_robot"
-			namelist = random
-			traits = {
-				trait = "trait_mechanical"
-				trait = "trait_robot_efficient_processors"
-				trait = "trait_robot_loyalty_circuits"
-			}
-			effect = {
-				save_event_target_as = ps_militarist_robot_species
-			}
-		}
-		while = {
-			count = 75
-			create_pop = {
-				species = event_target:ps_militarist_robot_species
-			}
+			set_country_flag = sanctum_metals_group
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = sanctum_metals_group
 		}
 	}
 }
 
 generate_state_of_garvug_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = garvug_planet
-		}
-		save_global_event_target_as = ps_militarist_planet
-		create_country = {
-			name = "State of Garvug"
-			adjective = "PRESCRIPTED_adjective_state_of_garvug"
-			type = planet_state
-			authority = auth_dictatorial
-			civics = {
-				civic = independent_civic_industrialists
-				civic = independent_civic_isolationist
-			}
-			species = event_target:kroganSpecies
-			name_list = btr_krogan
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_fanatic_militarist"
-				ethic = "ethic_authoritarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = state_gar_origin
-			effect = {
-				set_country_flag = ps_militarist
-				save_event_target_as = target_ps_militarist
-				create_fleet = {
-					name = "NAME_PS_Militarist_Fleet"
-					settings = {
-						spawn_debris = no
-					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Militarist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
-					}
-				}
-				create_leader = {
-					class = governor
-					species = event_target:kroganSpecies
-					name = NAME_PS_Militarist_Leader
-					skill = 5
-					gender = female
-					effect = {
-						event_target:target_ps_militarist = {
-							set_leader = prev
-						}
-					}
-				}
-				set_country_flag = state_of_garvug
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = reptilian_01
-				save_global_event_target_as = state_of_garvug
-			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_militarist
-		set_controller = event_target:target_ps_militarist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 11
-			add_district = district_ps_city
-		}
-		while = {
-			count = 47
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_militarist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		create_species = {
-			name = "NAME_Synthetic"
-			plural = "NAME_Synthetics"
-			class = ROBOT
-			portrait = "default_robot"
-			namelist = random
-			traits = {
-				trait = "trait_mechanical"
-				trait = "trait_robot_efficient_processors"
-				trait = "trait_robot_loyalty_circuits"
-			}
-			effect = {
-				save_event_target_as = ps_militarist_robot_species
-			}
-		}
-		while = {
-			count = 75
-			create_pop = {
-				species = event_target:ps_militarist_robot_species
-			}
-		}
-	}
-}
-
-generate_thalassocracy_of_talis_fia_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = talisfia_planet
-		}
-		save_global_event_target_as = ps_pacifist_planet
-		create_country = {
-			name = "Thalassocracy of Talis Fia"
-			adjective = "PRESCRIPTED_adjective_thalassocracy_of_talis_fia"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_citadel_setup
-				civic = independent_civic_fearful_alone
-			}
-			species = event_target:volusSpecies
-			name_list = btr_volus
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_materialist"
-				ethic = "ethic_egalitarian"
-				ethic = "ethic_pacifist"
-			}
-			ignore_initial_colony_error = yes
-			origin = defensive_tra_origin
-			effect = {
-				set_country_flag = ps_pacifist
-				save_event_target_as = target_ps_pacifist
-				create_fleet = {
-					name = "NAME_PS_Pacifist_Fleet"
-					settings = {
-						spawn_debris = no
-					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Pacifist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
-					}
-				}
-				create_leader = {
-					class = governor
-					species = event_target:volusSpecies
-					name = NAME_PS_Pacifist_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_pacifist = {
-							set_leader = prev
-						}
-					}
-				}
-				set_country_flag = thalassocracy_of_talis_fia
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = thalassocracy_of_talis_fia
-			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_pacifist
-		set_controller = event_target:target_ps_pacifist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 14
-			add_district = district_ps_city
-		}
-		while = {
-			count = 3
-			add_district = district_farming
-			add_district = district_mining
-			add_district = district_generator
-		}
-		while = {
-			count = 125
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_pacifist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-	}
-}
-
-generate_thrednakka_autonomy_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = thrednakka_planet
-		}
-		save_global_event_target_as = ps_militarist_planet
-		create_country = {
-			name = "Thred'nakka Autonomy"
-			adjective = "PRESCRIPTED_adjective_thrednakka_autonomy"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_labor_camp
-				civic = independent_civic_suspicious_untrusting
-			}
-			species = event_target:batarianSpecies
-			name_list = btr_batarian
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_fanatic_materialist"
-				ethic = "ethic_militarist"
-			}
-			ignore_initial_colony_error = yes
-			origin = criminal_den_origin
-			effect = {
-				set_country_flag = ps_militarist
-				save_event_target_as = target_ps_militarist
-				create_fleet = {
-					name = "NAME_PS_Militarist_Fleet"
-					settings = {
-						spawn_debris = no
-					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Militarist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
-					}
-				}
-				create_leader = {
-					class = governor
-					species = event_target:batarianSpecies
-					name = NAME_PS_Militarist_Leader
-					skill = 5
-					gender = female
-					effect = {
-						event_target:target_ps_militarist = {
-							set_leader = prev
-						}
-					}
-				}
-				set_country_flag = thrednakka_autonomy
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = thrednakka_autonomy
-			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_militarist
-		set_controller = event_target:target_ps_militarist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 11
-			add_district = district_ps_city
-		}
-		while = {
-			count = 47
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_militarist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		create_species = {
-			name = "NAME_Synthetic"
-			plural = "NAME_Synthetics"
-			class = ROBOT
-			portrait = "default_robot"
-			namelist = random
-			traits = {
-				trait = "trait_mechanical"
-				trait = "trait_robot_efficient_processors"
-				trait = "trait_robot_loyalty_circuits"
-			}
-			effect = {
-				save_event_target_as = ps_militarist_robot_species
-			}
-		}
-		while = {
-			count = 75
-			create_pop = {
-				species = event_target:ps_militarist_robot_species
-			}
-		}
-	}
-}
-
-generate_trident_exports_limited_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = trident_planet
-		}
-		save_global_event_target_as = ps_pacifist_planet
-		create_country = {
-			name = "Trident Exports Limited"
-			adjective = "PRESCRIPTED_adjective_trident_exports_limited"
-			type = planet_state
-			authority = auth_oligarchic
-			civics = {
-				civic = independent_civic_corporate_ownership
-				civic = independent_civic_fractured_domain
-			}
-			species = event_target:humanSpecies
-			name_list = btr_alliance
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_materialist"
-				ethic = "ethic_pacifist"
-				ethic = "ethic_egalitarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = trident_exp_origin
-			effect = {
-				set_country_flag = ps_pacifist
-				save_event_target_as = target_ps_pacifist
-				create_fleet = {
-					name = "NAME_PS_Pacifist_Fleet"
-					settings = {
-						spawn_debris = no
-					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Pacifist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
-					}
-				}
-				create_leader = {
-					class = governor
-					species = event_target:humanSpecies
-					name = NAME_PS_Pacifist_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_pacifist = {
-							set_leader = prev
-						}
-					}
-				}
-				set_country_flag = trident_exports_limited
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = trident_exports_limited
-			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_pacifist
-		set_controller = event_target:target_ps_pacifist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 14
-			add_district = district_ps_city
-		}
-		while = {
-			count = 3
-			add_district = district_farming
-			add_district = district_mining
-			add_district = district_generator
-		}
-		while = {
-			count = 125
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_pacifist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-	}
-}
-
-generate_trigintan_league_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = trigintapetra_planet
-		}
-		save_global_event_target_as = ps_pacifist_planet
-		create_country = {
-			name = "Trigintan League"
-			adjective = "PRESCRIPTED_adjective_trigintan_league"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_isolationist
-				civic = independent_civic_free_autonomous
-			}
-			species = event_target:turianSpecies
-			name_list = btr_turian
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_egalitarian"
-				ethic = "ethic_xenophobe"
-				ethic = "ethic_pacifist"
-			}
-			ignore_initial_colony_error = yes
-			origin = libertarian_fou_origin
-			effect = {
-				set_country_flag = ps_pacifist
-				save_event_target_as = target_ps_pacifist
-				create_fleet = {
-					name = "NAME_PS_Pacifist_Fleet"
-					settings = {
-						spawn_debris = no
-					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Pacifist"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
-					}
-				}
-				create_leader = {
-					class = governor
-					species = event_target:turianSpecies
-					name = NAME_PS_Pacifist_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_pacifist = {
-							set_leader = prev
-						}
-					}
-				}
-				set_country_flag = trigintan_league
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = trigintan_league
-			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_pacifist
-		set_controller = event_target:target_ps_pacifist
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			count = 14
-			add_district = district_ps_city
-		}
-		while = {
-			count = 3
-			add_district = district_farming
-			add_district = district_mining
-			add_district = district_generator
-		}
-		while = {
-			count = 125
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_pacifist
-				}
-			}
-		}
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-		add_building = building_ps_bastion
-	}
-}
-
-generate_union_of_ferris_fields_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = ferrisfields_planet
-		}
-		save_global_event_target_as = ps_egalitarian_planet
-		create_country = {
-			name = "Union of Ferris Fields"
-			adjective = "PRESCRIPTED_adjective_union_of_ferris_fields"
-			type = planet_state
-			authority = auth_democratic
-			civics = {
-				civic = independent_civic_suspicious_untrusting
-				civic = independent_civic_research_outpost
-			}
-			species = event_target:humanSpecies
-			name_list = btr_alliance
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_spiritualist"
-				ethic = "ethic_xenophobe"
-				ethic = "ethic_egalitarian"
-			}
-			ignore_initial_colony_error = yes
-			origin = antialliance_com_origin
-			effect = {
-				# Create Station and Leader
-				set_country_flag = ps_egalitarian
-				save_event_target_as = target_ps_egalitarian
-				create_fleet = {
-					name = "NAME_PS_Egalitarian_Fleet"
-					settings = {
-						spawn_debris = no
-					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Egalitarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
-					}
-				}
-				create_leader = {
-					class = governor
-					species = event_target:humanSpecies
-					name = NAME_PS_Egalitarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_egalitarian = {
-							set_leader = prev
-						}
-					}
-				}
-				set_country_flag = union_of_ferris_fields
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = reptilian_01
-				save_global_event_target_as = union_of_ferris_fields
-			}
-		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_egalitarian
-		set_controller = event_target:target_ps_egalitarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			limit = {
-				free_district_slots > 0
-			}
-			add_district_if_free_slot = {
-				DISTRICT = district_arcology_housing
-			}
-		}
-		while = {
-			count = 122
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_egalitarian
-				}
-			}
-		}
-
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_bastion
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		event_target:target_ps_egalitarian = {
-			set_policy = {
-				policy = purge
-				option = purge_not_allowed
-				cooldown = no
-			}
-			set_policy = {
-				policy = resettlement
-				option = resettlement_not_allowed
-				cooldown = no
-			}
-		}
-	}
-}
-
-generate_wrill_mining_consortium_country = {
 	save_global_event_target_as = ps_militarist_planet
 	create_country = {
-		name = "Wrill Mining Consortium"
-		adjective = "PRESCRIPTED_adjective_wrill_mining_consortium"
+		name = "State of Garvug"
+		adjective = "PRESCRIPTED_adjective_state_of_garvug"
 		type = planet_state
-		authority = auth_oligarchic
+		authority = auth_dictatorial
 		civics = {
-			civic = independent_civic_fractured_domain
+			civic = independent_civic_industrialists
 			civic = independent_civic_isolationist
 		}
 		species = event_target:kroganSpecies
@@ -4956,11 +3165,11 @@ generate_wrill_mining_consortium_country = {
 		ship_prefix = ""
 		flag = random
 		ethos = {
-			ethic = "ethic_fanatic_xenophobe"
-			ethic = "ethic_materialist"
+			ethic = "ethic_fanatic_militarist"
+			ethic = "ethic_authoritarian"
 		}
 		ignore_initial_colony_error = yes
-		origin = mining_ope_origin
+		origin = state_gar_origin
 		effect = {
 			set_country_flag = ps_militarist
 			save_event_target_as = target_ps_militarist
@@ -4995,6 +3204,386 @@ generate_wrill_mining_consortium_country = {
 					}
 				}
 			}
+			set_country_flag = state_of_garvug
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = reptilian_01
+			save_global_event_target_as = state_of_garvug
+		}
+	}
+}
+
+generate_thalassocracy_of_talis_fia_country = {
+	save_global_event_target_as = ps_pacifist_planet
+	create_country = {
+		name = "Thalassocracy of Talis Fia"
+		adjective = "PRESCRIPTED_adjective_thalassocracy_of_talis_fia"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_citadel_setup
+			civic = independent_civic_fearful_alone
+		}
+		species = event_target:volusSpecies
+		name_list = btr_volus
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_materialist"
+			ethic = "ethic_egalitarian"
+			ethic = "ethic_pacifist"
+		}
+		ignore_initial_colony_error = yes
+		origin = defensive_tra_origin
+		effect = {
+			set_country_flag = ps_pacifist
+			save_event_target_as = target_ps_pacifist
+			create_fleet = {
+				name = "NAME_PS_Pacifist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Pacifist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
+					}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
+					}
+				}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:volusSpecies
+				name = NAME_PS_Pacifist_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_pacifist = {
+						set_leader = prev
+					}
+				}
+			}
+			set_country_flag = thalassocracy_of_talis_fia
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = thalassocracy_of_talis_fia
+		}
+	}
+}
+
+generate_thrednakka_autonomy_country = {
+	save_global_event_target_as = ps_militarist_planet
+	create_country = {
+		name = "Thred'nakka Autonomy"
+		adjective = "PRESCRIPTED_adjective_thrednakka_autonomy"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_labor_camp
+			civic = independent_civic_suspicious_untrusting
+		}
+		species = event_target:batarianSpecies
+		name_list = btr_batarian
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_fanatic_materialist"
+			ethic = "ethic_militarist"
+		}
+		ignore_initial_colony_error = yes
+		origin = criminal_den_origin
+		effect = {
+			set_country_flag = ps_militarist
+			save_event_target_as = target_ps_militarist
+			create_fleet = {
+				name = "NAME_PS_Militarist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Militarist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
+					}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
+					}
+				}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:batarianSpecies
+				name = NAME_PS_Militarist_Leader
+				skill = 5
+				gender = female
+				effect = {
+					event_target:target_ps_militarist = {
+						set_leader = prev
+					}
+				}
+			}
+			set_country_flag = thrednakka_autonomy
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = thrednakka_autonomy
+		}
+	}
+}
+
+generate_trident_exports_limited_country = {
+	save_global_event_target_as = ps_pacifist_planet
+	create_country = {
+		name = "Trident Exports Limited"
+		adjective = "PRESCRIPTED_adjective_trident_exports_limited"
+		type = planet_state
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_corporate_ownership
+			civic = independent_civic_fractured_domain
+		}
+		species = event_target:humanSpecies
+		name_list = btr_alliance
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_materialist"
+			ethic = "ethic_pacifist"
+			ethic = "ethic_egalitarian"
+		}
+		ignore_initial_colony_error = yes
+		origin = trident_exp_origin
+		effect = {
+			set_country_flag = ps_pacifist
+			save_event_target_as = target_ps_pacifist
+			create_fleet = {
+				name = "NAME_PS_Pacifist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Pacifist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
+					}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
+					}
+				}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:humanSpecies
+				name = NAME_PS_Pacifist_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_pacifist = {
+						set_leader = prev
+					}
+				}
+			}
+			set_country_flag = trident_exports_limited
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = trident_exports_limited
+		}
+	}
+}
+
+generate_trigintan_league_country = {
+	save_global_event_target_as = ps_pacifist_planet
+	create_country = {
+		name = "Trigintan League"
+		adjective = "PRESCRIPTED_adjective_trigintan_league"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_isolationist
+			civic = independent_civic_free_autonomous
+		}
+		species = event_target:turianSpecies
+		name_list = btr_turian
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_egalitarian"
+			ethic = "ethic_xenophobe"
+			ethic = "ethic_pacifist"
+		}
+		ignore_initial_colony_error = yes
+		origin = libertarian_fou_origin
+		effect = {
+			set_country_flag = ps_pacifist
+			save_event_target_as = target_ps_pacifist
+			create_fleet = {
+				name = "NAME_PS_Pacifist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Pacifist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
+					}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
+					}
+				}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:turianSpecies
+				name = NAME_PS_Pacifist_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_pacifist = {
+						set_leader = prev
+					}
+				}
+			}
+			set_country_flag = trigintan_league
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = trigintan_league
+		}
+	}
+}
+
+generate_union_of_ferris_fields_country = {
+	save_global_event_target_as = ps_egalitarian_planet
+	create_country = {
+		name = "Union of Ferris Fields"
+		adjective = "PRESCRIPTED_adjective_union_of_ferris_fields"
+		type = planet_state
+		authority = auth_democratic
+		civics = {
+			civic = independent_civic_suspicious_untrusting
+			civic = independent_civic_research_outpost
+		}
+		species = event_target:humanSpecies
+		name_list = btr_alliance
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_spiritualist"
+			ethic = "ethic_xenophobe"
+			ethic = "ethic_egalitarian"
+		}
+		ignore_initial_colony_error = yes
+		origin = antialliance_com_origin
+		effect = {
+			# Create Station and Leader
+			set_country_flag = ps_egalitarian
+			save_event_target_as = target_ps_egalitarian
+			create_fleet = {
+				name = "NAME_PS_Egalitarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Egalitarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
+					}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
+					}
+				}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:humanSpecies
+				name = NAME_PS_Egalitarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_egalitarian = {
+						set_leader = prev
+					}
+				}
+			}
+			set_country_flag = union_of_ferris_fields
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = reptilian_01
+			save_global_event_target_as = union_of_ferris_fields
+		}
+	}
+	event_target:target_ps_egalitarian = {
+		set_policy = {
+			policy = purge
+			option = purge_not_allowed
+			cooldown = no
+		}
+		set_policy = {
+			policy = resettlement
+			option = resettlement_not_allowed
+			cooldown = no
+		}
+	}
+}
+
+generate_wrill_mining_consortium_country = {
+	save_global_event_target_as = ps_militarist_planet
+	create_country = {
+		name = "Wrill Mining Consortium"
+		adjective = "PRESCRIPTED_adjective_wrill_mining_consortium"
+		type = planet_state
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_fractured_domain
+			civic = independent_civic_isolationist
+		}
+		species = event_target:kroganSpecies
+		name_list = btr_krogan
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_fanatic_xenophobe"
+			ethic = "ethic_materialist"
+		}
+		ignore_initial_colony_error = yes
+		origin = mining_ope_origin
+		effect = {
 			set_country_flag = wrill_mining_consortium
 			set_country_flag = init_spawned
 			set_country_flag = canon_map
@@ -5002,123 +3591,115 @@ generate_wrill_mining_consortium_country = {
 			set_country_flag = btr_independent_colony
 			set_graphical_culture = reptilian_01
 			save_global_event_target_as = wrill_mining_consortium
+			set_country_flag = ps_militarist
+			save_event_target_as = target_ps_militarist
+			create_fleet = {
+				name = "NAME_PS_Militarist_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Militarist"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
+					}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
+					}
+				}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:kroganSpecies
+				name = NAME_PS_Militarist_Leader
+				skill = 5
+				gender = female
+				effect = {
+					event_target:target_ps_militarist = {
+						set_leader = prev
+					}
+				}
+			}
 		}
 	}
 }
 
 generate_yamm_free_trade_zone_country = {
-	set_star_flag = planet_state
-	random_system_planet = {
-		limit = {
-			has_planet_flag = yamm_planet
+	save_global_event_target_as = ps_egalitarian_planet
+	create_country = {
+		name = "Yamm Trade Zone"
+		adjective = "PRESCRIPTED_adjective_peoples_yamm_trade_zone"
+		type = planet_state
+		authority = auth_oligarchic
+		civics = {
+			civic = independent_civic_industrialists
+			civic = independent_civic_corporate_ownership
 		}
-		save_global_event_target_as = ps_egalitarian_planet
-		create_country = {
-			name = "Yamm Trade Zone"
-			adjective = "PRESCRIPTED_adjective_peoples_yamm_trade_zone"
-			type = planet_state
-			authority = auth_oligarchic
-			civics = {
-				civic = independent_civic_industrialists
-				civic = independent_civic_corporate_ownership
-			}
-			species = event_target:hanarSpecies
-			name_list = btr_hanar
-			ship_prefix = ""
-			flag = random
-			ethos = {
-				ethic = "ethic_egalitarian"
-				ethic = "ethic_fanatic_xenophobe"
-			}
-			ignore_initial_colony_error = yes
-			origin = reign_pri_origin
-			effect = {
-				create_fleet = {
-					name = "NAME_PS_Egalitarian_Fleet"
-					settings = {
-						spawn_debris = no
+		species = event_target:hanarSpecies
+		name_list = btr_hanar
+		ship_prefix = ""
+		flag = random
+		ethos = {
+			ethic = "ethic_egalitarian"
+			ethic = "ethic_fanatic_xenophobe"
+		}
+		ignore_initial_colony_error = yes
+		origin = reign_pri_origin
+		effect = {
+			create_fleet = {
+				name = "NAME_PS_Egalitarian_Fleet"
+				settings = {
+					spawn_debris = no
+				}
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = "NAME_Planet_State_Station_Egalitarian"
+						design = "NAME_Planet_State_Station"
+						graphical_culture = prev
 					}
-					effect = {
-						set_owner = prev
-						create_ship = {
-							name = "NAME_Planet_State_Station_Egalitarian"
-							design = "NAME_Planet_State_Station"
-							graphical_culture = prev
-						}
-						set_location = {
-							target = prevprev
-							angle = random
-							distance = 15
-						}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 15
 					}
 				}
-				create_leader = {
-					class = governor
-					species = event_target:hanarSpecies
-					name = NAME_PS_Egalitarian_Leader
-					gender = male
-					skill = 5
-					effect = {
-						event_target:target_ps_egalitarian = {
-							set_leader = prev
-						}
+			}
+			create_leader = {
+				class = governor
+				species = event_target:hanarSpecies
+				name = NAME_PS_Egalitarian_Leader
+				gender = male
+				skill = 5
+				effect = {
+					event_target:target_ps_egalitarian = {
+						set_leader = prev
 					}
 				}
-				set_country_flag = yamm_trade_zone
-				set_country_flag = init_spawned
-				set_country_flag = canon_map
-				set_country_flag = btr_empire
-				set_country_flag = btr_independent_colony
-				set_graphical_culture = mammalian_01
-				save_global_event_target_as = yamm_trade_zone
 			}
+			set_country_flag = yamm_trade_zone
+			set_country_flag = init_spawned
+			set_country_flag = canon_map
+			set_country_flag = btr_empire
+			set_country_flag = btr_independent_colony
+			set_graphical_culture = mammalian_01
+			save_global_event_target_as = yamm_trade_zone
 		}
-		# Set Planet-State as Owner of the planet
-		set_owner = event_target:target_ps_egalitarian
-		set_controller = event_target:target_ps_egalitarian
-		set_capital = yes
-		# Add Builings, Districts, Pops
-		while = {
-			limit = {
-				free_district_slots > 0
-			}
-			add_district_if_free_slot = {
-				DISTRICT = district_arcology_housing
-			}
+	}
+	event_target:target_ps_egalitarian = {
+		set_policy = {
+			policy = purge
+			option = purge_not_allowed
+			cooldown = no
 		}
-		while = {
-			count = 122
-			create_pop = {
-				species = owner_main_species
-				ethos = {
-					ethic = ethic_fanatic_egalitarian
-				}
-			}
-		}
-
-		add_building = building_ps_capitol
-		add_building = building_ps_anti_matter_reactor
-		add_building = building_ps_bastion
-		add_building = building_ps_aeroponics_farms_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_mineral_purification_complex
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_multidimensional_printers
-		add_building = building_ps_leisure_complex
-		add_building = building_ps_distillation_complex
-		add_building = building_ps_chemical_complex
-		add_building = building_ps_synthesizers_complex
-		event_target:target_ps_egalitarian = {
-			set_policy = {
-				policy = purge
-				option = purge_not_allowed
-				cooldown = no
-			}
-			set_policy = {
-				policy = resettlement
-				option = resettlement_not_allowed
-				cooldown = no
-			}
+		set_policy = {
+			policy = resettlement
+			option = resettlement_not_allowed
+			cooldown = no
 		}
 	}
 }

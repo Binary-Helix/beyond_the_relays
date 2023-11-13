@@ -1583,7 +1583,7 @@ sys_pax_init = {
     class = sc_k
 	max_instances = 1
 
-    flags = { orion_spur sector_os2 horse_head_nebula pax_system primary_relay_system }
+    flags = { orion_spur sector_os2 horse_head_nebula pax_system primary_relay_system planet_state }
 	
     planet = {
 		name = "Pax"
@@ -1611,10 +1611,29 @@ sys_pax_init = {
 		deposit_blockers = none
 		modifiers = none
 		entity = "antarctic_planet_01_entity"
-		flags = { subclass_world }		
+		flags = { subclass_world noveria_planet }		
 		init_effect = {	
 			save_global_event_target_as = noveriaHomeworld
-			set_planet_flag = noveria_planet
+            if = {
+                limit = {
+                    exists = event_target:citadelHomeworld
+                }
+                log = "Citadel Station Event Target Set"
+            }
+            prevent_anomaly = yes
+			
+			generate_noveria_development_corporation_country = yes
+
+			set_capital = yes
+			set_owner = event_target:noveria_development_corporation
+			create_colony = {
+				owner = event_target:noveria_development_corporation
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+
+			generate_noveria_pops = yes
+			
 			add_modifier = {
 				modifier = antar_world
 				days = -1
@@ -2212,7 +2231,7 @@ sys_crete_init = {
 	class = sc_m
 	max_instances = 1
 
-    flags = { bahanak_frontier sector_bf1 artemis_tau crete_system }
+    flags = { bahanak_frontier sector_bf1 artemis_tau crete_system planet_state }
 
 	init_effect = {
 		save_global_event_target_as = hegemonCon1
@@ -2248,13 +2267,32 @@ sys_crete_init = {
         orbit_angle = 182
         has_ring = no
 		size = 16
-		flags = { subclass_world }
+		flags = { subclass_world ishtar_planet }
 		deposit_blockers = none
         modifiers = none
 		entity = "mesa_planet_01_entity"
 		init_effect = {
 			save_global_event_target_as = ishtarHomeworld
-			set_planet_flag = ishtar_planet
+            if = {
+                limit = {
+                    exists = event_target:ishtarHomeworld
+                }
+                log = "Ishtar Emporium Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_ishtar_emporium_country = yes
+
+			set_capital = yes
+			set_owner = event_target:ishtar_emporium
+			create_colony = {
+				owner = event_target:ishtar_emporium
+				species = event_target:salarianSpecies
+				ethos = owner
+			}
+
+			generate_ishtar_pops = yes
+
 			add_modifier = {
 				modifier = mesa_world
 				days = -1

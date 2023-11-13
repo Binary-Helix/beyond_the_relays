@@ -887,7 +887,7 @@ sys_faia_init = {
     class = "sc_g"
 	max_instances = 1
 
-    flags = { attican_traverse sector_at1 ismar_frontier faia_system }
+    flags = { attican_traverse sector_at1 ismar_frontier faia_system planet_state }
 	
     planet = {
 		name = "Faia"
@@ -917,10 +917,29 @@ sys_faia_init = {
 		entity = "jungle_planet_02_entity"	
 		deposit_blockers = none
         modifiers = none
-		flags = { subclass_world }
+		flags = { subclass_world zorya_planet }
 		init_effect = {
 			save_global_event_target_as = zoryaHomeworld
-            set_planet_flag = zorya_planet
+            if = {
+                limit = {
+                    exists = event_target:zoryaHomeworld
+                }
+                log = "Zoryan Sovereignty Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_zoryan_sovereignty_country = yes
+
+			set_capital = yes
+			set_owner = event_target:zoryan_sovereignty
+			create_colony = {
+				owner = event_target:zoryan_sovereignty
+				species = event_target:batarianSpecies
+				ethos = owner
+			}
+
+			generate_zorya_pops = yes
+
 			add_modifier = {
 				modifier = jungle_world
 				days = -1
@@ -2177,7 +2196,7 @@ sys_amun_init = {
     class = sc_g
 	max_instances = 1
 
-    flags = { attican_traverse sector_at3 eagle_nebula amun_system }
+    flags = { attican_traverse sector_at3 eagle_nebula amun_system planet_state }
 
     planet = {
 		name = "Amun"
@@ -2303,11 +2322,30 @@ sys_amun_init = {
 		starting_planet = no
 		deposit_blockers = none
 		modifiers = none
-		flags = { subclass_world }
+		flags = { subclass_world anhur_planet }
 		entity = "boreal_planet_01_entity"
 		init_effect = {
 			save_global_event_target_as = anhurHomeworld
-            set_planet_flag = anhur_planet
+            if = {
+                limit = {
+                    exists = event_target:anhurHomeworld
+                }
+                log = "Polity of Anhur Event Target Set"
+            }
+            prevent_anomaly = yes
+			
+			generate_polity_of_anhur_country = yes
+
+			set_capital = yes
+			set_owner = event_target:polity_of_anhur
+			create_colony = {
+				owner = event_target:polity_of_anhur
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+
+			generate_anhur_pops = yes
+
 			add_modifier = {
 				modifier = boreal_world
 				days = -1
@@ -2370,7 +2408,7 @@ sys_imir_init = {
     class = "sc_g"
 	max_instances = 1
 
-    flags = { attican_traverse sector_at3 eagle_nebula imir_system primary_relay_system }
+    flags = { attican_traverse sector_at3 eagle_nebula imir_system primary_relay_system planet_state }
 
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -2427,10 +2465,28 @@ sys_imir_init = {
 		entity = "mephitic_arid_planet_02_entity"
 		deposit_blockers = none
         modifiers = none
-		flags = { subclass_world }
+		flags = { subclass_world korlus_planet }
 		init_effect = {
 			save_global_event_target_as = korlusHomeworld
-            set_planet_flag = korlus_planet
+            if = {
+                limit = {
+                    exists = event_target:citadelHomeworld
+                }
+                log = "Korlus Recycling Union Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_korlus_recycling_union_country = yes
+
+			set_capital = yes
+			set_owner = event_target:korlus_recycling_union
+			create_colony = {
+				owner = event_target:korlus_recycling_union
+				species = event_target:kroganSpecies
+				ethos = owner
+			}
+
+			generate_korlus_pops = yes
 
 			add_modifier = {
 				modifier = dust_world
@@ -2571,7 +2627,7 @@ sys_malgus_init = {
 			}
 
 			generate_wrill_pops = yes
-			
+
 			add_modifier = {
 				modifier = dune_world
 				days = -1
@@ -2629,7 +2685,7 @@ sys_relic_init = {
     class = sc_g
 	max_instances = 1
 
-    flags = { attican_traverse sector_at3 eagle_nebula relic_system }
+    flags = { attican_traverse sector_at3 eagle_nebula relic_system planet_state }
 
 	asteroid_belt = {
 		type = icy_asteroid_belt
@@ -2697,7 +2753,7 @@ sys_relic_init = {
         has_ring = yes
 		size = 33
 
-		flags = { subclass_world }
+		flags = { subclass_world drifting_skies_planet }
 
 		moon = {
 			name = "Drifting Skies"
@@ -2709,7 +2765,25 @@ sys_relic_init = {
 			modifiers = none
 			init_effect = {
 				save_global_event_target_as = driftingskiesHomeworld
-                set_planet_flag = drifting_skies_planet
+				if = {
+					limit = {
+						exists = event_target:driftingskiesHomeworld
+					}
+					log = "Drifting Skies Event Target Set"
+				}
+				prevent_anomaly = yes
+
+				generate_relic_mineral_works_country = yes
+
+				set_capital = yes
+				set_owner = event_target:relic_mineral_works
+				create_colony = {
+					owner = event_target:relic_mineral_works
+					species = event_target:hanarSpecies
+					ethos = owner
+				}
+
+				generate_drifting_skies_pops = yes
 			}
 		}
     }
@@ -3406,7 +3480,7 @@ sys_webel_init = {
 	class = sc_m_hyper
 	max_instances = 1
 
-	flags = { attican_traverse sector_at4 oshibka_cliff webel_system secondary_relay_system }
+	flags = { attican_traverse sector_at4 oshibka_cliff webel_system secondary_relay_system planet_state }
 
 	planet = {
 		name = "Webel"
@@ -3433,10 +3507,29 @@ sys_webel_init = {
 		size = 19
 		deposit_blockers = none
         modifiers = none
-		flags = { subclass_world }
+		flags = { subclass_world kosh_planet }
 		init_effect = {
 			save_global_event_target_as = koshHomeworld
-            set_planet_flag = kosh_planet
+            if = {
+                limit = {
+                    exists = event_target:citadelHomeworld
+                }
+                log = "Citadel Station Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_kosh_development_corporation_country = yes
+
+			set_capital = yes
+			set_owner = event_target:kosh_development_corporation
+			create_colony = {
+				owner = event_target:kosh_development_corporation
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+
+			generate_kosh_pops = yes
+
 			add_modifier = {
 				modifier = temperate_world
 				days = -1
@@ -4001,7 +4094,7 @@ sys_agnes_init = {
 	class = sc_k
 	max_instances = 1
 
-	flags = { terminus_systems sector_t11 motan_cluster agnes_system secondary_relay_system }
+	flags = { terminus_systems sector_t11 motan_cluster agnes_system secondary_relay_system planet_state }
 
     planet = {
 	    name = "Agnes"
@@ -4026,13 +4119,32 @@ sys_agnes_init = {
         orbit_angle = 318
         has_ring = no
 		size = 20
-		flags = { subclass_world }
+		flags = { subclass_world tyvor_planet }
 		deposit_blockers = none
         modifiers = none
 		entity = "temperate_planet_04_entity"
 		init_effect = {
 			save_global_event_target_as = tyvorHomeworld
-            set_planet_flag = tyvor_planet
+            if = {
+                limit = {
+                    exists = event_target:tyvorHomeworld
+                }
+                log = "Authority of Tyvor Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_peoples_authority_of_tyvor_country = yes
+
+			set_capital = yes
+			set_owner = event_target:peoples_authority_of_tyvor
+			create_colony = {
+				owner = event_target:peoples_authority_of_tyvor
+				species = event_target:turianSpecies
+				ethos = owner
+			}
+
+			generate_tyvor_pops = yes
+			
 			add_modifier = {
 				modifier = temperate_world
 				days = -1
@@ -8163,7 +8275,7 @@ sys_azedes_init = {
 sys_hekate_init = {
     name = "Hekate"
     class = sc_g
-	flags = { attican_traverse sector_at9 hades_nexus hekate_system }	
+	flags = { attican_traverse sector_at9 hades_nexus hekate_system planet_state }	
 
 	max_instances = 1
 
@@ -8182,12 +8294,31 @@ sys_hekate_init = {
         has_ring = no
 		size = 14
 		entity = "dune_planet_01_entity"
-		flags = { subclass_world }
+		flags = { subclass_world asteria_planet }
 		deposit_blockers = none
         modifiers = none
 		init_effect = {
             save_global_event_target_as = asteriaHomeworld
-            set_planet_flag = asteria_planet
+            if = {
+                limit = {
+                    exists = event_target:citadelHomeworld
+                }
+                log = "Republic of Asteria Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_republic_of_asteria_country = yes
+
+			set_capital = yes
+			set_owner = event_target:republic_of_asteria
+			create_colony = {
+				owner = event_target:republic_of_asteria
+				species = event_target:asariSpecies
+				ethos = owner
+			}
+
+			generate_asteria_pops = yes
+
 			add_modifier = {
 				modifier = dune_world
 				days = -1
@@ -8356,7 +8487,7 @@ sys_hoplos_init = {
     class = "sc_g"
 	max_instances = 1
 
-    flags = { attican_traverse sector_at9 hades_nexus hoplos_system }
+    flags = { attican_traverse sector_at9 hades_nexus hoplos_system planet_state }
 
     planet = {
 		name = "Hoplos"
@@ -8434,10 +8565,29 @@ sys_hoplos_init = {
 		entity = "ocean_planet_01_entity"
 		deposit_blockers = none
         modifiers = none
-		flags = { subclass_world }
+		flags = { subclass_world trident_planet }
 		init_effect = {
 			save_global_event_target_as = tridentHomeworld
-            set_planet_flag = trident_planet
+            if = {
+                limit = {
+                    exists = event_target:tridentHomeworld
+                }
+                log = "Trident Exports Limited Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_trident_exports_limited_country = yes
+
+			set_capital = yes
+			set_owner = event_target:trident_exports_limited
+			create_colony = {
+				owner = event_target:trident_exports_limited
+				species = event_target:humanSpecies
+				ethos = owner
+			}
+
+			generate_trident_pops = yes
+
 			add_modifier = {
 				modifier = hazardous_weather
 				days = -1
@@ -13135,7 +13285,7 @@ sys_kalabsha_init = {
     class = sc_g
 	max_instances = 1	
 
-	flags = { attican_traverse sector_at13 nubian_expanse kalabsha_system primary_relay_system }
+	flags = { attican_traverse sector_at13 nubian_expanse kalabsha_system primary_relay_system planet_state }
 
     planet = {
 		name = "Kalabsha"
@@ -13151,13 +13301,31 @@ sys_kalabsha_init = {
         orbit_angle = 337
         has_ring = no
 		size = 16
-		flags = { subclass_world }
+		flags = { subclass_world yamm_planet }
 		deposit_blockers = none
         modifiers = none
 		entity = "storm_planet_07_entity"
 		init_effect = {
 			save_global_event_target_as = yammHomeworld
-            set_planet_flag = yamm_planet
+            if = {
+                limit = {
+                    exists = event_target:yammHomeworld
+                }
+                log = "Yamm Free Trade Zone Event Target Set"
+            }
+            prevent_anomaly = yes
+
+			generate_yamm_free_trade_zone_country = yes
+
+			set_capital = yes
+			set_owner = event_target:yamm_free_trade_zone
+			create_colony = {
+				owner = event_target:yamm_free_trade_zone
+				species = event_target:hanarSpecies
+				ethos = owner
+			}
+
+			generate_yamm_pops = yes
 
 			add_modifier = {
 				modifier = storm_world
