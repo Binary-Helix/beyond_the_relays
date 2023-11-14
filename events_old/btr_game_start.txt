@@ -1,0 +1,2189 @@
+### - NOTE FROM PUCK - HEAVILY MODIFIED VERSION OF VANILLA game_start.txt
+namespace = btr_game_start
+
+### Hidden Game Start Event
+event = {
+	id = btr_game_start.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = game_started
+
+		#TODO: REVIEW country.900
+		every_country = {
+			limit = { is_ai = no }
+			country_event = { id = country.900 days = 460 random = 60 }
+		}
+
+		### SPAWN INVISIBLE GLOBAL EVENT COUNTRY
+		create_country = {
+			name = "global_event_country"
+			type = global_event
+			effect = {
+				save_global_event_target_as = global_event_country
+			}
+		}
+
+		### MARAUDER FLAGS
+		every_country = {
+			limit = { is_country_type = dormant_marauders }
+			randomize_flag_symbol = "pirate"
+		}
+
+		### MARAUDERS SHOULD NOT ATTACK ENCLAVES OR INDEPENDENT WORLDS
+			
+		every_country = {
+			limit = { 
+				OR = {
+					is_country_type = enclave 
+					is_country_type = independent_colony
+				}
+			}
+			every_country = {
+				limit = { is_country_type = dormant_marauders }
+				set_faction_hostility = {
+					target = prev
+					set_hostile = no
+					set_neutral = no
+					set_friendly = yes
+				}
+			}
+		}
+
+		### SLOW DOWN PRE-FTL EVENTS
+		set_timed_global_flag = {
+			flag = asteroid_sighted_pre_ftl_global
+			years = 10
+		}
+		set_timed_global_flag = {
+			flag = nuclear_war_pre_ftl_global
+			years = 10
+		}
+
+		### ORIGINS
+
+		#TODO: ORIGIN EVENTS
+
+		log = "btr_game_start.1 - Hidden Game Start Event Fired"
+	}
+}
+
+event = {
+	id = btr_game_start.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { exists = capital_scope }
+			capital_scope = {
+				solar_system = {
+					every_system_planet = {
+						if = {
+							limit = { has_modifier = hazardous_weather }
+							remove_modifier = hazardous_weather
+						}
+						if = {
+							limit = { has_modifier = dangerous_wildlife }
+							remove_modifier = dangerous_wildlife
+						}
+						if = {
+							limit = { has_modifier = weak_magnetic_field }
+							remove_modifier = weak_magnetic_field
+						}
+						if = {
+							limit = { has_modifier = strong_magnetic_field }
+							remove_modifier = strong_magnetic_field
+						}
+						if = {
+							limit = { has_modifier = unstable_tectonics }
+							remove_modifier = unstable_tectonics
+						}
+						if = {
+							limit = { has_modifier = tidal_locked }
+							remove_modifier = tidal_locked
+						}
+						if = {
+							limit = { has_modifier = chthonian_planet }
+							remove_modifier = chthonian_planet
+						}
+						if = {
+							limit = { has_modifier = asteroid_impacts }
+							remove_modifier = asteroid_impacts
+						}
+						if = {
+							limit = { has_modifier = extensive_moon_system }
+							remove_modifier = extensive_moon_system
+						}
+						if = {
+							limit = { has_modifier = carbon_world }
+							remove_modifier = carbon_world
+						}
+						if = {
+							limit = { has_modifier = wild_storms }
+							remove_modifier = wild_storms
+						}
+						if = {
+							limit = { has_modifier = low_gravity }
+							remove_modifier = low_gravity
+						}
+						if = {
+							limit = { has_modifier = high_gravity }
+							remove_modifier = high_gravity
+						}
+						#if = {
+						#	limit = { has_modifier = hollow_planet }
+						#	remove_modifier = hollow_planet
+						#}
+						if = {
+							limit = { has_modifier = mineral_rich }
+							remove_modifier = mineral_rich
+						}
+						if = {
+							limit = { has_modifier = ultra_rich }
+							remove_modifier = ultra_rich
+						}
+						if = {
+							limit = { has_modifier = mineral_poor }
+							remove_modifier = mineral_poor
+						}
+						if = {
+							limit = { has_modifier = titanic_life }
+							remove_modifier = titanic_life
+						}
+						if = {
+							limit = { has_modifier = mineral_poor }
+							remove_modifier = mineral_poor
+						}
+						if = {
+							limit = { has_modifier = asteroid_belt }
+							remove_modifier = asteroid_belt
+						}
+						if = {
+							limit = { has_modifier = natural_beauty }
+							remove_modifier = natural_beauty
+						}
+						if = {
+							limit = { has_modifier = atmospheric_aphrodisiac }
+							remove_modifier = atmospheric_aphrodisiac
+						}
+						if = {
+							limit = { has_modifier = atmospheric_hallucinogen }
+							remove_modifier = atmospheric_hallucinogen
+						}
+						if = {
+							limit = { has_modifier = lush_planet }
+							remove_modifier = lush_planet
+						}
+						if = {
+							limit = { has_modifier = bleak_planet }
+							remove_modifier = bleak_planet
+						}
+						if = {
+							limit = { has_modifier = irradiated_planet }
+							remove_modifier = irradiated_planet
+						}
+						if = {
+							limit = { has_modifier = terraforming_candidate }
+							remove_modifier = terraforming_candidate
+						}
+					}
+				}
+			}
+		}
+
+		log = "btr_game_start.2 - Negative Planet Deposits Removed"
+	}
+}
+
+### Hidden Game Start Event that resets tutorial for advisor trigger purposes
+event = {
+	id = btr_game_start.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { is_ai = no }
+			country_event = { id = tutorial.104 }
+		}
+
+		log = "btr_game_start.3 - Advisor Tutorial Reset"
+	}
+}
+
+# Custom Country Check
+country_event = {
+	id = btr_game_start.4
+	title = btr_game_start.4.name
+	desc = btr_game_start.4.desc
+	picture = BTR_GFX_evt_btr_custom
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = btr_empire
+		}
+	}
+
+	immediate = {
+		log = "btr_game_start.4 - Custom Country Check"
+	}
+	option = {
+		name = OK
+	}
+}
+
+# Integrated Mod Installation Check
+event = {
+	id = btr_game_start.5
+	title = btr_game_start.5.name
+	desc = btr_game_start.5.desc
+	picture = BTR_GFX_evt_btr_integrated
+	is_triggered_only = yes
+	trigger = {
+		OR = {
+			has_global_flag = beyond_the_advisors_installed
+			has_global_flag = beyond_the_worlds_installed
+			has_global_flag = has_real_space_mod
+		}
+	}
+
+	immediate = {
+		log = "btr_game_start.5 - Integrated Mod Check"
+	}
+	option = {
+		name = OK
+	}
+}
+
+# Incompatible Mod Installation Check
+event = {
+	id = btr_game_start.6
+	title = btr_game_start.6.name
+	desc = btr_game_start.6.desc
+	picture = BTR_GFX_evt_btr_incompatible
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = planetarydiversity
+	}
+
+	immediate = {
+		log = "btr_game_start.6 - Incompatible Mod Check"
+	}
+
+	option = {
+		name = OK
+	}	
+}
+
+### Pregame Genocide
+event = {
+	id = btr_game_start.7
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_country = {
+			if = {
+				limit = {
+					is_country_type = default
+					is_country_type = neutral_faction
+					is_country_type = rebel
+					is_country_type = enclave
+					is_country_type = tiyanki
+					is_country_type = tiyanki_garrison
+					is_country_type = amoeba
+					is_country_type = amoeba_borderless
+					is_country_type = amoeba_garrison
+					is_country_type = crystal
+					is_country_type = drone
+					NOT = { has_country_flag = btr_empire }
+					is_ai = yes
+				}
+				destroy_country = yes
+				every_owned_pop = {	
+					limit = { 
+						NOT = { 
+							 has_pop_flag = init_spawn 
+						}
+					}
+					kill_pop = yes
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = btr_empire
+				}
+				every_owned_pop = {
+					limit = { NOT = { has_pop_flag = init_spawn } }
+					kill_pop = yes
+				}
+				every_country = {
+					every_owned_planet = {
+						check_planet_employment = yes				
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = geth_consensus
+						has_country_flag = disciples_of_nazara
+					}
+				}
+				every_owned_pop = {
+					change_species = event_target:gethSpecies
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = omega_empire
+				}
+				every_owned_pop = {
+					if = {
+						limit = { 
+							NOR = {
+								is_species_class = ASA
+								is_species_class = TUR
+								is_species_class = SAL
+								is_species_class = HUM
+								is_species_class = ELC
+								is_species_class = VOL
+								is_species_class = HAN
+								is_species_class = BAT
+								is_species_class = KRO
+								is_species_class = QUA
+								is_species_class = DRE
+								is_species_class = VOR
+								is_species_class = LYS
+								is_species_class = GOT
+							}
+						}
+						kill_pop = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = citadel_council
+				}
+				every_owned_pop = {
+					if = {
+						limit = { 
+							NOR = {
+								is_species_class = ASA
+								is_species_class = TUR
+								is_species_class = SAL
+								is_species_class = HUM
+								is_species_class = ELC
+								is_species_class = VOL
+								is_species_class = HAN
+								is_species_class = BAT
+								is_species_class = KRO
+								is_species_class = QUA
+								is_species_class = DRE
+								is_species_class = VOR
+							}
+						}
+						kill_pop = yes
+					}
+				}
+			}
+		}
+
+		log = "btr_game_start.7 - Pregame Genocide Committed"
+	}
+}
+
+### Empire init - add resources, empire modifiers, and technologies
+country_event = {
+	id = btr_game_start.8
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { 
+				is_btr_non_sandbox_map = yes
+			}
+			if = {
+				limit = {
+					has_origin = asari_rep_origin
+				}
+				generate_asari_republic_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = salarian_uni_origin
+				}
+				generate_salarian_union_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = turian_hier_origin
+				}
+				generate_turian_hierarchy_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = systems_all_origin
+				}
+				generate_systems_alliance_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = courts_dek_origin
+				}
+				generate_courts_of_dekuuna_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = vol_pro_origin
+				}
+				generate_vol_protectorate_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = illuminated_pri_origin
+				}
+				generate_illuminated_primacy_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = hegemony_kha_origin
+				}
+				generate_hegemony_of_kharshan_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = aralakh_kah_origin
+				}
+				generate_aralakh_kahmat_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = migrant_fle_origin
+				}
+				generate_migrant_fleet_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = cerberus_emp_origin
+				}
+				generate_cerberus_empire_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = omega_emp_origin
+				}
+				generate_omega_empire_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = illium_cor_origin
+				}
+				generate_illium_corporate_interests_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = caleston_dir_origin
+				}
+				generate_caleston_directorate_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = remnants_rak_origin
+				}
+				generate_remnants_of_rakhana_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_origin = vorcha_cla_origin
+				}
+				generate_vorcha_clandom_starting_setup = yes
+			}	
+			if = {
+				limit = {
+					has_origin = sedriicae_col_origin
+				}
+				generate_sedriicae_collective_starting_setup = yes
+			}	
+			if = {
+				limit = {
+					has_origin = lystheni_ord_origin
+				}
+				generate_lystheni_order_starting_setup = yes
+			}				
+			if = {
+				limit = {
+					has_origin = parnack_reg_origin
+				}
+				generate_parnack_regime_starting_setup = yes
+			}		
+			if = {
+				limit = {
+					has_origin = raloi_rep_origin
+				}
+				generate_raloi_republic_starting_setup = yes
+			}			
+			if = {
+				limit = {
+					has_origin = geth_con_origin
+				}
+				generate_geth_consensus_starting_setup = yes
+			}			
+			if = {
+				limit = {
+					has_origin = disciples_naz_origin
+				}
+				generate_disciples_of_nazara_starting_setup = yes
+			}					
+			if = {
+				limit = {
+					has_origin = rachni_hiv_origin
+				}
+				generate_rachni_hive_starting_setup = yes
+			}	
+			if = {
+				limit = {
+					has_origin = collectors_emp_origin
+				}
+				generate_collectors_empire_starting_setup = yes
+			}	
+			if = {
+				limit = {
+					has_country_flag = btr_independent_colony
+					NOT = {
+						has_country_flag = citadel_council
+					}
+				}
+				generate_independent_world_starting_setup = yes
+			}
+			if = {
+				limit = {
+					has_country_flag = citadel_council
+				}
+				generate_citadel_council_starting_resources = yes
+			}
+		}
+		if = {
+			limit = {
+				is_btr_sandbox_map = yes
+			}
+			generate_sandbox_starting_resources = yes
+		}
+	}
+}
+
+### Empire init - add ships
+country_event = {
+	id = btr_game_start.9
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { 
+				is_btr_non_sandbox_map = yes
+			}
+			every_country = {
+				#science
+				if = {
+					limit = { 
+						OR = {
+							is_btr_major_empire = no					
+							is_btr_standard_empire = no
+							is_low_tech_start = no
+						}
+					}
+					create_fleet = {
+						effect = {
+							set_owner = prev
+
+							create_ship = {
+								name = random
+								random_existing_design = science
+							}
+
+							set_fleet_stance = evasive
+							#set_location = prev.capital_star
+							set_location = prev.capital_scope.star
+
+							owner = {
+								create_leader = {
+									class = scientist
+									sub_type = survey
+									name = random
+									species = owner_main_species
+								}
+							}
+							set_leader = last_created_leader
+						}
+					}
+				}
+				if = {
+					limit = { 
+						is_btr_standard_empire = yes
+					}
+
+					while = {
+						count = 2
+						create_fleet = {
+							effect = {
+								set_owner = prev
+			
+								create_ship = {
+									name = random
+									random_existing_design = science
+								}
+			
+								set_fleet_stance = evasive
+								#set_location = prev.capital_star
+								set_location = prev.capital_scope.star
+			
+								owner = {
+									create_leader = {
+										class = scientist
+										sub_type = survey
+										name = random
+										species = owner_main_species
+									}
+								}
+								set_leader = last_created_leader
+							}
+						}
+					}
+				}
+				if = {
+					limit = { 
+						OR = {
+							is_btr_major_empire = yes
+						}
+					}
+
+					while = {
+						count = 3
+						create_fleet = {
+							effect = {
+								set_owner = prev
+			
+								create_ship = {
+									name = random
+									random_existing_design = science
+								}
+			
+								set_fleet_stance = evasive
+								#set_location = prev.capital_star
+								set_location = prev.capital_scope.star
+			
+								owner = {
+									create_leader = {
+										class = scientist
+										sub_type = survey
+										name = random
+										species = owner_main_species
+									}
+								}
+								set_leader = last_created_leader
+							}
+						}
+					}
+				}
+				#Asari Republics
+				if = {
+					limit = { 
+						has_country_flag = asari_republics						
+					}
+					generate_asari_rep_construction_ships = yes
+					generate_asari_rep_second_fleet = yes
+					generate_asari_rep_third_fleet = yes
+					generate_asari_rep_fourth_fleet = yes
+					generate_asari_rep_sixth_fleet = yes
+
+					log = "Asari Republics Starting Fleets Established"
+				}
+				#Salarian Union
+				if = {
+					limit = { 
+						has_country_flag = salarian_union					
+					}
+					generate_salarian_uni_first_fleet = yes
+					generate_salarian_uni_second_fleet = yes
+					generate_salarian_uni_third_fleet = yes
+					generate_salarian_uni_construction_ships = yes
+
+					log = "Salarian Union Starting Fleets Established"
+				}
+				#Turian Hierarchy
+				if = {
+					limit = { 
+						has_country_flag = turian_hierarchy						
+					}
+					generate_turian_hier_fourth_fleet = yes
+					generate_turian_hier_fifth_fleet = yes
+					generate_turian_hier_sixth_fleet = yes
+					generate_turian_hier_construction_ships = yes
+
+					log = "Turian Hierarchy Starting Fleets Established"
+				}
+				#Systems Alliance
+				if = {
+					limit = { 
+						has_country_flag = systems_alliance
+					}
+					generate_systems_all_third_fleet = yes
+					generate_systems_all_fourth_fleet = yes
+					generate_systems_all_construction_ships = yes
+
+					log = "Systems Alliance Starting Fleets Established"
+				}
+				#Courts of Dekuuna
+				if = {
+					limit = { 
+						has_country_flag = courts_of_dekuuna
+					}
+					generate_courts_dek_first_fleet = yes
+					generate_courts_dek_construction_ships = yes
+
+					log = "Courts of Dekuuna Starting Fleets Established"
+				}
+				#Illuminated Primacy
+				if = {
+					limit = { 
+						has_country_flag = illuminated_primacy
+					}
+					generate_illuminated_pri_first_fleet = yes
+					generate_illuminated_pri_construction_ships = yes
+
+					log = "Illuminated Primacy Starting Fleets Established"
+				}
+				#Vol Protectorate
+				if = {
+					limit = { 
+						has_country_flag = vol_protectorate
+					}
+					generate_vol_pro_first_fleet = yes
+					generate_vol_pro_construction_ships = yes
+
+					log = "Vol Protectorate Starting Fleets Established"
+				}
+				#Hegemony of Khar'shan
+				if = {
+					limit = { 
+						has_country_flag = hegemony_of_kharshan
+					}
+					generate_hegemony_khar_second_fleet = yes
+					generate_hegemony_khar_third_fleet = yes
+					generate_hegemony_khar_construction_ships = yes
+
+					log = "Hegemony of Khar'shan Starting Fleets Established"
+				}
+				#Aralakh Kahmat
+				if = {
+					limit = { 
+						has_country_flag = aralakh_kahmat
+					}
+					generate_aralakh_kah_third_fleet = yes
+					generate_aralakh_kah_construction_ships = yes
+
+					log = "Aralakh Kahmat Starting Fleets Established"
+				}
+				#Omega
+				if = {
+					limit = { 
+						has_country_flag = omega_empire
+					}
+					generate_omega_first_fleet = yes
+					generate_omega_second_fleet = yes
+					generate_omega_construction_ships = yes
+
+					log = "Omega Starting Fleets Established"
+				}
+				#Illium Corporate Interests
+				if = {
+					limit = { 
+						has_country_flag = illium_corporate_interests
+					}
+					generate_illium_corpsec_fleet = yes
+					generate_illium_construction_ships = yes
+
+					log = "Illium Corporate Interests Starting Fleets Established"
+				}
+				#Caleston Directorate
+				if = {
+					limit = { 
+						has_country_flag = caleston_directorate
+					}
+					generate_caleston_corpsec_fleet = yes
+					generate_caleston_construction_ships = yes
+
+					log = "Caleston Directorate Starting Fleets Established"
+				}
+				#Sed'riicae Collective		
+				if = {
+					limit = { 
+						has_country_flag = sedriicae_collective
+					}
+					generate_sedriicae_col_first_fleet = yes
+					generate_sedriicae_col_construction_ships = yes
+
+					log = "Sed'riicae Collective Starting Fleets Established"
+				}
+				#Lystheni Order
+				if = {
+					limit = { 
+						has_country_flag = lystheni_order
+					}
+					generate_sedriicae_col_first_fleet = yes
+					generate_sedriicae_col_construction_ships = yes
+
+					log = "Lystheni Order Starting Fleets Established"
+				}
+				#Gothones Remnant
+				if = {
+					limit = { 
+						has_country_flag = gothones_remnant
+					}
+					generate_gothones_rem_first_fleet = yes
+					generate_gothones_rem_construction_ships = yes
+
+					log = "Gothones Remnant Starting Fleets Established"
+				}
+				#Rachni Hive
+				if = {
+					limit = { 
+						has_country_flag = rachni_hive
+					}
+					generate_rachni_hiv_fleet = yes
+
+					log = "Rachni Hive Starting Fleets Established"
+				}			
+				#Geth Consensus
+				if = {
+					limit = { 
+						has_country_flag = geth_consensus
+					}
+					generate_geth_con_first_fleet = yes
+					generate_geth_con_construction_ships = yes
+
+					log = "Geth Consensus Starting Fleets Established"
+				}
+				#Disciples of Nazara
+				if = {
+					limit = { 
+						has_country_flag = disciples_of_nazara
+					}
+					generate_disciples_naz_first_fleet = yes
+					generate_disciples_naz_construction_ships = yes
+
+					log = "Disciples of Nazara Starting Fleets Established"
+				}
+				#Citadel Council
+				if = {
+					limit = { 
+						has_country_flag = citadel_council
+					}
+					generate_citadel_con_first_fleet = yes
+					generate_citadel_con_second_fleet = yes
+					generate_citadel_con_third_fleet = yes
+					generate_citadel_con_construction_ships = yes
+
+					log = "Citadel Council Starting Fleets Established"
+				}
+			
+				else_if = {
+					limit = {
+						NOT = {
+							has_origin = origin_broken_shackles
+							# Assigned in origin.110 instead
+						}
+					}
+					create_leader = {
+						class = admiral
+						name = random
+						species = owner_main_species
+					}
+				}
+			}
+
+
+			if = {
+				limit = { 
+					NOR = {
+						galaxy_size = btr_sandbox_600
+						galaxy_size = btr_sandbox_1300
+						galaxy_size = btr_sandbox_1500
+					}
+				}
+				every_system = {
+					limit = {
+						NOR = {
+							has_star_flag = tartarus_debris_field
+							has_star_flag = mu_system
+							has_star_flag = migrant_fleet_system
+							has_star_flag = refuge_system
+						}
+					}
+					root = { set_visited = prev }
+				}
+			}
+		}
+		if = {
+			limit = { 
+				is_btr_sandbox_map = yes
+			}
+			generate_sandbox_starting_fleet = yes
+		}
+	}
+}
+
+# Create Starbases
+event = {
+	id = btr_game_start.10
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		log = "btr_game_start.10 - Started"
+		generate_asari_republics_territory = yes
+		log = "Asari Republics Territory Spawned"
+		generate_salarian_union_territory = yes
+		log = "Salarian Union Territory Established"
+		generate_turian_hierarchy_territory = yes
+		log = "Turian Hierarchy Territory Established"
+		generate_systems_alliance_territory = yes
+		log = "Systems Alliance Territory Established"
+		generate_courts_of_dekuuna_territory = yes
+		log = "Courts of Dekuuna Territory Established"
+		generate_vol_protectorate_territory = yes
+		log = "Vol Protectorate Territory Established"
+		generate_illuminated_primacy_territory = yes
+		log = "Illuminated Primacy Territory Established"
+		generate_hegemony_of_kharshan_territory = yes
+		log = "Hegemony of Khar'shan Territory Established"
+		generate_aralakh_kahmat_territory = yes
+		log = "Aralakh Kahmat Territory Established"
+		generate_omega_empire_territory = yes
+		log = "Omega Territory Established"
+		generate_illium_corporate_interests_territory = yes
+		log = "Illium Corporate Interests Territory Established"
+		generate_caleston_directorate_territory = yes
+		log = "Caleston Directorate Territory Established"
+		generate_remnants_of_rakhana_territory = yes
+		log = "Remnants of Rakhana Territory Established"
+		generate_vorcha_clandom_territory = yes
+		log = "Vorcha Clandom Territory Established"
+		generate_sedriiace_collective_territory = yes
+		log = "Sed'riicae Collective Territory Established"
+		generate_lystheni_order_territory = yes
+		log = "Lystheni Order Territory Established"
+		generate_gothones_remnant_territory = yes
+		log = "Gothones Remnant Territory Established"
+		generate_geth_consensus_territory = yes
+		log = "Geth Consensus Territory Established"
+		generate_disciples_of_nazara_territory = yes
+		log = "Disciples of Nazara Territory Established"
+		generate_rachni_hive_territory = yes
+		log = "Rachni Hive Territory Established"
+		generate_citadel_council_territory = yes	
+		log = "Citadel Council Territory Established"
+
+		log = "btr_game_start.10 - Completed"
+	}
+}
+
+
+# this: capital planet
+# from: founder species
+planet_event = {
+	id = btr_game_start.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		log = "btr_game_start.11 - Started"
+
+		generate_btr_start_deposits_and_blockers = yes
+		generate_btr_start_buildings_and_districts = yes
+		#generate_home_planet_final_pass = yes
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = asari_republics_colonies_created
+				}
+			}
+			generate_asari_republics_colonies = yes
+			log = "Asari Republics Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = salarian_union_colonies_created
+				}
+			}
+			generate_salarian_union_colonies = yes
+			log = "Salarian Union Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = turian_hierarchy_colonies_created
+				}
+			}
+			generate_turian_hierarchy_colonies = yes
+			log = "Turian Hierarchy Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = systems_alliance_colonies_created
+				}
+			}
+			generate_systems_alliance_colonies = yes
+			log = "Systems Alliance Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = courts_of_dekuuna_colonies_created
+				}
+			}
+			generate_courts_of_dekuuna_colonies = yes
+			log = "Courts of Dekuuna Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = vol_protectorate_colonies_created
+				}
+			}
+			generate_vol_protectorate_colonies = yes
+			log = "Vol Protectorate Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = illuminated_primacy_colonies_created
+				}
+			}
+			generate_illuminated_primacy_colonies = yes
+			log = "Illuminated Primacy Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = hegemony_of_kharshan_colonies_created
+				}
+			}
+			generate_hegemony_of_kharshan_colonies = yes
+			log = "Hegemony of Khar'shan Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = sedriicae_collective_colonies_created
+				}
+			}
+			generate_sedriicae_collective_colonies = yes
+			log = "Sed'riicae Collective Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = geth_consensus_colonies_created
+				}
+			}
+			generate_geth_consensus_colonies = yes
+			log = "Geth Consensus Colonies Spawned"
+		}
+		if = {
+			limit = { 
+				NOT = {
+					has_global_flag = disciples_of_nazara_colonies_created
+				}
+			}
+			generate_disciples_of_nazara_colonies = yes
+			log = "Disciples of Nazara Colonies Spawned"
+		}
+		log = "btr_game_start.11 - Completed"
+	}
+}
+
+# Add Pops to colonies
+country_event = {
+	id = btr_game_start.13
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_owned_planet = {
+			if = {
+				limit = { 
+					has_planet_flag = civil_station
+				}
+				hidden_effect = {
+					if = {
+						limit = {
+							exists = owner
+							owner = {
+								is_megacorp = yes
+								is_spiritualist = no
+							}
+						}
+						custom_tooltip = district_corporate_complex_add
+					}
+				}
+				custom_tooltip = district_commercial_wards_add
+				hidden_effect = {
+					if = {
+						limit = {
+							exists = owner
+							owner = {
+								has_origin = origin_necrophage
+								has_trait = trait_necrophage
+								NOT = { has_valid_civic = civic_fanatic_purifiers }
+							}
+						}
+						custom_tooltip = district_elevation_center_add
+					}
+					if = {
+						limit = {
+							NOR = {
+								is_planet_class = pc_asteroid_station
+								is_planet_class = pc_ice_asteroid_station
+								is_planet_class = pc_crystal_asteroid_station
+							}
+						}
+						custom_tooltip = district_storage_yards_add
+					}
+					else = {
+						custom_tooltip = district_docking_bay_add
+					}
+					if = {
+						limit = { has_deposit = d_trading_route }
+						custom_tooltip = district_free_port_add
+					}
+					
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = civil_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = research_station
+				}
+				hidden_effect = {
+					if = {
+						limit = { has_deposit = d_mineral_lodes }
+						custom_tooltip = district_mining_complex_add
+					}
+					if = {
+						limit = { has_deposit = d_ore_rich_rings }
+						custom_tooltip = district_ore_processing_complex_add
+					}
+					if = {
+						limit = { has_deposit = d_rich_regolith_formations }
+						custom_tooltip = district_helium_extractor_add
+					}
+					if = {
+						limit = { has_deposit = d_helium_clouds }
+						custom_tooltip = district_helium_mining_facility_add
+					}
+					# if = {
+					# 	limit = { 
+					# 		owner = { has_technology = tech_mine_volatile_motes }
+					# 		has_deposit = d_dust_cavities
+					# 	}
+					# 	custom_tooltip = district_mote_mine_add
+					# }
+					if = {
+						limit = { 
+							owner = { has_technology = tech_mine_exotic_gases }
+							has_deposit = d_exotic_gases_vent
+						}
+						custom_tooltip = district_gas_refinery_add
+					}
+					# if = {
+					# 	limit = { 
+					# 		owner = { has_technology = tech_mine_rare_crystals }
+					# 		has_deposit = d_crystal_cavities
+					# 	}
+					# 	custom_tooltip = district_crystal_mining_add
+					# }
+					# if = {
+					# 	limit = { 
+					# 		owner = { has_technology = tech_mine_zro }
+					# 		has_deposit = d_zro_source
+					# 	}
+					# 	custom_tooltip = district_zro_harvesting_add
+					# }
+		
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = mining_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = military_station
+				}
+				custom_tooltip = district_barracks_add
+				custom_tooltip = district_fortified_bunkers_add
+				hidden_effect = {
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = military_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}	
+			}
+			if = {
+				limit = { 
+					has_planet_flag = prison_station
+				}
+				hidden_effect = {
+					custom_tooltip = decision_prison_station_effect_desc
+					if = {
+						limit = { owner = { is_authoritarian = yes } }
+						custom_tooltip = add_political_persecution
+					}
+					if = {
+						limit = { owner = { is_spiritualist = yes } }
+						custom_tooltip = add_hunting_heretics
+					}
+					custom_tooltip = add_detention_operation
+					
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = prison_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+			if = {
+				limit = { 
+					has_planet_flag = industrial_station
+				}
+				custom_tooltip = district_foundry_plant_add
+				hidden_effect = {
+					if = {
+						limit = { 
+							owner = {
+								country_uses_consumer_goods = yes
+							}
+						}
+						custom_tooltip = district_manufacturing_complex_add
+					}
+					if = {
+						limit = { 
+							owner = {
+								OR = {
+									AND = {
+										is_regular_empire = yes
+										NOT = { has_policy_flag = robots_outlawed }
+										has_technology = tech_robotic_workers
+									}
+									is_machine_empire = yes
+								}
+							}
+						}
+						custom_tooltip = district_assembly_factory_add
+					}
+					if = {
+						limit = { 
+							owner = { has_technology = tech_mine_living_metal }
+							has_deposit = d_living_metal_deposit
+						}
+						custom_tooltip = district_living_metal_processing_add
+					}
+					
+					if = {
+						limit = {
+							NOR = {
+								has_planet_flag = energy_station
+								has_planet_flag = mining_station
+								has_planet_flag = research_station
+								has_planet_flag = civil_station
+								has_planet_flag = industrial_station
+								has_planet_flag = military_station
+								has_planet_flag = cultural_station
+								has_planet_flag = prison_station
+								#has_planet_flag = cracking_station
+							}
+						}
+						set_planet_flag = industrial_station
+						validate_planet_buildings_and_districts = yes
+					}
+				}
+			}
+		}
+
+		log = "btr_game_start.11 - Generate Planetary Station Districts"
+	}
+}	
+
+# ### Empire init - populate home system
+# country_event = {
+# 	id = game_start.33
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	trigger = {
+# 		is_country_type = default
+# 	}
+
+# 	immediate = {
+# 		if = {
+# 			limit = { #Make sure you are unlikely to be boxed in completely
+# 				OR = {
+# 					has_origin = origin_hegemon
+# 					has_origin = origin_common_ground
+# 				}
+# 				capital_scope = {
+# 					solar_system = {
+# 						NOT = {
+# 							any_neighbor_system = {
+# 								NOT = { exists = owner }
+# 							}
+# 						}
+# 					}
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					any_system = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 1
+# 							max_distance <= 15
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 				}
+# 				random_system = {
+# 					limit = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 1
+# 							max_distance <= 15
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 					save_event_target_as = hyperlane_system
+# 					add_hyperlane = {
+# 						from = this
+# 						to = root.capital_scope.solar_system
+# 					}
+# 				}
+# 			}
+# 			else_if = {
+# 				limit = {
+# 					any_system = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 15
+# 							max_distance <= 20
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 				}
+# 				random_system = {
+# 					limit = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 15
+# 							max_distance <= 20
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 					save_event_target_as = hyperlane_system
+# 					add_hyperlane = {
+# 						from = this
+# 						to = root.capital_scope.solar_system
+# 					}
+# 				}
+# 			}
+# 			else_if = {
+# 				limit = {
+# 					any_system = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 20
+# 							max_distance <= 25
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 				}
+# 				random_system = {
+# 					limit = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 20
+# 							max_distance <= 25
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 					save_event_target_as = hyperlane_system
+# 					add_hyperlane = {
+# 						from = this
+# 						to = root.capital_scope.solar_system
+# 					}
+# 				}
+# 			}
+# 			else_if = {
+# 				limit = {
+# 					any_system = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 25
+# 							max_distance <= 40
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 				}
+# 				random_system = {
+# 					limit = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 25
+# 							max_distance <= 40
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 					save_event_target_as = hyperlane_system
+# 					add_hyperlane = {
+# 						from = this
+# 						to = root.capital_scope.solar_system
+# 					}
+# 				}
+# 			}
+# 			else_if = {
+# 				limit = {
+# 					any_system = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 40
+# 							max_distance <= 60
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 				}
+# 				random_system = {
+# 					limit = {
+# 						distance = {
+# 							source = root.capital_scope.solar_system
+# 							type = euclidean
+# 							min_distance >= 40
+# 							max_distance <= 60
+# 						}
+# 						NOT = { has_hyperlane_to = root.capital_scope.solar_system }
+# 						NOT = { exists = owner }
+# 					}
+# 					save_event_target_as = hyperlane_system
+# 					add_hyperlane = {
+# 						from = this
+# 						to = root.capital_scope.solar_system
+# 					}
+# 				}
+# 			}
+# 			if = {
+# 				limit = {
+# 					exists = event_target:hyperlane_system
+# 					event_target:hyperlane_system = {
+# 						NOT = {
+# 							any_neighbor_system = {
+# 								NOT = { exists = owner }
+# 							}
+# 						}
+# 					}
+# 				}
+# 				event_target:hyperlane_system = {
+# 					random_system = {
+# 						limit = {
+# 							distance = {
+# 								source = prev
+# 								type = euclidean
+# 								min_distance >= 1
+# 								max_distance <= 25
+# 							}
+# 							NOT = { has_hyperlane_to = prev }
+# 							NOT = { exists = owner }
+# 						}
+# 						add_hyperlane = {
+# 							from = this
+# 							to = prev
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+# 		if = {
+# 			limit = {
+# 				has_origin = origin_default
+# 				NOT = { has_technology = tech_planetary_unification }
+# 			}
+# 			add_research_option = tech_planetary_unification
+# 		}
+# 		if = {
+# 			every_planet_within_border = {
+# 				limit = {
+# 					has_deposit_for = shipclass_mining_station
+# 					has_planet_flag = starting_mining_target
+# 					has_mining_station = no
+# 					root = {
+# 						is_low_tech_start = no
+# 					}
+# 				}
+# 				create_mining_station = {
+# 					owner = ROOT
+# 				}
+# 			}
+# 			every_planet_within_border = {
+# 				limit = {
+# 					has_deposit_for = shipclass_research_station
+# 					has_planet_flag = starting_research_target
+# 					has_research_station = no
+# 					root = {
+# 						is_low_tech_start = no
+# 					}
+# 				}
+# 				create_research_station = {
+# 					owner = ROOT
+# 				}
+# 			}
+# 		}
+
+# 		if = {
+# 			limit = {
+# 				has_origin = origin_necrophage
+# 				NOT = { has_civic = civic_fanatic_purifiers }
+# 				NOT = { has_ai_personality_behaviour = purger }
+# 			}
+# 			country_event = { id = necroids.2 days = 3420 } #tell them about the necrophage mechanic
+# 		}
+# 		if = {
+# 			limit = {
+# 				has_origin = origin_necrophage
+# 				is_ai = yes
+# 			}
+# 			country_event = { id = necroids.6 days = 1800 }
+# 			country_event = { id = necroids.6 days = 3600 }
+# 			country_event = { id = necroids.6 days = 5400 }
+# 			country_event = { id = necroids.6 days = 7200 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				has_origin = origin_necrophage
+# 				OR = {
+# 					has_country_flag = necrophage_commonwealth
+# 					has_country_flag = necrophage_une
+# 				}
+# 			}
+# 			random_country = {
+# 				limit = {
+# 					OR = {
+# 						AND = {
+# 							has_country_flag = human_1
+# 							prev = { has_country_flag = necrophage_commonwealth }
+# 						}
+# 						AND = {
+# 							has_country_flag = human_2
+# 							prev = { has_country_flag = necrophage_une }
+# 						}
+# 					}
+# 				}
+# 				random_owned_pop = {
+# 					limit = {
+# 						NOT = { is_same_species = prev }
+# 					}
+# 					species = { save_event_target_as = correct_prepatent_species }
+# 				}
+# 			}
+# 			every_owned_pop = {
+# 				limit = {
+# 					NOT = { is_same_species = owner_species }
+# 				}
+# 				planet = {
+# 					create_pop = {
+# 						species = event_target:correct_prepatent_species
+# 					}
+# 				}
+# 				kill_pop = yes
+# 			}
+# 			remove_country_flag = necrophage_une
+# 			remove_country_flag = necrophage_commonwealth
+# 		}
+# 		if = {
+# 			limit = {
+# 				has_origin = origin_slavers
+# 			}
+# 			capital_scope = { generate_slaver_bonus = yes }
+# 		}
+# 		if = {
+# 			limit = {
+# 				has_valid_civic = civic_hive_stargazers
+# 			}
+# 			every_system = {
+# 				limit = {
+# 					distance = {
+# 						source = root.capital_scope
+# 						use_bypasses = no
+# 						max_jumps = 3
+# 					}
+# 				}
+# 				root = { set_visited = prev }
+# 			}
+# 		}
+# 	}
+# }
+
+# ### Nebula System Art
+# event = {
+# 	id = game_start.50
+# 	hide_window = yes
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		every_system = {
+# 			limit = { is_inside_nebula = yes }
+# 			nebula_cloaking_effect = yes
+# 			# Class B
+# 			if = {
+# 				limit = {
+# 					OR = {
+# 						is_star_class = sc_b
+# 						is_star_class = sc_binary_2
+# 						is_star_class = sc_binary_5
+# 						is_star_class = sc_trinary_2
+# 						is_star_class = sc_trinary_4
+# 					}
+# 				}
+# 				random_list = {
+# 					20 = { create_nebula_3 = yes }
+# 					20 = { create_nebula_4 = yes }
+# 					10 = { create_rare_nebula_1 = yes }
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_1 = yes
+# 					}
+# 				}
+# 			}
+# 			# Class A
+# 			else_if = {
+# 				limit = {
+# 					OR = {
+# 						is_star_class = sc_a
+# 						is_star_class = sc_binary_1
+# 						is_star_class = sc_binary_9
+# 						is_star_class = sc_binary_10
+# 					}
+# 				}
+# 				if = {
+# 					limit = { has_star_flag = ocean_paradise_nebula }
+# 					create_rare_nebula_1 = yes
+# 				}
+# 				else = {
+# 					random_list = {
+# 						20 = { create_nebula_3 = yes }
+# 						20 = { create_nebula_4 = yes }
+# 						10 = { create_rare_nebula_1 = yes }
+# 						10 = { create_rare_nebula_2 = yes }
+# 						4 = {
+# 							modifier = {
+# 								factor = 0
+# 								has_star_flag = empire_home_system
+# 							}
+# 							create_turbulent_nebula_1 = yes
+# 						}
+# 						4 = {
+# 							modifier = {
+# 								factor = 0
+# 								has_star_flag = empire_home_system
+# 							}
+# 							create_turbulent_nebula_2 = yes
+# 						}
+# 					}
+# 				}
+# 			}
+# 			# Class F
+# 			else_if = {
+# 				limit = { is_star_class = sc_f }
+# 				random_list = {
+# 					20 = { create_nebula_3 = yes }
+# 					20 = { create_nebula_4 = yes }
+# 					10 = { create_rare_nebula_1 = yes }
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_1 = yes
+# 					}
+# 				}
+# 			}
+# 			# Class G
+# 			else_if = {
+# 				limit = {
+# 					OR = {
+# 						is_star_class = sc_g
+# 						is_star_class = sc_binary_8
+# 						is_star_class = sc_trinary_1
+# 					}
+# 				}
+# 				random_list = {
+# 					20 = { create_nebula_1 = yes }
+# 					10 = { create_rare_nebula_2 = yes }
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_2 = yes
+# 					}
+# 				}
+# 			}
+# 			# Class K
+# 			else_if = {
+# 				limit = {
+# 					OR = {
+# 						is_star_class = sc_k
+# 						is_star_class = sc_binary_7
+# 						is_star_class = sc_trinary_3
+# 					}
+# 				}
+# 				random_list = {
+# 					20 = { create_nebula_1 = yes }
+# 					20 = { create_nebula_2 = yes }
+# 					10 = { create_rare_nebula_2 = yes }
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_2 = yes
+# 					}
+# 				}
+# 			}
+# 			# Class M
+# 			else_if = {
+# 				limit = {
+# 					OR = {
+# 						is_star_class = sc_m
+# 						is_star_class = sc_m_giant
+# 						is_star_class = sc_binary_3
+# 						is_star_class = sc_binary_4
+# 						is_star_class = sc_binary_6
+# 					}
+# 				}
+# 				random_list = {
+# 					20 = { create_nebula_1 = yes }
+# 					20 = { create_nebula_2 = yes }
+# 					10 = { create_rare_nebula_2 = yes }
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_2 = yes
+# 					}
+# 				}
+# 			}
+# 			# Class T
+# 			else_if = {
+# 				limit = { is_star_class = sc_t }
+# 				random_list = {
+# 					20 = { create_nebula_3 = yes }
+# 					10 = { create_rare_nebula_1 = yes }
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_1 = yes
+# 					}
+# 				}
+# 			}
+# 			# Black Hole
+# 			else_if = {
+# 				limit = { is_star_class = sc_black_hole }
+# 				random_list = {
+# 					20 = { create_nebula_1 = yes }
+# 					20 = { create_nebula_2 = yes }
+# 					20 = { create_nebula_3 = yes }
+# 					20 = { create_nebula_4 = yes }
+# 					10 = { create_rare_nebula_1 = yes }
+# 					10 = { create_rare_nebula_2 = yes }
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_1 = yes
+# 					}
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_2 = yes
+# 					}
+# 				}
+# 			}
+# 			# Neutron Star
+# 			else_if = {
+# 				limit = { is_star_class = sc_neutron_star }
+# 				random_list = {
+# 					20 = { create_nebula_3 = yes }
+# 					20 = { create_nebula_4 = yes }
+# 					10 = { create_rare_nebula_1 = yes }
+# 					10 = { create_rare_nebula_2 = yes }
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_1 = yes
+# 					}
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_2 = yes
+# 					}
+# 				}
+# 			}
+# 			# Pulsar
+# 			else_if = {
+# 				limit = { is_star_class = sc_pulsar }
+# 				random_list = {
+# 					20 = { create_nebula_3 = yes }
+# 					20 = { create_nebula_4 = yes }
+# 					10 = { create_rare_nebula_1 = yes }
+# 					10 = { create_rare_nebula_2 = yes }
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_1 = yes
+# 					}
+# 					4 = {
+# 						modifier = {
+# 							factor = 0
+# 							has_star_flag = empire_home_system
+# 						}
+# 						create_turbulent_nebula_2 = yes
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+# country_event = {
+# 	id = game_start.60
+# 	hide_window = yes
+# 	trigger = {
+# 		is_country_type = default
+# 		#selectable = { host_has_dlc = "Galactic Paragons" }
+# 	}
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		set_variable = {
+# 			which = paragon_chance_negative
+# 			value = 0
+# 		}
+
+# 		# Give Empire the starting Council Agenda, and progress it to about 1-2 years from finishing.
+# 		if = {
+# 			limit = { is_gestalt = yes }
+# 			set_council_agenda = agenda_infinite_opportunities_gestalt
+# 		}
+# 		else = {
+# 			set_council_agenda = agenda_infinite_opportunities
+
+# 			# Prefer a Scientist as Head of Research (otherwise picks your Home planet Governor).
+# 			random_owned_leader = {
+# 				limit = {
+# 					leader_class = scientist
+# 					is_ruler = no
+# 				}
+# 				set_council_position = councilor_research
+# 			}
+# 		}
+# 		add_council_agenda_progress = 6000
+# 	}
+# }
+
+# # Create Gestalt Council.
+# country_event = {
+# 	id = game_start.61
+# 	hide_window = yes
+# 	trigger = {
+# 		OR = {
+# 			is_country_type = default
+# 			is_country_type = fallen_empire
+# 		}
+# 		is_gestalt = yes
+# 	}
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		country_create_gestalt_councilor = {
+# 			CLASS = governor
+# 			COUNCIL_POS = councilor_gestalt_governor
+# 			DESC = councilor_gestalt_governor_desc
+# 		}
+# 		country_create_gestalt_councilor = {
+# 			CLASS = scientist
+# 			COUNCIL_POS = councilor_gestalt_scientist
+# 			DESC = councilor_gestalt_scientist_desc
+# 		}
+# 		country_create_gestalt_councilor = {
+# 			CLASS = admiral
+# 			COUNCIL_POS = councilor_gestalt_admiral
+# 			DESC = councilor_gestalt_admiral_desc
+# 		}
+# 		country_create_gestalt_councilor = {
+# 			CLASS = general
+# 			COUNCIL_POS = councilor_gestalt_general
+# 			DESC = councilor_gestalt_general_desc
+# 		}
+# 		if = {
+# 			limit = {
+# 				is_country_type = fallen_empire
+# 			}
+# 			every_owned_leader = {
+# 				limit = {
+# 					is_councilor = yes
+# 					is_ruler = no
+# 				}
+# 				add_skill = 9
+# 				set_gestalt_node_protrait_effect = yes
+# 			}
+# 		}
+# 	}
+# }
+
+# #Place Memory Vault building if you have the civic at game start
+# country_event = {
+# 	id = game_start.62
+# 	hide_window = yes
+# 	trigger = {
+# 		is_country_type = default
+# 		is_memory_vault_empire = yes
+# 		NOR = {
+# 			has_origin = origin_broken_shackles
+# 			has_origin = origin_payback
+# 			has_origin = origin_void_dwellers
+# 		}
+# 	}
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		capital_scope = {
+# 			set_variable = {
+# 				which = paragon_memory_vault
+# 				value = 0
+# 			}
+# 			add_building = building_paragon_memory_vaults
+# 		}
+# 	}
+# }
+
+# # Change Ethic of first Ruler to empire's fanatic ethic.
+# # More likely they would've been elected, and easier to re-elect them.
+# country_event = {
+# 	id = game_start.63
+# 	hide_window = yes
+# 	trigger = {
+# 		is_country_type = default
+# 		is_gestalt = no
+# 	}
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		switch = {
+# 			trigger = has_ethic
+# 			ethic_fanatic_pacifist = {
+# 				ruler = { change_background_ethic = ethic_pacifist }
+# 			}
+# 			ethic_fanatic_militarist = {
+# 				ruler = { change_background_ethic = ethic_militarist }
+# 			}
+# 			ethic_fanatic_xenophile = {
+# 				ruler = { change_background_ethic = ethic_xenophile }
+# 			}
+# 			ethic_fanatic_xenophobe = {
+# 				ruler = { change_background_ethic = ethic_xenophobe }
+# 			}
+# 			ethic_fanatic_egalitarian = {
+# 				ruler = { change_background_ethic = ethic_egalitarian }
+# 			}
+# 			ethic_fanatic_authoritarian = {
+# 				ruler = { change_background_ethic = ethic_authoritarian }
+# 			}
+# 			ethic_fanatic_spiritualist = {
+# 				ruler = { change_background_ethic = ethic_spiritualist }
+# 			}
+# 			ethic_fanatic_materialist = {
+# 				ruler = { change_background_ethic = ethic_materialist }
+# 			}
+# 		}
+# 	}
+# }
+
+# #Place Clinic building if you have the Pharma civic at game start
+# country_event = {
+# 	id = game_start.64
+# 	hide_window = yes
+# 	trigger = {
+# 		exists = owner
+# 		has_civic = civic_private_healthcare_corporate
+# 		is_country_type = default
+# 		NOR = {
+# 			has_origin = origin_broken_shackles
+# 			has_origin = origin_payback
+# 			has_origin = origin_void_dwellers
+# 		}
+# 	}
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		capital_scope = { add_building = building_clinic }
+# 		give_technology = { message = no tech = tech_frontier_health }
+# 		add_research_option = tech_subdermal_stimulation
+# 	}
+# }
+
+# #Place additional cop building, if you have Dystopian Society
+# country_event = {
+# 	id = game_start.65
+# 	hide_window = yes
+# 	trigger = {
+# 		exists = owner
+# 		has_civic = civic_dystopian_society
+# 		is_country_type = default
+# 		NOR = {
+# 			has_origin = origin_broken_shackles
+# 			has_origin = origin_payback
+# 			has_origin = origin_void_dwellers
+# 		}
+# 	}
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		capital_scope = { add_building = building_precinct_house }
+# 	}
+# }
+
+# #Xenolinguistic tech for some Origins
+# country_event = {
+# 	id = game_start.66
+# 	hide_window = yes
+# 	trigger = {
+# 		has_paragon_dlc = yes
+# 		exists = owner
+# 		is_country_type = default
+# 		OR = {
+# 			has_origin = origin_broken_shackles
+# 			has_origin = origin_payback
+# 			has_origin = origin_scion
+# 			has_origin = origin_common_ground
+# 			has_origin = origin_hegemon
+# 			has_origin = origin_imperial_vassal
+# 		}
+# 	}
+
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		add_research_option = tech_xeno_linguistics
+# 		add_tech_progress = {
+# 			tech = tech_xeno_linguistics
+# 			progress = 0.50
+# 		}
+# 	}
+# }

@@ -1,0 +1,150 @@
+on_game_start = {
+	events = {
+		btr_map_start.1 # Set Global Flag 'has_beyond_the_relays'
+		btr_game_start.1 # Spawn special/hidden countries
+		btr_game_start.2 # removes random planet modifiers from homeworlds and spawns #terraforming candidates
+		btr_game_start.3 # Hidden Game Start Event that resets tutorial for advisor trigger purposes
+		btr_map_start.102 # Create Real Space Nebula
+		btr_map_start.103 # Create New Star Space
+		btr_map_start.105 # Planet Rings!
+		btr_map_start.107 # Remove Vanilla Nebula
+		btr_map_start.109 # Generate Starting Subclasses
+		btr_map_start.110 # Add High Gravity Modifier
+		btr_map_start.111 # Add Dextro Modifier 
+		btr_game_start.10 # Starbases and Borders
+		btr_map_start.12 # TEMP DEPOSIT SPAWN
+	}
+}
+
+on_game_start_country = {
+	events = {
+		btr_game_start.4 # Checks for Custom Empire
+		btr_game_start.5 # Checks for Integrated Mod Installation
+		btr_game_start.6 # Checks for Incompatible Mod Installation
+		btr_game_start.8 #Empire init - add resources, empire modifiers, and technologies
+	}
+}
+
+on_press_begin = {
+	events = {
+
+	}
+}
+
+# called during empire initialization when starting a new game
+# scope: country
+empire_init_add_technologies = {
+	events = {
+		
+	}
+}
+
+# Called during empire initialization when starting a new game if has_secondary_species game rule is true.
+# Called before empire_init_create_capital_pops.
+# scope: planet
+# from: founder species
+# fromfrom: secondary species (if exists)
+empire_init_capital_planet = {
+	events = {
+		btr_game_start.7 # Pregame Genocide & Outpost assignment
+		btr_game_start.11 # Starting buildings, districts
+		#btr_game_start.12 # Create Starting Colonies
+	}
+}
+
+# called during empire initialization when starting a new game
+# scope: country
+empire_init_create_ships = {
+	events = {
+		btr_game_start.9 #Empire init - add ships
+	}
+}
+
+# No scope, like on_game_start
+on_five_year_pulse = {
+	events = {
+		planetarystations_action.8
+	}
+}
+
+# Triggers country_event for the defender upon victory
+# Root = country, planet owner
+# From = country, attack leader
+# FromFrom = planet
+on_planet_defenders_win = {
+	events = {
+		planetarystations_colony_event.14
+		planetarystations_colony_event.18
+		planetarystations_colony_event.38
+	}
+}
+
+# Planet has taken damage from orbital bombardment - Damage is applied daily
+# This = Planet
+# From = Bombarder
+on_planet_bombarded = {
+	events = {
+		planetarystations_action.1
+	}
+}
+
+# A planet has been colonized.
+# Scope = Planet
+on_colonized = {
+	events = {
+		planetarystations_action.10
+	}
+}
+
+# Fires for each planet every 5 years (counting up from colonisation date, includes home planet)
+on_colony_5_year_pulse = {
+	events = {
+		planetarystations_action.3 # Transferring prisoners
+	}
+}
+
+on_colony_10_year_pulse = {
+	events = {
+		planetarystations_colony_event.1
+		planetarystations_action.7 #Apotheosis for non-necrophage pops to necrophage
+	}
+}
+
+#Fired whenever a new owner is set for a planet,
+#be it after a war or through a trade
+#From = Country scope (new owner)
+#This = Planet scope
+on_planet_transfer = {
+	events = {
+		planetarystations_action.5
+	}
+}
+
+# A planets controller becomes a country not the same as the owner.
+# Root = Planet
+# From = Planet Owner
+# FromFrom = Planet Controller (the one occupying)
+on_planet_occupied = {
+	events = {
+		planetarystations_colony_event.36
+	}
+}
+
+# A Megastructure has been built
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+# FromFromFrom = Fleet
+on_megastructure_built = {
+	events = {
+		btr_map_start.108 # Remove planet ring for megastructure build
+	}
+}
+
+#A building construction has been completed.
+# This = Planet
+on_building_complete = {
+	events = {
+		btr_arlkah.01
+	}
+}

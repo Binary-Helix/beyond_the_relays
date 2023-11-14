@@ -119,6 +119,7 @@ establish_asari_republics_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Asari Republics Communications Established"
 	}
 }	
 
@@ -243,6 +244,7 @@ establish_salarian_union_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Salarian Union Communications Established"
 	}
 }
 
@@ -295,10 +297,16 @@ establish_turian_hierarchy_communication = {
 			if = {
 				limit = { exists = event_target:vol_protectorate  }
 				establish_communications_no_message = event_target:vol_protectorate
-				guarantee_country = event_target:vol_protectorate
 				add_opinion_modifier = {
 					who = event_target:vol_protectorate
 					modifier = citadel_embassy_race
+				}
+				every_agreement = {
+					limit = { agreement_preset = preset_protectorate }
+					set_agreement_preset = {
+						preset = preset_protectorate
+						apply_terms = yes
+					}
 				}
 			}
 			if = {
@@ -368,6 +376,7 @@ establish_turian_hierarchy_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Turian Hierarchy Communications Established"
 	}
 }
 
@@ -492,6 +501,7 @@ establish_systems_alliance_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Systems Alliance Communications Established"
 	}
 }
 
@@ -616,6 +626,7 @@ establish_courts_of_dekuuna_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Courts of Dekuuna Communications Established"
 	}
 }
 
@@ -624,6 +635,7 @@ establish_vol_protectorate_communication = {
 	if = {
 		limit = { exists = event_target:vol_protectorate }
 		event_target:vol_protectorate = {
+			set_subject_of = { who = event_target:turian_hierarchy preset = preset_protectorate }
 			if = {
 				limit = { exists = event_target:asari_republics }
 				establish_communications_no_message = event_target:asari_republics
@@ -741,6 +753,7 @@ establish_vol_protectorate_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Vol Protectorate Communications Established"
 	}
 }
 
@@ -866,6 +879,7 @@ establish_illuminated_primacy_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Illuminated Primacy Communications Established"
 	}
 }
 
@@ -1011,6 +1025,7 @@ establish_hegemony_of_kharshan_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Hegemony of Khar'shan Communications Established"
 	}
 }
 
@@ -1155,6 +1170,7 @@ establish_aralakh_kahmat_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Aralakh Kahmat Communications Established"
 	}
 }
 
@@ -1243,6 +1259,8 @@ establish_omega_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+
+		log = "Omega Communications Established"
 	}	
 }
 
@@ -1339,6 +1357,7 @@ establish_illium_corporate_interests_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Illium Corporate Interests Communications Established"
 	}	
 }
 
@@ -1435,6 +1454,7 @@ establish_caleston_directorate_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Caleston Directorate Communications Established"
 	}	
 }
 
@@ -1477,6 +1497,7 @@ establish_remnants_of_rakhana_communication = {
 				establish_communications_no_message = event_target:illuminated_primacy
 				guarantee_country = event_target:illuminated_primacy
 			}
+			
 			if = {
 				limit = { exists = event_target:hegemony_of_kharshan  }
 				establish_communications_no_message = event_target:hegemony_of_kharshan
@@ -1527,6 +1548,7 @@ establish_remnants_of_rakhana_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Remnants of Rakhana Communications Established"
 	}	
 }
 
@@ -1611,6 +1633,7 @@ establish_vorcha_clandom_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Vorcha Clandom Communications Established"
 	}	
 }
 
@@ -1763,6 +1786,7 @@ establish_sedriicae_collective_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Sed'riicae Collective Communications Established"
 	}	
 }
 
@@ -1855,6 +1879,7 @@ establish_lystheni_order_communication = {
 			# }
 			#set_all_comms_surveyed = yes
 		}
+		log = "Lystheni Order Communications Established"
 	}	
 }
 
@@ -1947,6 +1972,7 @@ establish_gothones_remnant_communication = {
 			# }
 			#set_all_comms_surveyed = yes
 		}
+		log = "Gothones Remnant Communications Established"
 	}	
 }
 
@@ -1960,6 +1986,7 @@ establish_geth_consensus_communication = {
 			}
 			#set_all_comms_surveyed = yes
 		}
+		log = "Geth Consensus Communications Established"
 	}	
 }
 
@@ -1973,6 +2000,7 @@ establish_disciples_of_nazara_communication = {
 			}	
 			#set_all_comms_surveyed = yes		
 		}
+		log = "Disciples of Nazara Communications Established"
 	}	
 }
 
@@ -2101,5 +2129,1296 @@ establish_citadel_council_communication = {
 			# }
 			#set_all_comms_surveyed = yes
 		}
+		log = "Citadel Council Communications Established"
 	}	
+}
+
+####################################
+### INDEPENDENT WORLD COMMUNICATIONS
+####################################
+
+
+establish_aite_warring_states_communications = {
+	if = {
+		limit = { exists = event_target:aite_warring_states }
+		event_target:aite_warring_states = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:sedriicae_collective }
+				establish_communications_no_message = event_target:sedriicae_collective
+			}
+		}
+		log = "Aite Warring States Communications Established"
+	}
+
+}
+
+establish_alahyan_terraformation_zone_communications = {
+	if = {
+		limit = { exists = event_target:alahyan_terraformation_zone }
+		event_target:alahyan_terraformation_zone = {
+			set_subject_of = { who = event_target:caleston_directorate preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+		}
+		log = "Alahyan Terraformation Zone Communications Established"
+	}
+
+}
+
+establish_altai_mineral_works_communications = {
+	if = {
+		limit = { exists = event_target:altai_mineral_works }
+		event_target:altai_mineral_works = {
+			set_subject_of = { who = event_target:caleston_directorate preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+		}
+		log = "Altai Mineral Works Communications Established"
+	}
+}
+
+establish_altakiril_union_communications = {
+	if = {
+		limit = { exists = event_target:altakiril_union }
+		event_target:altakiril_union = {
+			set_subject_of = { who = event_target:illium_corporate_interests preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+		}
+		log = "Altakiril Union Communications Established"
+	}
+
+}
+
+establish_anansi_manufacturing_communications = {
+	if = {
+		limit = { exists = event_target:anansi_manufacturing }
+		event_target:anansi_manufacturing = {
+			set_subject_of = { who = event_target:caleston_directorate preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:ishtar_emporium }
+				establish_communications_no_message = event_target:ishtar_emporium
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+		}
+		log = "Anansi Manufacturing Communications Established"
+	}
+}
+
+establish_polity_of_anhur_communications = {
+	if = {
+		limit = { exists = event_target:polity_of_anhur }
+		event_target:polity_of_anhur = {
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:ishtar_emporium }
+				establish_communications_no_message = event_target:ishtar_emporium
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+		}
+		log = "Polity of Anhur Communications Established"
+	}
+	 if = {
+	 	limit = { exists = event_target:hegemony_of_kharshan }
+	 	event_target:hegemony_of_kharshan = {
+	 		guarantee_country = event_target:polity_of_anhur
+	 	}
+	 	log = "Hegemony of Khar'shan has guaranteed Anhur's independence."
+	 }
+}
+
+establish_arvunan_administration_communications = {
+	if = {
+		limit = { exists = event_target:arvunan_administration }
+		event_target:arvunan_administration = {
+			set_subject_of = { who = event_target:caleston_directorate preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+		}
+		log = "Arvunan Administration Communications Established"
+	}
+}
+
+establish_republic_of_asteria_communications = {
+	if = {
+		limit = { exists = event_target:republic_of_asteria }
+		event_target:republic_of_asteria = {
+			set_subject_of = { who = event_target:caleston_directorate preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+		}
+		log = "Republic of Asteria Communications Established"
+	}
+}
+
+establish_chalkhos_freehold_communications = {
+	if = {
+		limit = { exists = event_target:chalkhos_freehold }
+		event_target:chalkhos_freehold = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+		}
+		log = "Chalkhos Freehold Communications Established"
+	}
+}
+
+establish_autonomy_of_cyrene_communications = {
+	if = {
+		limit = { exists = event_target:autonomy_of_cyrene }
+		event_target:autonomy_of_cyrene = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+		}
+		log = "Autonomy of Cyrene Communications Established"
+	}
+}
+
+establish_erinle_conservancy_communications = {
+	if = {
+		limit = { exists = event_target:erinle_conservancy }
+		event_target:erinle_conservancy = {
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+		}
+		log = "Erinle Conservancy Communications Established"
+	}
+	if = {
+		limit = { exists = event_target:salarian_union }
+		event_target:salarian_union = {
+			guarantee_country = event_target:erinle_conservancy
+		}
+		log = "Salarian Union has guaranteed Erinle's independence."
+	}
+}
+
+establish_union_of_ferris_fields_communications = {
+	if = {
+		limit = { exists = event_target:union_of_ferris_fields }
+		event_target:union_of_ferris_fields = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+		}
+		log = "Union of Ferris Fields Communications Established"
+	}
+}
+
+establish_relic_mineral_works_communications = {
+	if = {
+		limit = { exists = event_target:relic_mineral_works }
+		event_target:relic_mineral_works = {
+			set_subject_of = { who = event_target:illium_corporate_interests preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:wrill_mining_consortium }
+				establish_communications_no_message = event_target:wrill_mining_consortium
+			}
+		}
+		log = "Relic Mineral Works Communications Established"
+	}
+}
+
+establish_flett_transort_union_communications = {
+	if = {
+		limit = { exists = event_target:flett_transort_union }
+		event_target:flett_transort_union = {
+			set_subject_of = { who = event_target:illium_corporate_interests preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:wrill_mining_consortium }
+				establish_communications_no_message = event_target:wrill_mining_consortium
+				guarantee_country = event_target:wrill_mining_consortium
+			}
+		}
+		log = "Flett Transport Union Communications Established"
+	}
+}
+
+establish_freehold_of_freedoms_progress_communications = {
+	if = {
+		limit = { exists = event_target:freehold_of_freedoms_progress }
+		event_target:freehold_of_freedoms_progress = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+		}
+		log = "Freehold of Freedom's Progress Communications Established"
+	}
+}
+
+establish_state_of_garvug_communications = {
+	if = {
+		limit = { exists = event_target:state_of_garvug }
+		event_target:state_of_garvug = {
+		if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+		}
+		log = "State of Garvug Communications Established"
+	}
+}
+
+establish_commune_of_horizon_communications = {
+	if = {
+		limit = { exists = event_target:commune_of_horizon }
+		event_target:commune_of_horizon = {
+			set_subject_of = { who = event_target:caleston_directorate preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+		}
+		log = "Commune of Horizon Communications Established"
+	}
+}
+
+establish_ishtar_emporium_communications = {
+	if = {
+		limit = { exists = event_target:ishtar_emporium }
+		event_target:ishtar_emporium = {
+			set_subject_of = { who = event_target:caleston_directorate preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+		}
+		log = "Ishtar Emporium Communications Established"
+	}
+}
+
+establish_jenera_corporation_communications = {
+	if = {
+		limit = { exists = event_target:jenera_corporation }
+		event_target:jenera_corporation = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+		}
+		log = "Jenera Corporation Communications Established"
+	}
+	if = {
+		limit = { exists = event_target:hegemony_of_kharshan }
+		event_target:hegemony_of_kharshan = {
+			guarantee_country = event_target:jenera_corporation
+		}
+		log = "Hegemony of Khar'shan guarantees Jenera's Independence"
+	}
+}
+
+establish_commonwealth_of_joab_communications = {
+	if = {
+		limit = { exists = event_target:commonwealth_of_joab }
+		event_target:commonwealth_of_joab = {
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+		}
+		log = "Commonwealth of Joab Communications Established"
+	}
+}
+
+establish_korlus_recycling_union_communications = {
+	if = {
+		limit = { exists = event_target:korlus_recycling_union }
+		event_target:korlus_recycling_union = {
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+			if = {
+				limit = { exists = event_target:aralakh_kahmat }
+				establish_communications_no_message = event_target:aralakh_kahmat
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+		}
+		log = "Korlus Recycling Union Communications Established"
+	}
+}
+
+establish_kosh_development_corporation_communications = {
+	if = {
+		limit = { exists = event_target:kosh_development_corporation }
+		event_target:kosh_development_corporation = {
+			set_subject_of = { who = event_target:illium_corporate_interests preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+		}
+		log = "Kosh Development Corporation Communications Established"
+	}
+}
+
+establish_logarisi_development_corporation_communications = {
+	if = {
+		limit = { exists = event_target:logarisi_development_corporation }
+		event_target:logarisi_development_corporation = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:confederation_of_thunawanuro }
+				establish_communications_no_message = event_target:confederation_of_thunawanuro
+			}
+		}
+		log = "Logarisi Development Corporation Communications Established"
+	}
+}
+
+establish_monrini_syndicate_communications = {
+	if = {
+		limit = { exists = event_target:monrini_syndicate }
+		event_target:monrini_syndicate = {
+			set_subject_of = { who = event_target:illium_corporate_interests preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+		}
+		log = "Monrini Syndicate Communications Established"
+	}
+}
+
+establish_authority_of_new_canton_communications = {
+	if = {
+		limit = { exists = event_target:monrini_syndicate }
+		event_target:monrini_syndicate = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+		}
+		log = "Authority of New Canton Communications Established"
+	}
+}
+
+establish_noveria_development_corporation_communications = {
+	if = {
+		limit = { exists = event_target:noveria_development_corporation }
+		event_target:noveria_development_corporation = {
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+			if = {
+				limit = { exists = event_target:sedriicae_collective }
+				establish_communications_no_message = event_target:sedriicae_collective
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+		}
+		log = "Noveria Development Corporation Communications Established"
+	}
+	if = {
+		limit = { exists = event_target:citadel_council }
+		event_target:citadel_council = {
+			guarantee_country = event_target:noveria_development_corporation
+		}
+		log = "The Citadel guarantees Noveria Independence"
+	}
+}
+
+establish_league_of_sahi_dau_communications = {
+	if = {
+		limit = { exists = event_target:league_of_sahi_dau }
+		event_target:league_of_sahi_dau = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+		}
+		log = "League of Sahi Dau Communications Established"
+	}
+}
+
+establish_sanctum_metals_group_communications = {
+	if = {
+		limit = { exists = event_target:sanctum_metals_group }
+		event_target:sanctum_metals_group = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+		}
+		log = "Sanctum Metals Group Communications Established"
+	}
+	if = {
+		limit = { exists = event_target:caleston_directorate }
+		event_target:caleston_directorate = {
+			guarantee_country = event_target:sanctum_metals_group
+		}
+		log = "Caleston guarantees Sanctum Independence"
+	}
+	if = {
+		limit = { exists = event_target:illium_corporate_interests }
+		event_target:illium_corporate_interests = {
+			guarantee_country = event_target:sanctum_metals_group
+		}
+		log = "Illium guarantees Sanctum Independence"
+	}
+}
+
+establish_thalassocracy_of_talis_fia_communications = {
+	if = {
+		limit = { exists = event_target:thalassocracy_of_talis_fia }
+		event_target:thalassocracy_of_talis_fia = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+		}
+		log = "Thalassocracy of Talis Fia Communications Established"
+	}
+	if = {
+		limit = { exists = event_target:vol_protectorate }
+		event_target:vol_protectorate = {
+			guarantee_country = event_target:thalassocracy_of_talis_fia
+		}
+		log = "Vol Protectorate guarantee Talis Fia Independence"
+	}
+}
+
+
+establish_thrednakka_autonomy_communications = {
+	if = {
+		limit = { exists = event_target:thrednakka_autonomy }
+		event_target:thrednakka_autonomy = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:thrednakka_autonomy
+			}
+		}
+		log = "Thred'naka Autonomy Communications Established"
+	}
+}
+
+establish_confederation_of_thunawanuro_communications = {
+	if = {
+		limit = { exists = event_target:confederation_of_thunawanuro }
+		event_target:confederation_of_thunawanuro = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+		}
+		log = "Confederation of Thunawanuro Communications Established"
+	}
+}
+
+establish_free_port_of_tortuga_communications = {
+	if = {
+		limit = { exists = event_target:free_port_of_tortuga }
+		event_target:free_port_of_tortuga = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+		}
+		log = "Free Port of Tortuga Communications Established"
+	}
+}
+
+establish_trident_exports_communications = {
+	if = {
+		limit = { exists = event_target:trident_exports }
+		event_target:trident_exports = {
+			set_subject_of = { who = event_target:caleston_directorate preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+		}
+		log = "Trident Exports Limited Communications Established"
+	}
+}
+
+establish_trigintan_league_communications = {
+	if = {
+		limit = { exists = event_target:trigintan_league }
+		event_target:trigintan_league = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+		}
+		log = "Trigintan League Communications Established"
+	}
+}
+
+establish_peoples_authority_of_tyvor_communications = {
+	if = {
+		limit = { exists = event_target:peoples_authority_of_tyvor }
+		event_target:peoples_authority_of_tyvor = {
+			set_subject_of = { who = event_target:omega_empire preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:trigintan_league }
+				establish_communications_no_message = event_target:trigintan_league
+			}
+			if = {
+				limit = { exists = event_target:altakiril_union }
+				establish_communications_no_message = event_target:altakiril_union
+			}
+		}
+		log = "People's Authority of Anhur Communications Established"
+	}
+}
+
+establish_wrill_mining_consortium_communications = {
+	if = {
+		limit = { exists = event_target:wrill_mining_consortium }
+		event_target:wrill_mining_consortium = {
+			set_subject_of = { who = event_target:illium_corporate_interests preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+		}
+		log = "Wrill Mining Consortium Communications Established"
+	}
+}
+
+establish_fal_iii_manufactory_communications = {
+	if = {
+		limit = { exists = event_target:fal_iii_manufactory }
+		event_target:fal_iii_manufactory = {
+			set_subject_of = { who = event_target:illium_corporate_interests preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:free_port_of_tortuga }
+				establish_communications_no_message = event_target:free_port_of_tortuga
+			}
+		}
+		log = "Fal III Manufactory Communications Established"
+	}
+	if = {
+		limit = { exists = event_target:illium_corporate_interests }
+		event_target:illium_corporate_interests = {
+			guarantee_country = event_target:fal_iii_manufactory
+		}
+		log = "Illium guarantees Yalson independence"
+	}
+	if = {
+		limit = { exists = event_target:salarian_union }
+		event_target:salarian_union = {
+			guarantee_country = event_target:fal_iii_manufactory
+		}
+		log = "Salarian Union guarantees Yalson independence"
+	}
+	if = {
+		limit = { exists = event_target:free_port_of_tortuga }
+		event_target:free_port_of_tortuga = {
+			guarantee_country = event_target:fal_iii_manufactory
+		}
+		log = "Tortuga guarantees Yalson independence"
+	}
+}
+
+establish_yamm_free_trade_zone_communications = {
+	if = {
+		limit = { exists = event_target:yamm_free_trade_zone }
+		event_target:yamm_free_trade_zone = {
+			set_subject_of = { who = event_target:caleston_directorate preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:caleston_directorate }
+				establish_communications_no_message = event_target:caleston_directorate
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+		}
+		log = "Yamm Free Trade Zone Communications Established"
+	}
+}
+
+establish_zoryan_sovereignty_communications = {
+	if = {
+		limit = { exists = event_target:zoryan_sovereignty }
+		event_target:zoryan_sovereignty = {
+			set_subject_of = { who = event_target:illium_corporate_interests preset = preset_tributary }
+			if = {
+				limit = { exists = event_target:illium_corporate_interests }
+				establish_communications_no_message = event_target:illium_corporate_interests
+			}
+			if = {
+				limit = { exists = event_target:asari_republics }
+				establish_communications_no_message = event_target:asari_republics
+			}
+			if = {
+				limit = { exists = event_target:salarian_union }
+				establish_communications_no_message = event_target:salarian_union
+			}
+			if = {
+				limit = { exists = event_target:turian_hierarchy }
+				establish_communications_no_message = event_target:turian_hierarchy
+			}
+			if = {
+				limit = { exists = event_target:systems_alliance }
+				establish_communications_no_message = event_target:systems_alliance
+			}
+			if = {
+				limit = { exists = event_target:courts_of_dekuuna }
+				establish_communications_no_message = event_target:courts_of_dekuuna
+			}
+			if = {
+				limit = { exists = event_target:vol_protectorate }
+				establish_communications_no_message = event_target:vol_protectorate
+			}
+			if = {
+				limit = { exists = event_target:illuminated_primacy }
+				establish_communications_no_message = event_target:illuminated_primacy
+			}
+			if = {
+				limit = { exists = event_target:hegemony_of_kharshan }
+				establish_communications_no_message = event_target:hegemony_of_kharshan
+			}
+			if = {
+				limit = { exists = event_target:omega_empire }
+				establish_communications_no_message = event_target:omega_empire
+			}
+		}
+		log = "Zoryan Sovereignty Communications Established"
+	}
+}
+
+set_independent_world_subjugation = {
+	if = {
+		limit = { exists = event_target:caleston_directorate }
+		event_target:caleston_directorate = {
+			every_agreement = {
+				limit = { agreement_preset = preset_tributary }
+				set_agreement_preset = {
+					preset = preset_tributary
+					apply_terms = yes
+				}
+			}
+		}
+		log = "Caleston Tributaries Set"
+	}
+	if = {
+		limit = { exists = event_target:illium_corporate_interests }
+		event_target:illium_corporate_interests = {
+			every_agreement = {
+				limit = { agreement_preset = preset_tributary }
+				set_agreement_preset = {
+					preset = preset_tributary
+					apply_terms = yes
+				}
+			}
+		}
+		log = "Illium Tributaries Set"
+	}
+	if = {
+		limit = { exists = event_target:omega_empire }
+		event_target:omega_empire = {
+			every_agreement = {
+				limit = { agreement_preset = preset_tributary }
+				set_agreement_preset = {
+					preset = preset_tributary
+					apply_terms = yes
+				}
+			}
+		}
+		log = "Omega Tributaries Set"
+	}
 }

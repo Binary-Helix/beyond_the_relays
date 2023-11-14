@@ -1867,3 +1867,208 @@ situation_event = {
 		destroy_situation = this
 	}
 }
+
+
+#Eezo Deficit
+
+situation_event = {
+	id = btr_deficit.915
+	title = btr_deficit.915.name
+	desc = btr_deficit.915.desc
+	picture = GFX_evt_deficit
+	show_sound = event_bad_omen
+	is_triggered_only = yes
+	situation = this
+
+	abort_trigger = {
+		situation_progress >= 100
+	}
+
+	immediate = {
+		owner = {
+			ordered_owned_planet = {
+				limit = { is_capital = no }
+				order_by = trigger:num_pops
+				position = 0
+				save_event_target_as = looted_planet
+			}
+			if = {
+				limit = {
+					NOT = { exists = event_target:looted_planet }
+				}
+				capital_scope = {
+					save_event_target_as = looted_planet
+				}
+			}
+			random_system_within_border = {
+				limit = {
+					any_system_planet = {
+						exists = orbital_station
+						OR = {
+							has_deposit = d_eezo_1
+							has_deposit = d_eezo_2
+							has_deposit = d_eezo_3
+							has_deposit = d_eezo_4
+							has_deposit = d_eezo_5
+						}
+					}
+				}
+				weights = {
+					base = 1
+					modifier = {
+						add = 2
+						any_system_planet = { 
+							has_deposit = d_eezo_2
+						}
+					}
+					modifier = {
+						add = 4
+						any_system_planet = { 
+							has_deposit = d_eezo_3
+						}
+					}
+					modifier = {
+						add = 6
+						any_system_planet = { 
+							has_deposit = d_eezo_4
+						}
+					}
+					modifier = {
+						add = 8
+						any_system_planet = { 
+							has_deposit = d_eezo_5
+						}
+					}
+				}
+				random_system_planet = {
+					limit = {
+						exists = orbital_station
+						OR = {
+							has_deposit = d_eezo_1
+							has_deposit = d_eezo_2
+							has_deposit = d_eezo_3
+							has_deposit = d_eezo_4
+							has_deposit = d_eezo_5
+						}
+					}
+					weights = {
+						base = 1
+						modifier = {
+							add = 2
+							has_deposit = d_eezo_2
+						}
+						modifier = {
+							add = 4
+							has_deposit = d_eezo_3
+						}
+						modifier = {
+							add = 6
+							has_deposit = d_eezo_4
+						}
+						modifier = {
+							add = 8
+							has_deposit = d_eezo_5
+						}
+					}
+					save_event_target_as = deposit_planet
+				}
+			}
+		}
+	}
+
+	option = {
+		name = btr_deficit.915.A #blow something up, create a blocker or two
+		trigger = { exists = event_target:looted_planet }
+
+		owner = {
+			add_resource = {
+				eezo = 10
+				mult = event_target:looted_planet.trigger:num_pops
+			}
+		}
+		event_target:looted_planet = {
+			add_planet_devastation = 25
+			add_blocker = { type = d_exploited_deposit_blocker }
+			add_blocker = { type = d_exploited_deposit_blocker }
+		}
+	}
+	option = { #sacrifice a deposit
+		name = btr_deficit.915.B
+		trigger = { exists = event_target:deposit_planet }
+
+		event_target:deposit_planet = {
+			switch = {
+				trigger = has_deposit
+				d_eezo_5 = {
+					root.owner = {
+						add_resource = {
+							eezo = 500
+						}
+					}
+				}
+				d_eezo_4 = {
+					root.owner = {
+						add_resource = {
+							eezo = 400
+						}
+					}
+				}
+				d_eezo_3 = {
+					root.owner = {
+						add_resource = {
+							eezo = 300
+						}
+					}
+				}
+				d_eezo_2 = {
+					root.owner = {
+						add_resource = {
+							eezo = 200
+						}
+					}
+				}
+				d_eezo_1 = {
+					root.owner = {
+						add_resource = {
+							eezo = 100
+						}
+					}
+				}
+			}
+			clear_deposits = yes
+			hidden_effect = { orbital_station = { dismantle = yes } }
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = {
+		name = btr_deficit.915.C
+	}
+}
+
+situation_event = {
+	id = btr_deficit.920
+	title = BANKRUPTCY
+	desc = btr_deficit.920.desc
+	picture = GFX_evt_deficit
+	show_sound = event_life_support_fail
+	is_triggered_only = yes
+	situation = this
+	force_open = yes
+
+	option = {
+		name = UNFORTUNATE
+
+		owner = {
+			add_resource = {
+				eezo = @bailout_strategic_base_amount
+				mult = value:bailout_scaling_factor
+			}
+			country_defaulted_effect = yes
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+}
