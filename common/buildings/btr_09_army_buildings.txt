@@ -3,54 +3,19 @@
 #############
 building_military_academy = {
 	base_buildtime = @btr_mili_b2_time
-	base_cap_amount = 1
+	empire_limit = {
+		base = 1
+	}
 	can_be_ruined = no
 	category = army
 
-	potential = {
-		exists = owner
-		owner = { NOT = { has_valid_civic = civic_reanimated_armies } }
-		NOT = { has_planet_flag = planetary_station }
-	}
-
 	allow = {
-		has_upgraded_capital = yes
-		if = {
-			limit = {
-				exists = owner
-				owner = { is_ai = yes }
-			}
-			OR = {
-				has_building = building_stronghold
-				has_building = building_fortress
-			}
-		}
+		has_major_upgraded_capital = yes
 	}
 
-	destroy_trigger = {
-		exists = owner
-		owner = {
-			OR = {
-				has_valid_civic = civic_reanimated_armies
-				AND = {
-					is_ai = yes
-					prev = {
-						NOR = {
-							has_building = building_stronghold
-							has_building = building_fortress
-						}
-					}
-				}
-			}
-		}
-	}
-
-	convert_to = {
-		building_dread_encampment
-	}
-
-	army_modifier = {
-		army_starting_experience_add = 100
+	country_modifier = {
+		country_commander_cap_add = 1
+		country_naval_cap_mult = 0.05
 	}
 
 	triggered_planet_modifier = {
@@ -59,7 +24,7 @@ building_military_academy = {
 			owner = { is_gestalt = no }
 		}
 		modifier = {
-			job_soldier_add = @b1_jobs
+			job_politician_add = 1
 		}
 	}
 	triggered_planet_modifier = {
@@ -68,20 +33,20 @@ building_military_academy = {
 			owner = { is_gestalt = yes }
 		}
 		modifier = {
-			job_warrior_drone_add = @b1_jobs
+			job_evaluator_add = 2
 		}
 	}
 
 	resources = {
 		category = planet_buildings
 		cost = {
-			minerals = @btr_mili_b1_mineral_cost
-			light_metals = @btr_mili_b1_light_metals_cost
-			heavy_metals = @btr_mili_b1_heavy_metals_cost
+			minerals = @btr_mili_b2_mineral_cost
+			light_metals = @btr_mili_b2_light_metals_cost
+			heavy_metals = @btr_mili_b2_heavy_metals_cost
 		}
 		upkeep = {
-			energy = @btr_mili_b1_energy_upkeep
-			uranium = @btr_mili_b1_uranium_upkeep
+			energy = @btr_mili_b2_energy_upkeep
+			uranium = @btr_mili_b2_uranium_upkeep
 		}
 	}
 
@@ -89,23 +54,19 @@ building_military_academy = {
 		"tech_centralized_command"
 	}
 
-	show_tech_unlock_if = {
-		NOT = { has_valid_civic = civic_reanimated_armies }
-	}
-
-	triggered_desc = {
-		trigger = {
-			exists = owner
-			owner = { is_gestalt = yes }
-		}
-		text = job_warrior_drone_effect_desc
-	}
 	triggered_desc = {
 		trigger = {
 			exists = owner
 			owner = { is_gestalt = no }
 		}
-		text = job_soldier_effect_desc
+		text = job_politician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_evaluator_effect_desc
 	}
 }
 
@@ -121,16 +82,8 @@ building_dread_encampment = {
 		NOT = { has_planet_flag = planetary_station }
 	}
 
-	convert_to = {
-		building_military_academy
-	}
-	
 	allow = {
 		has_upgraded_capital = yes
-	}
-
-	army_modifier = {
-		army_starting_experience_add = 100
 	}
 
 	planet_modifier = {

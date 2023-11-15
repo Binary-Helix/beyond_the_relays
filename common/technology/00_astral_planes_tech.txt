@@ -1,0 +1,62 @@
+######################
+# Physics Technology #
+######################
+
+# Rift Sphere
+tech_rift_sphere = {
+	cost = @tier3cost2
+	area = physics
+	tier = 2
+	category = { field_manipulation }
+	is_rare = yes
+	weight = 0
+
+	feature_flags = {
+		unlock_astral_rift_exploration
+	}
+
+	potential = {
+		has_astral_planes_dlc = yes
+		is_btr_canon_map = no
+		is_btr_sandbox_map = no
+	}
+}
+
+# Astral Harvesting
+tech_astral_harvesting = {
+	cost = @tier2cost1
+	area = physics
+	tier = 2
+	category = { particles }
+	ai_update_type = all
+	is_rare = no
+	weight = @tier2weight1
+
+	feature_flags = {
+		unlock_astral_threads_actions
+	}
+
+	potential = {
+		has_astral_planes_dlc = yes
+		is_btr_canon_map = no
+		is_btr_sandbox_map = no
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 0
+			NOT = { has_country_flag = astral_threads_found }
+		}
+		modifier = {
+			factor = 2
+			any_system_within_border = {
+				OR = {
+					exists = astral_rift
+					any_system_planet = {
+						is_astral_scar = yes
+					}
+				}
+			}
+		}
+	}
+}

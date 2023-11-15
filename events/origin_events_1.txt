@@ -785,15 +785,15 @@ country_event = {
 		locked_random_list = {
 			10 = { # Admiral
 				create_scion_leader = {
-					CLASS = admiral
+					CLASS = commander
 				}
 				custom_tooltip = origin.210.admiral
 			}
 			10 = { # Governor
 				create_scion_leader = {
-					CLASS = governor
+					CLASS = official
 				}
-				custom_tooltip = origin.210.governor
+				custom_tooltip = origin.210.official
 			}
 			10 = { # Scientist
 				create_scion_leader = {
@@ -803,7 +803,7 @@ country_event = {
 			}
 			10 = { # General
 				create_scion_leader = {
-					CLASS = general
+					CLASS = commander
 				}
 				custom_tooltip = origin.210.general
 			}
@@ -1400,7 +1400,12 @@ country_event = {
 	immediate = {
 		overlord = { save_event_target_as = scion_master }
 		random_controlled_fleet = {
-			limit = { has_fleet_flag = scion_borrowed_fleet }
+			limit = {
+				has_fleet_flag = scion_borrowed_fleet
+				leader = {
+					NOT = { has_leader_flag = leader_death_events_blocked }
+				}
+			}
 			leader = {
 				kill_leader = { show_notification = no }
 			}
@@ -2767,6 +2772,16 @@ country_event = {
 			create_archaeological_site = broken_shackles_digsite
 		}
 
+		if = {
+			limit = {
+				has_paragon_dlc = yes
+			}
+			unlock_council_slots = 3
+			set_council_position_to_council = councilor_research
+			set_council_position_to_council = councilor_defense
+			set_council_position_to_council = councilor_state
+		}
+
 		random_owned_pop = {
 			species = {
 				save_event_target_as = researcher_species
@@ -2787,11 +2802,28 @@ country_event = {
 			}
 		}
 		create_leader = {
-			class = admiral
+			class = commander
 			name = random
 			species = event_target:defense_species
 			effect = {
 				set_council_position = councilor_defense
+			}
+		}
+
+		random_owned_pop = {
+			species = {
+				save_event_target_as = state_species
+			}
+		}
+		create_leader = {
+			class = official
+			name = random
+			species = event_target:state_species
+			effect = {
+				set_council_position = councilor_state
+				root.capital_scope = {
+					assign_leader = last_created_leader
+				}
 			}
 		}
 

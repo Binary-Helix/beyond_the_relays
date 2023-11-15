@@ -833,7 +833,7 @@ planet_event = {
 			}
 			effect = {
 				create_leader = {
-					class = admiral
+					class = commander
 					species = event_target:contingency_bot
 					name = random
 					effect = {
@@ -2673,13 +2673,19 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		any_owned_leader = { leader_class = scientist }
+		any_owned_leader = {
+			leader_class = scientist
+			NOT = { has_leader_flag = leader_death_events_blocked }
+		}
 		NOT = { has_country_flag = machine_scientist_terminated }
 	}
 
 	immediate = {
 		random_owned_leader = {
-			limit = { leader_class = scientist }
+			limit = {
+				leader_class = scientist
+				NOT = { has_leader_flag = leader_death_events_blocked }
+			}
 			save_event_target_as = scientist
 			kill_leader = { show_notification = no }
 		}
@@ -2703,13 +2709,13 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		any_owned_leader = { leader_class = admiral }
+		any_owned_leader = { leader_class = commander }
 		NOT = { has_country_flag = machine_admiral_terminated }
 	}
 
 	immediate = {
 		random_owned_leader = {
-			limit = { leader_class = admiral }
+			limit = { leader_class = commander }
 			save_event_target_as = admiral
 			kill_leader = { show_notification = no }
 		}
@@ -3284,6 +3290,7 @@ country_event = {
 			NOR = {
 				has_leader_flag = renowned_leader
 				has_leader_flag = legendary_leader
+				has_leader_flag = leader_death_events_blocked
 			}
 		}
 		NOT = { has_country_flag = synth_scientist_exposure }
@@ -3297,6 +3304,7 @@ country_event = {
 				NOR = {
 					has_leader_flag = renowned_leader
 					has_leader_flag = legendary_leader
+					has_leader_flag = leader_death_events_blocked
 				}
 			}
 			save_event_target_as = scientist
@@ -3322,7 +3330,7 @@ country_event = {
 
 	trigger = {
 		any_owned_leader = {
-			leader_class = admiral
+			leader_class = commander
 			NOR = {
 				has_leader_flag = renowned_leader
 				has_leader_flag = legendary_leader
@@ -3335,7 +3343,7 @@ country_event = {
 		set_country_flag = synth_admiral_exposure
 		random_owned_leader = {
 			limit = {
-				leader_class = admiral
+				leader_class = commander
 				NOR = {
 					has_leader_flag = renowned_leader
 					has_leader_flag = legendary_leader
@@ -3851,7 +3859,7 @@ country_event = {
 			save_event_target_as = contingency
 		}
 		create_leader = {
-			class = admiral
+			class = commander
 			species = owner_main_species
 			name = random
 			skill = 5
@@ -3916,7 +3924,7 @@ country_event = {
 			save_event_target_as = contingency
 		}
 		create_leader = {
-			class = admiral
+			class = commander
 			species = owner_main_species
 			name = random
 			skill = 5
