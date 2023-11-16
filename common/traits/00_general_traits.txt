@@ -1,0 +1,2005 @@
+#################
+# SHARED TRAITS #
+#################
+
+###################
+leader_trait_defence_engineer = {
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_defence_engineer"
+		RARITY = common
+		COUNCIL = yes
+		TIER = 1
+	}
+	councilor_modifier = {
+		shipclass_military_station_damage_mult = 0.05
+		shipclass_military_station_hull_mult = 0.1
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @class_trait_weight
+		inline_script = paragon/council_weight_mult
+	}
+}
+
+leader_trait_defence_engineer_2 = {
+	replace_traits = { "leader_trait_defence_engineer" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_defence_engineer"
+		RARITY = common
+		COUNCIL = yes
+		TIER = 2
+	}
+	councilor_modifier = {
+		shipclass_military_station_damage_mult = 0.15
+		shipclass_military_station_hull_mult = 0.1
+	}
+	leader_class = { commander }
+}
+
+###################
+leader_trait_butcher = {
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_butcher"
+		RARITY = common
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		army_damage_mult = 0.1
+		army_collateral_damage_mult = 0.33
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_armchair_commander
+		leader_trait_armchair_commander_2
+		leader_trait_restrained
+	}
+	selectable_weight = {
+		weight = @class_trait_weight
+		inline_script = paragon/army_weight_mult
+		inline_script = {
+			script = paragon/subclass_weight_mult
+			SUBCLASS = commander_general
+		}
+	}
+}
+
+leader_trait_butcher_2 = {
+	replace_traits = { "leader_trait_butcher" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_butcher"
+		RARITY = common
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		army_damage_mult = 0.15
+		army_collateral_damage_mult = 0.5
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_armchair_commander
+		leader_trait_armchair_commander_2
+		leader_trait_restrained
+	}
+}
+
+###################
+leader_trait_restrained = {
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_restrained"
+		RARITY = common
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		army_disengage_chance_mult = 0.1
+		army_collateral_damage_mult = -0.25
+	}
+	fleet_modifier = {
+		ship_orbital_bombardment_pop_damage_mult = -0.05
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_victory_or_death
+		leader_trait_victory_or_death_2
+		leader_trait_butcher
+	}
+	selectable_weight = {
+		weight = @class_trait_weight
+		inline_script = paragon/army_weight_mult
+		inline_script = {
+			script = paragon/subclass_weight_mult
+			SUBCLASS = commander_general
+		}
+	}
+}
+
+leader_trait_restrained_2 = {
+	replace_traits = { "leader_trait_restrained" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_restrained"
+		RARITY = common
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		army_disengage_chance_mult = 0.15
+		army_collateral_damage_mult = -0.35
+	}
+	fleet_modifier = {
+		ship_orbital_bombardment_pop_damage_mult = -0.15
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_victory_or_death
+		leader_trait_victory_or_death_2
+		leader_trait_butcher
+	}
+}
+
+###########
+# INVADER #
+###########
+
+leader_trait_dreaded = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_dreaded"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		army_morale_damage_mult = 0.15
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_general
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @class_trait_weight
+		inline_script = paragon/army_weight_mult
+		inline_script = {
+			script = paragon/subclass_weight_mult
+			SUBCLASS = commander_general
+		}
+	}
+}
+
+leader_trait_dreaded_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_dreaded" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_dreaded"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		army_morale_damage_mult = 0.25
+	}
+	leader_class = { commander }
+}
+
+leader_trait_dreaded_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_dreaded_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_dreaded"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	army_modifier = {
+		army_morale_damage_mult = 0.5
+	}
+	leader_class = { commander }
+}
+
+###################
+leader_trait_heavy_hitter = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_heavy_hitter"
+		RARITY = free_or_veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		army_damage_mult = 0.1
+	}
+	leader_potential_add = {
+		OR = {
+			has_paragon_dlc = no
+			has_trait = subclass_commander_general
+		}
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		inline_script = paragon/subclass_free_trait_weight
+		inline_script = paragon/army_weight_mult
+		inline_script = {
+			script = paragon/subclass_weight_mult
+			SUBCLASS = commander_general
+		}
+	}
+}
+
+leader_trait_heavy_hitter_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_heavy_hitter" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_heavy_hitter"
+		RARITY = free_or_veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		army_damage_mult = 0.15
+	}
+	leader_class = { commander }
+}
+
+leader_trait_heavy_hitter_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_heavy_hitter_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_heavy_hitter"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	army_modifier = {
+		army_damage_mult = 0.3
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+	}
+	leader_class = { commander }
+}
+
+###################
+leader_trait_interrogator = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_interrogator"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_general
+	}
+	leader_class = { commander }
+	custom_tooltip = leader_trait_interrogator_effect
+	selectable_weight = {
+		inline_script = paragon/subclass_free_trait_weight
+		inline_script = paragon/army_weight_mult
+		inline_script = {
+			script = paragon/subclass_weight_mult
+			SUBCLASS = commander_general
+		}
+	}
+}
+
+leader_trait_interrogator_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_interrogator" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_interrogator"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	leader_class = { commander }
+	custom_tooltip = leader_trait_interrogator_2_effect
+}
+
+leader_trait_interrogator_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_interrogator_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_interrogator"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	army_modifier = {
+		army_morale_damage_mult = 0.15
+	}
+	leader_class = { commander }
+	custom_tooltip_with_modifiers = leader_trait_interrogator_3_effect
+}
+
+###################
+leader_trait_crusader = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_crusader"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_general
+	}
+	leader_class = { commander }
+	# Effect in paragon_2.1005 and paragon_2.1040 events
+	custom_tooltip = leader_trait_crusader_effect
+	initial = no
+	randomized = no
+}
+
+leader_trait_crusader_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_crusader" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_crusader"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	leader_class = { commander }
+	# Effect in paragon_2.1005 and paragon_2.1040 events
+	custom_tooltip = leader_trait_crusader_2_effect
+}
+
+leader_trait_crusader_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_crusader_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_crusader"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	fleet_modifier = {
+		damage_vs_rival_mult = 0.15
+	}
+	army_modifier = {
+		army_damage_mult = 0.1
+		army_morale = 0.25
+	}
+	leader_class = { commander }
+	# Effect in paragon_2.1005 and paragon_2.1040 events
+	custom_tooltip = leader_trait_crusader_3_effect
+}
+
+############
+# MARSHALL #
+############
+
+leader_trait_overseer = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_overseer"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 1
+	}
+	councilor_modifier = {
+		monthly_loyalty_from_subjects = 0.2
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_official_diplomacy_councilor
+		owner = { is_homicidal = no }
+	}
+	leader_class = { official }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/council_weight_mult
+		modifier = {
+			exists = owner
+			owner = { is_overlord = no }
+			factor = 0.3
+		}
+	}
+}
+
+leader_trait_overseer_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_overseer" }
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_overseer"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 2
+	}
+	councilor_modifier = {
+		monthly_loyalty_from_subjects = 0.3
+	}
+	leader_class = { official }
+}
+
+leader_trait_overseer_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_overseer_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_overseer"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 3
+	}
+	councilor_modifier = {
+		monthly_loyalty_from_subjects = 0.5
+	}
+	leader_class = { official }
+}
+
+###################
+trait_ruler_from_the_ranks = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_from_the_ranks"
+		RARITY = free_or_veteran
+		COUNCIL = yes
+		TIER = 1
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			trait_is_gestalt_check = no
+		}
+		army_morale = 0.1
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			trait_is_gestalt_check = yes
+		}
+		army_damage_mult = 0.1
+	}
+	councilor_modifier = {
+		army_experience_gain_mult = 0.2
+	}
+	leader_potential_add = {
+		OR = {
+			has_paragon_dlc = no
+			has_trait = subclass_commander_councilor
+		}
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		inline_script = paragon/subclass_free_trait_weight
+		inline_script = paragon/council_weight_mult
+	}
+}
+
+trait_ruler_from_the_ranks_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "trait_ruler_from_the_ranks" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_from_the_ranks"
+		RARITY = free_or_veteran
+		COUNCIL = yes
+		TIER = 2
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			trait_is_gestalt_check = no
+		}
+		army_morale = 0.15
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			trait_is_gestalt_check = yes
+		}
+		army_damage_mult = 0.15
+	}
+	councilor_modifier = {
+		army_experience_gain_mult = 0.3
+	}
+	leader_class = { commander }
+}
+
+trait_ruler_from_the_ranks_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "trait_ruler_from_the_ranks_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_from_the_ranks"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 3
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			trait_is_gestalt_check = no
+		}
+		army_morale = 0.25
+	}
+	triggered_councilor_modifier = {
+		potential = {
+			trait_is_gestalt_check = yes
+		}
+		army_damage_mult = 0.25
+	}
+	councilor_modifier = {
+		army_experience_gain_mult = 0.5
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+	}
+	leader_class = { commander }
+}
+
+###################
+trait_ruler_recruiter = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_recruiter"
+		RARITY = free_or_veteran
+		COUNCIL = yes
+		TIER = 1
+	}
+	councilor_modifier = {
+		planet_army_build_speed_mult = 0.2
+		armies_cost_mult = -0.1
+	}
+	leader_potential_add = {
+		OR = {
+			has_paragon_dlc = no
+			has_trait = subclass_commander_councilor
+		}
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		inline_script = paragon/subclass_free_trait_weight
+		inline_script = paragon/council_weight_mult
+	}
+}
+
+trait_ruler_recruiter_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "trait_ruler_recruiter" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_recruiter"
+		RARITY = free_or_veteran
+		COUNCIL = yes
+		TIER = 2
+	}
+	councilor_modifier = {
+		planet_army_build_speed_mult = 0.3
+		armies_cost_mult = -0.15
+	}
+	leader_class = { commander }
+}
+
+trait_ruler_recruiter_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "trait_ruler_recruiter_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_recruiter"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 3
+	}
+	councilor_modifier = {
+		planet_army_build_speed_mult = 0.5
+		armies_cost_mult = -0.2
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+	}
+	leader_class = { commander }
+}
+
+###################
+leader_trait_consul_general = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_consul_general"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 1
+	}
+	councilor_modifier = {
+		envoy_improve_relations_mult = 0.25
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_official_diplomacy_councilor
+		owner = {
+			is_homicidal = no
+		}
+	}
+	leader_class = { official }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/council_weight_mult
+	}
+}
+
+leader_trait_consul_general_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_consul_general" }
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_consul_general"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 2
+	}
+	councilor_modifier = {
+		envoy_improve_relations_mult = 0.5
+	}
+	leader_class = { official }
+}
+
+leader_trait_consul_general_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_consul_general_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_consul_general"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 3
+	}
+	councilor_modifier = {
+		envoy_improve_relations_mult = 1
+	}
+	leader_class = { official }
+}
+
+###################
+leader_trait_shadow_broker = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_shadow_broker"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 1
+	}
+	councilor_modifier = {
+		intel_decryption_add = 1
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_official_diplomacy_councilor
+	}
+	leader_class = { official }
+	selectable_weight = {
+		inline_script = paragon/subclass_free_trait_weight
+		inline_script = paragon/council_weight_mult
+	}
+}
+
+leader_trait_shadow_broker_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_shadow_broker" }
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_shadow_broker"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 2
+	}
+	councilor_modifier = {
+		intel_decryption_add = 1
+		intel_encryption_add = 1
+	}
+	leader_class = { official }
+}
+
+leader_trait_shadow_broker_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_shadow_broker_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_shadow_broker"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 3
+	}
+	councilor_modifier = {
+		intel_decryption_add = 2
+		intel_encryption_add = 2
+	}
+	leader_class = { official }
+}
+
+###################
+leader_trait_home_guard = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_home_guard"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 1
+	}
+	councilor_modifier = {
+		defense_armies_add = 1
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_councilor
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		inline_script = paragon/subclass_free_trait_weight
+		inline_script = paragon/council_weight_mult
+	}
+}
+
+leader_trait_home_guard_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_home_guard" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_home_guard"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 2
+	}
+	councilor_modifier = {
+		defense_armies_add = 1
+		planet_orbital_bombardment_damage = -0.1
+	}
+	leader_class = { commander }
+}
+
+leader_trait_home_guard_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_home_guard_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_home_guard"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 3
+	}
+	councilor_modifier = {
+		defense_armies_add = 2
+		planet_orbital_bombardment_damage = -0.2
+	}
+	leader_class = { commander }
+}
+
+#############
+# PROTECTOR #
+#############
+
+leader_trait_hardy = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_hardy"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		army_health = 0.15
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_slothful
+		leader_trait_slothful_2
+	}
+	leader_potential_add = {
+		has_trait = subclass_commander_general
+		has_paragon_dlc = yes
+	}
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/army_weight_mult
+		inline_script = {
+			script = paragon/subclass_weight_mult
+			SUBCLASS = commander_general
+		}
+	}
+}
+
+leader_trait_hardy_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_hardy" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_hardy"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		army_health = 0.25
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_slothful
+		leader_trait_slothful_2
+	}
+}
+
+leader_trait_hardy_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_hardy_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_hardy"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	army_modifier = {
+		army_health = 0.45
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_slothful
+		leader_trait_slothful_2
+	}
+}
+
+###################
+leader_trait_martinet = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_martinet"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = -10
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = -10
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = -5
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = -5
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_lawless
+		leader_trait_lawless_2
+	}
+	leader_potential_add = {
+		has_trait = subclass_commander_governor
+		has_paragon_dlc = yes
+	}
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/governor_weight_mult
+	}
+}
+
+leader_trait_martinet_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_martinet" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_martinet"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = -15
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = -15
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = -7.5
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = -7.5
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_lawless
+		leader_trait_lawless_2
+	}
+}
+
+leader_trait_martinet_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_martinet_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_martinet"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = -25
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = -25
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = -10
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = -10
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_lawless
+		leader_trait_lawless_2
+	}
+}
+
+###################
+leader_trait_warden = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_warden"
+		RARITY = free_or_veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	planet_modifier = {
+		defense_armies_add = 2
+	}
+	sector_modifier = {
+		defense_armies_add = 1
+	}
+	leader_potential_add = {
+		OR = {
+			has_paragon_dlc = no
+			has_trait = subclass_commander_governor
+		}
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		inline_script = paragon/subclass_free_trait_weight
+		inline_script = paragon/governor_weight_mult
+	}
+}
+
+leader_trait_warden_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_warden" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_warden"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	planet_modifier = {
+		defense_armies_add = 4
+	}
+	sector_modifier = {
+		defense_armies_add = 2
+	}
+	leader_class = { commander }
+	selectable_weight = @subclass_trait_weight
+}
+
+leader_trait_warden_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_warden_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_warden"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	planet_modifier = {
+		defense_armies_add = 8
+	}
+	sector_modifier = {
+		defense_armies_add = 4
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+	}
+	leader_class = { commander }
+}
+
+###################
+leader_trait_reinforcer = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_reinforcer"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.15
+		army_defense_damage_mult = 0.3
+	}
+	sector_modifier = {
+		planet_orbital_bombardment_damage = -0.075
+		army_defense_damage_mult = 0.15
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_governor
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/governor_weight_mult
+	}
+}
+
+leader_trait_reinforcer_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_reinforcer" }
+	ftl_inhibitor = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_reinforcer"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	replace_traits = { leader_trait_reinforcer }
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.25
+		army_defense_damage_mult = 0.4
+	}
+	sector_modifier = {
+		planet_orbital_bombardment_damage = -0.125
+		army_defense_damage_mult = 0.2
+	}
+	leader_class = { commander }
+}
+
+leader_trait_reinforcer_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_reinforcer_2" }
+	ftl_inhibitor = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_reinforcer"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	replace_traits = { leader_trait_reinforcer_2 }
+	planet_modifier = {
+		planet_orbital_bombardment_damage = -0.4
+		army_defense_damage_mult = 0.6
+	}
+	sector_modifier = {
+		planet_orbital_bombardment_damage = -0.2
+		army_defense_damage_mult = 0.3
+	}
+	leader_class = { commander }
+}
+
+###################
+leader_trait_guardian = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_guardian"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 1
+	}
+	councilor_modifier = {
+		shipclass_military_station_damage_mult = 0.05
+		shipclass_military_station_hull_mult = 0.05
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_councilor
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/council_weight_mult
+	}
+}
+
+leader_trait_guardian_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { leader_trait_guardian }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_guardian"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 2
+	}
+	councilor_modifier = {
+		shipclass_military_station_damage_mult = 0.10
+		shipclass_military_station_hull_mult = 0.10
+	}
+	leader_class = { commander }
+}
+
+leader_trait_guardian_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { leader_trait_guardian_2 }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_guardian"
+		RARITY = veteran
+		COUNCIL = yes
+		TIER = 3
+	}
+	councilor_modifier = {
+		shipclass_military_station_damage_mult = 0.20
+		shipclass_military_station_hull_mult = 0.20
+	}
+	leader_class = { commander }
+}
+
+###################
+leader_trait_conscripter = {
+	veteran_class_locked_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_conscripter"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 1
+	}
+	planet_modifier = {
+		planet_army_build_speed_mult = 0.1
+		army_starting_experience_add = 75
+	}
+	sector_modifier = {
+		planet_army_build_speed_mult = 0.05
+		army_starting_experience_add = 37
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_governor
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/governor_weight_mult
+	}
+}
+
+leader_trait_conscripter_2 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_conscripter" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_conscripter"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 2
+	}
+	planet_modifier = {
+		planet_army_build_speed_mult = 0.2
+		army_starting_experience_add = 120
+	}
+	sector_modifier = {
+		planet_army_build_speed_mult = 0.1
+		army_starting_experience_add = 60
+	}
+	leader_class = { commander }
+}
+
+leader_trait_conscripter_3 = {
+	veteran_class_locked_trait = yes
+	replace_traits = { "leader_trait_conscripter_2" }
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_conscripter"
+		RARITY = veteran
+		COUNCIL = no
+		TIER = 3
+	}
+	planet_modifier = {
+		planet_army_build_speed_mult = 0.4
+		army_starting_experience_add = 200
+	}
+	sector_modifier = {
+		planet_army_build_speed_mult = 0.2
+		army_starting_experience_add = 100
+	}
+	leader_class = { commander }
+}
+
+###################
+# DESTINY TRAITS  #
+###################
+
+leader_trait_taskmaster = {
+	destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_taskmaster"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	planet_modifier = {
+		army_starting_experience_add = 500
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				country_uses_food = yes
+			}
+		}
+		planet_soldiers_energy_produces_add = 2
+		planet_soldiers_minerals_produces_add = 2
+		planet_soldiers_food_produces_add = 2
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				country_uses_food = no
+			}
+		}
+		planet_soldiers_energy_produces_add = 3
+		planet_soldiers_minerals_produces_add = 3
+	}
+	sector_modifier = {
+		army_starting_experience_add = 250
+	}
+	triggered_sector_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				country_uses_food = yes
+			}
+		}
+		planet_soldiers_energy_produces_add = 1
+		planet_soldiers_minerals_produces_add = 1
+		planet_soldiers_food_produces_add = 1
+	}
+	triggered_sector_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				country_uses_food = no
+			}
+		}
+		planet_soldiers_energy_produces_add = 1.5
+		planet_soldiers_minerals_produces_add = 1.5
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_governor
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/governor_weight_mult
+	}
+	background_icon = "GFX_leader_background_destiny_1"
+}
+
+leader_trait_fortress_cracker = {
+	destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_fortress_cracker"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	army_modifier = {
+		army_damage_mult = 0.4
+		army_collateral_damage_mult = 1
+	}
+	fleet_modifier = {
+		ship_weapon_damage = 0.3
+		ship_damage_against_starbases_mult = 0.5
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_general
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/army_weight_mult
+		inline_script = paragon/pilot_weight_mult
+		inline_script = {
+			script = paragon/subclass_weight_mult
+			SUBCLASS = commander_general
+		}
+	}
+	background_icon = "GFX_leader_background_destiny_1"
+}
+
+leader_trait_chainbreaker = {
+	destiny_trait = yes
+	ethic_destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_chainbreaker"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	army_modifier = {
+		army_morale = 1
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_general
+		has_ethic = ethic_egalitarian
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/army_weight_mult
+		inline_script = {
+			script = paragon/subclass_weight_mult
+			SUBCLASS = commander_general
+		}
+	}
+	custom_tooltip_with_modifiers = leader_trait_chainbreaker_effect
+	background_icon = "GFX_leader_background_destiny_1"
+}
+
+leader_trait_honored_warmaster = {
+	destiny_trait = yes
+	ethic_destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_honored_warmaster"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	planet_modifier = {
+		job_soldier_per_pop = 0.10
+	}
+	sector_modifier = {
+		job_soldier_per_pop = 0.05
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_governor
+		has_ethic = ethic_xenophile
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/governor_weight_mult
+	}
+	background_icon = "GFX_leader_background_destiny_1"
+}
+
+leader_trait_academia_recruiter = {
+	destiny_trait = yes
+	ethic_destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_academia_recruiter"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	planet_modifier = {
+		job_researcher_naval_cap_add = 4
+		planet_jobs_engineering_research_produces_mult = 0.10
+		planet_soldiers_engineering_research_produces_add = 1
+		#planet_researchers_alloys_upkeep_add = 1
+		planet_researchers_light_metals_upkeep_add = 1
+	}
+	sector_modifier = {
+		job_researcher_naval_cap_add = 2
+		planet_jobs_engineering_research_produces_mult = 0.05
+		planet_soldiers_engineering_research_produces_add = 0.5
+		#planet_researchers_alloys_upkeep_add = 0.5
+		planet_researchers_heavy_metals_upkeep_add = 0.5
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_governor
+		has_ethic = ethic_materialist
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/governor_weight_mult
+	}
+	background_icon = "GFX_leader_background_destiny_1"
+}
+
+leader_trait_supreme_warrior = {
+	destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_supreme_warrior"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	army_modifier = {
+		army_damage_mult = 0.33
+		army_morale = 0.66
+		army_collateral_damage_mult = -0.33
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_general
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/army_weight_mult
+		inline_script = {
+			script = paragon/subclass_weight_mult
+			SUBCLASS = commander_general
+		}
+	}
+	background_icon = "GFX_leader_background_destiny_1"
+}
+
+leader_trait_spymaster = {
+	destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_spymaster"
+		RARITY = paragon
+		COUNCIL = yes
+		TIER = none
+	}
+	councilor_modifier = {
+		spy_network_daily_value_mult = 1.5
+		operations_cost_mult = -0.25
+		envoys_add = 2
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_official_diplomacy_councilor
+	}
+	leader_class = { official }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/council_weight_mult
+	}
+	background_icon = "GFX_leader_background_destiny_1"
+}
+
+leader_trait_totalitarian = {
+	destiny_trait = yes
+	ethic_destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = official
+		ICON = "GFX_leader_trait_totalitarian"
+		RARITY = paragon
+		COUNCIL = yes
+		TIER = none
+	}
+	councilor_modifier = {
+		diplo_weight_mult = 0.2
+		divided_patrongage_max_subjects = 1
+		country_councilor_influence_produces_add = 1
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_official_diplomacy_councilor
+		has_ethic = ethic_authoritarian
+	}
+	leader_class = { official }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/council_weight_mult
+		modifier = {
+			exists = owner
+			owner = { is_overlord = no }
+			factor = 0.3
+		}
+	}
+	background_icon = "GFX_leader_background_destiny_1"
+}
+
+leader_trait_bellicose = {
+	destiny_trait = yes
+	force_councilor_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_bellicose"
+		RARITY = paragon
+		COUNCIL = yes
+		TIER = none
+	}
+	custom_tooltip = leader_trait_bellicose_effect
+	leader_potential_add = {
+		has_paragon_dlc = yes
+		has_trait = subclass_commander_councilor
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = paragon/council_weight_mult
+	}
+	background_icon = "GFX_leader_background_destiny_1"
+}
+
+###################
+# NEGATIVE TRAITS #
+###################
+
+leader_trait_armchair_commander = {
+	negative = yes
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_armchair_commander"
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		army_morale = -0.05
+		army_damage_mult = -0.05
+	}
+	leader_potential_add = {
+		is_gestalt = no
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_butcher
+		leader_trait_butcher_2
+	}
+	selectable_weight = {
+		weight = @class_negative_trait_weight
+		inline_script = paragon/army_weight_mult
+	}
+}
+
+leader_trait_armchair_commander_2 = {
+	negative = yes
+	replace_traits = { "leader_trait_armchair_commander" }
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_armchair_commander"
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		army_morale = -0.20
+		army_damage_mult = -0.20
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_butcher
+		leader_trait_butcher_2
+	}
+	selectable_weight = @tier2_negative_trait_weight
+}
+
+###################
+leader_trait_uninspiring = {
+	negative = yes
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_uninspiring"
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		army_morale = -0.15
+	}
+	leader_potential_add = {
+		exists = owner
+		owner = {
+			is_robot_empire = no
+		}
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @class_negative_trait_weight
+		inline_script = paragon/army_weight_mult
+	}
+}
+
+leader_trait_uninspiring_2 = {
+	negative = yes
+	replace_traits = { "leader_trait_uninspiring" }
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_uninspiring"
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		army_morale = -0.40
+	}
+	leader_class = { commander }
+	selectable_weight = @tier2_negative_trait_weight
+}
+
+###################
+leader_trait_slothful = {
+	negative = yes
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_slothful"
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		army_health = -0.10
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_hardy
+		leader_trait_hardy_2
+		leader_trait_hardy_3
+	}
+	selectable_weight = {
+		weight = @class_negative_trait_weight
+		inline_script = paragon/army_weight_mult
+		modifier = {
+			species = {
+				OR = {
+					has_trait = trait_sedentary
+					has_trait = trait_decadent
+				}
+			}
+			factor = @species_trait_weight_mult
+		}
+	}
+}
+
+leader_trait_slothful_2 = {
+	negative = yes
+	replace_traits = { "leader_trait_slothful" }
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_slothful"
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		army_health = -0.30
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_hardy
+		leader_trait_hardy_2
+		leader_trait_hardy_3
+	}
+	selectable_weight = @tier2_negative_trait_weight
+}
+
+###################
+leader_trait_victory_or_death = {
+	negative = yes
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_victory_or_death"
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		army_disengage_chance_mult = -0.3
+	}
+	leader_potential_add = {
+		NOT = { has_ethic = ethic_pacifist }
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_restrained
+		leader_trait_restrained_2
+	}
+	selectable_weight = {
+		weight = @class_negative_trait_weight
+		inline_script = paragon/army_weight_mult
+	}
+}
+
+leader_trait_victory_or_death_2 = {
+	negative = yes
+	replace_traits = { "leader_trait_victory_or_death" }
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_victory_or_death"
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		army_disengage_chance_mult = -0.9
+	}
+	leader_class = { commander }
+	opposites = {
+		leader_trait_restrained
+		leader_trait_restrained_2
+	}
+	selectable_weight = @tier2_negative_trait_weight
+}
+
+###################
+leader_trait_disorganized = {
+	negative = yes
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_disorganized"
+		COUNCIL = no
+		TIER = 1
+	}
+	army_modifier = {
+		armies_upkeep_mult = 0.40
+	}
+	leader_class = { commander }
+	opposites = {
+	}
+	selectable_weight = {
+		weight = @class_negative_trait_weight
+		inline_script = paragon/army_weight_mult
+		modifier = {
+			species = {
+				has_trait = trait_unruly
+			}
+			factor = @species_trait_weight_mult
+		}
+	}
+}
+
+leader_trait_disorganized_2 = {
+	negative = yes
+	replace_traits = { "leader_trait_disorganized" }
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_disorganized"
+		COUNCIL = no
+		TIER = 2
+	}
+	army_modifier = {
+		armies_upkeep_mult = 1.00
+	}
+	leader_class = { commander }
+	opposites = {
+	}
+	selectable_weight = @tier2_negative_trait_weight
+}
+
+###################
+leader_trait_lawless = {
+	negative = yes
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_lawless"
+		COUNCIL = no
+		TIER = 1
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = 10
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = 10
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = 5
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = 5
+	}
+	leader_class = { commander official scientist }
+	opposites = {
+		leader_trait_martinet
+		leader_trait_martinet_2
+		leader_trait_martinet_3
+	}
+	selectable_weight = {
+		weight = @class_negative_trait_weight
+		inline_script = paragon/governor_weight_mult
+		modifier = {
+			species = {
+				has_trait = trait_unruly
+			}
+			factor = @species_trait_weight_mult
+		}
+	}
+}
+
+leader_trait_lawless_2 = {
+	negative = yes
+	replace_traits = { "leader_trait_lawless" }
+	inline_script = {
+		script = trait/icon_negative
+		ICON = "GFX_leader_trait_lawless"
+		COUNCIL = no
+		TIER = 2
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = 30
+	}
+	triggered_planet_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = 30
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = no }
+		planet_crime_add = 15
+	}
+	triggered_sector_modifier = {
+		potential = { trait_is_gestalt_check = yes }
+		planet_crime_no_happiness_add = 15
+	}
+	leader_class = { commander official scientist }
+	opposites = {
+		leader_trait_martinet
+		leader_trait_martinet_2
+		leader_trait_martinet_3
+	}
+	selectable_weight = @tier2_negative_trait_weight
+}
+
+################
+#SPECIAL TRAITS#
+################
+
+leader_trait_aturion_organizer = {
+	destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_supreme_organizer"
+		RARITY = paragon
+		COUNCIL = yes
+		TIER = none
+	}
+	councilor_modifier = {
+		empire_size_penalty_mult = -0.1
+		pop_government_ethic_attraction = 0.50
+		pop_happiness = -0.05
+	}
+	leader_potential_add = {
+		has_paragon_dlc = yes
+	}
+	leader_class = { commander }
+	selectable_weight = {
+		weight = @subclass_trait_weight
+		inline_script = {
+			script = paragon/ethic_weight_mult
+			IS = xenophobe
+			NOT = xenophile
+		}
+	}
+	background_icon = "GFX_leader_background_destiny_1"
+	randomized = no
+}
+
+leader_trait_tzrynn_tithe = {
+	destiny_trait = yes
+	inline_script = {
+		script = trait/icon
+		CLASS = commander
+		ICON = "GFX_leader_trait_academic_minor_artifacts_expert"
+		RARITY = paragon
+		COUNCIL = no
+		TIER = none
+	}
+	army_modifier = {
+		army_collateral_damage_mult = -0.2
+		army_morale_damage_mult = 0.1
+	}
+	leader_class = { commander }
+	custom_tooltip_with_modifiers = leader_trait_kidnapper_3_effect
+}
+
+#leader_trait_general_mercenary_warrior = {
+#	cost = 0
+#	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_glory_seeker.dds"
+#	modifier = {
+#		army_damage_mult = 0.10
+#	}
+#	leader_trait = {commander }
+#	leader_class = { commander }
+#	initial = no
+#	randomized = no
+#}
