@@ -429,15 +429,15 @@ dangerous_wildlife = {
 weak_magnetic_field = {
 	pop_environment_tolerance = -0.05
 	pop_growth_speed = -0.05
+	planet_jobs_physics_research_produces_mult = 0.10
 
 	icon = "gfx/interface/icons/planet_modifiers/pm_weak_magnetic_field.dds"
 	icon_frame = 3
 }
 
 strong_magnetic_field = {
-	planet_jobs_energy_produces_mult = 0.05
-	planet_jobs_physics_research_produces_mult = 0.05
-	district_generator_max = 2
+	planet_technician_physics_research_produces_add = 1
+	district_generator_max = 4
 
 	icon = "gfx/interface/icons/planet_modifiers/pm_strong_magnetic_field.dds"
 	icon_frame = 1
@@ -454,6 +454,7 @@ unstable_tectonics = {
 
 tidal_locked = {
 	planet_max_districts_mult = -0.30
+	district_farming_max = -3
 
 	icon = "gfx/interface/icons/planet_modifiers/pm_tidal_locked.dds"
 	icon_frame = 3
@@ -475,15 +476,12 @@ asteroid_impacts = {
 }
 
 extensive_moon_system = {
-	planet_jobs_minerals_produces_mult = 0.10
-	district_mining_max = 2
 
 	icon = "gfx/interface/icons/planet_modifiers/pm_extensive_moon_system.dds"
 	icon_frame = 1
 }
 
 carbon_world = {
-	planet_jobs_minerals_produces_mult = 0.15
 
 	icon = "gfx/interface/icons/planet_modifiers/pm_carbon_world.dds"
 	icon_frame = 1
@@ -540,8 +538,8 @@ eat_the_titans = {
 }
 
 asteroid_belt = {
-	planet_jobs_minerals_produces_mult = 0.10
-	district_mining_max = 3
+	planet_miners_engineering_research_produces_add = 1
+	district_mining_max = 4
 
 	icon = "gfx/interface/icons/planet_modifiers/pm_asteroid_belt.dds"
 	icon_frame = 1
@@ -550,6 +548,7 @@ asteroid_belt = {
 natural_beauty = {
 	pop_happiness = 0.05
 	planet_immigration_pull_mult = 0.25
+	planet_resettlement_unemployed_destination_mult = 0.25
 
 	icon = "gfx/interface/icons/planet_modifiers/pm_natural_beauty.dds"
 	icon_frame = 1
@@ -592,9 +591,9 @@ lush_planet = {
 }
 
 bleak_planet = {
-	pop_environment_tolerance = -0.05
-	planet_jobs_food_produces_mult = -0.10
-	district_farming_max = -2
+	pop_environment_tolerance = -0.1
+	planet_farmers_food_produces_add = -1
+	district_farming_max = -4
 
 	icon = "gfx/interface/icons/planet_modifiers/pm_bleak.dds"
 	icon_frame = 3
@@ -628,6 +627,29 @@ high_gravity = {
 
 	icon = "gfx/interface/icons/planet_modifiers/pm_high_gravity.dds"
 	icon_frame = 2
+}
+
+abundant_geothermal_activity = {
+	planet_technician_engineering_research_produces_add = 1
+	district_generator_max = 4
+	icon = "gfx/interface/icons/planet_modifiers/pm_drilling_for_gas.dds"
+	icon_frame = 1
+}
+
+subterranean_wildlife = {
+	planet_max_districts_add = 2
+	planet_structures_upkeep_mult = 0.2
+	planet_miners_society_research_produces_add = 1
+	district_mining_max = 4
+	icon = "gfx/interface/icons/planet_modifiers/pm_hollow_planet.dds"
+	icon_frame = 1
+}
+
+rich_mircoflora = {
+	district_farming_max = 4
+	planet_farmers_society_research_produces_add = 1
+	icon = "gfx/interface/icons/planet_modifiers/pm_microscopic_life.dds"
+	icon_frame = 1
 }
 
 ##########################################################################
@@ -837,15 +859,6 @@ wasteland_orbital_debris = {
 
 upliftable_species = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_planet_from_space.dds"
-}
-
-assist_research = {
-	planet_jobs_physics_research_produces_mult = 0.10
-	planet_jobs_society_research_produces_mult = 0.10
-	planet_jobs_engineering_research_produces_mult = 0.10
-
-	icon = "gfx/interface/icons/planet_modifiers/pm_assist_research.dds"
-	icon_frame = 1
 }
 
 ancient_automation = {
@@ -1178,31 +1191,101 @@ relentless_industrialists_tomb = {
 # Leader Skill Modifiers
 ##########################################################################
 
-skill_admiral = {
+skill_commander_navy = {
 	ship_fire_rate_mult = 0.03
 	ship_disengage_opportunities_add = 0.2
 }
 
-skill_general = {
+skill_commander_army = {
 	army_damage_mult = 0.05
+}
+
+skill_official = {
+	custom_tooltip = skill_official_delegate_tt
+}
+
+skill_commander = {
+	# No generic effect by design
 }
 
 skill_scientist = {
 	science_ship_survey_speed = 0.10
 	ship_archaeological_site_clues_add = 1
+	ship_astral_rift_clues_add = 1
 }
-
-skill_governor = {
-	planet_jobs_produces_mult = 0.02
-	species_empire_size_mult = -0.02
-	planet_crime_add = -3
+skill_official_planet_governor = {
+	custom_tooltip = skill_official_planet_governor_tt
+	planet_jobs_energy_produces_mult = @planet_job_mult
+	planet_jobs_minerals_produces_mult = @planet_job_mult
+	planet_jobs_food_produces_mult = @planet_job_mult
+	planet_jobs_consumer_goods_produces_mult = @planet_job_mult
+	# planet_jobs_alloys_produces_mult = @planet_job_mult
+	# planet_jobs_exotic_gases_produces_mult = @planet_job_mult
+	# planet_jobs_rare_crystals_produces_mult = @planet_job_mult
+	# planet_jobs_volatile_motes_produces_mult = @planet_job_mult
+	planet_jobs_light_metals_produces_mult = @planet_job_mult
+	planet_jobs_heavy_metals_produces_mult = @planet_job_mult
+	planet_jobs_antimatter_fuel_produces_mult = @planet_job_mult
+	planet_jobs_uranium_produces_mult = @planet_job_mult
+	species_empire_size_mult = @planet_empire_size
 }
-
-skill_governor_homeplanet = {
+skill_official_sector_governor = {
+	custom_tooltip = skill_official_sector_governor_tt
+	planet_jobs_energy_produces_mult = @sector_job_mult
+	planet_jobs_minerals_produces_mult = @sector_job_mult
+	planet_jobs_food_produces_mult = @sector_job_mult
+	planet_jobs_consumer_goods_produces_mult = @sector_job_mult
+	# planet_jobs_alloys_produces_mult = @sector_job_mult
+	# planet_jobs_exotic_gases_produces_mult = @sector_job_mult
+	# planet_jobs_rare_crystals_produces_mult = @sector_job_mult
+	# planet_jobs_volatile_motes_produces_mult = @sector_job_mult
+	planet_jobs_light_metals_produces_mult = @sector_job_mult
+	planet_jobs_heavy_metals_produces_mult = @sector_job_mult
+	planet_jobs_antimatter_fuel_produces_mult = @sector_job_mult
+	planet_jobs_uranium_produces_mult = @sector_job_mult
+	species_empire_size_mult = @sector_empire_size
+}
+skill_official_background_planet_governor = {
+	planet_amenities_add = 2
+}
+skill_commander_planet_governor = {
+	planet_jobs_ruler_produces_mult = @negative_planet_job_mult
+	planet_jobs_specialist_produces_mult = @negative_planet_job_mult
+	planet_jobs_worker_produces_mult = @planet_job_mult
+	planet_jobs_slave_produces_mult = @planet_job_mult
+	job_soldier_stability_add = 2
+	planet_crime_add = -2
+	species_empire_size_mult = @planet_empire_size
+}
+skill_commander_sector_governor = {
+	planet_jobs_ruler_produces_mult = @negative_sector_job_mult
+	planet_jobs_specialist_produces_mult = @negative_sector_job_mult
+	planet_jobs_worker_produces_mult = @sector_job_mult
+	planet_jobs_slave_produces_mult = @sector_job_mult
+	job_soldier_stability_add = 1
+	planet_crime_add = -1
+	species_empire_size_mult = @sector_empire_size
+}
+skill_commander_background_planet_governor = {
 	planet_stability_add = 1
 }
 
-skill_ruler = {
+skill_scientist_planet_governor = {
+	planet_jobs_physics_research_produces_mult = @planet_job_mult
+	planet_jobs_society_research_produces_mult = @planet_job_mult
+	planet_jobs_engineering_research_produces_mult = @planet_job_mult
+	species_empire_size_mult = @planet_empire_size
+}
+
+skill_scientist_sector_governor = {
+	planet_jobs_physics_research_produces_mult = @sector_job_mult
+	planet_jobs_society_research_produces_mult = @sector_job_mult
+	planet_jobs_engineering_research_produces_mult = @sector_job_mult
+	species_empire_size_mult = @sector_empire_size
+}
+
+skill_scientist_background_planet_governor = {
+	planet_jobs_upkeep_mult = -0.01
 }
 
 leader_skills_spawn = {
@@ -1598,11 +1681,11 @@ machine_empire_inoculations = {
 
 machine_empire_health_boost = {
 	pop_growth_speed = 0.05
-	leader_age = 10
+	leader_lifespan_add = 10
 }
 
 machine_empire_mutations = {
-	leader_age = -10
+	leader_lifespan_add = -10
 	pop_growth_speed = -0.10
 	pop_happiness = -0.20
 }
@@ -1676,7 +1759,7 @@ instability_join_revolt = {
 
 trash_rings = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_trash_rings.dds"
-	icon_frame = 1
+	icon_frame = 3
 	pop_happiness = -0.05
 	planet_immigration_pull_mult = -0.25
 }
@@ -1703,5 +1786,72 @@ ground_locked = {
 	planet_immigration_pull_mult = -1
 	planet_jobs_produces_mult = -0.15
 	icon = "gfx/interface/icons/planet_modifiers/pm_asteroid_belt.dds"
+	icon_frame = 3
+}
+
+active_melting = {
+	pop_environment_tolerance = -0.1
+	icon = "gfx/interface/icons/planet_modifiers/pm_wild_storms.dds"
+	icon_frame = 3
+}
+
+boosted_melting = {
+	pop_environment_tolerance = -0.2
+	planet_jobs_produces_mult = 0.25
+	icon = "gfx/interface/icons/planet_modifiers/pm_burning_settlement.dds"
+	icon_frame = 2
+}
+
+ancient_plague = {
+	pop_growth_speed = -0.1
+	planet_immigration_pull_mult = -0.5
+	icon = "gfx/interface/icons/planet_modifiers/pm_faith_in_science.dds"
+	icon_frame = 3
+}
+
+cruel_actions = {
+	pop_happiness = -0.25
+	icon = "gfx/interface/icons/planet_modifiers/pm_martial_law.dds"
+	icon_frame = 3
+}
+
+halted_production = {
+	planet_jobs_produces_mult = -0.25
+	icon = "gfx/interface/icons/planet_modifiers/pm_arctic_planet.dds"
+	icon_frame = 2
+}
+
+ecological_emergency = {
+	planet_jobs_produces_mult = -0.5
+	icon = "gfx/interface/icons/planet_modifiers/pm_arctic_planet.dds"
+	icon_frame = 2
+}
+
+alien_infestation = {
+	pop_environment_tolerance = -0.2
+	icon = "gfx/interface/icons/planet_modifiers/pm_dangerous_wildlife.dds"
+	icon_frame = 3
+}
+
+adopted_aliens = {
+	planet_housing_mult = -0.05
+	planet_jobs_society_research_produces_mult = 0.1
+	icon = "gfx/interface/icons/planet_modifiers/pm_animal_wildlife.dds"
 	icon_frame = 1
+}
+
+national_pets = {
+	pop_happiness = 0.1
+	pop_amenities_usage_mult = -0.2
+	icon = "gfx/interface/icons/planet_modifiers/pm_animal_wildlife.dds"
+	icon_frame = 1
+}
+
+rodent_war = {
+	pop_growth_speed_reduction = 1
+	planet_immigration_pull_mult = -1
+	armies_cost_mult = -0.5
+	planet_army_build_speed_mult = 1.0
+	icon = "gfx/interface/icons/planet_modifiers/pm_exploding_planet.dds"
+	icon_frame = 2
 }

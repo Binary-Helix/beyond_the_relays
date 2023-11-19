@@ -1,4 +1,4 @@
-version="1.0.e"
+version="2.0.1"
 tags={
 	"Overhaul"
 	"Balance"
@@ -12,5 +12,5 @@ tags={
 	"Spaceships"
 }
 name="Mass Effect: Beyond the Relays"
-supported_version="3.7.*"
+supported_version="3.10.*"
 remote_file_id="2911033004"

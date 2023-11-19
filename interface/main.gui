@@ -20,37 +20,6 @@ guiTypes = {
 		position = { x = 1600 y = -1 }  #X is the minimum scaled X resolution for which to use the loose style main gui presence element
 	}
 
-## Lives in leaders_grid
-	containerWindowType = {
-		name = "topbar_leader_gridbox_entry"
-		size = { width = 100 height = 28 }
-
-		iconType = {
-			name = "leader_class_icon"
-			spriteType = "GFX_leader_icons"
-			position = { x = 17 y = 14 }
-			scale = 0.6
-			centerPosition = yes
-			alwaysTransparent = yes
-		}
-
-		instantTextBoxType={
-			name = "class_name"
-			position = { x = 34 y = 6 }
-			font = "cg_16b"
-			maxWidth = 100
-			maxHeight = 30
-			text_color_code = "E"
-			alwaysTransparent = yes
-		}
-
-		buttonType ={
-			name = "button"
-			size = { x = 160 y = 28 }
-			quadTextureSprite = "GFX_invisible"
-		}
-	}
-
 	containerWindowType = {
 		name = "maingui_flag"
 		position = { x = 0 y = 0 }
@@ -700,7 +669,7 @@ guiTypes = {
 					position = { x = 0 y = -100 }
 					hide_position = { x = 0 y = -100 }
 					show_position = { x = 0 y = 35 }
-					size = { width = 100 }
+					size = { width = 100  height = 230 } # Dynamic in topbar_other_resource_groups.
 					show_animation_type = decelerated
 					hide_animation_type = accelerated
 					animation_time = 200
@@ -708,6 +677,14 @@ guiTypes = {
 						name = "bg"
 						spriteType = "GFX_subwindow_tile_plain_solid"
 					}
+
+					iconType = {
+						name = "bg_separator"
+						position = { x = 50 y = 175 }
+						quadTextureSprite = "GFX_subwindow_tile_plain_solid_separator"
+						alwaysTransparent = yes
+					}
+
 					gridBoxType = {
 						name = "resources"
 						format = "UPPER_LEFT"
@@ -737,36 +714,16 @@ guiTypes = {
 					centerPosition = yes
 					alwaysTransparent = yes
 				}
-				instantTextBoxType={
+				instantTextBoxType = {
 					name = "amount"
 					font = "cg_16b"
 					position = { x = 2 y = 22 }
-					maxWidth = 80
+					maxWidth = 120
 					maxHeight = 16
 					text = "250"
 					format = center
 					vertical_alignment = center
 					alwaysTransparent = yes
-				}
-				containerWindowType = {
-					name = "leader_dropdown"
-					size = { width = 160 height = 160 }
-					hide_position = { x = 0 y = -100 }
-					show_position = { x = 0 y = 35 }
-					show_animation_type = decelerated
-					hide_animation_type = accelerated
-					animation_time = 100
-					background = {
-						name = "background"
-						quadTextureSprite = "GFX_subwindow_tile_plain_solid"
-					}
-					gridBoxType = {
-						name = "leaders_grid"
-						position = { x = 0 y = 10 }
-						slotSize = { width = 100% height = 28 }
-						max_slots_horizontal = 1
-						format = "UPPER_LEFT"
-					}
 				}
 			}
 			containerWindowType = {
@@ -1324,7 +1281,7 @@ guiTypes = {
 
 	containerWindowType = {
 		name = "maingui_left_bar_buttons"
-		size = { width = 250 height = 650 }
+		size = { width = 250 height = 690 }
 		position = { x = -225 y = 35 }
 		hide_position = { x = -225 y = 35 }
 		show_position = { x = -5 y = 35 }
@@ -1338,7 +1295,7 @@ guiTypes = {
 
 		containerWindowType = {
 			name = "background"
-			size = { width = 340 height = 610 }
+			size = { width = 320 height = 610 }
 			position = { x = 5 y = 5 } # OFFE TODO Set x = -60 when minimized
 
 			background = {
