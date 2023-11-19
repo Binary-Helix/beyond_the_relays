@@ -32,22 +32,23 @@ can_take_hostile_actions = {
 			always = no
 		}
 	}
-	else_if = {
-		#attacking primitives with non-interference
-		limit = {
-			ROOT = {
-				is_country_type = default
-				OR = {
-					has_policy_flag = interference_active
-				}
-			}
-			is_primitive = yes
-		}
-		custom_tooltip = {
-			text = "CAN_TAKE_HOSTILE_ACTION_NATIVE_INTERFERENCE"
-			always = no
-		}
-	}
+	# else_if = {
+	# 	#attacking primitives with non-interference
+	# 	limit = {
+	# 		ROOT = {
+	# 			is_country_type = default
+	# 			OR = {
+	# 				has_policy_flag = interference_passive
+	# 				has_policy_flag = interference_active
+	# 			}
+	# 		}
+	# 		is_primitive = yes
+	# 	}
+	# 	custom_tooltip = {
+	# 		text = "CAN_TAKE_HOSTILE_ACTION_NATIVE_INTERFERENCE"
+	# 		always = no
+	# 	}
+	# }
 	else_if = {
 		limit = {
 			is_primitive = yes
@@ -108,7 +109,7 @@ can_take_hostile_actions = {
 	}
 	else_if = {
 		limit = {
-			is_country_type = independent_colony
+			is_country_type = planet_state
 			ROOT = { is_country_type = default }
 			capital_scope = {
 				root = {
@@ -121,13 +122,13 @@ can_take_hostile_actions = {
 			}
 		}
 		custom_tooltip = {
-			text = "CAN_TAKE_HOSTILE_ACTION_independent_colony"
+			text = "CAN_TAKE_HOSTILE_ACTION_PLANET_STATE"
 			always = no
 		}
 	}
 	else_if = {
 		limit = {
-			is_country_type = independent_colony
+			is_country_type = planet_state
 			ROOT = {
 				OR = {
 					is_country_type = dormant_marauders

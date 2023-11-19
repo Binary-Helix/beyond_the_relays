@@ -12,5 +12,5 @@ tags={
 	"Spaceships"
 }
 name="Mass Effect: Beyond the Relays"
-supported_version="3.6.*"
+supported_version="3.9.*"
 remote_file_id="2911033004"

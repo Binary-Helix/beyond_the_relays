@@ -102,7 +102,7 @@ fleet_event = {
 
 fleet_event = {
 	id = ancrel.3
-	title = "ancrel.3.name"
+	title = "ancrel.1.name"
 	desc = ancrel.3.desc
 	picture = GFX_evt_baol_datacrystals
 	show_sound = event_whispering
@@ -128,7 +128,7 @@ fleet_event = {
 
 fleet_event = {
 	id = ancrel.4
-	title = ancrel.3.name
+	title = ancrel.1.name
 	desc = ancrel.4.desc
 	picture = GFX_evt_zro_1
 	show_sound = event_energy_field
@@ -291,7 +291,7 @@ fleet_event = {
 
 fleet_event = {
 	id = ancrel.5
-	title = "ancrel.1.name"
+	title = "ancrel.2.name"
 	desc = ancrel.5.desc
 	picture = GFX_evt_overgrown_city
 	show_sound = event_wind_ruins
@@ -317,7 +317,7 @@ fleet_event = {
 
 fleet_event = {
 	id = ancrel.6
-	title = "ancrel.3.name"
+	title = "ancrel.2.name"
 	desc = ancrel.6.desc
 	picture = GFX_evt_zro_2
 	show_sound = event_finding_loot
@@ -456,7 +456,7 @@ fleet_event = {
 
 fleet_event = {
 	id = ancrel.7
-	title = zroni_digsite_2
+	title = zroni_digsite_3
 	desc = ancrel.7.desc
 	picture = GFX_evt_zro_3
 	show_sound = event_whispering
@@ -474,7 +474,7 @@ fleet_event = {
 
 fleet_event = {
 	id = ancrel.8
-	title = zroni_digsite_2
+	title = zroni_digsite_3
 	desc = ancrel.8.desc
 	picture = GFX_evt_zro_3
 	show_sound = event_finding_loot
@@ -613,7 +613,7 @@ fleet_event = {
 
 fleet_event = {
 	id = ancrel.9
-	title = zroni_digsite_2
+	title = zroni_digsite_4
 	desc = ancrel.9.desc
 	picture = GFX_evt_baol_datacrystals
 	show_sound = event_whispering
@@ -638,7 +638,7 @@ fleet_event = {
 
 fleet_event = {
 	id = ancrel.10
-	title = "ancrel.3.name"
+	title = "ancrel.4.name"
 	desc = ancrel.10.desc
 	picture = GFX_evt_synth_sabotage
 	show_sound = event_energy_field
@@ -976,6 +976,7 @@ fleet_event = {
 	option = {
 		name = ancrel.18.a
 		owner = {
+			set_country_flag = zroni_completed
 			add_resource = { sr_zro = 5 }
 			add_monthly_resource_mult = {
 				resource = society_research
@@ -3099,7 +3100,7 @@ fleet_event = { #Stage 6
 					set_friendly = no
 				}
 				create_leader = {
-					class = governor
+					class = official
 					species = event_target:mechanocalibrator_species
 					name = "NAME_planetary_mechanocalibrator"
 					immortal = yes
@@ -3913,14 +3914,24 @@ ship_event = {
 	picture = GFX_evt_space_debris
 	show_sound = event_ship_bridge
 	location = from
+	event_chain = rubricator_chain
+	
+	immediate = {
+		begin_event_chain = {
+			event_chain = "rubricator_chain"
+			target = this.owner
+		}
+	}
 
 	is_triggered_only = yes
 
 	option = {
 		name = ancrel.4011.a
-		begin_event_chain = {
-			event_chain = "rubricator_chain"
-			target = this.owner
+		tooltip = {
+			begin_event_chain = {
+				event_chain = "rubricator_chain"
+				target = this.owner
+			}
 		}
 
 		hidden_effect = {
@@ -4032,6 +4043,11 @@ ship_event = {
 	}
 	option = {
 		name = ancrel.4011.b
+		hidden_effect = {
+			owner = {
+				end_event_chain = rubricator_chain
+			}
+		}
 	}
 }
 
@@ -4045,6 +4061,7 @@ fleet_event = {
 	show_sound = event_ship_bridge
 	location = event_target:rubricator_planet
 	trackable = yes
+	event_chain = rubricator_chain
 
 	is_triggered_only = yes
 
@@ -4232,6 +4249,7 @@ fleet_event = {
 	picture = GFX_evt_space_dragon_blue
 	show_sound = event_dangerous_animals
 	location = fromfrom
+	event_chain = rubricator_chain
 
 	is_triggered_only = yes
 
@@ -4417,6 +4435,7 @@ planet_event = {
 	picture = GFX_evt_exploding_planet
 	show_sound = event_dangerous_animals
 	location = root
+	event_chain = rubricator_chain
 
 	is_triggered_only = yes
 
@@ -5335,7 +5354,7 @@ country_event = {
 		ethic_leader_creator = {
 			SPECIES_CLASS = ART
 			LEADER_PORTRAIT = cpl_01
-			CLASS = governor
+			CLASS = official
 			NAME = NAME_Oracle
 			LEVEL = 5
 			GENDER = female
@@ -5346,7 +5365,7 @@ country_event = {
 		}
 		last_created_leader = {
 			add_trait = leader_trait_governor_oracle
-			add_trait = subclass_governor_economist
+			add_trait = subclass_official_governor
 			add_trait = leader_trait_principled_2
 			add_trait = leader_trait_urbanist
 			add_trait = leader_trait_architectural_interest

@@ -132,7 +132,7 @@ country_event = {
 					}
 				}
 				create_leader = {
-					class = admiral
+					class = commander
 					species = event_target:sharpbeak_species
 					name = "NAME_Skrand_Sharpbeak"
 					skill = 8
@@ -152,9 +152,9 @@ country_event = {
 					set_leader_flag = immune_to_negative_traits
 					save_global_event_target_as = admiral_sharpbeak
 					set_owner = event_target:sharpbeak_country
-					add_trait = leader_trait_carrier_specialization 
-					add_trait = leader_trait_engineer_2 
-					add_trait = subclass_admiral_tactician
+					add_trait = leader_trait_carrier_specialization
+					add_trait = leader_trait_engineer_2
+					add_trait = subclass_commander_admiral
 					add_trait = leader_trait_resilient_2
 					add_trait = leader_trait_survivalist
 					add_trait = leader_trait_unyielding
@@ -382,7 +382,20 @@ country_event = { #project finished
 country_event = {
 	id = paragon.3004
 	title = "paragon.3004.name"
-	desc = "paragon.3004.desc"
+	desc = {
+		trigger = {
+			has_country_flag = found_skravird
+		}
+		text = paragon.3004.a.desc
+	}
+	desc = {
+		trigger = {
+			NOT = {
+				has_country_flag = found_skravird
+			}
+		}
+		text = paragon.3004.b.desc
+	}
 	picture = GFX_evt_skrand_ship
 	show_sound = event_yellow_alert
 	location = event_target:sharpbeak_fleet
@@ -396,6 +409,7 @@ country_event = {
 	}
 
 	immediate = {
+		set_country_flag = met_skrand
 	}
 
 	option = {
@@ -466,7 +480,7 @@ country_event = {
 			}
 			variable = {
 				key = "border"
-				value = "GFX_border_legendary" 
+				value = "GFX_border_legendary"
 			}
 		}
 		event_target:sharpbeak_fleet = {
@@ -530,7 +544,7 @@ country_event = {
 		hidden_effect = {
 			event_target:sharpbeak_fleet = {
 				kill_leader = {
-					type = admiral show_notification = no
+					class = commander show_notification = no
 				}
 				set_owner = root
 			}
@@ -783,7 +797,7 @@ country_event = {
 				has_leader_flag = skrand
 				is_ruler = no
 			}
-			leader_class = admiral
+			leader_class = commander
 		}
 	}
 
@@ -794,7 +808,7 @@ country_event = {
 					has_leader_flag = skrand
 					is_ruler = no
 				}
-				leader_class = admiral
+				leader_class = commander
 			}
 			save_global_event_target_as = leader_to_fire_skrand
 		}
@@ -954,7 +968,7 @@ country_event = {
 				has_leader_flag = skrand
 				is_ruler = no
 			}
-			leader_class = admiral
+			leader_class = commander
 		}
 	}
 
@@ -965,7 +979,7 @@ country_event = {
 					has_leader_flag = skrand
 					is_ruler = no
 				}
-				leader_class = admiral
+				leader_class = commander
 			}
 			save_global_event_target_as = leader_to_fire_skrand
 		}
@@ -1025,7 +1039,7 @@ country_event = {
 				has_leader_flag = skrand
 				is_ruler = no
 			}
-			leader_class = admiral
+			leader_class = commander
 		}
 	}
 
@@ -1036,7 +1050,7 @@ country_event = {
 					has_leader_flag = skrand
 					is_ruler = no
 				}
-				leader_class = admiral
+				leader_class = commander
 			}
 			save_global_event_target_as = leader_to_fire_skrand
 		}
@@ -3205,39 +3219,39 @@ country_event = { #End The Story
 		event_target:legendary_lost_leader = {
 			hidden_effect = { unassign_leader = this }
 			remove_all_traits = yes
-			change_leader_class = admiral
+			change_leader_class = commander
 			set_skill = 1
 			add_experience = 54000
 		}
 		custom_tooltip = paragon.3160.e.custom_tooltip
 		custom_gui = "enclave_caravaneer_option"
 	}
-	option = { # Become a Governor
+	option = { # Become a Official
 		name = paragon.3160.f
 		response_text = paragon.3160.new_focus
 		event_target:legendary_lost_leader = {
 			hidden_effect = { unassign_leader = this }
 			remove_all_traits = yes
-			change_leader_class = governor
+			change_leader_class = official
 			set_skill = 1
 			add_experience = 54000
 		}
 		custom_tooltip = paragon.3160.f.custom_tooltip
 		custom_gui = "enclave_caravaneer_option"
 	}
-	option = { # Become a General
-		name = paragon.3160.g
-		response_text = paragon.3160.new_focus
-		event_target:legendary_lost_leader = {
-			hidden_effect = { unassign_leader = this }
-			remove_all_traits = yes
-			change_leader_class = general
-			set_skill = 1
-			add_experience = 54000
-		}
-		custom_tooltip = paragon.3160.g.custom_tooltip
-		custom_gui = "enclave_caravaneer_option"
-	}
+	#option = { # Become a General
+	#	name = paragon.3160.g
+	#	response_text = paragon.3160.new_focus
+	#	event_target:legendary_lost_leader = {
+	#		hidden_effect = { unassign_leader = this }
+	#		remove_all_traits = yes
+	#		change_leader_class = commander
+	#		set_skill = 1
+	#		add_experience = 54000
+	#	}
+	#	custom_tooltip = paragon.3160.g.custom_tooltip
+	#	custom_gui = "enclave_caravaneer_option"
+	#}
 	after = {
 		event_target:legendary_lost_leader = {
 			add_trait = leader_trait_legendary_ancestors_knowledge

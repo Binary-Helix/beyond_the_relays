@@ -1,0 +1,699 @@
+######################
+# BULWARK SPECIALIST #
+######################
+
+bulwark_1_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		shipclass_military_station_damage_mult = 0.5
+		shipclass_military_station_hull_mult = 0.5
+		starbase_defense_platform_capacity_add = 2
+		shipclass_starbase_damage_mult = 0.5
+		shipclass_starbase_hull_mult = 0.5
+		ship_shield_hardening_add = 0.05
+		ship_armor_hardening_add = 0.05
+	}
+
+	# For setting the room background
+	activate_effect = {
+		target = {
+			store_country_backup_data = {
+				flag = no
+				room = yes
+				name = no
+				ethics = no
+				government = no
+			}
+			room_name_override = ""
+		}
+	}
+
+	# Restore room background back to normal
+	deactivate_effect = {
+		target = {
+			restore_country_backup_data = yes
+		}
+	}
+}
+
+bulwark_1_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_energy_produces_mult = -0.2
+		country_minerals_produces_mult = -0.2
+		country_food_produces_mult = -0.2
+	}
+}
+
+bulwark_1_overlord_modifier = {
+	icon = "GFX_specialist_perk_bulwark_1_overlord_modifier"
+	overlord_modifier = {
+		starbase_upgrade_cost_mult = -0.2
+		starbase_upgrade_speed_mult = 0.2
+	}
+}
+
+bulwark_1_neighbor_bonuses = {
+	icon = "GFX_specialist_perk_bulwark_1_neighbor_bonuses"
+
+	overlord_relay_network_modifier = {
+		specialist_bulwark_neighbor = 1
+	}
+
+	desc = {
+		description = bulwark_1_neighbor_bonuses_desc
+	}
+}
+
+bulwark_1_bulwark_array = {
+	icon = "GFX_specialist_perk_bulwark_1_bulwark_array"
+	activate_effect = {
+		target = {
+			every_owned_starbase = {
+				limit = { is_normal_starbase = yes }
+				add_bulwark_array = yes
+			}
+		}
+	}
+
+	deactivate_effect = {
+		target = {
+			every_owned_starbase = {
+				remove_bulwark_array = yes
+			}
+		}
+	}
+
+	desc = {
+		description = bulwark_1_bulwark_array_desc
+	}
+}
+
+bulwark_1_bulwark_insight = {
+	icon = "GFX_specialist_perk_bulwark_1_bulwark_insight"
+	activate_effect = {
+		target = {
+			if = {
+				limit = { NOT = { has_technology = tech_ftl_inhibitor } }
+				give_technology = {
+					tech = tech_ftl_inhibitor
+					message = yes
+				}
+			}
+			append_technology = { TECH = starbase_3 }
+			append_technology = { TECH = planetary_shield_generator }
+		}
+	}
+
+	desc = {
+		description = bulwark_1_bulwark_insight_desc
+	}
+}
+
+bulwark_2_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		shipclass_military_station_damage_mult = 0.75
+		shipclass_military_station_hull_mult = 0.75
+		starbase_defense_platform_capacity_add = 5
+		shipclass_starbase_damage_mult = 0.5
+		shipclass_starbase_hull_mult = 0.5
+		ship_shield_hardening_add = 0.15
+		ship_armor_hardening_add = 0.15
+	}
+}
+
+bulwark_2_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_energy_produces_mult = -0.35
+		country_minerals_produces_mult = -0.35
+		country_food_produces_mult = -0.35
+	}
+}
+
+bulwark_2_bulwark_insight = {
+	icon = "GFX_specialist_perk_bulwark_2_bulwark_insight"
+	activate_effect = {
+		target = {
+			append_technology = { TECH = modular_engineering }
+			append_technology = { TECH = starbase_4 }
+		}
+	}
+
+	desc = {
+		description = bulwark_2_bulwark_insight_desc
+	}
+}
+
+bulwark_2_leaders = {
+	icon = "GFX_specialist_perk_bulwark_2_leaders"
+	subject_modifier = {
+		country_commander_cap_add = 1
+		commander_initial_skill = 1
+	}
+
+	activate_effect = {
+		target = {
+			add_specialist_leaders = {
+				TYPE = bulwark
+				CLASS = commander
+			}
+		}
+	}
+
+	deactivate_effect = {
+		target = {
+			remove_specialist_leaders = {
+				TYPE = bulwark
+				CLASS = commander
+			}
+		}
+	}
+
+	desc = {
+		description = bulwark_2_leaders_desc
+	}
+}
+
+bulwark_2_traits = {
+	icon = "GFX_specialist_perk_bulwark_2_traits"
+	desc = {
+		description = bulwark_2_traits_desc
+	}
+}
+
+bulwark_3_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		shipclass_military_station_damage_mult = 1
+		shipclass_military_station_hull_mult = 1
+		starbase_defense_platform_capacity_add = 8
+		shipclass_starbase_damage_mult = 0.75
+		shipclass_starbase_hull_mult = 0.75
+		ship_shield_hardening_add = 0.25
+		ship_armor_hardening_add = 0.25
+	}
+}
+
+bulwark_3_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_energy_produces_mult = -0.5
+		country_minerals_produces_mult = -0.5
+		country_food_produces_mult = -0.5
+	}
+}
+
+bulwark_3_bulwark_insight = {
+	icon = "GFX_specialist_perk_bulwark_3_bulwark_insight"
+	activate_effect = {
+		target = {
+			append_technology = { TECH = starbase_5 }
+		}
+	}
+
+	desc = {
+		description = bulwark_3_bulwark_insight_desc
+	}
+}
+
+bulwark_3_battlewright = {
+	icon = "GFX_specialist_perk_bulwark_3_battlewright"
+	activate_effect = {
+		target = {
+			create_ship_design = { design = "NAME_Bulwark_Battlewright" }
+			last_created_design = {
+				set_design_flag = bulwark_battlewright
+			}
+			add_ship_design = last_created_design
+		}
+	}
+
+	deactivate_effect = {
+		target = {
+			every_owned_design = {
+				limit = { has_design_flag = bulwark_battlewright }
+				save_event_target_as = remove_this_design
+			}
+			remove_ship_design = event_target:remove_this_design
+		}
+	}
+
+	desc = {
+		description = bulwark_3_battlewright_desc
+	}
+}
+
+bulwark_3_disintegrator_field = {
+	icon = "GFX_specialist_perk_bulwark_3_disintegrator_field"
+	activate_effect = {
+		target = {
+			if = {
+				limit = {
+					NOT = { has_country_flag = finished_unyielding_tree }
+					has_tradition = tr_unyielding_finish
+				}
+				set_country_flag = finished_unyielding_tree
+			}
+			every_owned_starbase = {
+				limit = { is_normal_starbase = yes }
+				add_disintegrator_field = yes
+			}
+		}
+	}
+
+	deactivate_effect = {
+		target = {
+			every_owned_starbase = {
+				remove_disintegrator_field = yes
+			}
+		}
+	}
+
+	desc = {
+		description = bulwark_3_disintegrator_field_desc
+	}
+}
+
+#########################
+# SCHOLARIUM SPECIALIST #
+#########################
+
+scholarium_1_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		country_society_research_produces_mult = 0.2
+		country_physics_research_produces_mult = 0.2
+		country_engineering_research_produces_mult = 0.2
+		num_tech_alternatives_add = 1
+		description = scholarium_1_modifier_desc
+	}
+
+	# For setting the room background
+	activate_effect = {
+		target = {
+			store_country_backup_data = {
+				flag = no
+				room = yes
+				name = no
+				ethics = no
+				government = no
+			}
+			room_name_override = ""
+		}
+	}
+
+	# Restore room background back to normal
+	deactivate_effect = {
+		target = {
+			restore_country_backup_data = yes
+		}
+	}
+}
+
+scholarium_1_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_naval_cap_mult = -0.3
+		ship_military_cost_mult = 0.3
+		ship_military_upkeep_mult = 0.3
+	}
+}
+
+scholarium_1_overlord_modifier = {
+	icon = "GFX_specialist_perk_scholarium_1_overlord_modifier"
+	overlord_modifier = {
+		country_society_research_produces_mult = 0.1
+		country_physics_research_produces_mult = 0.1
+		country_engineering_research_produces_mult = 0.1
+		description = scholarium_1_overlord_modifier_desc
+	}
+}
+
+scholarium_1_neighbor_bonuses = {
+	icon = "GFX_specialist_perk_scholarium_1_neighbor_bonuses"
+
+	overlord_relay_network_modifier = {
+		specialist_scholarium_neighbor = 1
+	}
+
+	desc = {
+		description = scholarium_1_neighbor_bonuses_desc
+	}
+}
+
+scholarium_1_planetary_sensors = {
+	icon = "GFX_specialist_perk_scholarium_1_planetary_sensors"
+	desc = {
+		description = scholarium_1_planetary_sensors_desc
+	}
+}
+
+scholarium_1_discovery = {
+	icon = "GFX_specialist_perk_scholarium_1_discovery"
+	desc = {
+		description = scholarium_1_discovery_desc
+	}
+}
+
+scholarium_2_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		country_society_research_produces_mult = 0.3
+		country_physics_research_produces_mult = 0.3
+		country_engineering_research_produces_mult = 0.3
+		num_tech_alternatives_add = 1
+		description = scholarium_2_modifier_desc
+	}
+}
+
+scholarium_2_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_naval_cap_mult = -0.4
+		ship_military_cost_mult = 0.4
+		ship_military_upkeep_mult = 0.4
+	}
+}
+
+scholarium_2_leaders = {
+	icon = "GFX_specialist_perk_scholarium_2_leaders"
+	subject_modifier = {
+		country_scientist_cap_add = 1
+		scientist_initial_skill = 1
+	}
+
+	activate_effect = {
+		target = {
+			add_specialist_leaders = {
+				TYPE = scholarium
+				CLASS = scientist
+			}
+		}
+	}
+
+	deactivate_effect = {
+		target = {
+			remove_specialist_leaders = {
+				TYPE = scholarium
+				CLASS = scientist
+			}
+		}
+	}
+
+	desc = {
+		description = scholarium_2_leaders_desc
+	}
+}
+
+scholarium_2_traits = {
+	icon = "GFX_specialist_perk_scholarium_2_traits"
+	desc = {
+		description = scholarium_2_traits_desc
+	}
+}
+
+scholarium_2_discovery = {
+	icon = "GFX_specialist_perk_scholarium_2_discovery"
+	desc = {
+		description = scholarium_2_discovery_desc
+	}
+}
+
+scholarium_3_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		country_society_research_produces_mult = 0.4
+		country_physics_research_produces_mult = 0.4
+		country_engineering_research_produces_mult = 0.4
+		num_tech_alternatives_add = 1
+		description = scholarium_3_modifier_desc
+	}
+}
+
+scholarium_3_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_naval_cap_mult = -0.5
+		ship_military_cost_mult = 0.5
+		ship_military_upkeep_mult = 0.5
+	}
+}
+
+scholarium_3_discovery = {
+	icon = "GFX_specialist_perk_scholarium_3_discovery"
+	desc = {
+		description = scholarium_3_discovery_desc
+	}
+}
+
+scholarium_3_arctrellis = {
+	icon = "GFX_specialist_perk_scholarium_3_arctrellis"
+
+	desc = {
+		description = scholarium_3_arctrellis_desc
+	}
+
+	activate_effect = {
+		target = {
+			create_ship_design = { design = "NAME_Scholarium_Arctrellis" }
+			last_created_design = {
+				set_design_flag = scholarium_arctrellis
+			}
+			add_ship_design = last_created_design
+		}
+	}
+
+	deactivate_effect = {
+		target = {
+			every_owned_design = {
+				limit = { has_design_flag = scholarium_arctrellis }
+				save_event_target_as = remove_this_design
+			}
+			remove_ship_design = event_target:remove_this_design
+		}
+	}
+}
+
+############################
+# PROSPECTORIUM SPECIALIST #
+############################
+
+prospectorium_1_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		station_gatherers_cost_mult = -0.1
+		country_energy_produces_mult = 0.1
+		country_minerals_produces_mult = 0.1
+		#country_alloys_produces_mult = 0.1
+		#country_exotic_gases_produces_mult = 0.1
+		#country_rare_crystals_produces_mult = 0.1
+		#country_volatile_motes_produces_mult = 0.1
+		country_light_metals_produces_mult = 0.1
+		country_heavy_metals_produces_mult = 0.1
+		country_antimatter_fuel_produces_mult = 0.1
+		country_uranium_produces_mult = 0.1
+		description = prospectorium_1_modifier_desc
+	}
+
+	# For setting the room background
+	activate_effect = {
+		target = {
+			store_country_backup_data = {
+				flag = no
+				room = yes
+				name = no
+				ethics = no
+				government = no
+			}
+			room_name_override = ""
+		}
+	}
+
+	# Restore room background back to normal
+	deactivate_effect = {
+		target = {
+			restore_country_backup_data = yes
+		}
+	}
+}
+
+prospectorium_1_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_physics_research_produces_mult = -0.3
+		country_society_research_produces_mult = -0.3
+		country_engineering_research_produces_mult = -0.3
+		description = prospectorium_1_penalties_desc
+	}
+}
+
+prospectorium_1_overlord_modifier = {
+	icon = "GFX_specialist_perk_prospectorium_1_overlord_modifier"
+	overlord_modifier = {
+		station_gatherers_cost_mult = -0.2
+		shipclass_mining_station_build_speed_mult = 0.2
+	}
+}
+
+prospectorium_1_neighbor_bonuses = {
+	icon = "GFX_specialist_perk_prospectorium_1_neighbor_bonuses"
+
+	overlord_relay_network_modifier = {
+		specialist_prospectorium_neighbor = 1
+	}
+
+	desc = {
+		description = prospectorium_1_neighbor_bonuses_desc
+	}
+}
+
+prospectorium_1_deposits = {
+	icon = "GFX_specialist_perk_prospectorium_1_deposits"
+
+	desc = { description = prospectorium_1_deposits_desc }
+}
+
+prospectorium_2_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		station_gatherers_cost_mult = -0.25
+		country_energy_produces_mult = 0.2
+		country_minerals_produces_mult = 0.2
+		# country_alloys_produces_mult = 0.2
+		# country_exotic_gases_produces_mult = 0.2
+		# country_rare_crystals_produces_mult = 0.2
+		# country_volatile_motes_produces_mult = 0.2
+		country_light_metals_produces_mult = 0.2
+		country_heavy_metals_produces_mult = 0.2
+		country_antimatter_fuel_produces_mult = 0.2
+		country_uranium_produces_mult = 0.2
+		description = prospectorium_2_modifier_desc
+	}
+}
+
+prospectorium_2_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_physics_research_produces_mult = -0.4
+		country_society_research_produces_mult = -0.4
+		country_engineering_research_produces_mult = -0.4
+		description = prospectorium_2_penalties_desc
+	}
+}
+
+prospectorium_2_leaders = {
+	icon = "GFX_specialist_perk_prospectorium_2_leaders"
+	subject_modifier = {
+		country_official_cap_add = 1
+		official_initial_skill = 1
+	}
+
+	activate_effect = {
+		target = {
+			add_specialist_leaders = {
+				TYPE = prospectorium
+				CLASS = official
+			}
+		}
+	}
+
+	deactivate_effect = {
+		target = {
+			remove_specialist_leaders = {
+				TYPE = prospectorium
+				CLASS = official
+			}
+		}
+	}
+
+	desc = {
+		description = prospectorium_2_leaders_desc
+	}
+}
+
+prospectorium_2_traits = {
+	icon = "GFX_specialist_perk_prospectorium_2_traits"
+	desc = {
+		description = prospectorium_2_traits_desc
+	}
+}
+
+prospectorium_2_mining_tech = {
+	icon = "GFX_specialist_perk_prospectorium_2_mining_tech"
+	activate_effect = {
+		target = {
+			append_technology = { TECH = mine_rare_crystals }
+			append_technology = { TECH = mine_volatile_motes }
+			append_technology = { TECH = mine_exotic_gases }
+		}
+	}
+
+	desc = {
+		description = prospectorium_2_mining_tech_desc
+	}
+}
+
+prospectorium_2_deposits = {
+	icon = "GFX_specialist_perk_prospectorium_2_deposits"
+
+	desc = { description = prospectorium_2_deposits_desc }
+}
+
+prospectorium_3_modifier = {
+	main_perk = yes
+	subject_modifier = {
+		station_gatherers_cost_mult = -0.5
+		country_energy_produces_mult = 0.3
+		country_minerals_produces_mult = 0.3
+		# country_alloys_produces_mult = 0.3
+		# country_exotic_gases_produces_mult = 0.3
+		# country_rare_crystals_produces_mult = 0.3
+		# country_volatile_motes_produces_mult = 0.3
+		country_light_metals_produces_mult = 0.3
+		country_heavy_metals_produces_mult = 0.3
+		country_antimatter_fuel_produces_mult = 0.3
+		country_uranium_produces_mult = 0.3
+		description = prospectorium_3_modifier_desc
+	}
+}
+
+prospectorium_3_penalties = {
+	main_perk = yes
+	subject_modifier = {
+		country_physics_research_produces_mult = -0.5
+		country_society_research_produces_mult = -0.5
+		country_engineering_research_produces_mult = -0.5
+		description = prospectorium_3_penalties_desc
+	}
+}
+
+prospectorium_3_mining_tech = {
+	icon = "GFX_specialist_perk_prospectorium_3_mining_tech"
+	activate_effect = {
+		target = {
+			append_technology = { TECH = mine_zro }
+			append_technology = { TECH = mine_dark_matter }
+			append_technology = { TECH = mine_living_metal }
+		}
+	}
+
+	desc = {
+		description = prospectorium_3_mining_tech_desc
+	}
+}
+
+prospectorium_3_deposits = {
+	icon = "GFX_specialist_perk_prospectorium_3_deposits"
+
+	desc = { description = prospectorium_3_deposits_desc }
+}
+
+prospectorium_3_strip_mining = {
+	icon = "GFX_specialist_perk_prospectorium_3_strip_mining"
+	# Auto unlocks when Tier 3 is reached.
+	desc = {
+		description = prospectorium_3_strip_mining_desc
+	}
+}

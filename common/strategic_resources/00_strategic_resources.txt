@@ -6,6 +6,8 @@
 #allow_deficit = no		# default yes // only implemented for tech resources
 #market_amount = 100	# default -1, if non-positive, resource cannot be traded in the Market
 #market_price = 100		# default -1, if non-positive, resource cannot be traded in the Market
+# special_max_amount = yes/no	# default no, if yes maximum storage capacity of the resource is fixed to the amount specified in max = INT + country_resource_max_RESOURCE_NAME_add modifiers + dynamic_capacity
+#								This explicitly ignores MOD_COUNTRY_RESOURCE_MAX_ADD modifiers.
 
 time = {
 	# Must be present here, but really: do not add a Deficit situation for Time.
@@ -327,6 +329,34 @@ minor_artifacts = {
 		base = 5
 	}
 }
+
+# Astral Thread
+astral_threads = {
+	tradable = yes
+	category = rare
+	max = 500
+	special_max_amount = yes
+	dynamic_capacity = {
+		base = @astral_threads_capacity_from_each_explored_rift
+		complex_trigger_modifier = {
+			trigger = astral_rifts_completed
+			mode = mult
+		}		
+	}
+
+	prerequisites = { "tech_astral_harvesting" }
+	
+	visibility_prerequisite = { has_astral_planes_dlc = yes }
+
+	ai_weight = {
+		weight = 100
+	}
+
+	ai_wants = {
+		base = 5
+	}
+}
+
 
 ###############
 ###	Nemesis	###

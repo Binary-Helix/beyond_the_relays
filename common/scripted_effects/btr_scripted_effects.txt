@@ -415,192 +415,186 @@ give_starting_ship_tech = {
 }
 
 give_empire_unique_tech = {
-	if = {
-		limit = { 
-			NOT = {
-				galaxy_size = btr_canon_600
-				galaxy_size = btr_canon_1300
-				galaxy_size = btr_canon_1500
+	owner = {
+		if = {
+			limit = { 
+				has_origin = asari_rep_origin
 			}
+			give_technology = { tech = tech_asari_architecture message = no }
+			give_technology = { tech = tech_asari_ship_design message = no }
+
+			log = "check for duplicate tech assignment"
 		}
-		owner = {
-			if = {
-				limit = { 
-					has_origin = asari_rep_origin
-				}
-				give_technology = { tech = tech_asari_architecture message = no }
-				give_technology = { tech = tech_asari_ship_design message = no }
+		if = {
+			limit = { 
+				has_origin = salarian_uni_origin
 			}
-			if = {
-				limit = { 
-					has_origin = salarian_uni_origin
-				}
-				give_technology = { tech = tech_salarian_uv_antifighter message = no }
-				give_technology = { tech = tech_salarian_exo_arch message = no }
-			}		
-			if = {
-				limit = { 
-					has_origin = turian_hier_origin
-				}
-				give_technology = { tech = tech_turian_elkoss_contract message = no }
-				give_technology = { tech = tech_turian_planetary_kasrs message = no }
-			}		
-			if = {
-				limit = { 
-					has_origin = systems_all_origin
-				}
-				give_technology = { tech = tech_systems_all_exogeni message = no }
-				give_technology = { tech = tech_systems_all_eldfell message = no }
-			}	
-			if = {
-				limit = { 
-					has_origin = courts_dek_origin
-				}
-				give_technology = { tech = tech_elcor_automated_drone message = no }
-				give_technology = { tech = tech_elcor_loyal_wingmen message = no }
+			give_technology = { tech = tech_salarian_uv_antifighter message = no }
+			give_technology = { tech = tech_salarian_exo_arch message = no }
+		}		
+		if = {
+			limit = { 
+				has_origin = turian_hier_origin
 			}
-			if = {
-				limit = { 
-					has_origin = vol_pro_origin
-				}
-				give_technology = { tech = tech_volus_protective_suits message = no }
-				give_technology = { tech = tech_volus_government_structures	message = no }
+			give_technology = { tech = tech_turian_elkoss_contract message = no }
+			give_technology = { tech = tech_turian_planetary_kasrs message = no }
+		}		
+		if = {
+			limit = { 
+				has_origin = systems_all_origin
 			}
-			if = {
-				limit = { 
-					has_origin = illuminated_pri_origin
-				}
-				give_technology = { tech = tech_hanar_gravity_drives message = no }
-				give_technology = { tech = tech_hanar_genemodding	message = no }
+			give_technology = { tech = tech_systems_all_exogeni message = no }
+			give_technology = { tech = tech_systems_all_eldfell message = no }
+		}	
+		if = {
+			limit = { 
+				has_origin = courts_dek_origin
 			}
-			if = {
-				limit = { 
-					has_origin = hegemony_kha_origin
-				}
-				give_technology = { tech = tech_batarian_gulags message = no }
-				give_technology = { tech = tech_batarian_implants	message = no }
+			give_technology = { tech = tech_elcor_automated_drone message = no }
+			give_technology = { tech = tech_elcor_loyal_wingmen message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = vol_pro_origin
 			}
-			if = {
-				limit = { 
-					has_origin = aralakh_kah_origin
-				}
-				give_technology = { tech = tech_krogan_sky_hammer_thrusters message = no }
-				give_technology = { tech = tech_krogan_rite_supremacy message = no }
-				give_technology = { tech = tech_krogan_anti_orbital_gun message = no }
+			give_technology = { tech = tech_volus_protective_suits message = no }
+			give_technology = { tech = tech_volus_government_structures	message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = illuminated_pri_origin
 			}
-			if = {
-				limit = { 
-					has_origin = migrant_fle_origin
-				}
-				give_technology = { tech = tech_quarian_agricultural_guild_production message = no }
-				give_technology = { tech = tech_quarian_central_financial_administration message = no }
-				give_technology = { tech = tech_quarian_weaponsmith_guild_arc_rifle message = no }
-				give_technology = { tech = tech_quarian_weaponsmith_guild_arc_pistol message = no }
-				give_technology = { tech = tech_quarian_shipyard_guild_emp_projector message = no }
-				give_technology = { tech = tech_quarian_anatomist_guild_ocular message = no }
-				give_technology = { tech = tech_quarian_medical_guild_personal message = no }
-				give_technology = { tech = tech_quarian_medical_guild_antibiotic message = no }
+			give_technology = { tech = tech_hanar_gravity_drives message = no }
+			give_technology = { tech = tech_hanar_genemodding	message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = hegemony_kha_origin
 			}
-			if = {
-				limit = { 
-					has_origin = cerberus_emp_origin
-				}
-				give_technology = { tech = tech_cerberus_restricted_iff_codes message = no }
-				give_technology = { tech = tech_cerberus_enhanced_defense_initiative message = no }
+			give_technology = { tech = tech_batarian_gulags message = no }
+			give_technology = { tech = tech_batarian_implants	message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = aralakh_kah_origin
 			}
-			if = {
-				limit = { 
-					has_origin = omega_emp_origin
-				}
-				give_technology = { tech = tech_omega_unrestricted_knowledge message = no }
-				give_technology = { tech = tech_omega_unrestricted_targeting_scanners message = no }
+			give_technology = { tech = tech_krogan_sky_hammer_thrusters message = no }
+			give_technology = { tech = tech_krogan_rite_supremacy message = no }
+			give_technology = { tech = tech_krogan_anti_orbital_gun message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = migrant_fle_origin
 			}
-			if = {
-				limit = { 
-					has_origin = illium_cor_origin
-				}
-				give_technology = { tech = tech_illium_stock_market message = no }
-				give_technology = { tech = tech_illium_shady_business_lines message = no }
-				give_technology = { tech = tech_illium_bleeding_edge message = no }
-				give_technology = { tech = tech_illium_outsourced_law_enforcement message = no }
-				give_technology = { tech = tech_illium_reinforced_arcologies message = no }
+			give_technology = { tech = tech_quarian_agricultural_guild_production message = no }
+			give_technology = { tech = tech_quarian_central_financial_administration message = no }
+			give_technology = { tech = tech_quarian_weaponsmith_guild_arc_rifle message = no }
+			give_technology = { tech = tech_quarian_weaponsmith_guild_arc_pistol message = no }
+			give_technology = { tech = tech_quarian_shipyard_guild_emp_projector message = no }
+			give_technology = { tech = tech_quarian_anatomist_guild_ocular message = no }
+			give_technology = { tech = tech_quarian_medical_guild_personal message = no }
+			give_technology = { tech = tech_quarian_medical_guild_antibiotic message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = cerberus_emp_origin
 			}
-			if = {
-				limit = { 
-					has_origin = caleston_dir_origin
-				}
-				give_technology = { tech = tech_caleston_dir_hazard_suit message = no }
-				give_technology = { tech = tech_caleston_dir_eezo_refinement message = no }
+			give_technology = { tech = tech_cerberus_restricted_iff_codes message = no }
+			give_technology = { tech = tech_cerberus_enhanced_defense_initiative message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = omega_emp_origin
 			}
-			if = {
-				limit = { 
-					has_origin = remnants_rak_origin
-				}
-				give_technology = { tech = tech_drell_rachati_blades message = no }
-				give_technology = { tech = tech_drell_endothermic_valve_rerouters message = no }
+			give_technology = { tech = tech_omega_unrestricted_knowledge message = no }
+			give_technology = { tech = tech_omega_unrestricted_targeting_scanners message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = illium_cor_origin
 			}
-			if = {
-				limit = { 
-					has_origin = vorcha_cla_origin
-				}
-				give_technology = { tech = tech_vorcha_tribe_of_tribes message = no }
-				give_technology = { tech = tech_vorcha_call_of_heshtok message = no }
+			give_technology = { tech = tech_illium_stock_market message = no }
+			give_technology = { tech = tech_illium_shady_business_lines message = no }
+			give_technology = { tech = tech_illium_bleeding_edge message = no }
+			give_technology = { tech = tech_illium_outsourced_law_enforcement message = no }
+			give_technology = { tech = tech_illium_reinforced_arcologies message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = caleston_dir_origin
 			}
-			if = {
-				limit = { 
-					has_origin = sedriicae_col_origin
-				}
-				give_technology = { tech = tech_sedriicae_economic_policy message = no }
-				give_technology = { tech = tech_sedriicae_industry_modernization message = no }
+			give_technology = { tech = tech_caleston_dir_hazard_suit message = no }
+			give_technology = { tech = tech_caleston_dir_eezo_refinement message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = remnants_rak_origin
 			}
-			if = {
-				limit = { 
-					has_origin = lystheni_ord_origin
-				}
-				give_technology = { tech = tech_lystheni_viral_warfare_strategem message = no }
-				give_technology = { tech = tech_lystheni_oracle_class_ai message = no }
+			give_technology = { tech = tech_drell_rachati_blades message = no }
+			give_technology = { tech = tech_drell_endothermic_valve_rerouters message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = vorcha_cla_origin
 			}
-			if = {
-				limit = { 
-					has_origin = gothones_rem_origin
-				}
-				give_technology = { tech = tech_gothones_harmonious_husbandry message = no }
+			give_technology = { tech = tech_vorcha_tribe_of_tribes message = no }
+			give_technology = { tech = tech_vorcha_call_of_heshtok message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = sedriicae_col_origin
 			}
-			if = {
-				limit = { 
-					has_origin = parnack_reg_origin
-				}
-				give_technology = { tech = tech_parnack_registry_of_alphas message = no }
-				give_technology = { tech = tech_parnack_standing_armies message = no }
+			give_technology = { tech = tech_sedriicae_economic_policy message = no }
+			give_technology = { tech = tech_sedriicae_industry_modernization message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = lystheni_ord_origin
 			}
-			if = {
-				limit = { 
-					has_origin = raloi_rep_origin
-				}
-				give_technology = { tech = tech_raloi_foreign_advisors message = no }
+			give_technology = { tech = tech_lystheni_viral_warfare_strategem message = no }
+			give_technology = { tech = tech_lystheni_oracle_class_ai message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = gothones_rem_origin
 			}
-			if = {
-				limit = { 
-					OR = {
-						has_origin = geth_con_origin
-						has_origin = disciples_naz_origin
-					}
-				}
-				give_technology = { tech = tech_geth_uv_pd_laser message = no }
-				give_technology = { tech = tech_geth_sphere_phys message = no }
+			give_technology = { tech = tech_gothones_harmonious_husbandry message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = parnack_reg_origin
 			}
-			if = {
-				limit = { 
-					has_origin = rachni_hiv_origin
-				}
-				give_technology = { tech = tech_rachni_symphonic_intonation message = no }
-				give_technology = { tech = tech_rachni_dissonant_resolution message = no }
-				give_technology = { tech = tech_rachni_chord_progression message = no }
-				give_technology = { tech = tech_rachni_dominant_intervals message = no }
-				give_technology = { tech = tech_rachni_experimental_swarmshop message = no }
+			give_technology = { tech = tech_parnack_registry_of_alphas message = no }
+			give_technology = { tech = tech_parnack_standing_armies message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = raloi_rep_origin
 			}
+			give_technology = { tech = tech_raloi_foreign_advisors message = no }
+		}
+		if = {
+			limit = { 
+				OR = {
+					has_origin = geth_con_origin
+					has_origin = disciples_naz_origin
+				}
+			}
+			give_technology = { tech = tech_geth_uv_pd_laser message = no }
+			give_technology = { tech = tech_geth_sphere_phys message = no }
+		}
+		if = {
+			limit = { 
+				has_origin = rachni_hiv_origin
+			}
+			give_technology = { tech = tech_rachni_symphonic_intonation message = no }
+			give_technology = { tech = tech_rachni_dissonant_resolution message = no }
+			give_technology = { tech = tech_rachni_chord_progression message = no }
+			give_technology = { tech = tech_rachni_dominant_intervals message = no }
+			give_technology = { tech = tech_rachni_experimental_swarmshop message = no }
 		}
 	}
+
 }
 
 count_robots_to_recycle_for_light_metals = {

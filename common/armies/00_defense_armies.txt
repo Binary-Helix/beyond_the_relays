@@ -215,3 +215,94 @@ offspring_defense = {
 		}
 	}
 }
+
+################################
+# Sovereign Guardianship Civic #
+################################
+fanatic_guardian = {
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.5
+	damage = 3
+	morale = 2.5
+	collateral_damage = 0.0
+	war_exhaustion = 0.0 # No WE from defense armies
+	icon = GFX_army_type_defensive
+
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_active_tradition = tr_unyielding_resistance_is_frugal }
+			}
+			unity = 0.5
+		}
+	}
+
+	potential = {
+		from = {
+			NOR = {
+				has_trait = "trait_mechanical"
+				has_trait = "trait_machine_unit"
+				is_sapient = no
+			}
+		}
+		owner = {
+			is_primitive = no
+			OR = {
+				NOT = { has_authority = auth_machine_intelligence }
+				has_valid_civic = civic_machine_assimilator
+			}
+			is_sovereign_guardianship_empire = yes
+		}
+	}
+	army_modi
+	fier = {
+		army_damage_empire_sprawl_penalty_mult = 1
+	}
+}
+
+machine_fanatic_guardian = {
+	defensive = yes
+	is_pop_spawned = yes
+	health = 2.20
+	damage = 2.20
+	has_morale = no
+	morale_damage = 2.00
+	collateral_damage = 0.0
+	war_exhaustion = 0.0 # No WE from defense armies
+	icon = GFX_army_type_machine_defensive
+	has_species = yes
+
+	potential = {
+		owner = {
+			OR = {
+				has_authority = auth_machine_intelligence
+				has_ascension_perk = ap_synthetic_evolution
+				any_owned_pop = {
+					is_species_class = "ROBOT"
+				}
+			}
+			is_sovereign_guardianship_empire = yes
+		}
+		from = {
+			has_trait = "trait_machine_unit"
+		}
+	}
+
+	army_modifier = {
+		army_damage_empire_sprawl_penalty_mult = 1
+	}
+
+	resources = {
+		category = armies
+		produces = {
+			trigger = {
+				exists = owner
+				owner = { has_active_tradition = tr_unyielding_resistance_is_frugal }
+			}
+			unity = 0.5
+		}
+	}
+}

@@ -6,6 +6,7 @@ Includes = {
 	"shadow.fxh"
 	"tiled_pointlights.fxh"
 	"pdxmesh_samplers.fxh"
+	"pdxmesh_astral_rift.fxh"
 	"pdxmesh_ship.fxh"
 }
 
@@ -2545,7 +2546,6 @@ Effect AlphaBlendNoDepth_00ConstructionAlphaBlendSkinned
 	defines = { BLEND_TO_DIFFUSE_ALPHA }
 }
 
-
 Effect PdxMeshTerraAlphaTest
 {
 	VertexShader = "VertexPdxMeshStandard"
@@ -2760,6 +2760,20 @@ Effect PdxMeshRingsSkinned
 	PixelShader = "PixelPdxMeshStandard"
 	BlendState = "BlendStateAlphaBlend";
 	Defines = { "IS_PLANET" "IS_RING"  }
+}
+
+Effect PdxMeshAstralRift
+{
+	VertexShader = "VertexPdxMeshStandard"
+	PixelShader = "PixelPdxMeshAstralRift"
+	BlendState = "BlendStateAlphaBlend";
+}
+
+Effect PdxMeshAstralRiftSkinned
+{
+	VertexShader = "VertexPdxMeshStandardSkinned"
+	PixelShader = "PixelPdxMeshAstralRift"
+	BlendState = "BlendStateAlphaBlend";
 }
 
 Effect PdxMeshAlphaBlendPlanet
@@ -3130,6 +3144,20 @@ Effect PdxMeshRingsSkinnedShadow
 	VertexShader = "VertexPdxMeshStandardShadow"
 	PixelShader = "PixelPdxMeshStandardShadow"
 	Defines = { "IS_SHADOW" "IS_PLANET" "IS_RING" }
+}
+
+Effect PdxMeshAstralRiftShadow
+{
+	VertexShader = "VertexPdxMeshStandardShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
+}
+
+Effect PdxMeshAstralRiftSkinnedShadow
+{
+	VertexShader = "VertexPdxMeshStandardSkinnedShadow"
+	PixelShader = "PixelPdxMeshStandardShadow"
+	Defines = { "IS_SHADOW" }
 }
 
 Effect PdxMeshAlphaBlendPlanetShadow
