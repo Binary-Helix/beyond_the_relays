@@ -1,0 +1,81 @@
+## Categories used in this file must have use_for_ai_budget = yes defined in economic_categories ##
+## It is possible to have multiple entries with the same category and resource ##
+
+#################
+## Expenditure ##
+#################
+food_expenditure_buffer = { # Buffer, will not be spent
+	resource = food
+	type = expenditure
+	category = buffer
+
+	potential = {
+		btr_ai_budget_potential_food_expenditure_buffer = yes
+	}
+
+	weight = {
+		weight = 0.3
+	}
+}
+
+food_expenditure_colonies_expand = {
+	resource = food
+	type = expenditure
+	category = colonies
+
+	potential = {
+		btr_ai_budget_potential_food_expenditure_colonies_expand = yes
+		is_machine_empire = no
+		ai_colonize_plans > 0
+		has_resource = { type = food amount > 400 }
+		has_monthly_income = {
+			resource = food
+			value > 0
+		}
+	}
+
+	weight = {
+		weight = 2.0
+	}
+
+	desired_max = {
+		base = 550
+	}
+}
+
+food_expenditure_buildings = {
+	resource = food
+	type = expenditure
+	category = planets
+
+	potential = {
+		btr_ai_budget_potential_food_expenditure_buildings = yes
+		country_uses_food = yes
+	}
+
+	weight = {
+		weight = 0.2
+	}
+
+	desired_min = {
+		base = 0
+	}
+
+	desired_max = {
+		base = 500
+	}
+}
+
+food_upkeep_country = { # Covers most other things
+	resource = food
+	type = upkeep
+	category = country
+
+	potential = {
+		btr_ai_budget_potential_food_upkeep_country = yes
+	}
+
+	weight = {
+		weight = 0.5
+	}
+}

@@ -1,7 +1,39 @@
 ## Categories used in this file must have use_for_ai_budget = yes defined in economic_categories ##
 ## It is possible to have multiple entries with the same category and resource ##
 
-# Upkeep ----------------------------------------------------------
+#################
+## Expenditure ##
+#################
+antimatter_fuel_expenditure_buffer = { # Buffer, will not be spent
+	resource = antimatter_fuel
+	type = expenditure
+	category = buffer
+
+	potential = {
+		btr_ai_budget_potential_antimatter_fuel_expenditure_buffer = yes
+	}
+
+	weight = {
+		weight = 0.0
+	}
+}
+
+############
+## Upkeep ##
+############
+antimatter_fuel_upkeep_buffer = {	# Buffer, will not be spent
+	resource = antimatter_fuel
+	type = upkeep
+	category = buffer
+
+	potential = {
+		btr_ai_budget_potential_antimatter_fuel_upkeep_buffer = yes
+	}
+
+	weight = {
+		weight = 0.3
+	}
+}
 
 antimatter_fuel_upkeep_ships = {
 	resource = antimatter_fuel
@@ -9,27 +41,34 @@ antimatter_fuel_upkeep_ships = {
 	category = ships
 
 	potential = {
-		always = yes
+		btr_ai_budget_potential_antimatter_fuel_upkeep_ships = yes
 	}
 
 	weight = {
-		weight = 0.1
+		weight = 0.5
+		modifier = {
+			factor = 1.5
+			OR = {
+				is_at_war = yes
+				resource_income_compare = {
+					resource = antimatter_fuel
+					value > 800
+				}
+			}
+		}
 	}
 }
 
-antimatter_fuel_upkeep_starbases = {
+antimatter_fuel_upkeep_planets = {
 	resource = antimatter_fuel
 	type = upkeep
-	category = starbases
+	category = planets
 
 	potential = {
-		any_owned_nonprimary_starbase = {
-			has_starbase_size >= orbital_ring_tier_2
-			exists = planet
-		}
+		btr_ai_budget_potential_antimatter_fuel_upkeep_planets = yes
 	}
 
 	weight = {
-		weight = 0.1
+		weight = 0.2
 	}
 }
