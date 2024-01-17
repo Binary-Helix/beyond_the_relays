@@ -171,10 +171,8 @@ salarian_trait_bleed_edge = {
 	allowed_archetypes = { BIOLOGICAL }
 
 	modifier = {
-		planet_jobs_specialist_produces_mult = 0.15
-		planet_jobs_worker_produces_mult = 0.05
-		ship_weapon_range_mult = 0.1
-		planet_buildings_energy_upkeep_mult = 0.2
+		species_leader_exp_gain = 2.0
+		leader_skill_levels = 1
 	}	
 }
 
@@ -297,8 +295,8 @@ human_trait_core = {
 
 	sorting_priority = 20
 	
-	leader_age_min = 25
-	leader_age_max = 50
+	leader_age_min = 40
+	leader_age_max = 130
 
 	ai_weight = {
 		weight = 0
@@ -322,7 +320,7 @@ human_trait_biodiversity = {
 
 	modifier = {
 		pop_environment_tolerance = 0.05
-		country_society_tech_research_speed = 0.1
+		planet_researchers_society_research_produces_mult = 0.1
 		planet_jobs_unity_produces_mult = -0.05
 	}
 }
@@ -339,7 +337,7 @@ human_trait_frontier_spirit = {
 	allowed_archetypes = { BIOLOGICAL }
 
 	modifier = {
-		planet_colony_development_speed_mult = 0.25
+		pop_growth_from_immigration = 0.25
 		pop_growth_speed = 0.05
 	}
 }
@@ -458,8 +456,7 @@ volus_trait_core = {
 	allowed_archetypes = { BIOLOGICAL }
 
 	leader_age_min = 30
-	leader_age_max = 70
-
+	leader_age_max = 140
 
 	modifier = {
 		leader_lifespan_add = 30
@@ -503,6 +500,7 @@ volus_trait_economic_mindset = {
 		pop_amenities_usage_mult = 0.1
 		country_light_metals_produces_mult = -0.15
 		country_heavy_metals_produces_mult = -0.15
+		#country_alloys_produces_mult = -0.15
 	}
 }
 
@@ -520,7 +518,7 @@ volus_trait_yoqtan_survivor = {
 
 	modifier = {
 		pop_growth_speed = -0.05
-		country_unity_produces_mult = 0.1
+		planet_jobs_unity_produces_mult = 0.1
 	}
 }
 
@@ -564,8 +562,7 @@ hanar_trait_toxic_secretions = {
 
 	modifier = {
 		army_defense_damage_mult = 0.10
-		planet_crime = -0.4
-		
+		planet_jobs_unity_produces_mult = 0.30
 	}
 }
 
@@ -583,7 +580,9 @@ hanar_trait_non_bipedal = {
 	allowed_archetypes = { BIOLOGICAL }
 
 	modifier = {
-		all_technology_research_speed = -0.1
+		planet_jobs_physics_research_produces_mult = -0.1
+		planet_jobs_society_research_produces_mult = -0.1
+		planet_jobs_engineering_research_produces_mult = -0.1
 		planet_pops_consumer_goods_upkeep_mult = 0.10
 	}
 }
@@ -596,21 +595,13 @@ hanar_trait_water_bound = {
 
 	sorting_priority = 20
 
-	random_weight = {
-		AQUATIC = 100
-		MOL = 10
-		HUM = 2
-		MAM = 2
-		LITHOID = 0.5
-	 }
-
 	allowed_planet_classes = {
 		pc_ocean
 	}
 
 	initial = yes
 
-	allowed_archetypes = { BIOLOGICAL LITHOID }
+	allowed_archetypes = { BIOLOGICAL }
 
 	ai_weight = {
 		weight = 1
@@ -632,15 +623,9 @@ hanar_trait_water_bound = {
 			}
 		}
 		pop_housing_usage_mult = -0.1
-		planet_jobs_food_produces_mult = 0.1
-		planet_jobs_minerals_produces_mult = 0.1
-		planet_jobs_beryllium_produces_mult = 0.1
-		planet_jobs_lithium_produces_mult = 0.1
-		planet_jobs_titanium_produces_mult = 0.1
-		planet_jobs_iridium_produces_mult = 0.1
-		planet_jobs_palladium_produces_mult = 0.1
-		planet_jobs_platinum_produces_mult = 0.1
-		planet_jobs_energy_produces_mult = 0.1
+		planet_jobs_food_produces_mult = 0.10
+		planet_jobs_energy_produces_mult = 0.10
+		planet_miners_produces_mult = 0.10
 	}
 	triggered_pop_modifier = {
 		potential = {
@@ -656,14 +641,8 @@ hanar_trait_water_bound = {
 		}
 		pop_housing_usage_mult = -0.05
 		planet_jobs_food_produces_mult = 0.05
-		planet_jobs_minerals_produces_mult = 0.05
-		planet_jobs_beryllium_produces_mult = 0.05
-		planet_jobs_lithium_produces_mult = 0.05
-		planet_jobs_titanium_produces_mult = 0.05
-		planet_jobs_iridium_produces_mult = 0.05
-		planet_jobs_palladium_produces_mult = 0.05
-		planet_jobs_platinum_produces_mult = 0.05
 		planet_jobs_energy_produces_mult = 0.05
+		planet_miners_produces_mult = 0.05
 		pop_happiness = 0.05
 	}
 	triggered_pop_modifier = {
@@ -746,8 +725,8 @@ batarian_trait_core = {
 	icon = "gfx/interface/icons/traits/batarian_trait_core.dds"
 	allowed_archetypes = { BIOLOGICAL }
 
-	leader_age_min = 20
-	leader_age_max = 60
+	leader_age_min = 30
+	leader_age_max = 120
 
 	modifier = {
 		leader_lifespan_add = 40
@@ -785,8 +764,8 @@ batarian_trait_karma_chameleon = { #batarian_trait_enduring_physique = {
 
 	modifier = {
 		pop_environment_tolerance = 0.1
-		planet_colony_development_speed_mult = -0.33
-		planet_housing_mult = 0.25
+		pop_growth_from_immigration = 0.10
+		planet_miners_produces_mult = 0.10
 	}
 }
 
@@ -804,7 +783,8 @@ batarian_trait_four_eyed = {
 
 	modifier = {
 		pop_ethic_xenophobe_attraction_mult = 0.10
-		army_attack_morale_mult = 0.35
+		envoy_improve_relations_mult = -0.25
+		envoy_harm_relations_mult = 0.25
 	}	
 }
 
